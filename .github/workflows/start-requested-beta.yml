@@ -1,0 +1,17 @@
+name: Start requested Forever beta
+on:
+  push:
+    branches: ['release-dispatch/forever-1264568f']
+permissions:
+  actions: write
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start release from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run release.yml --repo PhatZero/Wayforth --ref main -f curseforge=true \
+            -f changelog='Leveling guides now use separate destinations for quest pickups, objectives, and turn-ins. Item-started quests point to their loot sources and explain how to accept them. Guide steps with missing objective coordinates now provide specific instructions. Saved guide progress carries forward.'
