@@ -106,6 +106,7 @@ assert(routes:Switch(id, "beginning"), "Beginning mode remains available")
 assert(guides:CurrentStep().id == "start-accept", "Story mode starts at first unfinished step")
 
 -- Horde recovery fails safely where prerequisite metadata/pins are incomplete.
+for _, questID in ipairs({ 92880, 92642, 92645, 93320 }) do turnedIn[questID] = nil end
 faction = "Horde"
 ns.char.activeGuide = "zephras-horde"
 local h = guides:GetProgress("zephras-horde")
