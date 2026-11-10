@@ -70,6 +70,7 @@ function Guides:GetSteps(id)
             local resolved = {}
             for key, value in pairs(step) do resolved[key] = value end
             if step.questIds then resolved.questId = step.questIds[guide.faction] end
+            if step.requiresByFaction then resolved.requires = step.requiresByFaction[guide.faction] end
             if step.coordsByFaction and step.coordsByFaction[guide.faction] then
                 local loc = step.coordsByFaction[guide.faction]
                 resolved.x, resolved.y = loc[1], loc[2]
