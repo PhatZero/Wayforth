@@ -1,0 +1,37 @@
+## Interface: 16001
+## Title: |cff24c9e0Way|r|cffffcd73Forth|r
+## Notes: Offline-first adventure guide and character companion for WoW: Forever.
+## Author: WoW Forever
+## Version: 1.0.0-beta
+## SavedVariables: WoWForeverDB
+## SavedVariablesPerCharacter: WoWForeverCharDB
+## X-Category: Quest
+## IconTexture: Interface\AddOns\WayForth\Textures\WayForthCompass.tga
+## X-Website: https://wowforever-fortune.com
+## X-Client: WoW Forever 1.60.1
+
+Core/Namespace.lua
+Core/Compatibility.lua
+Core/Database.lua
+Core/Diagnostics.lua
+Core/Character.lua
+Data/StarterGuide.lua
+Data/ZephrasLocations.lua
+Data/ZephrasIsle.lua
+Data/AllianceStarters.lua
+Data/ForeverQuestCatalog.lua
+Data/KalimdorAlliance.lua
+Data/HordeKalimdor.lua
+Data/EasternEarly.lua
+Data/EasternHigh.lua
+Data/HordeRaceStarterExtras.lua
+Core/Guides.lua
+Core/SmartRoutes.lua
+Core/QuestAudit.lua
+UI/Theme.lua
+UI/Navigator.lua
+UI/Tracker.lua
+UI/Window.lua
+UI/Modern.lua
+UI/Minimap.lua
+Core/Bootstrap.lua

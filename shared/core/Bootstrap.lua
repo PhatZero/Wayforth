@@ -1,0 +1,67 @@
+local addonName, ns = ...
+
+local frame = CreateFrame("Frame")
+local diagnostics = ns.Modules.Diagnostics
+local function invoke(name, method, ...)
+    local ok = ns:Call(name, method, ...)
+    if ok then ns.state.initialized[name] = true end
+end
+
+local function dispatch(event, ...)
+    if event == "ADDON_LOADED" then
+        local loadedAddon = ...
+        if loadedAddon ~= addonName or ns.state.loaded then return end
+        invoke("Database", "Initialize")
+        invoke("Compatibility", "Detect")
+        ns.state.loaded = true
+        diagnostics:Info("Bootstrap", "Addon loaded; SavedVariables initialized")
+        return
+    end
+
+    if not ns.state.loaded then return end
+    if event == "PLAYER_LOGIN" then
+        if ns.state.loggedIn then return end
+        ns.state.loggedIn = true
+        invoke("Character", "Capture")
+        invoke("Guides", "GetProgress")
+        ns:Call("Guides", "Sync")
+        invoke("UI", "Initialize")
+        invoke("Tracker", "Initialize")
+        invoke("Minimap", "Initialize")
+        if ns.client and not ns.client.supported then
+            diagnostics:Warn("Compatibility", ns.Modules.Compatibility:Report())
+        end
+        diagnostics:Info("Bootstrap", "Player login complete")
+    elseif event == "QUEST_ACCEPTED" or event == "QUEST_TURNED_IN"
+        or event == "QUEST_REMOVED" or event == "QUEST_LOG_UPDATE" then
+        if event ~= "QUEST_LOG_UPDATE" then
+            ns:Call("Guides", "RecordQuestEvent", event, ...)
+        end
+        local ok, advanced = ns:Call("Guides", "Sync")
+        if event == "QUEST_TURNED_IN" then ns:Call("SmartRoutes", "Recalculate") end
+        ns:Call("Navigator", "Refresh")
+        if ok and advanced then ns:Call("Tracker", "Refresh") end
+        if ok and advanced and ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then
+            ns:Call("UI", "Refresh")
+        end
+    elseif event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LEVEL_UP"
+        or event == "PLAYER_XP_UPDATE" or event == "ZONE_CHANGED_NEW_AREA"
+        or event == "PLAYER_MONEY" then
+        ns:Call("Character", "Capture")
+        if event == "PLAYER_LEVEL_UP" then ns:Call("SmartRoutes", "Recalculate") end
+        ns:Call("Navigator", "Refresh")
+        if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
+    elseif event == "PLAYER_LOGOUT" then
+        ns:Call("Character", "Capture")
+    end
+end
+
+frame:SetScript("OnEvent", function(_, event, ...)
+    local ok, err = pcall(dispatch, event, ...)
+    if not ok then diagnostics:Error("Event " .. event, err) end
+end)
+for _, event in ipairs({
+    "ADDON_LOADED", "PLAYER_LOGIN", "PLAYER_ENTERING_WORLD", "PLAYER_LEVEL_UP",
+    "PLAYER_XP_UPDATE", "ZONE_CHANGED_NEW_AREA", "PLAYER_MONEY", "PLAYER_LOGOUT",
+    "QUEST_ACCEPTED", "QUEST_TURNED_IN", "QUEST_REMOVED", "QUEST_LOG_UPDATE",
+}) do frame:RegisterEvent(event) end
