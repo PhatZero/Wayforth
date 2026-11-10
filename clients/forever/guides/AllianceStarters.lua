@@ -84,10 +84,21 @@ for _, zone in ipairs(zones) do
     }
     for _, entry in ipairs(zone.quests) do
         local id, title, level, hub, requires = entry[1], entry[2], entry[3], entry[4], entry[5]
+        -- Every starter quest needs a distinct pickup phase. Keep the legacy
+        -- turn-in ID unchanged so existing per-character completions migrate.
+        guide.steps[#guide.steps + 1] = {
+            id = "quest-" .. tostring(id) .. "-accept", questId = id,
+            title = "Pick up: " .. title,
+            text = "Find the quest giver around " .. tostring(hub or zone.zone) ..
+                " and accept " .. title .. " if available. The pickup coordinate has not been verified.",
+            level = level, hub = hub, zone = zone.zone, action = "accept",
+            requires = requires and { requires } or nil,
+            sourceStatus = "public-catalog-match",
+        }
         guide.steps[#guide.steps + 1] = {
             id = "quest-" .. tostring(id), questId = id, title = title,
             text = "Complete and turn in " .. title .. ". Check the quest log for live objectives; WayForth will sync the quest ID after turn-in.",
-            level = level, hub = hub, action = "turnin",
+            level = level, hub = hub, zone = zone.zone, action = "turnin",
             requires = requires and { requires } or nil,
             sourceStatus = "public-catalog-match",
         }

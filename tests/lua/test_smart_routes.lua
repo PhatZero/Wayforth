@@ -53,11 +53,11 @@ assert(g:GetGuide().id == "alliance-teldrassil", "Switches original guide engine
 local saved = g:GetProgress()
 assert(saved.routeMode == "beginning" and saved.current == 1, "Mode and progress saved")
 g:CompleteCurrent()
-assert(saved.completed["quest-458"], "Manual completion recorded")
+assert(saved.completed["quest-458-accept"], "Manual pickup checkpoint recorded")
 assert(routes:Switch("alliance-elwynn", "beginning"), "Switch to human lands")
-assert(not g:GetProgress("alliance-elwynn").completed["quest-458"], "Region progress isolated")
+assert(not g:GetProgress("alliance-elwynn").completed["quest-458-accept"], "Region progress isolated")
 assert(routes:Switch("alliance-teldrassil", "resume"), "Resume night-elf guide")
-assert(g:GetProgress().completed["quest-458"], "Previous region history remains")
+assert(g:GetProgress().completed["quest-458-accept"], "Previous region history remains")
 assert(g:GetProgress().current == 2, "Resume uses saved location")
 level = 5
 accepted[62] = true

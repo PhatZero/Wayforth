@@ -42,6 +42,8 @@ jobs:
         run: lua5.1 tests/lua/test_smart_routes.lua
       - name: Prevent Zephras mid-guide quest mismatch and wrong waypoints
         run: lua5.1 tests/lua/test_zephras_midguide.lua
+      - name: Verify prerequisite-aware recovery across every leveling guide
+        run: lua5.1 tests/lua/test_all_guide_recovery.lua
       - name: Verify full 1-60 faction leveling tester library
         run: lua5.1 tests/lua/test_main_leveling.lua
       - name: Test Kalimdor Alliance source quests and route switching
