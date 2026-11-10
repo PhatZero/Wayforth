@@ -178,15 +178,24 @@ function Routes:Preview(id, mode)
                 and not (saved.skipped and saved.skipped[key(step, index)])
                 and not mismatched then
                 local isReady = ready(questId)
-                local phase
-                if step.action == "turnin" then phase = isReady and 6 or 3
-                elseif step.action == "objective" then phase = isReady and 2 or 5
-                elseif step.action == "manual" then phase = 4
-                elseif step.action == "accept" then phase = 1
-                else phase = 2 end
-                local score = phase * 1000 - math.abs(level - (step.level or level)) * 10 - index * 0.01
-                if not matchedScore or score > matchedScore then
-                    matchedScore, matchedIndex = score, index
+                -- A quest already accepted cannot need its pickup step, and
+                -- an incomplete quest must not point at the turn-in NPC.
+                -- On phase-driven Zephras, require the current quest phase.
+                local usable = not self:NeedsLiveQuest(id)
+                    or (step.action ~= "accept"
+                        and (step.action ~= "turnin" or isReady)
+                        and (step.action ~= "objective" or not isReady))
+                if usable then
+                    local phase
+                    if step.action == "turnin" then phase = isReady and 6 or 3
+                    elseif step.action == "objective" then phase = isReady and 2 or 5
+                    elseif step.action == "manual" then phase = 4
+                    elseif step.action == "accept" then phase = 1
+                    else phase = 2 end
+                    local score = phase * 1000 - math.abs(level - (step.level or level)) * 10 - index * 0.01
+                    if not matchedScore or score > matchedScore then
+                        matchedScore, matchedIndex = score, index
+                    end
                 end
             end
         end
@@ -194,7 +203,7 @@ function Routes:Preview(id, mode)
             return matchedIndex, "Matched a quest in your quest log. WayForth will track its current phase."
         end
         if self:NeedsLiveQuest(id) then
-            return nil, "No matching active Zephras quest found. Check your quest log and accept an available quest, then select Start Guide or Sync Guide Now. From Beginning and Resume Saved remain available."
+            return nil, "No actionable Zephras guide step matches your active quest phase. Follow the quests already in your WoW log. WayForth will resync when a tracked objective is available. From Beginning and Resume Saved remain available."
         end
     end
 
