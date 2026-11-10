@@ -1,0 +1,995 @@
+{
+  "reviewed": "2026-11-10",
+  "scope": "Every quest ID with a missing static destination before the comprehensive WoWDB pass",
+  "counts": {
+    "attempted": 108,
+    "retrieved": 31,
+    "notRetrieved": 77
+  },
+  "quests": [
+    {
+      "questId": 716,
+      "questName": "Stone Is Better than Cloth",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/716-stone-is-better-than-cloth"
+    },
+    {
+      "questId": 1036,
+      "questName": "Avast Ye, Scallywag",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/1036-avast-ye-scallywag"
+    },
+    {
+      "questId": 1192,
+      "questName": "Indurium Ore",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/1192-indurium-ore"
+    },
+    {
+      "questId": 1203,
+      "questName": "Jarl Needs a Blade",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/1203-jarl-needs-a-blade"
+    },
+    {
+      "questId": 1367,
+      "questName": "Magram Alliance",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/1367-magram-alliance"
+    },
+    {
+      "questId": 1368,
+      "questName": "Gelkis Alliance",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/1368-gelkis-alliance"
+    },
+    {
+      "questId": 1371,
+      "questName": "Gizmo for Warug",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/1371-gizmo-for-warug"
+    },
+    {
+      "questId": 1382,
+      "questName": "Strange Alliance",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://ptr.wowdb.com/quests/1382-strange-alliance"
+    },
+    {
+      "questId": 1385,
+      "questName": "Brutal Politics",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/1385-brutal-politics"
+    },
+    {
+      "questId": 1796,
+      "questName": "Components for the Enchanted Gold Bloodrobe (1/5)",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/1796-components-for-the-enchanted-gold-bloodrobe"
+    },
+    {
+      "questId": 2771,
+      "questName": "A Good Head On Your Shoulders",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://ptr.wowdb.com/quests/2771-a-good-head-on-your-shoulders"
+    },
+    {
+      "questId": 2772,
+      "questName": "The World At Your Feet",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://ptr.wowdb.com/quests/2772-the-world-at-your-feet"
+    },
+    {
+      "questId": 2773,
+      "questName": "The Mithril Kid",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://ptr.wowdb.com/quests/2773-the-mithril-kid"
+    },
+    {
+      "questId": 3381,
+      "questName": "A Meeting with the Master",
+      "roles": [
+        "turnin"
+      ],
+      "status": "record-retrieved",
+      "url": "https://ptr.wowdb.com/quests/3381-a-meeting-with-the-master"
+    },
+    {
+      "questId": 3638,
+      "questName": "The Pledge of Secrecy",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/3638-the-pledge-of-secrecy"
+    },
+    {
+      "questId": 3639,
+      "questName": "Show Your Work",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/3639-show-your-work"
+    },
+    {
+      "questId": 3642,
+      "questName": "The Pledge of Secrecy",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/3642-the-pledge-of-secrecy"
+    },
+    {
+      "questId": 3643,
+      "questName": "Show Your Work",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/3643-show-your-work"
+    },
+    {
+      "questId": 3791,
+      "questName": "The Mystery of Morrowgrain",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/3791-the-mystery-of-morrowgrain"
+    },
+    {
+      "questId": 3792,
+      "questName": "Morrowgrain to Feathermoon Stronghold",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/3792-morrowgrain-to-feathermoon-stronghold"
+    },
+    {
+      "questId": 4107,
+      "questName": "Salve via Disenchanting (2/2)",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/4107-salve-via-disenchanting"
+    },
+    {
+      "questId": 5149,
+      "questName": "Pamela's Doll",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/5149-pamela-s-doll"
+    },
+    {
+      "questId": 5305,
+      "questName": "Sweet Serenity",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/5305-sweet-serenity"
+    },
+    {
+      "questId": 5306,
+      "questName": "Snakestone of the Shadow Huntress",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/5306-snakestone-of-the-shadow-huntress"
+    },
+    {
+      "questId": 5307,
+      "questName": "Corruption",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/5307-corruption"
+    },
+    {
+      "questId": 5886,
+      "questName": "Salve via Disenchanting (1/2)",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/5886-salve-via-disenchanting"
+    },
+    {
+      "questId": 5891,
+      "questName": "Salve via Disenchanting (1/2)",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://ptr.wowdb.com/quests/5891-salve-via-disenchanting"
+    },
+    {
+      "questId": 5931,
+      "questName": "Back to Darnassus",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/5931-back-to-darnassus"
+    },
+    {
+      "questId": 6504,
+      "questName": "The Lost Pages",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/6504-the-lost-pages"
+    },
+    {
+      "questId": 7653,
+      "questName": "Imperial Plate Belt",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/7653-imperial-plate-belt"
+    },
+    {
+      "questId": 7654,
+      "questName": "Imperial Plate Boots",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/7654-imperial-plate-boots"
+    },
+    {
+      "questId": 7655,
+      "questName": "Imperial Plate Bracer",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/7655-imperial-plate-bracer"
+    },
+    {
+      "questId": 7656,
+      "questName": "Imperial Plate Chest",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/7656-imperial-plate-chest"
+    },
+    {
+      "questId": 7657,
+      "questName": "Imperial Plate Helm",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/7657-imperial-plate-helm"
+    },
+    {
+      "questId": 7658,
+      "questName": "Imperial Plate Leggings",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/7658-imperial-plate-leggings"
+    },
+    {
+      "questId": 7659,
+      "questName": "Imperial Plate Shoulders",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/7659-imperial-plate-shoulders"
+    },
+    {
+      "questId": 8317,
+      "questName": "Kitchen Assistance",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/8317-kitchen-assistance"
+    },
+    {
+      "questId": 8496,
+      "questName": "Bandages for the Field (A)",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/8496-bandages-for-the-field"
+    },
+    {
+      "questId": 8540,
+      "questName": "Boots for the Guard (A)",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/8540-boots-for-the-guard"
+    },
+    {
+      "questId": 8541,
+      "questName": "Grinding Stones for the Guard (A)",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/8541-grinding-stones-for-the-guard"
+    },
+    {
+      "questId": 8781,
+      "questName": "Arms for the Field (A)",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/8781-arms-for-the-field"
+    },
+    {
+      "questId": 8856,
+      "questName": "Desert Survival Kits (A)",
+      "roles": [
+        "accept"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/8856-desert-survival-kits"
+    },
+    {
+      "questId": 9023,
+      "questName": "The Perfect Poison",
+      "roles": [
+        "objective"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/9023-the-perfect-poison"
+    },
+    {
+      "questId": 9439,
+      "questName": "Unclaimed Baggage",
+      "roles": [
+        "turnin"
+      ],
+      "status": "record-retrieved",
+      "url": "https://www.wowdb.com/quests/9439-unclaimed-baggage"
+    },
+    {
+      "questId": 86776,
+      "questName": "Ingredients for the Forge",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/86776-ingredients-for-the-forge"
+    },
+    {
+      "questId": 92519,
+      "questName": "Ward Restocking",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/92519-ward-restocking"
+    },
+    {
+      "questId": 92521,
+      "questName": "The Demon Tower",
+      "roles": [
+        "accept",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/92521-the-demon-tower"
+    },
+    {
+      "questId": 92707,
+      "questName": "The Giant in the Den",
+      "roles": [
+        "accept",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/92707-the-giant-in-the-den"
+    },
+    {
+      "questId": 92754,
+      "questName": "A New Need for Shadow Protection",
+      "roles": [
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/92754-a-new-need-for-shadow-protection"
+    },
+    {
+      "questId": 93041,
+      "questName": "Facing the Truth",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93041-facing-the-truth"
+    },
+    {
+      "questId": 93045,
+      "questName": "Test Your Theory",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93045-test-your-theory"
+    },
+    {
+      "questId": 93058,
+      "questName": "Saving Our Own",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93058-saving-our-own"
+    },
+    {
+      "questId": 93062,
+      "questName": "Bone Burying",
+      "roles": [
+        "accept"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93062-bone-burying"
+    },
+    {
+      "questId": 93072,
+      "questName": "Long-Term Solutions",
+      "roles": [
+        "accept",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93072-long-term-solutions"
+    },
+    {
+      "questId": 93125,
+      "questName": "Going Home",
+      "roles": [
+        "accept",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93125-going-home"
+    },
+    {
+      "questId": 93129,
+      "questName": "Threat of Starvation",
+      "roles": [
+        "accept",
+        "objective",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93129-threat-of-starvation"
+    },
+    {
+      "questId": 93176,
+      "questName": "My Little Friends",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93176-my-little-friends"
+    },
+    {
+      "questId": 93188,
+      "questName": "Return to Orgrul",
+      "roles": [
+        "accept",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93188-return-to-orgrul"
+    },
+    {
+      "questId": 93196,
+      "questName": "Khan Jehn (Magram)",
+      "roles": [
+        "accept",
+        "objective",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93196-khan-jehn-magram"
+    },
+    {
+      "questId": 93663,
+      "questName": "Lost in Transit",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93663-lost-in-transit"
+    },
+    {
+      "questId": 93678,
+      "questName": "Abridged Notes on Draenethyst",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93678-abridged-notes-on-draenethyst"
+    },
+    {
+      "questId": 93787,
+      "questName": "Food for the Taking",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93787-food-for-the-taking"
+    },
+    {
+      "questId": 93971,
+      "questName": "Farholde Scouting Report",
+      "roles": [
+        "accept",
+        "objective",
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/93971-farholde-scouting-report"
+    },
+    {
+      "questId": 94480,
+      "questName": "A Gift From Our Enemies",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94480-a-gift-from-our-enemies"
+    },
+    {
+      "questId": 94615,
+      "questName": "Foal Play",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94615-foal-play"
+    },
+    {
+      "questId": 94734,
+      "questName": "A Boar's Delight",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94734-a-boar-s-delight"
+    },
+    {
+      "questId": 94737,
+      "questName": "A Treat for a Friend",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94737-a-treat-for-a-friend"
+    },
+    {
+      "questId": 94879,
+      "questName": "Scraps of Knowledge",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94879-scraps-of-knowledge"
+    },
+    {
+      "questId": 94923,
+      "questName": "Hats Off",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94923-hats-off"
+    },
+    {
+      "questId": 94926,
+      "questName": "Drop the Hammer",
+      "roles": [
+        "accept",
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94926-drop-the-hammer"
+    },
+    {
+      "questId": 94931,
+      "questName": "Stolen Saws",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/94931-stolen-saws"
+    },
+    {
+      "questId": 95059,
+      "questName": "Frazzlespark's Crate [A]",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95059-frazzlespark-s-crate"
+    },
+    {
+      "questId": 95062,
+      "questName": "Frazzlespark's Crate [H]",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95062-frazzlespark-s-crate"
+    },
+    {
+      "questId": 95066,
+      "questName": "The Rog'mar Situation",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95066-the-rog-mar-situation"
+    },
+    {
+      "questId": 95123,
+      "questName": "A Blast Ye Scurvy Dogs!",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95123-a-blast-ye-scurvy-dogs"
+    },
+    {
+      "questId": 95147,
+      "questName": "The Lost Scout",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95147-the-lost-scout"
+    },
+    {
+      "questId": 95148,
+      "questName": "Southern Watch Gnoll Report",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95148-southern-watch-gnoll-report"
+    },
+    {
+      "questId": 95156,
+      "questName": "Stuff 'Em and Stick 'Em",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95156-stuff-em-and-stick-em"
+    },
+    {
+      "questId": 95183,
+      "questName": "Step One: Rock",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95183-step-one-rock"
+    },
+    {
+      "questId": 95184,
+      "questName": "The Sharpest of Blades",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95184-the-sharpest-of-blades"
+    },
+    {
+      "questId": 95219,
+      "questName": "From Port to Port",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95219-from-port-to-port"
+    },
+    {
+      "questId": 95278,
+      "questName": "It Is Time, Brother...",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95278-it-is-time-brother"
+    },
+    {
+      "questId": 95384,
+      "questName": "Partial Mystical Notes",
+      "roles": [
+        "accept"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95384-partial-mystical-notes"
+    },
+    {
+      "questId": 95426,
+      "questName": "Rog'mar Supplies",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95426-rog-mar-supplies"
+    },
+    {
+      "questId": 95561,
+      "questName": "Apple of My Eye",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95561-apple-of-my-eye"
+    },
+    {
+      "questId": 95602,
+      "questName": "Sickening Lights",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95602-sickening-lights"
+    },
+    {
+      "questId": 95786,
+      "questName": "An Acquaintance in Southshore",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95786-an-acquaintance-in-southshore"
+    },
+    {
+      "questId": 95816,
+      "questName": "Sign Me Up!",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95816-sign-me-up"
+    },
+    {
+      "questId": 95819,
+      "questName": "Sign Me Up!",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95819-sign-me-up"
+    },
+    {
+      "questId": 95934,
+      "questName": "Proof of Profit",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95934-proof-of-profit"
+    },
+    {
+      "questId": 95935,
+      "questName": "Hail the Dragonslayer [A]",
+      "roles": [
+        "accept"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95935-hail-the-dragonslayer"
+    },
+    {
+      "questId": 95936,
+      "questName": "Hail the Dragonslayer [H]",
+      "roles": [
+        "accept"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95936-hail-the-dragonslayer"
+    },
+    {
+      "questId": 95943,
+      "questName": "Foreman's Plight",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95943-foreman-s-plight"
+    },
+    {
+      "questId": 95951,
+      "questName": "Fetch 'n' Fletch",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95951-fetch-n-fletch"
+    },
+    {
+      "questId": 95975,
+      "questName": "Her World",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95975-her-world"
+    },
+    {
+      "questId": 95982,
+      "questName": "Not My Circus",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/95982-not-my-circus"
+    },
+    {
+      "questId": 96009,
+      "questName": "High Stakes",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/96009-high-stakes"
+    },
+    {
+      "questId": 96026,
+      "questName": "Step Two: More Rock",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/96026-step-two-more-rock"
+    },
+    {
+      "questId": 96063,
+      "questName": "Gaseous Gold",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/96063-gaseous-gold"
+    },
+    {
+      "questId": 96084,
+      "questName": "Something's in the Water",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/96084-something-s-in-the-water"
+    },
+    {
+      "questId": 96294,
+      "questName": "A Darker Truth",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/96294-a-darker-truth"
+    },
+    {
+      "questId": 96800,
+      "questName": "Past Due",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/96800-past-due"
+    },
+    {
+      "questId": 96873,
+      "questName": "A Pain in the Neck",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/96873-a-pain-in-the-neck"
+    },
+    {
+      "questId": 97328,
+      "questName": "Anything of Value",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/97328-anything-of-value"
+    },
+    {
+      "questId": 97420,
+      "questName": "Reduce, Reuse, Reconcile",
+      "roles": [
+        "accept"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/97420-reduce-reuse-reconcile"
+    },
+    {
+      "questId": 97884,
+      "questName": "Armory of Sunnyglade",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/97884-armory-of-sunnyglade"
+    },
+    {
+      "questId": 98069,
+      "questName": "Stolen Freewind Supplies",
+      "roles": [
+        "objective"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/98069-stolen-freewind-supplies"
+    },
+    {
+      "questId": 98447,
+      "questName": "The Valor Family (2/2)",
+      "roles": [
+        "turnin"
+      ],
+      "status": "no-matching-record-retrieved",
+      "url": "https://www.wowdb.com/quests/98447-the-valor-family"
+    }
+  ]
+}

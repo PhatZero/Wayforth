@@ -21,6 +21,8 @@ C_QuestLog = {
 assert(loadfile("clients/forever/guides/StarterGuide.lua"))("WayForth",ns)
 assert(loadfile("clients/forever/guides/ForeverQuestCatalog.lua"))("WayForth",ns)
 assert(loadfile("clients/forever/guides/KalimdorAlliance.lua"))("WayForth",ns)
+assert(loadfile("clients/forever/guides/ForeverQuestLocations.lua"))( "WayForth", ns)
+assert(loadfile("shared/core/QuestLocations.lua"))( "WayForth", ns)
 assert(loadfile("shared/core/Guides.lua"))("WayForth",ns)
 assert(loadfile("shared/core/SmartRoutes.lua"))("WayForth",ns)
 assert(loadfile("shared/core/QuestAudit.lua"))("WayForth",ns)
@@ -32,13 +34,12 @@ for _, guide in ipairs(guides:List()) do
         assert(guide.faction == "Alliance")
         local ids = ns.foreverQuestCatalog[guide.zone]
         assert(ids and #ids > 0, "Every new guide has source IDs")
-        assert(#guide.steps == 2 * #ids, "Each quest has accept + completion checkpoints")
+        assert(#guide.steps >= 2 * #ids, "Each quest retains pickup and completion checkpoints")
         for _,step in ipairs(guide.steps) do
-            assert(step.zone == guide.zone and step.questId > 0)
+            assert(step.questId > 0)
             assert(step.sourceStatus == "public-catalog-match")
             if step.x then
                 assert(step.x >= 0 and step.x <= 100 and step.y >= 0 and step.y <= 100)
-                assert(step.action == "accept", "Never claim a pickup pin is a turn-in pin")
             end
         end
         total = total + #ids
@@ -78,12 +79,12 @@ assert(not catalog["alliance-moonglade"].levelMin == nil or catalog["alliance-mo
 -- Navigation map safety with no fabricated off-zone arrow.
 ns.Modules.Theme = {}
 assert(loadfile("shared/navigation/Navigator.lua"))("WayForth",ns)
-local map = 100
+local map = 1439
 C_Map = {
     GetBestMapForUnit = function() return map end,
     GetMapInfo = function(id)
-        if id == 100 then return {name="Darkshore",parentMapID=1} end
-        if id == 101 then return {name="Feralas",parentMapID=1} end
+        if id == 1439 then return {name="Darkshore",parentMapID=1} end
+        if id == 1444 then return {name="Feralas",parentMapID=1} end
         if id == 1 then return {name="Kalimdor",parentMapID=0} end
     end,
 }
@@ -93,7 +94,7 @@ for _,step in ipairs(guides:GetSteps("alliance-darkshore")) do
 end
 assert(darkStep, "Pickup coordinate present")
 local nav = ns.Modules.Navigator
-assert(nav:TargetForStep(darkStep).mapId == 100, "Correct zone map resolves")
-map = 101
-assert(nav:TargetForStep(darkStep) == nil, "Wrong zone may not create a fake arrow")
+assert(nav:TargetForStep(darkStep).mapId == 1439, "Correct zone map resolves")
+map = 1444
+assert(nav:TargetForStep(darkStep).mapId == 1439, "Changing zones may not reinterpret destination coordinates")
 print("WayForth Kalimdor Alliance quests, audit, progress and map safety passed")

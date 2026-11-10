@@ -3,7 +3,10 @@ local Guides = {}
 ns:RegisterModule("Guides", Guides)
 
 local byId = {}
-for _, guide in ipairs(ns.starterGuides or {}) do byId[guide.id] = guide end
+for _, guide in ipairs(ns.starterGuides or {}) do
+    if ns.Modules.QuestLocations then ns.Modules.QuestLocations:Prepare(guide) end
+    byId[guide.id] = guide
+end
 
 local function progressStore()
     if not ns.char then return nil end
@@ -52,7 +55,7 @@ local function canUseRace(restrictions)
     return false
 end
 
-function Guides:GetSteps(id)
+function Guides:GetSteps(id, legacy)
     local guide = self:GetGuide(id)
     if not guide then return {} end
     local classToken
@@ -61,8 +64,12 @@ function Guides:GetSteps(id)
         classToken = token
     end
     local visible = {}
-    for _, step in ipairs(guide.steps or {}) do
-        if (not step.faction or step.faction == guide.faction)
+    local locations = ns.Modules.QuestLocations
+    local currentMap = C_Map and type(C_Map.GetBestMapForUnit) == "function"
+        and C_Map.GetBestMapForUnit("player") or nil
+    for _, step in ipairs(legacy and guide.legacySteps or guide.steps or {}) do
+        if (legacy or not step.hidden)
+            and (not step.faction or step.faction == guide.faction)
             and (not step.class or step.class == classToken)
             and canUseRace(step.races) then
             -- Each visible step gets its own resolved metadata. Shared raw step IDs
@@ -86,6 +93,7 @@ function Guides:GetSteps(id)
                 resolved.x, resolved.y = pin[1], pin[2]
                 resolved.mapId = ns.zephrasMapID or 2521
             end
+            if locations then locations:Apply(resolved, guide, currentMap) end
             visible[#visible + 1] = resolved
         end
     end
@@ -107,10 +115,30 @@ function Guides:GetProgress(id)
     if type(saved.current) ~= "number" or saved.current ~= saved.current then saved.current = 1 end
     local steps = self:GetSteps(guide.id)
     if #steps == 0 then return nil end
+    if not saved.currentStepId and guide.legacySteps then
+        local previous = self:GetSteps(guide.id, true)[saved.current]
+        if previous then saved.currentStepId = stepKey(previous, saved.current) end
+    end
     if saved.currentStepId then
+        local position
         for index, step in ipairs(steps) do
-            if stepKey(step, index) == saved.currentStepId then saved.current = index; break end
+            if stepKey(step, index) == saved.currentStepId then position = index; break end
         end
+        if not position and guide.legacySteps then
+            local positions = {}
+            for index, step in ipairs(steps) do positions[stepKey(step, index)] = index end
+            -- A corrected faction restriction can remove an old cursor target.
+            -- Continue with the next surviving legacy step in the same guide.
+            local previous = self:GetSteps(guide.id, true)
+            local afterCurrent = false
+            for index, step in ipairs(previous) do
+                local key = stepKey(step, index)
+                if key == saved.currentStepId then afterCurrent = true end
+                if afterCurrent and positions[key] then position = positions[key]; break end
+            end
+            position = position or #steps
+        end
+        saved.current = position or saved.current
     end
     saved.current = math.max(1, math.min(#steps, math.floor(saved.current)))
     saved.currentStepId = stepKey(steps[saved.current], saved.current)

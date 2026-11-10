@@ -25,6 +25,8 @@ Data/HordeKalimdor.lua
 Data/EasternEarly.lua
 Data/EasternHigh.lua
 Data/HordeRaceStarterExtras.lua
+Data/ForeverQuestLocations.lua
+Core/QuestLocations.lua
 Core/Guides.lua
 Core/SmartRoutes.lua
 Core/QuestAudit.lua

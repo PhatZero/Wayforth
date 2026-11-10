@@ -44,6 +44,8 @@ jobs:
         run: lua5.1 tests/lua/test_zephras_midguide.lua
       - name: Verify prerequisite-aware recovery across every leveling guide
         run: lua5.1 tests/lua/test_all_guide_recovery.lua
+      - name: Verify phase-specific quest destinations and saved progress
+        run: lua5.1 tests/lua/test_quest_locations.lua
       - name: Verify full 1-60 faction leveling tester library
         run: lua5.1 tests/lua/test_main_leveling.lua
       - name: Test Kalimdor Alliance source quests and route switching

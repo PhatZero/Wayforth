@@ -1,0 +1,1364 @@
+[
+  {
+    "questId": 716,
+    "questName": "Stone Is Better than Cloth",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=716/stone-is-better-than-cloth",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Have a blacksmith craft Patterned Bronze Bracers, or buy them for Lucien Tosselwrench.",
+      "items": [
+        2868
+      ]
+    }
+  },
+  {
+    "questId": 1203,
+    "questName": "Jarl Needs a Blade",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=1203/jarl-needs-a-blade",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Craft or buy a Moonsteel Broadsword for Jarl in Dustwallow Marsh.",
+      "items": [
+        3853
+      ]
+    }
+  },
+  {
+    "questId": 3642,
+    "questName": "The Pledge of Secrecy",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=3642/the-pledge-of-secrecy",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "use-item",
+      "text": "Sign the provided Pledge of Secrecy, then speak with Oglethorpe Obnoticus in Booty Bay.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Oglethorpe Obnoticus"
+        }
+      ],
+      "items": [
+        11282
+      ]
+    }
+  },
+  {
+    "questId": 3643,
+    "questName": "Show Your Work",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=3643/show-your-work",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Prepare Mithril Tubes, an Accurate Scope and Advanced Target Dummies for Oglethorpe Obnoticus.",
+      "items": [
+        10559,
+        4407,
+        4392
+      ]
+    }
+  },
+  {
+    "questId": 3792,
+    "questName": "Morrowgrain to Feathermoon Stronghold",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=3792/morrowgrain-to-feathermoon-stronghold",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Grow or obtain Morrowgrain for Quintis Jonespyre. Use the Evergreen Pouch with the required soil and seeds.",
+      "items": [
+        11040
+      ]
+    }
+  },
+  {
+    "questId": 4107,
+    "questName": "Salve via Disenchanting",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=4107/salve-via-disenchanting",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Disenchant suitable magic items, or buy Lesser Nether Essence, for the Cenarion plant salve exchange.",
+      "items": [
+        11174
+      ]
+    }
+  },
+  {
+    "questId": 5149,
+    "questName": "Pamela's Doll",
+    "provider": "Classic reference",
+    "source": "https://theforeverera.com/en/quests/5149/",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "combine",
+      "text": "Search Darrowshire's houses for the doll's head, left side and right side. Combine the three pieces to make Pamela's Doll.",
+      "targets": [
+        {
+          "kind": "Item",
+          "id": 12886,
+          "name": "Pamela's Doll's Head"
+        },
+        {
+          "kind": "Item",
+          "id": 12887,
+          "name": "Pamela's Doll's Left Side"
+        },
+        {
+          "kind": "Item",
+          "id": 12888,
+          "name": "Pamela's Doll's Right Side"
+        }
+      ],
+      "items": [
+        12885
+      ]
+    }
+  },
+  {
+    "questId": 5305,
+    "questName": "Sweet Serenity",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=5305/sweet-serenity",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "instance",
+      "text": "In Stratholme's Scarlet Bastion, interact with the Blacksmithing Plans to summon the Crimson Hammersmith, then recover the Crimson Hammersmith's Apron.",
+      "items": [
+        13351
+      ]
+    }
+  },
+  {
+    "questId": 5307,
+    "questName": "Corruption",
+    "provider": "Classic reference",
+    "source": "https://foreverdb.net/quest/5307-corruption",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "instance",
+      "text": "Defeat the Black Guard Swordsmith in Stratholme and recover the Insignia of the Black Guard.",
+      "items": [
+        13350
+      ]
+    }
+  },
+  {
+    "questId": 5886,
+    "questName": "Salve via Disenchanting",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=5886/salve-via-disenchanting",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Obtain Lesser Nether Essence by disenchanting magic items or buying it for the Cenarion plant salve exchange.",
+      "items": [
+        11174
+      ]
+    }
+  },
+  {
+    "questId": 5891,
+    "questName": "Salve via Disenchanting",
+    "provider": "Classic reference",
+    "source": "https://theforeverera.com/en/quests/5891/",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Obtain Lesser Nether Essence by disenchanting magic items or buying it for the Cenarion plant salve exchange.",
+      "items": [
+        11174
+      ]
+    }
+  },
+  {
+    "questId": 7653,
+    "questName": "Imperial Plate Belt",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=7653/imperial-plate-belt",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Collect Thorium Bars for the Imperial Plate Belt plans. Use the quantity shown in your current quest log.",
+      "items": [
+        12359
+      ]
+    }
+  },
+  {
+    "questId": 7654,
+    "questName": "Imperial Plate Boots",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=7654/imperial-plate-boots",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Collect Thorium Bars for the Imperial Plate Boots plans. Use the quantity shown in your current quest log.",
+      "items": [
+        12359
+      ]
+    }
+  },
+  {
+    "questId": 7655,
+    "questName": "Imperial Plate Bracer",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=7655/imperial-plate-bracer",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Collect Thorium Bars for the Imperial Plate Bracer plans. Use the quantity shown in your current quest log.",
+      "items": [
+        12359
+      ]
+    }
+  },
+  {
+    "questId": 7656,
+    "questName": "Imperial Plate Chest",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=7656/imperial-plate-chest",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Collect Thorium Bars for the Imperial Plate Chest plans. Use the quantity shown in your current quest log.",
+      "items": [
+        12359
+      ]
+    }
+  },
+  {
+    "questId": 7657,
+    "questName": "Imperial Plate Helm",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=7657/imperial-plate-helm",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Collect Thorium Bars for the Imperial Plate Helm plans. Use the quantity shown in your current quest log.",
+      "items": [
+        12359
+      ]
+    }
+  },
+  {
+    "questId": 7658,
+    "questName": "Imperial Plate Leggings",
+    "provider": "Wowhead Classic",
+    "source": "https://www.wowhead.com/classic/quest=7658/imperial-plate-leggings",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Collect Thorium Bars for the Imperial Plate Leggings plans. Use the quantity shown in your current quest log.",
+      "items": [
+        12359
+      ]
+    }
+  },
+  {
+    "questId": 7659,
+    "questName": "Imperial Plate Shoulders",
+    "provider": "Classic reference",
+    "source": "https://foreverdb.net/quest/7659-imperial-plate-shoulders",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Collect Thorium Bars for the Imperial Plate Shoulders plans. Use the quantity shown in your current quest log.",
+      "items": [
+        12359
+      ]
+    }
+  },
+  {
+    "questId": 86776,
+    "questName": "Ingredients for the Forge",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=86776/ingredients-for-the-forge",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "text": "Smelt or buy Bronze Bars for Morhan Coppertongue in Thelsamar.",
+      "items": [
+        2841
+      ]
+    }
+  },
+  {
+    "questId": 92519,
+    "questName": "Ward Restocking",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=92519/ward-restocking",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Collect the Packaged Tonics from the toolbox outside Jorell's lab at Go'shek Farm. Return them to Doctor Gregory Victor.",
+      "items": [
+        278462
+      ]
+    },
+    "phasePoints": {
+      "objective": [
+        {
+          "mapId": 1417,
+          "x": 60.3,
+          "y": 58.9,
+          "kind": "area",
+          "name": "Packaged Tonics toolbox",
+          "itemId": 278462,
+          "source": "Wowhead Forever comment"
+        }
+      ]
+    },
+    "reviewNote": "FourBit reports the toolbox at 60.3, 58.9. Another comment gives the less precise 62, 59. This is a community-reported point."
+  },
+  {
+    "questId": 92521,
+    "questName": "The Demon Tower",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=92521/the-demon-tower",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "event",
+      "text": "Watch Hnaz's imp at the tower containing the captive satyr. Its exact pickup and return locations remain unresolved."
+    }
+  },
+  {
+    "questId": 92707,
+    "questName": "The Giant in the Den",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=92707/the-giant-in-the-den",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Drum Fel"
+    },
+    "pickupItem": 253711,
+    "pickupTargets": [
+      {
+        "kind": "Npc",
+        "id": 218032,
+        "name": "Witherbark Goliath"
+      }
+    ],
+    "extraSources": [
+      "https://urgametips.com/wow-forever/quest-guides/giant-den-witherbark-goliath-wristguards-drum-fel/"
+    ]
+  },
+  {
+    "questId": 92754,
+    "questName": "A New Need for Shadow Protection",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=92754/a-new-need-for-shadow-protection",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Mirda"
+    },
+    "objective": {
+      "kind": "craft",
+      "text": "Prepare Greater Shadow Protection Potions for Mirda in Magram Village and maintain your Magram reputation."
+    }
+  },
+  {
+    "questId": 93041,
+    "questName": "Facing the Truth",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93041/facing-the-truth",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Recover the Accursed Skull and Gelkis Necromantic Garb for Uthek the Wise. Maintain the required Gelkis reputation."
+    }
+  },
+  {
+    "questId": 93045,
+    "questName": "Test Your Theory",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93045/test-your-theory",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "use-item",
+      "text": "Dispel the curse on the Accursed Skull using the quest's staff and crystal. Maintain Gelkis reputation, then report to Nerlokh."
+    }
+  },
+  {
+    "questId": 93058,
+    "questName": "Saving Our Own",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93058/saving-our-own",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "rescue",
+      "text": "Free the Gelkis Captives in the Valley of Bones while maintaining Gelkis reputation. Report to Nerlokh afterward.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "id": 253431,
+          "name": "Gelkis Captive"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 93062,
+    "questName": "Bone Burying",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93062/bone-burying",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "use-item",
+      "text": "Use Uthek's Draenethyst Staff to lay the Haggard Bones to rest in the Valley of Bones. Maintain Gelkis reputation."
+    }
+  },
+  {
+    "questId": 93072,
+    "questName": "Long-Term Solutions",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93072/long-term-solutions",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Hagiak"
+    }
+  },
+  {
+    "questId": 93125,
+    "questName": "Going Home",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93125/going-home",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Nerlokh"
+    }
+  },
+  {
+    "questId": 93129,
+    "questName": "Threat of Starvation",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93129/threat-of-starvation",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Hagiak"
+    },
+    "objective": {
+      "kind": "loot",
+      "text": "Recover Stolen Supplies from the Outcast Hideaway for Hagiak at the Magram Front. Maintain the required Magram reputation."
+    }
+  },
+  {
+    "questId": 93176,
+    "questName": "My Little Friends",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93176/my-little-friends",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "capture",
+      "text": "Use the Entomology Starter Kit to catch an Arbor Tarantula, a Hay Weevil and a Flesh Picker.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "id": 217588,
+          "name": "Arbor Tarantula"
+        },
+        {
+          "kind": "Npc",
+          "id": 217589,
+          "name": "Hay Weevil"
+        },
+        {
+          "kind": "Npc",
+          "id": 217590,
+          "name": "Flesh Picker"
+        }
+      ],
+      "items": [
+        213566,
+        213568,
+        213567
+      ]
+    }
+  },
+  {
+    "questId": 93188,
+    "questName": "Return to Orgrul",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93188/return-to-orgrul",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Orgrul"
+    }
+  },
+  {
+    "questId": 93196,
+    "questName": "Khan Jehn",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93196/khan-jehn",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "event",
+      "text": "Maintain Honored Magram reputation and use the Ultimate Necromancy Staff at the ritual tent beside Magram Village's central lake."
+    }
+  },
+  {
+    "questId": 93663,
+    "questName": "Lost in Transit",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93663/lost-in-transit",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Search the waters along the road for the missing courier's shipment, then deliver it to the Harborage.",
+      "items": [
+        260452
+      ]
+    }
+  },
+  {
+    "questId": 93678,
+    "questName": "Abridged Notes on Draenethyst",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93678/abridged-notes-on-draenethyst",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver Azore's Transcription to Magtoor at the Harborage in Swamp of Sorrows.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Magtoor"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 93787,
+    "questName": "Food for the Taking",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93787/food-for-the-taking",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Take Feed Satchels from the Alliance farm in Meadowsbrook for Krom'rosh.",
+      "items": [
+        262640
+      ]
+    }
+  },
+  {
+    "questId": 93971,
+    "questName": "Farholde Scouting Report",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=93971/farholde-scouting-report",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Krom'rosh"
+    },
+    "pickupItem": 263930,
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver the Farholde Scouting Report to Krom'rosh in Rog'mar.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Krom'rosh"
+        }
+      ]
+    },
+    "extraSources": [
+      "https://www.wowhead.com/forever/item=263930/farholde-scouting-report"
+    ]
+  },
+  {
+    "questId": 94480,
+    "questName": "A Gift From Our Enemies",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94480/a-gift-from-our-enemies",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver the provided Stolen Feed to Gorg in Rog'mar.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Gorg"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 94615,
+    "questName": "Foal Play",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94615/foal-play",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Search beside the stables at Wheeler's Grange and make a tracing of the pawprints left by the missing horses.",
+      "items": [
+        267223
+      ]
+    }
+  },
+  {
+    "questId": 94734,
+    "questName": "A Boar's Delight",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94734/a-boars-delight",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Find Sweetberries at the human farm near the ocean and Riverweed along the river for Gobam.",
+      "targets": [
+        {
+          "kind": "Item",
+          "id": 265808,
+          "name": "Sweetberry"
+        }
+      ],
+      "items": [
+        265808,
+        265806
+      ]
+    }
+  },
+  {
+    "questId": 94737,
+    "questName": "A Treat for a Friend",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94737/a-treat-for-a-friend",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Take the Treat for Snufflesnout to Jezap Jinglesprocket in Bolder'ok.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Jezap Jinglesprocket"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 94879,
+    "questName": "Scraps of Knowledge",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94879/scraps-of-knowledge",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Collect Twilight Pages from the ruined houses in Sunnyglade for Ashe Amberhall. Look for pale pages resting on crates.",
+      "items": [
+        266424
+      ]
+    }
+  },
+  {
+    "questId": 94923,
+    "questName": "Hats Off",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94923/hats-off",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Look for Robbie's Hat in the large clam on the river island west of Wheeler's Grange.",
+      "items": [
+        266884
+      ]
+    }
+  },
+  {
+    "questId": 94926,
+    "questName": "Drop the Hammer",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94926/drop-the-hammer",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "pickupItem": 266889,
+    "pickupTargets": [
+      {
+        "kind": "Npc",
+        "id": 259056,
+        "name": "Komuk"
+      }
+    ],
+    "objective": {
+      "kind": "loot",
+      "text": "Recover Komuk's Warmaul from Komuk and take it to Farholde Keep.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "id": 259056,
+          "name": "Komuk"
+        }
+      ],
+      "items": [
+        266889
+      ]
+    },
+    "extraSources": [
+      "https://www.wowhead.com/forever/item=266889/komuks-warmaul"
+    ]
+  },
+  {
+    "questId": 94931,
+    "questName": "Stolen Saws",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=94931/stolen-saws",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Recover the stashed Saw Blades from gnoll camps in Bristle Hills for Halligan Turner.",
+      "items": [
+        266897
+      ]
+    }
+  },
+  {
+    "questId": 95059,
+    "questName": "Frazzlespark's Crate",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95059/frazzlesparks-crate",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver Frazzlespark's Crate to Demar Brant in Farholde Keep.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Demar Brant"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95062,
+    "questName": "Frazzlespark's Crate",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95062/frazzlesparks-crate",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver Frazzlespark's Crate to Krom'rosh in Rog'mar.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Krom'rosh"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95066,
+    "questName": "The Rog'mar Situation",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95066/the-rogmar-situation",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Take the Rog'mar Report to Demar Brant inside Farholde Keep.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Demar Brant"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95123,
+    "questName": "A Blast Ye Scurvy Dogs!",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95123/a-blast-ye-scurvy-dogs",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Steal Eastsea Powder Kegs near the demolished settlement of Winstead for Wharfmaster Whizzbuzz."
+    }
+  },
+  {
+    "questId": 95147,
+    "questName": "The Lost Scout",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95147/the-lost-scout",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver the Crudely Fashioned Report to Cedric Dalton at Southern Watch.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Cedric Dalton"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95148,
+    "questName": "Southern Watch Gnoll Report",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95148/southern-watch-gnoll-report",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver the Southern Watch Gnoll Report to Demar Brant at Farholde Keep.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Demar Brant"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95156,
+    "questName": "Stuff 'Em and Stick 'Em",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95156/stuff-em-and-stick-em",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Collect Bundles of Hay at Wheeler's farm outside Farholde Keep for Ember Bladewhisper.",
+      "items": [
+        268536
+      ]
+    }
+  },
+  {
+    "questId": 95183,
+    "questName": "Step One: Rock",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95183/step-one-rock",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Loot Rock Piles near the river outside Bolder'ok until you have the Good Rocks Hamur needs.",
+      "targets": [
+        {
+          "kind": "Object",
+          "id": 649094,
+          "name": "Rock Pile"
+        }
+      ],
+      "items": [
+        271892
+      ]
+    }
+  },
+  {
+    "questId": 95184,
+    "questName": "The Sharpest of Blades",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95184/the-sharpest-of-blades",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Craft or buy Solid Sharpening Stones for Ember Bladewhisper at Farholde's training grounds.",
+      "items": [
+        7964
+      ]
+    }
+  },
+  {
+    "questId": 95219,
+    "questName": "From Port to Port",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95219/from-port-to-port",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver the Cask of Powderfuse Port to Mardrack Greenwell at Feathermoon Stronghold in Feralas.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Mardrack Greenwell"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95278,
+    "questName": "It Is Time, Brother...",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95278/it-is-time-brother",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Take the Blood and Battle missive to Krom'rosh in Rog'mar.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Krom'rosh"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95384,
+    "questName": "Partial Mystical Notes",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95384/partial-mystical-notes",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "pickupItem": 213127,
+    "pickupTargets": [
+      {
+        "kind": "Npc",
+        "id": 780,
+        "name": "Skullsplitter Mystic"
+      }
+    ],
+    "extraSources": [
+      "https://www.wowhead.com/forever/item=213127/partial-mystical-notes"
+    ]
+  },
+  {
+    "questId": 95426,
+    "questName": "Rog'mar Supplies",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95426/rogmar-supplies",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Steal Rog'mar Supply Crates from the Horde training camps north of Rog'mar.",
+      "items": [
+        274975
+      ]
+    }
+  },
+  {
+    "questId": 95561,
+    "questName": "Apple of My Eye",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95561/apple-of-my-eye",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Gather Fresh Apples beneath the apple trees inside Farholde Keep. Rotten apples cannot be collected.",
+      "items": [
+        271431
+      ]
+    }
+  },
+  {
+    "questId": 95602,
+    "questName": "Sickening Lights",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95602/sickening-lights",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "event",
+      "text": "Destroy the Twilight Ritual Circles in the caves beneath Sunnyglade."
+    }
+  },
+  {
+    "questId": 95786,
+    "questName": "An Acquaintance in Southshore",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95786/an-acquaintance-in-southshore",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Deliver the Savage Coast Report Bundle to Loremaster Dibbs in Southshore.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Loremaster Dibbs"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 95816,
+    "questName": "Sign Me Up!",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95816/sign-me-up",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "use-item",
+      "text": "Complete the provided Massive Pile of Forms, then bring the finished forms to Elaine Compton in Redridge Mountains.",
+      "items": [
+        270897
+      ]
+    }
+  },
+  {
+    "questId": 95819,
+    "questName": "Sign Me Up!",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95819/sign-me-up",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "use-item",
+      "text": "Complete the provided Massive Pile of Forms, then bring the finished forms to Jornah in the Barrens.",
+      "items": [
+        270897
+      ]
+    }
+  },
+  {
+    "questId": 95934,
+    "questName": "Proof of Profit",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95934/proof-of-profit",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Search the dragon caves for a Cubic Draconia crystal for Gelinda Coppergleam."
+    }
+  },
+  {
+    "questId": 95935,
+    "questName": "Hail the Dragonslayer",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95935/hail-the-dragonslayer",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "pickupItem": 271612,
+    "pickupTargets": [
+      {
+        "kind": "Npc",
+        "id": 263141,
+        "name": "Scaldaron"
+      }
+    ],
+    "extraSources": [
+      "https://www.wowhead.com/forever/item=271612/head-of-scaldaron"
+    ]
+  },
+  {
+    "questId": 95936,
+    "questName": "Hail the Dragonslayer",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95936/hail-the-dragonslayer",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "pickupItem": 271613,
+    "pickupTargets": [
+      {
+        "kind": "Npc",
+        "id": 263141,
+        "name": "Scaldaron"
+      }
+    ],
+    "extraSources": [
+      "https://www.wowhead.com/forever/item=271613/head-of-scaldaron"
+    ]
+  },
+  {
+    "questId": 95943,
+    "questName": "Foreman's Plight",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95943/foremans-plight",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Search the broken cart for the Foreman's Crate and bring it to Bertrand Ironbrow.",
+      "items": [
+        271620
+      ]
+    },
+    "phasePoints": {
+      "objective": [
+        {
+          "mapId": 2548,
+          "x": 51.9,
+          "y": 57.3,
+          "kind": "area",
+          "name": "Foreman's Crate",
+          "itemId": 271620,
+          "source": "Wowhead Forever comment"
+        }
+      ]
+    },
+    "reviewNote": "Draiontv identifies the crate in the broken cart at 51.9, 57.3. This is a community-reported point."
+  },
+  {
+    "questId": 95951,
+    "questName": "Fetch 'n' Fletch",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95951/fetch-n-fletch",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "combine",
+      "text": "Loot Wood Bundles from Peasant Woodpiles at Turner's Logging Camp, then use them to fletch Makeshift Stickin' Spears.",
+      "items": [
+        271630
+      ]
+    }
+  },
+  {
+    "questId": 95975,
+    "questName": "Her World",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95975/her-world",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Gather Wildflowers for Tessa Dawnbright in Farholde Keep.",
+      "items": [
+        271823
+      ]
+    }
+  },
+  {
+    "questId": 95982,
+    "questName": "Not My Circus",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=95982/not-my-circus",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Cook or buy Briny Seafood Stew for Jasper Geartoggle in Powderfuse Port.",
+      "items": [
+        274971
+      ]
+    }
+  },
+  {
+    "questId": 96009,
+    "questName": "High Stakes",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=96009/high-stakes",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Collect Wood Bundles at Turner's Logging Camp for Bertrand Ironbrow.",
+      "items": [
+        271877
+      ]
+    }
+  },
+  {
+    "questId": 96026,
+    "questName": "Step Two: More Rock",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=96026/step-two-more-rock",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "craft",
+      "text": "Craft or buy Heavy Weightstones for Hamur in Bolder'ok.",
+      "items": [
+        3241
+      ]
+    }
+  },
+  {
+    "questId": 96063,
+    "questName": "Gaseous Gold",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=96063/gaseous-gold",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Collect Marsh Gas Vials at the vents around the marshy ponds southwest of Sleebo Fizzlespout. Use the quantity in your current quest log."
+    },
+    "reviewNote": "The quest summary says 5 vials while its objective panel and an AHledger player record say 8. The short coordinate comment does not identify its target, so it is not imported."
+  },
+  {
+    "questId": 96084,
+    "questName": "Something's in the Water",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=96084/somethings-in-the-water",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "use-item",
+      "text": "Fill the Empty Phial at the pools in the plains north of Farholde Keep, then take the sample to Sister Rowland.",
+      "items": [
+        281228
+      ]
+    }
+  },
+  {
+    "questId": 96294,
+    "questName": "A Darker Truth",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=96294/a-darker-truth",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "delivery",
+      "text": "Take the Bloody Parchment recovered from Broodmother Valraxx to Muln Earthfury at Skywatcher Plateau.",
+      "targets": [
+        {
+          "kind": "Npc",
+          "name": "Muln Earthfury"
+        }
+      ]
+    }
+  },
+  {
+    "questId": 96800,
+    "questName": "Past Due",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=96800/past-due",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "instance",
+      "text": "Find The Lost Magic of the Runemasters in Scarlet Monastery's Library. A player report places the book on a table on the right side of the final boss room.",
+      "items": [
+        273169
+      ]
+    }
+  },
+  {
+    "questId": 96873,
+    "questName": "A Pain in the Neck",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=96873/a-pain-in-the-neck",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "disenchant",
+      "text": "Loot Hexed Pendants from the Echo Isles trolls, then disenchant them into Luminous Residue for Pa'zula.",
+      "targets": [
+        {
+          "kind": "Item",
+          "id": 275724,
+          "name": "Hexed Pendant"
+        }
+      ],
+      "items": [
+        247884
+      ]
+    }
+  },
+  {
+    "questId": 97328,
+    "questName": "Anything of Value",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=97328/anything-of-value",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Recover Stolen Shipments from the crates around the Ruins of Zul'Kunda and deliver them to Booty Bay.",
+      "items": [
+        277953
+      ]
+    }
+  },
+  {
+    "questId": 97420,
+    "questName": "Reduce, Reuse, Reconcile",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=97420/reduce-reuse-reconcile",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Collect Drums of Crude Oil at the Venture Co. operations beside Lake Nazferiti for Knaz Blunderflame.",
+      "items": [
+        277986
+      ]
+    }
+  },
+  {
+    "questId": 97884,
+    "questName": "Armory of Sunnyglade",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=97884/armory-of-sunnyglade",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Search the basement of the old Sunnyglade armory for the Tremayne Family Blacksmithing Techniques tome.",
+      "items": [
+        278868
+      ]
+    }
+  },
+  {
+    "questId": 98069,
+    "questName": "Stolen Freewind Supplies",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=98069/stolen-freewind-supplies",
+    "retrieved": "2026-11-10",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "text": "Recover Stolen Freewind Supplies from the harpy lair west of Freewind Post. Search the cliff base and the cave above.",
+      "items": [
+        279383
+      ]
+    }
+  },
+  {
+    "questId": 98447,
+    "questName": "The Valor Family",
+    "provider": "Wowhead Forever",
+    "source": "https://www.wowhead.com/forever/quest=98447/the-valor-family",
+    "retrieved": "2026-11-10",
+    "facts": {
+      "Turned in to": "Sirra Von'Indi"
+    },
+    "reviewNote": "This is quest 98447, the Raven Hill investigation. The earlier same-name Raven Hill Tome quest is 96139. Indexed comments question whether the later quest is currently obtainable; availability remains unverified."
+  }
+]
