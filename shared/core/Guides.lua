@@ -70,6 +70,7 @@ function Guides:GetSteps(id)
             local resolved = {}
             for key, value in pairs(step) do resolved[key] = value end
             if step.questIds then resolved.questId = step.questIds[guide.faction] end
+            if step.requiresByFaction then resolved.requires = step.requiresByFaction[guide.faction] end
             if step.coordsByFaction and step.coordsByFaction[guide.faction] then
                 local loc = step.coordsByFaction[guide.faction]
                 resolved.x, resolved.y = loc[1], loc[2]
@@ -281,11 +282,24 @@ function Guides:Sync(id, catchUp)
         if not saved.completed[stepKey(step, saved.current)] then break end
         self:SetCurrent(saved.current + 1, id)
     end
+    local recoveryReason
+    if catchUp and ns.Modules.SmartRoutes
+        and ns.Modules.SmartRoutes:NeedsLiveQuest(self:GetGuide(id).id) then
+        -- Explicit Sync means rebuild the cursor from actual quest evidence and
+        -- authored prerequisites, even when the player selected Story mode.
+        -- We do NOT mark unavailable/older steps complete just to catch up.
+        ns.Modules.SmartRoutes:Recalculate(true)
+        recoveryReason = saved.recoveryReason
+    end
     local moved = saved.current ~= previous
     local changed = newCompletions > 0 or moved
     local report
     if not hasQuestAPIs() and not (ns.char.turnedInQuests or ns.state.acceptedQuestIDs) then
         report = "Quest APIs unavailable. Use Done/Next to advance."
+    elseif catchUp and recoveryReason and saved.awaitingQuestMatch ~= true then
+        report = recoveryReason .. " Now at " .. saved.current .. "/" .. #steps .. "."
+    elseif catchUp and recoveryReason and saved.awaitingQuestMatch == true then
+        report = "Quest prerequisite needs review: " .. recoveryReason
     elseif found == 0 then
         report = "No matching active/completed quests. Check selected guide."
     elseif catchUp and moved then

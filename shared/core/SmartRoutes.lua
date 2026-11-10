@@ -147,6 +147,78 @@ function Routes:NeedsLiveQuest(id)
     return (id == "zephras-alliance" or id == "zephras-horde") and currentLevel() >= 5
 end
 
+-- Find the earliest unfinished, source-backed prerequisite for a quest.
+-- Missing a quest from the log is not proof that the route cannot proceed:
+-- the player may need to pick it up, or finish an earlier quest first.
+local function questHasObjective(questID, steps)
+    for _, step in ipairs(steps) do
+        if step.questId == questID and step.action == "objective" then return true end
+    end
+    return false
+end
+
+local function activePhase(questID, steps)
+    local isReady = ready(questID)
+    for index, step in ipairs(steps) do
+        if step.questId == questID
+            and (isReady and step.action == "turnin"
+                or not isReady and step.action == "objective") then
+            return index
+        end
+    end
+    if not questHasObjective(questID, steps) then
+        for index, step in ipairs(steps) do
+            if step.questId == questID and step.action == "turnin" then return index end
+        end
+    end
+end
+
+local function recoveryPickup(questID, steps, visited)
+    if type(questID) ~= "number" then return nil, "Unknown quest." end
+    if flag(questID) or active(questID) then return nil, nil end
+    if visited[questID] then return nil, "A quest prerequisite loop was detected." end
+    visited[questID] = true
+    local pickupIndex, knownStep
+    for index, step in ipairs(steps) do
+        if step.questId == questID then
+            knownStep = knownStep or step
+            if step.action == "accept" then pickupIndex, knownStep = index, step; break end
+        end
+    end
+    if not knownStep then
+        return nil, "Quest " .. questID .. " is a required prerequisite but its pickup is not authored yet."
+    end
+    for _, requirement in ipairs(knownStep.requires or {}) do
+        if not flag(requirement) then
+            if active(requirement) then
+                local phase = activePhase(requirement, steps)
+                if phase then
+                    return phase, "Finish active prerequisite quest " .. requirement ..
+                        " before attempting the next pickup."
+                end
+                return nil, "Finish active prerequisite quest " .. requirement ..
+                    "; its remaining objective is not authored yet."
+            end
+            local earlier, reason = recoveryPickup(requirement, steps, visited)
+            if earlier then return earlier, reason end
+            -- Never tell a player an unavailable downstream quest is offered
+            -- when its upstream quest cannot be resolved.
+            return nil, reason or ("Finish prerequisite quest " .. requirement .. " first.")
+        end
+    end
+    if pickupIndex then
+        local pickup = steps[pickupIndex]
+        -- A target without an actual pickup location can be described but must
+        -- not generate a speculative arrow or map pin.
+        if type(pickup.x) == "number" and type(pickup.y) == "number" then
+            return pickupIndex, "Quest pickup needed: " .. tostring(pickup.title or questID) ..
+                ". If it is not offered, check its earlier prerequisites."
+        end
+        return nil, "Quest " .. questID .. " is unfinished, but no verified pickup location is available."
+    end
+    return nil, "Quest " .. questID .. " is missing from the log and the guide has no pickup step for it."
+end
+
 function Routes:Preview(id, mode)
     mode = MODES[mode] and mode or "recommended"
     if id == "first-steps" and mode == "recommended" then mode = "resume" end
@@ -183,7 +255,7 @@ function Routes:Preview(id, mode)
                 -- On phase-driven Zephras, require the current quest phase.
                 local usable = not self:NeedsLiveQuest(id)
                     or (step.action ~= "accept"
-                        and (step.action ~= "turnin" or isReady)
+                        and (step.action ~= "turnin" or isReady or not questHasObjective(questId, steps))
                         and (step.action ~= "objective" or not isReady))
                 if usable then
                     local phase
@@ -203,7 +275,26 @@ function Routes:Preview(id, mode)
             return matchedIndex, "Matched a quest in your quest log. WayForth will track its current phase."
         end
         if self:NeedsLiveQuest(id) then
-            return nil, "No actionable Zephras guide step matches your active quest phase. Follow the quests already in your WoW log. WayForth will resync when a tracked objective is available. From Beginning and Resume Saved remain available."
+            -- Prefer the selected route's quest chain, not an unrelated quest
+            -- that merely shares the player's level. This also recovers older
+            -- saved cursors pointing at a turn-in that the player never accepted.
+            local selected = steps[saved.current]
+            local targetId = selected and selected.questId
+            if type(targetId) ~= "number" or flag(targetId) then
+                for index = saved.current, #steps do
+                    local candidate = steps[index]
+                    if candidate and type(candidate.questId) == "number" and not flag(candidate.questId) then
+                        targetId = candidate.questId
+                        break
+                    end
+                end
+            end
+            if type(targetId) == "number" then
+                local pickup, reason = recoveryPickup(targetId, steps, {})
+                if pickup then return pickup, reason end
+                return nil, reason or "Quest chain needs manual verification. No quest pickup can be confirmed from the guide data."
+            end
+            return nil, "No quest in this part of the route can be recovered automatically. Try an earlier step or a different guide."
         end
     end
 
@@ -358,7 +449,7 @@ end
 
 -- Keep recommended routes near the player's level after completed quests/level-ups.
 -- Does not mark any skipped step complete, and never switches region without consent.
-function Routes:Recalculate()
+function Routes:Recalculate(force)
     local guides = ns.Modules.Guides
     local id = guides:GetGuide().id
     local saved = guides:GetProgress(id)
@@ -366,14 +457,17 @@ function Routes:Recalculate()
     -- Older Zephras SavedVariables did not always store a route mode; the
     -- guide UI already interprets a missing mode as Recommended.
     local routeMode = saved and (saved.routeMode or (self:NeedsLiveQuest(id) and "recommended"))
-    if not saved or routeMode ~= "recommended"
-        or (settings and settings:Get("smartRouting") == false)
-        or (settings and settings:Get("guidePaused") == true)
-        or (settings and settings:Get("autoRecovery") == false) then return false end
-    local index = self:Preview(id, "recommended")
+    if not saved or (routeMode ~= "recommended" and not force)
+        or (settings and settings:Get("smartRouting") == false and not force)
+        or (settings and settings:Get("guidePaused") == true and not force)
+        or (settings and settings:Get("autoRecovery") == false and not force) then return false end
+    local index, reason = self:Preview(id, "recommended")
     local blocked = not index and self:NeedsLiveQuest(id) or false
     local changed = (saved.awaitingQuestMatch == true) ~= blocked
     saved.awaitingQuestMatch = blocked
+    local oldReason = saved.recoveryReason
+    saved.recoveryReason = reason
+    changed = changed or oldReason ~= reason
     if not index then return changed end
     if index == saved.current then return changed end
     guides:SetCurrent(index, id)

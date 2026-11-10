@@ -1,5 +1,4 @@
--- Level-10 character entering the Zephras guide after questing independently.
--- Do not rely on inferred quest availability or falsely complete earlier steps.
+-- Lua 5.1: backtrack to an actual quest pickup when joining Zephras mid-route.
 local ns = {
     Modules = {}, state = {},
     char = { activeGuide = "zephras-alliance", guideProgress = {} },
@@ -29,56 +28,92 @@ assert(loadfile("shared/core/Guides.lua"))("WayForth", ns)
 assert(loadfile("shared/core/SmartRoutes.lua"))("WayForth", ns)
 local guides, routes = ns.Modules.Guides, ns.Modules.SmartRoutes
 local id = "zephras-alliance"
+local function stepIndex(identifier, guideId)
+    for index, step in ipairs(guides:GetSteps(guideId or id)) do
+        if step.id == identifier then return index end
+    end
+    error("Missing guide step: " .. identifier)
+end
 local state = guides:GetProgress(id)
-guides:SetCurrent(43, id)
+guides:SetCurrent(stepIndex("turncoat"), id)
 state.routeMode = "recommended"
+local turncoatOld = state.current
 
--- An unrelated quest in the log is not evidence of availability in this route.
-local stepIndex, message = routes:Preview(id, "recommended")
-assert(stepIndex == nil and message:find("No actionable"), "No quest match must not pick a level-10 quest")
-assert(routes:Recalculate() == true and state.awaitingQuestMatch == true,
-    "Stale step must be marked unverified on login")
-assert(state.current == 43 and next(state.completed) == nil,
-    "Keep the cursor and completion flags intact")
-assert(#routes:NearbyGroup() == 0, "No suggested or navigable grouped objectives when blocked")
+-- Never send a non-questing character straight to a downstream objective.
+local stepIndex1, reason = routes:Preview(id, "recommended")
+assert(stepIndex1 == stepIndex("supreme-92699-accept"),
+    "Backtrack through the known chain to the earliest incomplete pickup")
+assert(reason:find("Quest pickup needed"), "Explain that a pickup is required")
+assert(routes:Recalculate() == true, "Recover from stale legacy saved cursor")
+assert(state.current == stepIndex1 and state.awaitingQuestMatch == false)
+assert(not next(state.completed), "Quest recovery must not forge completion history")
 
--- Accepted quest with an objective step should take precedence.
-accepted[92849] = true
-stepIndex = routes:Preview(id, "recommended")
-assert(stepIndex and guides:GetSteps(id)[stepIndex].id == "scholar-92849-objective",
-    "Use active unfinished quest objective, not pickup or turn-in")
-assert(routes:Recalculate() == true and state.awaitingQuestMatch == false,
-    "Newly accepted guide quest clears mismatch warning")
-assert(guides:CurrentStep().id == "scholar-92849-objective",
-    "Route moves to the live quest's objective")
-assert(next(state.completed) == nil, "Recommendation must not forge completions")
+-- Advance known prerequisites in the *game*, not by altering guide flags.
+for _, questID in ipairs({
+    92699, 92727, 92849, 92850, 99260, 92840,
+    92860, 93320, 92642, 92645, 92880,
+}) do
+    turnedIn[questID] = true
+end
+guides:SetCurrent(stepIndex("turncoat"), id)
+stepIndex1 = routes:Preview(id, "recommended")
+assert(stepIndex1 == stepIndex("elder-92881-accept"),
+    "The Turncoat must backtrack to High Elder's Request, not the cultist's location")
+assert(routes:Recalculate() == true and state.current == stepIndex1)
 
--- Once the in-progress quest is ready, point to its hand-in instead.
-ready[92849] = true
-stepIndex = routes:Preview(id, "recommended")
-assert(stepIndex and guides:GetSteps(id)[stepIndex].id == "scholar-92849-turnin",
-    "Ready-for-turn-in phase preferred over objective")
-assert(routes:Recalculate() == true, "Tracker should advance to the ready turn-in")
+-- Accepting a simple report quest (without a separate objective step) should
+-- route to its hand-in, not to a locked downstream pickup.
+accepted[92881] = true
+stepIndex1 = routes:Preview(id, "recommended")
+assert(stepIndex1 == stepIndex("elder-92881-turnin"),
+    "In-progress report quest directs to its hand-in NPC")
+assert(routes:Recalculate() == true and state.current == stepIndex1)
 
--- Losing the quest must not continue to show the old arrow.
-accepted[92849] = nil
-ready[92849] = nil
-assert(routes:Recalculate() == true and state.awaitingQuestMatch == true,
-    "Removing quest blocks old destination instead of guessing")
+-- After turning in the prerequisite, the correct quest giver is next.
+accepted[92881] = nil
+turnedIn[92881] = true
+stepIndex1 = routes:Preview(id, "recommended")
+assert(stepIndex1 == stepIndex("turncoat-92643-accept"),
+    "After prerequisite turn-in, show the Turncoat pickup")
+assert(routes:Recalculate() == true and state.current == stepIndex1)
+assert(not state.completed["turncoat"], "Did not falsely complete the Turncoat")
 
--- The explicit story mode still permits earlier steps and preserves history.
-assert(routes:Switch(id, "beginning"), "Manual story mode remains selectable")
-assert(state.awaitingQuestMatch == false and state.routeMode == "beginning")
-assert(guides:CurrentStep().id == "start-accept")
-assert(next(state.completed) == nil, "No false completion across route switches")
+-- Once The Turncoat is accepted, guide objective comes before hand-in.
+accepted[92643] = true
+stepIndex1 = routes:Preview(id, "recommended")
+assert(stepIndex1 == stepIndex("turncoat-92643-objective"))
+assert(routes:Recalculate() == true and state.current == stepIndex1)
+ready[92643] = true
+stepIndex1 = routes:Preview(id, "recommended")
+assert(stepIndex1 == stepIndex("turncoat"))
+assert(routes:Recalculate() == true and state.current == stepIndex1)
 
--- A different faction uses the same safe behavior.
+-- Explicit Sync in Story mode must recover too, while keeping the selected mode.
+accepted[92643] = nil
+ready[92643] = nil
+turnedIn[92881] = nil
+state.routeMode = "beginning"
+guides:SetCurrent(stepIndex("turncoat"), id)
+local changed, report = guides:Sync(nil, true)
+assert(changed == true and state.current == stepIndex("elder-92881-accept"),
+    "Explicit Sync resolves missing prerequisites even in Story mode")
+assert(state.routeMode == "beginning", "Sync retains user-selected route mode")
+assert(report:find("Quest pickup needed"), "Sync describes recovered pickup")
+assert(turnedIn[92881] == nil, "No game quest completion forged")
+
+-- Explicit story beginning still works, and stable step keys remain valid.
+assert(routes:Switch(id, "beginning"), "Beginning mode remains available")
+assert(guides:CurrentStep().id == "start-accept", "Story mode starts at first unfinished step")
+
+-- Horde recovery fails safely where prerequisite metadata/pins are incomplete.
+for _, questID in ipairs({ 92880, 92642, 92645, 93320 }) do turnedIn[questID] = nil end
 faction = "Horde"
 ns.char.activeGuide = "zephras-horde"
-local hordeState = guides:GetProgress("zephras-horde")
-hordeState.routeMode = "recommended"
-assert(routes:Preview("zephras-horde", "recommended") == nil,
-    "Horde level-10 Zephras guide also needs live quest evidence")
-assert(routes:Recalculate() == true and hordeState.awaitingQuestMatch == true,
-    "Horde route protects against stale steps too")
-print("WayForth Zephras mid-guide quest synchronization tests passed")
+local h = guides:GetProgress("zephras-horde")
+h.routeMode = "recommended"
+guides:SetCurrent(stepIndex("turncoat", "zephras-horde"), "zephras-horde")
+local hIndex, hReason = routes:Preview("zephras-horde", "recommended")
+assert(hIndex == nil and hReason:find("pickup location"),
+    "Unknown Horde precursor pin must not generate speculative route")
+assert(routes:Recalculate() == true and h.awaitingQuestMatch == true)
+print("WayForth Zephras prerequisite backtracking and Sync tests passed")
