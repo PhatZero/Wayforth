@@ -852,6 +852,11 @@ function UI:Refresh()
             self:SettingsToggle("recoveryNote", "Recovery Notifications", "recoveryNotifications", 10, 230, width-28)
             self:Button("syncNow", "Sync Guide Now", 10, 310, 182, 38, function()
                 local _, message=guides:Sync(nil,true)
+                ns:Call("SmartRoutes","Recalculate")
+                local saved=guides:GetProgress()
+                if saved and saved.awaitingQuestMatch then
+                    message="The active quest log has no actionable Zephras guide step. Continue your in-game quests; WayForth will resync when one matches."
+                end
                 ns:Print(message or "Sync attempted")
                 ns:Call("Tracker","Refresh")
             end, true)
