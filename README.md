@@ -6,6 +6,16 @@
 
 This is the standalone in-game companion for the WoW Forever platform, designed with an offline-first free core. It is deliberately stored in its own folder with no dependency on Base44 or the website runtime.
 
+## Live quest objective tracking
+
+The current quest's tracker card shows live kill and collection counters, completed objectives, event requirements and percentage progress where the client supplies it. It refreshes as quest-log, inventory and quest-data updates arrive, even when the guide stays on the same step.
+
+Completed rows are highlighted and ready quests show **Ready to turn in**. Existing Pause Guide and Auto Advance settings still control progression. Objective counters alone never mark a quest turned in or skip its remaining requirements.
+
+Long objective lists scroll inside the card. Resize the tracker for more room, or hover the card to read its full instructions and objectives. Switching guides or abandoning a quest clears its old counters. Hidden trackers read fresh progress when reopened.
+
+If the current quest is absent from the log or live objective details are unavailable, the tracker explains the state and retains its guide instructions. Objective counts are read from the character's current quest log and are not stored between sessions. In-game appearance and client-specific behavior remain unverified.
+
 ## Install
 
 1. Quit WoW completely.
@@ -68,7 +78,7 @@ For an in-game release checklist, see [V1_IN_GAME_QA.md](docs/V1_IN_GAME_QA.md).
 - Error capture and basic client diagnostic status.
 - No slash command required, no sign-in, no payment and no network communication.
 
-**Not yet implemented:** complete coverage of every quest, zone routes beyond Zephras Isle, full objective counters, cross-zone pathfinding, profession data, website sync, SimC-style copy/paste export, subscription systems, polished custom art assets. Direction/distance are shown only when the client exposes map coordinates and facing; this must be verified in the live Forever client.
+**Historical v0.3.3 limitations:** complete coverage of every quest, zone routes beyond Zephras Isle, cross-zone pathfinding, profession data, website sync, SimC-style copy/paste export, subscription systems, polished custom art assets. Later sections describe the subsequent guide and interface work. Direction/distance are shown only when the client exposes map coordinates and facing; this must be verified in the live Forever client.
 
 ## v0.3.1 usability and quest sync fixes
 

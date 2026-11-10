@@ -24,6 +24,10 @@ end
 local function stepComplete(step, index, saved)
     return saved and saved.completed and saved.completed[step.id or index]
 end
+local function textHeight(font, minimum)
+    local height = font.GetStringHeight and font:GetStringHeight() or minimum
+    return math.max(minimum, height or minimum)
+end
 
 function Tracker:MakeFrame()
     if self.frame then return end
@@ -126,6 +130,29 @@ function Tracker:MakeFrame()
     self.stepTitle=label(objective,"",14,theme.gold,12,29,320)
     self.objectiveText=label(objective,"",11,theme.ivory,12,60,330)
     self.location=label(objective,"",10,theme.teal,12,112,335)
+    self.liveStatus=label(objective,"",9,theme.teal,12,96,330)
+    self.liveScroll=CreateFrame("ScrollFrame",nil,objective)
+    self.liveContent=CreateFrame("Frame",nil,self.liveScroll)
+    self.liveContent:SetSize(330,1)
+    self.liveScroll:SetScrollChild(self.liveContent)
+    self.liveScroll:EnableMouseWheel(true)
+    self.liveScroll:EnableMouse(true)
+    self.liveScroll:SetScript("OnMouseWheel",function(scroll,delta)
+        local maximum=math.max(0,(Tracker.liveContentHeight or 0)-scroll:GetHeight())
+        scroll:SetVerticalScroll(math.max(0,math.min(maximum,scroll:GetVerticalScroll()-delta*24)))
+    end)
+    self.liveRows={}
+    self.liveStatus:Hide()
+    self.liveScroll:Hide()
+    objective:EnableMouse(true)
+    local function tooltip() Tracker:ShowObjectiveTooltip() end
+    local function hideTooltip()
+        if GameTooltip and GameTooltip:IsOwned(objective) then GameTooltip:Hide() end
+    end
+    objective:SetScript("OnEnter",tooltip)
+    objective:SetScript("OnLeave",hideTooltip)
+    self.liveScroll:SetScript("OnEnter",tooltip)
+    self.liveScroll:SetScript("OnLeave",hideTooltip)
     self.pinButton=theme:Button(objective,44,24,"PIN",function()
         local _,index=ns.Modules.Guides:CurrentStep()
         if index then navigate(index,true) end
@@ -277,9 +304,133 @@ function Tracker:MakeFrame()
     end)
 
     panel:SetScript("OnSizeChanged",function() Tracker:Layout() end)
+    panel:SetScript("OnUpdate",function(_,elapsed)
+        if not Tracker.objectiveDirty then return end
+        Tracker.objectiveElapsed=(Tracker.objectiveElapsed or 0)+elapsed
+        if Tracker.objectiveElapsed >= 0.1 then Tracker:RefreshObjectives() end
+    end)
     panel:Hide()
     self:ApplyOpacity()
     self:Layout()
+end
+
+function Tracker:ShowObjectiveTooltip()
+    if not GameTooltip or not self.displayStep then return end
+    GameTooltip:SetOwner(self.objectiveCard,"ANCHOR_LEFT")
+    GameTooltip:SetText(self.displayStep.title or "Quest objective",unpack(theme.gold))
+    GameTooltip:AddLine(self.displayStep.text or "",theme.ivory[1],theme.ivory[2],theme.ivory[3],true)
+    if self.liveSnapshot then
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddLine(self.liveSnapshot.status,theme.teal[1],theme.teal[2],theme.teal[3],true)
+        for _,row in ipairs(self.liveSnapshot.rows) do
+            local color=row.finished and theme.green or theme.ivory
+            GameTooltip:AddLine((row.finished and "[x] " or "[ ] ")..row.display,color[1],color[2],color[3],true)
+        end
+    end
+    GameTooltip:Show()
+end
+
+-- Counter-only events do not need to rebuild the guide library or reroute it.
+-- The visible tracker coalesces event bursts, and reads fresh data on reopening.
+function Tracker:RequestObjectiveRefresh(questID)
+    if not self.frame or not self.frame:IsShown() or not self.displayStep
+        or ns.char and ns.char.trackerMinimized then return end
+    if questID and questID ~= self.displayStep.questId then return end
+    if not self.objectiveDirty then self.objectiveElapsed=0 end
+    self.objectiveDirty=true
+end
+
+function Tracker:RefreshObjectives(fromRefresh)
+    self.objectiveDirty,self.objectiveElapsed=false,0
+    local guides=ns.Modules.Guides
+    local step=self.displayStep
+    if not fromRefresh then
+        local current,index=guides:CurrentStep()
+        if not step or not current or index~=self.displayIndex or current.questId~=step.questId
+            or current.id~=step.id or current.action~=step.action then
+            self:Refresh()
+            return
+        end
+    end
+    local progress=ns.Modules.QuestProgress
+    local snapshot=step and progress and progress:Get(step.questId) or nil
+    if snapshot and snapshot.state=="inactive" and step.action=="accept" then snapshot=nil end
+    if snapshot and snapshot.ready and step.action=="objective" and not fromRefresh then
+        local changed=guides:Sync()
+        if changed then self:Refresh();return end
+    end
+    if not snapshot or not self.liveSnapshot or snapshot.questID~=self.liveSnapshot.questID then
+        self.liveScroll:SetVerticalScroll(0)
+    end
+    self.liveSnapshot=snapshot
+    if not fromRefresh then self:Layout() end
+end
+
+function Tracker:LayoutObjectives(width,height)
+    local contentW=math.max(240,width-45)
+    local snapshot=self.liveSnapshot
+    self.stepTitle:SetHeight(0)
+    local titleH=textHeight(self.stepTitle,18)
+    self.stepTitle:SetHeight(titleH)
+    local descriptionY=29+titleH+8
+    self.objectiveText:ClearAllPoints()
+    self.objectiveText:SetPoint("TOPLEFT",self.objectiveCard,"TOPLEFT",12,-descriptionY)
+    if self.objectiveText.SetMaxLines then self.objectiveText:SetMaxLines(snapshot and 2 or 4) end
+    self.objectiveText:SetHeight(0)
+    local descriptionH=math.min(textHeight(self.objectiveText,0),snapshot and 32 or 52)
+    self.objectiveText:SetHeight(descriptionH)
+    self.location:SetHeight(0)
+    local locationH=textHeight(self.location,14)
+    self.location:SetHeight(locationH)
+    self.location:ClearAllPoints()
+    self.location:SetPoint("BOTTOMLEFT",self.objectiveCard,"BOTTOMLEFT",12,10)
+
+    local statusY=descriptionY+descriptionH+9
+    local rowsY=statusY+17
+    local rowsH=0
+    for i,row in ipairs(snapshot and snapshot.rows or {}) do
+        local line=self.liveRows[i]
+        if not line then
+            line=label(self.liveContent,"",11,theme.ivory,0,0,contentW)
+            self.liveRows[i]=line
+        end
+        line:SetWidth(contentW)
+        line:SetHeight(0)
+        line:SetText((row.finished and "[x] " or "[ ] ")..row.display)
+        line:SetTextColor(unpack(row.finished and theme.green or theme.ivory))
+        line:ClearAllPoints()
+        line:SetPoint("TOPLEFT",self.liveContent,"TOPLEFT",0,-rowsH)
+        local lineH=textHeight(line,15)
+        line:SetHeight(lineH)
+        line:Show()
+        rowsH=rowsH+lineH+4
+    end
+    for i=(snapshot and #snapshot.rows or 0)+1,#self.liveRows do self.liveRows[i]:Hide() end
+    rowsH=math.max(0,rowsH-4)
+    self.liveContentHeight=rowsH
+    local viewport=math.min(rowsH,math.max(52,math.min(120,height-360)))
+    local desired=snapshot and rowsY+viewport+locationH+20 or descriptionY+descriptionH+locationH+20
+    local cardH=math.min(math.max(138,desired),math.max(138,height-149-56))
+    self.objectiveCard:SetHeight(cardH)
+    viewport=math.max(0,math.min(viewport,cardH-rowsY-locationH-20))
+    if snapshot then
+        self.liveStatus:ClearAllPoints()
+        self.liveStatus:SetPoint("TOPLEFT",self.objectiveCard,"TOPLEFT",12,-statusY)
+        self.liveStatus:SetWidth(contentW)
+        self.liveStatus:SetText(snapshot.status..(rowsH>viewport+1 and "  (scroll)" or ""))
+        local color=(snapshot.state=="ready" or snapshot.state=="turnedIn") and theme.green or theme.teal
+        self.liveStatus:SetTextColor(unpack(color))
+        self.liveStatus:Show()
+    else self.liveStatus:Hide() end
+    if rowsH>0 and viewport>0 then
+        self.liveScroll:ClearAllPoints()
+        self.liveScroll:SetPoint("TOPLEFT",self.objectiveCard,"TOPLEFT",12,-rowsY)
+        self.liveScroll:SetSize(contentW,viewport)
+        self.liveContent:SetSize(contentW,math.max(1,rowsH))
+        self.liveScroll:SetVerticalScroll(math.min(self.liveScroll:GetVerticalScroll(),math.max(0,rowsH-viewport)))
+        self.liveScroll:Show()
+    else self.liveScroll:Hide() end
+    return cardH
 end
 
 function Tracker:ApplyOpacity()
@@ -305,10 +456,17 @@ function Tracker:Layout()
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
+    local cardH=self:LayoutObjectives(width,height)
+    local upcomingY=149+cardH+12
+    self.upcomingTitle:ClearAllPoints()
+    self.upcomingTitle:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-upcomingY)
+    local visible=math.max(0,math.min(6,math.floor((height-56-(upcomingY+23)+4)/33)))
     for i,button in ipairs(self.upcomingButtons or {}) do
         button:SetWidth(width-30)
+        button:ClearAllPoints()
+        button:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23+(i-1)*33))
         if self.upcomingIndices and self.upcomingIndices[i]
-            and i <= 2 + math.max(0,math.floor((height-448)/33))
+            and i <= visible
             and not (ns.char and ns.char.trackerMinimized) then
             button:Show()
         else button:Hide() end
@@ -323,7 +481,8 @@ function Tracker:Layout()
     else
         self.summary:Show()
         self.objectiveCard:Show()
-        self.upcomingTitle:Show()
+        if visible>0 and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
+        else self.upcomingTitle:Hide() end
         self.controls:Show()
     end
 end
@@ -377,7 +536,15 @@ function Tracker:Refresh()
     guides:Sync()
     local g=guides:GetGuide()
     local step,index,total=guides:CurrentStep()
-    if not g or not step or not total or total==0 then return end
+    if not g or not step or not total or total==0 then
+        self.displayStep,self.liveSnapshot=nil,nil
+        self.upcomingIndices={}
+        self.stepTitle:SetText("No guide selected")
+        self.objectiveText:SetText("Choose a guide from the Guide Library.")
+        self.location:SetText("")
+        self:Layout()
+        return
+    end
     local saved=guides:GetProgress()
     local count=0
     local steps=guides:GetSteps()
@@ -452,6 +619,10 @@ function Tracker:Refresh()
         item:SetLabel(title .. ": " .. (pref(key,false) and "ON" or "OFF"))
     end
     if self.minimizeButton then self.minimizeButton:SetLabel(ns.char and ns.char.trackerMinimized and "+" or "-") end
+    self.displayStep=step
+    if saved.awaitingQuestMatch then self.displayStep=nil end
+    self.displayIndex=index
+    self:RefreshObjectives(true)
     self:ApplyOpacity()
     self:Layout()
     ns:Call("Navigator","Refresh")
