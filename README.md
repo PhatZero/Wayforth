@@ -16,6 +16,12 @@ Long objective lists scroll inside the card. Resize the tracker for more room, o
 
 If the current quest is absent from the log or live objective details are unavailable, the tracker explains the state and retains its guide instructions. Objective counts are read from the character's current quest log and are not stored between sessions. In-game appearance and client-specific behavior remain unverified.
 
+## Quest-item buttons
+
+When the current objective or turn-in quest has a usable item in your inventory, its icon appears beside the current objective. Click it to use the item, or hover for its tooltip. The button shows native charges and cooldowns, follows tracker movement and scale, and clears after consumption, abandonment, guide switching, minimization or closing the tracker. Items can remain available when the client explicitly allows their use on completed quests.
+
+The current item remains usable during combat. If the guide, item or tracker position changes in combat, **WAIT** covers the frozen button and blocks clicks until combat ends. A tracker opened for the first time during combat also waits. Binding and positioning update automatically afterward. The button uses only the usable item identified by the current quest log; items missing from that client data cannot be inferred.
+
 ## Install
 
 1. Quit WoW completely.

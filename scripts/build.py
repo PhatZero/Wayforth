@@ -50,6 +50,7 @@ def source_path(item):
     overrides = {
         "Core/Compatibility.lua": FOREVER / "api",
         "UI/Tracker.lua": SHARED / "tracker",
+        "UI/QuestItemButton.lua": SHARED / "tracker",
         "UI/Navigator.lua": SHARED / "navigation",
     }
     directories = {"Data": FOREVER / "guides", "UI": SHARED / "ui", "Core": SHARED / "core"}

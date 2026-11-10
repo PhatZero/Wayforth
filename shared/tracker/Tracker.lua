@@ -304,6 +304,7 @@ function Tracker:MakeFrame()
     end)
 
     panel:SetScript("OnSizeChanged",function() Tracker:Layout() end)
+    panel:SetScript("OnHide",function() ns:Call("QuestItemButton","Refresh",Tracker) end)
     panel:SetScript("OnUpdate",function(_,elapsed)
         if not Tracker.objectiveDirty then return end
         Tracker.objectiveElapsed=(Tracker.objectiveElapsed or 0)+elapsed
@@ -450,9 +451,10 @@ function Tracker:Layout()
     local width,height=self.frame:GetWidth(),self.frame:GetHeight()
     if width <= 0 or height <= 0 then return end
     local contentW=math.max(240,width-45)
+    local _,hasItem=ns:Call("QuestItemButton","Refresh",self)
     self.guideTitle:SetWidth(contentW-46)
     self.stepCount:SetWidth(contentW-40)
-    self.stepTitle:SetWidth(contentW-54)
+    self.stepTitle:SetWidth(contentW-(hasItem and 100 or 54))
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
@@ -485,6 +487,7 @@ function Tracker:Layout()
         else self.upcomingTitle:Hide() end
         self.controls:Show()
     end
+    ns:Call("QuestItemButton","Position")
 end
 
 function Tracker:ToggleMinimize()
@@ -632,6 +635,7 @@ function Tracker:ResetPosition()
     if not self.frame then return end
     self.frame:ClearAllPoints()
     self.frame:SetPoint("TOPRIGHT",UIParent,"TOPRIGHT",-30,-235)
+    ns:Call("QuestItemButton","Position")
 end
 function Tracker:Show()
     self:MakeFrame()
