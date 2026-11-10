@@ -1,0 +1,4087 @@
+{
+  "reviewed": "2026-11-10",
+  "scope": "All 101 quest IDs with missing static destinations after the WoWDB pass",
+  "searchNamePolicy": "Searches remove WayForth action labels and chain numbering. IDs and game version remain in the query to distinguish unrelated quests.",
+  "counts": {
+    "searched": 101,
+    "indexedMatches": 101
+  },
+  "quests": [
+    {
+      "questId": 716,
+      "questName": "Stone Is Better than Cloth",
+      "guideLabel": "Stone Is Better than Cloth",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Stone Is Better than Cloth\" 716 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Stone Is Better than Cloth: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/716/"
+        },
+        {
+          "title": "Stone Is Better than Cloth - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D716/stone-is-better-than-cloth"
+        },
+        {
+          "title": "Stone Is Better than Cloth - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D716/stone-is-better-than-cloth"
+        },
+        {
+          "title": "WoW Forever Stone Is Better than Cloth Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/716/stone-is-better-than-cloth/"
+        },
+        {
+          "title": "Stone Is Better than Cloth – WoW Forever Quest Guide (Level 42, Badlands) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/716-stone-is-better-than-cloth/"
+        },
+        {
+          "title": "Stone Is Better than Cloth - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D716/stone-is-better-than-cloth"
+        },
+        {
+          "title": "Stone Is Better than Cloth quest guide: Badlands, level 42 (quest 716) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/716"
+        },
+        {
+          "title": "Stone Is Better than Cloth - Quest - WoW Forever | 60.tools",
+          "url": "https://www.60.tools/quests/716-stone-is-better-than-cloth"
+        }
+      ]
+    },
+    {
+      "questId": 1036,
+      "questName": "Avast Ye, Scallywag",
+      "guideLabel": "Avast Ye, Scallywag",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Avast Ye, Scallywag\" 1036 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Avast Ye, Scallywag - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D1036/avast-ye-scallywag"
+        },
+        {
+          "title": "Avast Ye, Scallywag: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/1036/"
+        },
+        {
+          "title": "Avast Ye, Scallywag – WoW Forever Quest Guide (Level 60, Stranglethorn Vale) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/1036-avast-ye-scallywag/"
+        },
+        {
+          "title": "Avast Ye, Scallywag - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D1036/avast-ye-scallywag"
+        },
+        {
+          "title": "Avast Ye, Scallywag - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=1036"
+        },
+        {
+          "title": "Avast Ye, Scallywag - Quest - World of Warcraft",
+          "url": "https://www.wowhead.com/quest%3D1036/avast-ye-scallywag"
+        },
+        {
+          "title": "Avast Ye, Scallywag - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=1036"
+        },
+        {
+          "title": "WoW Forever Avast Ye, Scallywag Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/1036/avast-ye-scallywag/"
+        }
+      ]
+    },
+    {
+      "questId": 1192,
+      "questName": "Indurium Ore",
+      "guideLabel": "Indurium Ore",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Indurium Ore\" 1192 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Indurium Ore - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D1192/indurium-ore"
+        },
+        {
+          "title": "Indurium Ore - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D1192/indurium-ore"
+        },
+        {
+          "title": "Indurium Ore (level 42 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/1192"
+        },
+        {
+          "title": "Indurium Ore - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D1192/indurium-ore"
+        },
+        {
+          "title": "Indurium Ore - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=1192"
+        },
+        {
+          "title": "Indurium Ore - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=1192"
+        },
+        {
+          "title": "WoW Forever Indurium Ore Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/1192/indurium-ore/"
+        },
+        {
+          "title": "Indurium Ore - Quest - WoW Forever | 60.tools",
+          "url": "https://www.60.tools/quests/1192"
+        }
+      ]
+    },
+    {
+      "questId": 1203,
+      "questName": "Jarl Needs a Blade",
+      "guideLabel": "Jarl Needs a Blade",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Jarl Needs a Blade\" 1203 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Jarl Needs a Blade - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D1203/jarl-needs-a-blade"
+        },
+        {
+          "title": "Jarl Needs a Blade: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/1203/"
+        },
+        {
+          "title": "Jarl Needs a Blade - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D1203/jarl-needs-a-blade"
+        },
+        {
+          "title": "Jarl Needs a Blade - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/quest/1203-jarl-needs-a-blade"
+        },
+        {
+          "title": "Jarl Needs a Blade - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=1203"
+        },
+        {
+          "title": "Jarl Needs a Blade – WoW Forever Quest Guide (Level 35, Dustwallow Marsh) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/1203-jarl-needs-a-blade/"
+        },
+        {
+          "title": "WoW Classic DB",
+          "url": "https://wowclassicdb.com/quest/1203"
+        },
+        {
+          "title": "Jarl Needs a Blade - Level 35 Quest, Dustwallow Marsh | Emberveil Database",
+          "url": "https://database.emberveil.org/quest/1203"
+        }
+      ]
+    },
+    {
+      "questId": 1371,
+      "questName": "Gizmo for Warug",
+      "guideLabel": "Gizmo for Warug",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Gizmo for Warug\" 1371 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Gizmo for Warug - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D1371/gizmo-for-warug"
+        },
+        {
+          "title": "Gizmo for Warug (level 35 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/1371"
+        },
+        {
+          "title": "Gizmo for Warug - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D1371/gizmo-for-warug"
+        },
+        {
+          "title": "Gizmo for Warug - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=1371"
+        },
+        {
+          "title": "Gizmo for Warug quest guide: Desolace, level 35 (quest 1371) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/1371"
+        },
+        {
+          "title": "Gizmo for Warug - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D1371/gizmo-for-warug"
+        },
+        {
+          "title": "Gizmo for Warug – WoW Forever Quest Guide (Level 35, Desolace) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/1371-gizmo-for-warug/"
+        },
+        {
+          "title": "Gizmo for Warug - Quest - Classic PTR",
+          "url": "https://www.wowhead.com/classic-ptr/quest%3D1371/gizmo-for-warug"
+        }
+      ]
+    },
+    {
+      "questId": 1796,
+      "questName": "Components for the Enchanted Gold Bloodrobe",
+      "guideLabel": "Components for the Enchanted Gold Bloodrobe (1/5)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Components for the Enchanted Gold Bloodrobe\" 1796 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/1796"
+        },
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D1796/components-for-the-enchanted-gold-bloodrobe"
+        },
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe: WoW Forever Quest… | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/1796-components-for-the-enchanted-gold-bloodrobe/"
+        },
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe · MoreDots",
+          "url": "https://moredots.io/quest/1796"
+        },
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D1796/components-for-the-enchanted-gold-bloodrobe"
+        },
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe (#1796) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/1796/"
+        },
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe quest guide: The Barrens, level 31 (quest 1796) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/1796"
+        },
+        {
+          "title": "Components for the Enchanted Gold Bloodrobe (level 31)",
+          "url": "https://foreverdb.net/de/quest/1796-components-for-the-enchanted-gold-bloodrobe"
+        }
+      ]
+    },
+    {
+      "questId": 2771,
+      "questName": "A Good Head On Your Shoulders",
+      "guideLabel": "A Good Head On Your Shoulders",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"A Good Head On Your Shoulders\" 2771 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A Good Head On Your Shoulders - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D2771/a-good-head-on-your-shoulders"
+        },
+        {
+          "title": "A Good Head On Your Shoulders: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/2771/"
+        },
+        {
+          "title": "A Good Head On Your Shoulders – WoW Forever Quest Guide (Level 45, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/2771-a-good-head-on-your-shoulders/"
+        },
+        {
+          "title": "WoW Forever A Good Head On Your Shoulders Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/2771/a-good-head-on-your-shoulders/"
+        },
+        {
+          "title": "A Good Head On Your Shoulders - Quest - World of Warcraft",
+          "url": "https://www.wowhead.com/quest%3D2771/a-good-head-on-your-shoulders"
+        },
+        {
+          "title": "A Good Head On Your Shoulders - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D2771/a-good-head-on-your-shoulders"
+        },
+        {
+          "title": "Quest: A Good Head On Your Shoulders – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/2771"
+        },
+        {
+          "title": "A Good Head On Your Shoulders - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=2771"
+        }
+      ]
+    },
+    {
+      "questId": 2772,
+      "questName": "The World At Your Feet",
+      "guideLabel": "The World At Your Feet",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"The World At Your Feet\" 2772 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The World At Your Feet: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/2772/"
+        },
+        {
+          "title": "The World At Your Feet - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D2772/the-world-at-your-feet"
+        },
+        {
+          "title": "The World At Your Feet - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D2772/the-world-at-your-feet"
+        },
+        {
+          "title": "The World At Your Feet - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=2772"
+        },
+        {
+          "title": "The World At Your Feet - Quest - 12.1.7 PTR",
+          "url": "https://www.wowhead.com/ptr/quest%3D2772/the-world-at-your-feet"
+        },
+        {
+          "title": "WoW Forever The World At Your Feet Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/2772/the-world-at-your-feet/"
+        },
+        {
+          "title": "The World At Your Feet quest guide: Tanaris, level 45 (quest 2772) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/2772"
+        },
+        {
+          "title": "The World At Your Feet - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/quest/2772-the-world-at-your-feet"
+        }
+      ]
+    },
+    {
+      "questId": 2773,
+      "questName": "The Mithril Kid",
+      "guideLabel": "The Mithril Kid",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"The Mithril Kid\" 2773 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Mithril Kid - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D2773/the-mithril-kid"
+        },
+        {
+          "title": "The Mithril Kid - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D2773/the-mithril-kid"
+        },
+        {
+          "title": "The Mithril Kid: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/2773/"
+        },
+        {
+          "title": "The Mithril Kid - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=2773"
+        },
+        {
+          "title": "WoW Forever The Mithril Kid Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/2773/the-mithril-kid/"
+        },
+        {
+          "title": "The Mithril Kid - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D2773/the-mithril-kid"
+        },
+        {
+          "title": "Quest: The Mithril Kid – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/2773"
+        },
+        {
+          "title": "The Mithril Kid - Quest - Classic PTR",
+          "url": "https://www.wowhead.com/classic-ptr/quest%3D2773/the-mithril-kid"
+        }
+      ]
+    },
+    {
+      "questId": 3639,
+      "questName": "Show Your Work",
+      "guideLabel": "Show Your Work",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Show Your Work\" 3639 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Show Your Work - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/3639"
+        },
+        {
+          "title": "Show Your Work - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D3639/show-your-work"
+        },
+        {
+          "title": "Quest: Show Your Work – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/3639"
+        },
+        {
+          "title": "Show Your Work – WoW Forever Quest Guide (Level 47, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/3639-show-your-work/"
+        },
+        {
+          "title": "Show Your Work (#3639) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/3639/"
+        },
+        {
+          "title": "Show Your Work (level 47 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/3639"
+        },
+        {
+          "title": "Show Your Work - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=3639"
+        },
+        {
+          "title": "Show Your Work - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=3639"
+        }
+      ]
+    },
+    {
+      "questId": 3642,
+      "questName": "The Pledge of Secrecy",
+      "guideLabel": "The Pledge of Secrecy",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"The Pledge of Secrecy\" 3642 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Quest: The Pledge of Secrecy – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/3642"
+        },
+        {
+          "title": "The Pledge of Secrecy - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D3642/the-pledge-of-secrecy"
+        },
+        {
+          "title": "The Pledge of Secrecy quest guide: Stranglethorn Vale, level 47 (quest 3642) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/3642"
+        },
+        {
+          "title": "The Pledge of Secrecy - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D3642/the-pledge-of-secrecy"
+        },
+        {
+          "title": "The Pledge of Secrecy – WoW Forever Quest Guide (Level 47, Stranglethorn Vale) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/3642-the-pledge-of-secrecy/"
+        },
+        {
+          "title": "The Pledge of Secrecy (#3642) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/3642/"
+        },
+        {
+          "title": "The Pledge of Secrecy (level 47 quest) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/3642"
+        },
+        {
+          "title": "The Pledge of Secrecy - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D3642/the-pledge-of-secrecy"
+        }
+      ]
+    },
+    {
+      "questId": 3643,
+      "questName": "Show Your Work",
+      "guideLabel": "Show Your Work",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Show Your Work\" 3643 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Show Your Work - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D3643/show-your-work"
+        },
+        {
+          "title": "Show Your Work - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D3643/show-your-work"
+        },
+        {
+          "title": "Quest: Show Your Work – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/3643"
+        },
+        {
+          "title": "Show Your Work – WoW Forever Quest Guide (Level 47, Stranglethorn Vale) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/3643-show-your-work/"
+        },
+        {
+          "title": "Show Your Work (level 47 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/3643"
+        },
+        {
+          "title": "Show Your Work (#3643) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/3643/"
+        },
+        {
+          "title": "Show Your Work - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=3643"
+        },
+        {
+          "title": "Show Your Work quest guide: Stranglethorn Vale, level 47 (quest 3643) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/3643"
+        }
+      ]
+    },
+    {
+      "questId": 3791,
+      "questName": "The Mystery of Morrowgrain",
+      "guideLabel": "The Mystery of Morrowgrain",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"The Mystery of Morrowgrain\" 3791 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Mystery of Morrowgrain - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D3791/the-mystery-of-morrowgrain"
+        },
+        {
+          "title": "The Mystery of Morrowgrain - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/3791"
+        },
+        {
+          "title": "The Mystery of Morrowgrain - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=3791"
+        },
+        {
+          "title": "The Mystery of Morrowgrain - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D3791/the-mystery-of-morrowgrain"
+        },
+        {
+          "title": "The Mystery of Morrowgrain (level 50 quest) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/3791"
+        },
+        {
+          "title": "WoW Forever The Mystery of Morrowgrain Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/3791/the-mystery-of-morrowgrain/"
+        },
+        {
+          "title": "The Mystery of Morrowgrain - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D3791/the-mystery-of-morrowgrain"
+        },
+        {
+          "title": "The Mystery of Morrowgrain quest guide: Feralas, level 50 (quest 3791) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/3791"
+        }
+      ]
+    },
+    {
+      "questId": 3792,
+      "questName": "Morrowgrain to Feathermoon Stronghold",
+      "guideLabel": "Morrowgrain to Feathermoon Stronghold",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Morrowgrain to Feathermoon Stronghold\" 3792 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Morrowgrain to Feathermoon Stronghold - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D3792/morrowgrain-to-feathermoon-stronghold"
+        },
+        {
+          "title": "Morrowgrain to Feathermoon Stronghold quest guide: Feralas, level 55 (quest 3792) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/3792"
+        },
+        {
+          "title": "Morrowgrain to Feathermoon Stronghold (level 55 quest) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/3792"
+        },
+        {
+          "title": "Morrowgrain to Feathermoon Stronghold - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D3792/morrowgrain-to-feathermoon-stronghold"
+        },
+        {
+          "title": "WoW Forever Morrowgrain to Feathermoon Stronghold Quest",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/3792/morrowgrain-to-feathermoon-stronghold/"
+        },
+        {
+          "title": "Morrowgrain to Feathermoon Stronghold — Quest | WotLK 3.3.5 | WOTLK Database World of Warcraft DB",
+          "url": "https://wotlk.evowow.com/?quest=3792"
+        },
+        {
+          "title": "Morrowgrain to Feathermoon Stronghold - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=3792"
+        },
+        {
+          "title": "Morrowgrain to Feathermoon Stronghold (#3792) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/3792/"
+        }
+      ]
+    },
+    {
+      "questId": 4107,
+      "questName": "Salve via Disenchanting",
+      "guideLabel": "Salve via Disenchanting (2/2)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Salve via Disenchanting\" 4107 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Quest: Salve via Disenchanting – Classic Era quest guide | PandaQuest",
+          "url": "https://pd.zroot.it/era/quests/4107"
+        },
+        {
+          "title": "Salve via Disenchanting - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D4107/salve-via-disenchanting"
+        },
+        {
+          "title": "Salve via Disenchanting (level 55 quest, ID 4107) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/4107"
+        },
+        {
+          "title": "WoW Forever Salve via Disenchanting Quest (#4107) | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/4107/salve-via-disenchanting/"
+        },
+        {
+          "title": "Salve via Disenchanting - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D4107/salve-via-disenchanting"
+        },
+        {
+          "title": "Salve via Disenchanting quest guide: Felwood, level 55 (quest 4107) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/4107"
+        },
+        {
+          "title": "Cleansing Felwood (Alliance) WoW Classic – Quest Chain Guide",
+          "url": "https://guildloot.de/en/questreihe/era/4107-cleansing-felwood-salve-via-disenchanting/"
+        },
+        {
+          "title": "Salve via Disenchanting - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=4107"
+        }
+      ]
+    },
+    {
+      "questId": 5149,
+      "questName": "Pamela's Doll",
+      "guideLabel": "Pamela's Doll",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Pamela's Doll\" 5149 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Pamela's Doll: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/5149/"
+        },
+        {
+          "title": "Pamela's Doll – WoW Forever Quest Guide (Level 55, Eastern Plaguelands) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/5149-pamela-s-doll/"
+        },
+        {
+          "title": "WoW Forever Pamela's Doll Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/5149/pamelas-doll/"
+        },
+        {
+          "title": "Pamela's Doll - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=5149"
+        },
+        {
+          "title": "Pamela's Doll (level 55 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/5149"
+        },
+        {
+          "title": "Pamela's Doll - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=5149"
+        },
+        {
+          "title": "Pamela's Doll - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/quest/5149-pamelas-doll"
+        },
+        {
+          "title": "Pamela's Doll (#5149) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/5149/"
+        }
+      ]
+    },
+    {
+      "questId": 5305,
+      "questName": "Sweet Serenity",
+      "guideLabel": "Sweet Serenity",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Sweet Serenity\" 5305 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Sweet Serenity: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/5305/"
+        },
+        {
+          "title": "Sweet Serenity – WoW Forever Quest Guide (Level 60, Winterspring) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/5305-sweet-serenity/"
+        },
+        {
+          "title": "Sweet Serenity - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D5305/sweet-serenity"
+        },
+        {
+          "title": "Sweet Serenity WoW Classic & TBC Quest – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/5305-sweet-serenity/"
+        },
+        {
+          "title": "Sweet Serenity - Quest - 12.1.7 PTR",
+          "url": "https://www.wowhead.com/ptr/quest%3D5305/sweet-serenity"
+        },
+        {
+          "title": "Quest: Sweet Serenity – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/5305"
+        },
+        {
+          "title": "Sweet Serenity - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D5305/sweet-serenity"
+        },
+        {
+          "title": "WoW Forever Sweet Serenity Quest (Winterspring) | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/5305/sweet-serenity/"
+        }
+      ]
+    },
+    {
+      "questId": 5306,
+      "questName": "Snakestone of the Shadow Huntress",
+      "guideLabel": "Snakestone of the Shadow Huntress",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Snakestone of the Shadow Huntress\" 5306 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Snakestone of the Shadow Huntress - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D5306/snakestone-of-the-shadow-huntress"
+        },
+        {
+          "title": "Snakestone of the Shadow Huntress – WoW Forever Quest Guide (Level 60, Winterspring) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/5306-snakestone-of-the-shadow-huntress/"
+        },
+        {
+          "title": "Snakestone of the Shadow Huntress - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D5306/snakestone-of-the-shadow-huntress"
+        },
+        {
+          "title": "Snakestone of the Shadow Huntress WoW Classic & TBC – Map",
+          "url": "https://guildloot.de/en/quest/era/5306-snakestone-of-the-shadow-huntress/"
+        },
+        {
+          "title": "Snakestone of the Shadow Huntress (#5306) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/5306/"
+        },
+        {
+          "title": "Snakestone of the Shadow Huntress - Quest - World of Warcraft",
+          "url": "https://www.wowhead.com/quest%3D5306/snakestone-of-the-shadow-huntress"
+        },
+        {
+          "title": "Snakestone of the Shadow Huntress: quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/5306/"
+        },
+        {
+          "title": "Snakestone of the Shadow Huntress - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D5306/snakestone-of-the-shadow-huntress"
+        }
+      ]
+    },
+    {
+      "questId": 5307,
+      "questName": "Corruption",
+      "guideLabel": "Corruption",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Corruption\" 5307 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Corruption - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/quest/5307-corruption"
+        },
+        {
+          "title": "Corruption – WoW Forever Quest Guide (Level 60, Winterspring) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/5307-corruption/"
+        },
+        {
+          "title": "Corruption: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/5307/"
+        },
+        {
+          "title": "Corruption WoW Classic & TBC Quest – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/5307-corruption/"
+        },
+        {
+          "title": "Quest: Corruption – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/5307"
+        },
+        {
+          "title": "Corruption (#5307) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/5307/"
+        },
+        {
+          "title": "Corruption - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=5307"
+        },
+        {
+          "title": "Corruption - Quêtes - World of Warcraft Classic - JudgeHype",
+          "url": "https://wowclassic.judgehype.com/database/en/quest/5307/corruption/"
+        }
+      ]
+    },
+    {
+      "questId": 5886,
+      "questName": "Salve via Disenchanting",
+      "guideLabel": "Salve via Disenchanting (1/2)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Salve via Disenchanting\" 5886 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Salve via Disenchanting - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/5886"
+        },
+        {
+          "title": "Salve via Disenchanting (ID 5886): quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/5886/"
+        },
+        {
+          "title": "Salve via Disenchanting - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D5886/salve-via-disenchanting"
+        },
+        {
+          "title": "WoW Forever Salve via Disenchanting Quest (#5886) | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/5886/salve-via-disenchanting/"
+        },
+        {
+          "title": "Salve via Disenchanting – WoW Forever Quest Guide (Level 55, Felwood) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/5886-salve-via-disenchanting/"
+        },
+        {
+          "title": "Salve via Disenchanting - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=5886"
+        },
+        {
+          "title": "Salve via Disenchanting - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D5886/salve-via-disenchanting"
+        },
+        {
+          "title": "Salve via Disenchanting (5886) - Quest - WoW Forever | 60.tools",
+          "url": "https://www.60.tools/quests/5886"
+        }
+      ]
+    },
+    {
+      "questId": 5891,
+      "questName": "Salve via Disenchanting",
+      "guideLabel": "Salve via Disenchanting (1/2)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Salve via Disenchanting\" 5891 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Salve via Disenchanting (ID 5891): quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/5891/"
+        },
+        {
+          "title": "WoW Forever Salve via Disenchanting Quest (#5891) | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/5891/salve-via-disenchanting/"
+        },
+        {
+          "title": "Quest: Salve via Disenchanting – Classic Era quest guide | PandaQuest",
+          "url": "https://pd.zroot.it/era/quests/5891"
+        },
+        {
+          "title": "Salve via Disenchanting – WoW Forever Quest Guide (Level 55, Felwood) (quest 5891) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/5891-salve-via-disenchanting/"
+        },
+        {
+          "title": "Salve via Disenchanting - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=5891"
+        },
+        {
+          "title": "Salve via Disenchanting (5891) - Quest - WoW Forever | 60.tools",
+          "url": "https://www.60.tools/quests/5891-salve-via-disenchanting"
+        },
+        {
+          "title": "Salve via Disenchanting quest | Forever XP",
+          "url": "https://forever-xp.com/quests/5891/"
+        },
+        {
+          "title": "Salve via Disenchanting · Part 1 · WoW Forever Quest, Level 55",
+          "url": "https://bindonforever.com/quest/5891"
+        }
+      ]
+    },
+    {
+      "questId": 6504,
+      "questName": "The Lost Pages",
+      "guideLabel": "The Lost Pages",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"The Lost Pages\" 6504 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Lost Pages - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D6504/the-lost-pages"
+        },
+        {
+          "title": "The Lost Pages quest guide: Ashenvale, level 30 (quest 6504) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/6504"
+        },
+        {
+          "title": "WoW Forever The Lost Pages Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/6504/the-lost-pages/"
+        },
+        {
+          "title": "The Lost Pages - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D6504/the-lost-pages"
+        },
+        {
+          "title": "The Lost Pages - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D6504/the-lost-pages"
+        },
+        {
+          "title": "The Lost Pages – WoW Forever Quest Guide (Level 30, Ashenvale) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/6504-the-lost-pages/"
+        },
+        {
+          "title": "The Lost Pages (level 30 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/6504"
+        },
+        {
+          "title": "The Lost Pages - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=6504"
+        }
+      ]
+    },
+    {
+      "questId": 7653,
+      "questName": "Imperial Plate Belt",
+      "guideLabel": "Imperial Plate Belt",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Imperial Plate Belt\" 7653 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Imperial Plate Belt - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/7653"
+        },
+        {
+          "title": "Imperial Plate Belt – WoW Forever Quest Guide (Level 60, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/7653-imperial-plate-belt/"
+        },
+        {
+          "title": "Imperial Plate Belt WoW Classic & TBC – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/7653-imperial-plate-belt/"
+        },
+        {
+          "title": "Imperial Plate Belt - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D7653/imperial-plate-belt"
+        },
+        {
+          "title": "Imperial Plate Belt - TBC Anniversary - Warcraft DB",
+          "url": "https://tbc.warcraftdb.com/data/quest/7653"
+        },
+        {
+          "title": "WoW Forever Imperial Plate Belt Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/7653/imperial-plate-belt/"
+        },
+        {
+          "title": "Imperial Plate Belt - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/quest/7653-imperial-plate-belt"
+        },
+        {
+          "title": "Imperial Plate Belt - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=7653"
+        }
+      ]
+    },
+    {
+      "questId": 7654,
+      "questName": "Imperial Plate Boots",
+      "guideLabel": "Imperial Plate Boots",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Imperial Plate Boots\" 7654 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Imperial Plate Boots - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/7654"
+        },
+        {
+          "title": "Imperial Plate Boots - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D7654/imperial-plate-boots"
+        },
+        {
+          "title": "Imperial Plate Boots – WoW Forever Quest Guide (Level 60, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/7654-imperial-plate-boots/"
+        },
+        {
+          "title": "Imperial Plate Boots WoW Classic & TBC – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/7654-imperial-plate-boots/"
+        },
+        {
+          "title": "Imperial Plate Boots - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D7654/imperial-plate-boots"
+        },
+        {
+          "title": "Imperial Plate Boots - TBC Anniversary - Warcraft DB",
+          "url": "https://tbc.warcraftdb.com/data/quest/7654"
+        },
+        {
+          "title": "WoW Forever Imperial Plate Boots Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/7654/imperial-plate-boots/"
+        },
+        {
+          "title": "Quest: Imperial Plate Boots – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/7654"
+        }
+      ]
+    },
+    {
+      "questId": 7655,
+      "questName": "Imperial Plate Bracer",
+      "guideLabel": "Imperial Plate Bracer",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Imperial Plate Bracer\" 7655 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Imperial Plate Bracer - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/7655"
+        },
+        {
+          "title": "Imperial Plate Bracer: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/7655/"
+        },
+        {
+          "title": "Imperial Plate Bracer - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D7655/imperial-plate-bracer"
+        },
+        {
+          "title": "Imperial Plate Bracer - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D7655/imperial-plate-bracer"
+        },
+        {
+          "title": "Imperial Plate Bracer – WoW Forever Quest Guide (Level 60, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/7655-imperial-plate-bracer/"
+        },
+        {
+          "title": "Imperial Plate Bracer WoW Classic & TBC – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/7655-imperial-plate-bracer/"
+        },
+        {
+          "title": "WoW Forever Imperial Plate Bracer Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/7655/imperial-plate-bracer/"
+        },
+        {
+          "title": "Quest: Imperial Plate Bracer – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/7655"
+        }
+      ]
+    },
+    {
+      "questId": 7656,
+      "questName": "Imperial Plate Chest",
+      "guideLabel": "Imperial Plate Chest",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Imperial Plate Chest\" 7656 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Imperial Plate Chest: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/7656/"
+        },
+        {
+          "title": "Imperial Plate Chest - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D7656/imperial-plate-chest"
+        },
+        {
+          "title": "Imperial Plate Chest - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/7656"
+        },
+        {
+          "title": "Imperial Plate Chest WoW Classic & TBC – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/7656-imperial-plate-chest/"
+        },
+        {
+          "title": "Imperial Plate Chest – WoW Forever Quest Guide (Level 60, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/7656-imperial-plate-chest/"
+        },
+        {
+          "title": "WoW Forever Imperial Plate Chest Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/7656/imperial-plate-chest/"
+        },
+        {
+          "title": "Quest: Imperial Plate Chest – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/7656"
+        },
+        {
+          "title": "Imperial Plate Chest - Quest - Classic PTR",
+          "url": "https://www.wowhead.com/classic-ptr/quest%3D7656/imperial-plate-chest"
+        }
+      ]
+    },
+    {
+      "questId": 7657,
+      "questName": "Imperial Plate Helm",
+      "guideLabel": "Imperial Plate Helm",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Imperial Plate Helm\" 7657 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Imperial Plate Helm - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D7657/imperial-plate-helm"
+        },
+        {
+          "title": "Imperial Plate Helm - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/7657"
+        },
+        {
+          "title": "Imperial Plate Helm: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/7657/"
+        },
+        {
+          "title": "Imperial Plate Helm – WoW Forever Quest Guide (Level 60, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/7657-imperial-plate-helm/"
+        },
+        {
+          "title": "WoW Forever Imperial Plate Helm Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/7657/imperial-plate-helm/"
+        },
+        {
+          "title": "Quest: Imperial Plate Helm – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/7657"
+        },
+        {
+          "title": "Imperial Plate Helm - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D7657/imperial-plate-helm"
+        },
+        {
+          "title": "Imperial Plate Helm WoW Classic & TBC – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/7657-imperial-plate-helm/"
+        }
+      ]
+    },
+    {
+      "questId": 7658,
+      "questName": "Imperial Plate Leggings",
+      "guideLabel": "Imperial Plate Leggings",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Imperial Plate Leggings\" 7658 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Imperial Plate Leggings - WoW Classic - Warcraft DB",
+          "url": "https://classic.warcraftdb.com/data/quest/7658"
+        },
+        {
+          "title": "Imperial Plate Leggings - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D7658/imperial-plate-leggings"
+        },
+        {
+          "title": "Imperial Plate Leggings: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/7658/"
+        },
+        {
+          "title": "Imperial Plate Leggings – WoW Forever Quest Guide (Level 60, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/7658-imperial-plate-leggings/"
+        },
+        {
+          "title": "Imperial Plate Leggings - Quest - Classic PTR",
+          "url": "https://www.wowhead.com/classic-ptr/quest%3D7658/imperial-plate-leggings"
+        },
+        {
+          "title": "Imperial Plate Leggings WoW Classic & TBC Quest – Quest Map",
+          "url": "https://guildloot.de/en/quest/era/7658-imperial-plate-leggings/"
+        },
+        {
+          "title": "Imperial Plate Leggings - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/quest/7658-imperial-plate-leggings"
+        },
+        {
+          "title": "Imperial Plate Leggings (level 60 quest) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/7658"
+        }
+      ]
+    },
+    {
+      "questId": 7659,
+      "questName": "Imperial Plate Shoulders",
+      "guideLabel": "Imperial Plate Shoulders",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Imperial Plate Shoulders\" 7659 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Imperial Plate Shoulders – WoW Forever Quest Guide (Level 60, Tanaris) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/7659-imperial-plate-shoulders/"
+        },
+        {
+          "title": "Quest: Imperial Plate Shoulders – Classic Era quest guide | PandaBase",
+          "url": "https://pd.zroot.it/era/quests/7659"
+        },
+        {
+          "title": "WoW Forever Imperial Plate Shoulders Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/7659/imperial-plate-shoulders/"
+        },
+        {
+          "title": "Imperial Plate Shoulders (level 60 quest) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/7659"
+        },
+        {
+          "title": "Imperial Plate Shoulders - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/quest/7659-imperial-plate-shoulders"
+        },
+        {
+          "title": "Imperial Plate Shoulders WoW Classic & TBC Quest – Quest Map",
+          "url": "https://guildloot.de/en/quest/era/7659-imperial-plate-shoulders/"
+        },
+        {
+          "title": "Imperial Plate Shoulders - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=7659"
+        },
+        {
+          "title": "Imperial Plate Shoulders quest | Forever XP",
+          "url": "https://forever-xp.com/quests/7659/"
+        }
+      ]
+    },
+    {
+      "questId": 8317,
+      "questName": "Kitchen Assistance",
+      "guideLabel": "Kitchen Assistance",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Kitchen Assistance\" 8317 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Kitchen Assistance – WoW Forever Quest Guide (Level 57, Silithus) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/8317-kitchen-assistance/"
+        },
+        {
+          "title": "Kitchen Assistance - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D8317/kitchen-assistance"
+        },
+        {
+          "title": "Kitchen Assistance: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/8317/"
+        },
+        {
+          "title": "Kitchen Assistance (level 57 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/8317"
+        },
+        {
+          "title": "Kitchen Assistance - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=8317"
+        },
+        {
+          "title": "WoW Classic DB",
+          "url": "https://wowclassicdb.com/quest/8317"
+        },
+        {
+          "title": "Kitchen Assistance - Quest - World of Warcraft",
+          "url": "https://www.wowhead.com/quest%3D8317/kitchen-assistance"
+        },
+        {
+          "title": "Kitchen Assistance (#8317) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/8317/"
+        }
+      ]
+    },
+    {
+      "questId": 8496,
+      "questName": "Bandages for the Field",
+      "guideLabel": "Bandages for the Field (A)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Bandages for the Field\" 8496 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Bandages for the Field - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D8496/bandages-for-the-field"
+        },
+        {
+          "title": "Bandages for the Field - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=8496"
+        },
+        {
+          "title": "Bandages for the Field - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D8496/bandages-for-the-field"
+        },
+        {
+          "title": "Bandages for the Field (#8496) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/8496/"
+        },
+        {
+          "title": "Bandages for the Field - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=8496"
+        },
+        {
+          "title": "Bandages for the Field (level 60 quest, Alliance) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/8496"
+        },
+        {
+          "title": "Verbände für den Feldeinsatz (ID 8496) WoW Classic & TBC",
+          "url": "https://guildloot.de/quest/era/8496-verbaende-fuer-den-feldeinsatz/"
+        }
+      ]
+    },
+    {
+      "questId": 8540,
+      "questName": "Boots for the Guard",
+      "guideLabel": "Boots for the Guard (A)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Boots for the Guard\" 8540 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Boots for the Guard - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D8540/boots-for-the-guard"
+        },
+        {
+          "title": "Boots for the Guard - Quest - 12.1.0 PTR",
+          "url": "https://www.wowhead.com/ptr/quest%3D8540/boots-for-the-guard"
+        },
+        {
+          "title": "Boots for the Guard (level 60 quest, Alliance) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/8540"
+        },
+        {
+          "title": "Boots for the Guard (#8540) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/8540/"
+        },
+        {
+          "title": "Boots for the Guard (8540) - Quest - WoW Forever | 60.tools",
+          "url": "https://www.60.tools/quests/8540"
+        },
+        {
+          "title": "Stiefel für die Wache (ID 8540) WoW Classic & TBC – Karte",
+          "url": "https://guildloot.de/quest/era/8540-stiefel-fuer-die-wache/"
+        }
+      ]
+    },
+    {
+      "questId": 8541,
+      "questName": "Grinding Stones for the Guard",
+      "guideLabel": "Grinding Stones for the Guard (A)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Grinding Stones for the Guard\" 8541 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Grinding Stones for the Guard - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D8541/grinding-stones-for-the-guard"
+        },
+        {
+          "title": "Grinding Stones for the Guard - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D8541/grinding-stones-for-the-guard"
+        },
+        {
+          "title": "Grinding Stones for the Guard - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D8541/grinding-stones-for-the-guard"
+        },
+        {
+          "title": "Grinding Stones for the Guard - Quest - World of Warcraft",
+          "url": "https://www.wowhead.com/quest%3D8541/grinding-stones-for-the-guard"
+        },
+        {
+          "title": "Grinding Stones for the Guard - Quest - Classic PTR",
+          "url": "https://www.wowhead.com/classic-ptr/quest%3D8541/grinding-stones-for-the-guard"
+        },
+        {
+          "title": "Grinding Stones for the Guard (level 60 quest, Alliance)",
+          "url": "https://forevermastery.com/en/quests/8541"
+        },
+        {
+          "title": "Grinding Stones for the Guard (8541) - Quest - WoW Forever | 60.tools",
+          "url": "https://www.60.tools/quests/8541"
+        },
+        {
+          "title": "Grinding Stones for the Guard (#8541) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/8541/"
+        }
+      ]
+    },
+    {
+      "questId": 8781,
+      "questName": "Arms for the Field",
+      "guideLabel": "Arms for the Field (A)",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"Arms for the Field\" 8781 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Arms for the Field - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D8781/arms-for-the-field"
+        },
+        {
+          "title": "Arms for the Field - Quest - Classic PTR",
+          "url": "https://www.wowhead.com/classic-ptr/quest%3D8781/arms-for-the-field"
+        },
+        {
+          "title": "Arms for the Field - Quest - Mists of Pandaria Classic",
+          "url": "https://www.wowhead.com/mop-classic/quest%3D8781/arms-for-the-field"
+        },
+        {
+          "title": "Arms for the Field quest guide: Silithus, level 60 (quest 8781) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/8781"
+        },
+        {
+          "title": "Arms for the Field - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D8781/arms-for-the-field"
+        },
+        {
+          "title": "Arms for the Field (#8781) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/8781/"
+        },
+        {
+          "title": "Arms for the Field - Quest - Classic wow database",
+          "url": "https://classicdb.ch/?quest=8781"
+        },
+        {
+          "title": "Arms for the Field (level 60 quest, Alliance) in WoW Forever",
+          "url": "https://forevermastery.com/en/quests/8781"
+        }
+      ]
+    },
+    {
+      "questId": 8856,
+      "questName": "Desert Survival Kits",
+      "guideLabel": "Desert Survival Kits (A)",
+      "phases": [
+        "accept"
+      ],
+      "query": "WoW Classic \"Desert Survival Kits\" 8856 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Desert Survival Kits - Quest - Classic World of Warcraft",
+          "url": "https://www.wowhead.com/classic/quest%3D8856/desert-survival-kits"
+        },
+        {
+          "title": "Desert Survival Kits - Quest - Classic PTR",
+          "url": "https://www.wowhead.com/classic-ptr/quest%3D8856/desert-survival-kits"
+        },
+        {
+          "title": "Desert Survival Kits (#8856) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/8856/"
+        },
+        {
+          "title": "Desert Survival Kits - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=8856"
+        },
+        {
+          "title": "Desert Survival Kits - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D8856/desert-survival-kits"
+        },
+        {
+          "title": "Desert Survival Kits (8856) - Quest - WoW Forever | 60.tools",
+          "url": "https://www.60.tools/quests/8856"
+        },
+        {
+          "title": "Desert Survival Kits - Quests - WoWDB (PTR)",
+          "url": "https://ptr.wowdb.com/quests/8856-desert-survival-kits"
+        },
+        {
+          "title": "Desert Survival Kits - Quests - WoWDB",
+          "url": "https://www.wowdb.com/quests/8856-desert-survival-kits"
+        }
+      ]
+    },
+    {
+      "questId": 9023,
+      "questName": "The Perfect Poison",
+      "guideLabel": "The Perfect Poison",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Classic \"The Perfect Poison\" 9023 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Perfect Poison: Classic quest in WoW Forever · The Forever Era",
+          "url": "https://theforeverera.com/en/quests/9023/"
+        },
+        {
+          "title": "The Perfect Poison (#9023) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/9023/"
+        },
+        {
+          "title": "The Perfect Poison – WoW Forever Quest Guide (Level 60, Silithus) | WoW Forever Tavern",
+          "url": "https://forever-tavern.com/quests/world/9023-the-perfect-poison/"
+        },
+        {
+          "title": "The Perfect Poison WoW Classic & TBC – Quest Giver & Map",
+          "url": "https://guildloot.de/en/quest/era/9023-the-perfect-poison/"
+        },
+        {
+          "title": "The Perfect Poison - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D9023/the-perfect-poison"
+        },
+        {
+          "title": "The Perfect Poison (level 60 quest) in WoW Forever | Forever Mastery",
+          "url": "https://forevermastery.com/en/quests/9023"
+        },
+        {
+          "title": "The Perfect Poison - Quests - ClassicDB WoW Database",
+          "url": "https://classicdb.com/?quest=9023"
+        },
+        {
+          "title": "The Perfect Poison quest guide: Silithus, level 60 (quest 9023) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/9023"
+        }
+      ]
+    },
+    {
+      "questId": 9439,
+      "questName": "Unclaimed Baggage",
+      "guideLabel": "Unclaimed Baggage",
+      "phases": [
+        "turnin"
+      ],
+      "query": "WoW Classic \"Unclaimed Baggage\" 9439 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Unclaimed Baggage - Quest - World of Warcraft",
+          "url": "https://www.wowhead.com/quest%3D9439/unclaimed-baggage"
+        },
+        {
+          "title": "Unclaimed Baggage - Quest - 12.1.5 PTR",
+          "url": "https://www.wowhead.com/ptr-2/quest%3D9439/unclaimed-baggage"
+        },
+        {
+          "title": "Unclaimed Baggage - Quest - TBC Classic",
+          "url": "https://www.wowhead.com/tbc/quest%3D9439/unclaimed-baggage"
+        },
+        {
+          "title": "Unclaimed Baggage - Quest - WotLK Classic",
+          "url": "https://www.wowhead.com/wotlk/quest%3D9439/unclaimed-baggage"
+        },
+        {
+          "title": "Unclaimed Baggage — Quest | WotLK 3.3.5 | WOTLK Database World of Warcraft DB",
+          "url": "https://wotlk.evowow.com/?quest=9439"
+        },
+        {
+          "title": "Unclaimed Baggage - Quests - WoWDB (PTR)",
+          "url": "https://ptr.wowdb.com/quests/9439-unclaimed-baggage"
+        },
+        {
+          "title": "Unclaimed Baggage - Quest - Ascension Database",
+          "url": "https://db.ascension.gg/?quest=9439"
+        }
+      ]
+    },
+    {
+      "questId": 86776,
+      "questName": "Ingredients for the Forge",
+      "guideLabel": "Ingredients for the Forge",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Ingredients for the Forge\" 86776 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Ingredients for the Forge quest | Forever XP",
+          "url": "https://forever-xp.com/quests/86776/"
+        },
+        {
+          "title": "Ingredients for the Forge · WoW Forever Quest, Level 30 in Loch Modan",
+          "url": "https://bindonforever.com/quest/86776"
+        },
+        {
+          "title": "Ingredients for the Forge - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D86776/ingredients-for-the-forge"
+        },
+        {
+          "title": "WoW Forever Ingredients for the Forge Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/86776/ingredients-for-the-forge/"
+        },
+        {
+          "title": "Ingredients for the Forge - WoW Forever Quest - Kovarel",
+          "url": "https://kovarel.com/wow-forever/quests/86776-ingredients-for-the-forge"
+        },
+        {
+          "title": "Ingredients for the Forge - Forever - Warcraft DB",
+          "url": "https://forever.warcraftdb.com/data/quest/86776"
+        },
+        {
+          "title": "Quest: Ingredients for the Forge – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/86776"
+        }
+      ]
+    },
+    {
+      "questId": 92519,
+      "questName": "Ward Restocking",
+      "guideLabel": "Ward Restocking",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Ward Restocking\" 92519 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Ward Restocking - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D92519/ward-restocking"
+        },
+        {
+          "title": "Ward Restocking quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/92519-ward-restocking"
+        },
+        {
+          "title": "Ward Restocking · WoW Forever Quest, Level 36 · Bind on Forever",
+          "url": "https://bindonforever.com/quest/92519"
+        },
+        {
+          "title": "Quest: Ward Restocking – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/92519"
+        },
+        {
+          "title": "Ward Restocking – Quest in WoW Forever (Level 36)",
+          "url": "https://eternadex.com/en/quests/92519/"
+        },
+        {
+          "title": "[Ward Restocking] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D92519/ward-restocking"
+        },
+        {
+          "title": "[Ward Restocking] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D92519/ward-restocking"
+        }
+      ]
+    },
+    {
+      "questId": 92521,
+      "questName": "The Demon Tower",
+      "guideLabel": "The Demon Tower",
+      "phases": [
+        "turnin",
+        "accept"
+      ],
+      "query": "WoW Forever \"The Demon Tower\" 92521 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Demon Tower - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D92521/the-demon-tower"
+        },
+        {
+          "title": "[The Demon Tower] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D92521/the-demon-tower"
+        },
+        {
+          "title": "[The Demon Tower] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D92521/the-demon-tower"
+        },
+        {
+          "title": "[The Demon Tower]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D92521/the-demon-tower"
+        },
+        {
+          "title": "[The Demon Tower]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D92521/the-demon-tower"
+        },
+        {
+          "title": "[The Demon Tower] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D92521/the-demon-tower"
+        }
+      ]
+    },
+    {
+      "questId": 92707,
+      "questName": "The Giant in the Den",
+      "guideLabel": "Pick up: The Giant in the Den",
+      "phases": [
+        "accept",
+        "turnin"
+      ],
+      "query": "WoW Forever \"The Giant in the Den\" 92707 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Giant in the Den (#92707) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/92707/"
+        },
+        {
+          "title": "The Giant in the Den - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D92707/the-giant-in-the-den"
+        },
+        {
+          "title": "The Giant in the Den – Quest – WoW Forever · stillsixty",
+          "url": "https://www.stillsixty.com/quest/92707?revision=e948b180-7c9e-40c9-bd4d-ce4b3b32f4c3"
+        },
+        {
+          "title": "Quest: The Giant in the Den – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/92707"
+        },
+        {
+          "title": "The Giant in the Den · WoW Forever Quest, Level 33 · Bind on Forever",
+          "url": "https://bindonforever.com/quest/92707"
+        },
+        {
+          "title": "[The Giant in the Den] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D92707/the-giant-in-the-den"
+        }
+      ]
+    },
+    {
+      "questId": 92754,
+      "questName": "A New Need for Shadow Protection",
+      "guideLabel": "A New Need for Shadow Protection",
+      "phases": [
+        "turnin"
+      ],
+      "query": "WoW Forever \"A New Need for Shadow Protection\" 92754 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A New Need for Shadow Protection - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D92754/a-new-need-for-shadow-protection"
+        },
+        {
+          "title": "A New Need for Shadow Protection quest | Forever XP",
+          "url": "https://forever-xp.com/quests/92754/"
+        }
+      ]
+    },
+    {
+      "questId": 93041,
+      "questName": "Facing the Truth",
+      "guideLabel": "Facing the Truth",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Facing the Truth\" 93041 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Facing the Truth quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93041/"
+        },
+        {
+          "title": "Facing the Truth - WoW Forever Quest - Kovarel",
+          "url": "https://kovarel.com/wow-forever/quests/93041-facing-the-truth"
+        },
+        {
+          "title": "Facing the Truth - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93041/facing-the-truth"
+        },
+        {
+          "title": "Quest: Facing the Truth – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/93041"
+        },
+        {
+          "title": "Facing the Truth | foreverbase",
+          "url": "https://foreverbase.org/en/db/quest/93041/"
+        },
+        {
+          "title": "WoW Forever Quest Facing the Truth · WOWF.IO",
+          "url": "https://wowf.io/de/quests/93041"
+        },
+        {
+          "title": "[Facing the Truth] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D93041/facing-the-truth"
+        },
+        {
+          "title": "Encarando a verdade (Facing the Truth) · Missão do WoW Forever, nível 38",
+          "url": "https://bindonforever.com/pt/quest/93041"
+        }
+      ]
+    },
+    {
+      "questId": 93045,
+      "questName": "Test Your Theory",
+      "guideLabel": "Test Your Theory",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Test Your Theory\" 93045 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "WoW Forever Test Your Theory quest · WOWF.IO",
+          "url": "https://wowf.io/en/quests/93045"
+        },
+        {
+          "title": "Test Your Theory - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93045/test-your-theory"
+        },
+        {
+          "title": "[Test Your Theory] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D93045/test-your-theory"
+        },
+        {
+          "title": "[Test Your Theory] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D93045/test-your-theory"
+        },
+        {
+          "title": "[Test Your Theory] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D93045/test-your-theory"
+        },
+        {
+          "title": "Test Your Theory – Quest in WoW Forever (Stufe 38, Desolace)",
+          "url": "https://eternadex.com/de/quests/93045/"
+        },
+        {
+          "title": "[Test Your Theory] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D93045/test-your-theory"
+        }
+      ]
+    },
+    {
+      "questId": 93058,
+      "questName": "Saving Our Own",
+      "guideLabel": "Saving Our Own",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Saving Our Own\" 93058 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Saving Our Own quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93058/"
+        },
+        {
+          "title": "Saving Our Own - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93058/saving-our-own"
+        },
+        {
+          "title": "WoW Forever Quest Saving Our Own · WOWF.IO",
+          "url": "https://wowf.io/de/quests/93058"
+        },
+        {
+          "title": "[Saving Our Own] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D93058/saving-our-own"
+        },
+        {
+          "title": "[Saving Our Own]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D93058/saving-our-own"
+        },
+        {
+          "title": "[Saving Our Own] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D93058/saving-our-own"
+        },
+        {
+          "title": "Saving Our Own – Misión de WoW Forever (Nivel 42)",
+          "url": "https://eternadex.com/es/quests/93058/"
+        },
+        {
+          "title": "[Saving Our Own] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D93058/saving-our-own"
+        }
+      ]
+    },
+    {
+      "questId": 93062,
+      "questName": "Bone Burying",
+      "guideLabel": "Pick up: Bone Burying",
+      "phases": [
+        "accept"
+      ],
+      "query": "WoW Forever \"Bone Burying\" 93062 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Bone Burying quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93062/"
+        },
+        {
+          "title": "Bone Burying - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93062/bone-burying"
+        },
+        {
+          "title": "WoW Forever Quest Bone Burying · WOWF.IO",
+          "url": "https://wowf.io/de/quests/93062"
+        },
+        {
+          "title": "[Bone Burying] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D93062/bone-burying"
+        },
+        {
+          "title": "[Bone Burying] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D93062/bone-burying"
+        },
+        {
+          "title": "Bone Burying – Misión de WoW Forever (Nivel 42, Shen'dralas)",
+          "url": "https://eternadex.com/es/quests/93062/"
+        }
+      ]
+    },
+    {
+      "questId": 93072,
+      "questName": "Long-Term Solutions",
+      "guideLabel": "Pick up: Long-Term Solutions",
+      "phases": [
+        "accept",
+        "turnin"
+      ],
+      "query": "WoW Forever \"Long-Term Solutions\" 93072 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Long-Term Solutions - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93072/long-term-solutions"
+        },
+        {
+          "title": "Long-Term Solutions quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93072/"
+        },
+        {
+          "title": "Long-Term Solutions - WoW Forever Quest - Kovarel",
+          "url": "https://kovarel.com/wow-forever/quests/93072-long-term-solutions"
+        },
+        {
+          "title": "Long-Term Solutions: level 43 quest in Shen'dralas · WoW Forever · ForeverChanges",
+          "url": "https://foreverchanges.pro/quest/93072/long-term-solutions"
+        },
+        {
+          "title": "Long-Term Solutions – Quest in WoW Forever (Level 43)",
+          "url": "https://eternadex.com/en/quests/93072/"
+        },
+        {
+          "title": "Long-Term Solutions | WOWIUS",
+          "url": "https://wowius.ru/en/database/forever-quest-93072.html"
+        }
+      ]
+    },
+    {
+      "questId": 93125,
+      "questName": "Going Home",
+      "guideLabel": "Pick up: Going Home",
+      "phases": [
+        "accept",
+        "turnin"
+      ],
+      "query": "WoW Forever \"Going Home\" 93125 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Going Home - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93125/going-home"
+        },
+        {
+          "title": "Going Home quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93125/"
+        },
+        {
+          "title": "WoW Forever Quest Going Home · WOWF.IO",
+          "url": "https://wowf.io/de/quests/93125"
+        },
+        {
+          "title": "Going Home – Misión de WoW Forever (Nivel 43, Shen'dralas)",
+          "url": "https://eternadex.com/es/quests/93125/"
+        }
+      ]
+    },
+    {
+      "questId": 93129,
+      "questName": "Threat of Starvation",
+      "guideLabel": "Pick up: Threat of Starvation",
+      "phases": [
+        "accept",
+        "objective",
+        "turnin"
+      ],
+      "query": "WoW Forever \"Threat of Starvation\" 93129 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Threat of Starvation - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93129/threat-of-starvation"
+        },
+        {
+          "title": "Threat of Starvation quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93129/"
+        },
+        {
+          "title": "Threat of Starvation | WOWIUS",
+          "url": "https://wowius.ru/en/database/forever-quest-93129.html"
+        },
+        {
+          "title": "WoW Forever Quest Threat of Starvation · WOWF.IO",
+          "url": "https://wowf.io/de/quests/93129"
+        }
+      ]
+    },
+    {
+      "questId": 93176,
+      "questName": "My Little Friends",
+      "guideLabel": "My Little Friends",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"My Little Friends\" 93176 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "My Little Friends quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93176/"
+        },
+        {
+          "title": "WoW Forever My Little Friends Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/93176/my-little-friends/"
+        },
+        {
+          "title": "My Little Friends · WoW Forever Quest, Level 35 · Bind on Forever",
+          "url": "https://bindonforever.com/quest/93176"
+        },
+        {
+          "title": "My Little Friends - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93176/my-little-friends"
+        }
+      ]
+    },
+    {
+      "questId": 93188,
+      "questName": "Return to Orgrul",
+      "guideLabel": "Pick up: Return to Orgrul",
+      "phases": [
+        "accept",
+        "turnin"
+      ],
+      "query": "WoW Forever \"Return to Orgrul\" 93188 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Return to Orgrul quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93188/"
+        },
+        {
+          "title": "Return to Orgrul - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93188/return-to-orgrul"
+        },
+        {
+          "title": "Return to Orgrul: level 43 quest in Shen'dralas · WoW Forever · ForeverChanges",
+          "url": "https://foreverchanges.pro/quest/93188/return-to-orgrul"
+        },
+        {
+          "title": "Return to Orgrul – Quest in WoW Forever (Level 43)",
+          "url": "https://eternadex.com/en/quests/93188/"
+        },
+        {
+          "title": "WoW Forever Quest Return to Orgrul · WOWF.IO",
+          "url": "https://wowf.io/de/quests/93188"
+        },
+        {
+          "title": "[Return to Orgrul]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D93188/return-to-orgrul"
+        },
+        {
+          "title": "Return to Orgrul | WOWIUS",
+          "url": "https://wowius.ru/en/database/forever-quest-93188.html"
+        },
+        {
+          "title": "[Return to Orgrul] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D93188/return-to-orgrul"
+        }
+      ]
+    },
+    {
+      "questId": 93196,
+      "questName": "Khan Jehn (Magram)",
+      "guideLabel": "Khan Jehn (Magram)",
+      "phases": [
+        "accept",
+        "objective",
+        "turnin"
+      ],
+      "query": "WoW Forever \"Khan Jehn (Magram)\" 93196 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Khan Jehn - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93196/khan-jehn"
+        },
+        {
+          "title": "Khan Jehn quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93196/"
+        },
+        {
+          "title": "Khan Jehn: level 42 quest in Desolace · WoW Forever · ForeverChanges",
+          "url": "https://foreverchanges.pro/quest/93196/khan-jehn"
+        },
+        {
+          "title": "WoW Forever Khan Jehn quest · WOWF.IO",
+          "url": "https://wowf.io/en/quests/93196"
+        }
+      ]
+    },
+    {
+      "questId": 93663,
+      "questName": "Lost in Transit",
+      "guideLabel": "Lost in Transit",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Lost in Transit\" 93663 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Lost in Transit quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93663/"
+        },
+        {
+          "title": "Lost in Transit - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93663/lost-in-transit"
+        },
+        {
+          "title": "WoW Forever Lost in Transit Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/93663/lost-in-transit/"
+        },
+        {
+          "title": "Lost in Transit – Quest in WoW Forever (Level 35)",
+          "url": "https://eternadex.com/en/quests/93663/"
+        }
+      ]
+    },
+    {
+      "questId": 93678,
+      "questName": "Abridged Notes on Draenethyst",
+      "guideLabel": "Abridged Notes on Draenethyst",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Abridged Notes on Draenethyst\" 93678 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Abridged Notes on Draenethyst - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93678/abridged-notes-on-draenethyst"
+        },
+        {
+          "title": "Abridged Notes on Draenethyst quest | Forever XP",
+          "url": "https://forever-xp.com/quests/93678/"
+        },
+        {
+          "title": "[Abridged Notes on Draenethyst] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D93678/abridged-notes-on-draenethyst"
+        },
+        {
+          "title": "[Abridged Notes on Draenethyst] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D93678/abridged-notes-on-draenethyst"
+        },
+        {
+          "title": "Abridged Notes on Draenethyst: Quest der Stufe 40 (Desolace) · WoW Forever · ForeverChanges",
+          "url": "https://foreverchanges.pro/de/quest/93678/abridged-notes-on-draenethyst"
+        },
+        {
+          "title": "[Abridged Notes on Draenethyst] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D93678/abridged-notes-on-draenethyst"
+        },
+        {
+          "title": "[Abridged Notes on Draenethyst]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D93678/abridged-notes-on-draenethyst"
+        },
+        {
+          "title": "[Abridged Notes on Draenethyst]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D93678/abridged-notes-on-draenethyst"
+        }
+      ]
+    },
+    {
+      "questId": 93787,
+      "questName": "Food for the Taking",
+      "guideLabel": "Food for the Taking",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Food for the Taking\" 93787 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Food for the Taking - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93787/food-for-the-taking"
+        },
+        {
+          "title": "Food for the Taking - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/93787/"
+        },
+        {
+          "title": "Food for the Taking quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/93787-food-for-the-taking"
+        },
+        {
+          "title": "[Food for the Taking] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D93787/food-for-the-taking"
+        },
+        {
+          "title": "[Food for the Taking] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D93787/food-for-the-taking"
+        },
+        {
+          "title": "[Food for the Taking] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D93787/food-for-the-taking"
+        },
+        {
+          "title": "[Food for the Taking] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D93787/food-for-the-taking"
+        },
+        {
+          "title": "[Food for the Taking] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D93787/food-for-the-taking"
+        }
+      ]
+    },
+    {
+      "questId": 93971,
+      "questName": "Farholde Scouting Report",
+      "guideLabel": "Pick up: Farholde Scouting Report",
+      "phases": [
+        "accept",
+        "objective",
+        "turnin"
+      ],
+      "query": "WoW Forever \"Farholde Scouting Report\" 93971 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Farholde Scouting Report - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D93971/farholde-scouting-report"
+        },
+        {
+          "title": "[Farholde Scouting Report] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D93971/farholde-scouting-report"
+        },
+        {
+          "title": "[Farholde Scouting Report] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D93971/farholde-scouting-report"
+        },
+        {
+          "title": "[Farholde Scouting Report] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D93971/farholde-scouting-report"
+        },
+        {
+          "title": "[Farholde Scouting Report] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D93971/farholde-scouting-report"
+        },
+        {
+          "title": "[Farholde Scouting Report]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D93971/farholde-scouting-report"
+        },
+        {
+          "title": "[Farholde Scouting Report]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D93971/farholde-scouting-report"
+        },
+        {
+          "title": "[Farholde Scouting Report] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D93971/farholde-scouting-report"
+        }
+      ]
+    },
+    {
+      "questId": 94480,
+      "questName": "A Gift From Our Enemies",
+      "guideLabel": "A Gift From Our Enemies",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"A Gift From Our Enemies\" 94480 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A Gift From Our Enemies quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/94480-a-gift-from-our-enemies"
+        },
+        {
+          "title": "A Gift From Our Enemies - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94480/a-gift-from-our-enemies"
+        },
+        {
+          "title": "A Gift From Our Enemies - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/94480/"
+        },
+        {
+          "title": "[A Gift From Our Enemies] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D94480/a-gift-from-our-enemies"
+        },
+        {
+          "title": "[A Gift From Our Enemies] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D94480/a-gift-from-our-enemies"
+        },
+        {
+          "title": "Un cadeau de nos adversaires - Quête de WoW Forever | Forever Tool",
+          "url": "https://forever-tool.com/fr/quests/94480/"
+        },
+        {
+          "title": "[A Gift From Our Enemies] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D94480/a-gift-from-our-enemies"
+        },
+        {
+          "title": "Un obsequio de nuestros enemigos - Misión de WoW Forever | Forever Tool",
+          "url": "https://forever-tool.com/es-mx/quests/94480/"
+        }
+      ]
+    },
+    {
+      "questId": 94615,
+      "questName": "Foal Play",
+      "guideLabel": "Foal Play",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Foal Play\" 94615 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Foal Play - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94615/foal-play"
+        },
+        {
+          "title": "[Foal Play] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D94615/foal-play"
+        },
+        {
+          "title": "[Foal Play] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D94615/foal-play"
+        },
+        {
+          "title": "[Foal Play] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D94615/foal-play"
+        },
+        {
+          "title": "[Foal Play]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D94615/foal-play"
+        },
+        {
+          "title": "[Foal Play]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D94615/foal-play"
+        },
+        {
+          "title": "[Foal Play] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D94615/foal-play"
+        },
+        {
+          "title": "[Foal Play] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D94615/foal-play"
+        }
+      ]
+    },
+    {
+      "questId": 94734,
+      "questName": "A Boar's Delight",
+      "guideLabel": "A Boar's Delight",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"A Boar's Delight\" 94734 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A Boar's Delight - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94734/a-boars-delight"
+        },
+        {
+          "title": "A Boar's Delight quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/94734-a-boars-delight"
+        }
+      ]
+    },
+    {
+      "questId": 94737,
+      "questName": "A Treat for a Friend",
+      "guideLabel": "A Treat for a Friend",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"A Treat for a Friend\" 94737 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A Treat for a Friend - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94737/a-treat-for-a-friend"
+        },
+        {
+          "title": "A Treat for a Friend quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/94737-a-treat-for-a-friend"
+        }
+      ]
+    },
+    {
+      "questId": 94879,
+      "questName": "Scraps of Knowledge",
+      "guideLabel": "Scraps of Knowledge",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Scraps of Knowledge\" 94879 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Scraps of Knowledge - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94879/scraps-of-knowledge"
+        },
+        {
+          "title": "[Scraps of Knowledge] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D94879/scraps-of-knowledge"
+        },
+        {
+          "title": "[Scraps of Knowledge] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D94879/scraps-of-knowledge"
+        },
+        {
+          "title": "[Scraps of Knowledge]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D94879/scraps-of-knowledge"
+        },
+        {
+          "title": "[Scraps of Knowledge]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D94879/scraps-of-knowledge"
+        },
+        {
+          "title": "[Scraps of Knowledge] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D94879/scraps-of-knowledge"
+        },
+        {
+          "title": "[Scraps of Knowledge] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D94879/scraps-of-knowledge"
+        },
+        {
+          "title": "[Scraps of Knowledge] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D94879/scraps-of-knowledge"
+        }
+      ]
+    },
+    {
+      "questId": 94923,
+      "questName": "Hats Off",
+      "guideLabel": "Hats Off",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Hats Off\" 94923 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Hats Off - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94923/hats-off"
+        },
+        {
+          "title": "[Hats Off] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D94923/hats-off"
+        },
+        {
+          "title": "[Hats Off] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D94923/hats-off"
+        },
+        {
+          "title": "[Hats Off] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D94923/hats-off"
+        },
+        {
+          "title": "[Hats Off] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D94923/hats-off"
+        },
+        {
+          "title": "[Hats Off]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D94923/hats-off"
+        },
+        {
+          "title": "[Hats Off]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D94923/hats-off"
+        }
+      ]
+    },
+    {
+      "questId": 94926,
+      "questName": "Drop the Hammer",
+      "guideLabel": "Pick up: Drop the Hammer",
+      "phases": [
+        "accept",
+        "objective"
+      ],
+      "query": "WoW Forever \"Drop the Hammer\" 94926 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Drop the Hammer - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94926/drop-the-hammer"
+        },
+        {
+          "title": "[Drop the Hammer] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D94926/drop-the-hammer"
+        },
+        {
+          "title": "[Drop the Hammer] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D94926/drop-the-hammer"
+        },
+        {
+          "title": "[Drop the Hammer] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D94926/drop-the-hammer"
+        },
+        {
+          "title": "[Drop the Hammer]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D94926/drop-the-hammer"
+        },
+        {
+          "title": "[Drop the Hammer] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D94926/drop-the-hammer"
+        }
+      ]
+    },
+    {
+      "questId": 94931,
+      "questName": "Stolen Saws",
+      "guideLabel": "Stolen Saws",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Stolen Saws\" 94931 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Stolen Saws - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D94931/stolen-saws"
+        },
+        {
+          "title": "Stolen Saws - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/94931/"
+        },
+        {
+          "title": "[Stolen Saws] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D94931/stolen-saws"
+        },
+        {
+          "title": "[Stolen Saws] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D94931/stolen-saws"
+        },
+        {
+          "title": "[Stolen Saws]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D94931/stolen-saws"
+        },
+        {
+          "title": "[Stolen Saws]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D94931/stolen-saws"
+        },
+        {
+          "title": "[Stolen Saws] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D94931/stolen-saws"
+        },
+        {
+          "title": "[Stolen Saws] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D94931/stolen-saws"
+        }
+      ]
+    },
+    {
+      "questId": 95059,
+      "questName": "Frazzlespark's Crate",
+      "guideLabel": "Frazzlespark's Crate [A]",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Frazzlespark's Crate\" 95059 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Frazzlespark's Crate - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95059/frazzlesparks-crate"
+        },
+        {
+          "title": "Frazzlespark's Crate - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/95059/"
+        },
+        {
+          "title": "[Frazzlespark's Crate] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95059/frazzlesparks-crate"
+        },
+        {
+          "title": "[Frazzlespark's Crate]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95059/frazzlesparks-crate"
+        },
+        {
+          "title": "[Frazzlespark's Crate] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95059/frazzlesparks-crate"
+        },
+        {
+          "title": "[Frazzlespark's Crate]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95059/frazzlesparks-crate"
+        }
+      ]
+    },
+    {
+      "questId": 95062,
+      "questName": "Frazzlespark's Crate",
+      "guideLabel": "Frazzlespark's Crate [H]",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Frazzlespark's Crate\" 95062 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Frazzlespark's Crate - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95062/frazzlesparks-crate"
+        },
+        {
+          "title": "Frazzlespark's Crate - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/95062/"
+        },
+        {
+          "title": "Frazzlespark's Crate quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95062-frazzlesparks-crate"
+        },
+        {
+          "title": "[Frazzlespark's Crate] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95062/frazzlesparks-crate"
+        },
+        {
+          "title": "[Frazzlespark's Crate] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95062/frazzlesparks-crate"
+        },
+        {
+          "title": "[Frazzlespark's Crate]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95062/frazzlesparks-crate"
+        },
+        {
+          "title": "[Frazzlespark's Crate]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95062/frazzlesparks-crate"
+        }
+      ]
+    },
+    {
+      "questId": 95066,
+      "questName": "The Rog'mar Situation",
+      "guideLabel": "The Rog'mar Situation",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"The Rog'mar Situation\" 95066 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Rog'mar Situation - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95066/the-rogmar-situation"
+        },
+        {
+          "title": "[The Rog'mar Situation] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95066/the-rogmar-situation"
+        },
+        {
+          "title": "[The Rog'mar Situation] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95066/the-rogmar-situation"
+        },
+        {
+          "title": "[The Rog'mar Situation] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95066/the-rogmar-situation"
+        },
+        {
+          "title": "[The Rog'mar Situation]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95066/the-rogmar-situation"
+        },
+        {
+          "title": "[The Rog'mar Situation]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95066/the-rogmar-situation"
+        },
+        {
+          "title": "[The Rog'mar Situation] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D95066/the-rogmar-situation"
+        }
+      ]
+    },
+    {
+      "questId": 95123,
+      "questName": "A Blast Ye Scurvy Dogs!",
+      "guideLabel": "A Blast Ye Scurvy Dogs!",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"A Blast Ye Scurvy Dogs!\" 95123 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A Blast Ye Scurvy Dogs! - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95123/a-blast-ye-scurvy-dogs"
+        },
+        {
+          "title": "A Blast Ye Scurvy Dogs! quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95123-a-blast-ye-scurvy-dogs"
+        },
+        {
+          "title": "[A Blast Ye Scurvy Dogs!] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95123/a-blast-ye-scurvy-dogs"
+        },
+        {
+          "title": "[A Blast Ye Scurvy Dogs!] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95123/a-blast-ye-scurvy-dogs"
+        },
+        {
+          "title": "[A Blast Ye Scurvy Dogs!]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95123/a-blast-ye-scurvy-dogs"
+        },
+        {
+          "title": "[A Blast Ye Scurvy Dogs!] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D95123/a-blast-ye-scurvy-dogs"
+        },
+        {
+          "title": "[A Blast Ye Scurvy Dogs!]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95123/a-blast-ye-scurvy-dogs"
+        },
+        {
+          "title": "[A Blast Ye Scurvy Dogs!] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D95123/a-blast-ye-scurvy-dogs"
+        }
+      ]
+    },
+    {
+      "questId": 95147,
+      "questName": "The Lost Scout",
+      "guideLabel": "The Lost Scout",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"The Lost Scout\" 95147 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Lost Scout - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95147/the-lost-scout"
+        },
+        {
+          "title": "The Lost Scout - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/95147/"
+        },
+        {
+          "title": "[The Lost Scout] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95147/the-lost-scout"
+        },
+        {
+          "title": "[The Lost Scout] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95147/the-lost-scout"
+        },
+        {
+          "title": "[The Lost Scout] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95147/the-lost-scout"
+        },
+        {
+          "title": "[The Lost Scout] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95147/the-lost-scout"
+        },
+        {
+          "title": "[The Lost Scout]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95147/the-lost-scout"
+        },
+        {
+          "title": "[The Lost Scout]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95147/the-lost-scout"
+        }
+      ]
+    },
+    {
+      "questId": 95148,
+      "questName": "Southern Watch Gnoll Report",
+      "guideLabel": "Southern Watch Gnoll Report",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Southern Watch Gnoll Report\" 95148 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Southern Watch Gnoll Report - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95148/southern-watch-gnoll-report"
+        },
+        {
+          "title": "Southern Watch Gnoll Report - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/95148/"
+        },
+        {
+          "title": "[Southern Watch Gnoll Report] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95148/southern-watch-gnoll-report"
+        },
+        {
+          "title": "[Southern Watch Gnoll Report] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95148/southern-watch-gnoll-report"
+        },
+        {
+          "title": "[Southern Watch Gnoll Report] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D95148/southern-watch-gnoll-report"
+        },
+        {
+          "title": "[Southern Watch Gnoll Report]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95148/southern-watch-gnoll-report"
+        },
+        {
+          "title": "[Southern Watch Gnoll Report]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95148/southern-watch-gnoll-report"
+        },
+        {
+          "title": "[Southern Watch Gnoll Report] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95148/southern-watch-gnoll-report"
+        }
+      ]
+    },
+    {
+      "questId": 95156,
+      "questName": "Stuff 'Em and Stick 'Em",
+      "guideLabel": "Stuff 'Em and Stick 'Em",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Stuff 'Em and Stick 'Em\" 95156 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Stuff 'Em and Stick 'Em - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95156/stuff-em-and-stick-em"
+        },
+        {
+          "title": "[Stuff 'Em and Stick 'Em] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95156/stuff-em-and-stick-em"
+        },
+        {
+          "title": "[Stuff 'Em and Stick 'Em]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95156/stuff-em-and-stick-em"
+        },
+        {
+          "title": "[Stuff 'Em and Stick 'Em] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95156/stuff-em-and-stick-em"
+        },
+        {
+          "title": "[Stuff 'Em and Stick 'Em] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D95156/stuff-em-and-stick-em"
+        },
+        {
+          "title": "[Stuff 'Em and Stick 'Em]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95156/stuff-em-and-stick-em"
+        },
+        {
+          "title": "[Stuff 'Em and Stick 'Em] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D95156/stuff-em-and-stick-em"
+        }
+      ]
+    },
+    {
+      "questId": 95183,
+      "questName": "Step One: Rock",
+      "guideLabel": "Step One: Rock",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Step One: Rock\" 95183 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Step One: Rock - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95183/step-one-rock"
+        },
+        {
+          "title": "Step One: Rock quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95183-step-one-rock"
+        },
+        {
+          "title": "[Step One: Rock] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95183/step-one-rock"
+        },
+        {
+          "title": "[Step One: Rock] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95183/step-one-rock"
+        },
+        {
+          "title": "[Step One: Rock] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95183/step-one-rock"
+        },
+        {
+          "title": "[Step One: Rock] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95183/step-one-rock"
+        },
+        {
+          "title": "[Step One: Rock] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D95183/step-one-rock"
+        },
+        {
+          "title": "[Step One: Rock]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95183/step-one-rock"
+        }
+      ]
+    },
+    {
+      "questId": 95184,
+      "questName": "The Sharpest of Blades",
+      "guideLabel": "The Sharpest of Blades",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"The Sharpest of Blades\" 95184 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Sharpest of Blades - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95184/the-sharpest-of-blades"
+        },
+        {
+          "title": "The Sharpest of Blades quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95184-the-sharpest-of-blades"
+        },
+        {
+          "title": "[The Sharpest of Blades] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95184/the-sharpest-of-blades"
+        },
+        {
+          "title": "[The Sharpest of Blades] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95184/the-sharpest-of-blades"
+        },
+        {
+          "title": "[The Sharpest of Blades] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95184/the-sharpest-of-blades"
+        },
+        {
+          "title": "[The Sharpest of Blades]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95184/the-sharpest-of-blades"
+        },
+        {
+          "title": "[The Sharpest of Blades]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95184/the-sharpest-of-blades"
+        },
+        {
+          "title": "[The Sharpest of Blades] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D95184/the-sharpest-of-blades"
+        }
+      ]
+    },
+    {
+      "questId": 95219,
+      "questName": "From Port to Port",
+      "guideLabel": "From Port to Port",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"From Port to Port\" 95219 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "From Port to Port - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95219/from-port-to-port"
+        },
+        {
+          "title": "[From Port to Port] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95219/from-port-to-port"
+        },
+        {
+          "title": "[From Port to Port] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95219/from-port-to-port"
+        },
+        {
+          "title": "[From Port to Port] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95219/from-port-to-port"
+        },
+        {
+          "title": "[From Port to Port]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95219/from-port-to-port"
+        },
+        {
+          "title": "[From Port to Port]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95219/from-port-to-port"
+        },
+        {
+          "title": "[From Port to Port] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D95219/from-port-to-port"
+        },
+        {
+          "title": "[From Port to Port] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95219/from-port-to-port"
+        }
+      ]
+    },
+    {
+      "questId": 95278,
+      "questName": "It Is Time, Brother...",
+      "guideLabel": "It Is Time, Brother...",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"It Is Time, Brother...\" 95278 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "It Is Time, Brother... - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95278/it-is-time-brother"
+        },
+        {
+          "title": "It Is Time, Brother... quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95278-it-is-time-brother"
+        },
+        {
+          "title": "[It Is Time, Brother...] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95278/it-is-time-brother"
+        },
+        {
+          "title": "[It Is Time, Brother...] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95278/it-is-time-brother"
+        },
+        {
+          "title": "[It Is Time, Brother...] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95278/it-is-time-brother"
+        },
+        {
+          "title": "[It Is Time, Brother...] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95278/it-is-time-brother"
+        },
+        {
+          "title": "[It Is Time, Brother...]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95278/it-is-time-brother"
+        },
+        {
+          "title": "[It Is Time, Brother...] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D95278/it-is-time-brother"
+        }
+      ]
+    },
+    {
+      "questId": 95384,
+      "questName": "Partial Mystical Notes",
+      "guideLabel": "Pick up: Partial Mystical Notes",
+      "phases": [
+        "accept"
+      ],
+      "query": "WoW Forever \"Partial Mystical Notes\" 95384 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Partial Mystical Notes quest | Forever XP",
+          "url": "https://forever-xp.com/quests/95384/"
+        },
+        {
+          "title": "Partial Mystical Notes - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95384/partial-mystical-notes"
+        },
+        {
+          "title": "Partial Mystical Notes quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95384-partial-mystical-notes"
+        },
+        {
+          "title": "Quest: Partial Mystical Notes – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/95384"
+        },
+        {
+          "title": "Partial Mystical Notes · WoW Forever Quest, Level 40 · Bind on Forever",
+          "url": "https://bindonforever.com/quest/95384"
+        },
+        {
+          "title": "부분적인 신비한 기록 (Partial Mystical Notes) · WoW Forever 퀘스트, 레벨 40",
+          "url": "https://bindonforever.com/ko/quest/95384"
+        },
+        {
+          "title": "Notas místicas parciales – Misión de WoW Forever (Nivel 40)",
+          "url": "https://eternadex.com/es/quests/95384/"
+        }
+      ]
+    },
+    {
+      "questId": 95426,
+      "questName": "Rog'mar Supplies",
+      "guideLabel": "Rog'mar Supplies",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Rog'mar Supplies\" 95426 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Rog'mar Supplies - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95426/rogmar-supplies"
+        },
+        {
+          "title": "[Rog'mar Supplies] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95426/rogmar-supplies"
+        },
+        {
+          "title": "[Rog'mar Supplies] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95426/rogmar-supplies"
+        },
+        {
+          "title": "[Rog'mar Supplies] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95426/rogmar-supplies"
+        },
+        {
+          "title": "[Rog'mar Supplies]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95426/rogmar-supplies"
+        },
+        {
+          "title": "[Rog'mar Supplies]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95426/rogmar-supplies"
+        },
+        {
+          "title": "[Rog'mar Supplies] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95426/rogmar-supplies"
+        }
+      ]
+    },
+    {
+      "questId": 95561,
+      "questName": "Apple of My Eye",
+      "guideLabel": "Apple of My Eye",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Apple of My Eye\" 95561 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Apple of My Eye - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95561/apple-of-my-eye"
+        },
+        {
+          "title": "[Apple of My Eye] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95561/apple-of-my-eye"
+        },
+        {
+          "title": "[Apple of My Eye] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95561/apple-of-my-eye"
+        },
+        {
+          "title": "[Apple of My Eye] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95561/apple-of-my-eye"
+        },
+        {
+          "title": "[Apple of My Eye]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95561/apple-of-my-eye"
+        },
+        {
+          "title": "[Apple of My Eye] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D95561/apple-of-my-eye"
+        },
+        {
+          "title": "[Apple of My Eye] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D95561/apple-of-my-eye"
+        },
+        {
+          "title": "[Apple of My Eye] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D95561/apple-of-my-eye"
+        }
+      ]
+    },
+    {
+      "questId": 95602,
+      "questName": "Sickening Lights",
+      "guideLabel": "Sickening Lights",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Sickening Lights\" 95602 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Sickening Lights - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95602/sickening-lights"
+        },
+        {
+          "title": "Sickening Lights quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95602-sickening-lights"
+        },
+        {
+          "title": "[Sickening Lights] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95602/sickening-lights"
+        },
+        {
+          "title": "[Sickening Lights] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95602/sickening-lights"
+        },
+        {
+          "title": "[Sickening Lights] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95602/sickening-lights"
+        },
+        {
+          "title": "[Sickening Lights]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95602/sickening-lights"
+        },
+        {
+          "title": "[Sickening Lights] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D95602/sickening-lights"
+        },
+        {
+          "title": "[Sickening Lights]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95602/sickening-lights"
+        }
+      ]
+    },
+    {
+      "questId": 95786,
+      "questName": "An Acquaintance in Southshore",
+      "guideLabel": "An Acquaintance in Southshore",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"An Acquaintance in Southshore\" 95786 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "An Acquaintance in Southshore - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95786/an-acquaintance-in-southshore"
+        },
+        {
+          "title": "An Acquaintance in Southshore: Quest der Stufe 40 (Schlingendorntal) · WoW Forever · ForeverChanges",
+          "url": "https://foreverchanges.pro/de/quest/95786/an-acquaintance-in-southshore"
+        },
+        {
+          "title": "[An Acquaintance in Southshore] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95786/an-acquaintance-in-southshore"
+        }
+      ]
+    },
+    {
+      "questId": 95816,
+      "questName": "Sign Me Up!",
+      "guideLabel": "Sign Me Up!",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Sign Me Up!\" 95816 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Sign Me Up! quest | Forever XP",
+          "url": "https://forever-xp.com/quests/95816/"
+        },
+        {
+          "title": "Sign Me Up! - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95816/sign-me-up"
+        },
+        {
+          "title": "Sign Me Up! - WoW Forever Quest - Kovarel",
+          "url": "https://kovarel.com/wow-forever/quests/95816-sign-me-up"
+        },
+        {
+          "title": "Sign Me Up! (#95816) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/95816/"
+        },
+        {
+          "title": "Quest: Sign Me Up! – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/95816"
+        },
+        {
+          "title": "[Sign Me Up!]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95816/sign-me-up"
+        }
+      ]
+    },
+    {
+      "questId": 95819,
+      "questName": "Sign Me Up!",
+      "guideLabel": "Sign Me Up!",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Sign Me Up!\" 95819 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Sign Me Up! quest | Forever XP",
+          "url": "https://forever-xp.com/quests/95819/"
+        },
+        {
+          "title": "Sign Me Up! | WoW Forever",
+          "url": "https://azeroth.wiki/forever/quests/sign-me-up-95819"
+        },
+        {
+          "title": "Quest: Sign Me Up! – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/95819"
+        },
+        {
+          "title": "Sign Me Up! - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95819/sign-me-up"
+        },
+        {
+          "title": "Sign Me Up! quest guide: level 60 (quest 95819) - WCLBox · WoW Forever Database",
+          "url": "https://wowforever.wclbox.com/en/renwu/95819"
+        }
+      ]
+    },
+    {
+      "questId": 95934,
+      "questName": "Proof of Profit",
+      "guideLabel": "Proof of Profit",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Proof of Profit\" 95934 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Proof of Profit - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95934/proof-of-profit"
+        },
+        {
+          "title": "Proof of Profit quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95934-proof-of-profit"
+        },
+        {
+          "title": "[Proof of Profit] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95934/proof-of-profit"
+        },
+        {
+          "title": "[Proof of Profit] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95934/proof-of-profit"
+        },
+        {
+          "title": "[Proof of Profit] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D95934/proof-of-profit"
+        },
+        {
+          "title": "[Proof of Profit]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95934/proof-of-profit"
+        },
+        {
+          "title": "[Proof of Profit] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D95934/proof-of-profit"
+        },
+        {
+          "title": "[Proof of Profit]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95934/proof-of-profit"
+        }
+      ]
+    },
+    {
+      "questId": 95935,
+      "questName": "Hail the Dragonslayer",
+      "guideLabel": "Pick up: Hail the Dragonslayer [A]",
+      "phases": [
+        "accept"
+      ],
+      "query": "WoW Forever \"Hail the Dragonslayer\" 95935 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Hail the Dragonslayer - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95935/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95935/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95935/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95935/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95935/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95935/hail-the-dragonslayer"
+        }
+      ]
+    },
+    {
+      "questId": 95936,
+      "questName": "Hail the Dragonslayer",
+      "guideLabel": "Pick up: Hail the Dragonslayer [H]",
+      "phases": [
+        "accept"
+      ],
+      "query": "WoW Forever \"Hail the Dragonslayer\" 95936 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Hail the Dragonslayer - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95936/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95936/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95936/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95936/hail-the-dragonslayer"
+        },
+        {
+          "title": "[Hail the Dragonslayer]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95936/hail-the-dragonslayer"
+        }
+      ]
+    },
+    {
+      "questId": 95943,
+      "questName": "Foreman's Plight",
+      "guideLabel": "Foreman's Plight",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Foreman's Plight\" 95943 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Foreman's Plight - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95943/foremans-plight"
+        },
+        {
+          "title": "[Foreman's Plight] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95943/foremans-plight"
+        },
+        {
+          "title": "[Foreman's Plight] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95943/foremans-plight"
+        },
+        {
+          "title": "[Foreman's Plight] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95943/foremans-plight"
+        },
+        {
+          "title": "[Foreman's Plight] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95943/foremans-plight"
+        },
+        {
+          "title": "[Foreman's Plight]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95943/foremans-plight"
+        },
+        {
+          "title": "[Foreman's Plight]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95943/foremans-plight"
+        },
+        {
+          "title": "[Foreman's Plight] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D95943/foremans-plight"
+        }
+      ]
+    },
+    {
+      "questId": 95951,
+      "questName": "Fetch 'n' Fletch",
+      "guideLabel": "Fetch 'n' Fletch",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Fetch 'n' Fletch\" 95951 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Fetch 'n' Fletch quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95951-fetch-n-fletch"
+        },
+        {
+          "title": "Fetch 'n' Fletch - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95951/fetch-n-fletch"
+        },
+        {
+          "title": "[Fetch 'n' Fletch] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D95951/fetch-n-fletch"
+        },
+        {
+          "title": "[Fetch 'n' Fletch] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95951/fetch-n-fletch"
+        },
+        {
+          "title": "[Fetch 'n' Fletch]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95951/fetch-n-fletch"
+        }
+      ]
+    },
+    {
+      "questId": 95975,
+      "questName": "Her World",
+      "guideLabel": "Her World",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Her World\" 95975 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Her World - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95975/her-world"
+        },
+        {
+          "title": "[Her World] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D95975/her-world"
+        },
+        {
+          "title": "[Her World] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95975/her-world"
+        },
+        {
+          "title": "[Her World] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95975/her-world"
+        },
+        {
+          "title": "[Her World]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95975/her-world"
+        },
+        {
+          "title": "[Her World] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D95975/her-world"
+        },
+        {
+          "title": "[Her World]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95975/her-world"
+        }
+      ]
+    },
+    {
+      "questId": 95982,
+      "questName": "Not My Circus",
+      "guideLabel": "Not My Circus",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Not My Circus\" 95982 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Not My Circus - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D95982/not-my-circus"
+        },
+        {
+          "title": "Not My Circus quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/95982-not-my-circus"
+        },
+        {
+          "title": "[Not My Circus] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D95982/not-my-circus"
+        },
+        {
+          "title": "[Not My Circus] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D95982/not-my-circus"
+        },
+        {
+          "title": "[Not My Circus]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D95982/not-my-circus"
+        },
+        {
+          "title": "[Not My Circus] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D95982/not-my-circus"
+        },
+        {
+          "title": "[Not My Circus] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D95982/not-my-circus"
+        },
+        {
+          "title": "[Not My Circus]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D95982/not-my-circus"
+        }
+      ]
+    },
+    {
+      "questId": 96009,
+      "questName": "High Stakes",
+      "guideLabel": "High Stakes",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"High Stakes\" 96009 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "High Stakes - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D96009/high-stakes"
+        },
+        {
+          "title": "[High Stakes] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D96009/high-stakes"
+        },
+        {
+          "title": "[High Stakes] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D96009/high-stakes"
+        },
+        {
+          "title": "[High Stakes]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D96009/high-stakes"
+        },
+        {
+          "title": "[High Stakes] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D96009/high-stakes"
+        },
+        {
+          "title": "[High Stakes]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D96009/high-stakes"
+        }
+      ]
+    },
+    {
+      "questId": 96026,
+      "questName": "Step Two: More Rock",
+      "guideLabel": "Step Two: More Rock",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Step Two: More Rock\" 96026 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Step Two: More Rock - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D96026/step-two-more-rock"
+        },
+        {
+          "title": "Step Two: More Rock - WoW Forever Quest | Forever Tool",
+          "url": "https://forever-tool.com/en/quests/96026/"
+        },
+        {
+          "title": "Step Two: More Rock quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/96026-step-two-more-rock"
+        },
+        {
+          "title": "[Step Two: More Rock] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D96026/step-two-more-rock"
+        },
+        {
+          "title": "[Step Two: More Rock] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D96026/step-two-more-rock"
+        },
+        {
+          "title": "[Step Two: More Rock] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D96026/step-two-more-rock"
+        },
+        {
+          "title": "[Step Two: More Rock] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D96026/step-two-more-rock"
+        },
+        {
+          "title": "[Step Two: More Rock]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D96026/step-two-more-rock"
+        }
+      ]
+    },
+    {
+      "questId": 96063,
+      "questName": "Gaseous Gold",
+      "guideLabel": "Gaseous Gold",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Gaseous Gold\" 96063 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Gaseous Gold - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D96063/gaseous-gold"
+        },
+        {
+          "title": "Gaseous Gold quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/96063-gaseous-gold"
+        },
+        {
+          "title": "[Gaseous Gold] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D96063/gaseous-gold"
+        },
+        {
+          "title": "[Gaseous Gold] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D96063/gaseous-gold"
+        },
+        {
+          "title": "[Gaseous Gold] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D96063/gaseous-gold"
+        },
+        {
+          "title": "[Gaseous Gold] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D96063/gaseous-gold"
+        },
+        {
+          "title": "[Gaseous Gold]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D96063/gaseous-gold"
+        },
+        {
+          "title": "[Gaseous Gold]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D96063/gaseous-gold"
+        }
+      ]
+    },
+    {
+      "questId": 96084,
+      "questName": "Something's in the Water",
+      "guideLabel": "Something's in the Water",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Something's in the Water\" 96084 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Something's in the Water - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D96084/somethings-in-the-water"
+        },
+        {
+          "title": "[Something's in the Water] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D96084/somethings-in-the-water"
+        },
+        {
+          "title": "[Something's in the Water] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D96084/somethings-in-the-water"
+        },
+        {
+          "title": "[Something's in the Water] - Missão - [Forever]",
+          "url": "https://www.wowhead.com/forever/pt/quest%3D96084/somethings-in-the-water"
+        },
+        {
+          "title": "[Something's in the Water] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D96084/somethings-in-the-water"
+        },
+        {
+          "title": "[Something's in the Water] - 퀘스트 - [Forever]",
+          "url": "https://www.wowhead.com/forever/ko/quest%3D96084/somethings-in-the-water"
+        },
+        {
+          "title": "[Something's in the Water]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D96084/somethings-in-the-water"
+        },
+        {
+          "title": "[Something's in the Water]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D96084/somethings-in-the-water"
+        }
+      ]
+    },
+    {
+      "questId": 96294,
+      "questName": "A Darker Truth",
+      "guideLabel": "A Darker Truth",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"A Darker Truth\" 96294 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A Darker Truth - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D96294/a-darker-truth"
+        },
+        {
+          "title": "A Darker Truth quest | Forever XP",
+          "url": "https://forever-xp.com/quests/96294/"
+        },
+        {
+          "title": "WoW Forever A Darker Truth Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/96294/a-darker-truth/"
+        },
+        {
+          "title": "A Darker Truth · WoW Forever Quest, Level 30 · Bind on Forever",
+          "url": "https://bindonforever.com/quest/96294"
+        },
+        {
+          "title": "Quest: A Darker Truth – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/96294"
+        },
+        {
+          "title": "A Darker Truth — WoW Forever quest: objectives and rewards — Zephras",
+          "url": "https://zephras.com/forever/enUS/quest/96294/"
+        }
+      ]
+    },
+    {
+      "questId": 96800,
+      "questName": "Past Due",
+      "guideLabel": "Past Due",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Past Due\" 96800 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Past Due - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D96800/past-due"
+        },
+        {
+          "title": "Quest: Past Due – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/96800"
+        },
+        {
+          "title": "Past Due WoW Forever: Dalaran Pickup & Runemasters Book | Forever Tavern",
+          "url": "https://wowforevertavern.com/quests/past-due-96800"
+        },
+        {
+          "title": "Past Due — WoW Forever Quest | ForG",
+          "url": "https://forg.gg/en/forever/quest/96800"
+        },
+        {
+          "title": "Past Due · WoW Forever Quest, Level 38 · Bind on Forever",
+          "url": "https://bindonforever.com/quest/96800"
+        },
+        {
+          "title": "Past Due – Quest in WoW Forever (Level 38)",
+          "url": "https://eternadex.com/en/quests/96800/"
+        },
+        {
+          "title": "Past Due - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/de/quest/96800-past-due"
+        },
+        {
+          "title": "WoW Forever Past Due quest · WOWF.IO",
+          "url": "https://wowf.io/en/quests/96800"
+        }
+      ]
+    },
+    {
+      "questId": 96873,
+      "questName": "A Pain in the Neck",
+      "guideLabel": "A Pain in the Neck",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"A Pain in the Neck\" 96873 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "A Pain in the Neck quest | Forever XP",
+          "url": "https://forever-xp.com/quests/96873/"
+        },
+        {
+          "title": "A Pain in the Neck - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D96873/a-pain-in-the-neck"
+        },
+        {
+          "title": "WoW Forever A Pain in the Neck Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/96873/a-pain-in-the-neck/"
+        },
+        {
+          "title": "A Pain in the Neck (#96873) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/96873/"
+        },
+        {
+          "title": "Quest: A Pain in the Neck – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/96873"
+        },
+        {
+          "title": "A Pain in the Neck - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/fr/quest/96873-a-pain-in-the-neck"
+        },
+        {
+          "title": "A Pain in the Neck - WoW Forever quest guide | ForeverDB",
+          "url": "https://foreverdb.net/ru/quest/96873-a-pain-in-the-neck"
+        },
+        {
+          "title": "A Pain in the Neck – Quest – WoW Forever · stillsixty",
+          "url": "https://www.stillsixty.com/quest/96873?revision=1b952959-a932-4c45-b53d-382af59014af"
+        }
+      ]
+    },
+    {
+      "questId": 97328,
+      "questName": "Anything of Value",
+      "guideLabel": "Anything of Value",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Anything of Value\" 97328 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Anything of Value quest | Forever XP",
+          "url": "https://forever-xp.com/quests/97328/"
+        },
+        {
+          "title": "Anything of Value - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D97328/anything-of-value"
+        },
+        {
+          "title": "Anything of Value · WoW Forever Quest, Level 35 · Bind on Forever",
+          "url": "https://bindonforever.com/quest/97328"
+        },
+        {
+          "title": "돈 될 만한 물건 (Anything of Value) · WoW Forever 퀘스트, 레벨 35",
+          "url": "https://bindonforever.com/ko/quest/97328"
+        }
+      ]
+    },
+    {
+      "questId": 97420,
+      "questName": "Reduce, Reuse, Reconcile",
+      "guideLabel": "Pick up: Reduce, Reuse, Reconcile",
+      "phases": [
+        "accept"
+      ],
+      "query": "WoW Forever \"Reduce, Reuse, Reconcile\" 97420 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Reduce, Reuse, Reconcile quest | Forever XP",
+          "url": "https://forever-xp.com/quests/97420/"
+        },
+        {
+          "title": "Reduce, Reuse, Reconcile - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D97420/reduce-reuse-reconcile"
+        },
+        {
+          "title": "Reduce, Reuse, Reconcile · WoW Forever Quest, Level 36",
+          "url": "https://bindonforever.com/quest/97420"
+        },
+        {
+          "title": "Quest: Reduce, Reuse, Reconcile – Forever quest guide | PandaBase",
+          "url": "https://pd.zroot.it/forever/quests/97420"
+        },
+        {
+          "title": "[Reduce, Reuse, Reconcile] - Задание - [Forever]",
+          "url": "https://www.wowhead.com/forever/ru/quest%3D97420/reduce-reuse-reconcile"
+        },
+        {
+          "title": "Reduce, Reuse, Reconcile — задание в WoW Forever · Eternadex",
+          "url": "https://eternadex.com/ru/quests/97420/"
+        }
+      ]
+    },
+    {
+      "questId": 97884,
+      "questName": "Armory of Sunnyglade",
+      "guideLabel": "Armory of Sunnyglade",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Armory of Sunnyglade\" 97884 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Armory of Sunnyglade - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D97884/armory-of-sunnyglade"
+        },
+        {
+          "title": "Armory of Sunnyglade quest · WoW Forever · AHledger",
+          "url": "https://ahledger.com/wow-forever/quests/97884-armory-of-sunnyglade"
+        },
+        {
+          "title": "[Armory of Sunnyglade] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/mx/quest%3D97884/armory-of-sunnyglade"
+        },
+        {
+          "title": "[Armory of Sunnyglade] - Quest - [Forever]",
+          "url": "https://www.wowhead.com/forever/de/quest%3D97884/armory-of-sunnyglade"
+        },
+        {
+          "title": "[Armory of Sunnyglade] - Missione - [Forever]",
+          "url": "https://www.wowhead.com/forever/it/quest%3D97884/armory-of-sunnyglade"
+        },
+        {
+          "title": "[Armory of Sunnyglade]—任务—[Forever]",
+          "url": "https://www.wowhead.com/forever/cn/quest%3D97884/armory-of-sunnyglade"
+        },
+        {
+          "title": "[Armory of Sunnyglade] - Quête - [Forever]",
+          "url": "https://www.wowhead.com/forever/fr/quest%3D97884/armory-of-sunnyglade"
+        },
+        {
+          "title": "[Armory of Sunnyglade]—任務—[Forever]",
+          "url": "https://www.wowhead.com/forever/tw/quest%3D97884/armory-of-sunnyglade"
+        }
+      ]
+    },
+    {
+      "questId": 98069,
+      "questName": "Stolen Freewind Supplies",
+      "guideLabel": "Stolen Freewind Supplies",
+      "phases": [
+        "objective"
+      ],
+      "query": "WoW Forever \"Stolen Freewind Supplies\" 98069 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "Stolen Freewind Supplies quest | Forever XP",
+          "url": "https://forever-xp.com/quests/98069/"
+        },
+        {
+          "title": "Stolen Freewind Supplies - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D98069/stolen-freewind-supplies"
+        },
+        {
+          "title": "Stolen Freewind Supplies · WoW Forever Quest, Level 31",
+          "url": "https://bindonforever.com/quest/98069"
+        },
+        {
+          "title": "Stolen Freewind Supplies - WoW Forever Quest - Kovarel",
+          "url": "https://kovarel.com/wow-forever/quests/98069-stolen-freewind-supplies"
+        },
+        {
+          "title": "Stolen Freewind Supplies (#98069) — WoW Forever | Questing.wiki",
+          "url": "https://questing.wiki/wow-forever/quests/98069/"
+        },
+        {
+          "title": "WoW Forever Stolen Freewind Supplies Quest | SenseOS",
+          "url": "https://senseos.gg/wiki/wow-forever/quests/98069/stolen-freewind-supplies/"
+        },
+        {
+          "title": "Quest: Stolen Freewind Supplies – Forever quest guide | PandaQuest",
+          "url": "https://pd.zroot.it/forever/quests/98069"
+        },
+        {
+          "title": "Stolen Freewind Supplies – WoW Forever Quest | Lore Forever",
+          "url": "https://loreforeverwow.com/lore/quest/98069-stolen-freewind-supplies"
+        }
+      ]
+    },
+    {
+      "questId": 98447,
+      "questName": "The Valor Family",
+      "guideLabel": "The Valor Family (2/2)",
+      "phases": [
+        "turnin"
+      ],
+      "query": "WoW Forever \"The Valor Family\" 98447 quest coordinates",
+      "status": "search-completed",
+      "sources": [
+        {
+          "title": "The Valor Family - Quest - Forever",
+          "url": "https://www.wowhead.com/forever/quest%3D98447/the-valor-family"
+        },
+        {
+          "title": "The Valor Family - WoW Forever Quest - Kovarel",
+          "url": "https://kovarel.com/wow-forever/quests/98447-the-valor-family"
+        },
+        {
+          "title": "The Valor Family: level 27 quest in Duskwood · WoW Forever · ForeverChanges",
+          "url": "https://foreverchanges.pro/quest/98447/the-valor-family"
+        },
+        {
+          "title": "[The Valor Family] - Misión - [Forever]",
+          "url": "https://www.wowhead.com/forever/es/quest%3D98447/the-valor-family"
+        },
+        {
+          "title": "The Valor Family — задание WoW Forever",
+          "url": "https://warcraft-forever.ru/quests/98447/"
+        }
+      ]
+    }
+  ]
+}

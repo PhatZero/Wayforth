@@ -77,6 +77,29 @@ local flight = ns.foreverQuestLocations[5931].objective[1]
 assert(flight.id == 11800 and flight.mapId == 1450,
     "Forever's flight objective must route to Silva, before the Darnassus finisher")
 
+local notes = assert(find("alliance-stranglethorn-vale", 95384, "accept"))
+assert(notes.locationKind == "loot" and notes.hub == "Skullsplitter Mystic")
+assert(notes.text:find("Use the item to accept", 1, true),
+    "An item-started quest must explain how to accept it after looting the item")
+local goliath = assert(find("horde-arathi-highlands", 92707, "turnin"))
+assert(goliath.hub == "Drum Fel" and goliath.mapId == 1417)
+local doll = assert(find("alliance-eastern-plaguelands", 5149, "objective"))
+assert(doll.mapId == 1423 and doll.hub == "Pamela's Doll's Head")
+assert(doll.text:find("Combine the three pieces", 1, true))
+local delivery = assert(find("alliance-riverglades", 95147, "objective"))
+assert(delivery.hub == "Cedric Dalton" and delivery.mapId == 2548)
+local crate = assert(find("alliance-riverglades", 95943, "objective"))
+assert(crate.x == 51.9 and crate.y == 57.3 and crate.locationSource == "Wowhead Forever comment",
+    "A community point must retain its distinct provenance")
+local boots = assert(find("alliance-tanaris", 7654, "objective"))
+assert(boots.x == nil and not boots.text:find("20", 1, true),
+    "Retail material quantities must not overwrite an unresolved Forever quantity")
+assert(ns.foreverQuestLocations[98447].name == "The Valor Family")
+for _, row in ipairs(coverage.gaps) do
+    assert(not row[3]:find("^Work on: ") and not row[3]:find("^Pick up: ") and not row[3]:find("^Complete: "),
+        "The audit's quest-name column must be suitable for external searches")
+end
+
 -- A kill/loot target's allegiance must not restrict the quest's player faction.
 local claw = assert(find("horde-ashenvale", 2, "accept"))
 assert(claw.x and claw.y and claw.locationKind == "loot",

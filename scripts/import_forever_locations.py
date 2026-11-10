@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh bundled quest endpoints from corrected Forever data and Wowhead maps.
+"""Refresh quest endpoints from corrected Forever data and reviewed web facts.
 
 Pass a QuestieDB checkout at QUESTIEDB_REF. Only factual IDs, names and points
 are retained. The game client reads the generated Lua and performs no downloads.
@@ -21,6 +21,14 @@ ROOT = Path(__file__).resolve().parents[1]
 QUESTIEDB_REF = "aca0da1c4a5ed0bc12997b9aaeef7b35af9ee26e"
 ATT_REF = "d30715fb2657743d1b8801e5e3f26b96b7047160"
 OUTPUT = ROOT / "clients/forever/guides/ForeverQuestLocations.lua"
+
+
+def quest_name(name):
+    """Strip guide instructions while retaining punctuation in real quest names."""
+    name = re.sub(r"^(?:(?:Work on|Pick up|Complete|Accept):\s*)+", "", name or "", flags=re.I)
+    name = re.sub(r"\s*\(\d+/\d+\)\s*", " ", name)
+    name = re.sub(r"\s*(?:\((?:Alliance|Horde|A|H)\)|\[(?:Alliance|Horde|A|H)\])$", "", name, flags=re.I)
+    return name.strip()
 
 
 def values(table):
@@ -199,26 +207,60 @@ class Catalog:
         return result
 
     def reference(self, reference):
-        """Use matching WoWDB facts without replacing recorded Forever facts."""
+        """Use matching reviewed facts without replacing recorded Forever facts."""
         if not self.matches_quest_name(reference):
             return False
         report = self.reports.setdefault(str(reference["questId"]), {"facts": {}})
+        provider = reference.get("provider", "WoWDB")
         for label, name in reference.get("facts", {}).items():
             if not report["facts"].get(label):
                 report["facts"][label] = name
-                report.setdefault("providers", {})[label] = "WoWDB"
+                report.setdefault("providers", {})[label] = provider
+        quest = self.data["Quest"].get(str(reference["questId"]), {})
+        expected = {field(row, 1) for row in values(field(field(quest, 10), 3))}
         objective = reference.get("objective")
         if objective:
-            quest = self.data["Quest"].get(str(reference["questId"]), {})
-            expected = {field(row, 1) for row in values(field(field(quest, 10), 3))}
             if objective.get("items") and set(objective["items"]) != expected:
                 return False
             report["objective"] = objective
+            report["objectiveProvider"] = provider
+        starter = reference.get("pickupItem")
+        if starter:
+            known = expected | set(values(field(field(quest, 2), 3))) | {field(quest, 11)}
+            if starter not in known or str(starter) not in self.data["Item"]:
+                return False
+            report["pickupItem"] = starter
+            report["pickupTargets"] = reference.get("pickupTargets", [])
+            report["pickupProvider"] = provider
+        if reference.get("phasePoints"):
+            report["phasePoints"] = reference["phasePoints"]
         return True
+
+    def reference_targets(self, targets, provider, interact=False):
+        result = []
+        for target in targets:
+            kind, entity_id = target["kind"], target.get("id")
+            if kind not in ("Npc", "Object", "Item"):
+                continue
+            if entity_id is None and kind == "Npc":
+                candidates = self.npc_names.get(target["name"], [])
+                if len(candidates) == 1:
+                    entity_id = candidates[0]
+            row = self.data[kind].get(str(entity_id), {})
+            if field(row, 1) != target["name"]:
+                continue
+            points = self.item(entity_id) if kind == "Item" else self.entity(kind, entity_id)
+            for point in points:
+                point["source"] = provider + " / " + point.get("source", "QuestieDB")
+                if kind == "Npc" and not interact:
+                    point["kind"] = "target"
+                    point.pop("faction", None)
+            result.extend(points)
+        return self.unique(result)
 
     def record(self, quest_id):
         quest = self.data["Quest"].get(str(quest_id), {})
-        record = {}
+        record = {"name": quest_name(field(quest, 1) or self.data.get("guideNames", {}).get(str(quest_id)))}
         if str(quest_id) in self.att.get("hiddenQuests", {}):
             record["hidden"] = True
         mask = field(quest, 6, 0)
@@ -259,15 +301,33 @@ class Catalog:
         report_entry = self.reports.get(str(quest_id), {})
         report = report_entry.get("facts", {})
         objective = report_entry.get("objective")
-        if objective and record.get("hasObjective"):
+        if objective:
+            record["hasObjective"] = True
             record["objectiveText"] = objective["text"]
             record["objectiveKind"] = objective["kind"]
-            record["objectiveSource"] = "WoWDB"
+            provider = report_entry.get("objectiveProvider", "WoWDB")
+            record["objectiveSource"] = provider
+            if not record.get("objective") and objective.get("targets"):
+                targets = objective["targets"]
+                if isinstance(targets[0], dict):
+                    points = self.reference_targets(targets, provider,
+                        objective["kind"] in ("delivery", "use-item", "travel"))
+                    if objective["kind"] == "delivery":
+                        endpoint = field(quest, 3)
+                        known = values(field(endpoint, 1))
+                        if known:
+                            points = [point for point in points if point.get("id") in known]
+                        elif field(endpoint, 2):
+                            points = []
+                    if points:
+                        record["objective"] = points
             # An explicitly documented item-use interaction can share the NPC
             # destination. Crafting and reputation work must not use a finisher.
             if not record.get("objective") and objective["kind"] == "use-item":
                 points = []
                 for name in objective.get("targets", []):
+                    if not isinstance(name, str):
+                        continue
                     candidates = self.npc_names.get(name, [])
                     if len(candidates) == 1:
                         for point in self.entity("Npc", candidates[0]):
@@ -279,8 +339,16 @@ class Catalog:
             if record.get(role) or not report.get(label):
                 continue
             name = report[label]
-            record[role + "Name"] = name
             candidates = self.npc_names.get(name, [])
+            endpoint = field(quest, 2 if role == "pickup" else 3)
+            known = values(field(endpoint, 1))
+            if known:
+                candidates = [candidate for candidate in candidates if candidate in known]
+                if not candidates:
+                    continue
+            elif field(endpoint, 2):
+                continue
+            record[role + "Name"] = name
             if len(candidates) == 1:
                 points = self.entity("Npc", candidates[0])
                 for point in points:
@@ -291,6 +359,30 @@ class Catalog:
         starter_items = values(field(field(quest, 2), 3))
         if starter_items:
             record["startItem"] = starter_items[0]
+        if report_entry.get("pickupItem"):
+            item_id = report_entry["pickupItem"]
+            record["startItem"] = item_id
+            record["pickupText"] = "Obtain " + field(self.data["Item"][str(item_id)], 1) + ". Use the item to accept the quest."
+            if not record.get("pickup"):
+                provider = report_entry["pickupProvider"]
+                points = self.reference_targets(report_entry.get("pickupTargets", []), provider)
+                if not points:
+                    points = self.item(item_id)
+                    for point in points:
+                        point["source"] = provider + " / " + point.get("source", "QuestieDB")
+                for point in points:
+                    point["kind"] = "loot"
+                    point["itemId"] = item_id
+                    point.pop("faction", None)
+                if points:
+                    record["pickup"] = points
+        for role, points in report_entry.get("phasePoints", {}).items():
+            if role not in ("pickup", "objective", "turnin") or record.get(role):
+                continue
+            valid = [dict(point) for point in points if point.get("mapId") in self.names
+                     and 0 < point.get("x", 0) < 100 and 0 < point.get("y", 0) < 100]
+            if valid:
+                record[role] = valid
         return record
 
     @staticmethod
@@ -331,8 +423,7 @@ class Catalog:
         quest_id = str(fact["questId"])
         expected = field(self.data["Quest"].get(quest_id), 1) or self.data.get("guideNames", {}).get(quest_id)
         def normalize(name):
-            name = re.sub(r"\s*\(\d+/\d+\)\s*", " ", name or "")
-            name = re.sub(r"\s*(?:\((?:Alliance|Horde|A|H)\)|\[(?:Alliance|Horde|A|H)\])$", "", name, flags=re.I)
+            name = quest_name(name)
             return re.sub(r"[^a-z0-9]", "", name.lower())
         return bool(expected and fact.get("questName") and normalize(expected) == normalize(fact["questName"]))
 
@@ -458,6 +549,7 @@ def main():
             reports[str(fact["questId"])] = fact
     catalog = Catalog(data, source, att, reports)
     references = json.loads((ROOT / "scripts/data/wowdb_quest_reports.json").read_text())
+    references.extend(json.loads((ROOT / "scripts/data/web_quest_references.json").read_text()))
     for reference in references:
         catalog.reference(reference)
     catalog.index_att()
@@ -483,7 +575,7 @@ def main():
     lines = ["-- Generated by scripts/import_forever_locations.py. Coordinates are map percentages.",
              f"-- Questie/QuestieDB {QUESTIEDB_REF}, corrected Forever facts; supplemental Wowhead Forever and Classic maps.",
              f"-- AllTheThings {ATT_REF}, compiled Forever quest/NPC facts.",
-             "-- AHledger and matching WoWDB references supplement missing endpoints and objective requirements.",
+             "-- AHledger, WoWDB and reviewed web references supplement endpoints and objective requirements.",
              "-- Source records require live-client verification. Authored route locations take priority.",
              "local _, ns = ...", "ns.foreverLocationMaps = {"]
     used_maps = {point["mapId"] for record in records.values()

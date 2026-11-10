@@ -19,6 +19,15 @@ local function hasPoint(step)
     return type(step.mapId) == "number" and type(step.x) == "number" and type(step.y) == "number"
         and step.x > 0 and step.x < 100 and step.y > 0 and step.y < 100
 end
+local function questName(step)
+    local record = (ns.foreverQuestLocations or {})[step.questId]
+    if record and record.name and record.name ~= "" then return record.name end
+    local name = tostring(step.title)
+    for _, prefix in ipairs({"^Work on: ", "^Pick up: ", "^Complete: ", "^Accept: "}) do
+        name = name:gsub(prefix, "")
+    end
+    return name:gsub(" %(%d+/%d+%)", "")
+end
 for _, guide in ipairs(guides:List()) do
     local races, classes = {HUMAN = true, ORC = true}, {HUNTER = true}
     for _, step in ipairs(guide.steps) do
@@ -51,7 +60,7 @@ for _, guide in ipairs(guides:List()) do
                                 total.requirements = total.requirements + 1
                                 guidance = step.objectiveSource .. " (" .. step.objectiveKind .. "): " .. step.text
                             end
-                            gaps[#gaps + 1] = {guide.id, tostring(step.questId), action, tostring(step.title), guidance}
+                            gaps[#gaps + 1] = {guide.id, tostring(step.questId), questName(step), action, guidance}
                         end
                     end
                 end
@@ -63,7 +72,7 @@ end
 local lines = {
     "# Forever quest location coverage", "",
     "Generated from the bundled manifest by `scripts/audit_quest_locations.lua`.", "",
-    "Sources are the corrected Forever facts from QuestieDB, the compiled AllTheThings Forever catalog, Wowhead Forever and Classic quest maps, and recorded quest giver/finisher names from AHledger and matching WoWDB references. Exact revisions and the refresh command are in `docs/QUEST_LOCATION_SOURCES.md`.", "",
+    "Sources are corrected Forever facts from QuestieDB, the compiled AllTheThings Forever catalog, Wowhead Forever and Classic quest maps, AHledger, WoWDB, and reviewed quest/item pages found through web searches. Exact revisions and the refresh command are in `docs/QUEST_LOCATION_SOURCES.md`.", "",
     "Counts include the union of faction, race and class variants within each guide. Shared quests can appear in multiple guides.", "",
     "| Phase | Quest IDs present | Static destinations | Missing static destinations |",
     "| --- | ---: | ---: | ---: |",
@@ -77,7 +86,7 @@ end
 lines[#lines + 1] = ""
 lines[#lines + 1] = "Static coverage describes source availability. It does not verify quest eligibility or live-client accuracy. Some requirements involve crafting, reputation or player-held items and have no single world destination. Unresolved phases use an active quest's live marker when available."
 lines[#lines + 1] = ""
-lines[#lines + 1] = string.format("Of the %d missing objective destinations, %d have specific WoWDB-backed requirements in the tracker. They remain counted as missing static destinations.",
+lines[#lines + 1] = string.format("Of the %d missing objective destinations, %d have specific source-backed requirements in the tracker. They remain counted as missing static destinations.",
     totals.objective.steps - totals.objective.located, totals.objective.requirements)
 lines[#lines + 1] = ""
 lines[#lines + 1] = "| Guide | Quest steps | Static destinations | Missing |"
@@ -86,7 +95,9 @@ for _, row in ipairs(report) do lines[#lines + 1] = string.format("| %s | %d | %
 lines[#lines + 1] = ""
 lines[#lines + 1] = "## Unresolved static destinations"
 lines[#lines + 1] = ""
-lines[#lines + 1] = "| Guide | Quest ID | Phase | Step | Known requirements |"
+lines[#lines + 1] = "Quest names below omit WayForth's Work on, Pick up and Complete labels, chain numbering and faction annotations. Use the clean name and quest ID when searching. The complete 101-quest web search receipt is in `scripts/data/quest_web_search_review.json`."
+lines[#lines + 1] = ""
+lines[#lines + 1] = "| Guide | Quest ID | Quest name | Phase | Known requirements |"
 lines[#lines + 1] = "| --- | ---: | --- | --- | --- |"
 table.sort(gaps, function(a, b) return table.concat(a, "/") < table.concat(b, "/") end)
 for _, row in ipairs(gaps) do

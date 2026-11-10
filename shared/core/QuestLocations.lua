@@ -62,6 +62,8 @@ function Locations:Apply(step, guide, currentMap)
     -- The authored Zephras route also has deliberate cave entrances and ship stops.
     if step.x and step.y and guide.id:find("^zephras%-") then return end
     local record = recordFor(step)
+    if record then step.questName = record.name end
+    if role == "pickup" and record and record.pickupText then step.text = record.pickupText end
     if role == "objective" and record and record.objectiveText then
         step.text = record.objectiveText .. " Check your quest log for current requirements and quantities."
         step.objectiveKind = record.objectiveKind

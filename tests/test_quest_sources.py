@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from import_forever_locations import Catalog
+from import_forever_locations import Catalog, quest_name
 
 
 class QuestSourceTests(unittest.TestCase):
@@ -123,6 +123,58 @@ class QuestSourceTests(unittest.TestCase):
         point = catalog.objectives(quest)[0]
         self.assertEqual(point["kind"], "npc")
         self.assertEqual(point["faction"], "Alliance")
+
+    def test_search_names_remove_instruction_labels_and_keep_real_colons(self):
+        self.assertEqual(quest_name("Work on: Components for the Enchanted Gold Bloodrobe (1/5)"),
+                         "Components for the Enchanted Gold Bloodrobe")
+        self.assertEqual(quest_name("Pick up: Hail the Dragonslayer [H]"), "Hail the Dragonslayer")
+        self.assertEqual(quest_name("Complete: Step Two: More Rock"), "Step Two: More Rock")
+        catalog = self.catalog()
+        self.assertTrue(catalog.matches_quest_name(dict(questId=783, questName="Work on: A Threat Within")))
+
+    def test_item_started_quest_gets_loot_pickup_and_distinct_turnin(self):
+        catalog = self.catalog()
+        quest = catalog.data["Quest"]["783"]
+        quest["10"] = {"3": {"1": {"1": 5770}}}
+        catalog.data["Npc"].update({
+            "823": {"1": "Starter"},
+            "197": {"1": "Finisher", "7": {"12": {"1": {"1": 40, "2": 45}}}},
+            "900": {"1": "Enemy", "13": "H", "7": {"12": {"1": {"1": 20, "2": 30}}}},
+        })
+        catalog.data["Item"]["5770"] = {"1": "Starter item"}
+        catalog.reference(dict(questId=783, questName="A Threat Within", provider="Wowhead Forever", facts={},
+            pickupItem=5770, pickupTargets=[dict(kind="Npc", id=900, name="Enemy")]))
+        record = catalog.record(783)
+        self.assertEqual(record["startItem"], 5770)
+        self.assertEqual(record["pickup"][0]["id"], 900)
+        self.assertEqual(record["pickup"][0]["kind"], "loot")
+        self.assertNotIn("faction", record["pickup"][0])
+        self.assertEqual(record["turnin"][0]["id"], 197)
+
+    def test_target_names_need_unique_matching_entities_and_valid_world_points(self):
+        catalog = self.catalog()
+        catalog.data["Npc"]["900"] = {"1": "Enemy", "7": {"12": {"1": {"1": 20, "2": 30}}}}
+        catalog.data["Npc"]["901"] = {"1": "Instance boss", "7": {"12": {"1": {"1": -1, "2": -1}}}}
+        catalog.npc_names = {"Enemy": [900], "Ambiguous": [900, 901]}
+        self.assertEqual(catalog.reference_targets([dict(kind="Npc", name="Enemy")], "Wowhead Forever")[0]["id"], 900)
+        self.assertEqual(catalog.reference_targets([dict(kind="Npc", id=900, name="Different NPC")], "Wowhead Forever"), [])
+        self.assertEqual(catalog.reference_targets([dict(kind="Npc", name="Ambiguous")], "Wowhead Forever"), [])
+        self.assertEqual(catalog.reference_targets([dict(kind="Npc", id=901, name="Instance boss")], "Wowhead Forever"), [])
+
+    def test_named_reference_cannot_change_known_forever_finisher_identity(self):
+        catalog = self.catalog()
+        catalog.data["Npc"] = {
+            "197": {"1": "Native finisher"},
+            "900": {"1": "Different finisher", "7": {"12": {"1": {"1": 20, "2": 30}}}},
+        }
+        catalog.npc_names = {"Different finisher": [900]}
+        catalog.reference(dict(questId=783, questName="A Threat Within", facts={"Turned in to": "Different finisher"},
+            provider="Wowhead Classic", objective=dict(kind="delivery", text="Deliver the item.",
+            targets=[dict(kind="Npc", name="Different finisher")])))
+        record = catalog.record(783)
+        self.assertNotIn("turnin", record)
+        self.assertNotIn("objective", record)
+        self.assertNotIn("turninName", record)
 
 
 if __name__ == "__main__":
