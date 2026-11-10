@@ -1,6 +1,15 @@
 name: Release WayForth Forever
 
 on:
+  push:
+    tags: ['forever-v*-beta*']
+  workflow_call:
+    inputs:
+      changelog:
+        required: true
+        type: string
+      curseforge:
+        type: boolean
   workflow_dispatch:
     inputs:
       changelog:
@@ -20,11 +29,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      number: ${{ steps.select.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: select
+        run: echo "version=$(python3 scripts/forever_version.py select)" >> "$GITHUB_OUTPUT"
+      - name: Verify selected version
+        env:
+          VERSION: ${{ steps.select.outputs.version }}
+        run: test -n "$VERSION"
+
   build:
-    uses: ./.github/workflows/wayforth-addon.yml
+    needs: version
+    uses: ./.github/workflows/validate-forever.yml
+    with:
+      version: ${{ needs.version.outputs.number }}
 
   release:
-    needs: build
+    needs: [build, version]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,7 +59,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          name: WayForth-1.0.0-beta-Forever-preview
+          name: WayForth-Forever
           path: dist
       - name: Publish the tested ZIP as a GitHub prerelease
         env:
@@ -47,24 +74,40 @@ jobs:
           version=$(unzip -p "$archive" WayForth/WayForth.toc | tr -d '\r' | sed -n 's/^## Version: //p')
           [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-beta[.0-9]*$ ]]
           tag="forever-v$version"
-          if gh release view "$tag" >/dev/null 2>&1; then
+          if git ls-remote --exit-code origin "refs/tags/$tag" >/dev/null; then
             git fetch origin "refs/tags/$tag:refs/tags/$tag"
-            [[ $(git rev-list -n 1 "$tag") == "$GITHUB_SHA" ]] || { echo "This version already belongs to another commit."; exit 1; }
+            [[ $(git rev-list -n 1 "$tag") == "$GITHUB_SHA" ]] || { echo "Tag targets another commit."; exit 1; }
+          fi
+          if gh release view "$tag" >/dev/null 2>&1; then
             existing=$(mktemp -d)
+            if ! gh release view "$tag" --json assets --jq '.assets[].name' | grep -Fxq "$(basename "$archive")"; then
+              gh release upload "$tag" "$archive"
+            fi
             gh release download "$tag" --pattern "$(basename "$archive")" --dir "$existing"
             # ZIP member timestamps may differ between builds of the same commit.
             unzip -q "$archive" -d "$existing/current"
             unzip -q "$existing/$(basename "$archive")" -d "$existing/released"
             diff -qr "$existing/current" "$existing/released"
           else
-            printf '%s\n' "$CHANGELOG" > "$RUNNER_TEMP/notes.md"
+            notes=(--generate-notes)
+            if [[ -n "$CHANGELOG" ]]; then
+              printf '%s\n' "$CHANGELOG" > "$RUNNER_TEMP/notes.md"
+              notes=(--notes-file "$RUNNER_TEMP/notes.md")
+            fi
             gh release create "$tag" "$archive" --target "$GITHUB_SHA" --prerelease \
-              --title "WayForth $version (Forever)" --notes-file "$RUNNER_TEMP/notes.md"
+              --title "WayForth $version (Forever)" "${notes[@]}"
           fi
       - name: Submit to CurseForge
-        if: inputs.curseforge
+        if: inputs.curseforge || (github.event_name == 'push' && vars.CURSEFORGE_PUBLISH_TAGS == 'true')
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID }}
           CHANGELOG: ${{ inputs.changelog }}
-        run: bash scripts/upload-forever.sh dist/*.zip
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: forever-v${{ needs.version.outputs.number }}
+        run: |
+          if [[ -z "$CHANGELOG" ]]; then
+            CHANGELOG=$(gh release view "$RELEASE_TAG" --json body --jq .body)
+            export CHANGELOG="${CHANGELOG:-WayForth Forever $RELEASE_TAG}"
+          fi
+          bash scripts/upload-forever.sh dist/*.zip

@@ -216,3 +216,16 @@ Check the project's Files page for its review status. If an upload loses its res
 ## GitHub releases
 
 Open [Release WayForth Forever](https://github.com/PhatZero/Wayforth/actions/workflows/release.yml), choose **Run workflow** on `main`, and enter release notes. The workflow runs the addon tests and attaches the installable ZIP to a tagged GitHub prerelease. Select **Also submit the beta to CurseForge** to upload it there in the same run.
+
+### Forever beta versioning
+
+Push a tag on the commit to release, for example:
+
+```sh
+git tag forever-v1.0.0-beta.1
+git push origin forever-v1.0.0-beta.1
+```
+
+The tag sets the version in the installable ZIP, manifest, addon UI, and GitHub prerelease. To also send tag-triggered releases to CurseForge, set the GitHub Actions repository variable `CURSEFORGE_PUBLISH_TAGS` to `true` and configure the project ID and token above. Tag pushes default to GitHub only.
+
+Running the release workflow on `main` chooses the next numbered beta in the manifest's series. A rerun on the same tagged commit reuses its numbered version. Ordinary builds do not allocate release numbers.

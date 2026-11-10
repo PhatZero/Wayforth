@@ -1,0 +1,62 @@
+name: Test and package Forever
+on:
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  addon-validate:
+    name: Test and package WayForth
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Stamp release version
+        if: inputs.version != ''
+        env:
+          VERSION: ${{ inputs.version }}
+        run: python3 scripts/forever_version.py stamp "$VERSION"
+      - name: Validate Lua 5.1 syntax
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lua5.1
+          find shared clients/forever -name '*.lua' -print0 | xargs -0 -n1 luac5.1 -p
+      - name: Verify Forever full character names and surname compatibility
+        run: lua5.1 tests/lua/test_forever_names.lua
+      - name: Verify primary buttons render single captions
+        run: lua5.1 tests/lua/test_button_labels.lua
+      - name: Exercise quest sync in Lua 5.1
+        run: lua5.1 tests/lua/test_quest_sync.lua
+      - name: Exercise Guide Details previews and switching in Lua 5.1
+        run: lua5.1 tests/lua/test_guide_details.lua
+      - name: Exercise Smart Routes and quest ID auditing in Lua 5.1
+        run: lua5.1 tests/lua/test_smart_routes.lua
+      - name: Verify full 1-60 faction leveling tester library
+        run: lua5.1 tests/lua/test_main_leveling.lua
+      - name: Test Kalimdor Alliance source quests and route switching
+        run: lua5.1 tests/lua/test_kalimdor_routes.lua
+      - name: Verify faction quest IDs and map coordinates
+        run: lua5.1 tests/lua/test_guide_maps.lua
+      - name: Exercise waypoint and arrow fallbacks in Lua 5.1
+        run: lua5.1 tests/lua/test_navigation.lua
+      - name: Validate all Skyborne class/faction quest coordinate coverage
+        run: lua5.1 tests/lua/test_zephras_location_catalog.lua
+      - name: Run manifest and offline tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Build installable addon ZIP
+        run: python3 scripts/build.py
+      - name: Upload preview ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: WayForth-Forever
+          path: dist/*.zip
+          if-no-files-found: error
