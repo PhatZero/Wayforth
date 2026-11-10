@@ -150,6 +150,29 @@ end
 -- Find the earliest unfinished, source-backed prerequisite for a quest.
 -- Missing a quest from the log is not proof that the route cannot proceed:
 -- the player may need to pick it up, or finish an earlier quest first.
+local function questHasObjective(questID, steps)
+    for _, step in ipairs(steps) do
+        if step.questId == questID and step.action == "objective" then return true end
+    end
+    return false
+end
+
+local function activePhase(questID, steps)
+    local isReady = ready(questID)
+    for index, step in ipairs(steps) do
+        if step.questId == questID
+            and (isReady and step.action == "turnin"
+                or not isReady and step.action == "objective") then
+            return index
+        end
+    end
+    if not questHasObjective(questID, steps) then
+        for index, step in ipairs(steps) do
+            if step.questId == questID and step.action == "turnin" then return index end
+        end
+    end
+end
+
 local function recoveryPickup(questID, steps, visited)
     if type(questID) ~= "number" then return nil, "Unknown quest." end
     if flag(questID) or active(questID) then return nil, nil end
@@ -166,7 +189,16 @@ local function recoveryPickup(questID, steps, visited)
         return nil, "Quest " .. questID .. " is a required prerequisite but its pickup is not authored yet."
     end
     for _, requirement in ipairs(knownStep.requires or {}) do
-        if not flag(requirement) and not active(requirement) then
+        if not flag(requirement) then
+            if active(requirement) then
+                local phase = activePhase(requirement, steps)
+                if phase then
+                    return phase, "Finish active prerequisite quest " .. requirement ..
+                        " before attempting the next pickup."
+                end
+                return nil, "Finish active prerequisite quest " .. requirement ..
+                    "; its remaining objective is not authored yet."
+            end
             local earlier, reason = recoveryPickup(requirement, steps, visited)
             if earlier then return earlier, reason end
             -- Never tell a player an unavailable downstream quest is offered
@@ -223,7 +255,7 @@ function Routes:Preview(id, mode)
                 -- On phase-driven Zephras, require the current quest phase.
                 local usable = not self:NeedsLiveQuest(id)
                     or (step.action ~= "accept"
-                        and (step.action ~= "turnin" or isReady)
+                        and (step.action ~= "turnin" or isReady or not questHasObjective(questId, steps))
                         and (step.action ~= "objective" or not isReady))
                 if usable then
                     local phase
