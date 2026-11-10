@@ -141,10 +141,21 @@ function Routes:RecommendNextZone(id)
     end
     return nil
 end
--- Zephras is a story/phase-driven starting zone. Above the early tutorial
--- levels, level alone is not evidence that a quest giver is available.
+-- Every leveling guide uses the same recovery contract. The onboarding
+-- tutorial is the sole guide that has no quest-log-backed progression.
 function Routes:NeedsLiveQuest(id)
-    return (id == "zephras-alliance" or id == "zephras-horde") and currentLevel() >= 5
+    local guide = ns.Modules.Guides:GetGuide(id)
+    if not guide or guide.id ~= id or id == "first-steps" then return false end
+    if id == "zephras-alliance" or id == "zephras-horde" then
+        -- Preserve hand-authored level 1-4 story-mode entry behavior.
+        return currentLevel() >= 5
+    end
+    return type(guide.steps) == "table" and #guide.steps > 0
+end
+
+local function isSourceCatalog(guide)
+    return guide and guide.id ~= "zephras-alliance"
+        and guide.id ~= "zephras-horde" and guide.id ~= "first-steps"
 end
 
 -- Find the earliest unfinished, source-backed prerequisite for a quest.
@@ -173,7 +184,7 @@ local function activePhase(questID, steps)
     end
 end
 
-local function recoveryPickup(questID, steps, visited)
+local function recoveryPickup(questID, steps, visited, allowUnmapped)
     if type(questID) ~= "number" then return nil, "Unknown quest." end
     if flag(questID) or active(questID) then return nil, nil end
     if visited[questID] then return nil, "A quest prerequisite loop was detected." end
@@ -199,7 +210,7 @@ local function recoveryPickup(questID, steps, visited)
                 return nil, "Finish active prerequisite quest " .. requirement ..
                     "; its remaining objective is not authored yet."
             end
-            local earlier, reason = recoveryPickup(requirement, steps, visited)
+            local earlier, reason = recoveryPickup(requirement, steps, visited, allowUnmapped)
             if earlier then return earlier, reason end
             -- Never tell a player an unavailable downstream quest is offered
             -- when its upstream quest cannot be resolved.
@@ -208,11 +219,17 @@ local function recoveryPickup(questID, steps, visited)
     end
     if pickupIndex then
         local pickup = steps[pickupIndex]
-        -- A target without an actual pickup location can be described but must
-        -- not generate a speculative arrow or map pin.
         if type(pickup.x) == "number" and type(pickup.y) == "number" then
+            local caution = allowUnmapped and
+                " Candidate pickup coordinates are source-indexed, not verified in the game." or ""
             return pickupIndex, "Quest pickup needed: " .. tostring(pickup.title or questID) ..
-                ". If it is not offered, check its earlier prerequisites."
+                ". If it is not offered, check its earlier prerequisites." .. caution
+        end
+        if allowUnmapped then
+            -- A missing coordinate is not a reason to strand the guide.
+            -- Show the pickup instruction with NO synthesized arrow.
+            return pickupIndex, "Quest pickup needed: " .. tostring(pickup.title or questID) ..
+                ". Pickup location unverified; use the zone or hub label and in-game map. No waypoint is available."
         end
         return nil, "Quest " .. questID .. " is unfinished, but no verified pickup location is available."
     end
@@ -275,9 +292,41 @@ function Routes:Preview(id, mode)
             return matchedIndex, "Matched a quest in your quest log. WayForth will track its current phase."
         end
         if self:NeedsLiveQuest(id) then
-            -- Prefer the selected route's quest chain, not an unrelated quest
-            -- that merely shares the player's level. This also recovers older
-            -- saved cursors pointing at a turn-in that the player never accepted.
+            local catalog = isSourceCatalog(guide)
+            -- The optional Smart Start is still level-aware, but only suggests
+            -- a candidate PICKUP (or its known prerequisites), never a guessed
+            -- turn-in. A large level mismatch should offer a different zone.
+            if catalog and type(guide.levelMax) == "number"
+                and level > guide.levelMax + 4 then
+                local nextZone = self:RecommendNextZone(id)
+                return nil, nextZone and
+                    ("No level-suitable quests in this guide. Consider " .. nextZone .. ".")
+                    or "This guide is below your level. Choose From Beginning to follow its full quest list."
+            end
+            if catalog and saved.current == 1
+                and not next(saved.completed or {}) and not next(saved.skipped or {}) then
+                local best, bestScore, bestReason
+                for index, step in ipairs(steps) do
+                    if step.action == "accept" and type(step.questId) == "number"
+                        and not flag(step.questId)
+                        and type(step.level) == "number"
+                        and step.level <= level + 3 and step.level > level - 5 then
+                        local pickup, reason = recoveryPickup(step.questId, steps, {}, true)
+                        if pickup then
+                            local score = -math.abs(level - step.level) * 10
+                                + ((type(steps[pickup].x) == "number") and 1 or 0)
+                                - index * 0.001
+                            if not bestScore or score > bestScore then
+                                best, bestScore, bestReason = pickup, score, reason
+                            end
+                        end
+                    end
+                end
+                if best then return best, bestReason end
+            end
+            -- Prefer the currently selected quest chain, not an unrelated
+            -- catalog quest at the same level. Recover legacy cursors that
+            -- point at a turn-in not accepted by this character.
             local selected = steps[saved.current]
             local targetId = selected and selected.questId
             if type(targetId) ~= "number" or flag(targetId) then
@@ -290,11 +339,11 @@ function Routes:Preview(id, mode)
                 end
             end
             if type(targetId) == "number" then
-                local pickup, reason = recoveryPickup(targetId, steps, {})
+                local pickup, reason = recoveryPickup(targetId, steps, {}, catalog)
                 if pickup then return pickup, reason end
-                return nil, reason or "Quest chain needs manual verification. No quest pickup can be confirmed from the guide data."
+                return nil, reason or "Quest prerequisite needs review. No confirmed pickup can be found in this guide."
             end
-            return nil, "No quest in this part of the route can be recovered automatically. Try an earlier step or a different guide."
+            return nil, "No recoverable quest in this guide. Check your quest history or choose another guide."
         end
     end
 
@@ -454,7 +503,7 @@ function Routes:Recalculate(force)
     local id = guides:GetGuide().id
     local saved = guides:GetProgress(id)
     local settings = ns.Modules.Database
-    -- Older Zephras SavedVariables did not always store a route mode; the
+    -- Older SavedVariables did not always store a route mode; the
     -- guide UI already interprets a missing mode as Recommended.
     local routeMode = saved and (saved.routeMode or (self:NeedsLiveQuest(id) and "recommended"))
     if not saved or (routeMode ~= "recommended" and not force)
