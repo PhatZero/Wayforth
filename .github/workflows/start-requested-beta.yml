@@ -1,0 +1,17 @@
+name: Start requested Forever beta
+on:
+  push:
+    branches: ['release-dispatch/forever-2548650a']
+permissions:
+  actions: write
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start release from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run release.yml --repo PhatZero/Wayforth --ref main -f curseforge=true \
+            -f changelog='Quest sync now recovers missing pickups and prerequisites when joining Forever leveling guides mid-route. Zephras Isle routing checks your live quest log before directing you to an objective. The dashboard footer shows quest-sync results and paused status.'
