@@ -1,0 +1,70 @@
+name: Release WayForth Forever
+
+on:
+  workflow_dispatch:
+    inputs:
+      changelog:
+        description: Release notes shown to players
+        required: true
+        type: string
+      curseforge:
+        description: Also submit the beta to CurseForge
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wayforth-forever-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    uses: ./.github/workflows/wayforth-addon.yml
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: WayForth-1.0.0-beta-Forever-preview
+          path: dist
+      - name: Publish the tested ZIP as a GitHub prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGELOG: ${{ inputs.changelog }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          archives=(dist/*.zip)
+          [[ ${#archives[@]} == 1 && -f ${archives[0]} ]]
+          archive=${archives[0]}
+          version=$(unzip -p "$archive" WayForth/WayForth.toc | tr -d '\r' | sed -n 's/^## Version: //p')
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-beta[.0-9]*$ ]]
+          tag="forever-v$version"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            git fetch origin "refs/tags/$tag:refs/tags/$tag"
+            [[ $(git rev-list -n 1 "$tag") == "$GITHUB_SHA" ]] || { echo "This version already belongs to another commit."; exit 1; }
+            existing=$(mktemp -d)
+            gh release download "$tag" --pattern "$(basename "$archive")" --dir "$existing"
+            # ZIP member timestamps may differ between builds of the same commit.
+            unzip -q "$archive" -d "$existing/current"
+            unzip -q "$existing/$(basename "$archive")" -d "$existing/released"
+            diff -qr "$existing/current" "$existing/released"
+          else
+            printf '%s\n' "$CHANGELOG" > "$RUNNER_TEMP/notes.md"
+            gh release create "$tag" "$archive" --target "$GITHUB_SHA" --prerelease \
+              --title "WayForth $version (Forever)" --notes-file "$RUNNER_TEMP/notes.md"
+          fi
+      - name: Submit to CurseForge
+        if: inputs.curseforge
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID }}
+          CHANGELOG: ${{ inputs.changelog }}
+        run: bash scripts/upload-forever.sh dist/*.zip

@@ -212,3 +212,7 @@ Add a [CurseForge author API token](https://authors.curseforge.com/account/api-t
 To submit a beta, run the same workflow, check **Upload the tested Forever beta to CurseForge**, and enter player-facing release notes.
 The workflow submits the validated installable ZIP for Forever 1.60.1 and logs the returned CurseForge file ID.
 Check the project's Files page for its review status. If an upload loses its response, check Files before submitting the same build again.
+
+## GitHub releases
+
+Open [Release WayForth Forever](https://github.com/PhatZero/Wayforth/actions/workflows/release.yml), choose **Run workflow** on `main`, and enter release notes. The workflow runs the addon tests and attaches the installable ZIP to a tagged GitHub prerelease. Select **Also submit the beta to CurseForge** to upload it there in the same run.
