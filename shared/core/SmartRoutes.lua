@@ -255,6 +255,7 @@ function Routes:Switch(id, mode)
     local saved = guides:GetProgress(id)
     if mode ~= "resume" then guides:SetCurrent(index, id) end
     saved.routeMode = mode
+    saved.awaitingQuestMatch = false
     saved.lastLevelAtSwitch = currentLevel()
     -- Every guide retains its own currentStepId and completed map.
     ns:Call("Navigator", "ResetTarget")
@@ -292,7 +293,7 @@ function Routes:NearbyGroup()
     local guides = ns.Modules.Guides
     local saved = guides:GetProgress()
     local steps = guides:GetSteps()
-    if not saved then return {} end
+    if not saved or saved.awaitingQuestMatch then return {} end
     local start = saved.current
     local anchor = steps[start]
     if not anchor then return {} end
@@ -353,13 +354,21 @@ function Routes:Recalculate()
     local id = guides:GetGuide().id
     local saved = guides:GetProgress(id)
     local settings = ns.Modules.Database
-    if not saved or saved.routeMode ~= "recommended"
+    -- Older Zephras SavedVariables did not always store a route mode; the
+    -- guide UI already interprets a missing mode as Recommended.
+    local routeMode = saved and (saved.routeMode or (self:NeedsLiveQuest(id) and "recommended"))
+    if not saved or routeMode ~= "recommended"
         or (settings and settings:Get("smartRouting") == false)
         or (settings and settings:Get("guidePaused") == true)
         or (settings and settings:Get("autoRecovery") == false) then return false end
     local index = self:Preview(id, "recommended")
-    if not index then return false end
-    if index == saved.current then return false end
+    local blocked = not index and self:NeedsLiveQuest(id) or false
+    local changed = (saved.awaitingQuestMatch == true) ~= blocked
+    saved.awaitingQuestMatch = blocked
+    if not index then return changed end
+    if index == saved.current then return changed end
     guides:SetCurrent(index, id)
+    -- A prior manual navigation target belongs to the old guide step.
+    ns:Call("Navigator", "ResetTarget")
     return true
 end
