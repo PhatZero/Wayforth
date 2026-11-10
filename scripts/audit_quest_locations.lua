@@ -58,7 +58,7 @@ end
 local lines = {
     "# Forever quest location coverage", "",
     "Generated from the bundled manifest by `scripts/audit_quest_locations.lua`.", "",
-    "Sources are the corrected Forever facts from QuestieDB, the compiled AllTheThings Forever catalog, Wowhead Forever and Classic quest maps, and recorded quest giver/finisher names from AHledger. Exact revisions and the refresh command are in `docs/QUEST_LOCATION_SOURCES.md`.", "",
+    "Sources are the corrected Forever facts from QuestieDB, the compiled AllTheThings Forever catalog, Wowhead Forever and Classic quest maps, and recorded quest giver/finisher names from AHledger and matching WoWDB references. Exact revisions and the refresh command are in `docs/QUEST_LOCATION_SOURCES.md`.", "",
     "Counts include the union of faction, race and class variants within each guide. Shared quests can appear in multiple guides.", "",
     "| Phase | Quest IDs present | Static destinations | Missing static destinations |",
     "| --- | ---: | ---: | ---: |",

@@ -50,6 +50,11 @@ for _, guideId in ipairs({"alliance-elwynn", "horde-tirisfal-glades"}) do
     assert(current.id == legacy[oldIndex].id)
 end
 
+local supplies = assert(find("alliance-silithus", 8856, "turnin"))
+assert(supplies.hub == "Calandrath" and supplies.mapId == 1451,
+    "The matching WoWDB finisher must use the NPC's Forever map position")
+assert(supplies.locationSource:find("WoWDB", 1, true), "Retain the finisher reference's provenance")
+
 -- A kill/loot target's allegiance must not restrict the quest's player faction.
 local claw = assert(find("horde-ashenvale", 2, "accept"))
 assert(claw.x and claw.y and claw.locationKind == "loot",

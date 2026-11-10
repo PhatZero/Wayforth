@@ -1,0 +1,24 @@
+[
+  {
+    "questId": 8856,
+    "questName": "Desert Survival Kits",
+    "facts": {
+      "Turned in to": "Calandrath"
+    },
+    "source": "https://www.wowdb.com/quests/8856-desert-survival-kits",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 9439,
+    "questName": "Unclaimed Baggage",
+    "facts": {
+      "Turned in to": "Advisor Sarophas"
+    },
+    "source": "https://www.wowdb.com/quests/9439-unclaimed-baggage",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  }
+]

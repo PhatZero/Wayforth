@@ -64,6 +64,12 @@ class QuestSourceTests(unittest.TestCase):
         self.assertEqual(points[0]["mapId"], 1429)
         self.assertEqual(points[0]["source"], "Wowhead Classic")
 
+    def test_reference_matches_faction_label_without_changing_quest_id(self):
+        catalog = self.catalog()
+        catalog.data["guideNames"] = {"8856": "Desert Survival Kits (A)"}
+        self.assertTrue(catalog.matches_quest_name(dict(questId=8856, questName="Desert Survival Kits")))
+        self.assertFalse(catalog.matches_quest_name(dict(questId=8856, questName="Unclaimed Baggage")))
+
     def test_forever_fact_uses_native_coordinates(self):
         catalog = self.catalog()
         fact = self.fact()

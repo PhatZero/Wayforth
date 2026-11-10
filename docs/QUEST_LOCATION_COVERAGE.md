@@ -2,7 +2,7 @@
 
 Generated from the bundled manifest by `scripts/audit_quest_locations.lua`.
 
-Sources are the corrected Forever facts from QuestieDB, the compiled AllTheThings Forever catalog, Wowhead Forever and Classic quest maps, and recorded quest giver/finisher names from AHledger. Exact revisions and the refresh command are in `docs/QUEST_LOCATION_SOURCES.md`.
+Sources are the corrected Forever facts from QuestieDB, the compiled AllTheThings Forever catalog, Wowhead Forever and Classic quest maps, and recorded quest giver/finisher names from AHledger and matching WoWDB references. Exact revisions and the refresh command are in `docs/QUEST_LOCATION_SOURCES.md`.
 
 Counts include the union of faction, race and class variants within each guide. Shared quests can appear in multiple guides.
 
@@ -10,7 +10,7 @@ Counts include the union of faction, race and class variants within each guide. 
 | --- | ---: | ---: | ---: |
 | accept | 2916 | 2899 | 17 |
 | objective | 1876 | 1754 | 122 |
-| turnin | 2926 | 2909 | 17 |
+| turnin | 2926 | 2910 | 16 |
 
 Static coverage describes source availability. It does not verify quest eligibility or live-client accuracy. Some requirements involve crafting, reputation or player-held items and have no single world destination. Unresolved phases use an active quest's live marker when available.
 
@@ -33,7 +33,7 @@ Static coverage describes source availability. It does not verify quest eligibil
 | alliance-ungoro | 131 | 131 | 0 |
 | alliance-felwood | 197 | 195 | 2 |
 | alliance-winterspring | 121 | 118 | 3 |
-| alliance-silithus | 270 | 262 | 8 |
+| alliance-silithus | 270 | 263 | 7 |
 | alliance-hyjal | 2 | 1 | 1 |
 | alliance-barrens | 141 | 140 | 1 |
 | alliance-moonglade | 70 | 69 | 1 |
@@ -145,7 +145,6 @@ Static coverage describes source availability. It does not verify quest eligibil
 | alliance-silithus | 8541 | objective | Work on: Grinding Stones for the Guard (A) |
 | alliance-silithus | 8781 | objective | Work on: Arms for the Field (A) |
 | alliance-silithus | 8856 | accept | Desert Survival Kits (A) |
-| alliance-silithus | 8856 | turnin | Desert Survival Kits (A) |
 | alliance-silithus | 9023 | objective | Work on: The Perfect Poison |
 | alliance-stranglethorn-vale | 1036 | objective | Work on: Avast Ye, Scallywag |
 | alliance-stranglethorn-vale | 95384 | accept | Pick up: Partial Mystical Notes |
