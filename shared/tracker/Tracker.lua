@@ -202,10 +202,9 @@ function Tracker:MakeFrame()
     local entries2={
         {"Sync Guide Now",function()
             local _,report=ns.Modules.Guides:Sync(nil,true)
-            ns.Modules.SmartRoutes:Recalculate()
             local saved=ns.Modules.Guides:GetProgress()
             if saved and saved.awaitingQuestMatch then
-                report="No active quest matches the Zephras guide. Use the in-game quest log; WayForth will update when a matching quest is accepted."
+                report="A quest prerequisite cannot be routed safely: " .. tostring(saved.recoveryReason or "Unknown pickup.")
             end
             ns:Print(report or "Sync attempted")
             Tracker:Refresh()
@@ -437,12 +436,16 @@ function Tracker:Refresh()
         -- The cached step remains saved, but is not presented as an available
         -- quest or navigable destination. This also prevents misleading pins
         -- in the upcoming list until the live quest log contains a match.
-        self.objectiveCaption:SetText("QUEST MATCH NEEDED")
-        self.stepTitle:SetText("No matching guide quest")
-        self.objectiveText:SetText("Your active quests do not match this Zephras route. Follow your WoW quest log; WayForth will resync when a matching quest appears.")
-        self.location:SetText("No verified waypoint | Progress preserved")
+        self.objectiveCaption:SetText("QUEST CHAIN NEEDS REVIEW")
+        self.stepTitle:SetText("Prerequisite unavailable")
+        self.objectiveText:SetText(saved.recoveryReason or "The next prerequisite needs additional quest data. Follow your quest log and retry Sync.")
+        self.location:SetText("No verified pickup | Progress preserved")
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
+    end
+    if not saved.awaitingQuestMatch and step.action == "accept"
+        and saved.recoveryReason and saved.recoveryReason:find("Quest pickup needed", 1, true) then
+        self.objectiveCaption:SetText("QUEST PICKUP REQUIRED")
     end
     for key,item in pairs(self.menuButtons) do
         local title=key=="guidePaused" and "Pause Guide" or key=="autoAdvance" and "Auto Advance" or "Show Arrow"
