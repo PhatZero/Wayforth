@@ -93,7 +93,8 @@ local function targetForStep(step)
     if type(mapId) == "number" and type(step.x) == "number" and type(step.y) == "number" then
         local x, y = step.x / 100, step.y / 100
         if validCoord(x, y) then
-            authored = { mapId = mapId, x = x, y = y, source = step.zone and "Public catalog pickup (client unverified)" or "Verified guide location" }
+            authored = { mapId = mapId, x = x, y = y, source = step.locationSource and (step.locationSource .. " " .. tostring(step.action) .. " location")
+                or (step.zone and "Public catalog pickup (client unverified)" or "Verified guide location") }
         end
     end
     -- Turn-ins, pickups and trainer visits should point to their verified NPC

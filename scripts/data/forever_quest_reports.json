@@ -1,0 +1,845 @@
+[
+  {
+    "questId": 92755,
+    "facts": {
+      "Zone": "Desolace",
+      "Giver": "Halea"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/92755-mysterious-mysticism",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 92817,
+    "facts": {
+      "Zone": "Desolace",
+      "Giver": "Talra"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/92817-leather-technique",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 93226,
+    "facts": {
+      "Zone": "Desolace",
+      "Giver": "Captain Pentigast"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/93226-buying-friendship-magram",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 93429,
+    "facts": {
+      "Zone": "Swamp of Sorrows",
+      "Giver": "Karana"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/93429-blood-of-my-blood",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 93430,
+    "facts": {
+      "Zone": "Swamp of Sorrows",
+      "Giver": "Pelluk"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/93430-taking-the-bait-back",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 93464,
+    "facts": {
+      "Zone": "Swamp of Sorrows",
+      "Giver": "Magtoor",
+      "Turned in to": "Azore Aldamort"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/93464-the-visiting-mage",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 93786,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Krom'rosh"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/93786-a-message-in-blood",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 93976,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Kreza Darkthorn",
+      "Turned in to": "Friz Frazzlespark"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/93976-the-goblin-trader",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94480,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Krom'rosh",
+      "Turned in to": "Gorg"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94480-a-gift-from-our-enemies",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94481,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Gorg"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94481-a-serving-of-strength",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94532,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Neza Bloodsnout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94532-gnoll-infestation",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94533,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Neza Bloodsnout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94533-snargl-s-snout",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94535,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Kreza Darkthorn"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94535-bristle-hills-bandits",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94556,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jom-jom",
+      "Turned in to": "Clugfist"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94556-jom-jom-s-escape",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94668,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Clugfist",
+      "Turned in to": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94668-bloodmaster-s-ring",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94669,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94669-pay-to-play",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94670,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94670-bloodmaster-s-ring",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94672,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Tran'gul"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94672-encroaching-twilight",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94680,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Tran'gul"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94680-twilight-missives",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94727,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Tran'gul",
+      "Turned in to": "Clubtoe"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94727-digging-for-answers",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94733,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket",
+      "Turned in to": "Gobam"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94733-our-ogre-friend",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94734,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Gobam"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94734-a-boar-s-delight",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94737,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Gobam",
+      "Turned in to": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94737-a-treat-for-a-friend",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94739,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94739-bloodmaster-s-ring",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94744,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Krom'rosh",
+      "Turned in to": "Da'grosh"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94744-the-wayward-warrior",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94745,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Da'grosh"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94745-carving-a-path",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94748,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Da'grosh"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94748-break-their-chains",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94768,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Da'grosh"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94768-bring-me-his-head",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94841,
+    "facts": {
+      "Zone": "Desolace",
+      "Giver": "Lost Shipping Crate"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94841-lost-shipping-crate",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94930,
+    "facts": {
+      "Zone": "Thousand Needles",
+      "Giver": "Lost Shipping Crate",
+      "Turned in to": "Friz Frazzlespark"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94930-lost-shipping-crate",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94961,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Fuzzle"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94961-biting-the-hand-1-2",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94962,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94962-bloodmaster-s-ring",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94963,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Fuzzle",
+      "Turned in to": "Fuzzle's Treasure"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94963-biting-the-hand",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94964,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94964-bloodmaster-s-ring",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 94965,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/94965-bloodmaster-s-ring",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95033,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Tan'jani",
+      "Turned in to": "Witch Doctor Uzer'i"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95033-on-the-other-side",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95062,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Friz Frazzlespark",
+      "Turned in to": "Krom'rosh"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95062-frazzlespark-s-crate",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95063,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jezap Jinglesprocket",
+      "Turned in to": "Clugfist"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95063-bloodmaster-s-ring",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95118,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Wharfmaster Whizzbuzz"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95118-saltwater-savages",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95120,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "WANTED!",
+      "Turned in to": "Wharfmaster Whizzbuzz"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95120-wanted-old-rot-chum",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95122,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Wharfmaster Whizzbuzz"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95122-unchecked-expansion",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95123,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Wharfmaster Whizzbuzz"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95123-a-blast-ye-scurvy-dogs",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95124,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Wharfmaster Whizzbuzz"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95124-admiral-lamora",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95162,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Na'zok"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95162-paletusk-harvesting",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95163,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Na'zok"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95163-drive-them-back",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95183,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Hamur"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95183-step-one-rock",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95184,
+    "facts": {
+      "Zone": "Riverglades"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95184-the-sharpest-of-blades",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95260,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Painted Hide",
+      "Turned in to": "Argo Brinewhistle"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95260-terrors-from-the-deep",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95261,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Argo Brinewhistle"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95261-it-takes-guts",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95278,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Da'grosh",
+      "Turned in to": "Krom'rosh"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95278-it-is-time-brother",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95288,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Friz Frazzlespark"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95288-smuggler-s-paradise",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95293,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Friz Frazzlespark",
+      "Turned in to": "Captain Bentcoin"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95293-smuggler-s-special",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95294,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Captain Haynes",
+      "Turned in to": "Friz Frazzlespark"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95294-smuggler-s-bargain",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95296,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Friz Frazzlespark",
+      "Turned in to": "Wharfmaster Steamfizzle"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95296-shipping-and-handling-1-2",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95312,
+    "facts": {
+      "Zone": "Tanaris",
+      "Giver": "Tazzik"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95312-coming-to-collect",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95322,
+    "facts": {
+      "Zone": "Stranglethorn Vale",
+      "Giver": "Caravaneer Ruzzgot"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95322-get-the-goods",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95325,
+    "facts": {
+      "Zone": "Stranglethorn Vale",
+      "Giver": "Caravaneer Ruzzgot",
+      "Turned in to": "Venture Co. Ledger"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95325-we-ve-been-robbed",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95326,
+    "facts": {
+      "Zone": "Stranglethorn Vale",
+      "Giver": "Venture Co. Ledger",
+      "Turned in to": "Caravaneer Ruzzgot"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95326-the-big-payback",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95327,
+    "facts": {
+      "Zone": "Stranglethorn Vale",
+      "Giver": "Caravaneer Ruzzgot",
+      "Turned in to": "Friz Frazzlespark"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95327-all-s-well-that-ends-well",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95383,
+    "facts": {
+      "Zone": "Tanaris",
+      "Giver": "Wharfmaster Steamfizzle",
+      "Turned in to": "Tazzik"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95383-shipping-and-handling-2-2",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95384,
+    "facts": {
+      "Zone": "Stranglethorn Vale"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95384-partial-mystical-notes",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95417,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Clubtoe",
+      "Turned in to": "Twilight Brute"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95417-the-purple-ones",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95418,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Clubtoe",
+      "Turned in to": "Tran'gul"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95418-spread-the-word",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95420,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Tran'gul",
+      "Turned in to": "Clugfist"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95420-land-of-giants",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95424,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Clugfist"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95424-might-makes-right",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95425,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Clugfist"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95425-unworthy-champion",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95427,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Clubtoe"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95427-twilight-no-more",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95431,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Da'grosh",
+      "Turned in to": "Crag'rog"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95431-rumblings-of-discontent",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95432,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Crag'rog"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95432-rise-up",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95433,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Crag'rog",
+      "Turned in to": "Clugfist"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95433-death-to-the-executioner",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95601,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Twilight Brute",
+      "Turned in to": "Clubtoe"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95601-the-purple-ones",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95602,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Clubtoe"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95602-sickening-lights",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95792,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Gelinda Coppergleam"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95792-clear-em-out",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95934,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Gelinda Coppergleam"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95934-proof-of-profit",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95951,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Tan'jani"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95951-fetch-n-fletch",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95982,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Jasper Geartoggle"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95982-not-my-circus",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 95992,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "WANTED!",
+      "Turned in to": "Tan'jani"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/95992-wanted-ghostmaw",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 96026,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Hamur"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/96026-step-two-more-rock",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 96063,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Sleebo Fizzlespout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/96063-gaseous-gold",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 96067,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Sleebo Fizzlespout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/96067-rock-em-and-sock-em",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 96103,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Picked Carcass",
+      "Turned in to": "Neza Bloodsnout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/96103-a-feast-for-buzzards",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 96104,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Neza Bloodsnout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/96104-song-of-the-strider",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 96105,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Neza Bloodsnout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/96105-king-of-the-wild-plains",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 96109,
+    "facts": {
+      "Zone": "Riverglades",
+      "Giver": "Neza Bloodsnout"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/96109-a-hunter-s-quiver",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 97048,
+    "facts": {
+      "Zone": "Stranglethorn Vale",
+      "Giver": "Wendel Mathers",
+      "Turned in to": "Captain Aransas"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/97048-returning-to-port",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 97265,
+    "facts": {
+      "Zone": "Desolace",
+      "Giver": "Aka'rai"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/97265-hate-the-hatefury",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 97284,
+    "facts": {
+      "Zone": "Desolace",
+      "Giver": "Vahlarriel Demonslayer"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/97284-vahlarriel-s-vengeance",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 97331,
+    "facts": {
+      "Zone": "Stranglethorn Vale",
+      "Giver": "Zimmix Sputterspark",
+      "Turned in to": "Wharfmaster Lozgil"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/97331-zimmix-s-great-escape",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 97332,
+    "facts": {
+      "Zone": "Stranglethorn Vale",
+      "Giver": "Wharfmaster Lozgil",
+      "Turned in to": "Wharfmaster Whizzbuzz"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/97332-twice-misplaced-trust",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 97884,
+    "facts": {
+      "Zone": "Undercity",
+      "Giver": "Mirelle Tremayne"
+    },
+    "source": "https://ahledger.com/wow-forever/quests/97884-armory-of-sunnyglade",
+    "retrieved": "2026-11-10"
+  }
+]

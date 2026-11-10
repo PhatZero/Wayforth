@@ -22,6 +22,8 @@ for _,file in ipairs({
     local load=assert(loadfile(file),file)
     load("WayForth",ns)
 end
+assert(loadfile("clients/forever/guides/ForeverQuestLocations.lua"))( "WayForth", ns)
+assert(loadfile("shared/core/QuestLocations.lua"))( "WayForth", ns)
 assert(loadfile("shared/core/Guides.lua"))("WayForth",ns)
 assert(loadfile("shared/core/SmartRoutes.lua"))("WayForth",ns)
 local guides,route=ns.Modules.Guides,ns.Modules.SmartRoutes
@@ -44,9 +46,8 @@ for _,guide in ipairs(guides:List()) do
             assert(type(step.id)=="string" and not keys[step.id], "Duplicate step ID in "..guide.id)
             keys[step.id]=true
             assert(type(step.questId)=="number", "Quest ID missing in "..guide.id)
-            assert(step.action=="accept" or step.action=="turnin","Unexpected step kind")
+            assert(step.action=="accept" or step.action=="objective" or step.action=="turnin","Unexpected step kind")
             if step.x or step.y then
-                assert(step.action=="accept","Unconfirmed turn-in coordinate in "..guide.id)
                 assert(type(step.x)=="number" and step.x>=0 and step.x<=100)
                 assert(type(step.y)=="number" and step.y>=0 and step.y<=100)
             end

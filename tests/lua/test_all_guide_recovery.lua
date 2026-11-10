@@ -39,6 +39,8 @@ for _, path in ipairs({
 }) do
     assert(loadfile(path))( "WayForth", ns)
 end
+assert(loadfile("clients/forever/guides/ForeverQuestLocations.lua"))( "WayForth", ns)
+assert(loadfile("shared/core/QuestLocations.lua"))( "WayForth", ns)
 assert(loadfile("shared/core/Guides.lua"))("WayForth", ns)
 assert(loadfile("shared/core/SmartRoutes.lua"))("WayForth", ns)
 local guides, routes = ns.Modules.Guides, ns.Modules.SmartRoutes
@@ -52,8 +54,8 @@ level = 3
 guides:SetActive("alliance-teldrassil")
 local progress = guides:GetProgress()
 local first, reason = routes:Preview("alliance-teldrassil", "recommended")
-assert(first and reason:find("No waypoint", 1, true),
-    "A pickup without coordinates must be followed without a fabricated arrow")
+assert(first and starter[first].x and starter[first].mapId,
+    "Alliance starter pickups need a bundled source location")
 local _, syncReport = guides:Sync(nil, true)
 assert(syncReport:find("pickup", 1, true), "Explicit Sync provides pickup instructions")
 assert(next(progress.completed) == nil, "Synchronizing alone cannot complete quests")

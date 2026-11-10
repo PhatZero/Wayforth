@@ -3,7 +3,10 @@ local Guides = {}
 ns:RegisterModule("Guides", Guides)
 
 local byId = {}
-for _, guide in ipairs(ns.starterGuides or {}) do byId[guide.id] = guide end
+for _, guide in ipairs(ns.starterGuides or {}) do
+    if ns.Modules.QuestLocations then ns.Modules.QuestLocations:Prepare(guide) end
+    byId[guide.id] = guide
+end
 
 local function progressStore()
     if not ns.char then return nil end
@@ -52,7 +55,7 @@ local function canUseRace(restrictions)
     return false
 end
 
-function Guides:GetSteps(id)
+function Guides:GetSteps(id, legacy)
     local guide = self:GetGuide(id)
     if not guide then return {} end
     local classToken
@@ -61,7 +64,10 @@ function Guides:GetSteps(id)
         classToken = token
     end
     local visible = {}
-    for _, step in ipairs(guide.steps or {}) do
+    local locations = ns.Modules.QuestLocations
+    local currentMap = C_Map and type(C_Map.GetBestMapForUnit) == "function"
+        and C_Map.GetBestMapForUnit("player") or nil
+    for _, step in ipairs(legacy and guide.legacySteps or guide.steps or {}) do
         if (not step.faction or step.faction == guide.faction)
             and (not step.class or step.class == classToken)
             and canUseRace(step.races) then
@@ -86,6 +92,7 @@ function Guides:GetSteps(id)
                 resolved.x, resolved.y = pin[1], pin[2]
                 resolved.mapId = ns.zephrasMapID or 2521
             end
+            if locations then locations:Apply(resolved, guide, currentMap) end
             visible[#visible + 1] = resolved
         end
     end
@@ -107,6 +114,10 @@ function Guides:GetProgress(id)
     if type(saved.current) ~= "number" or saved.current ~= saved.current then saved.current = 1 end
     local steps = self:GetSteps(guide.id)
     if #steps == 0 then return nil end
+    if not saved.currentStepId and guide.legacySteps then
+        local previous = self:GetSteps(guide.id, true)[saved.current]
+        if previous then saved.currentStepId = stepKey(previous, saved.current) end
+    end
     if saved.currentStepId then
         for index, step in ipairs(steps) do
             if stepKey(step, index) == saved.currentStepId then saved.current = index; break end
