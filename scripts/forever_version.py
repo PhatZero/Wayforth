@@ -8,8 +8,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TOC = ROOT / "clients/forever/manifest/WayForth.toc"
 NAMESPACE = ROOT / "shared/core/Namespace.lua"
-PREFIX = "forever-v"
-VERSION = r"[0-9]+\.[0-9]+\.[0-9]+-beta(?:\.[1-9][0-9]*)?"
+PREFIX = "forever-"
+VERSION = r"[0-9]+\.[0-9]+b[1-9][0-9]*"
 
 
 def git(*args):
@@ -24,14 +24,14 @@ def select():
             raise ValueError(f"Invalid Forever beta tag: {tag}")
         return tag.removeprefix(PREFIX)
 
-    series = re.search(r"^## Version: ([0-9.]+-beta)(?:\.[0-9]+)?$", TOC.read_text(), re.M)[1]
-    pattern = PREFIX + re.escape(series) + r"\.([1-9][0-9]*)"
-    tags = git("tag", "--list", PREFIX + series + ".*")
+    series = re.search(r"^## Version: ([0-9]+\.[0-9]+)b[1-9][0-9]*$", TOC.read_text(), re.M)[1]
+    pattern = PREFIX + re.escape(series) + r"b([1-9][0-9]*)"
+    tags = git("tag", "--list", PREFIX + series + "b*")
     same_commit = set(git("tag", "--points-at", "HEAD"))
     numbers = {tag: int(m[1]) for tag in tags if (m := re.fullmatch(pattern, tag))}
     existing = [number for tag, number in numbers.items() if tag in same_commit]
     number = max(existing) if existing else max(numbers.values(), default=0) + 1
-    return f"{series}.{number}"
+    return f"{series}b{number}"
 
 
 def stamp(version):

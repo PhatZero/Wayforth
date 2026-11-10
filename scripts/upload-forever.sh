@@ -11,7 +11,7 @@ archive=$1
 toc=$(unzip -p "$archive" WayForth/WayForth.toc | tr -d '\r')
 interface=$(sed -n 's/^## Interface: //p' <<< "$toc")
 version=$(sed -n 's/^## Version: //p' <<< "$toc")
-[[ $interface == 16001 && $version == *-beta* ]] || { echo 'Expected a Forever 1.60.1 beta manifest.' >&2; exit 1; }
+[[ $interface == 16001 && $version =~ ^[0-9]+\.[0-9]+b[1-9][0-9]*$ ]] || { echo 'Expected a Forever 1.60.1 beta manifest.' >&2; exit 1; }
 
 api=https://wow.curseforge.com/api
 header="X-Api-Token: $CURSEFORGE_TOKEN"

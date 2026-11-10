@@ -59,7 +59,7 @@ def source_path(item):
 def manifest():
     text = TOC.read_text(encoding="utf-8-sig")
     assert re.search(r"^## Interface: 16001\s*$", text, re.M), "Forever interface must be 16001"
-    assert re.search(r"^## Version: [0-9]+\.[0-9]+\.[0-9]+-beta(?:\.[1-9][0-9]*)?\s*$", text, re.M), "Version must match package"
+    assert re.search(r"^## Version: [0-9]+\.[0-9]+b[1-9][0-9]*\s*$", text, re.M), "Version must match package"
     assert "## SavedVariables: WoWForeverDB" in text
     assert "## SavedVariablesPerCharacter: WoWForeverCharDB" in text
     scripts = [line.strip().replace("\\", "/") for line in text.splitlines()
@@ -77,7 +77,7 @@ def build():
     scripts = manifest()
     DIST.mkdir(parents=True, exist_ok=True)
     version = re.search(r"^## Version: (.+)$", TOC.read_text(), re.M)[1].strip()
-    target = DIST / f"WayForth-{version}-Forever-16001.zip"
+    target = DIST / f"WayForth-Forever-{version}.zip"
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as package:
         package.write(TOC, "WayForth/WayForth.toc")
         for script in scripts:

@@ -2,7 +2,7 @@ name: Release WayForth Forever
 
 on:
   push:
-    tags: ['forever-v*-beta*']
+    tags: ['forever-*b[0-9]*']
   workflow_call:
     inputs:
       changelog:
@@ -72,8 +72,8 @@ jobs:
           [[ ${#archives[@]} == 1 && -f ${archives[0]} ]]
           archive=${archives[0]}
           version=$(unzip -p "$archive" WayForth/WayForth.toc | tr -d '\r' | sed -n 's/^## Version: //p')
-          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-beta[.0-9]*$ ]]
-          tag="forever-v$version"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+b[1-9][0-9]*$ ]]
+          tag="forever-$version"
           if git ls-remote --exit-code origin "refs/tags/$tag" >/dev/null; then
             git fetch origin "refs/tags/$tag:refs/tags/$tag"
             [[ $(git rev-list -n 1 "$tag") == "$GITHUB_SHA" ]] || { echo "Tag targets another commit."; exit 1; }
@@ -104,7 +104,7 @@ jobs:
           CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID }}
           CHANGELOG: ${{ inputs.changelog }}
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: forever-v${{ needs.version.outputs.number }}
+          RELEASE_TAG: forever-${{ needs.version.outputs.number }}
         run: |
           if [[ -z "$CHANGELOG" ]]; then
             CHANGELOG=$(gh release view "$RELEASE_TAG" --json body --jq .body)

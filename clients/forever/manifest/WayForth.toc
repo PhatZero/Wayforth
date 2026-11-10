@@ -2,7 +2,7 @@
 ## Title: |cff24c9e0Way|r|cffffcd73Forth|r
 ## Notes: Offline-first adventure guide and character companion for WoW: Forever.
 ## Author: WoW Forever
-## Version: 1.0.0-beta
+## Version: 1.0b1
 ## SavedVariables: WoWForeverDB
 ## SavedVariablesPerCharacter: WoWForeverCharDB
 ## X-Category: Quest

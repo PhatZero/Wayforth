@@ -38,7 +38,7 @@ class AddonFoundationTests(unittest.TestCase):
         self.assertLess(scripts.index("Data/ZephrasIsle.lua"), scripts.index("Core/Guides.lua"))
         self.assertLess(scripts.index("Data/ForeverQuestCatalog.lua"), scripts.index("Data/KalimdorAlliance.lua"))
         self.assertLess(scripts.index("Data/KalimdorAlliance.lua"), scripts.index("Core/Guides.lua"))
-        self.assertRegex(TOC.read_text(), r"(?m)^## Version: \d+\.\d+\.\d+-beta(?:\.\d+)?$")
+        self.assertRegex(TOC.read_text(), r"(?m)^## Version: \d+\.\d+b[1-9]\d*$")
         guide = source_path("Data/ZephrasIsle.lua").read_text()
         self.assertIn('id = "zephras-alliance"', guide)
         self.assertIn('id = "zephras-horde"', guide)

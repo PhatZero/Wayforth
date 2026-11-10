@@ -1,7 +1,7 @@
 local addonName, ns = ...
 
 ns.name = addonName
-ns.version = "1.0.0-beta"
+ns.version = "1.0b1"
 ns.schemaVersion = 1
 ns.interfaceTarget = 16001
 ns.Modules = {}

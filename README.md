@@ -1,6 +1,6 @@
 # WayForth — WoW Forever Companion
 
-**Version:** 1.0.0-beta (premium interface integration / in-game QA required)  
+**Version:** 1.0b1 (premium interface integration / in-game QA required)  
 **First target:** WoW: Forever 1.60.1, Interface `16001`  
 **Account or subscription required:** No. There is no website integration or network client.
 
@@ -222,8 +222,8 @@ Open [Release WayForth Forever](https://github.com/PhatZero/Wayforth/actions/wor
 Push a tag on the commit to release, for example:
 
 ```sh
-git tag forever-v1.0.0-beta.1
-git push origin forever-v1.0.0-beta.1
+git tag forever-1.0b1
+git push origin forever-1.0b1
 ```
 
 The tag sets the version in the installable ZIP, manifest, addon UI, and GitHub prerelease. To also send tag-triggered releases to CurseForge, set the GitHub Actions repository variable `CURSEFORGE_PUBLISH_TAGS` to `true` and configure the project ID and token above. Tag pushes default to GitHub only.
