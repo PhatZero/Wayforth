@@ -211,6 +211,13 @@ function Navigator:Refresh()
     local guides = ns.Modules.Guides
     local step = guides:CurrentStep()
     local saved = guides:GetProgress()
+    -- Never display a direction to an unverified Zephras step when the
+    -- recommended guide has no matching quest in the actual player log.
+    if saved and saved.awaitingQuestMatch then
+        self.target = nil
+        self:UpdateDirection()
+        return
+    end
     if self.overrideIndex then
         local steps = guides:GetSteps()
         local alternate = steps[self.overrideIndex]

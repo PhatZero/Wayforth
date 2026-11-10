@@ -25,6 +25,7 @@ local function dispatch(event, ...)
         invoke("Character", "Capture")
         invoke("Guides", "GetProgress")
         ns:Call("Guides", "Sync")
+        ns:Call("SmartRoutes", "Recalculate")
         invoke("UI", "Initialize")
         invoke("Tracker", "Initialize")
         invoke("Minimap", "Initialize")
@@ -38,18 +39,25 @@ local function dispatch(event, ...)
             ns:Call("Guides", "RecordQuestEvent", event, ...)
         end
         local ok, advanced = ns:Call("Guides", "Sync")
-        if event == "QUEST_TURNED_IN" then ns:Call("SmartRoutes", "Recalculate") end
+        local routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
         ns:Call("Navigator", "Refresh")
-        if ok and advanced then ns:Call("Tracker", "Refresh") end
-        if ok and advanced and ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then
-            ns:Call("UI", "Refresh")
+        if (ok and advanced) or (routeOK and rerouted) then
+            ns:Call("Tracker", "Refresh")
+            if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then
+                ns:Call("UI", "Refresh")
+            end
         end
     elseif event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LEVEL_UP"
         or event == "PLAYER_XP_UPDATE" or event == "ZONE_CHANGED_NEW_AREA"
         or event == "PLAYER_MONEY" then
         ns:Call("Character", "Capture")
-        if event == "PLAYER_LEVEL_UP" then ns:Call("SmartRoutes", "Recalculate") end
+        local routeOK, rerouted
+        if event == "PLAYER_LEVEL_UP" or event == "PLAYER_ENTERING_WORLD"
+            or event == "ZONE_CHANGED_NEW_AREA" then
+            routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
+        end
         ns:Call("Navigator", "Refresh")
+        if routeOK and rerouted then ns:Call("Tracker", "Refresh") end
         if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
     elseif event == "PLAYER_LOGOUT" then
         ns:Call("Character", "Capture")

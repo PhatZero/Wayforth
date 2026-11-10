@@ -41,6 +41,17 @@ local function active(id)
     end
     return ns.state and type(ns.state.acceptedQuestIDs) == "table" and ns.state.acceptedQuestIDs[id] == true
 end
+local function ready(id)
+    if type(id) ~= "number" or type(C_QuestLog) ~= "table" then return false end
+    for _, name in ipairs({ "ReadyForTurnIn", "IsComplete" }) do
+        local func = C_QuestLog[name]
+        if type(func) == "function" then
+            local ok, value = pcall(func, id)
+            if ok and value == true then return true end
+        end
+    end
+    return false
+end
 local function key(step, index)
     return step.id or index
 end
@@ -130,6 +141,12 @@ function Routes:RecommendNextZone(id)
     end
     return nil
 end
+-- Zephras is a story/phase-driven starting zone. Above the early tutorial
+-- levels, level alone is not evidence that a quest giver is available.
+function Routes:NeedsLiveQuest(id)
+    return (id == "zephras-alliance" or id == "zephras-horde") and currentLevel() >= 5
+end
+
 function Routes:Preview(id, mode)
     mode = MODES[mode] and mode or "recommended"
     if id == "first-steps" and mode == "recommended" then mode = "resume" end
@@ -147,11 +164,55 @@ function Routes:Preview(id, mode)
     end
 
     local level = currentLevel()
+    if mode == "recommended" then
+        -- A quest already in the player's log is authoritative for mid-route
+        -- recovery. Pick its useful phase, not the nearest unverified quest
+        -- from a level-sorted public catalog.
+        local matchedIndex, matchedScore
+        for index, step in ipairs(steps) do
+            local questId = step.questId
+            local audit = ns.Modules.QuestAudit
+            local mismatched = audit and questId and audit:IsMismatched(questId)
+            if type(questId) == "number" and active(questId) and not flag(questId)
+                and not completed(step, index, saved)
+                and not (saved.skipped and saved.skipped[key(step, index)])
+                and not mismatched then
+                local isReady = ready(questId)
+                -- A quest already accepted cannot need its pickup step, and
+                -- an incomplete quest must not point at the turn-in NPC.
+                -- On phase-driven Zephras, require the current quest phase.
+                local usable = not self:NeedsLiveQuest(id)
+                    or (step.action ~= "accept"
+                        and (step.action ~= "turnin" or isReady)
+                        and (step.action ~= "objective" or not isReady))
+                if usable then
+                    local phase
+                    if step.action == "turnin" then phase = isReady and 6 or 3
+                    elseif step.action == "objective" then phase = isReady and 2 or 5
+                    elseif step.action == "manual" then phase = 4
+                    elseif step.action == "accept" then phase = 1
+                    else phase = 2 end
+                    local score = phase * 1000 - math.abs(level - (step.level or level)) * 10 - index * 0.01
+                    if not matchedScore or score > matchedScore then
+                        matchedScore, matchedIndex = score, index
+                    end
+                end
+            end
+        end
+        if matchedIndex then
+            return matchedIndex, "Matched a quest in your quest log. WayForth will track its current phase."
+        end
+        if self:NeedsLiveQuest(id) then
+            return nil, "No actionable Zephras guide step matches your active quest phase. Follow the quests already in your WoW log. WayForth will resync when a tracked objective is available. From Beginning and Resume Saved remain available."
+        end
+    end
+
     local minScore, bestIndex
     for index, step in ipairs(steps) do
         local audit = ns.Modules.QuestAudit
         local mismatch = audit and step.questId and audit:IsMismatched(step.questId)
-        if not mismatch and not completed(step, index, saved) then
+        if not mismatch and not completed(step, index, saved)
+            and not (saved.skipped and saved.skipped[key(step, index)]) then
             local relevant = mode == "beginning"
             local questLevel = step.level
             local onQuest = active(step.questId)
@@ -203,6 +264,7 @@ function Routes:Switch(id, mode)
     local saved = guides:GetProgress(id)
     if mode ~= "resume" then guides:SetCurrent(index, id) end
     saved.routeMode = mode
+    saved.awaitingQuestMatch = false
     saved.lastLevelAtSwitch = currentLevel()
     -- Every guide retains its own currentStepId and completed map.
     ns:Call("Navigator", "ResetTarget")
@@ -240,7 +302,7 @@ function Routes:NearbyGroup()
     local guides = ns.Modules.Guides
     local saved = guides:GetProgress()
     local steps = guides:GetSteps()
-    if not saved then return {} end
+    if not saved or saved.awaitingQuestMatch then return {} end
     local start = saved.current
     local anchor = steps[start]
     if not anchor then return {} end
@@ -301,13 +363,21 @@ function Routes:Recalculate()
     local id = guides:GetGuide().id
     local saved = guides:GetProgress(id)
     local settings = ns.Modules.Database
-    if not saved or saved.routeMode ~= "recommended"
+    -- Older Zephras SavedVariables did not always store a route mode; the
+    -- guide UI already interprets a missing mode as Recommended.
+    local routeMode = saved and (saved.routeMode or (self:NeedsLiveQuest(id) and "recommended"))
+    if not saved or routeMode ~= "recommended"
         or (settings and settings:Get("smartRouting") == false)
         or (settings and settings:Get("guidePaused") == true)
         or (settings and settings:Get("autoRecovery") == false) then return false end
     local index = self:Preview(id, "recommended")
-    if not index then return false end
-    if index == saved.current then return false end
+    local blocked = not index and self:NeedsLiveQuest(id) or false
+    local changed = (saved.awaitingQuestMatch == true) ~= blocked
+    saved.awaitingQuestMatch = blocked
+    if not index then return changed end
+    if index == saved.current then return changed end
     guides:SetCurrent(index, id)
+    -- A prior manual navigation target belongs to the old guide step.
+    ns:Call("Navigator", "ResetTarget")
     return true
 end
