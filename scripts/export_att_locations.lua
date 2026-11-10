@@ -30,7 +30,11 @@ local file = assert(io.open(root .. "/db/Camelot/Categories/Zones.lua"))
 local source = file:read("*a"):gsub("^\239\187\191", "")
 file:close()
 assert(loadstring(source))("AllTheThings", app)
-local facts = {quests = {}, npcs = {}}
+local facts = {quests = {}, npcs = {}, hiddenQuests = {}}
+local hiddenFile = assert(io.open(root .. "/db/Camelot/Categories/HiddenQuestTriggers.lua"))
+local hiddenSource = hiddenFile:read("*a")
+hiddenFile:close()
+for id in hiddenSource:gmatch("hqt%((%d+)[,%)]") do facts.hiddenQuests[id] = true end
 for id, quest in pairs(quests) do
     local objectives = {}
     for _, child in ipairs(quest.g or {}) do

@@ -68,7 +68,8 @@ function Guides:GetSteps(id, legacy)
     local currentMap = C_Map and type(C_Map.GetBestMapForUnit) == "function"
         and C_Map.GetBestMapForUnit("player") or nil
     for _, step in ipairs(legacy and guide.legacySteps or guide.steps or {}) do
-        if (not step.faction or step.faction == guide.faction)
+        if (legacy or not step.hidden)
+            and (not step.faction or step.faction == guide.faction)
             and (not step.class or step.class == classToken)
             and canUseRace(step.races) then
             -- Each visible step gets its own resolved metadata. Shared raw step IDs
@@ -119,9 +120,25 @@ function Guides:GetProgress(id)
         if previous then saved.currentStepId = stepKey(previous, saved.current) end
     end
     if saved.currentStepId then
+        local position
         for index, step in ipairs(steps) do
-            if stepKey(step, index) == saved.currentStepId then saved.current = index; break end
+            if stepKey(step, index) == saved.currentStepId then position = index; break end
         end
+        if not position and guide.legacySteps then
+            local positions = {}
+            for index, step in ipairs(steps) do positions[stepKey(step, index)] = index end
+            -- A corrected faction restriction can remove an old cursor target.
+            -- Continue with the next surviving legacy step in the same guide.
+            local previous = self:GetSteps(guide.id, true)
+            local afterCurrent = false
+            for index, step in ipairs(previous) do
+                local key = stepKey(step, index)
+                if key == saved.currentStepId then afterCurrent = true end
+                if afterCurrent and positions[key] then position = positions[key]; break end
+            end
+            position = position or #steps
+        end
+        saved.current = position or saved.current
     end
     saved.current = math.max(1, math.min(#steps, math.floor(saved.current)))
     saved.currentStepId = stepKey(steps[saved.current], saved.current)

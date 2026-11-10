@@ -26,9 +26,17 @@ function Locations:Prepare(guide)
     for _, step in ipairs(guide.steps) do
         if step.action == "objective" then objectives[step.questId] = true end
     end
-    local steps = {}
-    for _, step in ipairs(guide.steps) do
+    local steps, changed = {}, false
+    for _, original in ipairs(guide.steps) do
+        local step = original
         local record = recordFor(step)
+        if record and (record.hidden or record.faction and not step.faction) then
+            step = {}
+            for key, value in pairs(original) do step[key] = value end
+            step.hidden = record.hidden
+            step.faction = step.faction or record.faction
+            changed = true
+        end
         if step.action == "turnin" and record and record.hasObjective and not objectives[step.questId] then
             local objective = {}
             for key, value in pairs(step) do objective[key] = value end
@@ -42,7 +50,7 @@ function Locations:Prepare(guide)
         end
         steps[#steps + 1] = step
     end
-    if #steps ~= #guide.steps then
+    if changed or #steps ~= #guide.steps then
         guide.legacySteps = guide.steps
         guide.steps = steps
     end

@@ -7,12 +7,15 @@ are retained. The game client reads the generated Lua and performs no downloads.
 import argparse
 import concurrent.futures
 import json
+import html
 from pathlib import Path
 import re
 import subprocess
 import tempfile
 import time
 import urllib.request
+import urllib.error
+from decimal import Decimal, ROUND_HALF_UP
 
 ROOT = Path(__file__).resolve().parents[1]
 QUESTIEDB_REF = "aca0da1c4a5ed0bc12997b9aaeef7b35af9ee26e"
@@ -49,11 +52,16 @@ class Catalog:
         for npc_id, row in data["Npc"].items():
             self.npc_names.setdefault(field(row, 1), []).append(int(npc_id))
         self.att = att
-        self.att_entities = {}
+        self.extra_entities = {}
         self.data = data
         text = (source / "support/Forever/Zones/areaIdToUiMapId.lua").read_text()
         text = text.split("ZoneDB.private.areaIdToUiMapId = [[return {")[1]
         self.maps = {int(area): int(map_id) for area, map_id in re.findall(r"\[(\d+)\] = (\d+)", text)}
+        geometry = json.loads((source / "data/Forever/conversion.json").read_text())["geometry"]
+        self.transforms = {row["area_id"]: row["coefficients"] for row in geometry["transforms"]
+                           if row["area_transform_supported"]}
+        classic_source = (source / "data/Classic/classicQuestDB.lua").read_text()
+        self.classic_ids = {int(quest_id) for quest_id in re.findall(r"^\[(\d+)\] =", classic_source, re.M)}
         self.names = {int(map_id): name.strip().split(" -> ")[-1]
                       for area, map_id, name in re.findall(r"\[(\d+)\] = (\d+), -- ([^\n]+)", text)}
 
@@ -94,16 +102,16 @@ class Catalog:
 
     def index_att(self):
         for npc_id, npc in sorted(self.att.get("npcs", {}).items(), key=lambda item: int(item[0])):
-            self.att_entities[int(npc_id)] = self.att_points(npc.get("coords"), "npc", int(npc_id))
+            self.extra_entities[("Npc", int(npc_id))] = self.att_points(npc.get("coords"), "npc", int(npc_id))
         for _, quest in sorted(self.att.get("quests", {}).items(), key=lambda item: int(item[0])):
             for npc_id in values(quest.get("qgs")):
-                self.att_entities.setdefault(npc_id, []).extend(self.att_points(quest.get("coords"), "npc", npc_id))
+                self.extra_entities.setdefault(("Npc", npc_id), []).extend(self.att_points(quest.get("coords"), "npc", npc_id))
 
     def entity(self, kind, entity_id):
         row = self.data[kind].get(str(entity_id), {})
         points = self.points(field(row, 7 if kind == "Npc" else 4), kind.lower(), entity_id, field(row, 1))
-        if not points and kind == "Npc":
-            points = [dict(point) for point in self.att_entities.get(entity_id, [])]
+        if not points:
+            points = [dict(point) for point in self.extra_entities.get((kind, entity_id), [])]
             for point in points:
                 if field(row, 1):
                     point["name"] = field(row, 1)
@@ -125,6 +133,7 @@ class Catalog:
             for entity_id in values(field(row, key)):
                 for point in self.entity(kind, entity_id):
                     point["kind"] = "loot"
+                    point.pop("faction", None)
                     point["itemId"] = item_id
                     result.append(point)
         for container in values(field(row, 4)):
@@ -165,6 +174,10 @@ class Catalog:
         for row in values(field(objectives, 5)):
             for entity_id in values(field(row, 1)):
                 result.extend(self.entity("Npc", entity_id))
+        for point in result:
+            if point["kind"] == "npc":
+                point["kind"] = "target"
+                point.pop("faction", None)
         result.extend(self.points(field(field(quest, 9), 2), "event"))
         for row in values(field(quest, 29)):
             result.extend(self.points(field(row, 1), "event"))
@@ -173,6 +186,13 @@ class Catalog:
     def record(self, quest_id):
         quest = self.data["Quest"].get(str(quest_id), {})
         record = {}
+        if str(quest_id) in self.att.get("hiddenQuests", {}):
+            record["hidden"] = True
+        mask = field(quest, 6, 0)
+        if isinstance(mask, int) and mask:
+            alliance, horde = bool(mask & 4294967373), bool(mask & 8589934770)
+            if alliance != horde:
+                record["faction"] = "Alliance" if alliance else "Horde"
         for name, points in (("pickup", self.endpoint(quest, 2)),
                              ("objective", self.objectives(quest)),
                              ("turnin", self.endpoint(quest, 3))):
@@ -198,6 +218,10 @@ class Catalog:
                     elif kind == "i":
                         points.extend(self.item(entity_id))
             if points and not record.get("objective"):
+                for point in points:
+                    if point["kind"] == "npc":
+                        point["kind"] = "target"
+                        point.pop("faction", None)
                 record["objective"] = self.unique(points)
         report = self.reports.get(str(quest_id), {}).get("facts", {})
         for role, label in (("pickup", "Giver"), ("turnin", "Turned in to")):
@@ -227,7 +251,43 @@ class Catalog:
                 result.append(point)
         return result
 
+    def index_maps(self, facts):
+        # An explicit entity ID can locate the same NPC/object for another quest.
+        for fact in facts:
+            phases = {}
+            self.supplement(phases, fact)
+            for role in ("pickup", "objective", "turnin"):
+                for point in phases.get(role, []):
+                    entity_type = point.get("entityType", point["kind"])
+                    kind = {"npc": "Npc", "object": "Object"}.get(entity_type)
+                    if kind:
+                        copy = dict(point, kind=entity_type)
+                        self.extra_entities.setdefault((kind, point["id"]), []).append(copy)
+        for key, points in self.extra_entities.items():
+            self.extra_entities[key] = self.unique(points)
+
+    def classic_point(self, area_id, xy):
+        transform = self.transforms.get(area_id)
+        if not transform:
+            return None
+        x = xy[0] * transform["scale_x"] + transform["offset_x"]
+        y = xy[1] * transform["scale_y"] + transform["offset_y"]
+        return [float(Decimal(str(value)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
+                for value in (x, y)]
+
+    def matches_classic(self, fact):
+        quest_id = str(fact["questId"])
+        expected = field(self.data["Quest"].get(quest_id), 1) or self.data.get("guideNames", {}).get(quest_id)
+        def normalize(name):
+            name = re.sub(r"\s*\(\d+/\d+\)\s*", " ", name or "")
+            return re.sub(r"[^a-z0-9]", "", name.lower())
+        return bool(expected and fact.get("questName") and normalize(expected) == normalize(fact["questName"]))
+
     def supplement(self, record, fact):
+        classic = fact.get("flavor") == "classic"
+        if classic and not self.matches_classic(fact):
+            return
+        quest = self.data["Quest"].get(str(fact["questId"]), {})
         roles = {"start": "pickup", "end": "turnin", "requirement": "objective", "sourcerequirement": "objective"}
         additions = {}
         for area, zone in fact.get("mapper", {}).get("objectives", {}).items():
@@ -245,11 +305,26 @@ class Catalog:
                     xy = entry.get("coord")
                     if not role or not xy or not (0 < xy[0] < 100 and 0 < xy[1] < 100):
                         continue
+                    if classic:
+                        # Known endpoints must retain the Forever NPC/object ID.
+                        endpoint_key = {"pickup": 2, "turnin": 3}.get(role)
+                        if endpoint_key:
+                            entities = field(field(quest, endpoint_key), 1 if entry.get("type") == 1 else 2)
+                            if entities and entry["id"] not in values(entities):
+                                continue
+                        xy = self.classic_point(int(area), xy)
+                        if not xy or not (0 < xy[0] < 100 and 0 < xy[1] < 100):
+                            continue
                     point = dict(mapId=map_id, x=xy[0], y=xy[1],
                                  kind="npc" if entry.get("type") == 1 else "object",
-                                 id=entry["id"], name=entry["name"], source="Wowhead")
+                                 id=entry["id"], name=entry["name"], source="Wowhead Classic" if classic else "Wowhead Forever")
                     if entry.get("item"):
+                        point["entityType"] = point["kind"]
                         point["kind"] = "loot"
+                    alliance = entry.get("reactalliance", 0) > 0
+                    horde = entry.get("reacthorde", 0) > 0
+                    if alliance != horde and role != "objective" and point["kind"] != "loot":
+                        point["faction"] = "Alliance" if alliance else "Horde"
                     additions.setdefault(role, []).append(point)
         for role, points in additions.items():
             if not record.get(role):
@@ -258,20 +333,35 @@ class Catalog:
             record["hasObjective"] = True
 
 
-def fetch_map(quest_id, cache):
-    path = cache / f"{quest_id}.json"
+def fetch_map(quest_id, cache, flavor="forever"):
+    directory = cache / flavor
+    directory.mkdir(parents=True, exist_ok=True)
+    path = directory / f"{quest_id}.json"
     if path.exists():
         return json.loads(path.read_text())
-    url = f"https://www.wowhead.com/forever/quest={quest_id}"
+    legacy = cache / f"{quest_id}.json"
+    if flavor == "forever" and legacy.exists():
+        return json.loads(legacy.read_text())
+    url = f"https://www.wowhead.com/{flavor}/quest={quest_id}"
     for attempt in range(3):
         try:
             request = urllib.request.Request(url, headers={"User-Agent": "WayForth-data-audit/1.0"})
             with urllib.request.urlopen(request, timeout=25) as response:
                 page = response.read().decode("utf-8")
             match = re.search(r"new Mapper\((\{[^\n]+\})\)", page)
-            fact = dict(questId=quest_id, mapper=json.loads(match.group(1)) if match else {})
+            title = re.search(r"<title>(.*?) - Quest -", page)
+            fact = dict(questId=quest_id, flavor=flavor, questName=html.unescape(title.group(1)) if title else None,
+                        source=url, mapper=json.loads(match.group(1)) if match else {})
             path.write_text(json.dumps(fact, ensure_ascii=False))
             return fact
+        except urllib.error.HTTPError as error:
+            if error.code == 404:
+                fact = dict(questId=quest_id, flavor=flavor, source=url, mapper={}, status=404)
+                path.write_text(json.dumps(fact))
+                return fact
+            if error.code in (401, 403, 429) or attempt == 2:
+                raise
+            time.sleep(attempt + 1)
         except (OSError, ValueError):
             if attempt == 2:
                 raise
@@ -315,20 +405,27 @@ def main():
             reports[str(fact["questId"])] = fact
     catalog = Catalog(data, source, att, reports)
     catalog.index_att()
+    facts = []
+    for filename in ("forever_quest_maps.json", "classic_quest_maps.json"):
+        facts.extend(json.loads((ROOT / "scripts/data" / filename).read_text()))
+    catalog.index_maps(facts)
     records = {int(quest_id): catalog.record(quest_id) for quest_id in data["wanted"]}
-    for fact in json.loads((ROOT / "scripts/data/forever_quest_maps.json").read_text()):
+    for fact in facts:
         catalog.supplement(records[fact["questId"]], fact)
     needed = [quest_id for quest_id, record in records.items()
               if not record.get("pickup") or not record.get("turnin")
               or record.get("hasObjective") and not record.get("objective")]
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+    for flavor in ("forever", "classic"):
+        requested = needed if flavor == "forever" else [q for q in needed if q in catalog.classic_ids]
         if args.cached_only:
-            needed = [quest_id for quest_id in needed if (args.cache / f"{quest_id}.json").exists()]
-        facts = pool.map(lambda quest_id: fetch_map(quest_id, args.cache), sorted(needed))
-        for fact in facts:
-            catalog.supplement(records[fact["questId"]], fact)
+            requested = [q for q in requested if (args.cache / flavor / f"{q}.json").exists()
+                         or flavor == "forever" and (args.cache / f"{q}.json").exists()]
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+            facts = pool.map(lambda q: fetch_map(q, args.cache, flavor), sorted(requested))
+            for fact in facts:
+                catalog.supplement(records[fact["questId"]], fact)
     lines = ["-- Generated by scripts/import_forever_locations.py. Coordinates are map percentages.",
-             f"-- Questie/QuestieDB {QUESTIEDB_REF}, corrected Forever facts; supplemental Wowhead Forever maps.",
+             f"-- Questie/QuestieDB {QUESTIEDB_REF}, corrected Forever facts; supplemental Wowhead Forever and Classic maps.",
              f"-- AllTheThings {ATT_REF}, compiled Forever quest/NPC facts.",
              "-- AHledger player-recorded quest giver/finisher names supplement missing relationships.",
              "-- Source records require live-client verification. Authored route locations take priority.",

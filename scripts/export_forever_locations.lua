@@ -10,10 +10,13 @@ for line in toc:lines() do
     end
 end
 toc:close()
-local wanted = {}
+local wanted, guideNames = {}, {}
 for _, guide in ipairs(ns.starterGuides) do
     for _, step in ipairs(guide.steps) do
-        if step.questId then wanted[step.questId] = true end
+        if step.questId then
+            wanted[step.questId] = true
+            guideNames[step.questId] = step.title:gsub("^Pick up: ", ""):gsub("^Complete: ", "")
+        end
         for _, id in pairs(step.questIds or {}) do wanted[id] = true end
     end
 end
@@ -21,10 +24,10 @@ end
 -- Use the source project's own correction loader, including Forever traces.
 local loaded = dofile("tools/export/inline.lua").loadForever(true)
 local fields = {
-    Quest = {1, 2, 3, 9, 10, 11, 17, 21, 29},
+    Quest = {1, 2, 3, 6, 9, 10, 11, 17, 21, 29},
     Npc = {1, 7, 13}, Object = {1, 4}, Item = {1, 2, 3, 4, 6, 14},
 }
-local data = { wanted = wanted }
+local data = { wanted = wanted, guideNames = guideNames }
 for kind, indices in pairs(fields) do
     local rows = {}
     for id, row in pairs(loaded[kind].entities) do

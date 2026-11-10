@@ -50,6 +50,40 @@ for _, guideId in ipairs({"alliance-elwynn", "horde-tirisfal-glades"}) do
     assert(current.id == legacy[oldIndex].id)
 end
 
+-- A kill/loot target's allegiance must not restrict the quest's player faction.
+local claw = assert(find("horde-ashenvale", 2, "accept"))
+assert(claw.x and claw.y and claw.locationKind == "loot",
+    "Horde players need the Sharptalon loot waypoint even though the target is friendly to Alliance")
+
+for _, guide in ipairs(guides:List()) do
+    for _, step in ipairs(guides:GetSteps(guide.id)) do
+        assert(step.questId ~= 55296 and step.questId ~= 98294,
+            "Internal completion flags must not become quest pickups or turn-ins")
+    end
+end
+
+-- Corrected faction data removes Horde-only quests from Alliance catalogs.
+local checkedFaction = false
+for _, guide in ipairs(guides:List()) do
+    if guide.faction == "Alliance" and guide.legacySteps then
+        for oldIndex, oldStep in ipairs(guides:GetSteps(guide.id, true)) do
+            if oldStep.questId == 6365 then
+                for _, step in ipairs(guides:GetSteps(guide.id)) do
+                    assert(step.questId ~= 6365, "Horde-only Crossroads deliveries must be filtered")
+                end
+                ns.char.guideProgress[guide.id] = {current = oldIndex, completed = {retained = true}}
+                local saved = guides:GetProgress(guide.id)
+                local current = guides:GetSteps(guide.id)[saved.current]
+                assert(current.questId ~= 6365 and saved.completed.retained,
+                    "An old cursor on an excluded faction quest must resume on a surviving step")
+                checkedFaction = true
+                break
+            end
+        end
+    end
+end
+assert(checkedFaction, "Missing cross-faction source regression example")
+
 -- Unknown endpoint data must not borrow a different quest phase.
 local unknown = {questId = 999999999, action = "turnin"}
 ns.Modules.QuestLocations:Apply(unknown, {id = "fixture", faction = "Alliance", zone = "Elwynn Forest"})

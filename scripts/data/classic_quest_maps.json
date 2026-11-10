@@ -1,0 +1,3954 @@
+[
+  {
+    "questId": 2,
+    "flavor": "classic",
+    "questName": "Sharptalon's Claw",
+    "mapper": {
+      "objectives": {
+        "331": {
+          "zone": "Ashenvale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Senani Thunderheart",
+                "coord": [
+                  73.6,
+                  61.4
+                ],
+                "id": 12696,
+                "reactalliance": 0,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=2",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 23,
+    "flavor": "classic",
+    "questName": "Ursangous's Paw",
+    "mapper": {
+      "objectives": {
+        "331": {
+          "zone": "Ashenvale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Senani Thunderheart",
+                "coord": [
+                  73.6,
+                  61.4
+                ],
+                "id": 12696,
+                "reactalliance": 0,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=23",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 24,
+    "flavor": "classic",
+    "questName": "Shadumbra's Head",
+    "mapper": {
+      "objectives": {
+        "331": {
+          "zone": "Ashenvale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Senani Thunderheart",
+                "coord": [
+                  73.6,
+                  61.4
+                ],
+                "id": 12696,
+                "reactalliance": 0,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=24",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 527,
+    "flavor": "classic",
+    "questName": "Battle of Hillsbrad",
+    "mapper": {
+      "objectives": {
+        "267": {
+          "zone": "Hillsbrad Foothills",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Farmer Ray",
+                "coord": [
+                  33,
+                  35
+                ],
+                "id": 232,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Hillsbrad Farmer",
+                "coord": [
+                  33,
+                  34.8
+                ],
+                "id": 2266,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Hillsbrad Farmhand",
+                "coord": [
+                  36.6,
+                  39.4
+                ],
+                "id": 2360,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Farmer Getz",
+                "coord": [
+                  35.2,
+                  38
+                ],
+                "id": 2403,
+                "reactalliance": 0,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=527",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 528,
+    "flavor": "classic",
+    "questName": "Battle of Hillsbrad",
+    "mapper": {
+      "objectives": {
+        "267": {
+          "zone": "Hillsbrad Foothills",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Hillsbrad Peasant",
+                "coord": [
+                  30,
+                  42.8
+                ],
+                "id": 2267,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=528",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 530,
+    "flavor": "classic",
+    "questName": "A Husband's Revenge",
+    "mapper": {
+      "objectives": {
+        "1497": {
+          "zone": "Undercity",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Raleigh Andrean",
+                "coord": [
+                  62,
+                  43
+                ],
+                "id": 2050,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Raleigh Andrean",
+                "coord": [
+                  62,
+                  43
+                ],
+                "id": 2050,
+                "reactalliance": 0,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=530",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 539,
+    "flavor": "classic",
+    "questName": "Battle of Hillsbrad",
+    "mapper": {
+      "objectives": {
+        "267": {
+          "zone": "Hillsbrad Foothills",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Hillsbrad Miner",
+                "coord": [
+                  27.4,
+                  58
+                ],
+                "id": 2269,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Foreman Bonds",
+                "coord": [
+                  31,
+                  56.2
+                ],
+                "id": 2305,
+                "reactalliance": 0,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=539",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 541,
+    "flavor": "classic",
+    "questName": "Battle of Hillsbrad",
+    "mapper": {
+      "objectives": {
+        "267": {
+          "zone": "Hillsbrad Foothills",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Captain Ironhill",
+                "coord": [
+                  72.6,
+                  80
+                ],
+                "id": 2304,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Dun Garok Mountaineer",
+                "coord": [
+                  70.6,
+                  79.8
+                ],
+                "id": 2344,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Dun Garok Rifleman",
+                "coord": [
+                  71,
+                  80.4
+                ],
+                "id": 2345,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Dun Garok Priest",
+                "coord": [
+                  71,
+                  78.6
+                ],
+                "id": 2346,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=541",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 547,
+    "flavor": "classic",
+    "questName": "Humbert's Sword",
+    "mapper": {
+      "objectives": {
+        "267": {
+          "zone": "Hillsbrad Foothills",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Deathguard Humbert",
+                "coord": [
+                  62.6,
+                  20.2
+                ],
+                "id": 2419,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Deathguard Humbert",
+                "coord": [
+                  62.6,
+                  20.2
+                ],
+                "id": 2419,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Dun Garok Mountaineer",
+                "coord": [
+                  70.6,
+                  79.8
+                ],
+                "id": 2344,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Humbert's Sword"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Dun Garok Rifleman",
+                "coord": [
+                  71,
+                  80.4
+                ],
+                "id": 2345,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Humbert's Sword"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Dun Garok Priest",
+                "coord": [
+                  71,
+                  78.6
+                ],
+                "id": 2346,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Humbert's Sword"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Tamra Stormpike",
+                "coord": [
+                  73.2,
+                  80.8
+                ],
+                "id": 14275,
+                "reactalliance": 0,
+                "reacthorde": -1,
+                "item": "Humbert's Sword"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=547",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 567,
+    "flavor": "classic",
+    "questName": "Dangerous!",
+    "mapper": {
+      "objectives": {
+        "267": {
+          "zone": "Hillsbrad Foothills",
+          "levels": [
+            [
+              {
+                "type": 2,
+                "point": "start",
+                "name": "Dangerous!",
+                "coord": [
+                  62.5,
+                  19.7
+                ],
+                "id": 2008
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "High Executor Darthalia",
+                "coord": [
+                  62.2,
+                  20.2
+                ],
+                "id": 2215,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Clerk Horrace Whitesteed",
+                "coord": [
+                  30,
+                  42.8
+                ],
+                "id": 2448,
+                "reactalliance": 0,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Citizen Wilkes",
+                "coord": [
+                  31.2,
+                  42
+                ],
+                "id": 2449,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Miner Hackett",
+                "coord": [
+                  31.2,
+                  53.4
+                ],
+                "id": 2450,
+                "reactalliance": 0,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Farmer Kalaba",
+                "coord": [
+                  35.8,
+                  46.2
+                ],
+                "id": 2451,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=567",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 640,
+    "flavor": "classic",
+    "questName": "The Broken Sigil",
+    "mapper": {
+      "objectives": {
+        "45": {
+          "zone": "Arathi Highlands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Zengu",
+                "coord": [
+                  73.8,
+                  33.8
+                ],
+                "id": 2703,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Tor'gan",
+                "coord": [
+                  74.6,
+                  36.4
+                ],
+                "id": 2706,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Stromgarde Troll Hunter",
+                "coord": [
+                  22.2,
+                  59.4
+                ],
+                "id": 2583,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sigil Fragment"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Stromgarde Defender",
+                "coord": [
+                  23.8,
+                  60.4
+                ],
+                "id": 2584,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sigil Fragment"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Stromgarde Vindicator",
+                "coord": [
+                  27.8,
+                  58
+                ],
+                "id": 2585,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sigil Fragment"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=640",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 643,
+    "flavor": "classic",
+    "questName": "Sigil of Arathor",
+    "mapper": {
+      "objectives": {
+        "45": {
+          "zone": "Arathi Highlands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Zengu",
+                "coord": [
+                  73.8,
+                  33.8
+                ],
+                "id": 2703,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Zengu",
+                "coord": [
+                  73.8,
+                  33.8
+                ],
+                "id": 2703,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Lieutenant Valorcall",
+                "coord": [
+                  34.2,
+                  52.2
+                ],
+                "id": 2612,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sigil of Arathor"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=643",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 644,
+    "flavor": "classic",
+    "questName": "Sigil of Trollbane",
+    "mapper": {
+      "objectives": {
+        "45": {
+          "zone": "Arathi Highlands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Zengu",
+                "coord": [
+                  73.8,
+                  33.8
+                ],
+                "id": 2703,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Zengu",
+                "coord": [
+                  73.8,
+                  33.8
+                ],
+                "id": 2703,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Prince Galen Trollbane",
+                "coord": [
+                  28.2,
+                  58
+                ],
+                "id": 2607,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sigil of Trollbane"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=644",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 716,
+    "flavor": "classic",
+    "questName": "Stone Is Better than Cloth",
+    "mapper": {
+      "objectives": {
+        "3": {
+          "zone": "Badlands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Lucien Tosselwrench",
+                "coord": [
+                  25.8,
+                  44.4
+                ],
+                "id": 2920,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Lucien Tosselwrench",
+                "coord": [
+                  25.8,
+                  44.4
+                ],
+                "id": 2920,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=716",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 784,
+    "flavor": "classic",
+    "questName": "Vanquish the Betrayers",
+    "mapper": {
+      "objectives": {
+        "14": {
+          "zone": "Durotar",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Gar'Thok",
+                "coord": [
+                  52,
+                  43.4
+                ],
+                "id": 3139,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Gar'Thok",
+                "coord": [
+                  52,
+                  43.4
+                ],
+                "id": 3139,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Kul Tiras Sailor",
+                "coord": [
+                  59.4,
+                  58.8
+                ],
+                "id": 3128,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Kul Tiras Marine",
+                "coord": [
+                  59.2,
+                  57.8
+                ],
+                "id": 3129,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Lieutenant Benedict",
+                "coord": [
+                  59.4,
+                  58.2
+                ],
+                "id": 3192,
+                "reactalliance": 0,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=784",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 843,
+    "flavor": "classic",
+    "questName": "Gann's Reclamation",
+    "mapper": {
+      "objectives": {
+        "17": {
+          "zone": "The Barrens",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Gann Stonespire",
+                "coord": [
+                  46,
+                  75.4
+                ],
+                "id": 3341,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Gann Stonespire",
+                "coord": [
+                  46,
+                  75.4
+                ],
+                "id": 3341,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Bael'dun Excavator",
+                "coord": [
+                  48,
+                  85.8
+                ],
+                "id": 3374,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Bael'dun Foreman",
+                "coord": [
+                  47.4,
+                  85
+                ],
+                "id": 3375,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Prospector Khazgorm",
+                "coord": [
+                  47.8,
+                  85.6
+                ],
+                "id": 3392,
+                "reactalliance": 0,
+                "reacthorde": -1,
+                "item": "Khazgorm's Journal"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=843",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 846,
+    "flavor": "classic",
+    "questName": "Revenge of Gann",
+    "mapper": {
+      "objectives": {
+        "17": {
+          "zone": "The Barrens",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Gann Stonespire",
+                "coord": [
+                  46,
+                  75.4
+                ],
+                "id": 3341,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Gann Stonespire",
+                "coord": [
+                  46,
+                  75.4
+                ],
+                "id": 3341,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Bael'dun Soldier",
+                "coord": [
+                  48.6,
+                  84.6
+                ],
+                "id": 3376,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sodium Nitrate"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Bael'dun Rifleman",
+                "coord": [
+                  49.4,
+                  84.2
+                ],
+                "id": 3377,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sodium Nitrate"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Bael'dun Officer",
+                "coord": [
+                  49.4,
+                  84
+                ],
+                "id": 3378,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Sodium Nitrate"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Lord Cyrik Blackforge",
+                "coord": [
+                  47,
+                  85.6
+                ],
+                "id": 6668,
+                "reactalliance": 0,
+                "reacthorde": -1,
+                "item": "Sodium Nitrate"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=846",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1017,
+    "flavor": "classic",
+    "questName": "Mage Summoner",
+    "mapper": {
+      "objectives": {
+        "331": {
+          "zone": "Ashenvale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Sentinel Velene Starstrike",
+                "coord": [
+                  49.8,
+                  67.2
+                ],
+                "id": 3885,
+                "reactalliance": 1,
+                "reacthorde": 0
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Sentinel Velene Starstrike",
+                "coord": [
+                  49.8,
+                  67.2
+                ],
+                "id": 3885,
+                "reactalliance": 1,
+                "reacthorde": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1017",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1036,
+    "flavor": "classic",
+    "questName": "Avast Ye, Scallywag",
+    "mapper": {
+      "objectives": {
+        "33": {
+          "zone": "Stranglethorn Vale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "\"Pretty Boy\" Duncan",
+                "coord": [
+                  27.4,
+                  69.4
+                ],
+                "id": 2545,
+                "reactalliance": -1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Fleet Master Firallon",
+                "coord": [
+                  30.6,
+                  90.4
+                ],
+                "id": 2546,
+                "reactalliance": -1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1036",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1087,
+    "flavor": "classic",
+    "questName": "Cenarius' Legacy",
+    "mapper": {
+      "objectives": {
+        "406": {
+          "zone": "Stonetalon Mountains",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Braelyn Firehand",
+                "coord": [
+                  46,
+                  60.4
+                ],
+                "id": 4198,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Braelyn Firehand",
+                "coord": [
+                  46,
+                  60.4
+                ],
+                "id": 4198,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Cenarion Botanist",
+                "coord": [
+                  34.6,
+                  12.4
+                ],
+                "id": 4051,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Daughter of Cenarius",
+                "coord": [
+                  36.4,
+                  13
+                ],
+                "id": 4053,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Son of Cenarius",
+                "coord": [
+                  37.2,
+                  12.4
+                ],
+                "id": 4057,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1087",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1088,
+    "flavor": "classic",
+    "questName": "Ordanus",
+    "mapper": {
+      "objectives": {
+        "406": {
+          "zone": "Stonetalon Mountains",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Braelyn Firehand",
+                "coord": [
+                  46,
+                  60.4
+                ],
+                "id": 4198,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Braelyn Firehand",
+                "coord": [
+                  46,
+                  60.4
+                ],
+                "id": 4198,
+                "reactalliance": -1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1088",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1150,
+    "flavor": "classic",
+    "questName": "Test of Endurance",
+    "mapper": {
+      "objectives": {
+        "400": {
+          "zone": "Thousand Needles",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Dorn Plainstalker",
+                "coord": [
+                  53.8,
+                  41.6
+                ],
+                "id": 2986,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Dorn Plainstalker",
+                "coord": [
+                  53.8,
+                  41.6
+                ],
+                "id": 2986,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Grenka Bloodscreech",
+                "coord": [
+                  26,
+                  55.6
+                ],
+                "id": 4490,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Grenka's Claw"
+              },
+              {
+                "type": 2,
+                "point": "sourcerequirement",
+                "name": "Harpy Foodstuffs",
+                "coord": [
+                  25.9,
+                  54.7
+                ],
+                "id": 20447,
+                "item": "Grenka's Claw"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1150",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1192,
+    "flavor": "classic",
+    "questName": "Indurium Ore",
+    "mapper": {
+      "objectives": {
+        "400": {
+          "zone": "Thousand Needles",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Pozzik",
+                "coord": [
+                  80,
+                  75.8
+                ],
+                "id": 4630,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Pozzik",
+                "coord": [
+                  80,
+                  75.8
+                ],
+                "id": 4630,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1192",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1201,
+    "flavor": "classic",
+    "questName": "Theramore Spies",
+    "mapper": {
+      "objectives": {
+        "15": {
+          "zone": "Dustwallow Marsh",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Nazeer Bloodpike",
+                "coord": [
+                  35.2,
+                  30.6
+                ],
+                "id": 4791,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Nazeer Bloodpike",
+                "coord": [
+                  35.2,
+                  30.6
+                ],
+                "id": 4791,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Theramore Infiltrator",
+                "coord": [
+                  39.6,
+                  23.8
+                ],
+                "id": 4834,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1201",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1203,
+    "flavor": "classic",
+    "questName": "Jarl Needs a Blade",
+    "mapper": {
+      "objectives": {
+        "15": {
+          "zone": "Dustwallow Marsh",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "\"Swamp Eye\" Jarl",
+                "coord": [
+                  55.4,
+                  26.2
+                ],
+                "id": 4792,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "\"Swamp Eye\" Jarl",
+                "coord": [
+                  55.4,
+                  26.2
+                ],
+                "id": 4792,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1203",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1367,
+    "flavor": "classic",
+    "questName": "Magram Alliance",
+    "mapper": {
+      "objectives": {
+        "405": {
+          "zone": "Desolace",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Gurda Wildmane",
+                "coord": [
+                  56.2,
+                  59.6
+                ],
+                "id": 5412,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Warug",
+                "coord": [
+                  74.8,
+                  68
+                ],
+                "id": 5398,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1367",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1368,
+    "flavor": "classic",
+    "questName": "Gelkis Alliance",
+    "mapper": {
+      "objectives": {
+        "405": {
+          "zone": "Desolace",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Gurda Wildmane",
+                "coord": [
+                  56.2,
+                  59.6
+                ],
+                "id": 5412,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Uthek the Wise",
+                "coord": [
+                  36.2,
+                  79.2
+                ],
+                "id": 5397,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1368",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1371,
+    "flavor": "classic",
+    "questName": "Gizmo for Warug",
+    "mapper": {
+      "objectives": {
+        "405": {
+          "zone": "Desolace",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Warug",
+                "coord": [
+                  74.8,
+                  68
+                ],
+                "id": 5398,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Warug",
+                "coord": [
+                  74.8,
+                  68
+                ],
+                "id": 5398,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1371",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1382,
+    "flavor": "classic",
+    "questName": "Strange Alliance",
+    "mapper": {
+      "objectives": {
+        "405": {
+          "zone": "Desolace",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Captain Pentigast",
+                "coord": [
+                  66.6,
+                  11
+                ],
+                "id": 5396,
+                "reactalliance": 1,
+                "reacthorde": 0
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Uthek the Wise",
+                "coord": [
+                  36.2,
+                  79.2
+                ],
+                "id": 5397,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1382",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1385,
+    "flavor": "classic",
+    "questName": "Brutal Politics",
+    "mapper": {
+      "objectives": {
+        "405": {
+          "zone": "Desolace",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Captain Pentigast",
+                "coord": [
+                  66.6,
+                  11
+                ],
+                "id": 5396,
+                "reactalliance": 1,
+                "reacthorde": 0
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Warug",
+                "coord": [
+                  74.8,
+                  68
+                ],
+                "id": 5398,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1385",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 1796,
+    "flavor": "classic",
+    "questName": "Components for the Enchanted Gold Bloodrobe",
+    "mapper": {
+      "objectives": {
+        "17": {
+          "zone": "The Barrens",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Menara Voidrender",
+                "coord": [
+                  62.4,
+                  35.4
+                ],
+                "id": 6266,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Menara Voidrender",
+                "coord": [
+                  62.4,
+                  35.4
+                ],
+                "id": 6266,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=1796",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 2761,
+    "flavor": "classic",
+    "questName": "Smelt On, Smelt Off",
+    "mapper": {
+      "objectives": {
+        "33": {
+          "zone": "Stranglethorn Vale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Galvan the Ancient",
+                "coord": [
+                  50.6,
+                  20.4
+                ],
+                "id": 7802,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Galvan the Ancient",
+                "coord": [
+                  50.6,
+                  20.4
+                ],
+                "id": 7802,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        },
+        "17": {
+          "zone": "The Barrens",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Fel Interloper",
+                "coord": [
+                  50.2,
+                  80.6
+                ],
+                "id": 223542,
+                "reactalliance": -1,
+                "reacthorde": 0,
+                "item": "Iron Bar"
+              }
+            ]
+          ]
+        },
+        "44": {
+          "zone": "Redridge Mountains",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Fel Interloper",
+                "coord": [
+                  29.8,
+                  30
+                ],
+                "id": 223542,
+                "reactalliance": -1,
+                "reacthorde": 0,
+                "item": "Iron Bar"
+              }
+            ]
+          ]
+        },
+        "331": {
+          "zone": "Ashenvale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Fel Interloper",
+                "coord": [
+                  77.2,
+                  73.2
+                ],
+                "id": 223542,
+                "reactalliance": -1,
+                "reacthorde": 0,
+                "item": "Iron Bar"
+              }
+            ]
+          ]
+        },
+        "8": {
+          "zone": "Swamp of Sorrows",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Fel Interloper",
+                "coord": [
+                  36.2,
+                  50
+                ],
+                "id": 223543,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Iron Bar"
+              }
+            ]
+          ]
+        },
+        "405": {
+          "zone": "Desolace",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Fel Interloper",
+                "coord": [
+                  48.8,
+                  82
+                ],
+                "id": 223543,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Iron Bar"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=2761",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 2771,
+    "flavor": "classic",
+    "questName": "A Good Head On Your Shoulders",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Trenton Lighthammer",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 7804,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Trenton Lighthammer",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 7804,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=2771",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 2772,
+    "flavor": "classic",
+    "questName": "The World At Your Feet",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Trenton Lighthammer",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 7804,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Trenton Lighthammer",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 7804,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=2772",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 2773,
+    "flavor": "classic",
+    "questName": "The Mithril Kid",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Trenton Lighthammer",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 7804,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Trenton Lighthammer",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 7804,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=2773",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 2973,
+    "flavor": "classic",
+    "questName": "A New Cloak's Sheen",
+    "mapper": {
+      "objectives": {
+        "357": {
+          "zone": "Feralas",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Krueg Skullsplitter",
+                "coord": [
+                  76,
+                  42.8
+                ],
+                "id": 4544,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Krueg Skullsplitter",
+                "coord": [
+                  76,
+                  42.8
+                ],
+                "id": 4544,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Sprite Darter",
+                "coord": [
+                  67.8,
+                  48
+                ],
+                "id": 5278,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Iridescent Sprite Darter Wing"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Captured Sprite Darter",
+                "coord": [
+                  66.6,
+                  46.6
+                ],
+                "id": 7997,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Iridescent Sprite Darter Wing"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=2973",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3381,
+    "flavor": "classic",
+    "questName": "A Meeting with the Master",
+    "mapper": {
+      "objectives": {}
+    },
+    "source": "https://www.wowhead.com/classic/quest=3381",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3513,
+    "flavor": "classic",
+    "questName": "The Runed Scroll",
+    "mapper": {
+      "objectives": {
+        "17": {
+          "zone": "The Barrens",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Kadrak",
+                "coord": [
+                  48,
+                  5.4
+                ],
+                "id": 8582,
+                "reactalliance": 0,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3513",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3514,
+    "flavor": "classic",
+    "questName": "Horde Presence",
+    "mapper": {
+      "objectives": {
+        "17": {
+          "zone": "The Barrens",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Kadrak",
+                "coord": [
+                  48,
+                  5.4
+                ],
+                "id": 8582,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Kadrak",
+                "coord": [
+                  48,
+                  5.4
+                ],
+                "id": 8582,
+                "reactalliance": 0,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        },
+        "406": {
+          "zone": "Stonetalon Mountains",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Rynthariel the Keymaster",
+                "coord": [
+                  29.6,
+                  17.2
+                ],
+                "id": 8518,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3514",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3638,
+    "flavor": "classic",
+    "questName": "The Pledge of Secrecy",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Nixx Sprocketspring",
+                "coord": [
+                  52.4,
+                  27.2
+                ],
+                "id": 8126,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Nixx Sprocketspring",
+                "coord": [
+                  52.4,
+                  27.2
+                ],
+                "id": 8126,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3638",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3639,
+    "flavor": "classic",
+    "questName": "Show Your Work",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Nixx Sprocketspring",
+                "coord": [
+                  52.4,
+                  27.2
+                ],
+                "id": 8126,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Nixx Sprocketspring",
+                "coord": [
+                  52.4,
+                  27.2
+                ],
+                "id": 8126,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        },
+        "139": {
+          "zone": "Eastern Plaguelands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Argent Sentry",
+                "coord": [
+                  81.4,
+                  59.2
+                ],
+                "id": 16378,
+                "reactalliance": 1,
+                "reacthorde": 1,
+                "item": "Big Iron Bomb"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3639",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3642,
+    "flavor": "classic",
+    "questName": "The Pledge of Secrecy",
+    "mapper": {
+      "objectives": {
+        "33": {
+          "zone": "Stranglethorn Vale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Oglethorpe Obnoticus",
+                "coord": [
+                  28.2,
+                  76.2
+                ],
+                "id": 7406,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Oglethorpe Obnoticus",
+                "coord": [
+                  28.2,
+                  76.2
+                ],
+                "id": 7406,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3642",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3643,
+    "flavor": "classic",
+    "questName": "Show Your Work",
+    "mapper": {
+      "objectives": {
+        "33": {
+          "zone": "Stranglethorn Vale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Oglethorpe Obnoticus",
+                "coord": [
+                  28.2,
+                  76.2
+                ],
+                "id": 7406,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Oglethorpe Obnoticus",
+                "coord": [
+                  28.2,
+                  76.2
+                ],
+                "id": 7406,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3643",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3791,
+    "flavor": "classic",
+    "questName": "The Mystery of Morrowgrain",
+    "mapper": {
+      "objectives": {
+        "357": {
+          "zone": "Feralas",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Quintis Jonespyre",
+                "coord": [
+                  32.4,
+                  43.8
+                ],
+                "id": 7879,
+                "reactalliance": 1,
+                "reacthorde": 0
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Quintis Jonespyre",
+                "coord": [
+                  32.4,
+                  43.8
+                ],
+                "id": 7879,
+                "reactalliance": 1,
+                "reacthorde": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3791",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 3792,
+    "flavor": "classic",
+    "questName": "Morrowgrain to Feathermoon Stronghold",
+    "mapper": {
+      "objectives": {
+        "357": {
+          "zone": "Feralas",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Quintis Jonespyre",
+                "coord": [
+                  32.4,
+                  43.8
+                ],
+                "id": 7879,
+                "reactalliance": 1,
+                "reacthorde": 0
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Quintis Jonespyre",
+                "coord": [
+                  32.4,
+                  43.8
+                ],
+                "id": 7879,
+                "reactalliance": 1,
+                "reacthorde": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=3792",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 4106,
+    "flavor": "classic",
+    "questName": "Salve via Skinning",
+    "mapper": {
+      "objectives": {
+        "361": {
+          "zone": "Felwood",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Jaedenar Hunter",
+                "coord": [
+                  35.4,
+                  57.8
+                ],
+                "id": 7126,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Angerclaw Grizzly",
+                "coord": [
+                  55.8,
+                  10.4
+                ],
+                "id": 8957,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Felpaw Ravager",
+                "coord": [
+                  55.8,
+                  10.4
+                ],
+                "id": 8961,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=4106",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 4107,
+    "flavor": "classic",
+    "questName": "Salve via Disenchanting",
+    "mapper": {
+      "objectives": {
+        "361": {
+          "zone": "Felwood",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=4107",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5149,
+    "flavor": "classic",
+    "questName": "Pamela's Doll",
+    "mapper": {
+      "objectives": {
+        "139": {
+          "zone": "Eastern Plaguelands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Pamela Redpath",
+                "coord": [
+                  36.4,
+                  90.8
+                ],
+                "id": 10926,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Pamela Redpath",
+                "coord": [
+                  36.4,
+                  90.8
+                ],
+                "id": 10926,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5149",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5305,
+    "flavor": "classic",
+    "questName": "Sweet Serenity",
+    "mapper": {
+      "objectives": {
+        "618": {
+          "zone": "Winterspring",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Lilith the Lithe",
+                "coord": [
+                  61.2,
+                  37.2
+                ],
+                "id": 11191,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Lilith the Lithe",
+                "coord": [
+                  61.2,
+                  37.2
+                ],
+                "id": 11191,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5305",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5306,
+    "flavor": "classic",
+    "questName": "Snakestone of the Shadow Huntress",
+    "mapper": {
+      "objectives": {
+        "618": {
+          "zone": "Winterspring",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Kilram",
+                "coord": [
+                  61.2,
+                  37
+                ],
+                "id": 11192,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Kilram",
+                "coord": [
+                  61.2,
+                  37
+                ],
+                "id": 11192,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5306",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5307,
+    "flavor": "classic",
+    "questName": "Corruption",
+    "mapper": {
+      "objectives": {
+        "618": {
+          "zone": "Winterspring",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Seril Scourgebane",
+                "coord": [
+                  61.2,
+                  37.2
+                ],
+                "id": 11193,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Seril Scourgebane",
+                "coord": [
+                  61.2,
+                  37.2
+                ],
+                "id": 11193,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5307",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5885,
+    "flavor": "classic",
+    "questName": "Salve via Skinning",
+    "mapper": {
+      "objectives": {
+        "361": {
+          "zone": "Felwood",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Jaedenar Hunter",
+                "coord": [
+                  35.4,
+                  57.8
+                ],
+                "id": 7126,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Angerclaw Grizzly",
+                "coord": [
+                  55.8,
+                  10.4
+                ],
+                "id": 8957,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Felpaw Ravager",
+                "coord": [
+                  55.8,
+                  10.4
+                ],
+                "id": 8961,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5885",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5886,
+    "flavor": "classic",
+    "questName": "Salve via Disenchanting",
+    "mapper": {
+      "objectives": {
+        "361": {
+          "zone": "Felwood",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Arathandris Silversky",
+                "coord": [
+                  54.2,
+                  86.8
+                ],
+                "id": 9528,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5886",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5890,
+    "flavor": "classic",
+    "questName": "Salve via Skinning",
+    "mapper": {
+      "objectives": {
+        "361": {
+          "zone": "Felwood",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Maybess Riverbreeze",
+                "coord": [
+                  46.8,
+                  83
+                ],
+                "id": 9529,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Maybess Riverbreeze",
+                "coord": [
+                  46.8,
+                  83
+                ],
+                "id": 9529,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Jaedenar Hunter",
+                "coord": [
+                  35.4,
+                  57.8
+                ],
+                "id": 7126,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Angerclaw Grizzly",
+                "coord": [
+                  55.8,
+                  10.4
+                ],
+                "id": 8957,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Felpaw Ravager",
+                "coord": [
+                  55.8,
+                  10.4
+                ],
+                "id": 8961,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Patch of Tainted Skin"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5890",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5891,
+    "flavor": "classic",
+    "questName": "Salve via Disenchanting",
+    "mapper": {
+      "objectives": {
+        "361": {
+          "zone": "Felwood",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Maybess Riverbreeze",
+                "coord": [
+                  46.8,
+                  83
+                ],
+                "id": 9529,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Maybess Riverbreeze",
+                "coord": [
+                  46.8,
+                  83
+                ],
+                "id": 9529,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5891",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 5931,
+    "flavor": "classic",
+    "questName": "Back to Darnassus",
+    "mapper": {
+      "objectives": {
+        "493": {
+          "zone": "Moonglade",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Dendrite Starblaze",
+                "coord": [
+                  56.2,
+                  30.4
+                ],
+                "id": 11802,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        },
+        "1657": {
+          "zone": "Darnassus",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Mathrengyl Bearwalker",
+                "coord": [
+                  35.2,
+                  8
+                ],
+                "id": 4217,
+                "reactalliance": 1,
+                "reacthorde": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=5931",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 6026,
+    "flavor": "classic",
+    "questName": "That's Asking A Lot",
+    "mapper": {
+      "objectives": {
+        "139": {
+          "zone": "Eastern Plaguelands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Smokey LaRue",
+                "coord": [
+                  80.6,
+                  58
+                ],
+                "id": 11033,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Smokey LaRue",
+                "coord": [
+                  80.6,
+                  58
+                ],
+                "id": 11033,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Fel Interloper",
+                "coord": [
+                  31.8,
+                  30.6
+                ],
+                "id": 230146,
+                "reactalliance": -1,
+                "reacthorde": -1,
+                "item": "Thorium Bar"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=6026",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 6146,
+    "flavor": "classic",
+    "questName": "Nathanos' Ruse",
+    "mapper": {
+      "objectives": {
+        "139": {
+          "zone": "Eastern Plaguelands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Nathanos Blightcaller",
+                "coord": [
+                  26.6,
+                  74.8
+                ],
+                "id": 11878,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Crusader Lord Valdelmar",
+                "coord": [
+                  88.2,
+                  86.2
+                ],
+                "id": 11898,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Nathanos Blightcaller",
+                "coord": [
+                  26.6,
+                  74.8
+                ],
+                "id": 11878,
+                "reactalliance": -1,
+                "reacthorde": 1,
+                "item": "Rotten Apple"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=6146",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 6503,
+    "flavor": "classic",
+    "questName": "Ashenvale Outrunners",
+    "mapper": {
+      "objectives": {
+        "331": {
+          "zone": "Ashenvale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Kuray'bin",
+                "coord": [
+                  71,
+                  68.2
+                ],
+                "id": 12867,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Kuray'bin",
+                "coord": [
+                  71,
+                  68.2
+                ],
+                "id": 12867,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Ashenvale Outrunner",
+                "coord": [
+                  72.8,
+                  70.2
+                ],
+                "id": 12856,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=6503",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 6504,
+    "flavor": "classic",
+    "questName": "The Lost Pages",
+    "mapper": {
+      "objectives": {
+        "331": {
+          "zone": "Ashenvale",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Gurda Ragescar",
+                "coord": [
+                  70,
+                  71
+                ],
+                "id": 12718,
+                "reactalliance": -1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Gurda Ragescar",
+                "coord": [
+                  70,
+                  71
+                ],
+                "id": 12718,
+                "reactalliance": -1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=6504",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7653,
+    "flavor": "classic",
+    "questName": "Imperial Plate Belt",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7653",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7654,
+    "flavor": "classic",
+    "questName": "Imperial Plate Boots",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7654",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7655,
+    "flavor": "classic",
+    "questName": "Imperial Plate Bracer",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7655",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7656,
+    "flavor": "classic",
+    "questName": "Imperial Plate Chest",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7656",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7657,
+    "flavor": "classic",
+    "questName": "Imperial Plate Helm",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7657",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7658,
+    "flavor": "classic",
+    "questName": "Imperial Plate Leggings",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7658",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7659,
+    "flavor": "classic",
+    "questName": "Imperial Plate Shoulders",
+    "mapper": {
+      "objectives": {
+        "440": {
+          "zone": "Tanaris",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Derotain Mudsipper",
+                "coord": [
+                  51.4,
+                  28.6
+                ],
+                "id": 14567,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7659",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7830,
+    "flavor": "classic",
+    "questName": "Avenging the Fallen",
+    "mapper": {
+      "objectives": {
+        "47": {
+          "zone": "The Hinterlands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Huntsman Markhor",
+                "coord": [
+                  79,
+                  79.4
+                ],
+                "id": 14741,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Huntsman Markhor",
+                "coord": [
+                  79,
+                  79.4
+                ],
+                "id": 14741,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "sourcerequirement",
+                "name": "Razorbeak Skylord",
+                "coord": [
+                  54.6,
+                  49.4
+                ],
+                "id": 2659,
+                "reactalliance": 1,
+                "reacthorde": -1,
+                "item": "Skylord Plume"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7830",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 7841,
+    "flavor": "classic",
+    "questName": "Message to the Wildhammer",
+    "mapper": {
+      "objectives": {
+        "47": {
+          "zone": "The Hinterlands",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Otho Moji'ko",
+                "coord": [
+                  79.2,
+                  79
+                ],
+                "id": 14738,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Otho Moji'ko",
+                "coord": [
+                  79.2,
+                  79
+                ],
+                "id": 14738,
+                "reactalliance": 0,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Highvale Outrunner",
+                "coord": [
+                  33.6,
+                  53.8
+                ],
+                "id": 2691,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Highvale Scout",
+                "coord": [
+                  31.6,
+                  49.2
+                ],
+                "id": 2692,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Highvale Marksman",
+                "coord": [
+                  31.4,
+                  48.6
+                ],
+                "id": 2693,
+                "reactalliance": 1,
+                "reacthorde": -1
+              },
+              {
+                "type": 1,
+                "point": "requirement",
+                "name": "Highvale Ranger",
+                "coord": [
+                  31.6,
+                  47.2
+                ],
+                "id": 2694,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=7841",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 8317,
+    "flavor": "classic",
+    "questName": "Kitchen Assistance",
+    "mapper": {
+      "objectives": {
+        "1377": {
+          "zone": "Silithus",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Calandrath",
+                "coord": [
+                  51.8,
+                  39
+                ],
+                "id": 15174,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Calandrath",
+                "coord": [
+                  51.8,
+                  39
+                ],
+                "id": 15174,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=8317",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 8496,
+    "flavor": "classic",
+    "questName": "Bandages for the Field",
+    "mapper": {
+      "objectives": {
+        "1377": {
+          "zone": "Silithus",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Windcaller Proudhorn",
+                "coord": [
+                  51,
+                  38.2
+                ],
+                "id": 15191,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=8496",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 8540,
+    "flavor": "classic",
+    "questName": "Boots for the Guard",
+    "mapper": {
+      "objectives": {
+        "1377": {
+          "zone": "Silithus",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Vish Kozus",
+                "coord": [
+                  50.8,
+                  33.6
+                ],
+                "id": 15182,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=8540",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 8541,
+    "flavor": "classic",
+    "questName": "Grinding Stones for the Guard",
+    "mapper": {
+      "objectives": {
+        "1377": {
+          "zone": "Silithus",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Vish Kozus",
+                "coord": [
+                  50.8,
+                  33.6
+                ],
+                "id": 15182,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=8541",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 8781,
+    "flavor": "classic",
+    "questName": "Arms for the Field",
+    "mapper": {
+      "objectives": {
+        "1377": {
+          "zone": "Silithus",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Janela Stouthammer",
+                "coord": [
+                  32.8,
+                  52.4
+                ],
+                "id": 15443,
+                "reactalliance": 1,
+                "reacthorde": -1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=8781",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 8856,
+    "flavor": "classic",
+    "questName": "Desert Survival Kits",
+    "mapper": {
+      "objectives": {}
+    },
+    "source": "https://www.wowhead.com/classic/quest=8856",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 9023,
+    "flavor": "classic",
+    "questName": "The Perfect Poison",
+    "mapper": {
+      "objectives": {
+        "1377": {
+          "zone": "Silithus",
+          "levels": [
+            [
+              {
+                "type": 1,
+                "point": "start",
+                "name": "Dirk Thunderwood",
+                "coord": [
+                  52,
+                  39
+                ],
+                "id": 16091,
+                "reactalliance": 1,
+                "reacthorde": 1
+              },
+              {
+                "type": 1,
+                "point": "end",
+                "name": "Dirk Thunderwood",
+                "coord": [
+                  52,
+                  39
+                ],
+                "id": 16091,
+                "reactalliance": 1,
+                "reacthorde": 1
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "source": "https://www.wowhead.com/classic/quest=9023",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 9439,
+    "flavor": "classic",
+    "questName": null,
+    "mapper": {
+      "objectives": {}
+    },
+    "source": "https://www.wowhead.com/classic/quest=9439",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 55296,
+    "flavor": "classic",
+    "questName": null,
+    "mapper": {
+      "objectives": {}
+    },
+    "source": "https://www.wowhead.com/classic/quest=55296",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 86757,
+    "flavor": "classic",
+    "questName": null,
+    "mapper": {
+      "objectives": {}
+    },
+    "source": "https://www.wowhead.com/classic/quest=86757",
+    "retrieved": "2026-11-10"
+  },
+  {
+    "questId": 86776,
+    "flavor": "classic",
+    "questName": null,
+    "mapper": {
+      "objectives": {}
+    },
+    "source": "https://www.wowhead.com/classic/quest=86776",
+    "retrieved": "2026-11-10"
+  }
+]
