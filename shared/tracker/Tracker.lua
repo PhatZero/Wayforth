@@ -192,6 +192,7 @@ function Tracker:MakeFrame()
         local key=entry[2]
         local item=theme:Button(menu,216,29,"",function()
             db:Set(key,not pref(key,false))
+            if key=="guidePaused" then ns:Call("UI","RefreshFooter") end
             if key=="showArrow" then ns:Call("Navigator","UpdateDirection") end
             Tracker:Refresh()
         end,"quiet")

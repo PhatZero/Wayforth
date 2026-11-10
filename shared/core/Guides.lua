@@ -298,6 +298,8 @@ function Guides:Sync(id, catchUp)
     else
         report = "Checked " .. found .. " quests. No new progress to apply."
     end
+    self.syncStatus = { guideId = self:GetGuide(id).id, matched = found, completed = newCompletions }
+    if ns.Modules.UI and ns.Modules.UI.RefreshFooter then ns.Modules.UI:RefreshFooter() end
     if catchUp then self.lastSyncReport = report end
     return changed, report
 end

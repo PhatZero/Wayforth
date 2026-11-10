@@ -141,8 +141,8 @@ function UI:MakeWindow()
     self.searchBox = search
     self.sliders = {}
 
-    local footer = theme:Text(window, "WayForth  |  Offline-first guides  |  Quest data verified in-game where available", 10, theme.muted)
-    footer:SetPoint("BOTTOMLEFT", window, "BOTTOMLEFT", 17, 13)
+    self.footer = theme:Text(window, "", 11, theme.muted)
+    self.footer:SetPoint("BOTTOMLEFT", window, "BOTTOMLEFT", 17, 13)
 
     local grip = theme:Button(window, 22, 22, "/", nil, "quiet")
     grip:SetPoint("BOTTOMRIGHT", window, "BOTTOMRIGHT", -4, 4)
@@ -488,8 +488,32 @@ function UI:SettingsSlider(id, label, key, x, y, width, low, high, step, after)
     self:Button(id .. "plus", "+", x + width - 85, y + 23, 42, 28, function() nudge(step) end)
 end
 
+function UI:RefreshFooter()
+    if not self.footer then return end
+    local guides = ns.Modules.Guides
+    local guide = guides:GetGuide()
+    local sync = guides.syncStatus
+    local status
+    if not guide then
+        status = "Select a guide to sync quests"
+    elseif not sync or sync.guideId ~= guide.id then
+        status = "Waiting for a quest check"
+    elseif sync.matched == 0 then
+        status = "No matching quests"
+    else
+        status = sync.matched .. (sync.matched == 1 and " quest matched" or " quests matched")
+        if sync.completed > 0 then
+            status = status .. "  |  " .. sync.completed ..
+                (sync.completed == 1 and " step completed" or " steps completed")
+        end
+    end
+    local prefix = value("guidePaused", false) and "Guide paused  |  " or ""
+    self.footer:SetText(prefix .. "Quest sync: " .. status)
+end
+
 function UI:Refresh()
     if not self.frame then return end
+    self:RefreshFooter()
     self:ClearPage()
     if self.searchBox then self.searchBox:Hide() end
     for _, control in pairs(self.sliders or {}) do control:Hide() end
