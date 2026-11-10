@@ -112,7 +112,7 @@ local additions = {
     ["east-pylon"] = {
         { id="service-92871-accept", title="Pick up In Service of Zephras", text="Accept In Service of Zephras from Ayessa Dawnsinger after A Firm Response.", hub="Valanaar", level=10, questId=92871, action="accept", faction="Horde", requires={93746}, x=59.1, y=79.8 },
         { id="service-92871-turnin", title="Report to Valennia Stormfist", text="Tell Valennia Stormfist that the Windshapers will support the defense of Zephras.", hub="Valanaar", level=10, questId=92871, action="turnin", faction="Horde", x=66.1, y=76.7 },
-        { id="tower-93320-accept", title="Pick up Tower Defense", text="Accept Tower Defense from Valennia Stormfist in Valanaar.", hub="Valanaar", level=10, questId=93320, action="accept", x=66.1, y=76.7 },
+        { id="tower-93320-accept", requiresByFaction={Alliance={92860},Horde={92871}}, title="Pick up Tower Defense", text="Accept Tower Defense from Valennia Stormfist in Valanaar.", hub="Valanaar", level=10, questId=93320, action="accept", x=66.1, y=76.7 },
     },
     ["turncoat"] = {
         { id="breaker-92645-accept", title="Pick up Breaking the Breaker", text="Speak with Yorana Windyreed at East Pylon Watchtower to accept Breaking the Breaker.", hub="East Pylon Watchtower", level=10, questId=92645, action="accept", requires={93320}, x=69.6, y=67.1 },
@@ -148,6 +148,7 @@ for _, step in ipairs(original) do
 end
 local amendments = {
     ["alliance-leader"]={x=66.6,y=79.9},
+    ["horde-construct"]={},
     ["horde-leader"]={x=59.1,y=79.8},
     ["scholar-92727-accept"]={requires={92699},x=66.3,y=79.8},
     ["scholar-92727-turnin"]={x=53.3,y=72.1},
