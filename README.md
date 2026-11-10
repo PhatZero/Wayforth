@@ -198,3 +198,17 @@ Forever is built on the modern retail addon API even though its interface number
 ## Release discipline
 
 Develop WayForth on feature branches and target `main` in this repository. The Forever build installs as `WayForth/`.
+
+## Build and submit the Forever beta
+
+Open **Actions → Build WayForth Forever → Run workflow** and select `main`.
+Leave the upload checkbox clear to build and download the preview artifact.
+Extract the installable WayForth ZIP from the GitHub artifact before manual installation or upload.
+
+Once the WayForth project is set up on CurseForge, open GitHub **Settings → Secrets and variables → Actions**.
+Add the numeric CurseForge project ID as a repository variable named `CURSEFORGE_PROJECT_ID`.
+Add a [CurseForge author API token](https://authors.curseforge.com/account/api-tokens) as a repository secret named `CURSEFORGE_TOKEN`.
+
+To submit a beta, run the same workflow, check **Upload the tested Forever beta to CurseForge**, and enter player-facing release notes.
+The workflow submits the validated installable ZIP for Forever 1.60.1 and logs the returned CurseForge file ID.
+Check the project's Files page for its review status. If an upload loses its response, check Files before submitting the same build again.

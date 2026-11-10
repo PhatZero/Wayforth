@@ -1,10 +1,19 @@
-name: WayForth addon validation
+name: Build WayForth Forever
 
 on:
   pull_request:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Upload the tested Forever beta to CurseForge
+        type: boolean
+        default: false
+      changelog:
+        description: Player-facing release notes for this upload
+        type: string
+        required: false
 
 permissions:
   contents: read
@@ -55,3 +64,10 @@ jobs:
           name: WayForth-1.0.0-beta-Forever-preview
           path: dist/WayForth-1.0.0-beta-Forever-16001.zip
           if-no-files-found: error
+      - name: Submit Forever beta to CurseForge
+        if: github.event_name == 'workflow_dispatch' && inputs.publish
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID }}
+          CHANGELOG: ${{ inputs.changelog }}
+        run: bash scripts/upload-forever.sh dist/*.zip
