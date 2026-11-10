@@ -91,6 +91,82 @@ local allSteps = {
     { id = "leave-horde", title = "Horde: depart for Mulgore", text = "Follow The Earthen Ring to the skycutter at Valanaar. After landing in Mulgore, continue your faction introduction toward Orgrimmar.", hub = "Valanaar Skydocks", level = 13, action = "manual", faction = "Horde", x = 57.9, y = 80.9 },
 }
 
+-- Source-backed prerequisite/pickup recovery for characters joining mid-route.
+-- Factual quest relationships and NPC pins were cross-checked against Forever
+-- quest catalogs; only the live client can confirm what a player can accept.
+-- Insert before existing stable-ID steps so saved currentStepId bookmarks survive.
+local additions = {
+    ["alliance-leader"] = {
+        { id="supreme-92699-accept", title="Pick up The Supreme Magister", text="Speak with Valennia Stormfist upstairs in Valanaar and accept The Supreme Magister.", hub="Valanaar", level=9, questId=92699, action="accept", faction="Alliance", x=66.2, y=76.7 },
+        { id="skyseer-92700-accept", title="Pick up The Grand Skyseer", text="Speak with Valennia Stormfist upstairs in Valanaar and accept The Grand Skyseer.", hub="Valanaar", level=9, questId=92700, action="accept", faction="Horde", x=66.2, y=76.7 },
+    },
+    ["horde-construct"] = {
+        { id="fillion-99260-accept", title="Pick up Fillion's Mission", text="Speak with Fillion Flamebreeze in Valanaar and accept Fillion's Mission.", hub="Valanaar", level=10, questId=99260, action="accept", faction="Alliance", requires={92850}, x=66.2, y=79.9 },
+        { id="fillion-99260-turnin", title="Report Fillion's Mission", text="Hand Fillion's Mission to Elaadrin Evengale in Valanaar.", hub="Valanaar", level=10, questId=99260, action="turnin", faction="Alliance", x=66.6, y=79.9 },
+        { id="wind-92840-accept", title="Pick up Catching Wind", text="Accept Catching Wind from Elaadrin Evengale in Valanaar after Fillion's Mission.", hub="Valanaar", level=10, questId=92840, action="accept", faction="Alliance", requires={99260}, x=66.6, y=80.0 },
+        { id="wind-92840-objective", title="Catching Wind: collect readings", text="Use the Index Esoteria beside Windstone Formations at the Overlook Standing Stones. Follow live quest objectives.", hub="Windfield Orchard", level=10, questId=92840, action="objective", faction="Alliance", x=47.6, y=68.8 },
+        { id="wind-92840-turnin", title="Hand in Catching Wind", text="Return to Elaadrin Evengale in Valanaar to hand in Catching Wind.", hub="Valanaar", level=10, questId=92840, action="turnin", faction="Alliance", x=66.6, y=79.9 },
+        { id="service-92860-accept", title="Pick up In Service of Zephras", text="Accept In Service of Zephras from Elaadrin Evengale after Catching Wind.", hub="Valanaar", level=10, questId=92860, action="accept", faction="Alliance", requires={92840}, x=66.6, y=79.9 },
+        { id="service-92860-turnin", title="Report to Valennia Stormfist", text="Tell Valennia Stormfist that the High Order will support the fight against the cult.", hub="Valanaar", level=10, questId=92860, action="turnin", faction="Alliance", x=66.1, y=76.7 },
+    },
+    ["east-pylon"] = {
+        { id="service-92871-accept", title="Pick up In Service of Zephras", text="Accept In Service of Zephras from Ayessa Dawnsinger after A Firm Response.", hub="Valanaar", level=10, questId=92871, action="accept", faction="Horde", requires={93746}, x=59.1, y=79.8 },
+        { id="service-92871-turnin", title="Report to Valennia Stormfist", text="Tell Valennia Stormfist that the Windshapers will support the defense of Zephras.", hub="Valanaar", level=10, questId=92871, action="turnin", faction="Horde", x=66.1, y=76.7 },
+        { id="tower-93320-accept", title="Pick up Tower Defense", text="Accept Tower Defense from Valennia Stormfist in Valanaar.", hub="Valanaar", level=10, questId=93320, action="accept", x=66.1, y=76.7 },
+    },
+    ["turncoat"] = {
+        { id="breaker-92645-accept", title="Pick up Breaking the Breaker", text="Speak with Yorana Windyreed at East Pylon Watchtower to accept Breaking the Breaker.", hub="East Pylon Watchtower", level=10, questId=92645, action="accept", requires={93320}, x=69.6, y=67.1 },
+        { id="breaker-92645-objective", title="Defeat Commander Belguilos", text="Find Commander Belguilos in a house in the Gustberry Lowlands. She is upstairs.", hub="Gustberry Lowlands", level=10, questId=92645, action="objective", x=65.8, y=65.5 },
+        { id="breaker-92645-turnin", title="Report Breaking the Breaker", text="Return to Yorana Windyreed at East Pylon Watchtower.", hub="East Pylon Watchtower", level=10, questId=92645, action="turnin", x=69.6, y=67.1 },
+        { id="logistics-92642-accept", title="Pick up Disrupting Logistics", text="Accept Disrupting Logistics from Yorana Windyreed after Tower Defense.", hub="East Pylon Watchtower", level=10, questId=92642, action="accept", requires={93320}, x=69.6, y=67.1 },
+        { id="logistics-92642-objective", title="Disrupt the cult's logistics", text="Defeat the Al'Aketh Healers and Brawlers listed in the quest log.", hub="Gustberry Lowlands", level=10, questId=92642, action="objective", x=65.7, y=65.6 },
+        { id="logistics-92642-turnin", title="Report Disrupting Logistics", text="Return to Yorana Windyreed at East Pylon Watchtower.", hub="East Pylon Watchtower", level=10, questId=92642, action="turnin", x=69.6, y=67.1 },
+        { id="return-92880-accept", title="Pick up Return to Valanaar", text="Accept Return to Valanaar from Yorana Windyreed after Breaking the Breaker and Disrupting Logistics.", hub="East Pylon Watchtower", level=10, questId=92880, action="accept", requires={92645,92642}, x=69.6, y=67.1 },
+        { id="return-92880-turnin", title="Return to Valanaar", text="Take Yorana's report to Valennia Stormfist in Valanaar.", hub="Valanaar", level=10, questId=92880, action="turnin", x=66.2, y=76.7 },
+        { id="elder-92881-accept", title="Pick up The High Elder's Request", text="Accept The High Elder's Request from Valennia Stormfist after Return to Valanaar.", hub="Valanaar", level=10, questId=92881, action="accept", requires={92880}, x=66.2, y=76.7 },
+        { id="elder-92881-turnin", title="Talk to High Elder Shadowsong", text="Turn in The High Elder's Request to Talaanis Shadowsong in Valanaar.", hub="Valanaar", level=10, questId=92881, action="turnin", x=66.2, y=76.5 },
+        { id="turncoat-92643-accept", title="Pick up The Turncoat", text="Accept The Turncoat from Talaanis Shadowsong after The High Elder's Request.", hub="Valanaar", level=11, questId=92643, action="accept", requires={92881}, x=66.2, y=76.5 },
+        { id="turncoat-92643-objective", title="Find the cultist turncoat", text="Go to the secluded house northwest of Valanaar and follow the quest objective.", hub="Overlook Standing Stones", level=11, questId=92643, action="objective", x=56.1, y=60.3 },
+    },
+    ["cult-94568-turnin"] = {
+        { id="cult-94568-accept", title="Pick up The Cult's True Plans", text="Accept The Cult's True Plans from Talaanis Shadowsong after handing in Unfortunate News.", hub="Valanaar", level=11, questId=94568, action="accept", requires={92644}, x=66.2, y=76.5 },
+    },
+    ["shrine"] = {
+        { id="desperate-92640-accept", title="Pick up Desperate Times", text="Talk to Talaanis Shadowsong to accept Desperate Times.", hub="Valanaar", level=11, questId=92640, action="accept", requires={94568}, x=66.2, y=76.5 },
+        { id="desperate-92640-turnin", title="Report Desperate Times", text="Speak with Valennia Stormfist in Valanaar and follow her instructions.", hub="Valanaar", level=11, questId=92640, action="turnin", x=66.1, y=76.7 },
+        { id="prepare-93065-accept", title="Pick up Prepare for Battle", text="Accept Prepare for Battle from Valennia Stormfist after Desperate Times.", hub="Valanaar", level=12, questId=93065, action="accept", requires={92640}, x=66.1, y=76.7 },
+        { id="prepare-93065-turnin", title="Meet Valennia at the road", text="Report to Valennia Stormfist in the Gustberry Lowlands to complete Prepare for Battle.", hub="Gustberry Lowlands", level=12, questId=93065, action="turnin", x=61.1, y=70.9 },
+        { id="shrine-92947-accept", title="Pick up Making Our Move", text="Follow Valennia's instructions and accept Making Our Move after Prepare for Battle.", hub="Gustberry Lowlands", level=12, questId=92947, action="accept", requires={93065}, x=61.1, y=70.9 },
+    },
+}
+
+local original = allSteps
+allSteps = {}
+for _, step in ipairs(original) do
+    for _, extra in ipairs(additions[step.id] or {}) do allSteps[#allSteps+1] = extra end
+    allSteps[#allSteps+1] = step
+end
+local amendments = {
+    ["alliance-leader"]={x=66.6,y=79.9},
+    ["horde-leader"]={x=59.1,y=79.8},
+    ["scholar-92727-accept"]={requires={92699},x=66.3,y=79.8},
+    ["scholar-92727-turnin"]={x=53.3,y=72.1},
+    ["scholar-92849-accept"]={requires={92727},x=53.3,y=72.1},
+    ["scholar-92849-turnin"]={x=52.1,y=69.4},
+    ["scholar-92850-accept"]={requires={92849},x=52.1,y=69.4},
+    ["scholar-92850-turnin"]={x=66.2,y=79.9},
+    ["east-pylon"]={x=69.6,y=67.1},
+    ["turncoat"]={title="Hand in The Turncoat",text="Hand in The Turncoat to the dead cultist at the secluded house. If you do not have this quest, first pick it up from Talaanis Shadowsong in Valanaar.",requires={92881},x=56.0,y=58.8},
+    ["unfortunate-news-92644-accept"]={requires={92643},x=56.0,y=58.8},
+    ["unfortunate-news-92644-turnin"]={x=66.2,y=76.5},
+    ["cult-94568-turnin"]={x=66.2,y=76.5},
+    ["shrine"]={requires={93065}},
+    ["shrine-93958-accept"]={requires={92947}},
+}
+for _, step in ipairs(allSteps) do
+    for name, value in pairs(amendments[step.id] or {}) do step[name] = value end
+end
+
 -- Attach the verified zone map to every Skyborne guide step without altering stable step IDs.
 for _, step in ipairs(allSteps) do step.mapId = 2521 end
 
