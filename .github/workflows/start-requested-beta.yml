@@ -1,0 +1,17 @@
+name: Start requested Forever beta
+on:
+  push:
+    branches: ['release-dispatch/forever-11a84259']
+permissions:
+  actions: write
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start release from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run release.yml --repo PhatZero/Wayforth --ref main -f curseforge=true \
+            -f changelog='WayForth now uses shorter beta versions. Quest sync recovers missing pickups and prerequisites when joining a Forever leveling guide mid-route. Zephras Isle routing checks the live quest log, and the dashboard footer shows quest-sync results and pause status.'
