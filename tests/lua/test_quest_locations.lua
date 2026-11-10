@@ -55,6 +55,28 @@ assert(supplies.hub == "Calandrath" and supplies.mapId == 1451,
     "The matching WoWDB finisher must use the NPC's Forever map position")
 assert(supplies.locationSource:find("WoWDB", 1, true), "Retain the finisher reference's provenance")
 
+for _, guideId in ipairs({"alliance-azshara", "horde-azshara"}) do
+    local meeting = assert(find(guideId, 3381, "turnin"))
+    assert(meeting.hub == "Sanath Lim-yo" and meeting.mapId == 1447)
+    assert(meeting.locationSource:find("WoWDB", 1, true))
+end
+local pledge = assert(find("alliance-tanaris", 3638, "objective"))
+assert(pledge.mapId == 1446 and pledge.hub == "Nixx Sprocketspring")
+assert(pledge.text:find("Use the provided Pledge", 1, true),
+    "The pledge interaction must retain the item-use instruction at its waypoint")
+local armor = assert(find("alliance-tanaris", 2771, "objective"))
+assert(armor.x == nil and armor.text:find("2 Mithril Coifs", 1, true),
+    "Crafting requirements must not borrow the quest finisher's position")
+local hunt = assert(find("alliance-winterspring", 5306, "objective"))
+assert(hunt.x == nil and hunt.text:find("Blackrock Spire", 1, true),
+    "A documented instance objective must not fabricate an outdoor coordinate")
+local reputation = assert(find("alliance-desolace", 1382, "objective"))
+assert(reputation.mapId == 1443 and reputation.locationKind == "target")
+assert(reputation.text:find("Defeat Magram", 1, true))
+local flight = ns.foreverQuestLocations[5931].objective[1]
+assert(flight.id == 11800 and flight.mapId == 1450,
+    "Forever's flight objective must route to Silva, before the Darnassus finisher")
+
 -- A kill/loot target's allegiance must not restrict the quest's player faction.
 local claw = assert(find("horde-ashenvale", 2, "accept"))
 assert(claw.x and claw.y and claw.locationKind == "loot",

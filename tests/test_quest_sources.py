@@ -14,6 +14,8 @@ class QuestSourceTests(unittest.TestCase):
                                           "3": {"1": {"1": 197}}}}}
         catalog.maps = {12: 1429, 215: 1412}
         catalog.names = {1429: "Elwynn Forest", 1412: "Mulgore"}
+        catalog.reports, catalog.att, catalog.extra_entities, catalog.npc_names = {}, {}, {}, {}
+        catalog.data.update(Npc={}, Object={}, Item={})
         catalog.transforms = {
             12: dict(scale_x=1, offset_x=0, scale_y=1, offset_y=0),
             215: dict(scale_x=.8348002068275978, offset_x=7.007453108736848,
@@ -81,6 +83,46 @@ class QuestSourceTests(unittest.TestCase):
         catalog.supplement(record, fact)
         self.assertEqual(record["pickup"][0]["x"], 43.9)
         self.assertEqual(record["pickup"][0]["y"], 76.7)
+
+    def test_wowdb_reference_requires_matching_title_and_forever_items(self):
+        catalog = self.catalog()
+        catalog.data["Quest"]["783"]["10"] = {"3": {"1": {"1": 5770}}}
+        reference = dict(questId=783, questName="A Threat Within", facts={},
+                         objective=dict(kind="craft", items=[5770], text="Obtain the required robes."))
+        self.assertTrue(catalog.reference(reference))
+        self.assertEqual(catalog.reports["783"]["objective"]["items"], [5770])
+        catalog.reports = {}
+        reference["objective"]["items"] = [99999]
+        self.assertFalse(catalog.reference(reference))
+        self.assertNotIn("objective", catalog.reports["783"])
+        reference["questName"] = "A Different Quest"
+        self.assertFalse(catalog.reference(reference))
+
+    def test_crafting_requirements_do_not_route_objectives_to_finisher(self):
+        catalog = self.catalog()
+        quest = catalog.data["Quest"]["783"]
+        quest["10"] = {"3": {"1": {"1": 5770}}}
+        catalog.data["Npc"]["197"] = {"1": "Finisher", "7": {"12": {"1": {"1": 48, "2": 42}}}}
+        catalog.data["Item"]["5770"] = {"1": "Robes of Arcana"}
+        catalog.reference(dict(questId=783, questName="A Threat Within", facts={},
+                               objective=dict(kind="craft", items=[5770], text="Obtain the required robes.")))
+        record = catalog.record(783)
+        self.assertEqual(record["turnin"][0]["id"], 197)
+        self.assertNotIn("objective", record)
+        self.assertEqual(record["objectiveSource"], "WoWDB")
+
+    def test_scripted_targets_resolve_reputation_and_flight_work(self):
+        catalog = self.catalog()
+        catalog.data["Npc"]["4653"] = {"1": "Enemy", "13": "A", "7": {"12": {"1": {"1": 48, "2": 42}}}}
+        marker = {"2": 1, "5": {"1": {"1": "monster", "2": 4653}}}
+        quest = {"29": {"1": marker}}
+        point = catalog.objectives(quest)[0]
+        self.assertEqual(point["kind"], "target")
+        self.assertNotIn("faction", point)
+        marker["2"] = 5
+        point = catalog.objectives(quest)[0]
+        self.assertEqual(point["kind"], "npc")
+        self.assertEqual(point["faction"], "Alliance")
 
 
 if __name__ == "__main__":

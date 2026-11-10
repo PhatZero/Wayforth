@@ -1,11 +1,497 @@
 [
   {
+    "questId": 1036,
+    "questName": "Avast Ye, Scallywag",
+    "facts": {
+      "Turned in to": "Fleet Master Firallon"
+    },
+    "objective": {
+      "kind": "reputation",
+      "text": "Meet the reputation requirement in your quest log, then speak with Fleet Master Firallon aboard the Crimson Veil off Stranglethorn."
+    },
+    "source": "https://www.wowdb.com/quests/1036-avast-ye-scallywag",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail"
+  },
+  {
+    "questId": 1192,
+    "questName": "Indurium Ore",
+    "facts": {},
+    "objective": {
+      "kind": "loot",
+      "items": [
+        5833
+      ],
+      "text": "Collect 4 Indurium Ore. Check the quest log for the current source and remaining quantity."
+    },
+    "source": "https://www.wowdb.com/quests/1192-indurium-ore",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 1367,
+    "questName": "Magram Alliance",
+    "facts": {
+      "Turned in to": "Warug"
+    },
+    "objective": {
+      "kind": "reputation",
+      "text": "Defeat Gelkis centaur until the Magram Clan is Friendly, then report to Warug."
+    },
+    "source": "https://www.wowdb.com/quests/1367-magram-alliance",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 1368,
+    "questName": "Gelkis Alliance",
+    "facts": {
+      "Turned in to": "Uthek the Wise"
+    },
+    "objective": {
+      "kind": "reputation",
+      "text": "Defeat Magram centaur until the Gelkis Clan is Friendly, then report to Uthek the Wise."
+    },
+    "source": "https://www.wowdb.com/quests/1368-gelkis-alliance",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 1371,
+    "questName": "Gizmo for Warug",
+    "facts": {
+      "Turned in to": "Warug"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        4392
+      ],
+      "text": "Obtain an Advanced Target Dummy and keep your Magram reputation high enough to speak with Warug."
+    },
+    "source": "https://www.wowdb.com/quests/1371-gizmo-for-warug",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 1382,
+    "questName": "Strange Alliance",
+    "facts": {
+      "Turned in to": "Uthek the Wise"
+    },
+    "objective": {
+      "kind": "reputation",
+      "text": "Defeat Magram centaur until the Gelkis Clan is Friendly, then report to Uthek the Wise."
+    },
+    "source": "https://ptr.wowdb.com/quests/1382-strange-alliance",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail"
+  },
+  {
+    "questId": 1385,
+    "questName": "Brutal Politics",
+    "facts": {
+      "Turned in to": "Warug"
+    },
+    "objective": {
+      "kind": "reputation",
+      "text": "Defeat Gelkis centaur until the Magram Clan is Friendly, then report to Warug."
+    },
+    "source": "https://www.wowdb.com/quests/1385-brutal-politics",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 1796,
+    "questName": "Components for the Enchanted Gold Bloodrobe",
+    "facts": {
+      "Turned in to": "Menara Voidrender"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        5770
+      ],
+      "text": "Craft or buy Robes of Arcana for Menara Voidrender."
+    },
+    "source": "https://www.wowdb.com/quests/1796-components-for-the-enchanted-gold-bloodrobe",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 2771,
+    "questName": "A Good Head On Your Shoulders",
+    "facts": {
+      "Turned in to": "Trenton Lighthammer"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        7931,
+        7928
+      ],
+      "text": "Prepare 2 Mithril Coifs and 1 Ornate Mithril Shoulder for Trenton Lighthammer."
+    },
+    "source": "https://ptr.wowdb.com/quests/2771-a-good-head-on-your-shoulders",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 2772,
+    "questName": "The World At Your Feet",
+    "facts": {
+      "Turned in to": "Trenton Lighthammer"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        7933,
+        7926
+      ],
+      "text": "Prepare 2 Heavy Mithril Boots and 1 Ornate Mithril Pants for Trenton Lighthammer."
+    },
+    "source": "https://ptr.wowdb.com/quests/2772-the-world-at-your-feet",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 2773,
+    "questName": "The Mithril Kid",
+    "facts": {
+      "Turned in to": "Trenton Lighthammer"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        7930,
+        7927
+      ],
+      "text": "Prepare 2 Heavy Mithril Breastplates and 1 Ornate Mithril Gloves for Trenton Lighthammer."
+    },
+    "source": "https://ptr.wowdb.com/quests/2773-the-mithril-kid",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 3381,
+    "questName": "A Meeting with the Master",
+    "facts": {
+      "Turned in to": "Sanath Lim-yo"
+    },
+    "source": "https://ptr.wowdb.com/quests/3381-a-meeting-with-the-master",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail"
+  },
+  {
+    "questId": 3638,
+    "questName": "The Pledge of Secrecy",
+    "facts": {
+      "Turned in to": "Nixx Sprocketspring"
+    },
+    "objective": {
+      "kind": "use-item",
+      "items": [
+        11270
+      ],
+      "targets": [
+        "Nixx Sprocketspring"
+      ],
+      "text": "Use the provided Pledge of Secrecy to sign it, then speak with Nixx Sprocketspring in Gadgetzan."
+    },
+    "source": "https://www.wowdb.com/quests/3638-the-pledge-of-secrecy",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 3639,
+    "questName": "Show Your Work",
+    "facts": {
+      "Turned in to": "Nixx Sprocketspring"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        4394,
+        10507,
+        4384
+      ],
+      "text": "Prepare 20 Big Iron Bombs, 20 Solid Dynamite and 5 Explosive Sheep for Nixx Sprocketspring."
+    },
+    "source": "https://www.wowdb.com/quests/3639-show-your-work",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 3791,
+    "questName": "The Mystery of Morrowgrain",
+    "facts": {
+      "Turned in to": "Quintis Jonespyre"
+    },
+    "objective": {
+      "kind": "supplies",
+      "items": [
+        11040
+      ],
+      "text": "Collect 10 Morrowgrain for Quintis Jonespyre. The quest supplies an Evergreen Pouch."
+    },
+    "source": "https://www.wowdb.com/quests/3791-the-mystery-of-morrowgrain",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 5306,
+    "questName": "Snakestone of the Shadow Huntress",
+    "facts": {
+      "Turned in to": "Kilram"
+    },
+    "objective": {
+      "kind": "instance",
+      "items": [
+        13352
+      ],
+      "text": "Defeat Shadow Hunter Vosh'gajin in Blackrock Spire and loot Vosh'gajin's Snakestone."
+    },
+    "source": "https://www.wowdb.com/quests/5306-snakestone-of-the-shadow-huntress",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 5891,
+    "questName": "Salve via Disenchanting",
+    "facts": {},
+    "reviewNote": "The retrieved page has no objective requirements or coordinates. It contributes a review receipt only.",
+    "source": "https://ptr.wowdb.com/quests/5891-salve-via-disenchanting",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail"
+  },
+  {
+    "questId": 5931,
+    "questName": "Back to Darnassus",
+    "facts": {
+      "Turned in to": "Mathrengyl Bearwalker"
+    },
+    "source": "https://www.wowdb.com/quests/5931-back-to-darnassus",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 6504,
+    "questName": "The Lost Pages",
+    "facts": {
+      "Turned in to": "Gurda Ragescar"
+    },
+    "objective": {
+      "kind": "combine",
+      "items": [
+        16642,
+        16643,
+        16644
+      ],
+      "text": "Collect the 12 Shredder Operating Manual pages and combine them into Chapters 1, 2 and 3."
+    },
+    "source": "https://www.wowdb.com/quests/6504-the-lost-pages",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 7654,
+    "questName": "Imperial Plate Boots",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "items": [
+        12359
+      ],
+      "text": "Collect 20 Thorium Bars for the Imperial Plate Boots plans."
+    },
+    "source": "https://www.wowdb.com/quests/7654-imperial-plate-boots",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 7656,
+    "questName": "Imperial Plate Chest",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "items": [
+        12359
+      ],
+      "text": "Collect 30 Thorium Bars for the Imperial Plate Chest plans."
+    },
+    "source": "https://www.wowdb.com/quests/7656-imperial-plate-chest",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 7657,
+    "questName": "Imperial Plate Helm",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "items": [
+        12359
+      ],
+      "text": "Collect 25 Thorium Bars for the Imperial Plate Helm plans."
+    },
+    "source": "https://www.wowdb.com/quests/7657-imperial-plate-helm",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 7658,
+    "questName": "Imperial Plate Leggings",
+    "facts": {},
+    "objective": {
+      "kind": "supplies",
+      "items": [
+        12359
+      ],
+      "text": "Collect 30 Thorium Bars for the Imperial Plate Leggings plans."
+    },
+    "source": "https://www.wowdb.com/quests/7658-imperial-plate-leggings",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 8317,
+    "questName": "Kitchen Assistance",
+    "facts": {
+      "Turned in to": "Calandrath"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        20452
+      ],
+      "text": "Prepare 10 Smoked Desert Dumplings for Calandrath."
+    },
+    "source": "https://www.wowdb.com/quests/8317-kitchen-assistance",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail"
+  },
+  {
+    "questId": 8496,
+    "questName": "Bandages for the Field",
+    "facts": {
+      "Turned in to": "Windcaller Proudhorn"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        14530,
+        8545,
+        6451
+      ],
+      "text": "Prepare 30 each of Heavy Runecloth Bandage, Heavy Mageweave Bandage and Heavy Silk Bandage. Keep Logistics Task Briefing X for the delivery."
+    },
+    "source": "https://www.wowdb.com/quests/8496-bandages-for-the-field",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 8540,
+    "questName": "Boots for the Guard",
+    "facts": {
+      "Turned in to": "Vish Kozus"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        7936
+      ],
+      "text": "Prepare 3 Ornate Mithril Boots. Keep Logistics Task Briefing II for the delivery."
+    },
+    "source": "https://www.wowdb.com/quests/8540-boots-for-the-guard",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 8541,
+    "questName": "Grinding Stones for the Guard",
+    "facts": {
+      "Turned in to": "Vish Kozus"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        12644,
+        7966,
+        3486
+      ],
+      "text": "Prepare 10 each of Dense Grinding Stone, Solid Grinding Stone and Heavy Grinding Stone. Keep Logistics Task Briefing III for the delivery."
+    },
+    "source": "https://www.wowdb.com/quests/8541-grinding-stones-for-the-guard",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 8781,
+    "questName": "Arms for the Field",
+    "facts": {
+      "Turned in to": "Janela Stouthammer"
+    },
+    "objective": {
+      "kind": "craft",
+      "items": [
+        3853
+      ],
+      "text": "Prepare 2 Moonsteel Broadswords for Janela Stouthammer. Keep Logistics Task Briefing VI for the delivery."
+    },
+    "source": "https://www.wowdb.com/quests/8781-arms-for-the-field",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
     "questId": 8856,
     "questName": "Desert Survival Kits",
     "facts": {
       "Turned in to": "Calandrath"
     },
+    "reviewNote": "The summary names Baked Salmon but the objective list names Smoked Desert Dumplings. Only the consistent finisher reference is imported.",
     "source": "https://www.wowdb.com/quests/8856-desert-survival-kits",
+    "retrieved": "2026-11-10",
+    "availabilityScope": "Retail",
+    "retailAvailable": false
+  },
+  {
+    "questId": 9023,
+    "questName": "The Perfect Poison",
+    "facts": {
+      "Turned in to": "Dirk Thunderwood"
+    },
+    "objective": {
+      "kind": "instance",
+      "items": [
+        22216,
+        22217
+      ],
+      "text": "Loot the venom sacs from High Priest Venoxis in Zul'Gurub and Kurinnaxx in the Ruins of Ahn'Qiraj."
+    },
+    "source": "https://www.wowdb.com/quests/9023-the-perfect-poison",
     "retrieved": "2026-11-10",
     "availabilityScope": "Retail",
     "retailAvailable": false

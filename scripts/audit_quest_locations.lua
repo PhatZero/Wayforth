@@ -38,7 +38,7 @@ for _, guide in ipairs(guides:List()) do
                         assert(type(step.questId) == "number" and step.questId > 0,
                             "Missing quest ID: " .. guide.id .. "/" .. tostring(key))
                         ids[step.questId] = true
-                        local total = totals[action] or {steps = 0, located = 0}
+                        local total = totals[action] or {steps = 0, located = 0, requirements = 0}
                         totals[action] = total
                         total.steps = total.steps + 1
                         count = count + 1
@@ -46,7 +46,12 @@ for _, guide in ipairs(guides:List()) do
                             total.located = total.located + 1
                         else
                             missing = missing + 1
-                            gaps[#gaps + 1] = {guide.id, tostring(step.questId), action, tostring(step.title)}
+                            local guidance = ""
+                            if step.objectiveSource then
+                                total.requirements = total.requirements + 1
+                                guidance = step.objectiveSource .. " (" .. step.objectiveKind .. "): " .. step.text
+                            end
+                            gaps[#gaps + 1] = {guide.id, tostring(step.questId), action, tostring(step.title), guidance}
                         end
                     end
                 end
@@ -72,14 +77,17 @@ end
 lines[#lines + 1] = ""
 lines[#lines + 1] = "Static coverage describes source availability. It does not verify quest eligibility or live-client accuracy. Some requirements involve crafting, reputation or player-held items and have no single world destination. Unresolved phases use an active quest's live marker when available."
 lines[#lines + 1] = ""
+lines[#lines + 1] = string.format("Of the %d missing objective destinations, %d have specific WoWDB-backed requirements in the tracker. They remain counted as missing static destinations.",
+    totals.objective.steps - totals.objective.located, totals.objective.requirements)
+lines[#lines + 1] = ""
 lines[#lines + 1] = "| Guide | Quest steps | Static destinations | Missing |"
 lines[#lines + 1] = "| --- | ---: | ---: | ---: |"
 for _, row in ipairs(report) do lines[#lines + 1] = string.format("| %s | %d | %d | %d |", unpack(row)) end
 lines[#lines + 1] = ""
 lines[#lines + 1] = "## Unresolved static destinations"
 lines[#lines + 1] = ""
-lines[#lines + 1] = "| Guide | Quest ID | Phase | Step |"
-lines[#lines + 1] = "| --- | ---: | --- | --- |"
+lines[#lines + 1] = "| Guide | Quest ID | Phase | Step | Known requirements |"
+lines[#lines + 1] = "| --- | ---: | --- | --- | --- |"
 table.sort(gaps, function(a, b) return table.concat(a, "/") < table.concat(b, "/") end)
 for _, row in ipairs(gaps) do
     for index, value in ipairs(row) do row[index] = value:gsub("|", "/"):gsub("\n", " ") end

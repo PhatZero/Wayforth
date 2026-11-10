@@ -62,6 +62,11 @@ function Locations:Apply(step, guide, currentMap)
     -- The authored Zephras route also has deliberate cave entrances and ship stops.
     if step.x and step.y and guide.id:find("^zephras%-") then return end
     local record = recordFor(step)
+    if role == "objective" and record and record.objectiveText then
+        step.text = record.objectiveText .. " Check your quest log for current requirements and quantities."
+        step.objectiveKind = record.objectiveKind
+        step.objectiveSource = record.objectiveSource
+    end
     local point = record and choosePoint(record[role], guide, currentMap)
     if not point then
         local name = record and record[role .. "Name"]
@@ -91,7 +96,7 @@ function Locations:Apply(step, guide, currentMap)
     elseif role == "objective" and point.requiredQuest then
         step.text = "Complete quest " .. point.requiredQuest .. " with " .. tostring(point.name or step.zone) ..
             " to obtain the required item."
-    elseif role == "objective" then
+    elseif role == "objective" and not record.objectiveText then
         step.text = "Work on the quest objectives near " .. tostring(point.name or step.zone) ..
             ". Check your quest log for remaining requirements."
     elseif role == "turnin" then
