@@ -229,11 +229,9 @@ function Navigator:Refresh()
             step = alternate
         end
     end
-    if not self.overrideIndex and ns.Modules.SmartRoutes then
-        local group = ns.Modules.SmartRoutes:NearbyGroup()
-        local best = ns.Modules.SmartRoutes:NearestGroupedStep(group)
-        if best then step = guides:GetSteps()[best] or step end
-    end
+    -- Do not secretly redirect the arrow to another grouped step. The
+    -- tracker must always describe the active navigation target. Players can
+    -- explicitly select a suggested nearby step without altering quest flags.
     local ok, target = pcall(targetForStep, step)
     self.target = ok and target or nil
     self:UpdateDirection()
@@ -294,10 +292,13 @@ function Navigator:SetOverride(index, persistent)
     local step = steps[index]
     if not step then return false, "That objective is unavailable." end
     local ok, target = pcall(targetForStep, step)
-    if not ok or not target then return false, "No verified waypoint for that objective." end
     self.overrideIndex = index
     self.pinnedIndex = persistent and index or nil
     self:Refresh()
+    if not ok or not target then
+        -- No coordinates must not make an objective impossible to select.
+        return true, "Objective selected. No verified waypoint; follow the quest instructions."
+    end
     return true, persistent and "Destination pinned." or "Temporary destination selected."
 end
 
