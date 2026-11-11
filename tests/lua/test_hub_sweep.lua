@@ -58,7 +58,11 @@ assert(group[1].index == 1 and group[2].step.questId == 700,
 active[100] = true
 guides:RecordQuestEvent("QUEST_ACCEPTED", 100)
 local idx, msg = routes:Preview("hub-fixture", "recommended")
-assert(idx == 6 and msg:find("hub"), "Accept the other Market quests before leaving")
+assert(idx == 10 and msg:find("Turn in"), "Handle ready same-hub turn-ins before departures")
+ready[700] = nil
+idx, msg = routes:Preview("hub-fixture", "recommended")
+assert(idx == 6 and msg:find("hub"), "Collect other Market pickups after ready turn-ins")
+ready[700] = true
 assert(not complete[100] and not complete[300], "Suggested pickups never forge completion")
 -- If the player enters a new zone, the anchor is cleared by Bootstrap; without
 -- a just-accepted event, the route returns to the active quest's objective.
