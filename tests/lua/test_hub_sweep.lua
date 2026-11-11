@@ -65,6 +65,21 @@ assert(not complete[100] and not complete[300], "Suggested pickups never forge c
 ns.state.lastAcceptedQuestID = nil
 idx = routes:Preview("hub-fixture", "recommended")
 assert(idx == 2, "Without a fresh accept event, live active objective wins")
+-- A real turn-in keeps us at the same hub to finish other ready quests,
+-- then check follow-up pickups without synthesizing quest completion.
+guides:RecordQuestEvent("QUEST_TURNED_IN",100)
+idx = routes:Preview("hub-fixture", "recommended")
+assert(idx == 10, "A ready turn-in at the current hub precedes distant objectives")
+guides:RecordQuestEvent("QUEST_TURNED_IN",700)
+idx = routes:Preview("hub-fixture", "recommended")
+assert(idx == 6, "After turning in, collect newly eligible same-hub pickups")
+-- Old session hints must expire rather than repeatedly pulling us back.
+local clock=100
+GetTime=function() return clock end
+guides:RecordQuestEvent("QUEST_TURNED_IN",700)
+clock=200
+idx = routes:Preview("hub-fixture", "recommended")
+assert(idx ~= 6, "Expired hub hint must not override normal route matching")
 -- Arrow must match the tracker step instead of secretly choosing a nearby one.
 ns.Modules.Guides:GetProgress().current = 1
 nav.frame = { IsShown = function() return false end }
