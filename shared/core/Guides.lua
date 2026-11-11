@@ -234,12 +234,17 @@ function Guides:RecordQuestEvent(event, first, second)
     if event == "QUEST_ACCEPTED" then
         ns.state.acceptedQuestIDs[questID] = true
         ns.state.lastAcceptedQuestID = questID -- session-only hub sweep anchor
+        ns.state.lastTurnedInQuestID = nil
+        ns.state.lastHubEventAt = type(GetTime) == "function" and GetTime() or nil
     elseif event == "QUEST_REMOVED" then
         ns.state.acceptedQuestIDs[questID] = nil
         if ns.state.lastAcceptedQuestID == questID then ns.state.lastAcceptedQuestID = nil end
+        if ns.state.lastTurnedInQuestID == questID then ns.state.lastTurnedInQuestID = nil end
     elseif event == "QUEST_TURNED_IN" then
         ns.state.acceptedQuestIDs[questID] = nil
         ns.state.lastAcceptedQuestID = nil
+        ns.state.lastTurnedInQuestID = questID
+        ns.state.lastHubEventAt = type(GetTime) == "function" and GetTime() or nil
         -- Turn-in events can arrive before completed quest flags are updated.
         -- This record is local to this character and survives /reload.
         if type(ns.char.turnedInQuests) ~= "table" then ns.char.turnedInQuests = {} end
