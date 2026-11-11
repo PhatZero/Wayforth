@@ -65,6 +65,8 @@ local function dispatch(event, ...)
         or event == "PLAYER_MONEY" then
         if event == "ZONE_CHANGED_NEW_AREA" then
             ns.state.lastAcceptedQuestID = nil -- never follow an old hub to another zone
+            ns.state.lastTurnedInQuestID = nil
+            ns.state.lastHubEventAt = nil
         end
         ns:Call("Character", "Capture")
         local routeOK, rerouted
