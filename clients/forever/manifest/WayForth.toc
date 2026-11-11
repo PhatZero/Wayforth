@@ -32,6 +32,7 @@ Core/SmartRoutes.lua
 Core/QuestAudit.lua
 UI/Theme.lua
 UI/Navigator.lua
+UI/QuestItems.lua
 UI/Tracker.lua
 UI/Window.lua
 UI/Modern.lua

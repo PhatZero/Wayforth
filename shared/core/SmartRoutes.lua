@@ -254,6 +254,34 @@ function Routes:Preview(id, mode)
 
     local level = currentLevel()
     if mode == "recommended" then
+        -- A recent pickup OR turn-in proves the character was at this hub.
+        -- Recheck ready turn-ins (which can unlock more pickups) before
+        -- departing. Expire the session hint so travel never loops back later.
+        local state = ns.state or {}
+        local last = state.lastTurnedInQuestID or state.lastAcceptedQuestID
+        local action = state.lastTurnedInQuestID and "turnin" or "accept"
+        local fresh = true
+        if state.lastHubEventAt and type(GetTime) == "function" then
+            fresh = GetTime() - state.lastHubEventAt <= 90
+        end
+        if fresh and type(last) == "number" then
+            for origin, originStep in ipairs(steps) do
+                if originStep.questId == last and originStep.action == action then
+                    local group = self:NearbyGroup(origin)
+                    for _, entry in ipairs(group) do
+                        if entry.index ~= origin and entry.step.action == "turnin" then
+                            return entry.index, "Turn in another ready quest at this hub before leaving."
+                        end
+                    end
+                    for _, entry in ipairs(group) do
+                        if entry.index ~= origin and entry.step.action == "accept" then
+                            return entry.index, "Collect other eligible quests at this hub before leaving. Check that each quest is offered."
+                        end
+                    end
+                    break
+                end
+            end
+        end
         -- A quest already in the player's log is authoritative for mid-route
         -- recovery. Pick its useful phase, not the nearest unverified quest
         -- from a level-sorted public catalog.
@@ -425,48 +453,84 @@ local function readyForTurnin(questId)
     local ok, result = pcall(func, questId)
     return ok and result == true
 end
-local function nearby(a, b)
-    if not a or not b or a.action ~= b.action then return false end
+-- Hub Sweep checks the whole guide, not just the next dozen steps.
+-- Factual catalog locations are candidates: never assert a quest is offered.
+local function sameHub(a, b)
+    if not a or not b then return false end
     if a.zone and b.zone and a.zone ~= b.zone then return false end
-    if type(a.x) == "number" and type(a.y) == "number"
-        and type(b.x) == "number" and type(b.y) == "number" then
-        return math.abs(a.x - b.x) <= 4 and math.abs(a.y - b.y) <= 4
+    if a.mapId and b.mapId and a.mapId ~= b.mapId then return false end
+    local located = type(a.x) == "number" and type(a.y) == "number"
+        and type(b.x) == "number" and type(b.y) == "number"
+    if located then
+        local dx, dy = a.x - b.x, a.y - b.y
+        return dx * dx + dy * dy <= 16 -- within four map percentage points
     end
+    -- Only use a shared named hub when at least one coordinate is missing.
+    -- A generic zone label is not a trustworthy single pickup location.
     return a.hub and b.hub and a.hub == b.hub
+        and a.hub ~= a.zone and a.hub ~= b.zone
 end
-function Routes:NearbyGroup()
-    local settings = ns.Modules.Database
-    if settings and (settings:Get("smartRouting") == false or settings:Get("guidePaused") == true) then
-        return {}
+
+local function eligibleAtHub(step, index, saved, mode)
+    local id = step and step.questId
+    if type(id) ~= "number" or flag(id) or completed(step, index, saved)
+        or saved.skipped and saved.skipped[key(step, index)] then return false end
+    local audit = ns.Modules.QuestAudit
+    if audit and audit:IsMismatched(id) then return false end
+
+    if step.action == "accept" then
+        if active(id) then return false end
+        -- Recommended routes avoid gray quests and not-yet-level-eligible
+        -- candidates; From Beginning intentionally allows low-level content.
+        if mode ~= "beginning" and type(step.level) == "number" then
+            local level = currentLevel()
+            if step.level < level - 5 or step.level > level + 3 then return false end
+        end
+    elseif step.action == "turnin" then
+        if not readyForTurnin(id) then return false end
+    elseif step.action == "objective" then
+        if not active(id) or readyForTurnin(id) then return false end
+    else
+        return false
     end
+    for _, requirement in ipairs(step.requires or {}) do
+        if not flag(requirement) then return false end
+    end
+    return true
+end
+
+function Routes:NearbyGroup(anchorIndex)
+    local settings = ns.Modules.Database
+    if settings and (settings:Get("smartRouting") == false
+        or settings:Get("guidePaused") == true) then return {} end
     local guides = ns.Modules.Guides
     local saved = guides:GetProgress()
     local steps = guides:GetSteps()
-    if not saved or saved.awaitingQuestMatch then return {} end
-    local start = saved.current
+    if not saved or (saved.awaitingQuestMatch and not anchorIndex) then return {} end
+    local start = anchorIndex or saved.current
     local anchor = steps[start]
     if not anchor then return {} end
     local group = { { index = start, step = anchor } }
     if anchor.action ~= "accept" and anchor.action ~= "objective"
         and anchor.action ~= "turnin" then return group end
-    for index = start + 1, math.min(#steps, start + 12) do
-        local step = steps[index]
-        local key = step and (step.id or index)
-        if step and not saved.completed[key] and not (saved.skipped and saved.skipped[key])
-            and nearby(anchor, step) then
-            local allowed = true
-            for _, requirement in ipairs(step.requires or {}) do
-                if not flag(requirement) then allowed = false; break end
-            end
-            local audit = ns.Modules.QuestAudit
-            if audit and step.questId and audit:IsMismatched(step.questId) then allowed = false end
-            if step.action == "objective" and not active(step.questId) then allowed = false end
-            if step.action == "turnin" and not readyForTurnin(step.questId) then allowed = false end
-            if step.action == "accept" and (active(step.questId) or flag(step.questId)) then allowed = false end
-            if allowed then group[#group+1] = { index = index, step = step } end
-            if #group >= 5 then break end
+
+    for index, step in ipairs(steps) do
+        if index ~= start and sameHub(anchor, step)
+            and eligibleAtHub(step, index, saved, saved.routeMode) then
+            group[#group + 1] = { index = index, step = step }
         end
     end
+    -- Ready turn-ins can unlock follow-up pickups, so show them first.
+    -- Keep the current step at the front; this is a suggested sweep, not a
+    -- reordering of quest completion history or an automatic waypoint.
+    local rank = { turnin = 1, accept = 2, objective = 3 }
+    table.sort(group, function(a, b)
+        if a.index == start then return true end
+        if b.index == start then return false end
+        local x, y = rank[a.step.action] or 9, rank[b.step.action] or 9
+        if x ~= y then return x < y end
+        return a.index < b.index
+    end)
     return group
 end
 

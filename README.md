@@ -45,7 +45,9 @@ This build updates the **existing WayForth addon**, not a second addon or a sepa
 - **Frameless gold navigation arrow**, with independently adjustable opacity, scale, position, and show/hide behavior; no decorative box. An unavailable waypoint is reported without inventing coordinates.
 - **Character-specific preferences**, including window positions/sizes, opacity, Guide Recovery, Pause Guide, Auto Advance, Smart Routing and guide history; existing SavedVariables are migrated conservatively.
 - **Guide-switching choices** remain Start at My Level, From Beginning, and Resume Progress; previous quest completions are preserved per guide.
-- **Conservative nearby grouping** suggests nearby pickups, active objectives, and ready turn-ins only when their guide stage and quest evidence support it. Grouping does not claim unknown quests are available and does not fabricate completed quests.
+- **Premium Hub Sweep** checks the whole selected guide for nearby quest pickups, active objectives, and ready turn-ins. After a real pickup event, Smart Routing prefers remaining eligible quests at that hub before departing. Candidate pickups are clearly unconfirmed, with known prerequisites, level mode, and map boundaries enforced.
+- **Accurate selected-step navigation** keeps the tracker and frameless arrow on the same objective. Clicking a side step with no verified destination still shows instructions; it never invents an arrow. PIN and Skip act on the visible side objective.
+- **Quest-item action** appears beside PIN when Forever's quest log exposes a usable special item. It uses a real secure button and defers attribute/visibility updates during combat; no item action is guessed from guide text.
 - **Native custom addon controls**, rather than Blizzard's red button template. Guide imports and custom guide creation remain future backlog items.
 
 **Validation status:** Automated Lua 5.1 syntax, route/quest synchronization tests and installable ZIP packaging run in GitHub Actions. In-game appearance, quest objective availability, and waypoint accuracy still require testing in WoW: Forever.

@@ -41,8 +41,21 @@ local function dispatch(event, ...)
         local ok, advanced = ns:Call("Guides", "Sync")
         local routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
         ns:Call("Navigator", "Refresh")
-        if (ok and advanced) or (routeOK and rerouted) then
-            ns:Call("Tracker", "Refresh")
+        local changed = (ok and advanced) or (routeOK and rerouted)
+        local tracker = ns.Modules.Tracker
+        local visible = tracker and tracker.frame and tracker.frame:IsShown()
+        -- Repaint the hub list when quests are accepted/removed even if the
+        -- route cursor stays put. Throttle repetitive log-update bursts.
+        local update = changed or (visible and event ~= "QUEST_LOG_UPDATE")
+        if visible and event == "QUEST_LOG_UPDATE" and type(GetTime) == "function" then
+            local now = GetTime()
+            if now - (ns.state.lastQuestTrackerRefresh or -10) >= 0.5 then
+                update = true
+                ns.state.lastQuestTrackerRefresh = now
+            end
+        end
+        if update then
+            if visible then ns:Call("Tracker", "Refresh") end
             if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then
                 ns:Call("UI", "Refresh")
             end
@@ -50,6 +63,11 @@ local function dispatch(event, ...)
     elseif event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LEVEL_UP"
         or event == "PLAYER_XP_UPDATE" or event == "ZONE_CHANGED_NEW_AREA"
         or event == "PLAYER_MONEY" then
+        if event == "ZONE_CHANGED_NEW_AREA" then
+            ns.state.lastAcceptedQuestID = nil -- never follow an old hub to another zone
+            ns.state.lastTurnedInQuestID = nil
+            ns.state.lastHubEventAt = nil
+        end
         ns:Call("Character", "Capture")
         local routeOK, rerouted
         if event == "PLAYER_LEVEL_UP" or event == "PLAYER_ENTERING_WORLD"
