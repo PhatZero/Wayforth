@@ -18,7 +18,9 @@ local function label(parent, text, size, color, x, y, width)
 end
 local function navigate(index, pinned)
     local ok, message = ns.Modules.Navigator:SetOverride(index, pinned)
-    if not ok then ns:Print(message or "No navigation target available") end
+    if not ok or (message and message:find("No verified waypoint", 1, true)) then
+        ns:Print(message or "No navigation target available")
+    end
     Tracker:Refresh()
 end
 local function stepComplete(step, index, saved)
@@ -121,6 +123,13 @@ function Tracker:MakeFrame()
     objective:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-149)
     objective:SetHeight(138)
     self.objectiveBg=theme:Panel(objective,theme.panelLight,theme.gold)
+    -- Narrow cyan accent makes the active objective unmistakable without
+    -- another window, texture asset, or distracting animation.
+    local accent = objective:CreateTexture(nil,"ARTWORK")
+    accent:SetColorTexture(unpack(theme.teal))
+    accent:SetPoint("TOPLEFT",objective,"TOPLEFT",2,-2)
+    accent:SetPoint("BOTTOMLEFT",objective,"BOTTOMLEFT",2,2)
+    accent:SetWidth(3)
     self.objectiveCard=objective
     self.objectiveCaption=label(objective,"CURRENT OBJECTIVE",9,theme.teal,12,10,290)
     self.stepTitle=label(objective,"",14,theme.gold,12,29,320)
@@ -167,7 +176,14 @@ function Tracker:MakeFrame()
     end,"primary")
     self.next:SetPoint("CENTER",control,"CENTER",-7,0)
     self.skip=theme:Button(control,83,34,"Skip",function()
-        ns.Modules.Guides:SkipCurrent()
+        local guides = ns.Modules.Guides
+        local navigator = ns.Modules.Navigator
+        -- A clicked nearby step is the visible objective. Never silently
+        -- skip the hidden underlying route step instead.
+        if navigator and navigator.overrideIndex then
+            guides:SetCurrent(navigator.overrideIndex)
+        end
+        guides:SkipCurrent()
         ns:Call("Navigator","ResetTarget")
         Tracker:Refresh()
     end)
@@ -379,8 +395,16 @@ function Tracker:Refresh()
     local step,index,total=guides:CurrentStep()
     if not g or not step or not total or total==0 then return end
     local saved=guides:GetProgress()
+    local routeIndex=index
     local count=0
     local steps=guides:GetSteps()
+    local navigator=ns.Modules.Navigator
+    local focus=navigator and navigator.overrideIndex
+    if focus and steps[focus] and not stepComplete(steps[focus],focus,saved) then
+        step,index=steps[focus],focus
+    else
+        focus=nil
+    end
     for i,s in ipairs(steps) do if stepComplete(s,i,saved) then count=count+1 end end
     self.progressFraction=count/total
     self.guideTitle:SetText(g.title or "Active guide")
@@ -400,16 +424,35 @@ function Tracker:Refresh()
             self.brandCaption:SetText("GUIDE TRACKER")
         end
     end
-    self.stepCount:SetText("Step " .. index .. " / " .. total .. "  |  " .. math.floor(100*count/total) .. "% completed")
+    local progressText=math.floor(100*count/total) .. "% complete"
+    self.stepCount:SetText(focus and ("Viewing " .. index .. " | Route " .. routeIndex .. "/" .. total .. " | " .. progressText)
+        or ("Step " .. index .. " / " .. total .. "  |  " .. progressText))
     self.stepTitle:SetText(step.title or "Next objective")
-    local grouped=ns.Modules.SmartRoutes and ns.Modules.SmartRoutes:NearbyGroup() or {}
-    local groupNames={accept="QUEST PICKUPS",objective="NEARBY OBJECTIVES",turnin="GROUPED TURN-INS"}
-    if #grouped>1 then
-        self.objectiveCaption:SetText((groupNames[step.action] or "GROUPED OBJECTIVES") .. " (" .. #grouped .. ")")
-    else self.objectiveCaption:SetText(g.testingOnly and "TEST ROUTE - VERIFY QUEST" or "CURRENT OBJECTIVE") end
+    local grouped=ns.Modules.SmartRoutes and ns.Modules.SmartRoutes:NearbyGroup(focus) or {}
+    local actions={accept="PICK UP",objective="DO",turnin="TURN IN"}
+    local counts={accept=0,objective=0,turnin=0}
+    for _,entry in ipairs(grouped) do
+        if entry.index ~= index and counts[entry.step.action] then
+            counts[entry.step.action]=counts[entry.step.action]+1
+        end
+    end
+    if focus then
+        self.objectiveCaption:SetText(navigator.pinnedIndex and "PINNED SIDE OBJECTIVE" or "SELECTED SIDE OBJECTIVE")
+    elseif #grouped>1 then
+        local statuses={}
+        if counts.turnin>0 then statuses[#statuses+1]=counts.turnin.." TURN-INS" end
+        if counts.accept>0 then statuses[#statuses+1]=counts.accept.." PICKUPS" end
+        if counts.objective>0 then statuses[#statuses+1]=counts.objective.." OBJECTIVES" end
+        self.objectiveCaption:SetText("HUB SWEEP | "..table.concat(statuses," | "))
+    else
+        self.objectiveCaption:SetText(g.testingOnly and "TEST ROUTE - VERIFY QUEST" or "CURRENT OBJECTIVE")
+    end
+    self.objectiveCaption:SetTextColor(unpack(theme.teal))
     self.objectiveText:SetText(step.text or "")
     local place=step.hub or step.zone or g.zone or "Quest objective"
-    self.location:SetText(step.x and step.y and (place .. string.format("  (%.1f, %.1f)",step.x,step.y)) or place)
+    local target=navigator and navigator:TargetForStep(step)
+    self.location:SetText(step.x and step.y and (place .. string.format("  (%.1f, %.1f)",step.x,step.y))
+        or (target and place or (place .. " | No waypoint verified")))
     self.upcomingIndices={}
     local nextCount=0
     local shown={}
@@ -418,7 +461,8 @@ function Tracker:Refresh()
             nextCount=nextCount+1
             self.upcomingIndices[nextCount]=item.index
             shown[item.index]=true
-            self.upcomingButtons[nextCount]:SetLabel("Nearby: " .. tostring(item.step.title or "Quest"):sub(1,43))
+            local name=tostring(item.step.title or "Quest"):gsub("^Pick up:%s*","")
+            self.upcomingButtons[nextCount]:SetLabel((actions[item.step.action] or "VISIT").." | "..name:sub(1,39))
         end
     end
     for i=index+1,#steps do
@@ -437,13 +481,14 @@ function Tracker:Refresh()
         -- quest or navigable destination. This also prevents misleading pins
         -- in the upcoming list until the live quest log contains a match.
         self.objectiveCaption:SetText("QUEST CHAIN NEEDS REVIEW")
+        self.objectiveCaption:SetTextColor(1,0.74,0.37,1)
         self.stepTitle:SetText("Prerequisite unavailable")
         self.objectiveText:SetText(saved.recoveryReason or "The next prerequisite needs additional quest data. Follow your quest log and retry Sync.")
         self.location:SetText("No verified pickup | Progress preserved")
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
     end
-    if not saved.awaitingQuestMatch and step.action == "accept"
+    if not focus and not saved.awaitingQuestMatch and step.action == "accept"
         and saved.recoveryReason and saved.recoveryReason:find("Quest pickup needed", 1, true) then
         self.objectiveCaption:SetText("QUEST PICKUP REQUIRED")
     end
