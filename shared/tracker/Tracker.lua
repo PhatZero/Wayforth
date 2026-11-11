@@ -145,7 +145,7 @@ function Tracker:MakeFrame()
 
     -- Native quest-item action. A real click goes through Blizzard's secure
     -- item template; the addon never invokes UseItemByName from insecure Lua.
-    local itemButton=CreateFrame("Button","WayForthQuestItemButton",objective,"SecureActionButtonTemplate")
+    local itemButton=CreateFrame("Button","WayForthQuestItemButton",UIParent,"SecureActionButtonTemplate")
     itemButton:SetSize(28,27)
     itemButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-62,-5)
     theme:Panel(itemButton,theme.panel,theme.gold)
@@ -352,7 +352,11 @@ function Tracker:RefreshQuestItem(step)
     end
     self.questItemPending=false
     local source=ns.Modules.QuestItems
-    local item=source and source:Find(step and step.questId)
+    -- Keep the action button separately parented to UIParent: a secure child
+    -- would make the ordinary tracker/objective panel protected in combat.
+    local visible=self.frame and self.frame:IsShown()
+        and not (ns.char and ns.char.trackerMinimized)
+    local item=visible and source and source:Find(step and step.questId)
     local link=item and item.link
     if link~=self.questItemLink then
         button:SetAttribute("item",link)
@@ -387,7 +391,9 @@ function Tracker:Layout()
     local contentW=math.max(240,width-45)
     self.guideTitle:SetWidth(contentW-46)
     self.stepCount:SetWidth(contentW-40)
-    self.stepTitle:SetWidth(contentW-54)
+    -- Keep the title/caption clear of the quest-item and PIN controls.
+    self.stepTitle:SetWidth(math.max(170,contentW-122))
+    self.objectiveCaption:SetWidth(math.max(170,contentW-108))
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
@@ -595,6 +601,7 @@ end
 function Tracker:Hide()
     if ns.char then ns.char.trackerVisible=false end
     if self.frame then self.frame:Hide() end
+    self:RefreshQuestItem(nil)
     ns:Call("Navigator","Hide")
 end
 function Tracker:Initialize()
