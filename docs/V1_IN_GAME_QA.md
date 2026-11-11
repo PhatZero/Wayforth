@@ -40,8 +40,13 @@
 - [ ] Skyborne (Alliance/Horde): verify each starter checkpoint, including Missing Scholar quests 92727, 92849 and 92850, with live client quest records.
 - [ ] Alliance starter zones Elwynn Forest, Dun Morogh and Teldrassil: inspect candidate IDs and progression.
 - [ ] Kalimdor: select Darkshore, Ashenvale and other zones in the source catalog; source-indexed entries are not necessarily confirmed playable routes. Record unmatched, ineligible and unverified quests rather than certifying them.
-- [ ] Test multiple nearby pickups and ready turn-ins at a quest hub. Group suggestions should not present unavailable quests as confirmed and should never skip a required prerequisite.
-- [ ] Click and pin a different objective; arrow selects it without changing the main guide step. Complete it and verify normal smart targeting resumes.
+- [ ] At a hub with quests spread across a long guide, accept one and confirm Hub Sweep lists other eligible pickups before routing to objective areas. Turn-ins that unlock follow-up quests should refresh the list.
+- [ ] Ensure Hub Sweep excludes a blocked prerequisite, wrong zone/map and above-level quest. From Beginning deliberately keeps lower-level content; Smart Start avoids gray quests.
+- [ ] Group suggestions must be labeled as candidates, not confirmed NPC availability, and must never mark quests completed.
+- [ ] Click a nearby quest with no recorded coordinates; its full instructions appear without an invented waypoint. Click PIN on the side objective and confirm the arrow and displayed objective agree.
+- [ ] Click Skip, Previous and Next while viewing a side objective. They must act on the visible selected step, not silently manipulate a different guide step.
+- [ ] Accept a quest with an in-log special-use item. The small item action beside PIN uses the item on a real click; check charges, tooltip and ready-for-turn-in visibility.
+- [ ] Change quests, reload, and close/minimize the tracker in and out of combat. Secure item changes must be deferred until combat ends, with no protected-action/taint errors.
 - [ ] Cross-zone map positions do not generate an arrow on the wrong map; missing objective waypoints display a safe fallback.
 - [ ] Check arrow facing/rotation and actual distance in the live client.
 
