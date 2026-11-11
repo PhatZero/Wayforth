@@ -47,6 +47,13 @@
 - [ ] Click Skip, Previous and Next while viewing a side objective. They must act on the visible selected step, not silently manipulate a different guide step.
 - [ ] Accept a quest with an in-log special-use item. The small item action beside PIN uses the item on a real click; check charges, tooltip and ready-for-turn-in visibility.
 - [ ] Change quests, reload, and close/minimize the tracker in and out of combat. Secure item changes must be deferred until combat ends, with no protected-action/taint errors.
+- [ ] On a quest with an authored coordinate, click MAP PIN and verify a real Blizzard waypoint appears on the world map, rather than merely locking the guide arrow.
+- [ ] Use MAP PIN on a selected side objective; it should pin the selected quest, not the underlying route cursor. Shift-click opens the destination map.
+- [ ] Pin a coordinate in an adjacent zone on the same continent. It should place a remote map waypoint if Forever permits, and the arrow should use real world distance and bearing.
+- [ ] Test unsupported micro-map pins: they convert to a supported parent map without changing the factual position, or return an honest error.
+- [ ] When a target is on another continent or position/facing APIs are unavailable, hide the arrow rather than pointing to a guessed direction.
+- [ ] Complete two or more accepted quests in parallel. ACTIVE and READY entries should be accessible without marking other quests complete.
+- [ ] At a hub containing more than two eligible quests, page through all hub entries in the compact tracker. Accepting one quest should refresh the queue.
 - [ ] Cross-zone map positions do not generate an arrow on the wrong map; missing objective waypoints display a safe fallback.
 - [ ] Check arrow facing/rotation and actual distance in the live client.
 
