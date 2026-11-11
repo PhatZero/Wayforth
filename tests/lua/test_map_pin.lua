@@ -42,7 +42,7 @@ end}
 GetPlayerFacing=function() return 0 end
 assert(loadfile("shared/navigation/Navigator.lua"))("WayForth",ns)
 local nav=ns.Modules.Navigator
-local target={mapId=102,x=0.6,y=0.7,action="accept",title="Remote quest"}
+local target={mapId=102,x=60,y=70,action="accept",title="Remote quest"}
 local angle,distance,reason=nav:DirectionForTarget({mapId=102,x=0.6,y=0.7})
 assert(angle and math.abs(angle+math.pi/2)<0.001,"Eastward cross-zone target needs an eastward arrow")
 assert(distance==100,"World-distance is 100 yards on same continent")
@@ -52,7 +52,7 @@ assert(ok and pin.uiMapID==102 and pin.position.x==0.6 and tracked,
 assert(message:find("Map pin set"),"Report actual pin placement")
 -- Unsupported child map converts through world position to supported parent.
 pin=nil
-ok,message=nav:SetMapPin({mapId=103,x=0.1,y=0.2,action="accept"})
+ok,message=nav:SetMapPin({mapId=103,x=10,y=20,action="accept"})
 assert(ok and pin.uiMapID==102 and pin.position.x==0.6 and pin.position.y==0.7,
     "Use accurate parent-map conversion for unsupported local map")
 -- Different continent has no misleading directional arrow.
