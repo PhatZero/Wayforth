@@ -1,0 +1,17 @@
+name: Start requested Forever beta
+on:
+  push:
+    branches: ['release-dispatch/forever-7af65953']
+permissions:
+  actions: write
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start release from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run release.yml --repo PhatZero/Wayforth --ref main -f curseforge=true \
+            -f changelog='New gold-and-cyan navigation arrow with improved bearing and distance calculations. MAP PIN places a world-map waypoint, with Shift-click opening the destination map. Hub Sweep surfaces eligible nearby pickups and ready turn-ins. The tracker lists concurrent active quests, supports paging through larger quest lists, and adds native quest-item actions. Navigation and quest availability still need in-game beta testing.'
