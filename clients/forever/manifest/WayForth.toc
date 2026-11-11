@@ -29,6 +29,7 @@ Data/ForeverQuestLocations.lua
 Core/QuestLocations.lua
 Core/Guides.lua
 Core/QuestProgress.lua
+Core/HubRoutes.lua
 Core/SmartRoutes.lua
 Core/QuestAudit.lua
 UI/Theme.lua

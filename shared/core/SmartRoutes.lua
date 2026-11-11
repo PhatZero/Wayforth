@@ -55,6 +55,9 @@ end
 local function key(step, index)
     return step.id or index
 end
+function Routes:QuestState(id)
+    return {active=active(id),ready=ready(id),turnedIn=flag(id)}
+end
 local function completed(step, index, saved)
     if step.questId and flag(step.questId) then return true end
     return type(saved.completed) == "table" and saved.completed[key(step, index)] == true
@@ -254,6 +257,11 @@ function Routes:Preview(id, mode)
 
     local level = currentLevel()
     if mode == "recommended" then
+        local hubs=ns.Modules.HubRoutes
+        if hubs and hubs:Enabled() then
+            local hubIndex,hubReason=hubs:Selection(steps,saved)
+            if hubIndex then return hubIndex,hubReason end
+        end
         -- A quest already in the player's log is authoritative for mid-route
         -- recovery. Pick its useful phase, not the nearest unverified quest
         -- from a level-sorted public catalog.
@@ -443,6 +451,9 @@ function Routes:NearbyGroup()
     local saved = guides:GetProgress()
     local steps = guides:GetSteps()
     if not saved or saved.awaitingQuestMatch then return {} end
+    local hubs=ns.Modules.HubRoutes
+    local hubGroup=hubs and hubs:Group(steps,saved)
+    if hubGroup then return hubGroup end
     local start = saved.current
     local anchor = steps[start]
     if not anchor then return {} end

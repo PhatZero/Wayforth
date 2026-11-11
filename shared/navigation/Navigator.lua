@@ -229,7 +229,7 @@ function Navigator:Refresh()
             step = alternate
         end
     end
-    if not self.overrideIndex and ns.Modules.SmartRoutes then
+    if not self.overrideIndex and ns.Modules.SmartRoutes and not (saved and saved.hubVisit) then
         local group = ns.Modules.SmartRoutes:NearbyGroup()
         local best = ns.Modules.SmartRoutes:NearestGroupedStep(group)
         if best then step = guides:GetSteps()[best] or step end

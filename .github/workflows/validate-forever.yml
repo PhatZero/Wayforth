@@ -40,6 +40,8 @@ jobs:
         run: lua5.1 tests/lua/test_live_objectives.lua
       - name: Verify quest-item buttons and combat-safe updates
         run: lua5.1 tests/lua/test_quest_items.lua
+      - name: Verify hub pickup rounds and grouped quest turn-ins
+        run: lua5.1 tests/lua/test_hub_routes.lua
       - name: Exercise Guide Details previews and switching in Lua 5.1
         run: lua5.1 tests/lua/test_guide_details.lua
       - name: Exercise Smart Routes and quest ID auditing in Lua 5.1

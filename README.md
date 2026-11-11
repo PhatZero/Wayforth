@@ -16,6 +16,12 @@ Long objective lists scroll inside the card. Resize the tracker for more room, o
 
 If the current quest is absent from the log or live objective details are unavailable, the tracker explains the state and retains its guide instructions. Objective counts are read from the character's current quest log and are not stored between sessions. In-game appearance and client-specific behavior remain unverified.
 
+## Quest hub routing
+
+With Smart Routing and automatic advancement enabled, a pickup round collects the selected guide's eligible quests at the same hub before starting their objectives. The route then finishes that group's active objectives before making its turn-in round. Ready turn-ins in a return visit are handled before newly unlocked follow-ups send the player out again. The tracker and arrow follow the same selected task.
+
+The shared planner scans the full guide, respects known prerequisites, level restrictions, faction/race/class filtering and skipped pickups, and excludes uncollected quest-starting drops from extra hub pickups. Candidate quests still depend on their actual availability in the Forever client; use Skip if a quest is not offered. The plan stores stable quest/step IDs and does not change completion flags. Pause Guide, manual advancement and Smart Routing controls remain available. Installing an update while still at a quest giver can finish the pickup round; an established field route is not pulled back solely to collect more quests.
+
 ## Quest-item buttons
 
 When the current objective or turn-in quest has a usable item in your inventory, its icon appears beside the current objective. Click it to use the item, or hover for its tooltip. The button shows native charges and cooldowns, follows tracker movement and scale, and clears after consumption, abandonment, guide switching, minimization or closing the tracker. Items can remain available when the client explicitly allows their use on completed quests.
