@@ -1,0 +1,17 @@
+name: Start requested Forever beta
+on:
+  push:
+    branches: ['release-dispatch/forever-1915571c']
+permissions:
+  actions: write
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start release from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run release.yml --repo PhatZero/Wayforth --ref main -f curseforge=true \
+            -f changelog='Fixed MAP PIN using the wrong world-map opening API. MAP PIN now opens the destination world map, refreshes its markers, and highlights the placed waypoint. Automated regression tests passed; large-map display still needs in-game verification.'
