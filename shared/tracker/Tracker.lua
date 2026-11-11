@@ -135,11 +135,20 @@ function Tracker:MakeFrame()
     self.stepTitle=label(objective,"",14,theme.gold,12,29,320)
     self.objectiveText=label(objective,"",11,theme.ivory,12,60,330)
     self.location=label(objective,"",10,theme.teal,12,112,335)
-    self.pinButton=theme:Button(objective,44,24,"PIN",function()
-        local _,index=ns.Modules.Guides:CurrentStep()
+    self.pinButton=theme:Button(objective,75,24,"MAP PIN",function()
         local nav=ns.Modules.Navigator
-        if nav and nav.overrideIndex then index=nav.overrideIndex end
-        if index then navigate(index,true) end
+        local selected=nav and nav.overrideIndex
+        local ok,message=ns.Modules.Guides:PinCurrent(selected)
+        if message then ns:Print(message) end
+        if ok then
+            local target=nav and nav.lastMapPin
+            -- Shift + Map Pin opens the world map at the newly placed waypoint.
+            if type(IsShiftKeyDown)=="function" and IsShiftKeyDown()
+                and target and C_Map and type(C_Map.OpenWorldMap)=="function" then
+                pcall(C_Map.OpenWorldMap,target.mapId)
+            end
+        end
+        Tracker:Refresh()
     end,"quiet")
     self.pinButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-9,-6)
 
@@ -147,7 +156,7 @@ function Tracker:MakeFrame()
     -- item template; the addon never invokes UseItemByName from insecure Lua.
     local itemButton=CreateFrame("Button","WayForthQuestItemButton",UIParent,"SecureActionButtonTemplate")
     itemButton:SetSize(28,27)
-    itemButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-62,-5)
+    itemButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-90,-5)
     theme:Panel(itemButton,theme.panel,theme.gold)
     itemButton:RegisterForClicks("AnyUp")
     itemButton:SetAttribute("type","item")
@@ -179,6 +188,15 @@ function Tracker:MakeFrame()
     self.questItemButton,self.questItemIcon,self.questItemCount=itemButton,itemIcon,itemCount
 
     self.upcomingTitle=label(panel,"UPCOMING STEPS",11,theme.teal,15,300,200)
+    self.upcomingPage=1
+    self.pageButton=theme:Button(panel,94,24,"MORE  >",function()
+        Tracker.upcomingPage=(Tracker.upcomingPage or 1)+1
+        if Tracker.upcomingPage>(Tracker.upcomingPageCount or 1) then
+            Tracker.upcomingPage=1
+        end
+        Tracker:Refresh()
+    end,"quiet")
+    self.pageButton:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-15,-294)
     self.upcomingButtons={}
     for i=1,6 do
         local idx=i
@@ -392,8 +410,8 @@ function Tracker:Layout()
     self.guideTitle:SetWidth(contentW-46)
     self.stepCount:SetWidth(contentW-40)
     -- Keep the title/caption clear of the quest-item and PIN controls.
-    self.stepTitle:SetWidth(math.max(170,contentW-122))
-    self.objectiveCaption:SetWidth(math.max(170,contentW-108))
+    self.stepTitle:SetWidth(math.max(170,contentW-135))
+    self.objectiveCaption:SetWidth(math.max(170,contentW-135))
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
@@ -409,6 +427,7 @@ function Tracker:Layout()
         self.summary:Hide()
         self.objectiveCard:Hide()
         self.upcomingTitle:Hide()
+        if self.pageButton then self.pageButton:Hide() end
         self.controls:Hide()
         if self.menu then self.menu:Hide() end
         if self.picker then self.picker:Hide() end
@@ -416,6 +435,7 @@ function Tracker:Layout()
         self.summary:Show()
         self.objectiveCard:Show()
         self.upcomingTitle:Show()
+        if self.pageButton and (self.upcomingPageCount or 1)>1 then self.pageButton:Show() end
         self.controls:Show()
     end
 end
@@ -533,28 +553,66 @@ function Tracker:Refresh()
     end
     self.location:SetText(step.x and step.y and (place .. string.format("  (%.1f, %.1f)",step.x,step.y))
         or (target and place or (place .. " | No waypoint verified")))
-    self.upcomingIndices={}
-    local nextCount=0
-    local shown={}
+    -- Combine all hub pickups, genuinely active parallel objectives and
+    -- upcoming route steps. Page through them in the same compact tracker.
+    local entries,shown={},{}
+    local function append(candidate,label)
+        if not candidate or not candidate.index or shown[candidate.index]
+            or candidate.index==index or stepComplete(steps[candidate.index],candidate.index,saved) then return end
+        if saved.skipped and saved.skipped[steps[candidate.index].id or candidate.index] then return end
+        entries[#entries+1]={index=candidate.index,label=label}
+        shown[candidate.index]=true
+    end
     for _,item in ipairs(grouped) do
-        if item.index ~= index and nextCount < 6 then
-            nextCount=nextCount+1
-            self.upcomingIndices[nextCount]=item.index
-            shown[item.index]=true
-            local name=tostring(item.step.title or "Quest"):gsub("^Pick up:%s*","")
-            self.upcomingButtons[nextCount]:SetLabel((actions[item.step.action] or "VISIT").." | "..name:sub(1,39))
+        local name=tostring(item.step.title or "Quest"):gsub("^Pick up:%s*","")
+        append(item,(actions[item.step.action] or "VISIT").." | "..name)
+    end
+    local work=ns.Modules.SmartRoutes and ns.Modules.SmartRoutes:ConcurrentQuestSteps(30) or {}
+    for _,item in ipairs(work) do
+        append(item,item.action.." | "..tostring(item.step.title or "Quest"))
+    end
+    local fallback=0
+    for i=routeIndex+1,#steps do
+        if fallback>=12 then break end
+        if not shown[i] and not stepComplete(steps[i],i,saved)
+            and not (saved.skipped and saved.skipped[steps[i].id or i]) then
+            append({index=i},tostring(i) .. ". "..tostring(steps[i].title or "Next step"))
+            fallback=fallback+1
         end
     end
-    for i=index+1,#steps do
-        if not shown[i] and not stepComplete(steps[i],i,saved) and not (saved.skipped and saved.skipped[steps[i].id or i]) then
-            nextCount=nextCount+1
-            if nextCount > 6 then break end
-            self.upcomingIndices[nextCount]=i
-            self.upcomingButtons[nextCount]:SetLabel(tostring(i) .. ". " .. tostring(steps[i].title or "Next step"):sub(1,48))
+    local signature={g.id,tostring(routeIndex),tostring(focus or 0)}
+    for _,entry in ipairs(entries) do signature[#signature+1]=tostring(entry.index) end
+    local key=table.concat(signature,":")
+    if self.upcomingSignature~=key then
+        self.upcomingSignature=key
+        self.upcomingPage=1
+    end
+    local visible=2+math.max(0,math.floor(((self.frame:GetHeight() or 448)-448)/33))
+    visible=math.max(2,math.min(6,visible))
+    self.upcomingPageCount=math.max(1,math.ceil(#entries/visible))
+    self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
+    self.upcomingIndices={}
+    for i,button in ipairs(self.upcomingButtons) do
+        local position=(self.upcomingPage-1)*visible+i
+        local entry=i<=visible and entries[position]
+        if entry then
+            self.upcomingIndices[i]=entry.index
+            button:SetLabel(tostring(entry.label):sub(1,51))
+        else
+            button:Hide()
         end
     end
-    for i=1,#self.upcomingButtons do
-        if not self.upcomingIndices[i] then self.upcomingButtons[i]:Hide() end
+    if #entries>0 then
+        self.upcomingTitle:SetText(#grouped>1 and "HUB & ACTIVE QUESTS"
+            or (#work>0 and "ACTIVE QUESTS" or "UPCOMING STEPS"))
+    else
+        self.upcomingTitle:SetText("UPCOMING STEPS")
+    end
+    if self.pageButton then
+        if self.upcomingPageCount>1 then
+            self.pageButton:SetLabel(self.upcomingPage.."/"..self.upcomingPageCount.."  >")
+            self.pageButton:Show()
+        else self.pageButton:Hide() end
     end
     if saved.awaitingQuestMatch then
         -- The cached step remains saved, but is not presented as an available
@@ -567,6 +625,7 @@ function Tracker:Refresh()
         self.location:SetText("No verified pickup | Progress preserved")
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
+        if self.pageButton then self.pageButton:Hide() end
     end
     if not focus and not saved.awaitingQuestMatch and step.action == "accept"
         and saved.recoveryReason and saved.recoveryReason:find("Quest pickup needed", 1, true) then

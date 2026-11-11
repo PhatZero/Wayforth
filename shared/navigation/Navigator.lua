@@ -101,50 +101,161 @@ local function targetForStep(step)
     -- instead of a quest's *next* objective after it has already been accepted.
     if authored and step.action ~= "objective" then return authored end
     local live = questWaypoint(step.questId, mapId)
-    if live and type(C_Map) == "table" and type(C_Map.GetPlayerMapPosition) == "function" then
-        local ok, position = pcall(C_Map.GetPlayerMapPosition, live.mapId, "player")
-        if not ok or not position then live = nil end
-    end
+    -- Preserve a legitimate client waypoint even when the player is in a
+    -- different zone. Map pins can be placed remotely, and world-space
+    -- navigation handles reachable maps on the same continent.
     return live or authored
 end
 
-local function waypointVector(target)
-    if not (C_Map and type(C_Map.GetPlayerMapPosition) == "function") then return nil end
-    local pos = C_Map.GetPlayerMapPosition(target.mapId, "player")
-    local px, py = getXY(pos)
-    if not validCoord(px, py) then return nil end
-    local dx, dy = target.x - px, target.y - py
+local function safeCall(func, ...)
+    if type(func) ~= "function" then return nil end
+    local ok, a, b, c = pcall(func, ...)
+    if ok then return a, b, c end
+end
 
-    -- Map north is negative Y. GetPlayerFacing() is zero at north and increases
-    -- counterclockwise, so a destination to the right has bearing -pi/2.
-    local bearing = atan2(-dx, -dy)
-    local distance
-    -- Distance is optional. A failing or protected world-space API must not
-    -- suppress the valid directional arrow.
-    local okDistance, measured = pcall(function()
-        if type(C_Map.GetWorldPosFromMapPos) == "function" and type(CreateVector2D) == "function" then
-            local fromContinent, fromWorld = C_Map.GetWorldPosFromMapPos(target.mapId, CreateVector2D(px, py))
-            local toContinent, toWorld = C_Map.GetWorldPosFromMapPos(target.mapId, CreateVector2D(target.x, target.y))
-            if fromContinent and fromContinent == toContinent and fromWorld and toWorld then
-                local ax, ay = getXY(fromWorld)
-                local bx, by = getXY(toWorld)
-                if ax and ay and bx and by then
-                    return math.sqrt((bx - ax) ^ 2 + (by - ay) ^ 2)
-                end
-            end
+local function vectorFor(x, y)
+    if type(CreateVector2D) == "function" then
+        local vector = safeCall(CreateVector2D, x, y)
+        if vector then return vector end
+    end
+    return { x = x, y = y }
+end
+
+-- Distances and bearings must be computed in yards, not raw 0..1 percent
+-- map coordinates (which are distorted in non-square or differently sized zones).
+-- WoW world x is north-positive and world y is west-positive, matching facing.
+local function waypointVector(target)
+    if not target or not target.mapId or not validCoord(target.x, target.y)
+        or type(C_Map) ~= "table" then return nil, nil, "No waypoint" end
+    local currentMap = safeCall(C_Map.GetBestMapForUnit, "player")
+    if type(currentMap) ~= "number" then return nil, nil, "Position unavailable" end
+    local currentPos = safeCall(C_Map.GetPlayerMapPosition, currentMap, "player")
+    local px, py = getXY(currentPos)
+    if not validCoord(px, py) then return nil, nil, "Position unavailable" end
+
+    local north, west, distance
+    if type(C_Map.GetWorldPosFromMapPos) == "function" then
+        local fromContinent, fromWorld = safeCall(C_Map.GetWorldPosFromMapPos,
+            currentMap, vectorFor(px, py))
+        local toContinent, toWorld = safeCall(C_Map.GetWorldPosFromMapPos,
+            target.mapId, vectorFor(target.x, target.y))
+        local ax, ay = getXY(fromWorld)
+        local bx, by = getXY(toWorld)
+        if fromContinent and toContinent and fromContinent == toContinent
+            and type(ax) == "number" and type(ay) == "number"
+            and type(bx) == "number" and type(by) == "number" then
+            north, west = bx - ax, by - ay
+            distance = math.sqrt(north * north + west * west)
+        elseif fromContinent and toContinent and fromContinent ~= toContinent then
+            return nil, nil, "Travel to destination continent"
         end
-        if type(C_Map.GetMapWorldSize) == "function" then
-            local w, h = C_Map.GetMapWorldSize(target.mapId)
-            if type(w) == "number" and type(h) == "number" then
-                return math.sqrt((dx * w) ^ 2 + (dy * h) ^ 2)
-            end
+    end
+
+    if north == nil then
+        -- Safe local fallback for clients without world-position conversions.
+        -- Never interpret a different zone's percentages as a local target.
+        local pos = safeCall(C_Map.GetPlayerMapPosition, target.mapId, "player")
+        local tx, ty = getXY(pos)
+        if not validCoord(tx, ty) then
+            return nil, nil, "Travel to destination zone"
         end
-    end)
-    if okDistance then distance = measured end
-    local facing = type(GetPlayerFacing) == "function" and GetPlayerFacing() or nil
-    if type(facing) ~= "number" then return nil, distance end
+        local width, height = safeCall(C_Map.GetMapWorldSize, target.mapId)
+        if type(width) ~= "number" or width <= 0
+            or type(height) ~= "number" or height <= 0 then
+            width, height = nil, nil
+        end
+        local east = target.x - tx
+        local south = target.y - ty
+        north, west = -south * (height or 1), -east * (width or 1)
+        if width then distance = math.sqrt(north * north + west * west) end
+    end
+
+    local facing = safeCall(GetPlayerFacing)
+    if type(facing) ~= "number" or facing ~= facing then
+        return nil, distance, "Facing unavailable"
+    end
+    local bearing = atan2(west, north)
     local relative = (bearing - facing + math.pi) % tau - math.pi
     return relative, distance
+end
+
+function Navigator:DirectionForTarget(target)
+    return waypointVector(target)
+end
+
+-- Only score routes for which the client can provide a real distance.
+-- This works between same-continent zones, without creating a pin.
+function Navigator:DistanceForStep(step)
+    local target=targetForStep(step)
+    if not target then return nil end
+    local _,distance=waypointVector(target)
+    return distance
+end
+
+-- The built-in WayForth map-pin API is independent of the navigation
+-- pointer. A pin is an actual Blizzard user waypoint, not an arrow override.
+function Navigator:SetMapPin(step)
+    local target = targetForStep(step)
+    if not target then return false, "No verified coordinate for this quest step." end
+    if not (type(C_Map) == "table" and type(C_Map.SetUserWaypoint) == "function") then
+        return false, "Map waypoint API is unavailable on this client."
+    end
+    local mapID, x, y = target.mapId, target.x, target.y
+    if type(mapID) ~= "number" or not validCoord(x, y) then
+        return false, "This quest has no usable map location."
+    end
+
+    local function supported(id)
+        if type(C_Map.CanSetUserWaypointOnMap) ~= "function" then return true end
+        return safeCall(C_Map.CanSetUserWaypointOnMap, id) == true
+    end
+    local originalMap, originalX, originalY = mapID, x, y
+    local visited = {}
+    while not supported(mapID) do
+        if visited[mapID] then return false, "No supported map for this pin." end
+        visited[mapID] = true
+        local info = safeCall(C_Map.GetMapInfo, mapID)
+        local parent = info and info.parentMapID
+        if type(parent) ~= "number" or parent == 0 then
+            return false, "The destination map does not allow user pins."
+        end
+        if type(C_Map.GetWorldPosFromMapPos) ~= "function"
+            or type(C_Map.GetMapPosFromWorldPos) ~= "function" then
+            return false, "This map needs coordinate conversion before pinning."
+        end
+        local continent, world = safeCall(C_Map.GetWorldPosFromMapPos,
+            originalMap, vectorFor(originalX, originalY))
+        if not continent or not world then
+            return false, "Cannot translate this quest location to a pin-enabled map."
+        end
+        local foundMap, mapped = safeCall(C_Map.GetMapPosFromWorldPos,
+            continent, world, parent)
+        local mx, my = getXY(mapped)
+        if foundMap ~= parent or not validCoord(mx, my) then
+            return false, "Cannot translate this quest location accurately."
+        end
+        mapID, x, y = parent, mx, my
+    end
+
+    local point
+    if UiMapPoint and type(UiMapPoint.CreateFromCoordinates) == "function" then
+        point = safeCall(UiMapPoint.CreateFromCoordinates, mapID, x, y)
+    end
+    if not point then
+        point = { uiMapID = mapID, position = vectorFor(x, y) }
+    end
+    local ok, set = pcall(C_Map.SetUserWaypoint, point)
+    if not ok or set == false then
+        return false, "The game could not place this world-map pin."
+    end
+    local tracked = false
+    if C_SuperTrack and type(C_SuperTrack.SetSuperTrackedUserWaypoint) == "function" then
+        local success = pcall(C_SuperTrack.SetSuperTrackedUserWaypoint, true)
+        tracked = success
+    end
+    self.lastMapPin = {mapId=mapID, x=x, y=y}
+    return true, string.format("Map pin set at %.1f, %.1f%s.",
+        x * 100, y * 100, tracked and " (tracked)" or "")
 end
 
 function Navigator:MakeFrame()
@@ -152,7 +263,7 @@ function Navigator:MakeFrame()
     local window = CreateFrame("Frame", "WayForthNavigator", UIParent)
     -- Only the arrow itself is visible: the frame is an invisible drag target.
     -- No panel, header, borders or destination box over the game world.
-    window:SetSize(88, 92)
+    window:SetSize(146, 142)
     window:SetFrameStrata("HIGH")
     window:SetClampedToScreen(true)
     window:SetMovable(true)
@@ -160,24 +271,24 @@ function Navigator:MakeFrame()
     window:RegisterForDrag("LeftButton")
     window:SetPoint("TOP", UIParent, "TOP", ns.Modules.Database:Get("navX") or 0, ns.Modules.Database:Get("navY") or -110)
 
+    -- Original WayForth needle: gold rim, dark core and cyan bearing stripe.
+    -- It has its own transparent halo so no intrusive box or cloned minimap icon.
     local arrow = window:CreateTexture(nil, "ARTWORK")
-    arrow:SetTexture("Interface\\Minimap\\MinimapArrow")
-    arrow:SetSize(63, 63)
-    arrow:SetPoint("TOP", window, "TOP", 0, -4)
+    arrow:SetTexture("Interface\\AddOns\\WayForth\\Textures\\WayForthArrow.tga")
+    arrow:SetSize(105, 105)
+    arrow:SetPoint("TOP", window, "TOP", 0, 0)
     self.arrow = arrow
-    local glow = window:CreateTexture(nil, "BACKGROUND")
-    glow:SetTexture("Interface\\\\Minimap\\\\MinimapArrow")
-    glow:SetSize(77, 77)
-    glow:SetPoint("CENTER", arrow, "CENTER")
-    glow:SetVertexColor(0.96, 0.65, 0.18, 0.35)
-    self.glow = glow
     window:SetScale(ns.Modules.Database:Get("arrowScale") or 1)
 
     -- Small distance only, below the frameless arrow.
-    local distanceText = theme:Text(window, "", 12, theme.ivory, "CENTER")
-    distanceText:SetPoint("TOP", arrow, "BOTTOM", 0, -1)
-    distanceText:SetWidth(88)
+    local distanceText = theme:Text(window, "", 15, theme.gold, "CENTER")
+    distanceText:SetPoint("TOP", arrow, "BOTTOM", 0, -2)
+    distanceText:SetWidth(145)
     self.distanceText = distanceText
+    local destinationText = theme:Text(window, "", 10, theme.teal, "CENTER")
+    destinationText:SetPoint("TOP", distanceText, "BOTTOM", 0, -2)
+    destinationText:SetWidth(145)
+    self.destinationText = destinationText
 
     window:SetScript("OnDragStart", function(frame)
         if not ns.Modules.Database:Get("trackerLocked") then frame:StartMoving() end
@@ -193,7 +304,7 @@ function Navigator:MakeFrame()
     end)
     window:SetScript("OnUpdate", function(_, elapsed)
         Navigator.elapsed = (Navigator.elapsed or 0) + elapsed
-        if Navigator.elapsed < 0.25 then return end
+        if Navigator.elapsed < 0.16 then return end
         Navigator.elapsed = 0
         Navigator:UpdateDirection()
     end)
@@ -233,7 +344,13 @@ function Navigator:Refresh()
     -- tracker must always describe the active navigation target. Players can
     -- explicitly select a suggested nearby step without altering quest flags.
     local ok, target = pcall(targetForStep, step)
+    local previous = self.target
     self.target = ok and target or nil
+    if not previous or not self.target or previous.mapId ~= self.target.mapId
+        or previous.x ~= self.target.x or previous.y ~= self.target.y then
+        self.lastAngle = nil
+    end
+    self.currentDestination = step and tostring(step.title or step.hub or "Objective")
     self:UpdateDirection()
 end
 
@@ -244,43 +361,52 @@ function Navigator:UpdateDirection()
     local opacity = settings and settings:Get("arrowOpacity") or 1
     if self.frame.SetScale then self.frame:SetScale(scale) end
     if self.arrow.SetAlpha then self.arrow:SetAlpha(opacity) end
-    if self.glow and self.glow.SetAlpha then self.glow:SetAlpha(opacity * 0.5) end
     if self.distanceText.SetAlpha then self.distanceText:SetAlpha(opacity) end
+    if self.destinationText and self.destinationText.SetAlpha then
+        self.destinationText:SetAlpha(opacity)
+    end
     if settings and settings:Get("showArrow") == false then
         self.arrow:Hide()
-        if self.glow then self.glow:Hide() end
         self.distanceText:Hide()
+        if self.destinationText then self.destinationText:Hide() end
         return
     end
     if self.distanceText.Show then self.distanceText:Show() end
+    if self.destinationText then
+        self.destinationText:Show()
+        local title=tostring(self.currentDestination or "Destination")
+        self.destinationText:SetText(title:sub(1, 30))
+    end
     if not self.target then
         self.arrow:Hide()
-        if self.glow then self.glow:Hide() end
         self.distanceText:SetText("No waypoint")
         return
     end
-    local ok, angle, distance = pcall(waypointVector, self.target)
+
+    local ok, angle, distance, reason = pcall(waypointVector, self.target)
     if not ok or type(angle) ~= "number" or not self.arrow.SetRotation then
         self.arrow:Hide()
-        if self.glow then self.glow:Hide() end
-        self.distanceText:SetText("Position unavailable")
+        self.distanceText:SetText(reason or "Navigation unavailable")
         return
     end
-    local rotated = pcall(self.arrow.SetRotation, self.arrow, angle)
-    if not rotated then
+    local delta = self.lastAngle and ((angle - self.lastAngle + math.pi) % tau - math.pi)
+    local smoothed = delta and (self.lastAngle + delta * 0.44) or angle
+    self.lastAngle = smoothed
+    if not pcall(self.arrow.SetRotation, self.arrow, smoothed) then
         self.arrow:Hide()
-        if self.glow then self.glow:Hide() end
         self.distanceText:SetText("Arrow unavailable")
         return
     end
     self.arrow:Show()
-    self.arrow:SetVertexColor(1, 0.75, 0.24)
-    if self.glow then
-        self.glow:Show()
-        if self.glow.SetRotation then pcall(self.glow.SetRotation, self.glow, angle) end
-    end
+    if self.arrow.SetVertexColor then self.arrow:SetVertexColor(1, 1, 1, 1) end
     if type(distance) == "number" then
-        self.distanceText:SetText(string.format("%d yd", math.floor(distance + 0.5)))
+        if distance < 9 then
+            self.distanceText:SetText("ARRIVED")
+        elseif distance >= 1000 then
+            self.distanceText:SetText(string.format("%.1f kyd", distance / 1000))
+        else
+            self.distanceText:SetText(string.format("%d yd", math.floor(distance + 0.5)))
+        end
     else
         self.distanceText:SetText("Follow arrow")
     end

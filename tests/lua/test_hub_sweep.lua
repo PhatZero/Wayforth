@@ -27,7 +27,7 @@ function ns:Call() return true end
 UnitLevel = function() return 10 end
 UnitFactionGroup = function() return "Alliance" end
 UnitClass = function() return "Hunter", "HUNTER" end
-local active, ready, complete = { [800] = true }, { [700] = true }, {}
+local active, ready, complete = { [700] = true, [800] = true }, { [700] = true }, {}
 C_QuestLog = {
     IsQuestFlaggedCompleted = function(id) return complete[id] == true end,
     IsOnQuest = function(id) return active[id] == true end,
@@ -54,6 +54,11 @@ for _, id in ipairs({200,500,600,900,950}) do
 end
 assert(group[1].index == 1 and group[2].step.questId == 700,
     "Current action stays first, then ready turn-ins are prioritized")
+local concurrent=routes:ConcurrentQuestSteps()
+assert(#concurrent==2 and concurrent[1].step.questId==700 and concurrent[2].step.questId==800,
+    "Ready and active objectives must remain visible beyond the current hub")
+assert(concurrent[1].action=="READY" and concurrent[2].action=="ACTIVE",
+    "Concurrent queue reflects real quest phases, not guessed turn-ins")
 -- Route selection must favor another eligible pickup after a real accept event.
 active[100] = true
 guides:RecordQuestEvent("QUEST_ACCEPTED", 100)
@@ -67,8 +72,10 @@ assert(not complete[100] and not complete[300], "Suggested pickups never forge c
 -- If the player enters a new zone, the anchor is cleared by Bootstrap; without
 -- a just-accepted event, the route returns to the active quest's objective.
 ns.state.lastAcceptedQuestID = nil
+ready[700] = nil
 idx = routes:Preview("hub-fixture", "recommended")
-assert(idx == 2, "Without a fresh accept event, live active objective wins")
+assert(idx == 2, "Without a fresh accept event or ready hand-in, live objective wins")
+ready[700] = true
 -- A real turn-in keeps us at the same hub to finish other ready quests,
 -- then check follow-up pickups without synthesizing quest completion.
 guides:RecordQuestEvent("QUEST_TURNED_IN",100)

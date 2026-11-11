@@ -5,7 +5,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from build import TOC, source_path, BRAND_PATH, ART_PATH, brand_texture, illustrated_art, build, manifest
+from build import TOC, source_path, BRAND_PATH, ART_PATH, ARROW_PATH, brand_texture, illustrated_art, navigation_arrow_texture, build, manifest
 
 
 class AddonFoundationTests(unittest.TestCase):
@@ -49,7 +49,8 @@ class AddonFoundationTests(unittest.TestCase):
         self.assertIn("step.mapId = 2521", guide)
         engine = source_path("Core/Guides.lua").read_text()
         self.assertIn("IsQuestFlaggedCompleted", engine)
-        self.assertIn("SetUserWaypoint", engine)
+        self.assertIn("PinCurrent", engine)
+        self.assertIn("SetUserWaypoint", source_path("UI/Navigator.lua").read_text())
         self.assertIn("saved.currentStepId", engine)
 
 
@@ -59,11 +60,11 @@ class AddonFoundationTests(unittest.TestCase):
         self.assertLess(scripts.index("UI/Navigator.lua"), scripts.index("UI/Tracker.lua"))
         self.assertLess(scripts.index("UI/Tracker.lua"), scripts.index("UI/Window.lua"))
         navigator = source_path("UI/Navigator.lua").read_text()
-        for api in ("GetNextWaypoint", "GetPlayerMapPosition", "GetPlayerFacing", "SetRotation", "0.25"):
+        for api in ("GetNextWaypoint", "GetPlayerMapPosition", "GetPlayerFacing", "SetRotation", "0.16", "SetMapPin"):
             self.assertIn(api, navigator)
         self.assertIn("if not self.target", navigator)
         tracker = source_path("UI/Tracker.lua").read_text()
-        for action in ('"Previous"', '"Next Step"', '"Skip"', '"PIN"', '"Sync Guide Now"', '"Pause Guide"', "trackerVisible"):
+        for action in ('"Previous"', '"Next Step"', '"Skip"', '"MAP PIN"', '"Sync Guide Now"', '"Pause Guide"', "trackerVisible"):
             self.assertIn(action, tracker.replace("< Prev", "Prev").replace("Next >", "Next"))
         dashboard = source_path("UI/Modern.lua").read_text()
         self.assertIn('"SMART START"', dashboard)
@@ -191,16 +192,26 @@ class AddonFoundationTests(unittest.TestCase):
         self.assertIn("lastName", character)
         self.assertIn("displayName", character)
 
+    def test_original_navigation_arrow_asset(self):
+        art = navigation_arrow_texture()
+        self.assertEqual(art[2], 2)  # Uncompressed RGBA TGA
+        self.assertEqual(art[12:16], bytes([128, 0, 128, 0]))
+        self.assertEqual(art[16], 32)
+        self.assertTrue(any(art[n] > 0 for n in range(21, len(art), 4)))
+        self.assertIn("WayForthArrow.tga", source_path("UI/Navigator.lua").read_text())
+
     def test_packaging(self):
         package = build()
         with zipfile.ZipFile(package) as archive:
             files = archive.namelist()
-            self.assertEqual(len(files), len(manifest()) + 3)
+            self.assertEqual(len(files), len(manifest()) + 4)
             self.assertEqual(files[0], "WayForth/WayForth.toc")
             self.assertIn(BRAND_PATH, files)
             self.assertEqual(archive.read(BRAND_PATH), brand_texture())
             self.assertIn(ART_PATH, files)
             self.assertEqual(archive.read(ART_PATH), illustrated_art())
+            self.assertIn(ARROW_PATH, files)
+            self.assertEqual(archive.read(ARROW_PATH), navigation_arrow_texture())
             self.assertTrue(all(path.startswith("WayForth/") for path in files))
             self.assertFalse(any("README" in path or ".py" in path for path in files))
 

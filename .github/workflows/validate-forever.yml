@@ -58,6 +58,8 @@ jobs:
         run: lua5.1 tests/lua/test_guide_maps.lua
       - name: Exercise waypoint and arrow fallbacks in Lua 5.1
         run: lua5.1 tests/lua/test_navigation.lua
+      - name: Verify real world-map pins and cross-zone arrow bearings
+        run: lua5.1 tests/lua/test_map_pin.lua
       - name: Validate all Skyborne class/faction quest coordinate coverage
         run: lua5.1 tests/lua/test_zephras_location_catalog.lua
       - name: Run manifest and offline tests

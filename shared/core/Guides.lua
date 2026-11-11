@@ -382,40 +382,30 @@ function Guides:CurrentStep(id)
     return saved and steps[saved.current], saved and saved.current, #steps
 end
 
-function Guides:PinCurrent()
-    local step = self:CurrentStep()
-    local navigator = ns.Modules.Navigator
-    if not step or not navigator or type(navigator.TargetForStep) ~= "function" then
-        return false, "No waypoint is available for this guide step."
+-- Place a real Blizzard user waypoint for the displayed step, including
+-- selected side steps. This intentionally does not advance quest progression.
+function Guides:PinCurrent(index)
+    local saved=self:GetProgress()
+    if saved and saved.awaitingQuestMatch then
+        return false, "Quest recovery is unresolved. No map pin was placed."
     end
-    local resolved, target = pcall(navigator.TargetForStep, navigator, step)
-    if not resolved or not target then
-        return false, "No verified location or active quest waypoint for this step."
+    local navigator=ns.Modules.Navigator
+    if not navigator or type(navigator.SetMapPin)~="function" then
+        return false, "Map pin support is not initialized."
     end
-    if not (C_Map and type(C_Map.GetBestMapForUnit) == "function"
-        and type(C_Map.GetMapInfo) == "function" and type(C_Map.SetUserWaypoint) == "function"
-        and UiMapPoint and type(UiMapPoint.CreateFromCoordinates) == "function") then
-        return false, "This client does not expose compatible waypoint APIs."
+    local steps=self:GetSteps()
+    local current=self:CurrentStep()
+    local focus=index or navigator.overrideIndex
+    local step=focus and steps[focus] or current
+    if not step then return false, "No guide objective selected." end
+    local ok, status=navigator:SetMapPin(step)
+    if ok then
+        local destination=navigator:TargetForStep(step)
+        if destination and type(navigator.SetOverride)=="function" and focus then
+            navigator:SetOverride(focus,true)
+        end
     end
-    -- Do not try to place a pin in a different zone/map coordinate system.
-    local mapId = C_Map.GetBestMapForUnit("player")
-    local visited, onMap = {}, false
-    for _ = 1, 10 do
-        if not mapId or visited[mapId] then break end
-        if mapId == target.mapId then onMap = true; break end
-        visited[mapId] = true
-        local info = C_Map.GetMapInfo(mapId)
-        mapId = info and info.parentMapID or nil
-    end
-    if not onMap then return false, "Travel to the target zone before placing this pin." end
-    local created, point = pcall(UiMapPoint.CreateFromCoordinates, target.mapId, target.x, target.y)
-    if not created or not point then return false, "Could not create the map pin on this client." end
-    local ok, wasSet = pcall(C_Map.SetUserWaypoint, point)
-    if not ok or wasSet == false then return false, "Could not place the map pin on this client." end
-    if C_SuperTrack and type(C_SuperTrack.SetSuperTrackedUserWaypoint) == "function" then
-        pcall(C_SuperTrack.SetSuperTrackedUserWaypoint, true)
-    end
-    return true, string.format("Waypoint set: %.1f, %.1f.", target.x * 100, target.y * 100)
+    return ok, status
 end
 
 -- Guide steps may be skipped without ever forging a completed-quest flag.
