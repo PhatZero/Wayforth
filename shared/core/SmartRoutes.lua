@@ -534,6 +534,54 @@ function Routes:NearbyGroup(anchorIndex)
     return group
 end
 
+-- All-guide concurrent quest queue: keep proven active objectives/ready
+-- hand-ins visible even when another quest is the route cursor. No fabricated
+-- quest availability or completion, and no route cursor mutations.
+function Routes:ConcurrentQuestSteps(limit)
+    local guides=ns.Modules.Guides
+    local saved=guides:GetProgress()
+    if not saved or saved.awaitingQuestMatch then return {} end
+    local steps=guides:GetSteps()
+    local navigator=ns.Modules.Navigator
+    local queue,seen={},{}
+    for index,step in ipairs(steps) do
+        local id=step.questId
+        local audit=ns.Modules.QuestAudit
+        if type(id)=="number" and active(id) and not flag(id)
+            and not completed(step,index,saved)
+            and not (saved.skipped and saved.skipped[key(step,index)])
+            and not (audit and audit:IsMismatched(id)) then
+            local isReady=readyForTurnin(id)
+            local applicable=(isReady and step.action=="turnin")
+                or (not isReady and step.action=="objective")
+            -- If a quest has several authored objectives, preserve them;
+            -- phase/quest evidence controls whether they are actionable.
+            if applicable and not seen[key(step,index)] then
+                seen[key(step,index)]=true
+                local distance
+                if navigator and type(navigator.DistanceForStep)=="function" then
+                    local ok,value=pcall(navigator.DistanceForStep,navigator,step)
+                    if ok and type(value)=="number" then distance=value end
+                end
+                queue[#queue+1]={index=index,step=step,distance=distance,
+                    action=isReady and "READY" or "ACTIVE"}
+            end
+        end
+    end
+    table.sort(queue,function(a,b)
+        if (a.distance~=nil) ~= (b.distance~=nil) then
+            return a.distance~=nil
+        end
+        if a.distance and b.distance and math.abs(a.distance-b.distance)>10 then
+            return a.distance<b.distance
+        end
+        return a.index<b.index
+    end)
+    local result={}
+    for i=1,math.min(limit or 6,#queue) do result[i]=queue[i] end
+    return result
+end
+
 function Routes:NearestGroupedStep(group)
     if type(group) ~= "table" or #group < 2 then return nil end
     local navigator = ns.Modules.Navigator
