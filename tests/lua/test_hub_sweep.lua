@@ -27,7 +27,7 @@ function ns:Call() return true end
 UnitLevel = function() return 10 end
 UnitFactionGroup = function() return "Alliance" end
 UnitClass = function() return "Hunter", "HUNTER" end
-local active, ready, complete = { [800] = true }, { [700] = true }, {}
+local active, ready, complete = { [700] = true, [800] = true }, { [700] = true }, {}
 C_QuestLog = {
     IsQuestFlaggedCompleted = function(id) return complete[id] == true end,
     IsOnQuest = function(id) return active[id] == true end,
