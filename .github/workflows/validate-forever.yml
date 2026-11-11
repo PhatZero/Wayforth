@@ -42,6 +42,8 @@ jobs:
         run: lua5.1 tests/lua/test_smart_routes.lua
       - name: Verify premium hub sweep and navigation alignment
         run: lua5.1 tests/lua/test_hub_sweep.lua
+      - name: Verify secure quest-item discovery fallbacks
+        run: lua5.1 tests/lua/test_quest_items.lua
       - name: Prevent Zephras mid-guide quest mismatch and wrong waypoints
         run: lua5.1 tests/lua/test_zephras_midguide.lua
       - name: Verify prerequisite-aware recovery across every leveling guide
