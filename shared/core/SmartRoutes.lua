@@ -254,14 +254,26 @@ function Routes:Preview(id, mode)
 
     local level = currentLevel()
     if mode == "recommended" then
-        -- An actual QUEST_ACCEPTED event is evidence that the character just
-        -- visited this hub. Sweep other eligible pickups there before routing
-        -- away to an objective. This is session-only, never fabricated history.
-        local justAccepted = ns.state and ns.state.lastAcceptedQuestID
-        if type(justAccepted) == "number" then
+        -- A recent pickup OR turn-in proves the character was at this hub.
+        -- Recheck ready turn-ins (which can unlock more pickups) before
+        -- departing. Expire the session hint so travel never loops back later.
+        local state = ns.state or {}
+        local last = state.lastTurnedInQuestID or state.lastAcceptedQuestID
+        local action = state.lastTurnedInQuestID and "turnin" or "accept"
+        local fresh = true
+        if state.lastHubEventAt and type(GetTime) == "function" then
+            fresh = GetTime() - state.lastHubEventAt <= 90
+        end
+        if fresh and type(last) == "number" then
             for origin, originStep in ipairs(steps) do
-                if originStep.questId == justAccepted and originStep.action == "accept" then
-                    for _, entry in ipairs(self:NearbyGroup(origin)) do
+                if originStep.questId == last and originStep.action == action then
+                    local group = self:NearbyGroup(origin)
+                    for _, entry in ipairs(group) do
+                        if entry.index ~= origin and entry.step.action == "turnin" then
+                            return entry.index, "Turn in another ready quest at this hub before leaving."
+                        end
+                    end
+                    for _, entry in ipairs(group) do
                         if entry.index ~= origin and entry.step.action == "accept" then
                             return entry.index, "Collect other eligible quests at this hub before leaving. Check that each quest is offered."
                         end
