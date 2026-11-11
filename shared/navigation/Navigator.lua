@@ -183,6 +183,15 @@ function Navigator:DirectionForTarget(target)
     return waypointVector(target)
 end
 
+-- Only score routes for which the client can provide a real distance.
+-- This works between same-continent zones, without creating a pin.
+function Navigator:DistanceForStep(step)
+    local target=targetForStep(step)
+    if not target then return nil end
+    local _,distance=waypointVector(target)
+    return distance
+end
+
 -- The built-in WayForth map-pin API is independent of the navigation
 -- pointer. A pin is an actual Blizzard user waypoint, not an arrow override.
 function Navigator:SetMapPin(step)
