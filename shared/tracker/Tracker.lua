@@ -141,12 +141,8 @@ function Tracker:MakeFrame()
         local ok,message=ns.Modules.Guides:PinCurrent(selected)
         if message then ns:Print(message) end
         if ok then
-            local target=nav and nav.lastMapPin
-            -- Shift + Map Pin opens the world map at the newly placed waypoint.
-            if type(IsShiftKeyDown)=="function" and IsShiftKeyDown()
-                and target and C_Map and type(C_Map.OpenWorldMap)=="function" then
-                pcall(C_Map.OpenWorldMap,target.mapId)
-            end
+            local shown, reason=nav:ShowMapPin()
+            if not shown and reason then ns:Print(reason) end
         end
         Tracker:Refresh()
     end,"quiet")

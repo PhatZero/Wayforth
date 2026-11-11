@@ -50,6 +50,18 @@ local ok,message=nav:SetMapPin(target)
 assert(ok and pin.uiMapID==102 and pin.position.x==0.6 and tracked,
     "MAP PIN must set a real Blizzard user waypoint in the remote zone")
 assert(message:find("Map pin set"),"Report actual pin placement")
+-- Opening the destination uses the global API, even with C_Map.OpenWorldMap absent.
+local refreshed, ping
+OpenWorldMap=function(id) opened=id end
+WorldMapFrame={RefreshAllDataProviders=function() refreshed=true end}
+EventRegistry={TriggerEvent=function(_,event) ping=event end}
+assert(nav:ShowMapPin())
+assert(opened==102 and refreshed and ping=="MapCanvas.PingWaypointLocation",
+    "Open and refresh the destination world map, then highlight its waypoint")
+OpenWorldMap=function() error("unavailable") end
+assert(not nav:ShowMapPin(),"Report an opener failure without losing the waypoint")
+OpenWorldMap=nil
+assert(not nav:ShowMapPin(),"Missing world-map API must fail safely")
 -- Unsupported child map converts through world position to supported parent.
 pin=nil
 ok,message=nav:SetMapPin({mapId=103,x=10,y=20,action="accept"})

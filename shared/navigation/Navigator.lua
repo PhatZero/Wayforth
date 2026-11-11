@@ -258,6 +258,23 @@ function Navigator:SetMapPin(step)
         x * 100, y * 100, tracked and " (tracked)" or "")
 end
 
+function Navigator:ShowMapPin()
+    local target = self.lastMapPin
+    if not target then return false, "Place a map pin first." end
+    if type(OpenWorldMap) ~= "function" then
+        return false, "World-map opener is unavailable on this client."
+    end
+    local ok = pcall(OpenWorldMap, target.mapId)
+    if not ok then return false, "The game could not open the destination map." end
+    if WorldMapFrame and type(WorldMapFrame.RefreshAllDataProviders) == "function" then
+        pcall(WorldMapFrame.RefreshAllDataProviders, WorldMapFrame)
+    end
+    if EventRegistry and type(EventRegistry.TriggerEvent) == "function" then
+        pcall(EventRegistry.TriggerEvent, EventRegistry, "MapCanvas.PingWaypointLocation")
+    end
+    return true
+end
+
 function Navigator:MakeFrame()
     if self.frame then return end
     local window = CreateFrame("Frame", "WayForthNavigator", UIParent)
