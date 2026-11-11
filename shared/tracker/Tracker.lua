@@ -135,11 +135,20 @@ function Tracker:MakeFrame()
     self.stepTitle=label(objective,"",14,theme.gold,12,29,320)
     self.objectiveText=label(objective,"",11,theme.ivory,12,60,330)
     self.location=label(objective,"",10,theme.teal,12,112,335)
-    self.pinButton=theme:Button(objective,44,24,"PIN",function()
-        local _,index=ns.Modules.Guides:CurrentStep()
+    self.pinButton=theme:Button(objective,75,24,"MAP PIN",function()
         local nav=ns.Modules.Navigator
-        if nav and nav.overrideIndex then index=nav.overrideIndex end
-        if index then navigate(index,true) end
+        local selected=nav and nav.overrideIndex
+        local ok,message=ns.Modules.Guides:PinCurrent(selected)
+        if message then ns:Print(message) end
+        if ok then
+            local target=nav and nav.lastMapPin
+            -- Shift + Map Pin opens the world map at the newly placed waypoint.
+            if type(IsShiftKeyDown)=="function" and IsShiftKeyDown()
+                and target and C_Map and type(C_Map.OpenWorldMap)=="function" then
+                pcall(C_Map.OpenWorldMap,target.mapId)
+            end
+        end
+        Tracker:Refresh()
     end,"quiet")
     self.pinButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-9,-6)
 
@@ -147,7 +156,7 @@ function Tracker:MakeFrame()
     -- item template; the addon never invokes UseItemByName from insecure Lua.
     local itemButton=CreateFrame("Button","WayForthQuestItemButton",UIParent,"SecureActionButtonTemplate")
     itemButton:SetSize(28,27)
-    itemButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-62,-5)
+    itemButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-90,-5)
     theme:Panel(itemButton,theme.panel,theme.gold)
     itemButton:RegisterForClicks("AnyUp")
     itemButton:SetAttribute("type","item")
@@ -392,8 +401,8 @@ function Tracker:Layout()
     self.guideTitle:SetWidth(contentW-46)
     self.stepCount:SetWidth(contentW-40)
     -- Keep the title/caption clear of the quest-item and PIN controls.
-    self.stepTitle:SetWidth(math.max(170,contentW-122))
-    self.objectiveCaption:SetWidth(math.max(170,contentW-108))
+    self.stepTitle:SetWidth(math.max(170,contentW-135))
+    self.objectiveCaption:SetWidth(math.max(170,contentW-135))
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
