@@ -72,8 +72,10 @@ assert(not complete[100] and not complete[300], "Suggested pickups never forge c
 -- If the player enters a new zone, the anchor is cleared by Bootstrap; without
 -- a just-accepted event, the route returns to the active quest's objective.
 ns.state.lastAcceptedQuestID = nil
+ready[700] = nil
 idx = routes:Preview("hub-fixture", "recommended")
-assert(idx == 2, "Without a fresh accept event, live active objective wins")
+assert(idx == 2, "Without a fresh accept event or ready hand-in, live objective wins")
+ready[700] = true
 -- A real turn-in keeps us at the same hub to finish other ready quests,
 -- then check follow-up pickups without synthesizing quest completion.
 guides:RecordQuestEvent("QUEST_TURNED_IN",100)
