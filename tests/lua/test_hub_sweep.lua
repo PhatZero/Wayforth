@@ -54,6 +54,11 @@ for _, id in ipairs({200,500,600,900,950}) do
 end
 assert(group[1].index == 1 and group[2].step.questId == 700,
     "Current action stays first, then ready turn-ins are prioritized")
+local concurrent=routes:ConcurrentQuestSteps()
+assert(#concurrent==2 and concurrent[1].step.questId==700 and concurrent[2].step.questId==800,
+    "Ready and active objectives must remain visible beyond the current hub")
+assert(concurrent[1].action=="READY" and concurrent[2].action=="ACTIVE",
+    "Concurrent queue reflects real quest phases, not guessed turn-ins")
 -- Route selection must favor another eligible pickup after a real accept event.
 active[100] = true
 guides:RecordQuestEvent("QUEST_ACCEPTED", 100)
