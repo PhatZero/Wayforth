@@ -54,13 +54,13 @@ function Help:Recovery()
                 if s.action=="accept" then found=s;break end
             end
         end
-        if found then for _,req in ipairs(found.requires or {}) do prerequisite(req) end end
+        if found then for _,req in ipairs(routes.Requirements and routes:Requirements(found,steps) or found.requires or {}) do prerequisite(req) end end
         local index=phase(id)
         if index then offer(index,"Resolve this quest chain") end
     end
     for _,s in ipairs(steps) do
         if s.questId==step.questId and s.action=="accept" then
-            for _,req in ipairs(s.requires or {}) do prerequisite(req) end
+            for _,req in ipairs(routes.Requirements and routes:Requirements(s,steps) or s.requires or {}) do prerequisite(req) end
             break
         end
     end

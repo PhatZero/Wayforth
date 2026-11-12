@@ -91,9 +91,28 @@ local function dispatch(event, ...)
     end
 end
 
-frame:SetScript("OnEvent", function(_, event, ...)
+-- Coalesce noisy log/watch bursts without delaying accepted/removed/turned-in events.
+local pendingQuestUpdate, elapsedQuestUpdate=false,0
+local function safelyDispatch(event, ...)
     local ok, err = pcall(dispatch, event, ...)
     if not ok then diagnostics:Error("Event " .. event, err) end
+end
+frame:SetScript("OnEvent", function(_, event, ...)
+    if (event=="QUEST_LOG_UPDATE" or event=="QUEST_WATCH_UPDATE") and ns.state.loaded then
+        pendingQuestUpdate=true
+        return
+    end
+    if event=="QUEST_ACCEPTED" or event=="QUEST_TURNED_IN" or event=="QUEST_REMOVED" then
+        pendingQuestUpdate=false;elapsedQuestUpdate=0
+    end
+    safelyDispatch(event, ...)
+end)
+frame:SetScript("OnUpdate", function(_, elapsed)
+    if not pendingQuestUpdate then return end
+    elapsedQuestUpdate=elapsedQuestUpdate+elapsed
+    if elapsedQuestUpdate<0.15 then return end
+    pendingQuestUpdate=false;elapsedQuestUpdate=0
+    safelyDispatch("QUEST_LOG_UPDATE")
 end)
 for _, event in ipairs({
     "ADDON_LOADED", "PLAYER_LOGIN", "PLAYER_ENTERING_WORLD", "PLAYER_LEVEL_UP",

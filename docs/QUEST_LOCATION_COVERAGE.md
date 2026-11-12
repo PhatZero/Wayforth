@@ -8,9 +8,9 @@ Counts include the union of faction, race and class variants within each guide. 
 
 | Phase | Quest IDs present | Static destinations | Missing static destinations |
 | --- | ---: | ---: | ---: |
-| accept | 2916 | 2905 | 11 |
+| accept | 2916 | 2913 | 3 |
 | objective | 1880 | 1785 | 95 |
-| turnin | 2926 | 2921 | 5 |
+| turnin | 2926 | 2923 | 3 |
 
 Static coverage describes source availability. It does not verify quest eligibility or live-client accuracy. Some requirements involve crafting, reputation or player-held items and have no single world destination. Unresolved phases use an active quest's live marker when available.
 
@@ -27,7 +27,7 @@ Of the 95 missing objective destinations, 95 have specific source-backed require
 | alliance-stonetalon | 63 | 63 | 0 |
 | alliance-ashenvale | 119 | 119 | 0 |
 | alliance-thousand-needles | 81 | 80 | 1 |
-| alliance-desolace | 147 | 142 | 5 |
+| alliance-desolace | 147 | 144 | 3 |
 | alliance-dustwallow | 100 | 99 | 1 |
 | alliance-feralas | 125 | 123 | 2 |
 | alliance-tanaris | 175 | 165 | 10 |
@@ -45,7 +45,7 @@ Of the 95 missing objective destinations, 95 have specific source-backed require
 | horde-stonetalon-mountains | 89 | 89 | 0 |
 | horde-ashenvale | 64 | 63 | 1 |
 | horde-thousand-needles | 149 | 148 | 1 |
-| horde-desolace | 159 | 153 | 6 |
+| horde-desolace | 159 | 155 | 4 |
 | horde-dustwallow-marsh | 71 | 70 | 1 |
 | horde-feralas | 94 | 94 | 0 |
 | horde-tanaris | 148 | 137 | 11 |
@@ -55,7 +55,7 @@ Of the 95 missing objective destinations, 95 have specific source-backed require
 | horde-winterspring | 71 | 68 | 3 |
 | horde-silithus | 112 | 110 | 2 |
 | horde-mount-hyjal | 3 | 0 | 3 |
-| horde-shen-dralas | 32 | 25 | 7 |
+| horde-shen-dralas | 32 | 30 | 2 |
 | horde-tirisfal-glades | 212 | 212 | 0 |
 | horde-silverpine-forest | 120 | 120 | 0 |
 | alliance-loch-modan | 123 | 122 | 1 |
@@ -69,7 +69,7 @@ Of the 95 missing objective destinations, 95 have specific source-backed require
 | horde-alterac-mountains | 34 | 34 | 0 |
 | alliance-arathi-highlands | 99 | 99 | 0 |
 | horde-arathi-highlands | 122 | 122 | 0 |
-| alliance-stranglethorn-vale | 270 | 267 | 3 |
+| alliance-stranglethorn-vale | 270 | 268 | 2 |
 | horde-stranglethorn-vale | 262 | 259 | 3 |
 | alliance-badlands | 99 | 98 | 1 |
 | horde-badlands | 85 | 83 | 2 |
@@ -101,9 +101,7 @@ Quest names below omit WayForth's Work on, Pick up and Complete labels, chain nu
 | alliance-barrens | 1796 | Components for the Enchanted Gold Bloodrobe | objective | WoWDB (craft): Craft or buy Robes of Arcana for Menara Voidrender. Check your quest log for current requirements and quantities. |
 | alliance-desolace | 1371 | Gizmo for Warug | objective | WoWDB (craft): Obtain an Advanced Target Dummy and keep your Magram reputation high enough to speak with Warug. Check your quest log for current requirements and quantities. |
 | alliance-desolace | 92754 | A New Need for Shadow Protection | objective | Wowhead Forever (craft): Prepare Greater Shadow Protection Potions for Mirda in Magram Village and maintain your Magram reputation. Check your quest log for current requirements and quantities. |
-| alliance-desolace | 93196 | Khan Jehn | accept |  |
 | alliance-desolace | 93196 | Khan Jehn | objective | Wowhead Forever (event): Maintain Honored Magram reputation and use the Ultimate Necromancy Staff at the ritual tent beside Magram Village's central lake. Check your quest log for current requirements and quantities. |
-| alliance-desolace | 93196 | Khan Jehn | turnin |  |
 | alliance-dustwallow | 1203 | Jarl Needs a Blade | objective | Wowhead Classic (craft): Craft or buy a Moonsteel Broadsword for Jarl in Dustwallow Marsh. Check your quest log for current requirements and quantities. |
 | alliance-felwood | 4107 | Salve via Disenchanting | objective | Wowhead Classic (craft): Disenchant suitable magic items, or buy Lesser Nether Essence, for the Cenarion plant salve exchange. Check your quest log for current requirements and quantities. |
 | alliance-felwood | 5886 | Salve via Disenchanting | objective | Wowhead Classic (craft): Obtain Lesser Nether Essence by disenchanting magic items or buying it for the Cenarion plant salve exchange. Check your quest log for current requirements and quantities. |
@@ -137,7 +135,6 @@ Quest names below omit WayForth's Work on, Pick up and Complete labels, chain nu
 | alliance-silithus | 9023 | The Perfect Poison | objective | WoWDB (instance): Loot the venom sacs from High Priest Venoxis in Zul'Gurub and Kurinnaxx in the Ruins of Ahn'Qiraj. Check your quest log for current requirements and quantities. |
 | alliance-stranglethorn-vale | 1036 | Avast Ye, Scallywag | objective | WoWDB (reputation): Meet the reputation requirement in your quest log, then speak with Fleet Master Firallon aboard the Crimson Veil off Stranglethorn. Check your quest log for current requirements and quantities. |
 | alliance-stranglethorn-vale | 97328 | Anything of Value | objective | Wowhead Forever (loot): Recover Stolen Shipments from the crates around the Ruins of Zul'Kunda and deliver them to Booty Bay. Check your quest log for current requirements and quantities. |
-| alliance-stranglethorn-vale | 97420 | Reduce, Reuse, Reconcile | accept |  |
 | alliance-tanaris | 2771 | A Good Head On Your Shoulders | objective | WoWDB (craft): Prepare 2 Mithril Coifs and 1 Ornate Mithril Shoulder for Trenton Lighthammer. Check your quest log for current requirements and quantities. |
 | alliance-tanaris | 2772 | The World At Your Feet | objective | WoWDB (craft): Prepare 2 Heavy Mithril Boots and 1 Ornate Mithril Pants for Trenton Lighthammer. Check your quest log for current requirements and quantities. |
 | alliance-tanaris | 2773 | The Mithril Kid | objective | WoWDB (craft): Prepare 2 Heavy Mithril Breastplates and 1 Ornate Mithril Gloves for Trenton Lighthammer. Check your quest log for current requirements and quantities. |
@@ -158,9 +155,7 @@ Quest names below omit WayForth's Work on, Pick up and Complete labels, chain nu
 | horde-desolace | 1371 | Gizmo for Warug | objective | WoWDB (craft): Obtain an Advanced Target Dummy and keep your Magram reputation high enough to speak with Warug. Check your quest log for current requirements and quantities. |
 | horde-desolace | 92754 | A New Need for Shadow Protection | objective | Wowhead Forever (craft): Prepare Greater Shadow Protection Potions for Mirda in Magram Village and maintain your Magram reputation. Check your quest log for current requirements and quantities. |
 | horde-desolace | 93045 | Test Your Theory | objective | Wowhead Forever (use-item): Dispel the curse on the Accursed Skull using the quest's staff and crystal. Maintain Gelkis reputation, then report to Nerlokh. Check your quest log for current requirements and quantities. |
-| horde-desolace | 93196 | Khan Jehn | accept |  |
 | horde-desolace | 93196 | Khan Jehn | objective | Wowhead Forever (event): Maintain Honored Magram reputation and use the Ultimate Necromancy Staff at the ritual tent beside Magram Village's central lake. Check your quest log for current requirements and quantities. |
-| horde-desolace | 93196 | Khan Jehn | turnin |  |
 | horde-dustwallow-marsh | 1203 | Jarl Needs a Blade | objective | Wowhead Classic (craft): Craft or buy a Moonsteel Broadsword for Jarl in Dustwallow Marsh. Check your quest log for current requirements and quantities. |
 | horde-felwood | 5891 | Salve via Disenchanting | objective | Classic reference (craft): Obtain Lesser Nether Essence by disenchanting magic items or buying it for the Cenarion plant salve exchange. Check your quest log for current requirements and quantities. |
 | horde-mount-hyjal | 92521 | The Demon Tower | accept |  |
@@ -179,12 +174,7 @@ Quest names below omit WayForth's Work on, Pick up and Complete labels, chain nu
 | horde-riverglades | 96063 | Gaseous Gold | objective | Wowhead Forever (loot): Collect Marsh Gas Vials at the vents around the marshy ponds southwest of Sleebo Fizzlespout. Use the quantity in your current quest log. Check your quest log for current requirements and quantities. |
 | horde-riverglades | 97884 | Armory of Sunnyglade | objective | Wowhead Forever (loot): Search the basement of the old Sunnyglade armory for the Tremayne Family Blacksmithing Techniques tome. Check your quest log for current requirements and quantities. |
 | horde-shen-dralas | 93041 | Facing the Truth | objective | Wowhead Forever (loot): Recover the Accursed Skull and Gelkis Necromantic Garb for Uthek the Wise. Maintain the required Gelkis reputation. Check your quest log for current requirements and quantities. |
-| horde-shen-dralas | 93062 | Bone Burying | accept |  |
-| horde-shen-dralas | 93072 | Long-Term Solutions | accept |  |
-| horde-shen-dralas | 93125 | Going Home | accept |  |
-| horde-shen-dralas | 93129 | Threat of Starvation | accept |  |
 | horde-shen-dralas | 93129 | Threat of Starvation | objective | Wowhead Forever (loot): Recover Stolen Supplies from the Outcast Hideaway for Hagiak at the Magram Front. Maintain the required Magram reputation. Check your quest log for current requirements and quantities. |
-| horde-shen-dralas | 93188 | Return to Orgrul | accept |  |
 | horde-silithus | 8317 | Kitchen Assistance | objective | WoWDB (craft): Prepare 10 Smoked Desert Dumplings for Calandrath. Check your quest log for current requirements and quantities. |
 | horde-silithus | 9023 | The Perfect Poison | objective | WoWDB (instance): Loot the venom sacs from High Priest Venoxis in Zul'Gurub and Kurinnaxx in the Ruins of Ahn'Qiraj. Check your quest log for current requirements and quantities. |
 | horde-stranglethorn-vale | 1036 | Avast Ye, Scallywag | objective | WoWDB (reputation): Meet the reputation requirement in your quest log, then speak with Fleet Master Firallon aboard the Crimson Veil off Stranglethorn. Check your quest log for current requirements and quantities. |

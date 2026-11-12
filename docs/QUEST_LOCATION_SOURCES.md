@@ -44,3 +44,34 @@ lua5.1 scripts/audit_quest_locations.lua docs/QUEST_LOCATION_COVERAGE.md
 ```
 
 Use `--cached-only` to regenerate from the available supplemental snapshots. The importer writes the output after source loading finishes. The audit lists every unresolved static destination by guide, quest ID and phase. Source coverage requires live-client verification of accuracy and availability.
+
+## Shared level and prerequisite enrichment
+
+`ForeverQuestRequirements.lua` imports factual minimum levels and positive prerequisite IDs for 2,421 bundled quest IDs from [QuestieDB c6745129](https://github.com/Questie/QuestieDB/tree/c6745129ef9ea5e6dd1cdcd77224090f71bda880). This is separate from the location catalog's pinned revision. The source project's corrected Forever loader includes authored corrections. Field 4 is the minimum level, field 12 is an AND group, and field 13 contains alternative prerequisites (OR). Existing authored chain rules take priority. Zero/negative-ID rules and combined group/single definitions are not imported because their special semantics need separate review. Missing data is not proof of availability.
+
+From the pinned QuestieDB checkout:
+
+```sh
+./tools/lua-binary/linux-x64/lua /path/to/Wayforth/scripts/export_forever_requirements.lua /path/to/Wayforth /path/to/Wayforth/clients/forever/guides/ForeverQuestRequirements.lua
+```
+
+The runtime accepts completion of any OR alternative. Recovery prefers an already-active alternative, then a pickup present in the guide. Quests already in the player's log remain authoritative. Source-backed requirements still need in-game confirmation, especially Forever custom quests.
+
+Run the full inventory from Wayforth:
+
+```sh
+lua5.1 scripts/audit_all_guides.lua docs/ALL_GUIDE_AUDIT.md
+lua5.1 scripts/audit_quest_locations.lua docs/QUEST_LOCATION_COVERAGE.md
+```
+
+Travel Directions uses authored legs first, then a known phase-specific destination. Mainland guides with existing travel hints show those instructions before the destination. A destination is not a walkable route or a claim that a flight/boat is available. No missing coordinate is invented; Horde Mount Hyjal currently has no bundled destination and retains instruction-only guidance.
+
+### Incremental missing-destination refresh
+
+`ForeverQuestLocationUpdates.lua` fills 12 empty phase records across 10 IDs from the same newer QuestieDB revision, preserving existing coordinates. Ten of these additions resolve visible guide-step gaps: pickup gaps fall from 11 to 3 and turn-in gaps from 5 to 3. The other source records are retained for applicable variants. Objective coverage remains unchanged; an Alliance-only vendor does not establish a Horde destination.
+
+```sh
+python3 scripts/import_forever_location_updates.py /path/to/pinned/QuestieDB
+```
+
+The importer requires the pinned commit, checks quest names before accepting new points, retains map/faction/entity metadata, and never replaces a nonempty phase. Its export excludes the incremental overlay so regeneration remains reproducible.

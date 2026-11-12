@@ -74,6 +74,8 @@ jobs:
         run: lua5.1 tests/lua/test_quest_assistance.lua
       - name: Verify quest-log capacity and read-only guide search
         run: lua5.1 tests/lua/test_log_space_search.lua
+      - name: Audit all guides, prerequisites, travel and event bursts
+        run: lua5.1 tests/lua/test_all_guide_polish.lua
       - name: Run manifest and offline tests
         run: python3 -m unittest discover -s tests -v
       - name: Build installable addon ZIP

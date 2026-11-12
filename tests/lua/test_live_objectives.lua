@@ -217,6 +217,7 @@ assert(loadfile("shared/core/Bootstrap.lua"))("WayForth",ns)
 local events=frames[#frames]
 assert(events.events.QUEST_WATCH_UPDATE and events.events.QUEST_DATA_LOAD_RESULT and events.events.BAG_UPDATE_DELAYED)
 events.scripts.OnEvent(events,"QUEST_LOG_UPDATE")
+events.scripts.OnUpdate(events,0.15)
 assert(tracker.objectiveDirty)
 tracker.frame.scripts.OnUpdate(tracker.frame,0.11)
 active[10]=nil
@@ -261,11 +262,13 @@ assert(not tracker.liveRows[2]:IsShown() and tracker.liveScroll:GetVerticalScrol
 settings.guidePaused=true
 ready[20]=true
 events.scripts.OnEvent(events,"QUEST_WATCH_UPDATE",20)
+events.scripts.OnUpdate(events,0.15)
 tracker.frame.scripts.OnUpdate(tracker.frame,0.11)
 assert(guides:CurrentStep().action=="objective" and tracker.liveSnapshot.ready,
     "Paused guides still show fresh counters without advancing")
 settings.guidePaused=false
 events.scripts.OnEvent(events,"QUEST_WATCH_UPDATE",20)
+events.scripts.OnUpdate(events,0.15)
 assert(guides:CurrentStep().action=="turnin")
 guides:Reset("second")
 settings.autoAdvance=false
