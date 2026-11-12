@@ -10,7 +10,7 @@ ns.starterGuides = {
             { title = "View character information", text = "Open Character to see your name, level, zone, experience and gold. Your snapshot updates as you play." },
             { title = "Personalize the addon", text = "Open Settings to change window scale, minimap visibility and whether the addon remembers its last tab." },
             { title = "Check diagnostics", text = "Open Diagnostics to check the detected client, interface number, saved data and recent errors." },
-            { title = "You are ready", text = "Your progress is saved separately for each character. Future releases will add full leveling guides, map routes, professions and more." },
+            { title = "You are ready", text = "Your progress is saved separately for each character. Profession guides and leveling routes are available from the Guide Library. More areas will continue to expand." },
         },
     },
 }

@@ -31,7 +31,7 @@ Test on **WoW: Forever 1.60.1 / Interface 16001** before marking ProjectForge fo
 - [ ] Validate no included development scripts, docs, credentials, or website code in ZIP.
 - [ ] Record results and any game-version-specific failures in the feature PR.
 
-**Scope reminder:** Zephras Isle routes, quest-flag advancement, and the separate tracker/navigation arrow require live-client QA. Full objective counters, cross-zone route planning, profession collection, online sync and premium controls remain future milestones.
+**Scope reminder:** Zephras Isle routes, quest-flag advancement, and the separate tracker/navigation arrow require live-client QA. Profession skill guides read the client skill/skill-cap APIs and advance through rank checkpoints. Recipe availability, gathering point ranges, camp interactions and trainer requirements still need in-game QA. Inventory collection, online sync and premium controls remain future milestones.
 
 ## Zephras Isle guide acceptance
 - [ ] On a new Skyborne of each faction, the correct guide is selected automatically, if the client provides the Skyborne race token.

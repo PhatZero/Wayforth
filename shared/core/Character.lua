@@ -107,6 +107,6 @@ function Character:Summary()
         "Gold: " .. self:FormattedMoney(s.money),
         "",
         "The first release captures basic character information locally.",
-        "Inventory, quests, professions and website export will follow in later milestones.",
+        "Profession skill guides are available from the Professions tab. Inventory tracking and website export remain future work.",
     }, "\n")
 end

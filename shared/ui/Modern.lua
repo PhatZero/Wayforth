@@ -6,13 +6,14 @@ local theme = ns.Modules.Theme
 local db = ns.Modules.Database
 
 local NAV = { "Dashboard", "Guide Library", "Favorites", "Recently Used",
-    "Map", "Settings" }
+    "Professions", "Map", "Settings" }
 local NAV_ICONS = {
     Dashboard = "Interface\\Icons\\INV_Misc_EngGizmos_32",
     ["Guide Library"] = "Interface\\Icons\\INV_Misc_Book_09",
     Favorites = "Interface\\Icons\\INV_Misc_Gem_01",
     ["Recently Used"] = "Interface\\Icons\\INV_Misc_PocketWatch_01",
     Map = "Interface\\Icons\\INV_Misc_Spyglass_02",
+    Professions = "Interface\\Icons\\Trade_BlackSmithing",
     Settings = "Interface\\Icons\\INV_Gizmo_02",
 }
 local CATEGORIES = {
@@ -408,12 +409,13 @@ function UI:FilterGuides()
         local region = guide.continent or ""
         local name = ((guide.title or "") .. " " .. (guide.zone or "") .. " " .. region):lower()
         local accept = view == "all"
-            or view == "near" and guide.levelMin and guide.levelMax and level >= guide.levelMin - 2 and level <= guide.levelMax + 2
+            or view == "near" and not guide.isProfession and guide.levelMin and guide.levelMax and level >= guide.levelMin - 2 and level <= guide.levelMax + 2
+            or view == "professions" and guide.isProfession
             or view == "starters" and (region == "Starter Zones"
                 or ((guide.levelMin or 1) <= 5 and (guide.levelMax or 999) <= 15))
             or view == "kalimdor" and region == "Kalimdor"
             or view == "eastern" and region == "Eastern Kingdoms"
-        if (accept or (view == "near" and not guide.levelMin)) and (search == "" or name:find(search, 1, true)) then
+        if (accept or (view == "near" and not guide.levelMin and not guide.isProfession)) and (search == "" or name:find(search, 1, true)) then
             result[#result + 1] = guide
         end
     end
@@ -655,10 +657,10 @@ function UI:Refresh()
         self:Title(tab,subtitle,width)
         local filters={
             {"Near My Level","near"},{"Starter Zones","starters"},
-            {"Kalimdor","kalimdor"},{"Eastern Kingdoms","eastern"},{"All Zones","all"}
+            {"Kalimdor","kalimdor"},{"Eastern Kingdoms","eastern"},{"All Zones","all"},{"Professions","professions"}
         }
         if tab=="Guide Library" then
-            local filterW=math.floor((width-32)/5)
+            local filterW=math.floor((width-32)/6)
             for i,option in ipairs(filters) do
                 local x=6+(i-1)*(filterW+5)
                 self:Button("filter"..i,option[1],x,62,filterW,31,function()
@@ -716,6 +718,72 @@ function UI:Refresh()
             end)
         end
 
+    elseif tab == "Professions" then
+        local module=ns.Modules.ProfessionGuides
+        local all=module and module:Read() or {}
+        local profiles=ns.professionProfiles or {}
+        local selectedId=self.selectedProfession or module and module:Suggested() or "alchemy"
+        local selected
+        for _,profile in ipairs(profiles) do if profile.id==selectedId then selected=profile;break end end
+        selected=selected or profiles[1]
+        self.selectedProfession=selected and selected.id
+        if selected and ns.char and ns.char.activeGuide==("profession-"..selected.id) and module then
+            module:Sync("profession-"..selected.id)
+            all=module:Read()
+        end
+        self:Title("Profession guides", "12 skill-aware guides for WoW: Forever. Skill progress updates from your profession window.", width)
+        local cols=4
+        local gap=5
+        local cardW=(width-20-gap*(cols-1))/cols
+        for i,profile in ipairs(profiles) do
+            local col=(i-1)%cols
+            local row=math.floor((i-1)/cols)
+            local x=6+col*(cardW+gap)
+            local y=62+row*39
+            local skill=all[profile.id]
+            local label=profile.name
+            if skill then label=label.."  "..skill.skill.."/"..skill.maxSkill end
+            self:Button("professionChoice"..i,label,x,y,cardW,32,function()
+                UI.selectedProfession=profile.id;UI:Refresh()
+            end,profile.id==selected.id)
+            if profile.id==selected.id then
+                local accent=self:Surface("professionChoiceAccent"..i,x+3,y+29,cardW-6,2)
+                accent:SetColorTexture(unpack(theme.teal))
+            end
+        end
+        local current=all[selected.id]
+        local guideId="profession-"..selected.id
+        local saved=guides:GetProgress(guideId)
+        local steps=guides:GetSteps(guideId)
+        local position=saved and saved.current or 1
+        local nextStep=steps[position]
+        self:Surface("professionOverview",6,190,width-12,143,true)
+        self:Label("professionFocus",selected.focus,17,202,width-34,12,theme.ivory)
+        self:Label("professionStatus",current and
+            ("Current skill: "..current.skill.."  |  Learned skill cap: "..current.maxSkill.."  |  Rank checkpoints update when the client reports training")
+            or "Skill not detected yet. Open the Professions window (K) or Character Skills list once, then return here.",
+            17,232,width-34,11,current and theme.teal or theme.gold)
+        self:Label("professionNext",nextStep and ("Guide step "..position.."/"..#steps..": "..nextStep.title)
+            or "Guide complete: skill 300 recorded.",17,257,width-34,11,theme.gold)
+        self:Label("professionMaterials",selected.materials,17,282,width-34,11,theme.ivory)
+        self:Label("professionMethod",selected.method,17,306,width-34,10,theme.muted)
+        self:Surface("professionCampCard",6,342,width-12,59)
+        self:Label("professionCamp",selected.camp,17,354,width-34,11,theme.teal)
+        self:Label("professionPairing","Common pairing: "..selected.pairing.."  |  Check trainer and recipe requirements in game.",
+            17,375,width-34,10,theme.muted)
+        local actionY=math.max(420,(self.page:GetHeight() or 466)-43)
+        local buttonW=(width-25)/2
+        self:Button("startProfessionGuide",saved and "Continue "..selected.name or "Start "..selected.name.." Guide",
+            7,actionY,buttonW,35,function()
+                local ok,message=module:Start(selected.id)
+                if not ok then ns:Print(message) elseif type(message)=="string" then ns:Print(message) end
+                UI:Refresh()
+            end,true)
+        self:Button("browseProfessionGuides","Browse Profession Guides",14+buttonW,actionY,buttonW,35,function()
+            UI.guideView="professions";UI.guidePage=1;UI:ShowTab("Guide Library")
+        end)
+        self:Label("professionDataNote","Recipe colors, exact materials, rank access and trainer requirements vary by character and learned recipes. Confirm each in the live profession window.",
+            9,actionY-28,width-18,10,theme.muted)
     elseif tab == "Guide Details" then
         local selected = safeGuide(self.selectedGuideId) or active
         if not selected then self:ShowTab("Guide Library"); return end
