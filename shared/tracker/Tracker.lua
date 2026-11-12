@@ -768,7 +768,12 @@ function Tracker:Refresh()
         self.stepTitle:SetText("Prerequisite unavailable")
         self.objectiveText:SetText(saved.recoveryReason or "The next prerequisite needs additional quest data. Follow your quest log and retry Sync.")
         self.location:SetText("Use Sync after resolving this prerequisite | Progress preserved")
+        -- Keep independently validated next-zone recommendations accessible
+        -- when the current zone has no recoverable quest. Hide quest targets.
         self.upcomingEntries={}
+        for _,entry in ipairs(entries) do
+            if entry.index==0 and entry.action then self.upcomingEntries[#self.upcomingEntries+1]=entry end
+        end
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
         if self.pageButton then self.pageButton:Hide() end

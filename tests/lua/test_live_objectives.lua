@@ -231,6 +231,14 @@ saved.awaitingQuestMatch=true
 tracker:Refresh()
 assert(not tracker.liveSnapshot and not tracker.liveScroll:IsShown(), "Recovery warnings must not show stale objectives")
 assert(#tracker.upcomingIndices==0, "Layout must not restore unverified upcoming targets during recovery")
+local switchedZone
+ns.Modules.NextZone={Options=function() return {{id="next-zone",title="Next Zone"}} end,
+    Switch=function(_,id) switchedZone=id;return true end}
+tracker:Refresh()
+assert(tracker.upcomingIndices[1]==0 and tracker.upcomingActions[1], "Recovery must retain safe next-zone suggestions")
+tracker.upcomingActions[1]()
+assert(switchedZone=="next-zone")
+ns.Modules.NextZone=nil
 saved.awaitingQuestMatch=nil
 tracker:Hide()
 tracker:RequestObjectiveRefresh()
