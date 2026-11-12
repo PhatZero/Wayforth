@@ -1,0 +1,74 @@
+name: Start requested Forever beta
+on:
+  push:
+    branches: ['release-dispatch/forever-0f30a8a5']
+permissions:
+  actions: write
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release approved main with formatted notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGELOG: |
+            ## What's new
+            
+            ### Quest-log space management
+            
+            - Get a tracker warning when your quest log has **three or fewer slots remaining**.
+            - Receive a chat notice when your log becomes nearly full or full, without repeated warning spam.
+            - Prioritize ready turn-ins before collecting more quests during a pickup round.
+            - Find **FREE A SLOT** turn-in suggestions in the tracker.
+            - Optional auto-accept waits when your log is full or a known ready turn-in can free space.
+            - Quest limits come from the client. **WayForth never abandons quests.**
+            
+            ### Search within your guide
+            
+            - Open **Tracker → ... → Search this guide**.
+            - Search by quest name or ID, NPC, hub, step number, or instruction text.
+            - Browse paginated results, including completed and skipped steps.
+            - Open full, scrollable instructions without changing your route, waypoint, or completion history.
+            
+            ### Quest not offered? Find your next action
+            
+            - Open **Quest not offered** from the tracker menu.
+            - Review known level and prerequisite requirements.
+            - Choose a prerequisite or another quest already in your log.
+            - Retry **Sync Guide Now** after resolving a requirement.
+            - Unavailable quests are never marked complete just to move the guide forward.
+            
+            ### Travel directions
+            
+            - Follow authored travel legs with a **Next Travel** button in the tracker.
+            - Initial routes cover both Zephras skycutter departures and the Missing Scholar cave entrance.
+            - Transport legs without verified coordinates show instructions instead of a misleading arrow.
+            - Other guides retain their existing travel hints; unverified transport connections are not generated.
+            - Manual checkpoints now use **Done / Next**.
+            
+            ### Next-zone suggestions
+            
+            - Get suggestions after completing a guide or outleveling its remaining quests.
+            - Click a suggested zone to switch while preserving saved progress.
+            - Suggestions respect faction, level, active quests, and unfinished manual checkpoints.
+            - Next-zone choices remain accessible when the current route is blocked.
+            
+            ### Optional quest actions
+            
+            - Find separate auto-accept and auto-turn-in toggles under **Settings → Quest Actions**.
+            - Both options start **OFF** for each character and apply only to quests in the active guide.
+            - Multiple reward choices remain manual.
+            - Hold **Shift**, pause the guide, or disable the options to handle dialogs yourself.
+            - Automatic interactions are suppressed during combat.
+            
+            ### Validation and beta testing
+            
+            - Passed **22 Lua test suites**, **27 Python tests**, syntax validation, and ZIP packaging.
+            - In-game feedback is welcome for quest-log limits, search layout, NPC interactions, travel routes, reward choices, and guide transitions.
+            
+        run: |
+          set -euo pipefail
+          current=$(gh api repos/PhatZero/Wayforth/commits/main --jq .sha)
+          test "$current" = "0f30a8a54807e654d4ab7e427f701420a5025702"
+          gh workflow run release.yml --repo PhatZero/Wayforth --ref main -f curseforge=true -f changelog="$CHANGELOG"
