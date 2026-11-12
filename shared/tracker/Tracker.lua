@@ -359,6 +359,9 @@ function Tracker:ShowObjectiveTooltip()
     GameTooltip:SetOwner(self.objectiveCard,"ANCHOR_LEFT")
     GameTooltip:SetText(self.displayStep.title or "Quest objective",unpack(theme.gold))
     GameTooltip:AddLine(self.displayStep.text or "",theme.ivory[1],theme.ivory[2],theme.ivory[3],true)
+    local routes=ns.Modules.SmartRoutes
+    local blocked=routes and routes.BlockedReason and routes:BlockedReason(self.displayStep,ns.Modules.Guides:GetSteps())
+    if blocked then GameTooltip:AddLine(blocked,1,0.74,0.37,true) end
     if self.liveSnapshot then
         GameTooltip:AddLine(" ")
         GameTooltip:AddLine(self.liveSnapshot.status,theme.teal[1],theme.teal[2],theme.teal[3],true)
@@ -414,6 +417,7 @@ end
 function Tracker:LayoutObjectives(width,height)
     local contentW=math.max(240,width-45)
     local snapshot=self.liveSnapshot
+    if self.stepTitle.SetMaxLines then self.stepTitle:SetMaxLines(2) end
     self.stepTitle:SetHeight(0)
     local titleH=textHeight(self.stepTitle,18)
     self.stepTitle:SetHeight(titleH)
@@ -462,6 +466,7 @@ function Tracker:LayoutObjectives(width,height)
         self.liveStatus:ClearAllPoints()
         self.liveStatus:SetPoint("TOPLEFT",self.objectiveCard,"TOPLEFT",12,-statusY)
         self.liveStatus:SetWidth(contentW)
+        if self.liveStatus.SetMaxLines then self.liveStatus:SetMaxLines(1) end
         self.liveStatus:SetText(snapshot.status..(rowsH>viewport+1 and "  (scroll)" or ""))
         local color=(snapshot.state=="ready" or snapshot.state=="turnedIn") and theme.green or theme.teal
         self.liveStatus:SetTextColor(unpack(color))
@@ -728,6 +733,7 @@ function Tracker:Refresh()
         self.stepTitle:SetText("Prerequisite unavailable")
         self.objectiveText:SetText(saved.recoveryReason or "The next prerequisite needs additional quest data. Follow your quest log and retry Sync.")
         self.location:SetText("Use Sync after resolving this prerequisite | Progress preserved")
+        self.upcomingEntries={}
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
         if self.pageButton then self.pageButton:Hide() end

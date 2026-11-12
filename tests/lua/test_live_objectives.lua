@@ -230,6 +230,7 @@ local saved=guides:GetProgress()
 saved.awaitingQuestMatch=true
 tracker:Refresh()
 assert(not tracker.liveSnapshot and not tracker.liveScroll:IsShown(), "Recovery warnings must not show stale objectives")
+assert(#tracker.upcomingIndices==0, "Layout must not restore unverified upcoming targets during recovery")
 saved.awaitingQuestMatch=nil
 tracker:Hide()
 tracker:RequestObjectiveRefresh()
