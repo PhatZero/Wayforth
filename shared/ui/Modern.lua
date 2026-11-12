@@ -401,8 +401,8 @@ function UI:FavoriteIds()
     return result
 end
 function UI:FilterGuides()
-    local list = ns.Modules.SmartRoutes:ListGuides()
     local result, view = {}, self.guideView or "near"
+	local list = ns.Modules.SmartRoutes:ListGuides(view == "professions" and "professions" or view == "all" and "all" or nil)
     local level = UnitLevel and UnitLevel("player") or 1
     local search = (self.guideQuery or ""):lower()
     for _, guide in ipairs(list) do
