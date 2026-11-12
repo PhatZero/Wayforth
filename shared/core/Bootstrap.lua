@@ -8,6 +8,7 @@ local function invoke(name, method, ...)
 end
 
 local function dispatch(event, ...)
+    if ns.Modules.NextZone and event~="PLAYER_MONEY" and event~="PLAYER_XP_UPDATE" then ns.Modules.NextZone.cache=nil end
     if event == "ADDON_LOADED" then
         local loadedAddon = ...
         if loadedAddon ~= addonName or ns.state.loaded then return end
@@ -29,6 +30,7 @@ local function dispatch(event, ...)
         invoke("UI", "Initialize")
         invoke("Tracker", "Initialize")
         invoke("Minimap", "Initialize")
+        invoke("QuestInteractions", "Initialize")
         if ns.client and not ns.client.supported then
             diagnostics:Warn("Compatibility", ns.Modules.Compatibility:Report())
         end
@@ -79,7 +81,7 @@ local function dispatch(event, ...)
             routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
         end
         ns:Call("Navigator", "Refresh")
-        if routeOK and rerouted then ns:Call("Tracker", "Refresh") end
+        if (routeOK and rerouted) or event=="PLAYER_LEVEL_UP" or event=="ZONE_CHANGED_NEW_AREA" then ns:Call("Tracker", "Refresh") end
         if event == "PLAYER_MONEY" then ns:Call("Tracker", "RequestObjectiveRefresh") end
         if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
     elseif event == "PLAYER_LOGOUT" then

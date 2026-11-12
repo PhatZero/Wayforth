@@ -189,7 +189,9 @@ function Tracker:MakeFrame()
     for i=1,6 do
         local idx=i
         local button=theme:Button(panel,350,29,"",function()
-            if Tracker.upcomingIndices and Tracker.upcomingIndices[idx] then
+            if Tracker.upcomingActions and Tracker.upcomingActions[idx] then
+                Tracker.upcomingActions[idx]()
+            elseif Tracker.upcomingIndices and Tracker.upcomingIndices[idx] then
                 navigate(Tracker.upcomingIndices[idx],false)
             end
         end,"quiet")
@@ -214,11 +216,23 @@ function Tracker:MakeFrame()
     end)
     self.prev:SetPoint("LEFT",control,"LEFT",0,0)
     self.next=theme:Button(control,97,34,"Next Step",function()
+        local travel=ns.Modules.Travel
+        if travel and travel:Current(Tracker.displayStep) then
+            local _,message=travel:Next()
+            if message then ns:Print(message) end
+            Tracker:Refresh()
+            return
+        end
         local g=ns.Modules.Guides
         local p=g:GetProgress()
         if p then
             local nav=ns.Modules.Navigator
-            g:SetCurrent(((nav and nav.overrideIndex) or p.current)+1)
+            local index=(nav and nav.overrideIndex) or p.current
+            local current=g:GetSteps()[index]
+            if current and current.action=="manual" then
+                g:SetCurrent(index)
+                g:CompleteCurrent()
+            else g:SetCurrent(index+1) end
         end
         ns:Call("Navigator","ResetTarget")
         Tracker:Refresh()
@@ -242,7 +256,7 @@ function Tracker:MakeFrame()
 
     local menu=CreateFrame("Frame",nil,panel)
     menu:SetFrameLevel(panel:GetFrameLevel()+12)
-    menu:SetSize(236,351)
+    menu:SetSize(236,421)
     menu:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-7,53)
     theme:Panel(menu,theme.panel,theme.gold)
     menu:Hide()
@@ -265,6 +279,8 @@ function Tracker:MakeFrame()
         self.menuButtons[key]=item
     end
     local entries2={
+        {"Quest not offered",function() Tracker.menu:Hide();ns.Modules.UI:ShowTab("Quest Recovery");ns.Modules.UI:Show() end},
+        {"Travel directions",function() Tracker.menu:Hide();ns.Modules.UI:ShowTab("Travel Directions");ns.Modules.UI:Show() end},
         {"Report a Bug",function() ns.Modules.Diagnostics:ShowBugReport() end},
         {"Sync Guide Now",function()
             local _,report=ns.Modules.Guides:Sync(nil,true)
@@ -402,6 +418,7 @@ function Tracker:RefreshObjectives(fromRefresh)
     end
     local progress=ns.Modules.QuestProgress
     local snapshot=step and progress and progress:Get(step.questId) or nil
+    if ns.Modules.Travel and ns.Modules.Travel:Current(step) then snapshot=nil end
     if snapshot and snapshot.state=="inactive" and step.action=="accept" then snapshot=nil end
     if snapshot and snapshot.ready and step.action=="objective" and not fromRefresh then
         local changed=guides:Sync()
@@ -518,9 +535,14 @@ function Tracker:Layout()
     self.upcomingPageCount=math.max(1,math.ceil(#entries/math.max(1,visible)))
     self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
     self.upcomingIndices={}
+    self.upcomingActions={}
     for i,button in ipairs(self.upcomingButtons or {}) do
         local entry=i<=visible and entries[(self.upcomingPage-1)*visible+i]
-        if entry then self.upcomingIndices[i]=entry.index;button:SetLabel(tostring(entry.label):sub(1,51)) end
+        if entry then
+            self.upcomingIndices[i]=entry.index
+            self.upcomingActions[i]=entry.action
+            button:SetLabel(tostring(entry.label):sub(1,51))
+        end
     end
     if self.pageButton then
         self.pageButton:ClearAllPoints()
@@ -648,6 +670,7 @@ function Tracker:Refresh()
     self.stepCount:SetText(focus and ("Viewing " .. index .. " | Route " .. routeIndex .. "/" .. total .. " | " .. progressText)
         or ("Step " .. index .. " / " .. total .. "  |  " .. progressText))
     self.stepTitle:SetText(step.title or "Next objective")
+    self.next:SetLabel(step.action=="manual" and "Done / Next" or "Next Step")
     local grouped=ns.Modules.SmartRoutes and ns.Modules.SmartRoutes:NearbyGroup(focus) or {}
     local actions={accept="PICK UP",objective="DO",turnin="TURN IN"}
     local counts={accept=0,objective=0,turnin=0}
@@ -704,15 +727,27 @@ function Tracker:Refresh()
             fallback=fallback+1
         end
     end
+    local zones=ns.Modules.NextZone
+    local options=zones and zones:Options() or {}
+    for pos=#options,1,-1 do
+        local option=options[pos]
+        table.insert(entries,1,{index=0,label="NEXT ZONE | "..option.title,action=function()
+            local ok,message=zones:Switch(option.id)
+            if not ok then ns:Print(message) end
+            Tracker:Refresh()
+        end})
+    end
     local signature={g.id,tostring(routeIndex),tostring(focus or 0)}
-    for _,entry in ipairs(entries) do signature[#signature+1]=tostring(entry.index) end
+    for _,entry in ipairs(entries) do signature[#signature+1]=tostring(entry.index)..entry.label end
     local key=table.concat(signature,":")
     if self.upcomingSignature~=key then
         self.upcomingSignature=key
         self.upcomingPage=1
     end
     self.upcomingEntries=entries
-    if #entries>0 then
+    if #options>0 then
+        self.upcomingTitle:SetText("SUGGESTED NEXT ZONES")
+    elseif #entries>0 then
         self.upcomingTitle:SetText(#grouped>1 and "HUB & ACTIVE QUESTS"
             or (#work>0 and "ACTIVE QUESTS" or "UPCOMING STEPS"))
     else
@@ -751,6 +786,13 @@ function Tracker:Refresh()
     end
     if navigator and navigator.NavigationFeedback and not saved.awaitingQuestMatch then
         self.location:SetText(navigator:NavigationFeedback(step))
+    end
+    local travel=ns.Modules.Travel
+    local leg=travel and travel:Current(step)
+    if leg and not saved.awaitingQuestMatch then
+        self.objectiveCaption:SetText("TRAVEL LEG "..travel.route.index.." / "..#travel.route.legs)
+        self.objectiveText:SetText(leg.text)
+        self.next:SetLabel("Next Travel")
     end
     for key,item in pairs(self.menuButtons) do
         local title=key=="guidePaused" and "Pause Guide" or key=="autoAdvance" and "Auto Advance" or "Show Arrow"

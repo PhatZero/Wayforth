@@ -88,6 +88,14 @@ end
 
 local function targetForStep(step)
     if not step then return nil end
+    local travel=ns.Modules.Travel
+    local leg=travel and travel:Current(step)
+    if leg then
+        if type(leg.mapId)=="number" and type(leg.x)=="number" and type(leg.y)=="number" and validCoord(leg.x/100,leg.y/100) then
+            return {mapId=leg.mapId,x=leg.x/100,y=leg.y/100,source="Authored travel leg"}
+        end
+        return nil -- wait/transport leg has no fabricated bearing
+    end
     local mapId = step.mapId or getCurrentZoneMap(step.zone)
     local authored
     if type(mapId) == "number" and type(step.x) == "number" and type(step.y) == "number" then
@@ -477,6 +485,8 @@ function Navigator:NavigationFeedback(step, reason)
     if routes and routes.BlockedReason and routes:BlockedReason(step,guides:GetSteps()) then
         return "Quest blocked | Check requirements, then Sync"
     end
+    local leg=ns.Modules.Travel and ns.Modules.Travel:Current(step)
+    if leg then return string.upper(leg.kind or "travel").." | Follow Travel Directions" end
     local target=safeCall(targetForStep, step)
     local mapAPI=type(C_Map)=="table" and C_Map or {}
     local info=target and safeCall(mapAPI.GetMapInfo,target.mapId)

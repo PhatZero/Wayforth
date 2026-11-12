@@ -808,11 +808,52 @@ function UI:Refresh()
         -- Smart Start uses an estimated five-level threshold rather than exact XP.
         -- It never grants quest completion or clears previously saved progress.
 
+    elseif tab == "Quest Recovery" then
+        self:Title("Quest not offered", "Find a prerequisite or continue another active quest", width)
+        local help=ns.Modules.QuestAssistance
+        local proposal=help:Recovery()
+        self:Label("recoveryReason",proposal.message,10,84,width-20,13,theme.ivory)
+        for i,option in ipairs(proposal.options) do
+            local choice=option
+            self:Button("recoveryOption"..i,choice.title or "Continue quest",10,224+(i-1)*56,width-20,32,function()
+                local ok,message=help:Choose(proposal,choice)
+                if ok then ns.Modules.Tracker:Show();UI:Hide()
+                else ns:Print(message);UI:Refresh() end
+            end,true)
+            self:Label("recoveryOptionReason"..i,choice.reason,14,259+(i-1)*56,width-28,10,theme.teal)
+        end
+        self:Button("recoveryRetry","Sync Guide Now",10,408,170,34,function()
+            local _,message=guides:Sync(nil,true)
+            ns:Print(message or "Guide refreshed")
+            ns:Call("Tracker","Refresh");UI:Refresh()
+        end)
+        self:Button("recoveryReport","Report a Bug",190,408,160,34,function() ns.Modules.Diagnostics:ShowBugReport() end)
+    elseif tab == "Travel Directions" then
+        self:Title("Travel directions", "Authored travel steps for your selected objective", width)
+        local travel=ns.Modules.Travel
+        local plan=travel:Plan()
+        local leg=travel:Current()
+        self:Label("travelMessage",plan.message,10,84,width-20,12,theme.ivory)
+        local lines={}
+        for i,entry in ipairs(plan.legs) do
+            local prefix=leg and travel.route.index==i and "> " or ""
+            lines[#lines+1]=prefix..i..". "..string.upper(entry.kind or "travel")..": "..entry.text
+        end
+        self:Label("travelLegs",table.concat(lines,"\n\n"),10,145,width-20,13,theme.ivory)
+        self:Button("travelStart",leg and "Next Travel Leg" or "Follow Directions",10,370,180,34,function()
+            local ok,message
+            if travel:Current() then ok,message=travel:Next() else ok,message=travel:Start() end
+            ns:Print(message);ns:Call("Tracker","Refresh");UI:Refresh()
+        end,true)
+        self:Button("travelStop","Stop Travel Route",200,370,180,34,function()
+            travel:Stop();ns:Call("Tracker","Refresh");UI:Refresh()
+        end)
+        self:Label("travelCaution","Transport and unlocated legs show instructions without an arrow. Advancing a travel leg never completes a quest.",10,420,width-20,11,theme.muted)
     elseif tab == "Settings" then
         self:Title("Settings", "Character-specific settings. Changes are saved immediately.", width)
-        local sections={ "Display", "Navigation", "Guides & Routing", "Progress & Recovery" }
+        local sections={ "Display", "Navigation", "Guides & Routing", "Progress & Recovery", "Quest Actions" }
         self.settingsSection = self.settingsSection or "Display"
-        local buttonW = (width - 22) / 4
+        local buttonW = (width - 22) / 5
         for i, section in ipairs(sections) do
             self:Button("settingsTab" .. i, section, 6+(i-1)*(buttonW+3), 70, buttonW, 34,
                 function() UI.settingsSection=section; UI:Refresh() end)
@@ -847,6 +888,10 @@ function UI:Refresh()
             self:SettingsToggle("pause", "Pause Guide", "guidePaused", 10, 282, width-28)
             self:SettingsToggle("zones", "Smart Zone Recommendations", "zoneSuggestions", 10, 334, width-28)
             self:SettingsToggle("extras", "Show Additional Available Quests", "showAdditionalQuests", 10, 386, width-28)
+        elseif sec == "Quest Actions" then
+            self:SettingsToggle("autoAccept","Accept Active Guide Quests","autoAcceptQuests",10,178,width-28)
+            self:SettingsToggle("autoTurnIn","Turn In Active Guide Quests","autoTurnInQuests",10,230,width-28)
+            self:Label("questActionsHelp","Both options start OFF. Only quests in your selected guide are handled. Multiple reward choices stay manual. Hold Shift, pause the guide, or turn these options off to read and handle dialogs yourself. Combat blocks automatic interactions.",10,300,width-28,13,theme.ivory)
         else
             self:SettingsToggle("recovery", "Automatic Guide Recovery", "autoRecovery", 10, 178, width-28)
             self:SettingsToggle("recoveryNote", "Recovery Notifications", "recoveryNotifications", 10, 230, width-28)

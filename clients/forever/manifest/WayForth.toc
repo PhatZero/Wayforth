@@ -32,6 +32,10 @@ Core/QuestProgress.lua
 Core/HubRoutes.lua
 Core/SmartRoutes.lua
 Core/QuestAudit.lua
+Core/QuestAssistance.lua
+Core/NextZone.lua
+Core/Travel.lua
+Core/QuestInteractions.lua
 UI/Theme.lua
 UI/Navigator.lua
 UI/QuestItems.lua

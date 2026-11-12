@@ -25,6 +25,7 @@ local DEFAULTS = {
     autoRecovery = true, recoveryNotifications = true,
     smartRouting = true, zoneSuggestions = true,
     showAdditionalQuests = false,
+    autoAcceptQuests = false, autoTurnInQuests = false,
 }
 
 -- Appearance, guide controls and positions are per character, never shared between alts.
@@ -37,6 +38,7 @@ local PERSONAL = {
     autoAdvance=true, guidePaused=true, autoRecovery=true,
     recoveryNotifications=true, smartRouting=true, zoneSuggestions=true,
     showAdditionalQuests=true,
+    autoAcceptQuests=true, autoTurnInQuests=true,
 }
 
 local function safeNumber(value, default, low, high)

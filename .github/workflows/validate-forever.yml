@@ -70,6 +70,8 @@ jobs:
         run: lua5.1 tests/lua/test_enhancements.lua
       - name: Verify secure item combat lifecycle
         run: lua5.1 tests/lua/test_quest_item_button.lua
+      - name: Verify quest recovery, travel, zone suggestions and quest interactions
+        run: lua5.1 tests/lua/test_quest_assistance.lua
       - name: Run manifest and offline tests
         run: python3 -m unittest discover -s tests -v
       - name: Build installable addon ZIP
