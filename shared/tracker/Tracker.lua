@@ -256,7 +256,8 @@ function Tracker:MakeFrame()
 
     local menu=CreateFrame("Frame",nil,panel)
     menu:SetFrameLevel(panel:GetFrameLevel()+12)
-    menu:SetSize(236,421)
+    menu:SetSize(236,456)
+    menu:SetClampedToScreen(true)
     menu:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-7,53)
     theme:Panel(menu,theme.panel,theme.gold)
     menu:Hide()
@@ -279,6 +280,7 @@ function Tracker:MakeFrame()
         self.menuButtons[key]=item
     end
     local entries2={
+        {"Search this guide",function() Tracker.menu:Hide();ns.Modules.UI:ShowTab("Guide Search");ns.Modules.UI:Show() end},
         {"Quest not offered",function() Tracker.menu:Hide();ns.Modules.UI:ShowTab("Quest Recovery");ns.Modules.UI:Show() end},
         {"Travel directions",function() Tracker.menu:Hide();ns.Modules.UI:ShowTab("Travel Directions");ns.Modules.UI:Show() end},
         {"Report a Bug",function() ns.Modules.Diagnostics:ShowBugReport() end},
@@ -378,6 +380,10 @@ function Tracker:ShowObjectiveTooltip()
     local routes=ns.Modules.SmartRoutes
     local blocked=routes and routes.BlockedReason and routes:BlockedReason(self.displayStep,ns.Modules.Guides:GetSteps())
     if blocked then GameTooltip:AddLine(blocked,1,0.74,0.37,true) end
+    if self.logWarning then
+        GameTooltip:AddLine(self.logWarning,1,0.74,0.37,true)
+        GameTooltip:AddLine("Turn in ready quests before collecting more. WayForth never abandons quests.",1,0.74,0.37,true)
+    end
     if self.liveSnapshot then
         GameTooltip:AddLine(" ")
         GameTooltip:AddLine(self.liveSnapshot.status,theme.teal[1],theme.teal[2],theme.teal[3],true)
@@ -669,6 +675,11 @@ function Tracker:Refresh()
     local progressText=math.floor(100*count/total) .. "% complete"
     self.stepCount:SetText(focus and ("Viewing " .. index .. " | Route " .. routeIndex .. "/" .. total .. " | " .. progressText)
         or ("Step " .. index .. " / " .. total .. "  |  " .. progressText))
+    local space=ns.Modules.QuestLogSpace
+    local logStatus=space and space:Status()
+    self.logWarning=space and space:Message(logStatus)
+    if self.logWarning then self.stepCount:SetText(self.logWarning) end
+    self.stepCount:SetTextColor(unpack(self.logWarning and theme.gold or theme.teal))
     self.stepTitle:SetText(step.title or "Next objective")
     self.next:SetLabel(step.action=="manual" and "Done / Next" or "Next Step")
     local grouped=ns.Modules.SmartRoutes and ns.Modules.SmartRoutes:NearbyGroup(focus) or {}
@@ -709,6 +720,11 @@ function Tracker:Refresh()
         if saved.skipped and saved.skipped[steps[candidate.index].id or candidate.index] then return end
         entries[#entries+1]={index=candidate.index,label=label}
         shown[candidate.index]=true
+    end
+    if logStatus and logStatus.near then
+        for _,item in ipairs(space:ReadyTurnIns(steps,saved)) do
+            append(item,"FREE A SLOT | "..tostring(item.step.title or "Turn in quest"))
+        end
     end
     for _,item in ipairs(grouped) do
         local name=tostring(item.step.title or "Quest"):gsub("^Pick up:%s*","")

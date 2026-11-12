@@ -247,3 +247,27 @@ for _,guide in ipairs(guides:List()) do
 end
 assert(checked>=55, "The hub planner must be available across the installed leveling library")
 print("Hub pickup batching, field loops, grouped turn-ins, prerequisites and all-guide eligibility passed: "..checked.." guides")
+
+-- Integrate capacity priority with the real Sync / HubRoutes / Preview stack.
+assert(loadfile('shared/core/QuestLogSpace.lua'))('WayForth',ns)
+active,done,ready={},{},{}
+ns.char.turnedInQuests={}
+faction,race,level='Alliance','HUMAN',10
+settings.guidePaused=false;settings.autoAdvance=true;settings.autoRecovery=true;settings.smartRouting=true
+guides:SetActive('hub-test')
+local capacitySaved=guides:GetProgress()
+capacitySaved.completed={};capacitySaved.skipped={};capacitySaved.hubVisit=nil
+capacitySaved.routeMode='recommended'
+guides:SetCurrent(1)
+active[9901002]=true;ready[9901002]=true
+C_QuestLog.GetNumQuestLogEntries=function() return 29,24 end
+C_QuestLog.GetMaxNumQuestsCanAccept=function() return 25 end
+guides:Sync()
+ns.Modules.SmartRoutes:Recalculate()
+local capacityStep=guides:CurrentStep()
+assert(capacityStep.questId==9901002 and capacityStep.action=='turnin','Sync and Preview must agree on turn-in priority')
+assert(not capacitySaved.completed['9901001-accept'],'Unaccepted quest must remain incomplete')
+C_QuestLog.GetNumQuestLogEntries=function() return 29,20 end
+active[9901002]=nil;ready[9901002]=nil;done[9901002]=true
+guides:Sync();ns.Modules.SmartRoutes:Recalculate()
+assert(guides:CurrentStep().action=='accept','Resume hub pickups once capacity pressure clears')

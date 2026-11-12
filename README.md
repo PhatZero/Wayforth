@@ -274,3 +274,10 @@ The UI and routing changes require in-game verification on Forever, including co
 - **Settings > Quest Actions** contains separate **Accept Active Guide Quests** and **Turn In Active Guide Quests** toggles. Both default OFF per character. Holding Shift, pausing the guide or entering combat suppresses automation. Only matching, unskipped guide quest IDs are handled; multiple reward choices remain manual. Clients without ID-bearing gossip APIs still allow manual NPC quest selection followed by supported quest-dialog actions.
 
 In-game Forever verification remains necessary, especially transport availability, NPC dialogs, reward choices, and guide transitions.
+
+### Quest-log space and guide search
+
+- WayForth reads the client-reported standard quest-log limit and quest count. At three or fewer free slots it shows a tracker warning and a chat notice when entering the near-full/full state. Unknown limits do not generate guessed warnings.
+- Ready turn-ins from the active guide take priority before another pickup round when space is low. Existing field objectives and manual routing settings remain respected. The upcoming list offers ready turn-ins as **FREE A SLOT** entries. Automatic quest acceptance waits when the log is full or a known ready turn-in can free space. WayForth never abandons quests.
+- Open **Search this guide** from the tracker **...** menu. Search the active guide by quest name or ID, NPC, hub, step number, or instruction text. Results include completed and skipped steps and are paginated.
+- Click a result to open its full instructions in a scrollable, read-only view. **Back to Results** retains the search. Browsing does not change the guide cursor, waypoint, skipped flags or completion history. Results are revalidated if the active guide or visible steps change.

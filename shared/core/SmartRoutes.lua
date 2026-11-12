@@ -257,6 +257,10 @@ function Routes:Preview(id, mode)
 
     local level = currentLevel()
     if mode == "recommended" then
+        local space=ns.Modules.QuestLogSpace
+        local priority,reason
+        if space then priority,reason=space:Priority(steps,saved) end
+        if priority then return priority,reason end
         local hubs=ns.Modules.HubRoutes
         if hubs and hubs:Enabled() then
             local hubIndex,hubReason=hubs:Selection(steps,saved)

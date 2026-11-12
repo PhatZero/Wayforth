@@ -120,3 +120,18 @@ local toggles={}
 function ui:SettingsToggle(id,title,key) toggles[key]=true end
 ui:Refresh()
 assert(toggles.autoAcceptQuests and toggles.autoTurnInQuests)
+
+-- Search-result browsing never invokes route switching or completion.
+ns.Modules.Database.Set=function() end
+ns.Modules.GuideSearch={Find=function() return {{guideId=guide.id,index=2,stepId='two',title='Quest Two',status='Completed',action='turnin',questId=100}} end,
+ Resolve=function() return {title='Quest Two',text='Full quest instructions',hub='Camp',action='turnin',questId=100} end}
+function ui:StepPreview(text) texts.previewInstructions=text end
+ui.currentTab='Guide Search'
+local switches=#calls.switch
+ui:Refresh()
+assert(texts.stepSearchHint:find('1 results',1,true) and actions.stepResult1)
+actions.stepResult1()
+assert(ui.currentTab=='Guide Step' and texts.previewInstructions=='Full quest instructions')
+assert(#calls.switch==switches and saved.current==2,'Preview cannot change route or completion')
+actions.stepBackSearch()
+assert(ui.currentTab=='Guide Search')
