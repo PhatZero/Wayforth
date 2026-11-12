@@ -35,8 +35,16 @@ function Guides:GetGuide(id)
     return byId[active] or byId["first-steps"]
 end
 
-function Guides:List()
-    return ns.starterGuides or {}
+function Guides:List(kind)
+	local result = {}
+	for _, guide in ipairs(ns.starterGuides or {}) do
+		if kind == "all"
+			or kind == "professions" and guide.isProfession
+			or kind ~= "all" and kind ~= "professions" and not guide.isProfession then
+			result[#result + 1] = guide
+		end
+	end
+	return result
 end
 
 -- Test catalogs can contain quests restricted to one or several races.
