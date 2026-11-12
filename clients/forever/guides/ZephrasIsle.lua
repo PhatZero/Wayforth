@@ -86,9 +86,17 @@ local allSteps = {
     { id = "fate", title = "Resolve The Fate of Zephras", text = "Finish the main finale, The Fate of Zephras, and report to the quest's indicated NPC. This is the island's story climax.", hub = "Rohashi Spires", level = 12, questIds = { Alliance = 94369, Horde = 93836 }, action = "turnin" },
     { id = "next", title = "Plan what comes next", text = "Complete What Comes Next and return to your order's leader in Valanaar to prepare for departure.", hub = "Valanaar", level = 13, questIds = { Alliance = 93089, Horde = 93090 }, action = "turnin" },
     { id = "leave-alliance-accept", title = "Dalaran departure order", text = "Accept The Magical City of Dalaran from Elaadrin and head to the Alliance skycutter.", hub = "Valanaar", level = 13, questId = 94946, action = "accept", faction = "Alliance" },
-    { id = "leave-alliance", title = "Alliance: depart for Dalaran", text = "Follow The Magical City of Dalaran to the skycutter at the Valanaar skydocks, then use the Skyborne route toward Stormwind.", hub = "Valanaar Skydocks", level = 13, action = "manual", faction = "Alliance", x = 65.9, y = 83.5 },
+    { id = "leave-alliance", travel = {
+        {kind="boat",text="Go to the Alliance skycutter at Valanaar Skydocks.",mapId=2521,x=65.9,y=83.5},
+        {kind="boat",text="Board the skycutter for The Magical City of Dalaran. Wait for transport; advance this leg after arriving."},
+        {kind="walk",text="Follow the faction introduction toward Stormwind. Use the quest's instructions for onward travel."},
+    }, title = "Alliance: depart for Dalaran", text = "Follow The Magical City of Dalaran to the skycutter at the Valanaar skydocks, then use the Skyborne route toward Stormwind.", hub = "Valanaar Skydocks", level = 13, action = "manual", faction = "Alliance", x = 65.9, y = 83.5 },
     { id = "leave-horde-accept", title = "Earthen Ring departure order", text = "Accept The Earthen Ring from Ayessa Dawnsinger and travel to the Horde skycutter.", hub = "Valanaar", level = 13, questId = 95349, action = "accept", faction = "Horde" },
-    { id = "leave-horde", title = "Horde: depart for Mulgore", text = "Follow The Earthen Ring to the skycutter at Valanaar. After landing in Mulgore, continue your faction introduction toward Orgrimmar.", hub = "Valanaar Skydocks", level = 13, action = "manual", faction = "Horde", x = 57.9, y = 80.9 },
+    { id = "leave-horde", travel = {
+        {kind="boat",text="Go to the Horde skycutter at Valanaar Skydocks.",mapId=2521,x=57.9,y=80.9},
+        {kind="boat",text="Board the skycutter for The Earthen Ring. Advance this leg after landing in Mulgore."},
+        {kind="walk",text="Continue the faction introduction toward Orgrimmar, following the quest instructions."},
+    }, title = "Horde: depart for Mulgore", text = "Follow The Earthen Ring to the skycutter at Valanaar. After landing in Mulgore, continue your faction introduction toward Orgrimmar.", hub = "Valanaar Skydocks", level = 13, action = "manual", faction = "Horde", x = 57.9, y = 80.9 },
 }
 
 -- Source-backed prerequisite/pickup recovery for characters joining mid-route.

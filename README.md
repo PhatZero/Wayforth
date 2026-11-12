@@ -265,3 +265,12 @@ Running the release workflow on `main` chooses the next numbered beta in the man
 - Choose **Report a Bug** from the tracker **...** menu or dashboard **Diagnostics**. Copy the selected report with Ctrl+C and paste into GitHub or ChatGPT. It includes addon/client version, guide, selected step, quest, map, coordinates and live objective status; nothing is sent automatically.
 
 The UI and routing changes require in-game verification on Forever, including combat, hub follow-ups, world-map pins and dungeon transitions.
+
+### Quest assistance and travel
+
+- **Quest not offered** (tracker **...** menu) explains known requirements and offers a prerequisite or another active quest. Choosing a suggestion changes focus without marking the unavailable quest complete. Unknown availability remains explicit; Sync retries recovery.
+- **Travel directions** (tracker **...** menu) follows authored legs. The initial routes cover both Zephras skycutter departures and the Missing Scholar cave entrance. The tracker **Next Travel** button advances a travel leg without completing a quest. Unlocated transport legs show instructions with no invented arrow. Other guides retain existing travel hints; boats, zeppelins, portals, flight paths and entrances can be represented by authored legs, but unverified connections are not generated.
+- **Next-zone suggestions** appear in the tracker after all steps are complete or all remaining quests are at least five levels below you with no active quests/manual checkpoints pending. Click a suggested zone to switch; saved progress stays intact. Suggestions respect faction, visible steps, optional guides and the Smart Zone Recommendations setting. Manual checkpoints now have an explicit **Done / Next** button.
+- **Settings > Quest Actions** contains separate **Accept Active Guide Quests** and **Turn In Active Guide Quests** toggles. Both default OFF per character. Holding Shift, pausing the guide or entering combat suppresses automation. Only matching, unskipped guide quest IDs are handled; multiple reward choices remain manual. Clients without ID-bearing gossip APIs still allow manual NPC quest selection followed by supported quest-dialog actions.
+
+In-game Forever verification remains necessary, especially transport availability, NPC dialogs, reward choices, and guide transitions.

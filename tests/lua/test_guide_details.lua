@@ -94,3 +94,29 @@ assert(#calls.switch==1 and calls.switch[1].mode=="resume" and
 assert(ns.Modules.Tracker.shown and ui.hidden, "Start must open tracker and close dashboard")
 assert(saved.current==2 and saved.completed.one, "Switch must preserve saved quest state")
 print("Guide Details interaction and preview behavior passed")
+
+-- New assistance pages reuse the dashboard and wire the actual player actions.
+function ns:Call() return true end
+local chosen=false
+ns.Modules.QuestAssistance={Recovery=function() return {message="Requires an earlier quest",options={{title="First quest",reason="Prerequisite",index=1}}} end,
+    Choose=function(_,proposal,option) chosen=proposal.message and option.index==1;return true end}
+ui.currentTab="Quest Recovery"
+ui:Refresh()
+assert(texts.recoveryReason=="Requires an earlier quest" and actions.recoveryOption1 and actions.recoveryRetry)
+actions.recoveryOption1()
+assert(chosen and ui.hidden)
+local leg={kind="boat",text="Board the documented boat"}
+local travel={route={index=1},Plan=function() return {message="Travel instructions",legs={leg}} end,
+    Current=function() return leg end,Next=function() calls.travelNext=true;return true,"Next leg" end,
+    Stop=function() calls.travelStop=true end}
+ns.Modules.Travel=travel
+ui.currentTab="Travel Directions"
+ui:Refresh()
+assert(texts.travelLegs:find('BOAT',1,true) and texts.travelStart=='Next Travel Leg')
+actions.travelStart();assert(calls.travelNext)
+actions.travelStop();assert(calls.travelStop)
+ui.currentTab="Settings";ui.settingsSection="Quest Actions"
+local toggles={}
+function ui:SettingsToggle(id,title,key) toggles[key]=true end
+ui:Refresh()
+assert(toggles.autoAcceptQuests and toggles.autoTurnInQuests)
