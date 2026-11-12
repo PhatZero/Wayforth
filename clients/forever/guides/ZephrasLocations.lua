@@ -50,6 +50,8 @@ ns.zephrasQuestLocations = {
     [94568] = { pickup = {66.2, 76.5}, turnin = {66.2, 76.5} }, -- Cult's True Plans
     [92947] = { pickup = {61.1, 70.9}, objective = {62.0, 50.0}, turnin = {63.8, 50.5} },
     [93958] = { pickup = {63.8, 50.5}, turnin = {65.2, 50.4} }, -- Inner Sanctum
+    [93835] = { pickup = {65.2, 50.4}, objective = {74.9, 53.0}, turnin = {66.6, 79.9} }, -- Alliance Confront Lorthuna
+    [92646] = { pickup = {65.2, 50.4}, objective = {74.9, 53.0}, turnin = {59.1, 79.8} }, -- Horde Confront Lorthuna
     [94369] = { pickup = {66.6, 79.9}, turnin = {66.2, 76.5} }, -- Alliance Fate of Zephras
     [93836] = { pickup = {59.1, 79.8}, turnin = {66.2, 76.5} }, -- Horde Fate of Zephras
     [93089] = { pickup = {66.2, 76.5}, turnin = {66.6, 79.9} }, -- Alliance What Comes Next
