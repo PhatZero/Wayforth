@@ -68,7 +68,7 @@ This build updates the **existing WayForth addon**, not a second addon or a sepa
 - **Real world MAP PIN**, not merely a locked arrow. The tracker button sets the selected step's Blizzard user waypoint, supports remote-zone pins when the map API allows them, converts unsupported child maps to valid parents where possible, and enables super tracking. Shift-click MAP PIN to open that map.
 - **Concurrent quest tracker** shows active objectives and ready turn-ins from the selected guide alongside the hub sweep. A compact next-page control exposes additional quests without expanding into another window.
 - **Character-specific preferences**, including window positions/sizes, opacity, Guide Recovery, Pause Guide, Auto Advance, Smart Routing and guide history; existing SavedVariables are migrated conservatively.
-- **12 profession guides** cover all primary and secondary skills, show tailored material and pairing notes, and advance through skill, campsite and rank checkpoints from live client skill data.
+- **12 profession guides** cover all primary and secondary skills, show tailored material and pairing notes, and advance through skill, campsite and rank checkpoints from live client skill data.\n- **Legacy Professions planner** carries over the WoWForever Fortune seven-perk planner, 16-point character plans, prerequisites, gathering and all-rounder presets, and per-character saves. It plans only; it does not change Legacy points in game.
 - **Guide-switching choices** remain Start at My Level, From Beginning, and Resume Progress; previous quest completions are preserved per guide.
 - **Premium Hub Sweep** checks the whole selected guide for nearby quest pickups, active objectives, and ready turn-ins. After a real pickup event, Smart Routing prefers remaining eligible quests at that hub before departing. Candidate pickups are clearly unconfirmed, with known prerequisites, level mode, and map boundaries enforced.
 - **Accurate selected-step navigation** keeps the tracker and frameless arrow on the same objective. Clicking a side step with no verified destination still shows instructions; it never invents an arrow. MAP PIN and Skip act on the visible side objective.
@@ -90,7 +90,7 @@ For an in-game release checklist, see [V1_IN_GAME_QA.md](docs/V1_IN_GAME_QA.md).
 - Quest ID based advancement when quests are accepted or turned in (when the Forever client exposes those APIs); manual controls for objectives that cannot be safely detected.
 - Compact always-visible tracker and independent draggable navigation pointer, using the client's live quest waypoints where available, and verified authored coordinates as fallback.
 - Verified early-zone coordinates with optional in-game user map pins when standing on Zephras Isle and the client supports it. Steps with no quest waypoint or authored coordinates never invent a route.
-- Dashboard, Guide Library, Map, Character, Professions, Progress, Settings and Diagnostics sections.
+- Dashboard, Guide Library, Map, Character, Professions, Legacy planner, Progress, Settings and Diagnostics sections.
 - Account-wide preferences and character-specific progress with defensive defaults and schema versioning.
 - Error capture and basic client diagnostic status.
 - No slash command required, no sign-in, no payment and no network communication.

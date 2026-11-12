@@ -16,7 +16,7 @@ Core/Database.lua
 Core/Diagnostics.lua
 Core/Character.lua
 Data/StarterGuide.lua
-Data/ProfessionGuides.lua
+Data/ProfessionGuides.lua\nData/LegacyPerks.lua
 Data/ZephrasLocations.lua
 Data/ZephrasIsle.lua
 Data/AllianceStarters.lua
@@ -31,7 +31,7 @@ Data/ForeverQuestLocationUpdates.lua
 Data/ForeverQuestRequirements.lua
 Core/QuestLocations.lua
 Core/Guides.lua
-Core/ProfessionGuides.lua
+Core/ProfessionGuides.lua\nCore/LegacyPlanner.lua
 Core/QuestProgress.lua
 Core/HubRoutes.lua
 Core/SmartRoutes.lua

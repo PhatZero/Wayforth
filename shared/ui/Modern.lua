@@ -6,19 +6,19 @@ local theme = ns.Modules.Theme
 local db = ns.Modules.Database
 
 local NAV = { "Dashboard", "Guide Library", "Favorites", "Recently Used",
-    "Professions", "Map", "Settings" }
+    "Professions", "Legacy", "Map", "Settings" }
 local NAV_ICONS = {
     Dashboard = "Interface\\Icons\\INV_Misc_EngGizmos_32",
     ["Guide Library"] = "Interface\\Icons\\INV_Misc_Book_09",
     Favorites = "Interface\\Icons\\INV_Misc_Gem_01",
     ["Recently Used"] = "Interface\\Icons\\INV_Misc_PocketWatch_01",
     Map = "Interface\\Icons\\INV_Misc_Spyglass_02",
-    Professions = "Interface\\Icons\\Trade_BlackSmithing",
+    Professions = "Interface\\Icons\\Trade_BlackSmithing",\n    Legacy = "Interface\\Icons\\INV_Misc_TreasureChest_01",
     Settings = "Interface\\Icons\\INV_Gizmo_02",
 }
 local CATEGORIES = {
     { title="Leveling", icon="Interface\\Icons\\Achievement_Level_10", tab="Guide Library" },
-    { title="Professions", icon="Interface\\Icons\\Trade_BlackSmithing", tab="Professions" },
+    { title="Professions", icon="Interface\\Icons\\Trade_BlackSmithing", tab="Professions" },\n    { title="Legacy", icon="Interface\\Icons\\INV_Misc_TreasureChest_01", tab="Legacy" },
     { title="Gold Making", icon="Interface\\Icons\\INV_Misc_Coin_02", tab="Gold Making" },
     { title="Exploration", icon="Interface\\Icons\\INV_Misc_Map_01", tab="Exploration" },
 }
@@ -784,6 +784,54 @@ function UI:Refresh()
         end)
         self:Label("professionDataNote","Recipe colors, exact materials, rank access and trainer requirements vary by character and learned recipes. Confirm each in the live profession window.",
             9,actionY-28,width-18,10,theme.muted)
+    elseif tab == "Legacy" then
+        local planner=ns.Modules.LegacyPlanner
+        local perkData=ns.legacyProfessionPerks
+        if not planner or not perkData then
+            self:Title("Legacy planner", "Legacy planning data is unavailable.", width)
+            return
+        end
+        local ranks,total,limit=planner:Read()
+        self:Title("Legacy Professions planner", "Plan your character's Professions tree with the Forever Fortune perk rules.", width)
+        self:Surface("legacySummary",6,49,width-12,49,true)
+        self:Label("legacyPointCount",total.." / "..limit.." points allocated",18,61,220,13,theme.gold)
+        self:Label("legacySaveNote","Saved to this character. Planner only; this does not spend or reset in-game Legacy points.",250,61,width-270,11,theme.muted)
+        self:Button("legacyGatherPreset", "Gathering 5-point plan", 7,108,174,30,function()
+            local ok,message=planner:ApplyPreset("gathering")
+            if not ok then ns:Print(message) end
+            UI:Refresh()
+        end)
+        self:Button("legacyFortunePreset", "Fortune 16-point plan", 188,108,174,30,function()
+            local ok,message=planner:ApplyPreset("fortune")
+            if not ok then ns:Print(message) end
+            UI:Refresh()
+        end,true)
+        self:Button("legacyResetPlan", "Reset plan", width-113,108,106,30,function()
+            planner:Reset();UI:Refresh()
+        end)
+        for i,perk in ipairs(planner:Perks()) do
+            local y=149+(i-1)*43
+            self:Surface("legacyPerkRow"..perk.id,7,y,width-14,39)
+            local rank=ranks[perk.id] or 0
+            self:Label("legacyPerkName"..perk.id,perk.name.."  "..rank.."/"..perk.maxRank,
+                16,y+5,width-210,12,rank>0 and theme.gold or theme.ivory)
+            self:Label("legacyPerkEffect"..perk.id,perk.effect,16,y+22,width-210,9,theme.muted)
+            local minus=self:Button("legacyMinus"..perk.id,"-",width-92,y+6,34,27,function()
+                local ok,message=planner:SetRank(perk.id,rank-1)
+                if not ok then ns:Print(message) end
+                UI:Refresh()
+            end)
+            if rank <= 0 then minus:Disable() else minus:Enable() end
+            local plus=self:Button("legacyPlus"..perk.id,"+",width-50,y+6,34,27,function()
+                local ok,message=planner:SetRank(perk.id,rank+1)
+                if not ok then ns:Print(message) end
+                UI:Refresh()
+            end)
+            if rank >= perk.maxRank or total >= limit then plus:Disable() else plus:Enable() end
+        end
+        local noteY=149+#planner:Perks()*43+8
+        self:Label("legacyRulesNote","Unlocks and prerequisites match the existing Forever Fortune planner. Legacy effects and thresholds are pre-launch observations; verify them in game before making permanent choices.",
+            9,noteY,width-18,10,theme.muted)
     elseif tab == "Guide Details" then
         local selected = safeGuide(self.selectedGuideId) or active
         if not selected then self:ShowTab("Guide Library"); return end
