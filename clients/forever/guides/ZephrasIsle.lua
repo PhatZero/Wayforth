@@ -139,6 +139,16 @@ local additions = {
     ["cult-94568-turnin"] = {
         { id="cult-94568-accept", title="Pick up The Cult's True Plans", text="Accept The Cult's True Plans from Talaanis Shadowsong after handing in Unfortunate News.", hub="Valanaar", level=11, questId=94568, action="accept", requires={92644}, x=66.2, y=76.5 },
     },
+    ["fate"] = {
+        { id="confront-93835-accept", title="Pick up Confront Lorthuna", text="After The Inner Sanctum, speak with Valennia Stormfist at the Shrine of Akir and accept Confront Lorthuna.", hub="Shrine of Akir", level=12, questId=93835, action="accept", requires={93958}, faction="Alliance", x=65.2, y=50.4 },
+        { id="confront-93835-objective", title="Confront Lorthuna", text="Take the portal to the Rohashi Spires and join Elaadrin Evengale and Ayessa Dawnsinger against High Priestess Lorthuna.", hub="Rohashi Spires", level=12, questId=93835, action="objective", faction="Alliance", x=74.9, y=53.0 },
+        { id="confront-93835-turnin", title="Report Confront Lorthuna", text="Return to Elaadrin Evengale in Valanaar and hand in Confront Lorthuna.", hub="Valanaar", level=12, questId=93835, action="turnin", faction="Alliance", x=66.6, y=79.9 },
+        { id="fate-94369-accept", title="Pick up The Fate of Zephras", text="Accept The Fate of Zephras from Elaadrin Evengale after Confront Lorthuna.", hub="Valanaar", level=12, questId=94369, action="accept", requires={93835}, faction="Alliance", x=66.6, y=79.9 },
+        { id="confront-92646-accept", title="Pick up Confront Lorthuna", text="After The Inner Sanctum, speak with Valennia Stormfist at the Shrine of Akir and accept Confront Lorthuna.", hub="Shrine of Akir", level=12, questId=92646, action="accept", requires={93958}, faction="Horde", x=65.2, y=50.4 },
+        { id="confront-92646-objective", title="Confront Lorthuna", text="Take the portal to the Rohashi Spires and join Elaadrin Evengale and Ayessa Dawnsinger against High Priestess Lorthuna.", hub="Rohashi Spires", level=12, questId=92646, action="objective", faction="Horde", x=74.9, y=53.0 },
+        { id="confront-92646-turnin", title="Report Confront Lorthuna", text="Return to Ayessa Dawnsinger in Valanaar and hand in Confront Lorthuna.", hub="Valanaar", level=12, questId=92646, action="turnin", faction="Horde", x=59.1, y=79.8 },
+        { id="fate-93836-accept", title="Pick up The Fate of Zephras", text="Accept The Fate of Zephras from Ayessa Dawnsinger after Confront Lorthuna.", hub="Valanaar", level=12, questId=93836, action="accept", requires={92646}, faction="Horde", x=59.1, y=79.8 },
+    },
     ["next"] = {
         { id="next-93089-accept", title="Pick up What Comes Next", text="After completing The Fate of Zephras, speak with Talaanis Shadowsong in Valanaar and accept What Comes Next.", hub="Valanaar", level=13, questId=93089, action="accept", faction="Alliance", x=66.2, y=76.5 },
         { id="next-93090-accept", title="Pick up What Comes Next", text="After completing The Fate of Zephras, speak with Talaanis Shadowsong in Valanaar and accept What Comes Next.", hub="Valanaar", level=13, questId=93090, action="accept", faction="Horde", x=66.2, y=76.5 },
