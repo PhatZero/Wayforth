@@ -139,6 +139,10 @@ local additions = {
     ["cult-94568-turnin"] = {
         { id="cult-94568-accept", title="Pick up The Cult's True Plans", text="Accept The Cult's True Plans from Talaanis Shadowsong after handing in Unfortunate News.", hub="Valanaar", level=11, questId=94568, action="accept", requires={92644}, x=66.2, y=76.5 },
     },
+    ["next"] = {
+        { id="next-93089-accept", title="Pick up What Comes Next", text="After completing The Fate of Zephras, speak with Talaanis Shadowsong in Valanaar and accept What Comes Next.", hub="Valanaar", level=13, questId=93089, action="accept", faction="Alliance", x=66.2, y=76.5 },
+        { id="next-93090-accept", title="Pick up What Comes Next", text="After completing The Fate of Zephras, speak with Talaanis Shadowsong in Valanaar and accept What Comes Next.", hub="Valanaar", level=13, questId=93090, action="accept", faction="Horde", x=66.2, y=76.5 },
+    },
     ["shrine"] = {
         { id="desperate-92640-accept", title="Pick up Desperate Times", text="Talk to Talaanis Shadowsong to accept Desperate Times.", hub="Valanaar", level=11, questId=92640, action="accept", requires={94568}, x=66.2, y=76.5 },
         { id="desperate-92640-turnin", title="Report Desperate Times", text="Speak with Valennia Stormfist in Valanaar and follow her instructions.", hub="Valanaar", level=11, questId=92640, action="turnin", x=66.1, y=76.7 },

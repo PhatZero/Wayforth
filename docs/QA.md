@@ -82,7 +82,7 @@ Test on **WoW: Forever 1.60.1 / Interface 16001** before marking ProjectForge fo
 
 ## Quest IDs, verified coordinates and arrow fallbacks (v0.3.2)
 - [ ] Alliance Welcome to Shen'dar Village uses 93461; Horde uses 92514. Confirm both accept/turn-in progress tracks correctly.
-- [ ] Alliance Fate of Zephras uses 94369; Horde uses 93836. Alliance What Comes Next is 93089; Horde is 93090.
+- [ ] Alliance Fate of Zephras uses 94369; Horde uses 93836. After the finale, verify Alliance and Horde both get an explicit What Comes Next pickup step (93089/93090) before the turn-in checkpoint.
 - [ ] On a Hunter, early trainer points to Tai'ree Farsight (42.4, 23.6) and late trainer to Quel'ana Quickgale (59.6, 72.6).
 - [ ] Alliance final skyboat guide step points to 65.9, 83.5; Horde final skyboat guide step to 57.9, 80.9.
 - [ ] A step with verified coordinates shows the independent frameless arrow even if no quest waypoint is provided.
