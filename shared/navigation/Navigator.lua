@@ -195,6 +195,9 @@ end
 -- The built-in WayForth map-pin API is independent of the navigation
 -- pointer. A pin is an actual Blizzard user waypoint, not an arrow override.
 function Navigator:SetMapPin(step)
+    local routes,guides=ns.Modules.SmartRoutes,ns.Modules.Guides
+    local blocked=routes and routes.BlockedReason and routes:BlockedReason(step,guides:GetSteps())
+    if blocked then return false,blocked end
     local target = targetForStep(step)
     if not target then return false, "No verified coordinate for this quest step." end
     if not (type(C_Map) == "table" and type(C_Map.SetUserWaypoint) == "function") then
@@ -360,13 +363,17 @@ function Navigator:Refresh()
     -- Do not secretly redirect the arrow to another grouped step. The
     -- tracker must always describe the active navigation target. Players can
     -- explicitly select a suggested nearby step without altering quest flags.
+    local routes=ns.Modules.SmartRoutes
+    local blocked=routes and routes.BlockedReason and routes:BlockedReason(step,guides:GetSteps())
     local ok, target = pcall(targetForStep, step)
+    if blocked then target=nil end
     local previous = self.target
     self.target = ok and target or nil
     if not previous or not self.target or previous.mapId ~= self.target.mapId
         or previous.x ~= self.target.x or previous.y ~= self.target.y then
         self.lastAngle = nil
     end
+    self.currentStep = step
     self.currentDestination = step and tostring(step.title or step.hub or "Objective")
     self:UpdateDirection()
 end
@@ -396,14 +403,14 @@ function Navigator:UpdateDirection()
     end
     if not self.target then
         self.arrow:Hide()
-        self.distanceText:SetText("No waypoint")
+        self.distanceText:SetText(self:NavigationFeedback(self.currentStep))
         return
     end
 
     local ok, angle, distance, reason = pcall(waypointVector, self.target)
     if not ok or type(angle) ~= "number" or not self.arrow.SetRotation then
         self.arrow:Hide()
-        self.distanceText:SetText(reason or "Navigation unavailable")
+        self.distanceText:SetText(self:NavigationFeedback(self.currentStep, reason))
         return
     end
     local delta = self.lastAngle and ((angle - self.lastAngle + math.pi) % tau - math.pi)
@@ -458,4 +465,30 @@ end
 
 function Navigator:Hide()
     if self.frame then self.frame:Hide() end
+end
+
+-- Explain missing bearings without inventing entrances, transports or coordinates.
+function Navigator:NavigationFeedback(step, reason)
+    local guides=ns.Modules.Guides
+    local saved=guides and guides:GetProgress()
+    if saved and saved.awaitingQuestMatch then return "Resolve quest prerequisite, then Sync" end
+    if not step then return "Select a guide objective" end
+    local routes=ns.Modules.SmartRoutes
+    if routes and routes.BlockedReason and routes:BlockedReason(step,guides:GetSteps()) then
+        return "Quest blocked | Check requirements, then Sync"
+    end
+    local target=safeCall(targetForStep, step)
+    local mapAPI=type(C_Map)=="table" and C_Map or {}
+    local info=target and safeCall(mapAPI.GetMapInfo,target.mapId)
+    local place=(info and info.name) or step.zone or step.hub or "destination"
+    -- Only authored instance instructions or a client-reported dungeon map
+    -- justify an entrance message. A missing coordinate alone does not.
+    if step.instance or (info and info.mapType==4) then
+        return "Enter "..tostring(step.instance or place).." | Follow guide instructions"
+    end
+    if not target then return "No verified waypoint | Follow guide instructions" end
+    local current=safeCall(mapAPI.GetBestMapForUnit,"player")
+    if current and current~=target.mapId then return "Travel to "..place.." | MAP PIN shows destination" end
+    if reason then return reason.." | Follow guide instructions" end
+    return place..string.format("  (%.1f, %.1f)",target.x*100,target.y*100)
 end

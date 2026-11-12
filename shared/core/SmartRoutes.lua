@@ -55,6 +55,9 @@ end
 local function key(step, index)
     return step.id or index
 end
+function Routes:QuestState(id)
+    return {active=active(id),ready=ready(id),turnedIn=flag(id)}
+end
 local function completed(step, index, saved)
     if step.questId and flag(step.questId) then return true end
     return type(saved.completed) == "table" and saved.completed[key(step, index)] == true
@@ -254,6 +257,11 @@ function Routes:Preview(id, mode)
 
     local level = currentLevel()
     if mode == "recommended" then
+        local hubs=ns.Modules.HubRoutes
+        if hubs and hubs:Enabled() then
+            local hubIndex,hubReason=hubs:Selection(steps,saved)
+            if hubIndex then return hubIndex,hubReason end
+        end
         -- A recent pickup OR turn-in proves the character was at this hub.
         -- Recheck ready turn-ins (which can unlock more pickups) before
         -- departing. Expire the session hint so travel never loops back later.
@@ -507,6 +515,9 @@ function Routes:NearbyGroup(anchorIndex)
     local saved = guides:GetProgress()
     local steps = guides:GetSteps()
     if not saved or (saved.awaitingQuestMatch and not anchorIndex) then return {} end
+    local hubs=ns.Modules.HubRoutes
+    local hubGroup=not anchorIndex and hubs and hubs:Group(steps,saved)
+    if hubGroup then return hubGroup end
     local start = anchorIndex or saved.current
     local anchor = steps[start]
     if not anchor then return {} end
@@ -635,4 +646,32 @@ function Routes:Recalculate(force)
     -- A prior manual navigation target belongs to the old guide step.
     ns:Call("Navigator", "ResetTarget")
     return true
+end
+
+-- Explain known gates without treating a missing quest-log entry as completion.
+function Routes:BlockedReason(step, steps)
+    if not step or not step.questId or flag(step.questId) or active(step.questId) then return nil end
+    local pickup=step
+    for _, candidate in ipairs(steps or {}) do
+        if candidate.questId==step.questId and candidate.action=="accept" then pickup=candidate;break end
+    end
+    if type(pickup.minLevel)=="number" and currentLevel()<pickup.minLevel then
+        return "Requires level "..pickup.minLevel..". Gain "..(pickup.minLevel-currentLevel()).." more level(s), then use Sync Guide Now."
+    end
+    for _, id in ipairs(pickup.requires or {}) do
+        if not flag(id) then
+            local title=tostring(id)
+            for _, candidate in ipairs(steps or {}) do
+                if candidate.questId==id then
+                    title=tostring(candidate.title or id):gsub("^Pick up:%s*", ""):gsub("^Work on:%s*", ""):gsub("^Turn in:%s*", "")
+                    break
+                end
+            end
+            local action=active(id) and (ready(id) and "Turn in " or "Complete and turn in ") or "Pick up and complete "
+            return action..title.." (quest "..id..") first, then use Sync Guide Now."
+        end
+    end
+    if step.action=="objective" or step.action=="turnin" then
+        return "Quest not in your log. Use Sync Guide Now to find its pickup or an earlier prerequisite."
+    end
 end
