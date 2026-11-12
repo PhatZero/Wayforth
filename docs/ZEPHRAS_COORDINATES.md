@@ -6,6 +6,7 @@ This is the source-of-truth audit for the **offline** WayForth Skyborne route, n
 
 - **Wowhead: Zephras Isle Zone Overview**, last updated Oct 22, 2026, directly provides all 18 class trainer coordinates and both Zephras outbound skyboat docks: https://www.wowhead.com/forever/guide/zephras-isle-zone-overview
 - **Wowhead: The Missing Scholar 92850** confirms the final task, NPC and exact cave *entrance* from a comment (51.44, 68.99). Its start/finish pins are map widgets loaded dynamically rather than displayed as plain text: https://www.wowhead.com/forever/quest=92850/the-missing-scholar
+- **Confront Lorthuna (Alliance 93835 and Horde 92646)** starts with Valennia Stormfist at 65.2, 50.4; the spire encounter is an approximate objective area at 74.9, 53.0. Alliance turns in to Elaadrin Evengale at 66.6, 79.9; Horde turns in to Ayessa Dawnsinger at 59.1, 79.8. Cross-checked against Wowhead quest pages and Forever quest references: https://www.wowhead.com/forever/quest=93835/confront-lorthuna ; https://www.wowhead.com/forever/quest=92646/confront-lorthuna ; https://forg.gg/en/forever/quest/93835 ; https://foreverdb.app/en/forever/quests/92646/confront-lorthuna
 - **Wowhead: The Missing Scholar 92849** contains the reported bedroll coordinate 52.05, 69.37 and confirms this is the second quest in the linked storyline: https://www.wowhead.com/forever/quest=92849/the-missing-scholar
 - Companion independent quest data for quest givers, completion NPCs and coordinates, cross-checked against Wowhead quest IDs and texts: https://questing.wiki/wow-forever/quests/zones/zephras-isle/ ; https://senseos.gg/guides/wow-forever/zephras-isle/
 - Where reliable documentation identifies only a zone or creature's approximate spawn region, we use a labeled **approximate objective-area center**, NOT a promised exact enemy position. Use the in-game quest POI first for active objective steps. Approximate centers in the catalog include #92463, #92470, #92473, #92517, #92597, #92598, #92849, #92947, #93746.
@@ -53,6 +54,8 @@ Each role is independent. Pickup, objective and turn-in must not share a locatio
 | 94568 | pickup 66.2, 76.5 · turnin 66.2, 76.5 |
 | 92947 | pickup 61.1, 70.9 · objective 62.0, 50.0 · turnin 63.8, 50.5 |
 | 93958 | pickup 63.8, 50.5 · turnin 65.2, 50.4 |
+| 93835 | pickup 65.2, 50.4 · objective 74.9, 53.0 · turnin 66.6, 79.9 |
+| 92646 | pickup 65.2, 50.4 · objective 74.9, 53.0 · turnin 59.1, 79.8 |
 | 94369 | pickup 66.6, 79.9 · turnin 66.2, 76.5 |
 | 93836 | pickup 59.1, 79.8 · turnin 66.2, 76.5 |
 | 93089 | pickup 66.2, 76.5 · turnin 66.6, 79.9 |
@@ -85,6 +88,6 @@ These are additional manual checkpoints in the guide, not quest ID pins. Only th
 
 ## Scope
 
-- **41 quest IDs** have one or more curated phase coordinates in the bundled catalog.
+- **43 quest IDs** have one or more curated phase coordinates in the bundled catalog.
 - **18 class trainer locations**, the two Skyborne skyboat docks, and other directly-authored one-off guide points are also included.
 - Every currently authored guide checkpoint must resolve to a location in its own zone, but this is **not** full coverage of every optional quest, changing NPC, multi-spawn mob or future zone. Any unverified point should be omitted, marked approximate, or use an active quest POI rather than guessed precisely.
