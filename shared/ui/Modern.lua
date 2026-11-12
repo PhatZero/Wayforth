@@ -19,7 +19,8 @@ local NAV_ICONS = {
 }
 local CATEGORIES = {
     { title="Leveling", icon="Interface\\Icons\\Achievement_Level_10", tab="Guide Library" },
-    { title="Professions", icon="Interface\\Icons\\Trade_BlackSmithing", tab="Professions" },\n    { title="Legacy", icon="Interface\\Icons\\INV_Misc_TreasureChest_01", tab="Legacy" },
+    { title="Professions", icon="Interface\\Icons\\Trade_BlackSmithing", tab="Professions" },
+    { title="Legacy", icon="Interface\\Icons\\INV_Misc_TreasureChest_01", tab="Legacy" },
     { title="Gold Making", icon="Interface\\Icons\\INV_Misc_Coin_02", tab="Gold Making" },
     { title="Exploration", icon="Interface\\Icons\\INV_Misc_Map_01", tab="Exploration" },
 }
