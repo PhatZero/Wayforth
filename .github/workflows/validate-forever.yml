@@ -72,6 +72,8 @@ jobs:
         run: lua5.1 tests/lua/test_quest_item_button.lua
       - name: Verify quest recovery, travel, zone suggestions and quest interactions
         run: lua5.1 tests/lua/test_quest_assistance.lua
+      - name: Verify quest-log capacity and read-only guide search
+        run: lua5.1 tests/lua/test_log_space_search.lua
       - name: Run manifest and offline tests
         run: python3 -m unittest discover -s tests -v
       - name: Build installable addon ZIP

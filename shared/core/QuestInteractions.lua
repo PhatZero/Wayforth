@@ -14,6 +14,7 @@ function Interact:Enabled(key)
 end
 function Interact:Allowed(id,action)
     if type(id)~="number" or id<=0 then return false end
+    if action=="accept" and ns.Modules.QuestLogSpace and not ns.Modules.QuestLogSpace:CanAccept() then return false end
     local guides=ns.Modules.Guides
     local guide=guides:GetGuide()
     if not guide or guide.id=="first-steps" then return false end

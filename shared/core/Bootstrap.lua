@@ -31,6 +31,7 @@ local function dispatch(event, ...)
         invoke("Tracker", "Initialize")
         invoke("Minimap", "Initialize")
         invoke("QuestInteractions", "Initialize")
+        ns:Call("QuestLogSpace", "Notify")
         if ns.client and not ns.client.supported then
             diagnostics:Warn("Compatibility", ns.Modules.Compatibility:Report())
         end
@@ -40,6 +41,7 @@ local function dispatch(event, ...)
         if event == "QUEST_ACCEPTED" or event == "QUEST_TURNED_IN" or event == "QUEST_REMOVED" then
             ns:Call("Guides", "RecordQuestEvent", event, ...)
         end
+        ns:Call("QuestLogSpace", "Notify")
         local ok, advanced = ns:Call("Guides", "Sync")
         local routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
         ns:Call("Navigator", "Refresh")

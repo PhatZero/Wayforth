@@ -135,6 +135,11 @@ function UI:MakeWindow()
             UI.guideQuery = box:GetText()
             UI.guidePage = 1
             UI:Refresh()
+        elseif userTyped and UI.currentTab=="Guide Search" then
+            UI.stepSearchQuery=box:GetText()
+            UI.stepSearchPage=1
+            UI:Refresh()
+            box:SetFocus()
         end
     end)
     search:Hide()
@@ -511,11 +516,38 @@ function UI:RefreshFooter()
     self.footer:SetText(prefix .. "Quest sync: " .. status)
 end
 
+function UI:StepPreview(instructions,width)
+    if not self.stepPreviewScroll then
+        local scroll=CreateFrame("ScrollFrame",nil,self.page)
+        local content=CreateFrame("Frame",nil,scroll)
+        local text=theme:Text(content,"",13,theme.ivory)
+        text:SetPoint("TOPLEFT",content,"TOPLEFT",0,0)
+        text:SetWordWrap(true)
+        scroll:SetScrollChild(content)
+        scroll:EnableMouseWheel(true)
+        scroll:SetScript("OnMouseWheel",function(frame,delta)
+            local maximum=math.max(0,content:GetHeight()-frame:GetHeight())
+            frame:SetVerticalScroll(math.max(0,math.min(maximum,frame:GetVerticalScroll()-delta*26)))
+        end)
+        self.stepPreviewScroll,self.stepPreviewContent,self.stepPreviewText=scroll,content,text
+    end
+    local scroll,content,text=self.stepPreviewScroll,self.stepPreviewContent,self.stepPreviewText
+    scroll:ClearAllPoints()
+    scroll:SetPoint("TOPLEFT",self.page,"TOPLEFT",10,-148)
+    scroll:SetSize(width-20,208)
+    text:SetWidth(width-28)
+    text:SetText(instructions)
+    content:SetSize(width-20,math.max(1,text:GetStringHeight()+8))
+    scroll:SetVerticalScroll(0)
+    scroll:Show()
+end
+
 function UI:Refresh()
     if not self.frame then return end
     self:RefreshFooter()
     self:ClearPage()
     if self.searchBox then self.searchBox:Hide() end
+    if self.stepPreviewScroll then self.stepPreviewScroll:Hide() end
     for _, control in pairs(self.sliders or {}) do control:Hide() end
     local width = math.max(500, (self.body:GetWidth() or 700) - 30)
     local tab = self.currentTab or "Dashboard"
@@ -808,6 +840,47 @@ function UI:Refresh()
         -- Smart Start uses an estimated five-level threshold rather than exact XP.
         -- It never grants quest completion or clears previously saved progress.
 
+    elseif tab == "Guide Search" then
+        self:Title("Search this guide",activeTitle,width)
+        if self.stepSearchGuide~=active.id then
+            self.stepSearchGuide=active.id;self.stepSearchPage=1;self.stepSearchQuery=""
+        end
+        if self.searchBox then
+            self.searchBox:ClearAllPoints()
+            self.searchBox:SetPoint("TOPLEFT",self.page,"TOPLEFT",10,-80)
+            self.searchBox:SetWidth(width-20)
+            if self.searchBox:GetText()~=(self.stepSearchQuery or "") then self.searchBox:SetText(self.stepSearchQuery or "") end
+            self.searchBox:Show()
+        end
+        local results=ns.Modules.GuideSearch:Find(self.stepSearchQuery)
+        local pages=math.max(1,math.ceil(#results/4))
+        self.stepSearchPage=math.max(1,math.min(self.stepSearchPage or 1,pages))
+        self:Label("stepSearchHint",#results.." results | Quest, NPC, hub, ID or step text",10,120,width-20,11,theme.teal)
+        for slot=1,4 do
+            local item=results[(self.stepSearchPage-1)*4+slot]
+            if item then
+                local result=item
+                self:Button("stepResult"..slot,result.index..". "..tostring(result.title or "Guide step"):sub(1,68),10,153+(slot-1)*58,width-20,32,function()
+                    UI.stepSearchSelection=result;UI:ShowTab("Guide Step")
+                end)
+                self:Label("stepResultMeta"..slot,result.status.." | "..tostring(result.action or "manual").." | Quest "..tostring(result.questId or "-"),14,188+(slot-1)*58,width-28,10,theme.muted)
+            end
+        end
+        if #results==0 then self:Label("stepNoMatches","No matching steps in this guide. Try fewer words or a quest ID.",10,170,width-20,13,theme.ivory) end
+        self:Button("stepSearchPrev","Previous",10,408,110,32,function() UI.stepSearchPage=math.max(1,UI.stepSearchPage-1);UI:Refresh() end)
+        self:Label("stepSearchPage",self.stepSearchPage.." / "..pages,140,416,90,12,theme.ivory)
+        self:Button("stepSearchNext","Next",240,408,110,32,function() UI.stepSearchPage=math.min(pages,UI.stepSearchPage+1);UI:Refresh() end)
+    elseif tab == "Guide Step" then
+        local result=self.stepSearchSelection
+        local step,reason=ns.Modules.GuideSearch:Resolve(result)
+        self:Title("Guide step",step and step.title or "Search result unavailable",width)
+        if step then
+            self:Label("stepPreviewMeta","Step "..result.index.." | "..tostring(step.action or "manual").." | Quest "..tostring(step.questId or "-"),10,82,width-20,12,theme.teal)
+            self:Label("stepPreviewLocation",tostring(step.hub or step.zone or active.zone or ""),10,111,width-20,12,theme.ivory)
+            self:StepPreview(step.text or "No additional instructions for this step.",width)
+        else self:Label("stepPreviewError",reason,10,90,width-20,13,theme.ivory) end
+        self:Button("stepBackSearch","Back to Results",10,408,170,34,function() UI:ShowTab("Guide Search") end)
+        self:Label("stepReadOnly","Viewing instructions only. Route and completion history are unchanged.",10,370,width-20,11,theme.muted)
     elseif tab == "Quest Recovery" then
         self:Title("Quest not offered", "Find a prerequisite or continue another active quest", width)
         local help=ns.Modules.QuestAssistance
