@@ -6,6 +6,28 @@
 
 This is the standalone in-game companion for the WoW Forever platform, designed with an offline-first free core. It is deliberately stored in its own folder with no dependency on Base44 or the website runtime.
 
+## Live quest objective tracking
+
+The current quest's tracker card shows live kill and collection counters, completed objectives, event requirements and percentage progress where the client supplies it. It refreshes as quest-log, inventory and quest-data updates arrive, even when the guide stays on the same step.
+
+Completed rows are highlighted and ready quests show **Ready to turn in**. Existing Pause Guide and Auto Advance settings still control progression. Objective counters alone never mark a quest turned in or skip its remaining requirements.
+
+Long objective lists scroll inside the card. Resize the tracker for more room, or hover the card to read its full instructions and objectives. Switching guides or abandoning a quest clears its old counters. Hidden trackers read fresh progress when reopened.
+
+If the current quest is absent from the log or live objective details are unavailable, the tracker explains the state and retains its guide instructions. Objective counts are read from the character's current quest log and are not stored between sessions. In-game appearance and client-specific behavior remain unverified.
+
+## Quest hub routing
+
+With Smart Routing and automatic advancement enabled, a pickup round collects the selected guide's eligible quests at the same hub before starting their objectives. The route then finishes that group's active objectives before making its turn-in round. Ready turn-ins in a return visit are handled before newly unlocked follow-ups send the player out again. The tracker and arrow follow the same selected task.
+
+The shared planner scans the full guide, respects known prerequisites, level restrictions, faction/race/class filtering and skipped pickups, and excludes uncollected quest-starting drops from extra hub pickups. Candidate quests still depend on their actual availability in the Forever client; use Skip if a quest is not offered. The plan stores stable quest/step IDs and does not change completion flags. Pause Guide, manual advancement and Smart Routing controls remain available. Installing an update while still at a quest giver can finish the pickup round; an established field route is not pulled back solely to collect more quests.
+
+## Quest-item buttons
+
+When the current objective or turn-in quest has a usable item in your inventory, its icon appears beside the current objective. Click it to use the item, or hover for its tooltip. The button shows native charges and cooldowns, follows tracker movement and scale, and clears after consumption, abandonment, guide switching, minimization or closing the tracker. Items can remain available when the client explicitly allows their use on completed quests.
+
+The current item remains usable during combat. If the guide, item or tracker position changes in combat, **WAIT** covers the frozen button and blocks clicks until combat ends. A tracker opened for the first time during combat also waits. Binding and positioning update automatically afterward. The button uses only the usable item identified by the current quest log; items missing from that client data cannot be inferred.
+
 ## Install
 
 1. Quit WoW completely.
@@ -72,7 +94,7 @@ For an in-game release checklist, see [V1_IN_GAME_QA.md](docs/V1_IN_GAME_QA.md).
 - Error capture and basic client diagnostic status.
 - No slash command required, no sign-in, no payment and no network communication.
 
-**Not yet implemented:** complete coverage of every quest, zone routes beyond Zephras Isle, full objective counters, cross-zone pathfinding, profession data, website sync, SimC-style copy/paste export, subscription systems, polished custom art assets. Direction/distance are shown only when the client exposes map coordinates and facing; this must be verified in the live Forever client.
+**Historical v0.3.3 limitations:** complete coverage of every quest, zone routes beyond Zephras Isle, cross-zone pathfinding, profession data, website sync, SimC-style copy/paste export, subscription systems, polished custom art assets. Later sections describe the subsequent guide and interface work. Direction/distance are shown only when the client exposes map coordinates and facing; this must be verified in the live Forever client.
 
 ## v0.3.1 usability and quest sync fixes
 
@@ -233,3 +255,13 @@ git push origin forever-1.0b1
 The tag sets the version in the installable ZIP, manifest, addon UI, and GitHub prerelease. To also send tag-triggered releases to CurseForge, set the GitHub Actions repository variable `CURSEFORGE_PUBLISH_TAGS` to `true` and configure the project ID and token above. Tag pushes default to GitHub only.
 
 Running the release workflow on `main` chooses the next numbered beta in the manifest's series. A rerun on the same tagged commit reuses its numbered version. Ordinary builds do not allocate release numbers.
+
+### Tracker enhancements
+
+- Hub rounds collect eligible nearby quests, finish their field objectives, then group ready turn-ins and unlocked follow-ups. Known prerequisite/level gates and manual checkpoints remain respected.
+- Live objective counters refresh without changing steps. Long lists scroll; the remaining quests page within the available tracker space.
+- Known blocked quests show their level or prerequisite requirement and the next action. Sync Guide Now retries recovery after you resolve it.
+- Navigation explains remote zones, client-reported dungeon destinations and missing waypoints. MAP PIN still opens the destination world map.
+- Choose **Report a Bug** from the tracker **...** menu or dashboard **Diagnostics**. Copy the selected report with Ctrl+C and paste into GitHub or ChatGPT. It includes addon/client version, guide, selected step, quest, map, coordinates and live objective status; nothing is sent automatically.
+
+The UI and routing changes require in-game verification on Forever, including combat, hub follow-ups, world-map pins and dungeon transitions.

@@ -34,8 +34,8 @@ local function dispatch(event, ...)
         end
         diagnostics:Info("Bootstrap", "Player login complete")
     elseif event == "QUEST_ACCEPTED" or event == "QUEST_TURNED_IN"
-        or event == "QUEST_REMOVED" or event == "QUEST_LOG_UPDATE" then
-        if event ~= "QUEST_LOG_UPDATE" then
+        or event == "QUEST_REMOVED" or event == "QUEST_LOG_UPDATE" or event == "QUEST_WATCH_UPDATE" then
+        if event == "QUEST_ACCEPTED" or event == "QUEST_TURNED_IN" or event == "QUEST_REMOVED" then
             ns:Call("Guides", "RecordQuestEvent", event, ...)
         end
         local ok, advanced = ns:Call("Guides", "Sync")
@@ -59,7 +59,11 @@ local function dispatch(event, ...)
             if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then
                 ns:Call("UI", "Refresh")
             end
+        else
+            ns:Call("Tracker", "RequestObjectiveRefresh")
         end
+    elseif event == "QUEST_DATA_LOAD_RESULT" or event == "BAG_UPDATE_DELAYED" then
+        ns:Call("Tracker", "RequestObjectiveRefresh", event == "QUEST_DATA_LOAD_RESULT" and (...) or nil)
     elseif event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LEVEL_UP"
         or event == "PLAYER_XP_UPDATE" or event == "ZONE_CHANGED_NEW_AREA"
         or event == "PLAYER_MONEY" then
@@ -76,6 +80,7 @@ local function dispatch(event, ...)
         end
         ns:Call("Navigator", "Refresh")
         if routeOK and rerouted then ns:Call("Tracker", "Refresh") end
+        if event == "PLAYER_MONEY" then ns:Call("Tracker", "RequestObjectiveRefresh") end
         if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
     elseif event == "PLAYER_LOGOUT" then
         ns:Call("Character", "Capture")
@@ -91,3 +96,6 @@ for _, event in ipairs({
     "PLAYER_XP_UPDATE", "ZONE_CHANGED_NEW_AREA", "PLAYER_MONEY", "PLAYER_LOGOUT",
     "QUEST_ACCEPTED", "QUEST_TURNED_IN", "QUEST_REMOVED", "QUEST_LOG_UPDATE",
 }) do frame:RegisterEvent(event) end
+for _, event in ipairs({"QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED"}) do
+    pcall(frame.RegisterEvent, frame, event)
+end

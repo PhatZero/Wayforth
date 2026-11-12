@@ -147,6 +147,13 @@ for _, step in ipairs(original) do
     allSteps[#allSteps+1] = step
 end
 local amendments = {
+    -- Forever quest prerequisites/minimum levels from AllTheThings
+    -- d30715fb2657743d1b8801e5e3f26b96b7047160; Harmony's series also on Wowhead.
+    ["harmony-accept"]={requires={92460},minLevel=1},
+    ["flies-accept"]={requires={92460},minLevel=1},
+    ["queen-accept"]={requires={92462},minLevel=2},
+    ["glide-accept"]={minLevel=2},
+    ["anchors-accept"]={minLevel=2},
     ["alliance-leader"]={x=66.6,y=79.9},
     ["horde-construct"]={},
     ["horde-leader"]={x=59.1,y=79.8},

@@ -319,6 +319,14 @@ function Guides:Sync(id, catchUp)
         self:SetCurrent(saved.current + 1, id)
     end
     local recoveryReason
+    local hubs=ns.Modules.HubRoutes
+    if hubs and (catchUp or automatic) then
+        local hubIndex,hubReason=hubs:Update(self:GetGuide(id).id,steps,saved,steps[previous],catchUp)
+        if hubIndex then
+            self:SetCurrent(hubIndex,id)
+            recoveryReason,saved.recoveryReason=hubReason,hubReason
+        end
+    end
     if catchUp and ns.Modules.SmartRoutes
         and ns.Modules.SmartRoutes:NeedsLiveQuest(self:GetGuide(id).id) then
         -- Explicit Sync means rebuild the cursor from actual quest evidence and

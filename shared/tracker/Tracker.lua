@@ -26,6 +26,10 @@ end
 local function stepComplete(step, index, saved)
     return saved and saved.completed and saved.completed[step.id or index]
 end
+local function textHeight(font, minimum)
+    local height = font.GetStringHeight and font:GetStringHeight() or minimum
+    return math.max(minimum, height or minimum)
+end
 
 function Tracker:MakeFrame()
     if self.frame then return end
@@ -135,6 +139,29 @@ function Tracker:MakeFrame()
     self.stepTitle=label(objective,"",14,theme.gold,12,29,320)
     self.objectiveText=label(objective,"",11,theme.ivory,12,60,330)
     self.location=label(objective,"",10,theme.teal,12,112,335)
+    self.liveStatus=label(objective,"",9,theme.teal,12,96,330)
+    self.liveScroll=CreateFrame("ScrollFrame",nil,objective)
+    self.liveContent=CreateFrame("Frame",nil,self.liveScroll)
+    self.liveContent:SetSize(330,1)
+    self.liveScroll:SetScrollChild(self.liveContent)
+    self.liveScroll:EnableMouseWheel(true)
+    self.liveScroll:EnableMouse(true)
+    self.liveScroll:SetScript("OnMouseWheel",function(scroll,delta)
+        local maximum=math.max(0,(Tracker.liveContentHeight or 0)-scroll:GetHeight())
+        scroll:SetVerticalScroll(math.max(0,math.min(maximum,scroll:GetVerticalScroll()-delta*24)))
+    end)
+    self.liveRows={}
+    self.liveStatus:Hide()
+    self.liveScroll:Hide()
+    objective:EnableMouse(true)
+    local function tooltip() Tracker:ShowObjectiveTooltip() end
+    local function hideTooltip()
+        if GameTooltip and GameTooltip:IsOwned(objective) then GameTooltip:Hide() end
+    end
+    objective:SetScript("OnEnter",tooltip)
+    objective:SetScript("OnLeave",hideTooltip)
+    self.liveScroll:SetScript("OnEnter",tooltip)
+    self.liveScroll:SetScript("OnLeave",hideTooltip)
     self.pinButton=theme:Button(objective,75,24,"MAP PIN",function()
         local nav=ns.Modules.Navigator
         local selected=nav and nav.overrideIndex
@@ -147,41 +174,6 @@ function Tracker:MakeFrame()
         Tracker:Refresh()
     end,"quiet")
     self.pinButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-9,-6)
-
-    -- Native quest-item action. A real click goes through Blizzard's secure
-    -- item template; the addon never invokes UseItemByName from insecure Lua.
-    local itemButton=CreateFrame("Button","WayForthQuestItemButton",UIParent,"SecureActionButtonTemplate")
-    itemButton:SetSize(28,27)
-    itemButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-90,-5)
-    theme:Panel(itemButton,theme.panel,theme.gold)
-    itemButton:RegisterForClicks("AnyUp")
-    itemButton:SetAttribute("type","item")
-    local itemIcon=itemButton:CreateTexture(nil,"ARTWORK")
-    itemIcon:SetPoint("TOPLEFT",itemButton,"TOPLEFT",3,-3)
-    itemIcon:SetPoint("BOTTOMRIGHT",itemButton,"BOTTOMRIGHT",-3,3)
-    local itemCount=itemButton:CreateFontString(nil,"OVERLAY","GameFontNormalSmall")
-    itemCount:SetPoint("BOTTOMRIGHT",itemButton,"BOTTOMRIGHT",-1,1)
-    itemButton:SetScript("OnEnter",function(button)
-        local link=button:GetAttribute("item")
-        if link and GameTooltip then
-            GameTooltip:SetOwner(button,"ANCHOR_RIGHT")
-            pcall(GameTooltip.SetHyperlink,GameTooltip,link)
-            GameTooltip:Show()
-        end
-    end)
-    itemButton:SetScript("OnLeave",function()
-        if GameTooltip then GameTooltip:Hide() end
-    end)
-    itemButton:RegisterEvent("PLAYER_REGEN_ENABLED")
-    itemButton:SetScript("OnEvent",function()
-        if Tracker.frame and Tracker.frame:IsShown() then
-            Tracker:Refresh()
-        else
-            Tracker:RefreshQuestItem(nil)
-        end
-    end)
-    itemButton:Hide()
-    self.questItemButton,self.questItemIcon,self.questItemCount=itemButton,itemIcon,itemCount
 
     self.upcomingTitle=label(panel,"UPCOMING STEPS",11,theme.teal,15,300,200)
     self.upcomingPage=1
@@ -250,7 +242,7 @@ function Tracker:MakeFrame()
 
     local menu=CreateFrame("Frame",nil,panel)
     menu:SetFrameLevel(panel:GetFrameLevel()+12)
-    menu:SetSize(236,316)
+    menu:SetSize(236,351)
     menu:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-7,53)
     theme:Panel(menu,theme.panel,theme.gold)
     menu:Hide()
@@ -273,6 +265,7 @@ function Tracker:MakeFrame()
         self.menuButtons[key]=item
     end
     local entries2={
+        {"Report a Bug",function() ns.Modules.Diagnostics:ShowBugReport() end},
         {"Sync Guide Now",function()
             local _,report=ns.Modules.Guides:Sync(nil,true)
             local saved=ns.Modules.Guides:GetProgress()
@@ -350,40 +343,144 @@ function Tracker:MakeFrame()
     end)
 
     panel:SetScript("OnSizeChanged",function() Tracker:Layout() end)
+    panel:SetScript("OnHide",function() ns:Call("QuestItemButton","Refresh",Tracker) end)
+    panel:SetScript("OnUpdate",function(_,elapsed)
+        if not Tracker.objectiveDirty then return end
+        Tracker.objectiveElapsed=(Tracker.objectiveElapsed or 0)+elapsed
+        if Tracker.objectiveElapsed >= 0.1 then Tracker:RefreshObjectives() end
+    end)
     panel:Hide()
     self:ApplyOpacity()
     self:Layout()
 end
 
--- Secure action attributes and show/hide state may only change out of combat.
--- Quest-log updates in combat are reflected at PLAYER_REGEN_ENABLED.
-function Tracker:RefreshQuestItem(step)
-    local button=self.questItemButton
-    if not button then return end
-    if type(InCombatLockdown)=="function" and InCombatLockdown() then
-        self.questItemPending=true
-        return
+function Tracker:ShowObjectiveTooltip()
+    if not GameTooltip or not self.displayStep then return end
+    GameTooltip:SetOwner(self.objectiveCard,"ANCHOR_LEFT")
+    GameTooltip:SetText(self.displayStep.title or "Quest objective",unpack(theme.gold))
+    GameTooltip:AddLine(self.displayStep.text or "",theme.ivory[1],theme.ivory[2],theme.ivory[3],true)
+    local routes=ns.Modules.SmartRoutes
+    local blocked=routes and routes.BlockedReason and routes:BlockedReason(self.displayStep,ns.Modules.Guides:GetSteps())
+    if blocked then GameTooltip:AddLine(blocked,1,0.74,0.37,true) end
+    if self.liveSnapshot then
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddLine(self.liveSnapshot.status,theme.teal[1],theme.teal[2],theme.teal[3],true)
+        for _,row in ipairs(self.liveSnapshot.rows) do
+            local color=row.finished and theme.green or theme.ivory
+            GameTooltip:AddLine((row.finished and "[x] " or "[ ] ")..row.display,color[1],color[2],color[3],true)
+        end
     end
-    self.questItemPending=false
-    local source=ns.Modules.QuestItems
-    -- Keep the action button separately parented to UIParent: a secure child
-    -- would make the ordinary tracker/objective panel protected in combat.
-    local visible=self.frame and self.frame:IsShown()
-        and not (ns.char and ns.char.trackerMinimized)
-    local item=visible and source and source:Find(step and step.questId)
-    local link=item and item.link
-    if link~=self.questItemLink then
-        button:SetAttribute("item",link)
-        self.questItemLink=link
+    GameTooltip:Show()
+end
+
+-- Counter-only events do not need to rebuild the guide library or reroute it.
+-- The visible tracker coalesces event bursts, and reads fresh data on reopening.
+function Tracker:RequestObjectiveRefresh(questID)
+    if not self.frame or not self.frame:IsShown() or not self.displayStep
+        or ns.char and ns.char.trackerMinimized then return end
+    if questID and questID ~= self.displayStep.questId then return end
+    if not self.objectiveDirty then self.objectiveElapsed=0 end
+    self.objectiveDirty=true
+end
+
+function Tracker:RefreshObjectives(fromRefresh)
+    self.objectiveDirty,self.objectiveElapsed=false,0
+    local guides=ns.Modules.Guides
+    local step=self.displayStep
+    if not fromRefresh then
+        local current,index=guides:CurrentStep()
+        local nav=ns.Modules.Navigator
+        if nav and nav.overrideIndex then
+            index=nav.overrideIndex
+            current=guides:GetSteps()[index]
+        end
+        if not step or not current or index~=self.displayIndex or current.questId~=step.questId
+            or current.id~=step.id or current.action~=step.action then
+            self:Refresh()
+            return
+        end
     end
-    if link then
-        self.questItemIcon:SetTexture(item.icon or "Interface\\Icons\\INV_Misc_QuestionMark")
-        local count=type(item.charges)=="number" and item.charges>0 and item.charges or nil
-        self.questItemCount:SetText(count and tostring(count) or "")
-        button:Show()
-    else
-        button:Hide()
+    local progress=ns.Modules.QuestProgress
+    local snapshot=step and progress and progress:Get(step.questId) or nil
+    if snapshot and snapshot.state=="inactive" and step.action=="accept" then snapshot=nil end
+    if snapshot and snapshot.ready and step.action=="objective" and not fromRefresh then
+        local changed=guides:Sync()
+        if changed then self:Refresh();return end
     end
+    if not snapshot or not self.liveSnapshot or snapshot.questID~=self.liveSnapshot.questID then
+        self.liveScroll:SetVerticalScroll(0)
+    end
+    self.liveSnapshot=snapshot
+    if not fromRefresh then self:Layout() end
+end
+
+function Tracker:LayoutObjectives(width,height)
+    local contentW=math.max(240,width-45)
+    local snapshot=self.liveSnapshot
+    if self.stepTitle.SetMaxLines then self.stepTitle:SetMaxLines(2) end
+    self.stepTitle:SetHeight(0)
+    local titleH=textHeight(self.stepTitle,18)
+    self.stepTitle:SetHeight(titleH)
+    local descriptionY=29+titleH+8
+    self.objectiveText:ClearAllPoints()
+    self.objectiveText:SetPoint("TOPLEFT",self.objectiveCard,"TOPLEFT",12,-descriptionY)
+    if self.objectiveText.SetMaxLines then self.objectiveText:SetMaxLines(snapshot and 2 or 4) end
+    self.objectiveText:SetHeight(0)
+    local descriptionH=math.min(textHeight(self.objectiveText,0),snapshot and 32 or 52)
+    self.objectiveText:SetHeight(descriptionH)
+    self.location:SetHeight(0)
+    local locationH=textHeight(self.location,14)
+    self.location:SetHeight(locationH)
+    self.location:ClearAllPoints()
+    self.location:SetPoint("BOTTOMLEFT",self.objectiveCard,"BOTTOMLEFT",12,10)
+
+    local statusY=descriptionY+descriptionH+9
+    local rowsY=statusY+17
+    local rowsH=0
+    for i,row in ipairs(snapshot and snapshot.rows or {}) do
+        local line=self.liveRows[i]
+        if not line then
+            line=label(self.liveContent,"",11,theme.ivory,0,0,contentW)
+            self.liveRows[i]=line
+        end
+        line:SetWidth(contentW)
+        line:SetHeight(0)
+        line:SetText((row.finished and "[x] " or "[ ] ")..row.display)
+        line:SetTextColor(unpack(row.finished and theme.green or theme.ivory))
+        line:ClearAllPoints()
+        line:SetPoint("TOPLEFT",self.liveContent,"TOPLEFT",0,-rowsH)
+        local lineH=textHeight(line,15)
+        line:SetHeight(lineH)
+        line:Show()
+        rowsH=rowsH+lineH+4
+    end
+    for i=(snapshot and #snapshot.rows or 0)+1,#self.liveRows do self.liveRows[i]:Hide() end
+    rowsH=math.max(0,rowsH-4)
+    self.liveContentHeight=rowsH
+    local viewport=math.min(rowsH,math.max(52,math.min(120,height-360)))
+    local desired=snapshot and rowsY+viewport+locationH+20 or descriptionY+descriptionH+locationH+20
+    local cardH=math.min(math.max(138,desired),math.max(138,height-149-112))
+    self.objectiveCard:SetHeight(cardH)
+    viewport=math.max(0,math.min(viewport,cardH-rowsY-locationH-20))
+    if snapshot then
+        self.liveStatus:ClearAllPoints()
+        self.liveStatus:SetPoint("TOPLEFT",self.objectiveCard,"TOPLEFT",12,-statusY)
+        self.liveStatus:SetWidth(contentW)
+        if self.liveStatus.SetMaxLines then self.liveStatus:SetMaxLines(1) end
+        self.liveStatus:SetText(snapshot.status..(rowsH>viewport+1 and "  (scroll)" or ""))
+        local color=(snapshot.state=="ready" or snapshot.state=="turnedIn") and theme.green or theme.teal
+        self.liveStatus:SetTextColor(unpack(color))
+        self.liveStatus:Show()
+    else self.liveStatus:Hide() end
+    if rowsH>0 and viewport>0 then
+        self.liveScroll:ClearAllPoints()
+        self.liveScroll:SetPoint("TOPLEFT",self.objectiveCard,"TOPLEFT",12,-rowsY)
+        self.liveScroll:SetSize(contentW,viewport)
+        self.liveContent:SetSize(contentW,math.max(1,rowsH))
+        self.liveScroll:SetVerticalScroll(math.min(self.liveScroll:GetVerticalScroll(),math.max(0,rowsH-viewport)))
+        self.liveScroll:Show()
+    else self.liveScroll:Hide() end
+    return cardH
 end
 
 function Tracker:ApplyOpacity()
@@ -403,18 +500,40 @@ function Tracker:Layout()
     local width,height=self.frame:GetWidth(),self.frame:GetHeight()
     if width <= 0 or height <= 0 then return end
     local contentW=math.max(240,width-45)
+    local _,hasItem=ns:Call("QuestItemButton","Refresh",self)
     self.guideTitle:SetWidth(contentW-46)
     self.stepCount:SetWidth(contentW-40)
     -- Keep the title/caption clear of the quest-item and PIN controls.
-    self.stepTitle:SetWidth(math.max(170,contentW-135))
-    self.objectiveCaption:SetWidth(math.max(170,contentW-135))
+    self.stepTitle:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
+    self.objectiveCaption:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
+    local cardH=self:LayoutObjectives(width,height)
+    local upcomingY=149+cardH+12
+    self.upcomingTitle:ClearAllPoints()
+    self.upcomingTitle:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-upcomingY)
+    local visible=math.max(0,math.min(6,math.floor((height-56-(upcomingY+23)+4)/33)))
+    local entries=self.upcomingEntries or {}
+    self.upcomingPageCount=math.max(1,math.ceil(#entries/math.max(1,visible)))
+    self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
+    self.upcomingIndices={}
+    for i,button in ipairs(self.upcomingButtons or {}) do
+        local entry=i<=visible and entries[(self.upcomingPage-1)*visible+i]
+        if entry then self.upcomingIndices[i]=entry.index;button:SetLabel(tostring(entry.label):sub(1,51)) end
+    end
+    if self.pageButton then
+        self.pageButton:ClearAllPoints()
+        self.pageButton:SetPoint("TOPRIGHT",self.frame,"TOPRIGHT",-15,-upcomingY+6)
+        self.pageButton:SetLabel(self.upcomingPage.."/"..self.upcomingPageCount.."  >")
+        if visible>0 and self.upcomingPageCount>1 then self.pageButton:Show() else self.pageButton:Hide() end
+    end
     for i,button in ipairs(self.upcomingButtons or {}) do
         button:SetWidth(width-30)
+        button:ClearAllPoints()
+        button:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23+(i-1)*33))
         if self.upcomingIndices and self.upcomingIndices[i]
-            and i <= 2 + math.max(0,math.floor((height-448)/33))
+            and i <= visible
             and not (ns.char and ns.char.trackerMinimized) then
             button:Show()
         else button:Hide() end
@@ -430,10 +549,11 @@ function Tracker:Layout()
     else
         self.summary:Show()
         self.objectiveCard:Show()
-        self.upcomingTitle:Show()
-        if self.pageButton and (self.upcomingPageCount or 1)>1 then self.pageButton:Show() end
+        if visible>0 and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
+        else self.upcomingTitle:Hide() end
         self.controls:Show()
     end
+    ns:Call("QuestItemButton","Position")
 end
 
 function Tracker:ToggleMinimize()
@@ -485,7 +605,15 @@ function Tracker:Refresh()
     guides:Sync()
     local g=guides:GetGuide()
     local step,index,total=guides:CurrentStep()
-    if not g or not step or not total or total==0 then return end
+    if not g or not step or not total or total==0 then
+        self.displayStep,self.liveSnapshot=nil,nil
+        self.upcomingIndices={}
+        self.stepTitle:SetText("No guide selected")
+        self.objectiveText:SetText("Choose a guide from the Guide Library.")
+        self.location:SetText("")
+        self:Layout()
+        return
+    end
     local saved=guides:GetProgress()
     local routeIndex=index
     local count=0
@@ -583,21 +711,7 @@ function Tracker:Refresh()
         self.upcomingSignature=key
         self.upcomingPage=1
     end
-    local visible=2+math.max(0,math.floor(((self.frame:GetHeight() or 448)-448)/33))
-    visible=math.max(2,math.min(6,visible))
-    self.upcomingPageCount=math.max(1,math.ceil(#entries/visible))
-    self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
-    self.upcomingIndices={}
-    for i,button in ipairs(self.upcomingButtons) do
-        local position=(self.upcomingPage-1)*visible+i
-        local entry=i<=visible and entries[position]
-        if entry then
-            self.upcomingIndices[i]=entry.index
-            button:SetLabel(tostring(entry.label):sub(1,51))
-        else
-            button:Hide()
-        end
-    end
+    self.upcomingEntries=entries
     if #entries>0 then
         self.upcomingTitle:SetText(#grouped>1 and "HUB & ACTIVE QUESTS"
             or (#work>0 and "ACTIVE QUESTS" or "UPCOMING STEPS"))
@@ -618,7 +732,8 @@ function Tracker:Refresh()
         self.objectiveCaption:SetTextColor(1,0.74,0.37,1)
         self.stepTitle:SetText("Prerequisite unavailable")
         self.objectiveText:SetText(saved.recoveryReason or "The next prerequisite needs additional quest data. Follow your quest log and retry Sync.")
-        self.location:SetText("No verified pickup | Progress preserved")
+        self.location:SetText("Use Sync after resolving this prerequisite | Progress preserved")
+        self.upcomingEntries={}
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
         if self.pageButton then self.pageButton:Hide() end
@@ -627,12 +742,25 @@ function Tracker:Refresh()
         and saved.recoveryReason and saved.recoveryReason:find("Quest pickup needed", 1, true) then
         self.objectiveCaption:SetText("QUEST PICKUP REQUIRED")
     end
+    local routes=ns.Modules.SmartRoutes
+    local blocked=routes and routes.BlockedReason and routes:BlockedReason(step,steps)
+    if blocked and not saved.awaitingQuestMatch then
+        self.objectiveCaption:SetText("QUEST BLOCKED")
+        self.objectiveCaption:SetTextColor(1,0.74,0.37,1)
+        self.objectiveText:SetText(blocked)
+    end
+    if navigator and navigator.NavigationFeedback and not saved.awaitingQuestMatch then
+        self.location:SetText(navigator:NavigationFeedback(step))
+    end
     for key,item in pairs(self.menuButtons) do
         local title=key=="guidePaused" and "Pause Guide" or key=="autoAdvance" and "Auto Advance" or "Show Arrow"
         item:SetLabel(title .. ": " .. (pref(key,false) and "ON" or "OFF"))
     end
     if self.minimizeButton then self.minimizeButton:SetLabel(ns.char and ns.char.trackerMinimized and "+" or "-") end
-    self:RefreshQuestItem(saved.awaitingQuestMatch and nil or step)
+    self.displayStep=step
+    if saved.awaitingQuestMatch then self.displayStep=nil end
+    self.displayIndex=index
+    self:RefreshObjectives(true)
     self:ApplyOpacity()
     self:Layout()
     ns:Call("Navigator","Refresh")
@@ -642,6 +770,7 @@ function Tracker:ResetPosition()
     if not self.frame then return end
     self.frame:ClearAllPoints()
     self.frame:SetPoint("TOPRIGHT",UIParent,"TOPRIGHT",-30,-235)
+    ns:Call("QuestItemButton","Position")
 end
 function Tracker:Show()
     self:MakeFrame()
@@ -656,7 +785,7 @@ end
 function Tracker:Hide()
     if ns.char then ns.char.trackerVisible=false end
     if self.frame then self.frame:Hide() end
-    self:RefreshQuestItem(nil)
+    ns:Call("QuestItemButton","Refresh",self)
     ns:Call("Navigator","Hide")
 end
 function Tracker:Initialize()
