@@ -1,0 +1,52 @@
+name: Start requested Forever beta
+on:
+  push:
+    branches: ['release-dispatch/forever-f91ee39a']
+permissions:
+  actions: write
+  contents: read
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release approved main with formatted notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGELOG: |
+            ## What's new
+            
+            ### Smarter quest hub rounds
+            - Collect eligible nearby quests before heading out.
+            - Finish the hub's active objectives before returning for grouped turn-ins.
+            - Pick up unlocked follow-ups while preserving prerequisite, level and skipped-step checks.
+            
+            ### Live quest tracking
+            - See kill, collection and event progress update directly in the tracker.
+            - View completed objectives and a clear **Ready to turn in** status.
+            - Scroll longer objective lists and page through remaining quests.
+            - Keep your selected side objective focused while counters update.
+            
+            ### Clearer guidance
+            - See why a quest is blocked, including known level or prerequisite requirements.
+            - Get a clear next action, then use **Sync Guide Now** to retry recovery.
+            - See travel, dungeon and missing-waypoint guidance when appropriate.
+            - Prevent map pins for known blocked quests while preserving the world-map pin behavior.
+            
+            ### Easier bug reporting
+            - Open **Report a Bug** from the tracker **...** menu or dashboard **Diagnostics**.
+            - Copy a report containing your addon/client version, guide, step, quest ID, map, coordinates and live quest status.
+            - Paste the report into a GitHub issue or ChatGPT; nothing is sent automatically.
+            
+            ### Fixes and polish
+            - Improved quest-item buttons with cooldowns and safer combat updates.
+            - Kept upcoming quests accessible beneath live objective details.
+            - Prevented unverified targets from reappearing during prerequisite recovery.
+            
+            ### Beta testing
+            - Passed 20 Lua test suites, 27 Python tests, syntax checks and ZIP packaging.
+            - In-game feedback is welcome for hub follow-ups, quest items in combat, map pins and dungeon transitions.
+        run: |
+          set -euo pipefail
+          current=$(gh api repos/PhatZero/Wayforth/commits/main --jq .sha)
+          test "$current" = "f91ee39a8b76424f11f92f81701b6caee349e2f2"
+          gh workflow run release.yml --repo PhatZero/Wayforth --ref main -f curseforge=true -f changelog="$CHANGELOG"
