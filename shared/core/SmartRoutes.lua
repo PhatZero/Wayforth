@@ -58,6 +58,27 @@ end
 function Routes:QuestState(id)
     return {active=active(id),ready=ready(id),turnedIn=flag(id)}
 end
+-- Return mandatory prerequisites plus one unmet alternative for recovery.
+-- Completing ANY alternative satisfies the OR group; never demand all of them.
+function Routes:Requirements(step, steps)
+    local result={}
+    for _,id in ipairs(step.requires or {}) do result[#result+1]=id end
+    local alternatives=step.requiresAny or {}
+    for _,id in ipairs(alternatives) do if flag(id) then return result end end
+    local chosen=alternatives[1]
+    for _,id in ipairs(alternatives) do if active(id) then chosen=id;break end end
+    if chosen and not active(chosen) and steps then
+        local found=false
+        for _,candidate in ipairs(steps) do
+            for _,id in ipairs(alternatives) do
+                if candidate.questId==id and candidate.action=="accept" then chosen=id;found=true;break end
+            end
+            if found then break end
+        end
+    end
+    if chosen then result[#result+1]=chosen end
+    return result
+end
 local function completed(step, index, saved)
     if step.questId and flag(step.questId) then return true end
     return type(saved.completed) == "table" and saved.completed[key(step, index)] == true
@@ -67,7 +88,7 @@ local function findPrerequisite(steps, questID, seen)
     seen[questID] = true
     for index, step in ipairs(steps) do
         if step.questId == questID then
-            for _, requirement in ipairs(step.requires or {}) do
+            for _, requirement in ipairs(Routes:Requirements(step, steps)) do
                 if not flag(requirement) then
                     local previous = findPrerequisite(steps, requirement, seen)
                     if previous then return previous end
@@ -79,7 +100,7 @@ local function findPrerequisite(steps, questID, seen)
     return nil
 end
 local function prerequisiteIndex(step, steps)
-    for _, requirement in ipairs(step.requires or {}) do
+    for _, requirement in ipairs(Routes:Requirements(step, steps)) do
         if not flag(requirement) then
             local index = findPrerequisite(steps, requirement, {})
             if index then return index end
@@ -202,7 +223,7 @@ local function recoveryPickup(questID, steps, visited, allowUnmapped)
     if not knownStep then
         return nil, "Quest " .. questID .. " is a required prerequisite but its pickup is not authored yet."
     end
-    for _, requirement in ipairs(knownStep.requires or {}) do
+    for _, requirement in ipairs(Routes:Requirements(knownStep, steps)) do
         if not flag(requirement) then
             if active(requirement) then
                 local phase = activePhase(requirement, steps)
@@ -222,6 +243,9 @@ local function recoveryPickup(questID, steps, visited, allowUnmapped)
     end
     if pickupIndex then
         local pickup = steps[pickupIndex]
+        if type(pickup.minLevel)=="number" and currentLevel()<pickup.minLevel then
+            return nil,"Requires level "..pickup.minLevel.." before this quest can be accepted."
+        end
         if type(pickup.x) == "number" and type(pickup.y) == "number" then
             local caution = allowUnmapped and
                 " Candidate pickup coordinates are source-indexed, not verified in the game." or ""
@@ -492,6 +516,7 @@ local function eligibleAtHub(step, index, saved, mode)
 
     if step.action == "accept" then
         if active(id) then return false end
+        if type(step.minLevel)=="number" and currentLevel()<step.minLevel then return false end
         -- Recommended routes avoid gray quests and not-yet-level-eligible
         -- candidates; From Beginning intentionally allows low-level content.
         if mode ~= "beginning" and type(step.level) == "number" then
@@ -505,7 +530,8 @@ local function eligibleAtHub(step, index, saved, mode)
     else
         return false
     end
-    for _, requirement in ipairs(step.requires or {}) do
+    if active(id) then return true end -- the live quest log proves eligibility
+    for _, requirement in ipairs(Routes:Requirements(step)) do
         if not flag(requirement) then return false end
     end
     return true
@@ -602,12 +628,22 @@ function Routes:NearestGroupedStep(group)
     local navigator = ns.Modules.Navigator
     if not navigator or type(navigator.TargetForStep) ~= "function"
         or not C_Map or type(C_Map.GetPlayerMapPosition) ~= "function" then return nil end
-    local bestIndex, bestDistance
+    local bestIndex, bestDistance, measuredIndex, measuredDistance
+    local fallbackMap=C_Map.GetBestMapForUnit and C_Map.GetBestMapForUnit("player")
     for _, item in ipairs(group) do
+        if type(navigator.DistanceForStep)=="function" then
+            local ok,distance=pcall(navigator.DistanceForStep,navigator,item.step)
+            if ok and type(distance)=="number" and distance>=0 and distance<math.huge
+                and (not measuredDistance or distance<measuredDistance) then
+                measuredDistance,measuredIndex=distance,item.index
+            end
+        end
         local ok, target = pcall(navigator.TargetForStep, navigator, item.step)
         if ok and target and target.mapId and target.x and target.y then
+            fallbackMap=fallbackMap or target.mapId
+            -- Percentages from differently sized maps are not comparable.
             local good, pos = pcall(C_Map.GetPlayerMapPosition, target.mapId, "player")
-            if good and pos then
+            if target.mapId==fallbackMap and good and pos then
                 local px, py
                 if type(pos.GetXY) == "function" then px, py = pos:GetXY()
                 else px, py = pos.x, pos.y end
@@ -620,6 +656,7 @@ function Routes:NearestGroupedStep(group)
             end
         end
     end
+    if measuredIndex then return measuredIndex end
     return bestIndex
 end
 
@@ -662,7 +699,7 @@ function Routes:BlockedReason(step, steps)
     if type(pickup.minLevel)=="number" and currentLevel()<pickup.minLevel then
         return "Requires level "..pickup.minLevel..". Gain "..(pickup.minLevel-currentLevel()).." more level(s), then use Sync Guide Now."
     end
-    for _, id in ipairs(pickup.requires or {}) do
+    for _, id in ipairs(Routes:Requirements(pickup, steps)) do
         if not flag(id) then
             local title=tostring(id)
             for _, candidate in ipairs(steps or {}) do

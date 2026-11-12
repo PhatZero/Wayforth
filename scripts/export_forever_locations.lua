@@ -5,7 +5,7 @@ local ns = { starterGuides = {} }
 local toc = assert(io.open(root .. "/clients/forever/manifest/WayForth.toc"))
 for line in toc:lines() do
     local file = line:match("^Data/(.+%.lua)$")
-    if file and file ~= "ForeverQuestLocations.lua" then
+    if file and file ~= "ForeverQuestLocationUpdates.lua" then
         assert(loadfile(root .. "/clients/forever/guides/" .. file))("WayForth", ns)
     end
 end
@@ -27,7 +27,15 @@ local fields = {
     Quest = {1, 2, 3, 6, 9, 10, 11, 17, 21, 29},
     Npc = {1, 7, 13}, Object = {1, 4}, Item = {1, 2, 3, 4, 6, 14},
 }
-local data = { wanted = wanted, guideNames = guideNames }
+local missingLocations={}
+for id,record in pairs(ns.foreverQuestLocations or {}) do
+    local missing={name=record.name}
+    for _,role in ipairs({"pickup","objective","turnin"}) do
+        if not record[role] or #record[role]==0 then missing[role]=true end
+    end
+    missingLocations[id]=missing
+end
+local data = { wanted = wanted, guideNames = guideNames, missingLocations=missingLocations }
 for kind, indices in pairs(fields) do
     local rows = {}
     for id, row in pairs(loaded[kind].entities) do

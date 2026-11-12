@@ -58,7 +58,7 @@ local function pickupAllowed(step, index, saved, state, playerLevel)
         if saved.completed and saved.completed[key(step,index)] then return false end
         if type(step.minLevel) == "number" and step.minLevel > playerLevel then return false end
         if not step.minLevel and type(step.level) == "number" and step.level > playerLevel+1 then return false end
-        for _, requirement in ipairs(step.requires or {}) do
+        for _, requirement in ipairs(ns.Modules.SmartRoutes:Requirements(step)) do
             if not state(requirement).turnedIn then return false end
         end
         local record = (ns.foreverQuestLocations or {})[step.questId]
@@ -93,9 +93,10 @@ function Hub:Selection(steps, saved, visit)
     local state = stateReader()
     local playerLevel=level()
     local pickups, objectives, turnins = {}, {}, {}
-    local byID = {}
+    local byID, wanted = {}, {}
+    for _,id in ipairs(visit.quests) do wanted[id]=true end
     for index, step in ipairs(steps) do
-        if contains(visit,step.questId) then
+        if wanted[step.questId] then
             local entry = byID[step.questId] or {}
             byID[step.questId] = entry
             if not skipped(step,index,saved) then entry[step.action] = {index=index,step=step} end

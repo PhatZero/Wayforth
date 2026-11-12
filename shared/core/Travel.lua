@@ -1,4 +1,4 @@
--- Explicit authored travel legs only; no guessed transport or straight-line pathfinding.
+-- Authored travel legs and known phase destinations; no guessed transport or pathfinding.
 local _,ns=...
 local Travel={}
 ns:RegisterModule("Travel",Travel)
@@ -25,15 +25,31 @@ function Travel:Plan(step)
             }
         end
     end
+    if #legs==0 and type(step.mapId)=="number" and type(step.x)=="number" and type(step.y)=="number"
+        and step.x>0 and step.x<100 and step.y>0 and step.y<100 then
+        local currentMap
+        if C_Map and type(C_Map.GetBestMapForUnit)=="function" then
+            local ok,value=pcall(C_Map.GetBestMapForUnit,"player")
+            if ok then currentMap=value end
+        end
+        if guide.travelHint and currentMap~=step.mapId then legs[#legs+1]={kind="travel",text=guide.travelHint} end
+        legs[#legs+1]={kind="destination",mapId=step.mapId,x=step.x,y=step.y,
+            text=(step.text or step.title or "Follow the guide objective.").." Destination: "..
+                tostring(step.zone or guide.zone or "quest area")..string.format(" (%.1f, %.1f). ",step.x,step.y)..
+                "This pin marks the destination, not a walkable path. Use roads and available transport shown in game."}
+    end
     return {guideId=guide.id,stepId=step.id,legs=legs,message=#legs>0 and "Follow each leg, then click Next Travel Leg. Guide progress stays unchanged."
         or guide.travelHint or "No verified travel route is bundled for this step. Use the guide instructions and in-game map; no transport connection is assumed."}
 end
 function Travel:Current(step)
     local route=self.route
+    if not route then return nil end
     local current,guide=selected()
     step=step or current
-    if route and (not step or route.guideId~=guide.id or route.stepId~=step.id) then self.route=nil;return nil end
-    return route and route.legs[route.index]
+    if not current or route.guideId~=guide.id or route.stepId~=current.id then self.route=nil;return nil end
+    -- Probing another candidate for distance/search must not cancel active travel.
+    if not step or step.id~=route.stepId then return nil end
+    return route.legs[route.index]
 end
 function Travel:Start()
     local plan=self:Plan()

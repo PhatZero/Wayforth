@@ -93,6 +93,15 @@ function Guides:GetSteps(id, legacy)
                 resolved.x, resolved.y = pin[1], pin[2]
                 resolved.mapId = ns.zephrasMapID or 2521
             end
+            local requirements=(ns.foreverQuestRequirements or {})[resolved.questId]
+            if requirements then
+                resolved.minLevel=resolved.minLevel or requirements.minLevel
+                -- Authored chain rules take precedence over imported source metadata.
+                if resolved.requires==nil and resolved.requiresAny==nil then
+                    resolved.requires=requirements.requires
+                    resolved.requiresAny=requirements.requiresAny
+                end
+            end
             if locations then locations:Apply(resolved, guide, currentMap) end
             visible[#visible + 1] = resolved
         end

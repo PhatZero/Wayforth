@@ -59,10 +59,10 @@ end
 function Locations:Apply(step, guide, currentMap)
     local role = step.locationRole or (step.action == "accept" and "pickup" or step.action)
     if role ~= "pickup" and role ~= "objective" and role ~= "turnin" then return end
-    -- The authored Zephras route also has deliberate cave entrances and ship stops.
-    if step.x and step.y and guide.id:find("^zephras%-") then return end
     local record = recordFor(step)
     if record then step.questName = record.name end
+    -- The authored Zephras route also has deliberate cave entrances and ship stops.
+    if step.x and step.y and guide.id:find("^zephras%-") then return end
     if role == "pickup" and record and record.pickupText then step.text = record.pickupText end
     if role == "objective" and record and record.objectiveText then
         step.text = record.objectiveText .. " Check your quest log for current requirements and quantities."
