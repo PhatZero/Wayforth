@@ -110,9 +110,9 @@ local function prerequisiteIndex(step, steps)
     end
     return nil, false
 end
-function Routes:ListGuides()
+function Routes:ListGuides(kind)
     local list = {}
-    for _, guide in ipairs(ns.Modules.Guides:List()) do
+	for _, guide in ipairs(ns.Modules.Guides:List(kind)) do
         if not guide.faction or not playerFaction() or guide.faction == playerFaction() then
             list[#list + 1] = guide
         end
