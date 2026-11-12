@@ -25,6 +25,7 @@ local function dispatch(event, ...)
         ns.state.loggedIn = true
         invoke("Character", "Capture")
         invoke("Guides", "GetProgress")
+        invoke("ProfessionGuides", "Initialize")
         ns:Call("Guides", "Sync")
         ns:Call("SmartRoutes", "Recalculate")
         invoke("UI", "Initialize")
@@ -68,6 +69,12 @@ local function dispatch(event, ...)
         end
     elseif event == "QUEST_DATA_LOAD_RESULT" or event == "BAG_UPDATE_DELAYED" then
         ns:Call("Tracker", "RequestObjectiveRefresh", event == "QUEST_DATA_LOAD_RESULT" and (...) or nil)
+    elseif event == "TRADE_SKILL_UPDATE" or event == "TRADE_SKILL_LIST_UPDATE"
+        or event == "SKILL_LINES_CHANGED" then
+        ns:Call("ProfessionGuides", "Sync")
+        if ns.Modules.UI and ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
+        local guide=ns.Modules.Guides:GetGuide()
+        if guide and guide.isProfession then ns:Call("Tracker", "Refresh") end
     elseif event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LEVEL_UP"
         or event == "PLAYER_XP_UPDATE" or event == "ZONE_CHANGED_NEW_AREA"
         or event == "PLAYER_MONEY" then
@@ -118,6 +125,7 @@ for _, event in ipairs({
     "ADDON_LOADED", "PLAYER_LOGIN", "PLAYER_ENTERING_WORLD", "PLAYER_LEVEL_UP",
     "PLAYER_XP_UPDATE", "ZONE_CHANGED_NEW_AREA", "PLAYER_MONEY", "PLAYER_LOGOUT",
     "QUEST_ACCEPTED", "QUEST_TURNED_IN", "QUEST_REMOVED", "QUEST_LOG_UPDATE",
+    "TRADE_SKILL_UPDATE", "TRADE_SKILL_LIST_UPDATE", "SKILL_LINES_CHANGED",
 }) do frame:RegisterEvent(event) end
 for _, event in ipairs({"QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED"}) do
     pcall(frame.RegisterEvent, frame, event)

@@ -308,8 +308,13 @@ function UI:Refresh()
             { label = "See Progress", run = function() UI:ShowTab("Progress") end },
         }
     elseif tab == "Professions" then
-        subtitle = "Full profession guides are a future milestone"
-        text = "PROFESSION GUIDE PLATFORM\n\nPlanned: skill progression, gathering locations, recipes, materials, fishing routes, and tailored recommendations.\n\nThis screen is intentionally a preview. No profession data is collected or displayed until that API work is implemented and tested on WoW: Forever."
+        subtitle = "Profession skill, rank checkpoints and tailored guidance"
+        local profession=ns.Modules.ProfessionGuides
+        local selected=UI.selectedProfession or (profession and profession:Suggested()) or "alchemy"
+        local profile
+        for _,row in ipairs(ns.professionProfiles or {}) do if row.id==selected then profile=row;break end end
+        local snapshot=profession and profession:Read()[selected]
+        text=profile and (profile.name.."\n\n"..(snapshot and ("Skill "..snapshot.skill.." / cap "..snapshot.maxSkill) or "Open your profession window to read skill progress.").."\n\n"..profile.focus.."\n\n"..profile.method) or "Choose a profession guide from the modern dashboard."
         actions = { { label = "View Progress", run = function() UI:ShowTab("Progress") end } }
     elseif tab == "Progress" then
         local snap = character:Get()
