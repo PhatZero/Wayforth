@@ -1079,6 +1079,8 @@ function UI:Refresh()
             self:SettingsToggle("pause", "Pause Guide", "guidePaused", 10, 282, width-28)
             self:SettingsToggle("zones", "Smart Zone Recommendations", "zoneSuggestions", 10, 334, width-28)
             self:SettingsToggle("extras", "Show Additional Available Quests", "showAdditionalQuests", 10, 386, width-28)
+            self:SettingsToggle("cleanupSideQuests", "Offer side-quest cleanup on new area", "cleanupSideQuestsOnZoneChange", 10, 438, width-28)
+            self:Label("cleanupSideQuestsNote", "WayForth asks before abandoning. Story, campaign, important and non-abandonable quests are excluded.", 12, 479, width-24, 10, theme.muted)
         elseif sec == "Quest Actions" then
             self:SettingsToggle("autoAccept","Accept Active Guide Quests","autoAcceptQuests",10,178,width-28)
             self:SettingsToggle("autoTurnIn","Turn In Active Guide Quests","autoTurnInQuests",10,230,width-28)

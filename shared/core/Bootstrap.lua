@@ -26,6 +26,7 @@ local function dispatch(event, ...)
         invoke("Character", "Capture")
         invoke("Guides", "GetProgress")
         invoke("ProfessionGuides", "Initialize")
+        invoke("QuestCleanup", "Initialize")
         ns:Call("Guides", "Sync")
         ns:Call("SmartRoutes", "Recalculate")
         invoke("UI", "Initialize")
@@ -79,6 +80,7 @@ local function dispatch(event, ...)
         or event == "PLAYER_XP_UPDATE" or event == "ZONE_CHANGED_NEW_AREA"
         or event == "PLAYER_MONEY" then
         if event == "ZONE_CHANGED_NEW_AREA" then
+            ns:Call("QuestCleanup", "OnZoneChanged")
             ns.state.lastAcceptedQuestID = nil -- never follow an old hub to another zone
             ns.state.lastTurnedInQuestID = nil
             ns.state.lastHubEventAt = nil

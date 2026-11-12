@@ -42,6 +42,7 @@ Core/QuestAssistance.lua
 Core/NextZone.lua
 Core/Travel.lua
 Core/QuestLogSpace.lua
+Core/QuestCleanup.lua
 Core/GuideSearch.lua
 Core/QuestInteractions.lua
 UI/Theme.lua

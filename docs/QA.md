@@ -12,6 +12,11 @@ Test on **WoW: Forever 1.60.1 / Interface 16001** before marking ProjectForge fo
 - [ ] UI opens with no website login, network login or subscription.
 
 ## Data / character
+- [ ] Enable the new-area side-quest cleanup setting; verify no prompt when disabled, and a review prompt only after entering another zone.
+- [ ] Verify campaign/story/important and client non-abandonable quests are excluded; confirm no quests are removed until the user approves.
+- [ ] Confirm only listed eligible quests are abandoned and the quest log refreshes after confirmation.
+
+## Data / character
 - [ ] Dashboard and Character show current character name, level, zone and XP where available.
 - [ ] Complete two steps of the onboarding guide. Reload UI, verify steps and selected step persist.
 - [ ] Log into another character and verify the guide begins independently.
