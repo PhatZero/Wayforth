@@ -13,7 +13,8 @@ local NAV_ICONS = {
     Favorites = "Interface\\Icons\\INV_Misc_Gem_01",
     ["Recently Used"] = "Interface\\Icons\\INV_Misc_PocketWatch_01",
     Map = "Interface\\Icons\\INV_Misc_Spyglass_02",
-    Professions = "Interface\\Icons\\Trade_BlackSmithing",\n    Legacy = "Interface\\Icons\\INV_Misc_TreasureChest_01",
+    Professions = "Interface\\Icons\\Trade_BlackSmithing",
+    Legacy = "Interface\\Icons\\INV_Misc_TreasureChest_01",
     Settings = "Interface\\Icons\\INV_Gizmo_02",
 }
 local CATEGORIES = {
