@@ -244,7 +244,9 @@ Check the project's Files page for its review status. If an upload loses its res
 
 ## GitHub releases
 
-Open [Release WayForth Forever](https://github.com/PhatZero/Wayforth/actions/workflows/release.yml), choose **Run workflow** on `main`, and enter release notes. The workflow runs the addon tests and attaches the installable ZIP to a tagged GitHub prerelease. Select **Also submit the beta to CurseForge** to upload it there in the same run.
+For a normal beta release, merge a PR titled `Release beta: <version or short name>` into `main`. Put the player-facing release notes in the PR description as Markdown bullets. The release workflow runs the addon checks, assigns the next short beta version, creates the GitHub prerelease, and submits the same ZIP to CurseForge. It uses the repository's `CURSEFORGE_PROJECT_ID` variable and `CURSEFORGE_TOKEN` secret.
+
+The [manual release workflow](https://github.com/PhatZero/Wayforth/actions/workflows/release.yml) remains available for a one-off release or retry.
 
 ### Forever beta versioning
 
