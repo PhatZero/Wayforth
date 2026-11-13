@@ -1,0 +1,21 @@
+name: Release WayForth beta on merge
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: >-
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.title, 'Release beta:')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/release.yml
+    with:
+      changelog: ${{ github.event.pull_request.body }}
+      curseforge: true
+    secrets: inherit
