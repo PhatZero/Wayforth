@@ -699,18 +699,39 @@ function Tracker:Refresh()
         if counts.objective>0 then statuses[#statuses+1]=counts.objective.." OBJECTIVES" end
         self.objectiveCaption:SetText("HUB SWEEP | "..table.concat(statuses," | "))
     else
-        self.objectiveCaption:SetText(g.testingOnly and "TEST ROUTE - VERIFY QUEST" or "CURRENT OBJECTIVE")
+        self.objectiveCaption:SetText(g.isProfession and "PROFESSION SKILL-UP PLAN"
+            or g.testingOnly and "TEST ROUTE - VERIFY QUEST" or "CURRENT OBJECTIVE")
     end
     self.objectiveCaption:SetTextColor(unpack(theme.teal))
-    self.objectiveText:SetText(step.text or "")
+    local objectiveText=step.text or ""
+    if g.isProfession then
+        local profession=ns.Modules.ProfessionGuides
+        local plan=profession and profession:PlanText(g.professionId)
+        if plan and plan~="" then objectiveText=plan.."\n\n"..objectiveText end
+    end
+    self.objectiveText:SetText(objectiveText)
     local place=step.hub or step.zone or g.zone or "Quest objective"
     local target
     if navigator and type(navigator.TargetForStep)=="function" then
         local ok,found=pcall(navigator.TargetForStep,navigator,step)
         if ok then target=found end
     end
-    self.location:SetText(step.x and step.y and (place .. string.format("  (%.1f, %.1f)",step.x,step.y))
-        or (target and place or (place .. " | No waypoint verified")))
+    if g.isProfession then
+        if step.trainer and target then
+            self.location:SetText("Trainer: "..place)
+        elseif step.trainer then
+            self.location:SetText("Trainer visit | No verified trainer waypoint")
+        else
+            self.location:SetText("Profession window | No map waypoint for crafting")
+        end
+        if self.pinButton then
+            if step.trainer and target then self.pinButton:Show() else self.pinButton:Hide() end
+        end
+    else
+        self.location:SetText(step.x and step.y and (place .. string.format("  (%.1f, %.1f)",step.x,step.y))
+            or (target and place or (place .. " | No waypoint verified")))
+        if self.pinButton then self.pinButton:Show() end
+    end
     -- Combine all hub pickups, genuinely active parallel objectives and
     -- upcoming route steps. Page through them in the same compact tracker.
     local entries,shown={},{}

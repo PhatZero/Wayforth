@@ -88,6 +88,9 @@ end
 
 local function targetForStep(step)
     if not step then return nil end
+    -- Profession recipes and crafting actions are not map destinations. Only
+    -- explicitly authored trainer steps may carry a trainer waypoint.
+    if step.professionId and not step.trainer then return nil end
     local travel=ns.Modules.Travel
     local leg=travel and travel:Current(step)
     if leg then
