@@ -18,11 +18,11 @@ local NAV_ICONS = {
     Settings = "Interface\\Icons\\INV_Gizmo_02",
 }
 local CATEGORIES = {
-    { title="Leveling", icon="Interface\\Icons\\Achievement_Level_10", tab="Guide Library" },
-    { title="Professions", icon="Interface\\Icons\\Trade_BlackSmithing", tab="Professions" },
-    { title="Legacy", icon="Interface\\Icons\\INV_Misc_TreasureChest_01", tab="Legacy" },
-    { title="Gold Making", icon="Interface\\Icons\\INV_Misc_Coin_02", tab="Gold Making" },
-    { title="Exploration", icon="Interface\\Icons\\INV_Misc_Map_01", tab="Exploration" },
+    { title="Leveling", icon="Interface\\Icons\\Achievement_Level_10", art=2, tab="Guide Library" },
+    { title="Professions", icon="Interface\\Icons\\Trade_BlackSmithing", art=3, tab="Professions" },
+    { title="Legacy", icon="Interface\\Icons\\INV_Misc_TreasureChest_01", art=4, tab="Legacy" },
+    { title="Gold Making", icon="Interface\\Icons\\INV_Misc_Coin_02", art=5, tab="Gold Making" },
+    { title="Exploration", icon="Interface\\Icons\\INV_Misc_Map_01", art=1, tab="Exploration" },
 }
 local function run(fn)
     if not fn then return end
@@ -330,13 +330,17 @@ function UI:GuideRow(prefix, id, x, y, width)
     if not guide then return end
     local status = ns.Modules.Guides:Status(id)
     local favorite = ns.Modules.Guides:IsFavorite(id)
-    self:Button(prefix .. "open", (guide.zone or guide.title):sub(1, 37), x, y, width - 90, 31,
+    self:Button(prefix .. "open", (guide.zone or guide.title):sub(1, 37), x, y, width - 90, 28,
         function() UI.selectedGuideId = id; UI:ShowTab("Guide Details") end)
-    self:Button(prefix .. "star", favorite and "* Saved" or "+ Fav", x + width - 85, y, 80, 31,
+    self:Button(prefix .. "star", favorite and "* Saved" or "+ Fav", x + width - 85, y, 80, 28,
         function() ns.Modules.Guides:ToggleFavorite(id); UI:Refresh() end)
     local meta = (guide.faction or "Shared") .. " / " .. (guide.continent or "Starter Zones")
-    if guide.levelMin then meta = meta .. "  |  Levels " .. guide.levelMin .. "-" .. (guide.levelMax or "?") end
-    self:Label(prefix .. "status", meta .. "  |  " .. status, x + 8, y + 33, width - 16, 10, theme.muted)
+    if guide.levelMin then meta = meta .. "  |  " .. guide.levelMin .. "-" .. (guide.levelMax or "?") end
+    local compactStatus = status == "In Progress" and "Active"
+        or status == "Not Started" and "New" or status
+    local details = self:Label(prefix .. "status", meta .. "  |  " .. compactStatus,
+        x + 8, y + 29, width - 16, 10, theme.muted)
+    if details.SetWordWrap then details:SetWordWrap(false) end
 end
 -- Rich Guide Library row, deliberately separate from the compact dashboard lists.
 function UI:LibraryCard(prefix, id, x, y, width)
@@ -618,15 +622,17 @@ function UI:Refresh()
         self:Label("catHeading", "Guide Categories", 6, 255, width - 160, 16, theme.gold)
         self:Button("browseAll", "Browse all guides  >", width - 175, 248, 166, 29,
             function() UI.guideView="all"; UI:ShowTab("Guide Library") end)
-        local tileW = (width - 28) / 4
+        local tileGap = 7
+        local tileW = (width - tileGap * #CATEGORIES) / #CATEGORIES
         local texts = {
             "Zone & leveling guides", "Skills, recipes & routes",
-            "Farming & efficient gold", "Discover the world",
+            "Plan your Legacy perks", "Farming & efficient gold",
+            "Discover the world",
         }
         for i, entry in ipairs(CATEGORIES) do
-            local x = 4 + (i - 1) * (tileW + 7)
+            local x = 4 + (i - 1) * (tileW + tileGap)
             self:Surface("catSurface" .. i, x, 287, tileW, 111)
-            self:Art("catArt" .. i, i + 1, x + 1, 288, tileW - 2, 109)
+            self:Art("catArt" .. i, entry.art, x + 1, 288, tileW - 2, 109)
             self:ArtShade("catShade" .. i, x + 1, 343, tileW - 2, 54)
             self:Label("catTitle" .. i, entry.title, x + 10, 349, tileW - 20, 14, theme.ivory)
             self:Label("catDesc" .. i, texts[i], x + 10, 374, tileW - 20, 10, theme.muted)
@@ -637,11 +643,12 @@ function UI:Refresh()
         local rightX = col + 16
         self:Label("faveTitle", "FAVORITES", 6, lowerY, col - 2, 14, theme.gold)
         self:Label("recentTitle", "RECENTLY USED", rightX, lowerY, col - 2, 14, theme.gold)
+        local guideRowGap = 40
         for i = 1, 2 do
             local id = fave[i]
-            if id then self:GuideRow("dashFave" .. i, id, 6, lowerY + 28 + (i-1)*42, col - 6) end
+            if id then self:GuideRow("dashFave" .. i, id, 6, lowerY + 28 + (i-1)*guideRowGap, col - 6) end
             id = recent[i]
-            if id then self:GuideRow("dashRecent" .. i, id, rightX, lowerY + 28 + (i-1)*42, col - 6) end
+            if id then self:GuideRow("dashRecent" .. i, id, rightX, lowerY + 28 + (i-1)*guideRowGap, col - 6) end
         end
         if #fave == 0 then
             self:Label("emptyFave", "Star a guide to keep it here.", 10, lowerY + 33, col - 12, 11, theme.muted)
@@ -759,20 +766,48 @@ function UI:Refresh()
         local steps=guides:GetSteps(guideId)
         local position=saved and saved.current or 1
         local nextStep=steps[position]
-        self:Surface("professionOverview",6,190,width-12,143,true)
+        local recommendation,recommendationMessage
+        if module then recommendation,recommendationMessage=module:Recommendation(selected.id) end
+        local target,targetRank=50,"Journeyman"
+        if current then target,targetRank=module:RouteTarget(current.skill,current.maxSkill) end
+        self:Surface("professionOverview",6,190,width-12,184,true)
         self:Label("professionFocus",selected.focus,17,202,width-34,12,theme.ivory)
         self:Label("professionStatus",current and
-            ("Current skill: "..current.skill.."  |  Learned skill cap: "..current.maxSkill.."  |  Rank checkpoints update when the client reports training")
+            ("Current skill: "..current.skill.." / 300  |  Cap: "..current.maxSkill)
             or "Skill not detected yet. Open the Professions window (K) or Character Skills list once, then return here.",
-            17,232,width-34,11,current and theme.teal or theme.gold)
+            17,229,width-34,11,current and theme.teal or theme.gold)
         self:Label("professionNext",nextStep and ("Guide step "..position.."/"..#steps..": "..nextStep.title)
             or "Guide complete: skill 300 recorded.",17,257,width-34,11,theme.gold)
-        self:Label("professionMaterials",selected.materials,17,282,width-34,11,theme.ivory)
-        self:Label("professionMethod",selected.method,17,306,width-34,10,theme.muted)
-        self:Surface("professionCampCard",6,342,width-12,59)
-        self:Label("professionCamp",selected.camp,17,354,width-34,11,theme.teal)
-        self:Label("professionPairing","Common pairing: "..selected.pairing.."  |  Check trainer and recipe requirements in game.",
-            17,375,width-34,10,theme.muted)
+        local rankAction="continue Artisan"
+        if current and current.maxSkill<300 then
+            if current.skill>=current.maxSkill then rankAction="train "..targetRank.." now"
+            elseif current.skill>=target then rankAction="check for "..targetRank.."; if unavailable, continue to cap"
+            else rankAction="check for "..targetRank.." at skill "..target end
+        end
+        self:Label("professionTarget",current and (current.skill>=300 and "Leveling route: Complete at skill 300"
+            or ("Leveling route: skill "..current.skill.." → "..target.."; "..rankAction..
+                ". Make one craft per check."))
+            or "Leveling route: detect skill, then set the next rank target.",17,280,width-34,11,theme.ivory)
+        local gathering=selected.id=="fishing" or selected.id=="herbalism"
+            or selected.id=="mining" or selected.id=="skinning"
+        local routeText=recommendation and ("Next craft: "..recommendation.name.." ("..recommendation.color..")")
+            or ((gathering and "Next action: " or "Next skill-up: ")..
+                (recommendationMessage or "Open this profession's recipe list to calculate its next skill-up."))
+        self:Label("professionRecommendation",routeText,17,303,width-34,11,recommendation and theme.teal or theme.muted)
+        local reagentText=""
+        if recommendation then
+            local parts={}
+            for _,reagent in ipairs(recommendation.reagents) do
+                parts[#parts+1]=reagent.count.."x "..reagent.name.." (have "..reagent.owned..")"
+            end
+            reagentText="Materials for one craft: "..table.concat(parts,", ")
+        end
+        self:Label("professionReagents",reagentText,17,326,width-34,10,theme.ivory)
+        self:Label("professionMaterials",selected.materials,17,352,width-34,10,theme.muted)
+        self:Surface("professionCampCard",6,382,width-12,48)
+        self:Label("professionCamp",selected.camp,17,393,width-34,10,theme.teal)
+        self:Label("professionPairing","Common pairing: "..selected.pairing.."  |  Recheck after each skill-up to avoid extra crafts.",
+            17,411,width-34,9,theme.muted)
         local actionY=math.max(420,(self.page:GetHeight() or 466)-43)
         local buttonW=(width-25)/2
         self:Button("startProfessionGuide",saved and "Continue "..selected.name or "Start "..selected.name.." Guide",
