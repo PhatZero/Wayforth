@@ -234,6 +234,48 @@ function Profession:Start(id)
     return true,message
 end
 
+
+-- Gather-first planner for a live, verified recipe. Plans are intentionally
+-- bounded by the current training cap; never fabricate unknown recipes.
+local gathering={fishing=true,herbalism=true,mining=true,skinning=true}
+function Profession:GatherPlan(id)
+    local profile=profiles[id]
+    if not profile then return nil end
+    local snapshot=self:Read()[id]
+    local skill=snapshot and snapshot.skill or 0
+    local cap=snapshot and snapshot.maxSkill or 0
+    local target=math.min(300,math.max(50,math.ceil(math.max(skill,1)/50)*50))
+    if skill>=target then target=math.min(300,target+50) end
+    if cap>0 then target=math.min(target,cap) end
+    local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,materials={},crafts={},gathering=gathering[id]}
+    if plan.gathering then
+        plan.instructions=profile.method
+        return plan
+    end
+    local recipe,message=self:Recommendation(id)
+    if not recipe then plan.instructions=message;return plan end
+    local count=math.max(0,target-skill)
+    -- One point per orange/yellow craft is a planning assumption selected by
+    -- the player, not a claim about actual game probabilities.
+    plan.crafts[1]={name=recipe.name,color=recipe.color,required=count,completed=0}
+    plan.recipeName=recipe.name
+    for _,item in ipairs(recipe.reagents or {}) do
+        local needed=item.count*count
+        local owned=item.owned or 0
+        if type(GetItemCount)=="function" then
+            local ok,value=pcall(GetItemCount,item.name)
+            if ok and type(value)=="number" then owned=value end
+        end
+        plan.materials[#plan.materials+1]={name=item.name,required=needed,owned=owned,
+            missing=math.max(0,needed-owned)}
+    end
+    plan.ready=true
+    for _,item in ipairs(plan.materials) do
+        if item.missing>0 then plan.ready=false;break end
+    end
+    return plan
+end
+
 function Profession:Initialize()
     self:Sync()
 end
