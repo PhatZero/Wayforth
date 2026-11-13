@@ -334,10 +334,12 @@ function UI:GuideRow(prefix, id, x, y, width)
         function() UI.selectedGuideId = id; UI:ShowTab("Guide Details") end)
     self:Button(prefix .. "star", favorite and "* Saved" or "+ Fav", x + width - 85, y, 80, 28,
         function() ns.Modules.Guides:ToggleFavorite(id); UI:Refresh() end)
-    local meta = (guide.faction or "Shared") .. " / " .. (guide.continent or "Starter Zones")
-    if guide.levelMin then meta = meta .. "  |  " .. guide.levelMin .. "-" .. (guide.levelMax or "?") end
     local compactStatus = status == "In Progress" and "Active"
         or status == "Not Started" and "New" or status
+    -- Dashboard rows have limited width; keep their metadata on one line so
+    -- it cannot run into the next guide when the window is resized.
+    local meta = guide.levelMin and ("Levels "..guide.levelMin.."-"..(guide.levelMax or "?"))
+        or guide.isProfession and "Profession" or (guide.faction or "Shared")
     local details = self:Label(prefix .. "status", meta .. "  |  " .. compactStatus,
         x + 8, y + 29, width - 16, 10, theme.muted)
     if details.SetWordWrap then details:SetWordWrap(false) end
@@ -639,12 +641,14 @@ function UI:Refresh()
             self:Hit("category" .. i, x, 287, tileW, 111, function() UI:ShowTab(entry.tab) end)
         end
 
-        local lowerY = 413
+        local pageHeight=self.page:GetHeight() or 520
+        local visibleRows=pageHeight<510 and 1 or 2
+        local lowerY=visibleRows==1 and math.min(413,pageHeight-67) or 413
         local rightX = col + 16
         self:Label("faveTitle", "FAVORITES", 6, lowerY, col - 2, 14, theme.gold)
         self:Label("recentTitle", "RECENTLY USED", rightX, lowerY, col - 2, 14, theme.gold)
         local guideRowGap = 40
-        for i = 1, 2 do
+        for i = 1, visibleRows do
             local id = fave[i]
             if id then self:GuideRow("dashFave" .. i, id, 6, lowerY + 28 + (i-1)*guideRowGap, col - 6) end
             id = recent[i]

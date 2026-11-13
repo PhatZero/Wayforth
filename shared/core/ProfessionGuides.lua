@@ -6,6 +6,7 @@ ns:RegisterModule("ProfessionGuides", Profession)
 local profiles = {}
 for _, row in ipairs(ns.professionProfiles or {}) do profiles[row.id]=row end
 local bySkillLine = {}
+local lastRecommendation = {}
 for _, row in ipairs(ns.professionProfiles or {}) do bySkillLine[row.skillLine]=row.id end
 local function cleanName(value)
     return tostring(value or ""):lower():gsub("[^%a]", "")
@@ -109,14 +110,19 @@ function Profession:Recommendation(id)
     end
     if type(GetTradeSkillLine)~="function" or type(GetNumTradeSkills)~="function"
         or type(GetTradeSkillInfo)~="function" then
-        return nil,"Open this profession's crafting window to see its known recipes."
+        if lastRecommendation[id] then return lastRecommendation[id] end
+        return nil,"Open this profession's crafting window once to calculate its next skill-up recipe."
     end
     local ok,line=pcall(GetTradeSkillLine)
     if not ok or self:IdForName(line)~=id then
+        if lastRecommendation[id] then return lastRecommendation[id] end
         return nil,"Open the "..profile.name.." window to calculate the next recipe from its learned plans."
     end
     local countOk,count=pcall(GetNumTradeSkills)
-    if not countOk or type(count)~="number" then return nil,"The profession recipe list is not available yet." end
+    if not countOk or type(count)~="number" then
+        if lastRecommendation[id] then return lastRecommendation[id] end
+        return nil,"The profession recipe list is not available yet."
+    end
 
     local candidates={}
     for index=1,math.min(count,1000) do
@@ -157,9 +163,26 @@ function Profession:Recommendation(id)
         return a.name<b.name
     end)
     if #candidates==0 then
+        if lastRecommendation[id] then return lastRecommendation[id] end
         return nil,"No known orange or yellow recipe is visible. Learn recipes, or refresh the profession window."
     end
-    return candidates[1]
+    lastRecommendation[id]=candidates[1]
+    return lastRecommendation[id]
+end
+
+function Profession:PlanText(id)
+    local profile=profiles[id]
+    if not profile then return nil end
+    if id=="fishing" or id=="herbalism" or id=="mining" or id=="skinning" then
+        return "Next action: "..profile.method
+    end
+    local recipe,message=self:Recommendation(id)
+    if not recipe then return "Next craft: "..tostring(message or "Open this profession's recipe list to calculate the next skill-up.") end
+    local materials={}
+    for _,reagent in ipairs(recipe.reagents or {}) do
+        materials[#materials+1]=reagent.count.."x "..reagent.name.." (have "..reagent.owned..")"
+    end
+    return "MAKE: "..recipe.name.." ("..recipe.color..")\nNeed: "..table.concat(materials,", ")
 end
 
 function Profession:RouteTarget(skill,maxSkill)

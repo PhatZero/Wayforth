@@ -17,15 +17,15 @@ local profiles = {
 
 for _, profile in ipairs(profiles) do
     local steps = {
-        {id="profession-"..profile.id.."-start", title="Learn "..profile.name, action="manual", skillComplete=1,
+        {id="profession-"..profile.id.."-start", title="Learn "..profile.name, action="manual", trainer=true, skillComplete=1,
             text="Visit a trainer and learn "..profile.name..". Then open its profession window and use WayForth's Next Skill-Up recommendation. Make one recommended craft at a time and check the guide again after each skill-up so you do not craft extra items after a recipe turns green or gray. "..profile.pairing.." is a common pairing."},
         {id="profession-"..profile.id.."-camp", title="Check your profession campsite at skill 20", action="manual", skillComplete=20,
             text="At skill 20, check the profession trainer and campsite for this profession's camp item or recipe. Some camp benefits require a quest, purchase or blueprint. Then keep using one-at-a-time skill-up recommendations."},
-        {id="profession-"..profile.id.."-journeyman", title="Train Journeyman before the 75 cap", action="manual", rankCap=75,
+        {id="profession-"..profile.id.."-journeyman", title="Train Journeyman before the 75 cap", action="manual", trainer=true, rankCap=75,
             text="Train Journeyman as soon as the live trainer allows it, before reaching the Apprentice cap of 75. Check the trainer's character-level and location requirements. Once the learned cap rises, follow the Next Skill-Up recommendation toward the new cap."},
-        {id="profession-"..profile.id.."-expert", title="Train Expert before the 150 cap", action="manual", rankCap=150,
+        {id="profession-"..profile.id.."-expert", title="Train Expert before the 150 cap", action="manual", trainer=true, rankCap=150,
             text="Train Expert as soon as the live trainer allows it, before reaching the Journeyman cap of 150. Check the trainer's character-level, location and any profession-specific quest requirements. Then follow the Next Skill-Up recommendation toward the new cap."},
-        {id="profession-"..profile.id.."-artisan", title="Train Artisan before the 225 cap", action="manual", rankCap=225,
+        {id="profession-"..profile.id.."-artisan", title="Train Artisan before the 225 cap", action="manual", trainer=true, rankCap=225,
             text="Train Artisan as soon as the live trainer allows it, before reaching the Expert cap of 225. Character-level requirements can differ between crafting, gathering and secondary skills, so use the live trainer as the authority. Then follow the Next Skill-Up recommendation to 300."},
         {id="profession-"..profile.id.."-finish", title="Reach skill 300", action="manual", skillComplete=300,
             text="Continue one skill-up at a time until you reach 300. The recommendation is recalculated after your skill changes, so it can switch recipes when the current one stops being an efficient source of points. Gather only the materials shown for the next recommended craft."},
