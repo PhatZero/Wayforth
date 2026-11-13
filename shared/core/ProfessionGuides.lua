@@ -98,6 +98,79 @@ function Profession:Suggested()
     return "alchemy"
 end
 
+-- Read the classic trade-skill list when it is open. It exposes the character's
+-- learned recipes, live skill-up color, reagent quantities and bag counts, which
+-- lets the guide recommend a recipe without bundling stale price/recipe tables.
+function Profession:Recommendation(id)
+    local profile=profiles[id]
+    if not profile then return nil,"Choose a profession first." end
+    if id=="fishing" or id=="herbalism" or id=="mining" or id=="skinning" then
+        return nil,profile.method
+    end
+    if type(GetTradeSkillLine)~="function" or type(GetNumTradeSkills)~="function"
+        or type(GetTradeSkillInfo)~="function" then
+        return nil,"Open this profession's crafting window to see its known recipes."
+    end
+    local ok,line=pcall(GetTradeSkillLine)
+    if not ok or self:IdForName(line)~=id then
+        return nil,"Open the "..profile.name.." window to calculate the next recipe from its learned plans."
+    end
+    local countOk,count=pcall(GetNumTradeSkills)
+    if not countOk or type(count)~="number" then return nil,"The profession recipe list is not available yet." end
+
+    local candidates={}
+    for index=1,math.min(count,1000) do
+        local rowOk,name,color=pcall(GetTradeSkillInfo,index)
+        local colorName=type(color)=="string" and color:lower() or ""
+        if rowOk and type(name)=="string" and (colorName=="optimal" or colorName=="medium") then
+            local reagentCount=0
+            if type(GetTradeSkillNumReagents)=="function" then
+                local reagentsOk,value=pcall(GetTradeSkillNumReagents,index)
+                if reagentsOk and type(value)=="number" then reagentCount=math.min(value,20) end
+            end
+            local reagents,total,missing={},0,0
+            for reagentIndex=1,reagentCount do
+                if type(GetTradeSkillReagentInfo)=="function" then
+                    local reagentOk,reagentName,_,amount,owned=pcall(GetTradeSkillReagentInfo,index,reagentIndex)
+                    if reagentOk and type(reagentName)=="string" and type(amount)=="number" then
+                        owned=type(owned)=="number" and owned or 0
+                        total=total+amount
+                        missing=missing+math.max(0,amount-owned)
+                        reagents[#reagents+1]={name=reagentName,count=amount,owned=owned}
+                    end
+                end
+            end
+            if #reagents>0 then
+                -- Prefer orange for its better skill-up chance, then minimize total
+                -- reagent units and missing inventory. The client does not expose
+                -- exact yellow skill-up odds, so do not claim an exact cost/point.
+                local colorRank=colorName=="optimal" and 1 or 2
+                candidates[#candidates+1]={name=name,color=colorRank==1 and "orange" or "yellow",reagents=reagents,
+                    total=total,missing=missing,colorRank=colorRank}
+            end
+        end
+    end
+    table.sort(candidates,function(a,b)
+        if a.colorRank~=b.colorRank then return a.colorRank<b.colorRank end
+        if a.missing~=b.missing then return a.missing<b.missing end
+        if a.total~=b.total then return a.total<b.total end
+        return a.name<b.name
+    end)
+    if #candidates==0 then
+        return nil,"No known orange or yellow recipe is visible. Learn recipes, or refresh the profession window."
+    end
+    return candidates[1]
+end
+
+function Profession:RouteTarget(skill,maxSkill)
+    maxSkill=number(maxSkill) or 0
+    if maxSkill>=300 then return 300,"Artisan" end
+    if maxSkill>=225 then return maxSkill-25,"Artisan" end
+    if maxSkill>=150 then return maxSkill-25,"Expert" end
+    if maxSkill>=75 then return maxSkill-25,"Journeyman" end
+    return maxSkill>0 and maxSkill or 300,"next rank"
+end
+
 function Profession:Sync(id)
     local guideId=id or (ns.char and ns.char.activeGuide)
     local guide=ns.Modules.Guides:GetGuide(guideId)
