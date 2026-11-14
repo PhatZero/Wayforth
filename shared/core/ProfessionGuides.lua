@@ -7,6 +7,7 @@ local profiles = {}
 for _, row in ipairs(ns.professionProfiles or {}) do profiles[row.id]=row end
 local bySkillLine = {}
 local lastRecommendation = {}
+local recipeSnapshots = {}
 for _, row in ipairs(ns.professionProfiles or {}) do bySkillLine[row.skillLine]=row.id end
 local function cleanName(value)
     return tostring(value or ""):lower():gsub("[^%a]", "")
@@ -128,7 +129,7 @@ function Profession:Recommendation(id)
     for index=1,math.min(count,1000) do
         local rowOk,name,color=pcall(GetTradeSkillInfo,index)
         local colorName=type(color)=="string" and color:lower() or ""
-        if rowOk and type(name)=="string" and (colorName=="optimal" or colorName=="medium") then
+        if rowOk and type(name)=="string" and colorName=="optimal" then
             local reagentCount=0
             if type(GetTradeSkillNumReagents)=="function" then
                 local reagentsOk,value=pcall(GetTradeSkillNumReagents,index)
@@ -147,12 +148,9 @@ function Profession:Recommendation(id)
                 end
             end
             if #reagents>0 then
-                -- Prefer orange for its better skill-up chance, then minimize total
-                -- reagent units and missing inventory. The client does not expose
-                -- exact yellow skill-up odds, so do not claim an exact cost/point.
-                local colorRank=colorName=="optimal" and 1 or 2
-                candidates[#candidates+1]={name=name,color=colorRank==1 and "orange" or "yellow",reagents=reagents,
-                    total=total,missing=missing,colorRank=colorRank}
+                -- Orange-only: never plan yellow crafts as guaranteed skill-ups.
+                candidates[#candidates+1]={name=name,color="orange",reagents=reagents,
+                    total=total,missing=missing,colorRank=1}
             end
         end
     end
@@ -163,10 +161,17 @@ function Profession:Recommendation(id)
         return a.name<b.name
     end)
     if #candidates==0 then
-        if lastRecommendation[id] then return lastRecommendation[id] end
-        return nil,"No known orange or yellow recipe is visible. Learn recipes, or refresh the profession window."
+        lastRecommendation[id]=nil
+        recipeSnapshots[id]=nil
+        if ns.char and ns.char.professionRecipeCache then ns.char.professionRecipeCache[id]=nil end
+        return nil,"No known orange recipe is visible. Train a new orange recipe or refresh the profession window."
     end
     lastRecommendation[id]=candidates[1]
+    recipeSnapshots[id]=candidates
+    if ns.char then
+        ns.char.professionRecipeCache=ns.char.professionRecipeCache or {}
+        ns.char.professionRecipeCache[id]=candidates
+    end
     return lastRecommendation[id]
 end
 
@@ -247,35 +252,90 @@ function Profession:GatherPlan(id)
     local target=math.min(300,math.max(50,math.ceil(math.max(skill,1)/50)*50))
     if skill>=target then target=math.min(300,target+50) end
     if cap>0 then target=math.min(target,cap) end
-    local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,materials={},crafts={},gathering=gathering[id]}
+    local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,
+        materials={},crafts={},gathering=gathering[id]}
     if plan.gathering then
         plan.instructions=profile.method
         return plan
     end
+    -- Read the active profession window when available. A previously scanned
+    -- recipe snapshot remains usable after closing it, but never invents recipes.
     local recipe,message=self:Recommendation(id)
-    if not recipe then plan.instructions=message;return plan end
-    local count=math.max(0,target-skill)
-    -- One point per orange/yellow craft is a planning assumption selected by
-    -- the player, not a claim about actual game probabilities.
-    plan.crafts[1]={name=recipe.name,color=recipe.color,required=count,completed=0}
-    plan.recipeName=recipe.name
-    for _,item in ipairs(recipe.reagents or {}) do
-        local needed=item.count*count
+    local candidates=recipeSnapshots[id]
+    if (not candidates or #candidates==0) and ns.char and ns.char.professionRecipeCache then
+        candidates=ns.char.professionRecipeCache[id]
+        if type(candidates)=="table" then recipeSnapshots[id]=candidates end
+    end
+    if not candidates or #candidates==0 then
+        plan.instructions=message
+        plan.requiresScan=true
+        return plan
+    end
+    local remaining=math.max(0,target-skill)
+    local totals={}
+    if remaining==0 then plan.ready=true;return plan end
+    -- Prefer orange, then yellow. Avoid claiming a full 1-300 route when the
+    -- client has not exposed unlearned recipes or future skill colors.
+    local selected
+    for _,candidate in ipairs(candidates) do
+        if candidate.color=="orange" then selected=candidate;break end
+    end
+    if not selected then
+        plan.instructions="No verified orange recipe is available. Train a new recipe or rescan the profession window."
+        return plan
+    end
+    plan.cached=true
+    local completed=0
+    if ns.char then
+        ns.char.professionCraftProgress=ns.char.professionCraftProgress or {}
+        local progress=ns.char.professionCraftProgress[id]
+        if not progress or progress.recipe~=selected.name or progress.target~=target
+            or skill<progress.startSkill then
+            progress={recipe=selected.name,target=target,startSkill=skill}
+            ns.char.professionCraftProgress[id]=progress
+        end
+        completed=math.max(0,skill-progress.startSkill)
+    end
+    plan.crafts[1]={name=selected.name,color=selected.color,
+        required=remaining+completed,completed=completed,progressType="skill"}
+    for _,item in ipairs(selected.reagents or {}) do
+        local needed=item.count*remaining
         local owned=item.owned or 0
         if type(GetItemCount)=="function" then
             local ok,value=pcall(GetItemCount,item.name)
             if ok and type(value)=="number" then owned=value end
         end
-        plan.materials[#plan.materials+1]={name=item.name,required=needed,owned=owned,
+        totals[#totals+1]={name=item.name,required=needed,owned=owned,
             missing=math.max(0,needed-owned)}
     end
+    plan.materials=totals
     plan.ready=true
-    for _,item in ipairs(plan.materials) do
+    for _,item in ipairs(totals) do
         if item.missing>0 then plan.ready=false;break end
     end
+    plan.partial=true
+    plan.instructions="This is a current-recipe estimate, not a verified full-range recipe route."
     return plan
 end
 
+-- Triggered by tracker refreshes while the player has the trade-skill panel open.
+-- This captures recipes before the profession window is closed.
+function Profession:CaptureOpenProfession()
+    if type(GetTradeSkillLine)~="function" then return end
+    local ok,name=pcall(GetTradeSkillLine)
+    if not ok then return end
+    local id=self:IdForName(name)
+    if id and not gathering[id] then self:Recommendation(id) end
+end
+
 function Profession:Initialize()
+    if ns.char and type(ns.char.professionRecipeCache)=="table" then
+        for id,candidates in pairs(ns.char.professionRecipeCache) do
+            if profiles[id] and type(candidates)=="table" and #candidates>0 then
+                recipeSnapshots[id]=candidates
+                lastRecommendation[id]=candidates[1]
+            end
+        end
+    end
     self:Sync()
 end
