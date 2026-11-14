@@ -7,6 +7,7 @@ local profiles = {}
 for _, row in ipairs(ns.professionProfiles or {}) do profiles[row.id]=row end
 local bySkillLine = {}
 local lastRecommendation = {}
+local recipeSnapshots = {}
 for _, row in ipairs(ns.professionProfiles or {}) do bySkillLine[row.skillLine]=row.id end
 local function cleanName(value)
     return tostring(value or ""):lower():gsub("[^%a]", "")
@@ -167,6 +168,7 @@ function Profession:Recommendation(id)
         return nil,"No known orange or yellow recipe is visible. Learn recipes, or refresh the profession window."
     end
     lastRecommendation[id]=candidates[1]
+    recipeSnapshots[id]=candidates
     return lastRecommendation[id]
 end
 
@@ -247,33 +249,67 @@ function Profession:GatherPlan(id)
     local target=math.min(300,math.max(50,math.ceil(math.max(skill,1)/50)*50))
     if skill>=target then target=math.min(300,target+50) end
     if cap>0 then target=math.min(target,cap) end
-    local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,materials={},crafts={},gathering=gathering[id]}
+    local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,
+        materials={},crafts={},gathering=gathering[id]}
     if plan.gathering then
         plan.instructions=profile.method
         return plan
     end
+    -- Read the active profession window when available. A previously scanned
+    -- recipe snapshot remains usable after closing it, but never invents recipes.
     local recipe,message=self:Recommendation(id)
-    if not recipe then plan.instructions=message;return plan end
-    local count=math.max(0,target-skill)
-    -- One point per orange/yellow craft is a planning assumption selected by
-    -- the player, not a claim about actual game probabilities.
-    plan.crafts[1]={name=recipe.name,color=recipe.color,required=count,completed=0}
-    plan.recipeName=recipe.name
-    for _,item in ipairs(recipe.reagents or {}) do
-        local needed=item.count*count
+    local candidates=recipeSnapshots[id]
+    if not candidates or #candidates==0 then
+        plan.instructions=message
+        plan.requiresScan=true
+        return plan
+    end
+    local remaining=math.max(0,target-skill)
+    local totals={}
+    -- Prefer orange, then yellow. Avoid claiming a full 1-300 route when the
+    -- client has not exposed unlearned recipes or future skill colors.
+    local selected=candidates[1]
+    if not selected then return plan end
+    local completed=0
+    if ns.char then
+        ns.char.professionCraftProgress=ns.char.professionCraftProgress or {}
+        local progress=ns.char.professionCraftProgress[id]
+        if not progress or progress.recipe~=selected.name or progress.target~=target
+            or skill<progress.startSkill then
+            progress={recipe=selected.name,target=target,startSkill=skill}
+            ns.char.professionCraftProgress[id]=progress
+        end
+        completed=math.max(0,skill-progress.startSkill)
+    end
+    plan.crafts[1]={name=selected.name,color=selected.color,
+        required=remaining+completed,completed=completed}
+    for _,item in ipairs(selected.reagents or {}) do
+        local needed=item.count*remaining
         local owned=item.owned or 0
         if type(GetItemCount)=="function" then
             local ok,value=pcall(GetItemCount,item.name)
             if ok and type(value)=="number" then owned=value end
         end
-        plan.materials[#plan.materials+1]={name=item.name,required=needed,owned=owned,
+        totals[#totals+1]={name=item.name,required=needed,owned=owned,
             missing=math.max(0,needed-owned)}
     end
+    plan.materials=totals
     plan.ready=true
-    for _,item in ipairs(plan.materials) do
+    for _,item in ipairs(totals) do
         if item.missing>0 then plan.ready=false;break end
     end
+    plan.partial=true
     return plan
+end
+
+-- Triggered by tracker refreshes while the player has the trade-skill panel open.
+-- This captures recipes before the profession window is closed.
+function Profession:CaptureOpenProfession()
+    if type(GetTradeSkillLine)~="function" then return end
+    local ok,name=pcall(GetTradeSkillLine)
+    if not ok then return end
+    local id=self:IdForName(name)
+    if id and not gathering[id] then self:Recommendation(id) end
 end
 
 function Profession:Initialize()
