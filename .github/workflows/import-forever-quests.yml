@@ -1,0 +1,54 @@
+name: Import WoW Forever quests and zones
+
+on:
+  workflow_dispatch:
+    inputs:
+      details_limit:
+        description: 'New quest details to fetch this run (0=index only, max 4000; recommend 700)'
+        type: number
+        required: true
+        default: 700
+
+permissions:
+  contents: read
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore previously downloaded quest data
+        uses: actions/cache/restore@v4
+        with:
+          path: build/foreverdb-quests
+          key: foreverdb-quests-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            foreverdb-quests-
+      - name: Fetch quests, zones and bounded quest details
+        env:
+          FOREVERDB_API_KEY: ${{ secrets.FOREVERDB_API_KEY }}
+          DETAILS_LIMIT: ${{ inputs.details_limit }}
+        run: |
+          if [ -z "$FOREVERDB_API_KEY" ]; then
+            echo "::error::Missing FOREVERDB_API_KEY Actions secret"
+            exit 1
+          fi
+          python3 scripts/fetch_foreverdb_quests.py --details-limit "$DETAILS_LIMIT"
+      - name: Save quest import checkpoint
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: build/foreverdb-quests
+          key: foreverdb-quests-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Upload quest and zone source snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foreverdb-quest-source
+          path: build/foreverdb-quests/
+          if-no-files-found: warn
+          retention-days: 7
