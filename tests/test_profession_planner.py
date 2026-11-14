@@ -23,6 +23,13 @@ class ProfessionPlannerRegressionTests(unittest.TestCase):
         self.assertIn("Tracker:RenderProfession()", tracker)
         self.assertIn("professionElapsed>=1.5", tracker)
 
+    def test_orange_only_recommendations(self):
+        source = ENGINE.read_text()
+        self.assertIn('colorName=="optimal"', source)
+        self.assertNotIn('colorName=="medium"', source)
+        self.assertIn('if candidate.color=="orange"', source)
+        self.assertIn("No known orange recipe", source)
+
     def test_no_false_completed_craft_claims(self):
         tracker = TRACKER.read_text()
         self.assertIn("Skill gains ", tracker)
