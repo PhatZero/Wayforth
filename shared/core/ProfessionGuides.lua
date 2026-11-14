@@ -129,7 +129,7 @@ function Profession:Recommendation(id)
     for index=1,math.min(count,1000) do
         local rowOk,name,color=pcall(GetTradeSkillInfo,index)
         local colorName=type(color)=="string" and color:lower() or ""
-        if rowOk and type(name)=="string" and (colorName=="optimal" or colorName=="medium") then
+        if rowOk and type(name)=="string" and colorName=="optimal" then
             local reagentCount=0
             if type(GetTradeSkillNumReagents)=="function" then
                 local reagentsOk,value=pcall(GetTradeSkillNumReagents,index)
@@ -148,12 +148,9 @@ function Profession:Recommendation(id)
                 end
             end
             if #reagents>0 then
-                -- Prefer orange for its better skill-up chance, then minimize total
-                -- reagent units and missing inventory. The client does not expose
-                -- exact yellow skill-up odds, so do not claim an exact cost/point.
-                local colorRank=colorName=="optimal" and 1 or 2
-                candidates[#candidates+1]={name=name,color=colorRank==1 and "orange" or "yellow",reagents=reagents,
-                    total=total,missing=missing,colorRank=colorRank}
+                -- Orange-only: never plan yellow crafts as guaranteed skill-ups.
+                candidates[#candidates+1]={name=name,color="orange",reagents=reagents,
+                    total=total,missing=missing,colorRank=1}
             end
         end
     end
@@ -164,8 +161,10 @@ function Profession:Recommendation(id)
         return a.name<b.name
     end)
     if #candidates==0 then
-        if lastRecommendation[id] then return lastRecommendation[id] end
-        return nil,"No known orange or yellow recipe is visible. Learn recipes, or refresh the profession window."
+        lastRecommendation[id]=nil
+        recipeSnapshots[id]=nil
+        if ns.char and ns.char.professionRecipeCache then ns.char.professionRecipeCache[id]=nil end
+        return nil,"No known orange recipe is visible. Train a new orange recipe or refresh the profession window."
     end
     lastRecommendation[id]=candidates[1]
     recipeSnapshots[id]=candidates
@@ -277,8 +276,14 @@ function Profession:GatherPlan(id)
     if remaining==0 then plan.ready=true;return plan end
     -- Prefer orange, then yellow. Avoid claiming a full 1-300 route when the
     -- client has not exposed unlearned recipes or future skill colors.
-    local selected=candidates[1]
-    if not selected then return plan end
+    local selected
+    for _,candidate in ipairs(candidates) do
+        if candidate.color=="orange" then selected=candidate;break end
+    end
+    if not selected then
+        plan.instructions="No verified orange recipe is available. Train a new recipe or rescan the profession window."
+        return plan
+    end
     plan.cached=true
     local completed=0
     if ns.char then
