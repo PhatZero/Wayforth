@@ -1,0 +1,32 @@
+name: Import WoW Forever profession source data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download all ForeverDB profession and gathering data
+        env:
+          FOREVERDB_API_KEY: ${{ secrets.FOREVERDB_API_KEY }}
+        run: |
+          if [ -z "$FOREVERDB_API_KEY" ]; then
+            echo "::error::Set FOREVERDB_API_KEY in repository Actions secrets"
+            exit 1
+          fi
+          python3 scripts/fetch_foreverdb_professions.py build/foreverdb
+      - name: Upload source snapshot for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: foreverdb-professions-source
+          path: build/foreverdb/
+          retention-days: 7
