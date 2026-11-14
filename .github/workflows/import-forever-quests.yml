@@ -1,6 +1,12 @@
 name: Import WoW Forever quests and zones
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-forever-quests.yml'
+  schedule:
+    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       details_limit:
@@ -8,6 +14,10 @@ on:
         type: number
         required: true
         default: 700
+
+concurrency:
+  group: foreverdb-quest-import
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -31,13 +41,14 @@ jobs:
       - name: Fetch quests, zones and bounded quest details
         env:
           FOREVERDB_API_KEY: ${{ secrets.FOREVERDB_API_KEY }}
-          DETAILS_LIMIT: ${{ inputs.details_limit }}
+          DETAILS_LIMIT: ${{ inputs.details_limit || '700' }}
         run: |
           if [ -z "$FOREVERDB_API_KEY" ]; then
             echo "::error::Missing FOREVERDB_API_KEY Actions secret"
             exit 1
           fi
           python3 scripts/fetch_foreverdb_quests.py --details-limit "$DETAILS_LIMIT"
+          cat build/foreverdb-quests/summary.json >> "$GITHUB_STEP_SUMMARY"
       - name: Save quest import checkpoint
         if: always()
         uses: actions/cache/save@v4
