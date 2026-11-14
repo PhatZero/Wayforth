@@ -274,6 +274,7 @@ function Profession:GatherPlan(id)
     end
     local remaining=math.max(0,target-skill)
     local totals={}
+    if remaining==0 then plan.ready=true;return plan end
     -- Prefer orange, then yellow. Avoid claiming a full 1-300 route when the
     -- client has not exposed unlearned recipes or future skill colors.
     local selected=candidates[1]
@@ -291,7 +292,7 @@ function Profession:GatherPlan(id)
         completed=math.max(0,skill-progress.startSkill)
     end
     plan.crafts[1]={name=selected.name,color=selected.color,
-        required=remaining+completed,completed=completed}
+        required=remaining+completed,completed=completed,progressType="skill"}
     for _,item in ipairs(selected.reagents or {}) do
         local needed=item.count*remaining
         local owned=item.owned or 0
@@ -308,6 +309,7 @@ function Profession:GatherPlan(id)
         if item.missing>0 then plan.ready=false;break end
     end
     plan.partial=true
+    plan.instructions="This is a current-recipe estimate, not a verified full-range recipe route."
     return plan
 end
 
