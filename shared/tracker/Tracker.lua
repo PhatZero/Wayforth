@@ -598,11 +598,11 @@ function Tracker:RenderProfession()
         content:SetSize(column-8,math.max(1,y))
     end
     local leftLines={{text="STEP 1  |  GATHER MATERIALS",color=theme.gold},
-        {text="Skill "..plan.skill.." / "..plan.target.."  |  Inventory updates live",color=theme.teal}}
+        {text="Skill "..plan.skill.." / "..plan.target.."  |  Bag counts refresh live",color=theme.teal}}
     if plan.gathering then
         leftLines[#leftLines+1]={text="Gathering profession: no crafting reagents required."}
     elseif #plan.materials==0 then
-        leftLines[#leftLines+1]={text="Open "..plan.name.." once to read learned recipes and their ingredients."}
+        leftLines[#leftLines+1]={text="Recipe data not loaded. Open "..plan.name.." once to scan known recipes. Full offline shopping lists are not available yet."}
     else
         for _,item in ipairs(plan.materials) do
             leftLines[#leftLines+1]={text=(item.missing==0 and "[x] " or "[ ] ")..
@@ -620,7 +620,7 @@ function Tracker:RenderProfession()
         rightLines[#rightLines+1]={text=plan.ready and "Materials ready. Begin crafting." or "Collect all ingredients before crafting.",color=theme.teal}
         for _,craft in ipairs(plan.crafts) do
             rightLines[#rightLines+1]={text=craft.name.." ("..craft.color..")"}
-            rightLines[#rightLines+1]={text="Crafted "..craft.completed.."/"..craft.required.."  |  Skill "..plan.skill.." -> "..plan.target}
+            rightLines[#rightLines+1]={text="Skill gains "..craft.completed.."/"..craft.required.."  |  Skill "..plan.skill.." -> "..plan.target}
         end
         rightLines[#rightLines+1]={text="Current learned recipe only. Recheck after each skill-up; the next recipe may change."}
     end
