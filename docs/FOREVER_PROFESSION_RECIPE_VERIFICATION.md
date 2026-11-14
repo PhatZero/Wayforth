@@ -15,7 +15,26 @@ A recipe is **not approved for WayForth routing** merely because it appears on a
 
 A Classic or Retail page is never sufficient. Unconfirmed candidates remain outside `ns.professionRecipeCatalog`; missing skill ranges must produce a gap, not guessed quantities.
 
-## Leatherworking 61–100: discovery sources (NOT YET APPROVED)
+## Full catalog coverage (all professions, 1–Forever cap)
+
+All twelve professions are in scope simultaneously. A single Leatherworking skill range is **not** the deliverable or a release gate by itself. Crafting professions require complete recipe and ingredient coverage; gathering professions require Forever-verified nodes, skill thresholds, trainer/rank gates, and region-specific routes.
+
+| Profession | Required data | Verification status |
+| --- | --- | --- |
+| Alchemy | Recipes, reagents, orange thresholds, trainers | Pending |
+| Blacksmithing | Plans, bars/intermediates, orange thresholds, trainers | Pending |
+| Cooking | Recipes, ingredients, orange thresholds, sources | Pending |
+| Enchanting | Enchants, materials, orange thresholds, trainers | Pending |
+| Engineering | Schematics, components, orange thresholds, trainers | Pending |
+| First Aid | Bandages and Forever-specific recipes, materials, orange thresholds | Pending |
+| Fishing | Skill thresholds, trainers, Forever waters/routes | Pending |
+| Herbalism | Nodes, skill thresholds, trainers, zones | Pending |
+| Leatherworking | Patterns, hides/leather/intermediates, orange thresholds | Pending |
+| Mining | Ore nodes, smelting recipes, skill thresholds, zones | Pending |
+| Skinning | Creature skill thresholds, zones, trainers | Pending |
+| Tailoring | Patterns, cloth/intermediates, orange thresholds, trainers | Pending |
+
+## Leatherworking discovery sources (NOT YET APPROVED)
 
 | Source | Client/build claimed | What it provides | Current status |
 | --- | --- | --- | --- |
@@ -27,12 +46,12 @@ A Classic or Retail page is never sufficient. Unconfirmed candidates remain outs
 
 These sources disagree on catalog counts and builds. **Do not automatically reconcile or treat their claims as game verification.** Confirm every candidate independently, especially when its orange threshold or ingredients differ.
 
-## First acceptance fixture
+## Regression example, not a delivery milestone
 
 - Character: Leatherworking **61/100**.
 - Required: a contiguous verified **orange-only** route from 61 to 100, including trainer/rank checks.
 - Expected UI: full recipe sequence and expanded ingredient totals **before** opening the profession window.
-- Current status: **blocked on verified spell/item IDs, recipe orange breakpoints, and complete acquisition details**.
+- Current status: **blocked on verified spell/item IDs, recipe orange breakpoints, and complete acquisition details**. The same verification gate applies to **every** profession and skill range.
 - Never substitute synthetic test recipes for production data.
 
 ## Source policy
