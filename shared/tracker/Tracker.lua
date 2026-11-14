@@ -175,6 +175,34 @@ function Tracker:MakeFrame()
     end,"quiet")
     self.pinButton:SetPoint("TOPRIGHT",objective,"TOPRIGHT",-9,-6)
 
+    -- Dedicated profession workspace: materials and crafting in the same tracker.
+    local professionPanel=CreateFrame("Frame",nil,panel)
+    professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-149)
+    professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,55)
+    theme:Panel(professionPanel,theme.panelLight,theme.gold)
+    self.professionPanel=professionPanel
+    local materials=CreateFrame("ScrollFrame",nil,professionPanel)
+    local materialContent=CreateFrame("Frame",nil,materials)
+    materials:SetScrollChild(materialContent)
+    materials:EnableMouseWheel(true)
+    materials:SetScript("OnMouseWheel",function(frame,delta)
+        frame:SetVerticalScroll(math.max(0,math.min(math.max(0,materialContent:GetHeight()-frame:GetHeight()),frame:GetVerticalScroll()-delta*26)))
+    end)
+    local crafting=CreateFrame("ScrollFrame",nil,professionPanel)
+    local craftContent=CreateFrame("Frame",nil,crafting)
+    crafting:SetScrollChild(craftContent)
+    crafting:EnableMouseWheel(true)
+    crafting:SetScript("OnMouseWheel",function(frame,delta)
+        frame:SetVerticalScroll(math.max(0,math.min(math.max(0,craftContent:GetHeight()-frame:GetHeight()),frame:GetVerticalScroll()-delta*26)))
+    end)
+    self.professionMaterials=materials
+    self.professionCrafting=crafting
+    self.professionMaterialContent=materialContent
+    self.professionCraftContent=craftContent
+    self.professionMaterialRows={}
+    self.professionCraftRows={}
+    professionPanel:Hide()
+
     self.upcomingTitle=label(panel,"UPCOMING STEPS",11,theme.teal,15,300,200)
     self.upcomingPage=1
     self.pageButton=theme:Button(panel,94,24,"MORE  >",function()
@@ -518,6 +546,78 @@ function Tracker:ApplyOpacity()
     end
 end
 
+function Tracker:RenderProfession()
+    local guide=ns.Modules.Guides:GetGuide()
+    if not guide or not guide.isProfession then return end
+    local profession=ns.Modules.ProfessionGuides
+    local plan=profession and profession:GatherPlan(guide.professionId)
+    if not plan then return end
+    local width=math.max(370,self.frame:GetWidth()-18)
+    local column=math.floor((width-30)/2)
+    local left=self.professionMaterials
+    local right=self.professionCrafting
+    left:ClearAllPoints()
+    left:SetPoint("TOPLEFT",self.professionPanel,"TOPLEFT",10,-12)
+    left:SetPoint("BOTTOMLEFT",self.professionPanel,"BOTTOMLEFT",10,10)
+    left:SetWidth(column)
+    right:ClearAllPoints()
+    right:SetPoint("TOPRIGHT",self.professionPanel,"TOPRIGHT",-10,-12)
+    right:SetPoint("BOTTOMRIGHT",self.professionPanel,"BOTTOMRIGHT",-10,10)
+    right:SetWidth(column)
+    local function render(content,rows,lines)
+        local y=0
+        for i,value in ipairs(lines) do
+            local row=rows[i]
+            if not row then
+                row=theme:Text(content,"",i==1 and 13 or 11,i==1 and theme.gold or theme.ivory)
+                row:SetWordWrap(true)
+                rows[i]=row
+            end
+            row:SetWidth(column-8)
+            row:SetText(value.text)
+            row:SetTextColor(unpack(value.color or theme.ivory))
+            row:ClearAllPoints()
+            row:SetPoint("TOPLEFT",content,"TOPLEFT",0,-y)
+            row:SetHeight(0)
+            local h=math.max(20,row:GetStringHeight()+8)
+            row:SetHeight(h)
+            row:Show()
+            y=y+h+5
+        end
+        for i=#lines+1,#rows do rows[i]:Hide() end
+        content:SetSize(column-8,math.max(1,y))
+    end
+    local leftLines={{text="STEP 1  |  GATHER MATERIALS",color=theme.gold},
+        {text="Skill "..plan.skill.." / "..plan.target.."  |  Inventory updates live",color=theme.teal}}
+    if plan.gathering then
+        leftLines[#leftLines+1]={text="Gathering profession: no crafting reagents required."}
+    elseif #plan.materials==0 then
+        leftLines[#leftLines+1]={text="Open "..plan.name.." once to read learned recipes and their ingredients."}
+    else
+        for _,item in ipairs(plan.materials) do
+            leftLines[#leftLines+1]={text=(item.missing==0 and "[x] " or "[ ] ")..
+                item.name.."  "..math.min(item.owned,item.required).."/"..item.required,
+                color=item.missing==0 and theme.green or theme.ivory}
+        end
+    end
+    local rightLines={{text=plan.gathering and "STEP 2  |  GATHERING ROUTE" or "STEP 2  |  CRAFTING PLAN",color=theme.gold}}
+    if plan.gathering then
+        rightLines[#rightLines+1]={text="Skill "..plan.skill.." -> "..plan.target,color=theme.teal}
+        rightLines[#rightLines+1]={text=plan.instructions or "Gather nodes that grant skill."}
+    elseif #plan.crafts==0 then
+        rightLines[#rightLines+1]={text=plan.instructions or "Learn a suitable recipe at your trainer."}
+    else
+        rightLines[#rightLines+1]={text=plan.ready and "Materials ready. Begin crafting." or "Collect all ingredients before crafting.",color=theme.teal}
+        for _,craft in ipairs(plan.crafts) do
+            rightLines[#rightLines+1]={text=craft.name.." ("..craft.color..")"}
+            rightLines[#rightLines+1]={text="Craft "..craft.required.."  |  Skill "..plan.skill.." -> "..plan.target}
+        end
+        rightLines[#rightLines+1]={text="Recheck after each skill-up; recipe colors and requirements can change."}
+    end
+    render(self.professionMaterialContent,self.professionMaterialRows,leftLines)
+    render(self.professionCraftContent,self.professionCraftRows,rightLines)
+end
+
 function Tracker:Layout()
     if not self.frame or not self.summary then return end
     local width,height=self.frame:GetWidth(),self.frame:GetHeight()
@@ -532,6 +632,13 @@ function Tracker:Layout()
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
+    local isProfession=ns.Modules.Guides:GetGuide() and ns.Modules.Guides:GetGuide().isProfession
+    if self.professionPanel then
+        if isProfession and not ns.char.trackerMinimized then
+            self.professionPanel:Show()
+            self:RenderProfession()
+        else self.professionPanel:Hide() end
+    end
     local cardH=self:LayoutObjectives(width,height)
     local upcomingY=149+cardH+12
     self.upcomingTitle:ClearAllPoints()
@@ -580,6 +687,13 @@ function Tracker:Layout()
         if visible>0 and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
         else self.upcomingTitle:Hide() end
         self.controls:Show()
+    end
+    if isProfession and not ns.char.trackerMinimized then
+        self.objectiveCard:Hide()
+        self.upcomingTitle:Hide()
+        if self.pageButton then self.pageButton:Hide() end
+        for _,button in ipairs(self.upcomingButtons) do button:Hide() end
+        self.controls:Hide()
     end
     ns:Call("QuestItemButton","Position")
 end
