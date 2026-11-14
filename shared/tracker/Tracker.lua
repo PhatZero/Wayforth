@@ -391,6 +391,16 @@ function Tracker:MakeFrame()
     panel:SetScript("OnSizeChanged",function() Tracker:Layout() end)
     panel:SetScript("OnHide",function() ns:Call("QuestItemButton","Refresh",Tracker) end)
     panel:SetScript("OnUpdate",function(_,elapsed)
+        Tracker.professionElapsed=(Tracker.professionElapsed or 0)+elapsed
+        if Tracker.professionElapsed>=1.5 then
+            Tracker.professionElapsed=0
+            local guide=ns.Modules.Guides:GetGuide()
+            if guide and guide.isProfession and not ns.char.trackerMinimized then
+                local profession=ns.Modules.ProfessionGuides
+                if profession then profession:CaptureOpenProfession() end
+                Tracker:RenderProfession()
+            end
+        end
         if not Tracker.objectiveDirty then return end
         Tracker.objectiveElapsed=(Tracker.objectiveElapsed or 0)+elapsed
         if Tracker.objectiveElapsed >= 0.1 then Tracker:RefreshObjectives() end
@@ -610,9 +620,9 @@ function Tracker:RenderProfession()
         rightLines[#rightLines+1]={text=plan.ready and "Materials ready. Begin crafting." or "Collect all ingredients before crafting.",color=theme.teal}
         for _,craft in ipairs(plan.crafts) do
             rightLines[#rightLines+1]={text=craft.name.." ("..craft.color..")"}
-            rightLines[#rightLines+1]={text="Craft "..craft.required.."  |  Skill "..plan.skill.." -> "..plan.target}
+            rightLines[#rightLines+1]={text="Crafted "..craft.completed.."/"..craft.required.."  |  Skill "..plan.skill.." -> "..plan.target}
         end
-        rightLines[#rightLines+1]={text="Recheck after each skill-up; recipe colors and requirements can change."}
+        rightLines[#rightLines+1]={text="Current learned recipe only. Recheck after each skill-up; the next recipe may change."}
     end
     render(self.professionMaterialContent,self.professionMaterialRows,leftLines)
     render(self.professionCraftContent,self.professionCraftRows,rightLines)
