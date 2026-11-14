@@ -7,9 +7,16 @@ ns:RegisterModule("ProfessionRoutes", Route)
 -- A catalog entry: {name, spellId, outputItemId, yield, orangeFrom,
 -- orangeUntil, reagents={{itemId,name,count}}, source}.
 -- orangeUntil is exclusive. Every planned skill must have an orange recipe.
+-- provenance = {client="forever", verified=true, url="https://www.wowhead.com/forever/...", checkedBuild="..."}.
+-- Only verified Forever records are eligible for planning.
 ns.professionRecipeCatalog = ns.professionRecipeCatalog or {}
 
 local function valid(recipe)
+    local provenance=recipe and recipe.provenance
+    if type(provenance)~="table" or provenance.client~="forever"
+        or provenance.verified~=true or type(provenance.url)~="string"
+        or not provenance.url:match("^https://www%.wowhead%.com/forever/")
+        or type(provenance.checkedBuild)~="string" or provenance.checkedBuild=="" then return false end
     if type(recipe)~="table" or type(recipe.name)~="string"
         or type(recipe.spellId)~="number" or type(recipe.orangeFrom)~="number"
         or type(recipe.orangeUntil)~="number"
