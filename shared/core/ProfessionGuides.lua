@@ -169,6 +169,10 @@ function Profession:Recommendation(id)
     end
     lastRecommendation[id]=candidates[1]
     recipeSnapshots[id]=candidates
+    if ns.char then
+        ns.char.professionRecipeCache=ns.char.professionRecipeCache or {}
+        ns.char.professionRecipeCache[id]=candidates
+    end
     return lastRecommendation[id]
 end
 
@@ -259,6 +263,10 @@ function Profession:GatherPlan(id)
     -- recipe snapshot remains usable after closing it, but never invents recipes.
     local recipe,message=self:Recommendation(id)
     local candidates=recipeSnapshots[id]
+    if (not candidates or #candidates==0) and ns.char and ns.char.professionRecipeCache then
+        candidates=ns.char.professionRecipeCache[id]
+        if type(candidates)=="table" then recipeSnapshots[id]=candidates end
+    end
     if not candidates or #candidates==0 then
         plan.instructions=message
         plan.requiresScan=true
@@ -270,6 +278,7 @@ function Profession:GatherPlan(id)
     -- client has not exposed unlearned recipes or future skill colors.
     local selected=candidates[1]
     if not selected then return plan end
+    plan.cached=true
     local completed=0
     if ns.char then
         ns.char.professionCraftProgress=ns.char.professionCraftProgress or {}
@@ -313,5 +322,13 @@ function Profession:CaptureOpenProfession()
 end
 
 function Profession:Initialize()
+    if ns.char and type(ns.char.professionRecipeCache)=="table" then
+        for id,candidates in pairs(ns.char.professionRecipeCache) do
+            if profiles[id] and type(candidates)=="table" and #candidates>0 then
+                recipeSnapshots[id]=candidates
+                lastRecommendation[id]=candidates[1]
+            end
+        end
+    end
     self:Sync()
 end
