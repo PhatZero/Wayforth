@@ -78,6 +78,8 @@ jobs:
         run: lua5.1 tests/lua/test_all_guide_polish.lua
       - name: Verify orange-only offline profession route planner
         run: lua5.1 tests/lua/test_profession_routes.lua
+      - name: Verify profession runtime materials, skill bands, and observed craft events
+        run: lua5.1 tests/lua/test_profession_runtime.lua
       - name: Run manifest and offline tests
         run: python3 -m unittest discover -s tests -v
       - name: Build installable addon ZIP
