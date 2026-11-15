@@ -1,0 +1,48 @@
+name: Build ForeverDB offline quest data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: foreverdb-quest-source
+          run-id: 43661230735
+          github-token: ${{ github.token }}
+          path: build/foreverdb-quests
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate offline Lua data
+        run: |
+          python scripts/build_foreverdb_quest_lua.py
+          test -s clients/forever/guides/ForeverDBQuestData.lua
+      - name: Create reviewable quest data PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BRANCH=generated/foreverdb-quest-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add clients/forever/guides/ForeverDBQuestData.lua
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git commit -m "data: generate offline ForeverDB quest catalog"
+          git push --force-with-lease origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "Generated ForeverDB offline quest catalog" \
+            --body "Generated from 4,134 downloaded quest detail records. Only Forever-observed pickup and turn-in locations are eligible for navigation; authored coordinates are preserved. Review the dataset and attribution before merging." \
+            || echo "A PR may already exist; review the generated branch."
