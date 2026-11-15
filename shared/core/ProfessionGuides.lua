@@ -323,18 +323,29 @@ function Profession:GatherPlan(id)
         return plan
     end
     if plan.gathering then
-        local catalog=ns.professionGatheringCatalog and ns.professionGatheringCatalog[id]
-        if catalog and type(catalog)=="table" then
-            for _,entry in ipairs(catalog) do
-                if entry.verified==true and entry.client=="forever"
-                    and entry.skillFrom<=skill and skill<entry.skillUntil then
-                    plan.gatheringTarget=entry
-                    break
-                end
+        local catalog=ns.professionGatheringCatalog and ns.professionGatheringCatalog[id] or {}
+        local options={}
+        for _,entry in ipairs(catalog) do
+            if entry.client=="forever" and type(entry.skillFrom)=="number"
+                and type(entry.skillUntil)=="number"
+                and entry.skillFrom<=math.max(1,skill) and skill<entry.skillUntil then
+                options[#options+1]=entry
             end
         end
-        plan.instructions=plan.gatheringTarget and plan.gatheringTarget.instructions
-            or profile.method.." Zone-by-zone gathering route not yet verified for this skill."
+        table.sort(options,function(a,b)
+            if a.verified~=b.verified then return a.verified==true end
+            if a.skillFrom~=b.skillFrom then return a.skillFrom>b.skillFrom end
+            return tostring(a.zone)<tostring(b.zone)
+        end)
+        plan.gatheringOptions={}
+        for i=1,math.min(3,#options) do
+            plan.gatheringOptions[i]=options[i]
+        end
+        plan.gatheringTarget=options[1]
+        plan.instructions=plan.gatheringTarget and
+            (plan.gatheringTarget.zone..": "..plan.gatheringTarget.instructions..
+             " Verify gathering skill gains in the live client.")
+            or (profile.method.." No zone route is verified for your current skill.")
         return plan
     end
 
