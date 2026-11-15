@@ -36,6 +36,8 @@ jobs:
         run: lua5.1 tests/lua/test_button_labels.lua
       - name: Verify closable tracker tabs and guide progress preservation
         run: lua5.1 tests/lua/test_tracker_tabs.lua
+      - name: Verify navigation three-dot close button preserves tracker state
+        run: lua5.1 tests/lua/test_tracker_menu.lua
       - name: Exercise quest sync in Lua 5.1
         run: lua5.1 tests/lua/test_quest_sync.lua
       - name: Verify live quest objective counters and tracker refresh
