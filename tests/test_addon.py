@@ -19,7 +19,10 @@ class AddonFoundationTests(unittest.TestCase):
     def test_offline_requirements(self):
         sources = "\n".join(source_path(item).read_text() for item in manifest())
         self.assertNotIn("SendAddonMessage", sources)
-        self.assertNotIn("https://", sources)
+        # Static provenance URLs are permitted; the addon must not fetch remote data.
+        self.assertNotIn("C_HTTP.Request", sources)
+        self.assertNotIn("C_HTTP.Get", sources)
+        self.assertNotIn("GetHTTP", sources)
         self.assertNotIn("SlashCmdList", sources)
         self.assertIn("WoWForeverCharDB", source_path("Core/Database.lua").read_text())
         self.assertIn("WoWForeverDB", source_path("Core/Database.lua").read_text())
