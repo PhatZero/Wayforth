@@ -68,4 +68,24 @@ assert(preferred.complete and #preferred.crafts==2)
 assert(preferred.crafts[1].color=="orange" and preferred.crafts[1].count==2)
 assert(preferred.crafts[2].color=="yellow" and preferred.crafts[2].count==2)
 assert(preferred.crafts[2].bufferExtra==1 and preferred.crafts[2].skillPoints==1)
+-- A Forever-client YELLOW band with Classic-derived orange boundaries
+-- may be used as yellow only; it is NEVER promoted to guaranteed orange.
+ns.professionRecipeCatalog.yellowtest[3]={
+    name="Forever yellow only",spellId=990003,
+    orangeFrom=13,orangeUntil=13,yellowUntil=23,yellowOnly=true,
+    learnAt=13,source="https://foreverdb.net/spell/990003",
+    provenance={client="forever",verified=true,
+        checkedBuild="synthetic",orangeSource="classic",yellowSource="forever-client",
+        url="https://foreverdb.net/spell/990003"},
+    reagents={{itemId=9994,name="Copper",count=3}}
+}
+local notOrange=routes:Plan("yellowtest",13,23)
+assert(not notOrange.complete and notOrange.uncoveredSkill==13)
+local recovered=routes:Plan("yellowtest",13,23,{allowYellow=true,yellowPadding=0.10})
+assert(recovered.complete and #recovered.crafts==1)
+assert(recovered.crafts[1].color=="yellow")
+assert(recovered.crafts[1].count==11 and recovered.crafts[1].bufferExtra==1)
+assert(recovered.materials[1].itemId==9994 and recovered.materials[1].required==33)
+local beyond=routes:Plan("yellowtest",23,24,{allowYellow=true})
+assert(not beyond.complete and beyond.uncoveredSkill==23)
 print("profession route fixture: OK")
