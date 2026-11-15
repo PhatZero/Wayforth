@@ -72,7 +72,7 @@ def build(input_dir, output):
         for source, target in (("starts", "pickup"), ("ends", "turnin")):
             p = point(r.get(source))
             if p:
-                fields.append(target + "={" + p + "}")
+                fields.append(target + "=" + p)
                 verified += 1
         chain = r.get("chain") or {}
         previous = sorted({entry["questId"] for entry in (chain.get("previous") or [])
