@@ -34,7 +34,8 @@ class ProfessionPlannerRegressionTests(unittest.TestCase):
         tracker = TRACKER.read_text()
         self.assertIn("Crafted ", tracker)
         self.assertIn("progressType==\"observed-cast\"", tracker)
-        self.assertNotIn('text="Crafted "..craft.completed', tracker)
+        self.assertIn('if craft.progressType=="observed-cast"', tracker)
+        self.assertIn("Craft count unavailable", tracker)
 
     def test_profession_events_are_dispatched(self):
         source = BOOTSTRAP.read_text()
