@@ -127,15 +127,15 @@ end
 function Tracker:MakeFrame()
     if self.frame then return end
     local panel = CreateFrame("Frame", "WayForthGuideTracker", UIParent)
-    panel:SetSize(math.max(370,pref("trackerWidth",480)), math.max(490,pref("trackerHeight",620)))
+    panel:SetSize(math.max(500,pref("trackerWidth",620)), math.max(560,pref("trackerHeight",680)))
     panel:SetFrameStrata("HIGH")
     panel:SetToplevel(true)
     panel:SetClampedToScreen(true)
     panel:SetMovable(true)
     panel:SetResizable(true)
     panel:EnableMouse(true)
-    if panel.SetResizeBounds then panel:SetResizeBounds(370, 490, 850, 1000)
-    elseif panel.SetMinResize then panel:SetMinResize(370, 490) end
+    if panel.SetResizeBounds then panel:SetResizeBounds(500, 560, 1000, 1050)
+    elseif panel.SetMinResize then panel:SetMinResize(500, 560) end
     panel:SetScale(pref("trackerScale", 1))
     panel:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", pref("trackerX",-30), pref("trackerY",-235))
     self.bg = theme:Panel(panel, theme.navy, theme.gold)
@@ -814,7 +814,8 @@ function Tracker:RenderProfessionChecklist(plan,width)
     y=professionLine(self,"professionPrepLabels","skill",content,
         "Skill "..plan.skill.." / "..plan.target.."  |  Bags + bank (when accessible)",y,width,10,theme.teal)
     local routeLabel=(plan.offline or plan.verifiedSegment) and "Source-verified route + yellow reserve"
-        or plan.gathering and "Gathering guide" or "Current orange/yellow craft only"
+        or plan.gathering and "Gathering guide" or plan.requiresVerification and "Live orange/yellow recipe only"
+        or "Current orange/yellow craft only"
     y=professionLine(self,"professionPrepLabels","route",content,routeLabel,y,width,10,theme.muted)
     if plan.yellowBuffer and plan.yellowBuffer>0 then
         y=professionLine(self,"professionPrepLabels","buffer",content,
@@ -920,6 +921,8 @@ function Tracker:RenderProfessionChecklist(plan,width)
     y=professionLine(self,"professionPrepLabels","nextHeading",content,
         plan.gathering and "THEN FOLLOW THE GATHERING ROUTE" or "THEN CRAFT IN THIS ORDER",y,width,12,theme.gold)
     if plan.gathering then
+        for _,row in ipairs(self.professionPreviewLabels or {}) do row:Hide() end
+        if self.professionPrepLabels and self.professionPrepLabels.nextHelp then self.professionPrepLabels.nextHelp:Hide() end
         y=professionLine(self,"professionPrepLabels","nextEmpty",content,
             plan.instructions or "Gather verified nodes to raise skill.",y,width,11,theme.ivory)
     else
@@ -1028,10 +1031,16 @@ function Tracker:RenderProfessionCrafts(plan,width)
                 option.zone.." (map "..option.mapId..")",y,width,11,theme.ivory)
         end
     elseif cards==0 then
+        for _,key in ipairs({"zone1","zone2","zone3"}) do
+            if self.professionCraftLabels and self.professionCraftLabels[key] then self.professionCraftLabels[key]:Hide() end
+        end
         y=professionLine(self,"professionCraftLabels","none",content,
             plan.instructions or "Learn an orange/yellow recipe or visit a trainer.",y,width,11,theme.ivory)
-    elseif self.professionCraftLabels and self.professionCraftLabels.none then
-        self.professionCraftLabels.none:Hide()
+    else
+        if self.professionCraftLabels and self.professionCraftLabels.none then self.professionCraftLabels.none:Hide() end
+        for _,key in ipairs({"zone1","zone2","zone3"}) do
+            if self.professionCraftLabels and self.professionCraftLabels[key] then self.professionCraftLabels[key]:Hide() end
+        end
     end
     if not plan.gathering and cards>0 then
         y=professionLine(self,"professionCraftLabels","footer",content,
@@ -1166,7 +1175,7 @@ function Tracker:ToggleMinimize()
     if not self.frame then return end
     local minimized=not (ns.char and ns.char.trackerMinimized)
     if ns.char then ns.char.trackerMinimized=minimized end
-    self.frame:SetHeight(minimized and 50 or math.max(490,pref("trackerHeight",620)))
+    self.frame:SetHeight(minimized and 50 or math.max(560,pref("trackerHeight",680)))
     self.minimizeButton:SetLabel(minimized and "+" or "-")
     self:Refresh()
     self:Layout()
