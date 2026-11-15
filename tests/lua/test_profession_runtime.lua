@@ -28,18 +28,22 @@ ns.professionRecipeCatalog={tailoring={
     {name="Fixture Garment",spellId=9002,orangeFrom=20,orangeUntil=50,
         outputItemId=2110,yield=1,source="synthetic",provenance=stamp,
         reagents={{itemId=2101,name="Bolt",count=1},{itemId=2103,name="Thread",count=2}}},
+    {name="Fixture Tabard",spellId=9003,orangeFrom=50,orangeUntil=301,
+        outputItemId=2111,yield=1,source="synthetic",provenance=stamp,
+        reagents={{itemId=2103,name="Thread",count=1}}},
 }}
 assert(loadfile("shared/core/ProfessionRoutes.lua"))("WayForth",ns)
 assert(loadfile("shared/core/ProfessionGuides.lua"))("WayForth",ns)
 local guides=ns.Modules.ProfessionGuides
 local plan=guides:GatherPlan("tailoring")
 assert(plan and plan.offline and plan.verified and not plan.ready)
-assert(#plan.crafts==2 and plan.crafts[1].required==19 and plan.crafts[2].required==30)
+assert(plan.target==300 and #plan.crafts==3 and plan.crafts[1].required==19
+    and plan.crafts[2].required==30 and plan.crafts[3].required==250)
 assert(#plan.materials==3)
 assert(plan.materials[1].itemId==2100 and plan.materials[1].required==19)
 assert(plan.materials[1].owned==5 and plan.materials[1].missing==14)
 assert(plan.materials[2].itemId==2101 and plan.materials[2].required==11)
-assert(plan.materials[3].itemId==2103 and plan.materials[3].required==60)
+assert(plan.materials[3].itemId==2103 and plan.materials[3].required==310)
 assert(ns.char.professionRouteProgress.tailoring.startSkill==1)
 local selected=guides:Recommendation("tailoring")
 assert(selected and selected.spellId==9001 and selected.reagents[1].itemId==2100)
@@ -47,9 +51,12 @@ local ok,id=guides:RecordCraftEvent("player","CAST-1",9001)
 assert(ok and id=="tailoring")
 assert(not guides:RecordCraftEvent("target","CAST-2",9001))
 assert(not guides:RecordCraftEvent("player","CAST-3",99999))
+local ok2,id2=guides:RecordCraftEvent("player","CAST-4",9003)
+assert(ok2 and id2=="tailoring")
 assert(ns.char.professionSuccessfulCrafts.tailoring[9001]==1)
 local progressed=guides:GatherPlan("tailoring")
 assert(progressed.crafts[1].completed==1)
+assert(progressed.crafts[3].completed==1)
 assert(ns.char.professionRouteProgress.tailoring.baseline[9001]==0)
 -- A missing Forever-verified range cannot masquerade as a complete route.
 ns.professionRecipeCatalog.tailoring[2].provenance={client="forever",verified=false,
