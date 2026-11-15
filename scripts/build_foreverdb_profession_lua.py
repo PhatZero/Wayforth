@@ -204,7 +204,17 @@ def main():
         out.extend(rendered)
         out.append("}")
         result["professions"][slug] = {
-            "sourceRecipes": len(records), "verifiedOrangeRecipes": sum(r["skill"].get("orangeSource")=="client"\n                and isinstance(r["skill"].get("orange"), int)\n                and r["skill"]["orange"]<r["skill"]["yellow"] for r in admitted),\n            "clientYellowRecovered": sum(r["skill"].get("orangeSource")=="classic"\n                and isinstance(r["skill"].get("green"), int)\n                and r["skill"]["green"]>r["skill"]["yellow"] for r in admitted),
+            "sourceRecipes": len(records),
+            "verifiedOrangeRecipes": sum(
+                r["skill"].get("orangeSource") == "client"
+                and isinstance(r["skill"].get("orange"), int)
+                and r["skill"]["orange"] < r["skill"]["yellow"]
+                for r in admitted),
+            "clientYellowRecovered": sum(
+                r["skill"].get("orangeSource") == "classic"
+                and isinstance(r["skill"].get("green"), int)
+                and r["skill"]["green"] > r["skill"]["yellow"]
+                for r in admitted),
             "verifiedYellowRecipes": sum(isinstance(r["skill"].get("green"),int)
                 and r["skill"]["green"]>r["skill"]["yellow"] for r in admitted),
             "missingOrangeBands": gaps(admitted),
