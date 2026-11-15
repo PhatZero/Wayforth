@@ -266,9 +266,20 @@ function Profession:Start(id)
 end
 
 
--- Gather-first planner for a live, verified recipe. Plans are intentionally
--- bounded by the current training cap; never fabricate unknown recipes.
+-- Profession planning is offline first. Only verified Forever recipe data
+-- can establish a full shopping list. Live scans are limited to the next craft.
 local gathering={fishing=true,herbalism=true,mining=true,skinning=true}
+local function inventoryCount(id,name,fallback)
+    if type(GetItemCount)=="function" then
+        local lookup=id or name
+        if lookup then
+            local ok,amount=pcall(GetItemCount,lookup,true)
+            if ok and type(amount)=="number" and amount>=0 then return amount end
+        end
+    end
+    return fallback or 0
+end
+
 function Profession:GatherPlan(id)
     local profile=profiles[id]
     if not profile then return nil end
@@ -279,68 +290,98 @@ function Profession:GatherPlan(id)
     if skill>=target then target=math.min(300,target+50) end
     if cap>0 then target=math.min(target,cap) end
     local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,
-        materials={},crafts={},gathering=gathering[id]}
+        materials={},crafts={},gathering=gathering[id],ready=false}
     if plan.gathering then
-        plan.instructions=profile.method
+        local catalog=ns.professionGatheringCatalog and ns.professionGatheringCatalog[id]
+        if catalog and type(catalog)=="table" then
+            for _,entry in ipairs(catalog) do
+                if entry.verified==true and entry.client=="forever"
+                    and entry.skillFrom<=skill and skill<entry.skillUntil then
+                    plan.gatheringTarget=entry
+                    break
+                end
+            end
+        end
+        plan.instructions=plan.gatheringTarget and plan.gatheringTarget.instructions
+            or profile.method.." Zone-by-zone gathering route not yet verified for this skill."
         return plan
     end
-    -- Read the active profession window when available. A previously scanned
-    -- recipe snapshot remains usable after closing it, but never invents recipes.
+
+    local routes=ns.Modules.ProfessionRoutes
+    if routes and skill>0 and target>skill then
+        ns.char.professionRouteProgress=ns.char.professionRouteProgress or {}
+        local saved=ns.char.professionRouteProgress[id]
+        if not saved or saved.target~=target or (saved.startSkill or skill)>skill then
+            saved={startSkill=skill,target=target,baseline={}}
+            ns.char.professionRouteProgress[id]=saved
+        end
+        local all=routes:Plan(id,saved.startSkill,target)
+        local remaining=routes:Plan(id,skill,target)
+        if all.complete and remaining.complete then
+            plan.verified=true
+            plan.offline=true
+            plan.instructions="Verified Forever orange-only route. Gather all missing materials first; train new ranks and recipes as indicated."
+            local counts=ns.char.professionSuccessfulCrafts and ns.char.professionSuccessfulCrafts[id] or {}
+            local accounted={}
+            for _,craft in ipairs(all.crafts) do
+                local observed=counts[craft.spellId] or 0
+                if saved.baseline[craft.spellId]==nil then saved.baseline[craft.spellId]=observed end
+                local available=math.max(0,observed-saved.baseline[craft.spellId]-(accounted[craft.spellId] or 0))
+                local finished=math.min(craft.count,available)
+                accounted[craft.spellId]=(accounted[craft.spellId] or 0)+finished
+                plan.crafts[#plan.crafts+1]={name=craft.name,spellId=craft.spellId,
+                    color="orange",required=craft.count,completed=finished,
+                    fromSkill=craft.fromSkill,toSkill=craft.toSkill,
+                    progressType="observed-cast",acquisition=craft.acquisition,
+                    learnAt=craft.learnAt,trainer=craft.trainer}
+            end
+            plan.ready=true
+            for _,item in ipairs(remaining.materials) do
+                local owned=inventoryCount(item.itemId,item.name,0)
+                local entry={itemId=item.itemId,name=item.name,required=item.required,
+                    owned=owned,missing=math.max(0,item.required-owned)}
+                plan.materials[#plan.materials+1]=entry
+                if entry.missing>0 then plan.ready=false end
+            end
+            return plan
+        end
+        plan.coverageGap=remaining.uncoveredSkill or all.uncoveredSkill
+    end
+
+    -- If there is no fully verified offline route, never multiply one
+    -- currently-orange recipe across an unknown future color boundary.
     local recipe,message=self:Recommendation(id)
-    local candidates=recipeSnapshots[id]
-    if (not candidates or #candidates==0) and ns.char and ns.char.professionRecipeCache then
-        candidates=ns.char.professionRecipeCache[id]
-        if type(candidates)=="table" then recipeSnapshots[id]=candidates end
-    end
     if not recipe then
-        plan.instructions=message or "Reopen the profession window to verify orange recipe color."
         plan.requiresScan=true
+        plan.instructions=(plan.coverageGap and ("Offline data gap at skill "..plan.coverageGap..". ") or "")
+            ..(message or "Open the profession window to verify a current orange recipe.")
         return plan
     end
-    if not candidates or #candidates==0 then
-        plan.instructions=message
-        plan.requiresScan=true
-        return plan
-    end
-    local remaining=math.max(0,target-skill)
-    local totals={}
-    if remaining==0 then plan.ready=true;return plan end
-    -- Prefer orange, then yellow. Avoid claiming a full 1-300 route when the
-    -- client has not exposed unlearned recipes or future skill colors.
+    local candidates=recipeSnapshots[id]
     local selected
-    for _,candidate in ipairs(candidates) do
+    for _,candidate in ipairs(candidates or {}) do
         if candidate.color=="orange" then selected=candidate;break end
     end
     if not selected then
         plan.instructions="No verified orange recipe is available. Train a new recipe or rescan the profession window."
         return plan
     end
-    -- The live recipe window proves only the current recipe is orange.
-    -- It does NOT prove that it remains orange until target, nor that
-    -- skill gains equal successful craft completions. Never advertise
-    -- estimated full-range counts or a ready-to-craft shopping list.
     plan.cached=true
     plan.partial=true
-    plan.ready=false
     plan.requiresVerification=true
     local completed=0
     if selected.spellId and ns.char and ns.char.professionSuccessfulCrafts then
         completed=(ns.char.professionSuccessfulCrafts[id] or {})[selected.spellId] or 0
     end
-    plan.crafts[1]={name=selected.name,color=selected.color,spellId=selected.spellId,
-        required=1,completed=completed,progressType=selected.spellId and "observed-cast" or "unverified"}
+    plan.crafts[1]={name=selected.name,color="orange",spellId=selected.spellId,
+        required=1,completed=0,observedTotal=completed,
+        progressType=selected.spellId and "observed-cast" or "unverified"}
     for _,item in ipairs(selected.reagents or {}) do
-        local owned=item.owned or 0
-        if type(GetItemCount)=="function" then
-            local ok,value=pcall(GetItemCount,item.name)
-            if ok and type(value)=="number" then owned=value end
-        end
-        totals[#totals+1]={name=item.name,required=item.count,owned=owned,
-            missing=math.max(0,item.count-owned)}
+        local owned=inventoryCount(item.itemId,item.name,item.owned)
+        plan.materials[#plan.materials+1]={itemId=item.itemId,name=item.name,required=item.count,
+            owned=owned,missing=math.max(0,item.count-owned)}
     end
-    plan.materials=totals
-    plan.instructions="Only the next orange craft is verified by the live profession window. Full-range materials and successful craft counts are unavailable until verified Forever routes and craft events are implemented."
-
+    plan.instructions="Current learned recipe only. The remaining route is incomplete; recheck after each skill gain and do not bulk-craft this recipe."
     return plan
 end
 
