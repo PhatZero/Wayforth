@@ -4,6 +4,7 @@ on:
     branches: [feat/foreverdb-yellow-source-recovery]
     paths:
       - '.github/workflows/compile-foreverdb-yellow-recovery.yml'
+      - 'scripts/build_foreverdb_profession_lua.py'
   workflow_dispatch:
 permissions:
   contents: write
