@@ -17,6 +17,7 @@ Core/Diagnostics.lua
 Core/Character.lua
 Data/StarterGuide.lua
 Data/ProfessionGuides.lua
+Data/ForeverProfessionData.lua
 Data/LegacyPerks.lua
 Data/ZephrasLocations.lua
 Data/ZephrasIsle.lua
