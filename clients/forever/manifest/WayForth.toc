@@ -30,6 +30,7 @@ Data/HordeRaceStarterExtras.lua
 Data/ForeverQuestLocations.lua
 Data/ForeverQuestLocationUpdates.lua
 Data/ForeverQuestRequirements.lua
+Data/ForeverDBQuestData.lua
 Core/QuestLocations.lua
 Core/Guides.lua
 Core/ProfessionGuides.lua
