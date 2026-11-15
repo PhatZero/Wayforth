@@ -12,11 +12,11 @@ if coverage.get("client")!="forever" or not str(coverage.get("build","")).starts
 professions=coverage.get("professions") or {}
 for slug in sorted(expected):
     row=professions.get(slug) or {}
-    if not row.get("verifiedOrangeRecipes") or row.get("missingOrangeBands") is None:
+    if not row.get("verifiedOrangeRecipes") or row.get("missingOrangeOrYellowBands") is None:
         raise SystemExit("Release blocked: unverified recipe inventory for "+slug)
-    if row["missingOrangeBands"]:
-        raise SystemExit("Release blocked: verified orange coverage missing for "+slug+
-                         " "+str(row["missingOrangeBands"]))
+    if row["missingOrangeOrYellowBands"]:
+        raise SystemExit("Release blocked: verified orange/yellow coverage missing for "+slug+
+                         " "+str(row["missingOrangeOrYellowBands"]))
 approval=ROOT/"data/forever/release_qa_approval.json"
 if not approval.is_file():
     raise SystemExit("Release blocked: actual Forever in-game QA approval is absent.")

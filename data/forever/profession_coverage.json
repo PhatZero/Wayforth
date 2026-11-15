@@ -5,34 +5,49 @@
     "alchemy": {
       "sourceRecipes": 196,
       "verifiedOrangeRecipes": 99,
-      "missingOrangeBands": []
+      "verifiedYellowRecipes": 99,
+      "missingOrangeBands": [],
+      "missingOrangeOrYellowBands": []
     },
     "blacksmithing": {
       "sourceRecipes": 506,
       "verifiedOrangeRecipes": 231,
+      "verifiedYellowRecipes": 214,
       "missingOrangeBands": [
         [
           20,
           29
         ]
-      ]
+      ],
+      "missingOrangeOrYellowBands": []
     },
     "cooking": {
       "sourceRecipes": 132,
       "verifiedOrangeRecipes": 86,
-      "missingOrangeBands": []
+      "verifiedYellowRecipes": 84,
+      "missingOrangeBands": [],
+      "missingOrangeOrYellowBands": []
     },
     "enchanting": {
       "sourceRecipes": 262,
       "verifiedOrangeRecipes": 125,
-      "missingOrangeBands": []
+      "verifiedYellowRecipes": 125,
+      "missingOrangeBands": [],
+      "missingOrangeOrYellowBands": []
     },
     "engineering": {
       "sourceRecipes": 275,
       "verifiedOrangeRecipes": 80,
+      "verifiedYellowRecipes": 80,
       "missingOrangeBands": [
         [
           30,
+          74
+        ]
+      ],
+      "missingOrangeOrYellowBands": [
+        [
+          45,
           74
         ]
       ]
@@ -40,6 +55,7 @@
     "first-aid": {
       "sourceRecipes": 32,
       "verifiedOrangeRecipes": 3,
+      "verifiedYellowRecipes": 3,
       "missingOrangeBands": [
         [
           30,
@@ -49,17 +65,31 @@
           175,
           300
         ]
+      ],
+      "missingOrangeOrYellowBands": [
+        [
+          45,
+          139
+        ],
+        [
+          195,
+          300
+        ]
       ]
     },
     "leatherworking": {
       "sourceRecipes": 592,
       "verifiedOrangeRecipes": 272,
-      "missingOrangeBands": []
+      "verifiedYellowRecipes": 252,
+      "missingOrangeBands": [],
+      "missingOrangeOrYellowBands": []
     },
     "tailoring": {
       "sourceRecipes": 471,
       "verifiedOrangeRecipes": 242,
-      "missingOrangeBands": []
+      "verifiedYellowRecipes": 220,
+      "missingOrangeBands": [],
+      "missingOrangeOrYellowBands": []
     },
     "fishing": {
       "candidateZones": 43,

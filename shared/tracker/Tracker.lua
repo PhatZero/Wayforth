@@ -610,7 +610,12 @@ function Tracker:RenderProfession()
     elseif #plan.materials==0 then
         leftLines[#leftLines+1]={text=plan.instructions or "No verified ingredients are available yet."}
     else
-        leftLines[#leftLines+1]={text=plan.offline and "Verified remaining-route totals" or "Current orange craft only",color=theme.teal}
+        leftLines[#leftLines+1]={text=(plan.offline or plan.verifiedSegment)
+            and "Source-verified route + yellow reserve" or "Current orange/yellow craft only",color=theme.teal}
+        if (plan.yellowBuffer or 0)>0 then
+            leftLines[#leftLines+1]={text="Yellow materials: +10% planned crafts ("..plan.yellowBuffer..
+                " additional). This is a buffer, not a guaranteed skill gain.",color=theme.gold}
+        end
         for _,item in ipairs(plan.materials) do
             leftLines[#leftLines+1]={text=(item.missing==0 and "[x] " or "[ ] ")..
                 item.name.."  "..math.min(item.owned,item.required).."/"..item.required..
@@ -632,17 +637,24 @@ function Tracker:RenderProfession()
     elseif plan.complete then
         rightLines[#rightLines+1]={text=plan.instructions or "Skill cap reached."}
     elseif #plan.crafts==0 then
-        rightLines[#rightLines+1]={text=plan.instructions or "Learn a verified orange recipe first."}
+        rightLines[#rightLines+1]={text=plan.instructions or "Learn a suitable orange or yellow recipe first."}
     else
         if plan.offline then
             rightLines[#rightLines+1]={text="Data from ForeverDB.net (https://foreverdb.net)",color=theme.teal}
         end
-        rightLines[#rightLines+1]={text=plan.offline and "Verified orange-only recipe sequence"
-            or "Current learned recipe only",color=theme.teal}
+        if plan.needsTrainer then
+            rightLines[#rightLines+1]={text="TRAIN NEXT RANK before crafting",color=theme.gold}
+        end
+        rightLines[#rightLines+1]={text=(plan.offline or plan.verifiedSegment)
+            and "Orange first, yellow +10% buffer" or "Live orange/yellow recipe only",color=theme.teal}
         rightLines[#rightLines+1]={text=plan.ready and "Materials collected. Check that each recipe is learned."
             or "Collect missing ingredients before crafting.",color=theme.teal}
         for _,craft in ipairs(plan.crafts) do
-            rightLines[#rightLines+1]={text=craft.name.." (orange)"}
+            rightLines[#rightLines+1]={text=craft.name.." ("..(craft.color or "orange")..")",
+                color=craft.color=="yellow" and theme.gold or theme.ivory}
+            if (craft.bufferExtra or 0)>0 then
+                rightLines[#rightLines+1]={text="Yellow reserve: +"..craft.bufferExtra.." crafts (10%, rounded up); skill-up not guaranteed.",color=theme.gold}
+            end
             if craft.progressType=="observed-cast" then
                 rightLines[#rightLines+1]={text="Crafted "..craft.completed.."/"..craft.required..
                     (craft.fromSkill and ("  |  Skill "..craft.fromSkill.." -> "..craft.toSkill) or "")}
@@ -652,7 +664,8 @@ function Tracker:RenderProfession()
             if craft.learnAt then rightLines[#rightLines+1]={text="Learn at skill "..craft.learnAt} end
             if craft.acquisition then rightLines[#rightLines+1]={text=tostring(craft.acquisition)} end
         end
-        rightLines[#rightLines+1]={text=plan.instructions or "Only verified orange recipes count toward this plan."}
+        rightLines[#rightLines+1]={text=plan.instructions or
+            "Orange preferred; yellow uses a 10% reserve. Recheck actual skill after crafting."}
     end
     render(self.professionMaterialContent,self.professionMaterialRows,leftLines)
     render(self.professionCraftContent,self.professionCraftRows,rightLines)

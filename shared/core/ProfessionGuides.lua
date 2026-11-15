@@ -126,7 +126,7 @@ function Profession:Recommendation(id)
     for index=1,math.min(count,1000) do
         local rowOk,name,color=pcall(GetTradeSkillInfo,index)
         local colorName=type(color)=="string" and color:lower() or ""
-        if rowOk and type(name)=="string" and colorName=="optimal" then
+        if rowOk and type(name)=="string" and (colorName=="optimal" or colorName=="medium") then
             local reagentCount=0
             if type(GetTradeSkillNumReagents)=="function" then
                 local reagentsOk,value=pcall(GetTradeSkillNumReagents,index)
@@ -152,7 +152,8 @@ function Profession:Recommendation(id)
                 end
             end
             if #reagents>0 then
-                -- Orange-only: never plan yellow crafts as guaranteed skill-ups.
+                -- Orange is preferred; medium (yellow) is an eligible fallback.
+                -- Yellow has no guaranteed skill gain, so reserve materials.
                 local spellId=nil
                 if type(GetTradeSkillRecipeLink)=="function" then
                     local linkOk,link=pcall(GetTradeSkillRecipeLink,index)
@@ -160,8 +161,9 @@ function Profession:Recommendation(id)
                         spellId=tonumber(link:match("enchant:(%d+)") or link:match("spell:(%d+)"))
                     end
                 end
-                candidates[#candidates+1]={name=name,spellId=spellId,color="orange",reagents=reagents,
-                    total=total,missing=missing,colorRank=1}
+                local color=colorName=="optimal" and "orange" or "yellow"
+                candidates[#candidates+1]={name=name,spellId=spellId,color=color,reagents=reagents,
+                    total=total,missing=missing,colorRank=color=="orange" and 1 or 2}
             end
         end
     end
@@ -175,7 +177,7 @@ function Profession:Recommendation(id)
         lastRecommendation[id]=nil
         recipeSnapshots[id]=nil
         if ns.char and ns.char.professionRecipeCache then ns.char.professionRecipeCache[id]=nil end
-        return nil,"No known orange recipe is visible. Train a new orange recipe or refresh the profession window."
+        return nil,"No orange or yellow recipe is visible. Train a suitable recipe or refresh the profession window."
     end
     lastRecommendation[id]=candidates[1]
     recipeSnapshots[id]=candidates
@@ -382,6 +384,8 @@ function Profession:GatherPlan(id)
     end
 
     local routes=ns.Modules.ProfessionRoutes
+    local options={allowYellow=true,yellowPadding=0.10}
+    plan.yellowPadding=options.yellowPadding
     if routes and ns.char and skill>0 and target>skill then
         ns.char.professionRouteProgress=ns.char.professionRouteProgress or {}
         local saved=ns.char.professionRouteProgress[id]
@@ -389,14 +393,16 @@ function Profession:GatherPlan(id)
             saved={startSkill=skill,target=target,baseline={}}
             ns.char.professionRouteProgress[id]=saved
         end
-        local all=routes:Plan(id,saved.startSkill,target)
-        local remaining=routes:Plan(id,skill,target)
+        local all=routes:Plan(id,saved.startSkill,target,options)
+        local remaining=routes:Plan(id,skill,target,options)
+        plan.yellowCrafts=remaining.yellowCrafts or 0
+        plan.yellowBuffer=remaining.yellowBuffer or 0
         if all.complete and remaining.complete then
             plan.verified=true
             plan.offline=true
             plan.instructions=plan.needsTrainer
                 and "Train your next profession rank before crafting. Full 1-to-300 materials are shown below."
-                or "Verified Forever orange-only route. Gather all missing materials first; train new ranks and recipes as indicated."
+                or "Source-verified orange-first route; yellow crafts include a 10% reserve. Yellow skill-ups are not guaranteed. Recalculate after each skill change."
             local counts=ns.char.professionSuccessfulCrafts and ns.char.professionSuccessfulCrafts[id] or {}
             local accounted={}
             for _,craft in ipairs(all.crafts) do
@@ -406,7 +412,8 @@ function Profession:GatherPlan(id)
                 local finished=math.min(craft.count,available)
                 accounted[craft.spellId]=(accounted[craft.spellId] or 0)+finished
                 plan.crafts[#plan.crafts+1]={name=craft.name,spellId=craft.spellId,
-                    color="orange",required=craft.count,completed=finished,
+                    color=craft.color or "orange",required=craft.count,completed=finished,
+                    skillPoints=craft.skillPoints,bufferExtra=craft.bufferExtra or 0,
                     fromSkill=craft.fromSkill,toSkill=craft.toSkill,
                     progressType="observed-cast",acquisition=craft.acquisition,
                     learnAt=craft.learnAt,trainer=craft.trainer}
@@ -429,14 +436,15 @@ function Profession:GatherPlan(id)
         if not remaining.complete and #remaining.crafts>0 then
             plan.verifiedSegment=true
             plan.segmentEnd=remaining.uncoveredSkill
-            plan.instructions="Verified Forever orange recipes until skill "..tostring(plan.segmentEnd)..
-                ". No verified orange recipe is available at that boundary. Scan the profession window there."
+            plan.instructions="Verified orange/yellow sequence until skill "..tostring(plan.segmentEnd)..
+                ". Yellow steps include a 10% reserve; their skill gains are not guaranteed. No verified color route exists beyond this boundary."
             local counts=ns.char.professionSuccessfulCrafts and ns.char.professionSuccessfulCrafts[id] or {}
             for _,craft in ipairs(remaining.crafts) do
                 local observed=counts[craft.spellId] or 0
                 if saved.baseline[craft.spellId]==nil then saved.baseline[craft.spellId]=observed end
                 plan.crafts[#plan.crafts+1]={name=craft.name,spellId=craft.spellId,
-                    color="orange",required=craft.count,
+                    color=craft.color or "orange",required=craft.count,
+                    skillPoints=craft.skillPoints,bufferExtra=craft.bufferExtra or 0,
                     completed=math.min(craft.count,math.max(0,observed-saved.baseline[craft.spellId])),
                     fromSkill=craft.fromSkill,toSkill=craft.toSkill,progressType="observed-cast",
                     acquisition=craft.acquisition,learnAt=craft.learnAt}
@@ -452,8 +460,8 @@ function Profession:GatherPlan(id)
         end
     end
 
-    -- If there is no fully verified offline route, never multiply one
-    -- currently-orange recipe across an unknown future color boundary.
+    -- If no fully verified offline route exists, offer only the next
+    -- LIVE orange/yellow recipe instead of assuming a future color boundary.
     local recipe,message=self:Recommendation(id)
     if not recipe then
         plan.requiresScan=true
@@ -464,10 +472,10 @@ function Profession:GatherPlan(id)
     local candidates=recipeSnapshots[id]
     local selected
     for _,candidate in ipairs(candidates or {}) do
-        if candidate.color=="orange" then selected=candidate;break end
+        if candidate.color=="orange" or candidate.color=="yellow" then selected=candidate;break end
     end
     if not selected then
-        plan.instructions="No verified orange recipe is available. Train a new recipe or rescan the profession window."
+        plan.instructions="No currently orange/yellow recipe. Train a recipe or rescan."
         return plan
     end
     plan.cached=true
@@ -477,15 +485,31 @@ function Profession:GatherPlan(id)
     if selected.spellId and ns.char and ns.char.professionSuccessfulCrafts then
         completed=(ns.char.professionSuccessfulCrafts[id] or {})[selected.spellId] or 0
     end
-    plan.crafts[1]={name=selected.name,color="orange",spellId=selected.spellId,
-        required=1,completed=0,observedTotal=completed,
+    local isYellow=selected.color=="yellow"
+    local craftNeeded=isYellow and math.ceil(1*1.10) or 1
+    local done=0
+    if ns.char and selected.spellId then
+        ns.char.professionLiveCraftProgress=ns.char.professionLiveCraftProgress or {}
+        local previous=ns.char.professionLiveCraftProgress[id]
+        if not previous or previous.spellId~=selected.spellId or previous.skill~=skill then
+            previous={spellId=selected.spellId,skill=skill,baseline=completed}
+            ns.char.professionLiveCraftProgress[id]=previous
+        end
+        done=math.min(craftNeeded,math.max(0,completed-previous.baseline))
+    end
+    plan.crafts[1]={name=selected.name,color=selected.color,spellId=selected.spellId,
+        required=craftNeeded,completed=done,observedTotal=completed,
+        skillPoints=1,bufferExtra=craftNeeded-1,
         progressType=selected.spellId and "observed-cast" or "unverified"}
     for _,item in ipairs(selected.reagents or {}) do
+        local amount=item.count*craftNeeded
         local owned=inventoryCount(item.itemId,item.name,item.owned)
-        plan.materials[#plan.materials+1]={itemId=item.itemId,name=item.name,required=item.count,
-            owned=owned,missing=math.max(0,item.count-owned)}
+        plan.materials[#plan.materials+1]={itemId=item.itemId,name=item.name,required=amount,
+            owned=owned,missing=math.max(0,amount-owned)}
     end
-    plan.instructions="Current learned recipe only. The remaining route is incomplete; recheck after each skill gain and do not bulk-craft this recipe."
+    plan.yellowCrafts=isYellow and craftNeeded or 0
+    plan.yellowBuffer=isYellow and craftNeeded-1 or 0
+    plan.instructions="Current learned "..selected.color.." recipe only. Yellow crafts have a rounded-up 10% reserve, not guaranteed skill points. Recalculate after every skill gain; missing color ranges remain unverified."
     return plan
 end
 

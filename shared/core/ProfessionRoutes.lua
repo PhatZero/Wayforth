@@ -6,7 +6,8 @@ ns:RegisterModule("ProfessionRoutes", Route)
 
 -- A catalog entry: {name, spellId, outputItemId, yield, orangeFrom,
 -- orangeUntil, reagents={{itemId,name,count}}, source}.
--- orangeUntil is exclusive. Every planned skill must have an orange recipe.
+-- orangeUntil and optional yellowUntil (first green skill) are exclusive.
+-- Orange is preferred; eligible yellow segments carry a 10% craft reserve.
 -- provenance = {client="forever", verified=true, url="https://www.wowhead.com/forever/...", checkedBuild="..."}.
 -- Only verified Forever records are eligible for planning.
 ns.professionRecipeCatalog = ns.professionRecipeCatalog or {}
@@ -31,7 +32,11 @@ local function valid(recipe)
     return true
 end
 
-function Route:Plan(profession, fromSkill, toSkill)
+function Route:Plan(profession, fromSkill, toSkill, options)
+    options=options or {}
+    local allowYellow=options.allowYellow==true
+    local pad=allowYellow and (type(options.yellowPadding)=="number" and options.yellowPadding or 0.10) or 0
+    pad=math.max(0,math.min(1,pad))
     local result={profession=profession,fromSkill=fromSkill,toSkill=toSkill,
         crafts={},materials={},complete=false}
     if type(fromSkill)~="number" or type(toSkill)~="number"
@@ -50,38 +55,57 @@ function Route:Plan(profession, fromSkill, toSkill)
     -- *later* recipe cannot satisfy an earlier craft. Count missing external
     -- materials only when needed and consume available intermediate stock.
     while skill<toSkill do
-        local chosen
+        local chosen,selectedColor,segmentEnd
         local chosenCost,chosenPriority
         for _,recipe in ipairs(catalog) do
-            if valid(recipe) and recipe.orangeFrom<=skill and skill<recipe.orangeUntil
-                and (type(recipe.learnAt)~="number" or recipe.learnAt<=skill) then
-                local cost=0
-                for _,reagent in ipairs(recipe.reagents) do cost=cost+reagent.count end
-                local priority=type(recipe.sourcePriority)=="number" and recipe.sourcePriority or 0
-                if not chosen or priority<chosenPriority
-                    or (priority==chosenPriority and cost<chosenCost)
-                    or (priority==chosenPriority and cost==chosenCost and recipe.spellId<chosen.spellId) then
-                    chosen,chosenCost,chosenPriority=recipe,cost,priority
+            if valid(recipe) and (type(recipe.learnAt)~="number" or recipe.learnAt<=skill) then
+                local color,endSkill
+                if recipe.orangeFrom<=skill and skill<recipe.orangeUntil then
+                    color,endSkill="orange",recipe.orangeUntil
+                elseif allowYellow and type(recipe.yellowUntil)=="number"
+                    and recipe.orangeUntil<=skill and skill<recipe.yellowUntil then
+                    color,endSkill="yellow",recipe.yellowUntil
+                end
+                if color then
+                    local cost=0
+                    for _,reagent in ipairs(recipe.reagents) do cost=cost+reagent.count end
+                    local priority=type(recipe.sourcePriority)=="number" and recipe.sourcePriority or 0
+                    if not chosen or (selectedColor=="yellow" and color=="orange")
+                        or (selectedColor==color and (priority<chosenPriority
+                            or (priority==chosenPriority and cost<chosenCost)
+                            or (priority==chosenPriority and cost==chosenCost
+                                and recipe.spellId<chosen.spellId))) then
+                        chosen,selectedColor,segmentEnd=recipe,color,endSkill
+                        chosenCost,chosenPriority=cost,priority
+                    end
                 end
             end
         end
         if not chosen then
             result.uncoveredSkill=skill
-            result.error="No source-verified orange recipe at skill "..skill
+            result.error="No source-verified orange/yellow recipe at skill "..skill
             materialize()
             return result
         end
-        local count=math.min(toSkill,chosen.orangeUntil)-skill
+        local skillPoints=math.min(toSkill,segmentEnd)-skill
+        local count=selectedColor=="yellow" and math.ceil(skillPoints*(1+pad)) or skillPoints
+        local extra=count-skillPoints
         local previous=result.crafts[#result.crafts]
-        if previous and previous.spellId==chosen.spellId then
+        if previous and previous.spellId==chosen.spellId and previous.color==selectedColor then
             previous.count=previous.count+count
-            previous.toSkill=skill+count
+            previous.skillPoints=previous.skillPoints+skillPoints
+            previous.bufferExtra=previous.bufferExtra+extra
+            previous.toSkill=skill+skillPoints
         else
             result.crafts[#result.crafts+1]={name=chosen.name,spellId=chosen.spellId,
-                count=count,fromSkill=skill,toSkill=skill+count,source=chosen.source,
+                color=selectedColor,count=count,skillPoints=skillPoints,
+                bufferExtra=extra,padding=selectedColor=="yellow" and pad or 0,
+                fromSkill=skill,toSkill=skill+skillPoints,source=chosen.source,
                 outputItemId=chosen.outputItemId,outputCount=chosen.yield or 1,
                 learnAt=chosen.learnAt,trainer=chosen.trainer,acquisition=chosen.acquisition}
         end
+        result.yellowCrafts=(result.yellowCrafts or 0)+(selectedColor=="yellow" and count or 0)
+        result.yellowBuffer=(result.yellowBuffer or 0)+extra
         for _,reagent in ipairs(chosen.reagents) do
             local required=reagent.count*count
             local used=math.min(stock[reagent.itemId] or 0,required)
@@ -100,7 +124,7 @@ function Route:Plan(profession, fromSkill, toSkill)
             local yield=type(chosen.yield)=="number" and chosen.yield>0 and chosen.yield or 1
             stock[chosen.outputItemId]=(stock[chosen.outputItemId] or 0)+count*yield
         end
-        skill=skill+count
+        skill=skill+skillPoints
     end
     materialize()
     result.complete=true

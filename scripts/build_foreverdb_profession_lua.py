@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Compile downloaded ForeverDB build-stamped recipe records into offline Lua.
 
-Only client-sourced orange ranges and documented acquisition methods are
-eligible for guaranteed orange planning. Classic inferred skill thresholds,
+Only client-sourced skill-color ranges and documented acquisition methods are
+eligible for orange-first planning with yellow reserve. Classic inferred skill thresholds,
 unlearnable/unknown recipes, and speculative records are never promoted.
 No API key or player data is packaged in the addon.
 """
@@ -42,7 +42,7 @@ def rows(snapshot, slug, build):
 
 def recipe_line(r, build):
     skill = r.get("skill") or {}
-    origin, stop = skill.get("orange"), skill.get("yellow")
+    origin, stop, green = skill.get("orange"), skill.get("yellow"), skill.get("green")
     learned = r.get("learnedFrom") or {}
     acquisition = learned.get("sources") or {}
     learn_at = acquisition.get("learnAtSkill")
@@ -66,6 +66,10 @@ def recipe_line(r, build):
     parts = ["name=" + lua_str(r["name"]), "spellId=" + str(r["spellId"]),
              "orangeFrom=" + str(origin), "orangeUntil=" + str(stop),
              "learnAt=" + str(learn_at)]
+    # A yellow recipe stops being eligible at the first GREEN skill, never
+    # at its gray threshold. The skill bands come from this Forever record.
+    if isinstance(green, int) and stop < green and green <= 301:
+        parts.append("yellowUntil=" + str(green))
     output = r.get("makes") or {}
     if isinstance(output.get("itemId"), int) and isinstance(output.get("count"), int) and output["count"] > 0:
         parts.extend(["outputItemId=" + str(output["itemId"]), "yield=" + str(output["count"])])
@@ -81,12 +85,15 @@ def recipe_line(r, build):
     return "    {" + ",".join(parts) + "},"
 
 
-def gaps(recipes, cap=300):
+def gaps(recipes, cap=300, include_yellow=False):
     covered = [False] * (cap + 1)
     for r in recipes:
         skill = r["skill"]
+        limit=skill.get("green") if include_yellow else skill["yellow"]
+        if include_yellow and not (isinstance(limit,int) and limit>skill["yellow"]):
+            limit=skill["yellow"]
         for n in range(max(1, skill["orange"], r["learnedFrom"]["sources"]["learnAtSkill"]),
-                       min(cap, skill["yellow"] - 1) + 1):
+                       min(cap, limit - 1) + 1):
             covered[n] = True
     ranges, opened = [], None
     for n in range(1, cap + 2):
@@ -155,7 +162,7 @@ def main():
     result = {"client": "forever", "build": build, "professions": {}}
     out = ["-- Generated from ForeverDB.net build " + build,
            "-- Data from ForeverDB.net (https://foreverdb.net).",
-           "-- Only client-verified orange colors with known acquisition sources.",
+           "-- Client-sourced orange/yellow skill bands; yellow plans use 10% reserve.",
            "-- No API key, assumed recipe or guessed waypoint is included.",
            "local _,ns=...", "ns.professionRecipeCatalog=ns.professionRecipeCatalog or {}"]
     for slug in CRAFTING:
@@ -172,7 +179,10 @@ def main():
         out.append("}")
         result["professions"][slug] = {
             "sourceRecipes": len(records), "verifiedOrangeRecipes": len(admitted),
-            "missingOrangeBands": gaps(admitted)}
+            "verifiedYellowRecipes": sum(isinstance(r["skill"].get("green"),int)
+                and r["skill"]["green"]>r["skill"]["yellow"] for r in admitted),
+            "missingOrangeBands": gaps(admitted),
+            "missingOrangeOrYellowBands": gaps(admitted,include_yellow=True)}
     out.append("ns.professionGatheringCatalog=ns.professionGatheringCatalog or {}")
     for slug in GATHERING:
         rendered, entries = gathering_lines(snapshot, slug)
