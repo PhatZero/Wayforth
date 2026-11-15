@@ -88,8 +88,8 @@ def build(input_dir, output):
               "  local r=ns.foreverQuestLocations[id]",
               "  if not r then r={name=q.name};ns.foreverQuestLocations[id]=r end",
               "  if not r.name then r.name=q.name end",
-              "  if not r.pickup and q.pickup then r.pickup=q.pickup end",
-              "  if not r.turnin and q.turnin then r.turnin=q.turnin end",
+              "  if not r.pickup and q.pickup then r.pickup={q.pickup} end",
+              "  if not r.turnin and q.turnin then r.turnin={q.turnin} end",
               "end"]
     output.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(json.dumps({"quest_details": len(records), "forever_verified_location_phases": verified,

@@ -4144,6 +4144,6 @@ for id,q in pairs(ns.foreverDBQuests) do
   local r=ns.foreverQuestLocations[id]
   if not r then r={name=q.name};ns.foreverQuestLocations[id]=r end
   if not r.name then r.name=q.name end
-  if not r.pickup and q.pickup then r.pickup=q.pickup end
-  if not r.turnin and q.turnin then r.turnin=q.turnin end
+  if not r.pickup and q.pickup then r.pickup={q.pickup} end
+  if not r.turnin and q.turnin then r.turnin={q.turnin} end
 end
