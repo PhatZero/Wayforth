@@ -5,14 +5,16 @@
     "alchemy": {
       "sourceRecipes": 196,
       "verifiedOrangeRecipes": 99,
-      "verifiedYellowRecipes": 99,
+      "clientYellowRecovered": 28,
+      "verifiedYellowRecipes": 136,
       "missingOrangeBands": [],
       "missingOrangeOrYellowBands": []
     },
     "blacksmithing": {
       "sourceRecipes": 506,
       "verifiedOrangeRecipes": 231,
-      "verifiedYellowRecipes": 214,
+      "clientYellowRecovered": 77,
+      "verifiedYellowRecipes": 291,
       "missingOrangeBands": [
         [
           20,
@@ -24,21 +26,24 @@
     "cooking": {
       "sourceRecipes": 132,
       "verifiedOrangeRecipes": 86,
-      "verifiedYellowRecipes": 84,
+      "clientYellowRecovered": 7,
+      "verifiedYellowRecipes": 92,
       "missingOrangeBands": [],
       "missingOrangeOrYellowBands": []
     },
     "enchanting": {
       "sourceRecipes": 262,
       "verifiedOrangeRecipes": 125,
-      "verifiedYellowRecipes": 125,
+      "clientYellowRecovered": 58,
+      "verifiedYellowRecipes": 191,
       "missingOrangeBands": [],
       "missingOrangeOrYellowBands": []
     },
     "engineering": {
       "sourceRecipes": 275,
       "verifiedOrangeRecipes": 80,
-      "verifiedYellowRecipes": 80,
+      "clientYellowRecovered": 69,
+      "verifiedYellowRecipes": 171,
       "missingOrangeBands": [
         [
           30,
@@ -47,15 +52,16 @@
       ],
       "missingOrangeOrYellowBands": [
         [
-          45,
-          74
+          52,
+          54
         ]
       ]
     },
     "first-aid": {
       "sourceRecipes": 32,
       "verifiedOrangeRecipes": 3,
-      "verifiedYellowRecipes": 3,
+      "clientYellowRecovered": 8,
+      "verifiedYellowRecipes": 15,
       "missingOrangeBands": [
         [
           30,
@@ -69,25 +75,27 @@
       "missingOrangeOrYellowBands": [
         [
           45,
-          139
+          49
         ],
         [
-          195,
-          300
+          75,
+          79
         ]
       ]
     },
     "leatherworking": {
       "sourceRecipes": 592,
       "verifiedOrangeRecipes": 272,
-      "verifiedYellowRecipes": 252,
+      "clientYellowRecovered": 66,
+      "verifiedYellowRecipes": 322,
       "missingOrangeBands": [],
       "missingOrangeOrYellowBands": []
     },
     "tailoring": {
       "sourceRecipes": 471,
       "verifiedOrangeRecipes": 242,
-      "verifiedYellowRecipes": 220,
+      "clientYellowRecovered": 76,
+      "verifiedYellowRecipes": 296,
       "missingOrangeBands": [],
       "missingOrangeOrYellowBands": []
     },
