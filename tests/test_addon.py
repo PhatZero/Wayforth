@@ -5,7 +5,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from build import TOC, source_path, BRAND_PATH, ART_PATH, ARROW_PATH, brand_texture, illustrated_art, navigation_arrow_texture, build, manifest
+from build import (TOC, source_path, BRAND_PATH, ART_PATH, LEGACY_PATH, ARROW_PATH,
+                   brand_texture, illustrated_art, legacy_art_texture,
+                   navigation_arrow_texture, build, manifest)
 
 
 class AddonFoundationTests(unittest.TestCase):
@@ -203,16 +205,43 @@ class AddonFoundationTests(unittest.TestCase):
         self.assertTrue(any(art[n] > 0 for n in range(21, len(art), 4)))
         self.assertIn("WayForthArrow.tga", source_path("UI/Navigator.lua").read_text())
 
+    def test_legacy_artwork_and_dashboard_mapping(self):
+        art = legacy_art_texture()
+        self.assertEqual(art[2], 2)  # client-safe uncompressed BGRA
+        self.assertEqual(art[12:16], bytes([128, 0, 128, 0]))
+        self.assertEqual(art[16], 32)
+        self.assertEqual(art[17], 0x28)
+        self.assertEqual(len(art), 18 + 128 * 128 * 4)
+        # The generated image must contain distinct painted gold and teal pixels.
+        pixels = art[18:]
+        self.assertTrue(any(pixels[i + 2] > 190 and pixels[i + 1] > 120
+                            for i in range(0, len(pixels), 4)))
+        self.assertTrue(any(pixels[i] > 170 and pixels[i + 1] > 170
+                            for i in range(0, len(pixels), 4)))
+        theme = source_path("UI/Theme.lua").read_text()
+        modern = source_path("UI/Modern.lua").read_text()
+        self.assertIn("WayForthLegacy.tga", theme)
+        self.assertIn("Legacy = theme.legacyArt", modern)
+        self.assertIn('title="Legacy", texture=theme.legacyArt, tab="Legacy"', modern)
+        self.assertIn('elseif title == "Legacy" then', modern)
+        self.assertIn("icon:SetTexture(theme.legacyArt)", modern)
+        self.assertIn("widget:SetTexture(customTexture or theme.artAtlas)", modern)
+        self.assertIn('tileW - 2, 109, entry.texture)', modern)
+        self.assertIn('self:Hit("category" .. i', modern)
+        self.assertIn('UI:ShowTab(entry.tab)', modern)
+
     def test_packaging(self):
         package = build()
         with zipfile.ZipFile(package) as archive:
             files = archive.namelist()
-            self.assertEqual(len(files), len(manifest()) + 4)
+            self.assertEqual(len(files), len(manifest()) + 5)
             self.assertEqual(files[0], "WayForth/WayForth.toc")
             self.assertIn(BRAND_PATH, files)
             self.assertEqual(archive.read(BRAND_PATH), brand_texture())
             self.assertIn(ART_PATH, files)
             self.assertEqual(archive.read(ART_PATH), illustrated_art())
+            self.assertIn(LEGACY_PATH, files)
+            self.assertEqual(archive.read(LEGACY_PATH), legacy_art_texture())
             self.assertIn(ARROW_PATH, files)
             self.assertEqual(archive.read(ARROW_PATH), navigation_arrow_texture())
             self.assertTrue(all(path.startswith("WayForth/") for path in files))
