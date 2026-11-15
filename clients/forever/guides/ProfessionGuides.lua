@@ -15,6 +15,20 @@ local profiles = {
     {id="tailoring", name="Tailoring", skillLine=197, pairing="Enchanting", materials="Cloth from humanoid enemies, thread and recipe-specific vendor components.", method="Collect cloth while questing; compare recipe skill colors and materials before crafting.", camp="Camp benefit: increased Spirit.", focus="Cloth armor, bags and reagent storage. First Aid also uses cloth."},
 }
 
+-- Rank acquisition differs for secondary professions in Forever.
+-- Source: Wowhead Forever profession overviews. No inferred coordinates.
+local rankNotes={
+    cooking={
+        expert="Expert Cooking comes from the Expert Cookbook, not a trainer. Alliance: Shandrina in Ashenvale. Horde: Wulan in Desolace. The book is tradeable.",
+        artisan="Artisan Cooking comes from the Clamlette Surprise quest given by Dirge Quikcleave in Gadgetzan, Tanaris, at Cooking 225 and character level 35. Bring 12 Giant Eggs, 10 Zesty Clam Meat, and 20 Alterac Swiss."},
+    ["first-aid"]={
+        expert="Expert First Aid comes from Expert First Aid - Under Wraps, not a trainer. Alliance: Deneb Walker in Arathi Highlands. Horde: Balai Lok'Wein in Dustwallow Marsh. Buy the Heavy Silk and Mageweave bandage manuals too.",
+        artisan="Artisan First Aid comes from Triage, not a trainer, at First Aid 225 and character level 35. Alliance: Doctor Gustaf VanHowzen in Theramore. Horde: Doctor Gregory Victor in Hammerfall."},
+    fishing={
+        expert="Expert Fishing comes from the book Expert Fishing - The Bass and You, sold by Old Man Heming in Stranglethorn Vale. Check the item and required skill before purchasing.",
+        artisan="Artisan Fishing comes from Nat Pagle, Angler Extreme, started with Nat Pagle in Dustwallow Marsh at Fishing 225 and character level 35."},
+}
+
 for _, profile in ipairs(profiles) do
     local steps = {
         {id="profession-"..profile.id.."-start", title="Learn "..profile.name, action="manual", trainer=true, skillComplete=1,
@@ -31,7 +45,12 @@ for _, profile in ipairs(profiles) do
             text="Continue one skill-up at a time until you reach 300. The recommendation is recalculated after your skill changes, so it can switch recipes when the current one stops being an efficient source of points. Gather only the materials shown for the next recommended craft."},
     }
     -- Fill the dynamic profession name into the first step after constructing shared milestones.
-    steps[3].text = "Use the Next Skill-Up recommendation to choose a known recipe or gathering method that still grants skill. Make one craft at a time and recheck the recommendation after every skill-up; this limits leftover materials when the current recipe changes color. "..profile.method
+    local rank=rankNotes[profile.id]
+    if rank then
+        steps[4].text=rank.expert.." Your profession cap must actually increase before the tracker advances."
+        steps[5].text=rank.artisan.." Your profession cap must actually increase before the tracker advances."
+    end
+    steps[1].text=steps[1].text.." WayForth uses a verified offline orange-only route when available; collect the full verified shopping list first. Where records are incomplete, it shows only the next live orange recipe."
     for _, step in ipairs(steps) do step.professionId=profile.id end
     ns.starterGuides[#ns.starterGuides+1] = {
         id="profession-"..profile.id, title=profile.name.." Profession Guide", zone=profile.name,
