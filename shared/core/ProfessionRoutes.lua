@@ -46,15 +46,17 @@ function Route:Plan(profession, fromSkill, toSkill)
     -- materials only when needed and consume available intermediate stock.
     while skill<toSkill do
         local chosen
-        local chosenCost
+        local chosenCost,chosenPriority
         for _,recipe in ipairs(catalog) do
             if valid(recipe) and recipe.orangeFrom<=skill and skill<recipe.orangeUntil
                 and (type(recipe.learnAt)~="number" or recipe.learnAt<=skill) then
                 local cost=0
                 for _,reagent in ipairs(recipe.reagents) do cost=cost+reagent.count end
-                if not chosen or cost<chosenCost
-                    or (cost==chosenCost and recipe.spellId<chosen.spellId) then
-                    chosen,chosenCost=recipe,cost
+                local priority=type(recipe.sourcePriority)=="number" and recipe.sourcePriority or 0
+                if not chosen or priority<chosenPriority
+                    or (priority==chosenPriority and cost<chosenCost)
+                    or (priority==chosenPriority and cost==chosenCost and recipe.spellId<chosen.spellId) then
+                    chosen,chosenCost,chosenPriority=recipe,cost,priority
                 end
             end
         end
