@@ -6,6 +6,7 @@ import zipfile
 import base64
 import zlib
 from navigation_art import navigation_arrow_texture
+from legacy_art import legacy_art_texture
 
 ROOT = Path(__file__).resolve().parents[1]
 FOREVER = ROOT / "clients" / "forever"
@@ -17,6 +18,7 @@ BRAND_SOURCE = SHARED / "artwork" / "WayForthCompass.tga.b85"
 BRAND_PATH = "WayForth/Textures/WayForthCompass.tga"
 ART_SOURCE = SHARED / "artwork" / "WayForthArtAtlas.tga.b85"
 ART_PATH = "WayForth/Textures/WayForthArtAtlas.tga"
+LEGACY_PATH = "WayForth/Textures/WayForthLegacy.tga"
 ARROW_PATH = "WayForth/Textures/WayForthArrow.tga"
 
 
@@ -87,6 +89,7 @@ def build():
             package.write(source_path(script), f"WayForth/{script}")
         package.writestr(BRAND_PATH, brand_texture())
         package.writestr(ART_PATH, illustrated_art())
+        package.writestr(LEGACY_PATH, legacy_art_texture())
         package.writestr(ARROW_PATH, navigation_arrow_texture())
     with zipfile.ZipFile(target) as package:
         broken = package.testzip()

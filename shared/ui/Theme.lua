@@ -12,6 +12,7 @@ local Theme = {
     border = { 0.24, 0.31, 0.36, 0.8 },
     logoTexture = "Interface\\AddOns\\WayForth\\Textures\\WayForthCompass.tga",
     artAtlas = "Interface\\AddOns\\WayForth\\Textures\\WayForthArtAtlas.tga",
+    legacyArt = "Interface\\AddOns\\WayForth\\Textures\\WayForthLegacy.tga",
 }
 ns:RegisterModule("Theme", Theme)
 

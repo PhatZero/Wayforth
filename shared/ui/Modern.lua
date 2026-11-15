@@ -14,13 +14,13 @@ local NAV_ICONS = {
     ["Recently Used"] = "Interface\\Icons\\INV_Misc_PocketWatch_01",
     Map = "Interface\\Icons\\INV_Misc_Spyglass_02",
     Professions = "Interface\\Icons\\Trade_BlackSmithing",
-    Legacy = "Interface\\Icons\\INV_Misc_TreasureChest_01",
+    Legacy = theme.legacyArt,
     Settings = "Interface\\Icons\\INV_Gizmo_02",
 }
 local CATEGORIES = {
     { title="Leveling", icon="Interface\\Icons\\Achievement_Level_10", art=2, tab="Guide Library" },
     { title="Professions", icon="Interface\\Icons\\Trade_BlackSmithing", art=3, tab="Professions" },
-    { title="Legacy", icon="Interface\\Icons\\INV_Misc_TreasureChest_01", art=4, tab="Legacy" },
+    { title="Legacy", texture=theme.legacyArt, tab="Legacy" },
     { title="Gold Making", icon="Interface\\Icons\\INV_Misc_Coin_02", art=5, tab="Gold Making" },
     { title="Exploration", icon="Interface\\Icons\\INV_Misc_Map_01", art=1, tab="Exploration" },
 }
@@ -103,6 +103,10 @@ function UI:MakeWindow()
         if title == "Settings" then
             icon:SetTexture(theme.artAtlas)
             icon:SetTexCoord(theme:ArtCoords(6))
+        elseif title == "Legacy" then
+            -- Crop to the chest itself for legibility at 20px sidebar size.
+            icon:SetTexture(theme.legacyArt)
+            icon:SetTexCoord(0.2, 0.8, 0.2, 0.82)
         else
             icon:SetTexture(NAV_ICONS[title] or "Interface\\Icons\\INV_Misc_QuestionMark")
         end
@@ -293,14 +297,18 @@ function UI:Icon(id, texture, x, y, w, h)
 end
 -- Atlas artwork is a BORDER-level texture so it sits above card surfaces
 -- but below legible OVERLAY text and custom clickable controls.
-function UI:Art(id, index, x, y, w, h)
+function UI:Art(id, index, x, y, w, h, customTexture)
     local widget = self.widgets[id]
     if not widget then
         widget = self.page:CreateTexture(nil, "BORDER", nil, 0)
         self.widgets[id] = widget
     end
-    widget:SetTexture(theme.artAtlas)
-    widget:SetTexCoord(theme:ArtCoords(index))
+    widget:SetTexture(customTexture or theme.artAtlas)
+    if customTexture then
+        widget:SetTexCoord(0, 1, 0, 1)
+    else
+        widget:SetTexCoord(theme:ArtCoords(index))
+    end
     widget:ClearAllPoints()
     widget:SetPoint("TOPLEFT", self.page, "TOPLEFT", x, -y)
     widget:SetSize(w,h)
@@ -634,7 +642,7 @@ function UI:Refresh()
         for i, entry in ipairs(CATEGORIES) do
             local x = 4 + (i - 1) * (tileW + tileGap)
             self:Surface("catSurface" .. i, x, 287, tileW, 111)
-            self:Art("catArt" .. i, entry.art, x + 1, 288, tileW - 2, 109)
+            self:Art("catArt" .. i, entry.art, x + 1, 288, tileW - 2, 109, entry.texture)
             self:ArtShade("catShade" .. i, x + 1, 343, tileW - 2, 54)
             self:Label("catTitle" .. i, entry.title, x + 10, 349, tileW - 20, 14, theme.ivory)
             self:Label("catDesc" .. i, texts[i], x + 10, 374, tileW - 20, 10, theme.muted)
