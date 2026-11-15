@@ -307,7 +307,7 @@ function Tracker:MakeFrame()
     -- Dedicated profession workspace: materials and crafting in the same tracker.
     local professionPanel=CreateFrame("Frame",nil,panel)
     professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
-    professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,13)
+    professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,55)
     theme:Panel(professionPanel,theme.panelLight,theme.gold)
     self.professionPanel=professionPanel
     -- One full-width scrollable page at a time. The old half-width columns
@@ -345,6 +345,30 @@ function Tracker:MakeFrame()
     self.professionCraftContent=craftContent
     self.professionMaterialRows={}
     self.professionCraftRows={}
+    local professionNav=CreateFrame("Frame",nil,panel)
+    professionNav:SetPoint("BOTTOMLEFT",panel,"BOTTOMLEFT",13,8)
+    professionNav:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-13,8)
+    professionNav:SetHeight(36)
+    self.professionNav=professionNav
+    self.professionPrevButton=theme:Button(professionNav,115,33,"PREPARATION",function()
+        Tracker.professionView="materials"
+        if ns.char then ns.char.professionView="materials" end
+        Tracker:RenderProfession()
+    end,"quiet")
+    self.professionPrevButton:SetPoint("LEFT",professionNav,"LEFT",0,0)
+    self.professionNextButton=theme:Button(professionNav,170,33,"VIEW CRAFTS >",function()
+        Tracker.professionView=Tracker.professionView=="materials" and "crafts" or "materials"
+        if ns.char then ns.char.professionView=Tracker.professionView end
+        Tracker:RenderProfession()
+    end,"primary")
+    self.professionNextButton:SetPoint("CENTER",professionNav,"CENTER",0,0)
+    self.professionSyncButton=theme:Button(professionNav,75,33,"REFRESH",function()
+        local profession=ns.Modules.ProfessionGuides
+        if profession then profession:CaptureOpenProfession() end
+        Tracker:RenderProfession()
+    end,"quiet")
+    self.professionSyncButton:SetPoint("RIGHT",professionNav,"RIGHT",0,0)
+    professionNav:Hide()
     professionPanel:Hide()
 
     self.upcomingTitle=label(panel,"UPCOMING STEPS",11,theme.teal,15,300,200)
@@ -700,13 +724,333 @@ function Tracker:ApplyOpacity()
     end
 end
 
+-- Reused visual components are intentionally pooled. Re-reading bags and
+-- successful casts repaints numbers; it never creates a fresh widget tree.
+local function setProfessionText(font,parent,value,x,y,w,h,color)
+    font:ClearAllPoints()
+    font:SetPoint("TOPLEFT",parent,"TOPLEFT",x,-y)
+    font:SetWidth(math.max(15,w))
+    font:SetHeight(h or 18)
+    font:SetText(tostring(value or ""))
+    font:SetTextColor(unpack(color or theme.ivory))
+end
+local function professionLine(tracker,group,key,parent,value,y,width,size,color)
+    tracker[group]=tracker[group] or {}
+    local font=tracker[group][key]
+    if not font then
+        font=theme:Text(parent,"",size or 11,color or theme.ivory)
+        font:SetWordWrap(true)
+        tracker[group][key]=font
+    end
+    setProfessionText(font,parent,value,0,y,width,400,color)
+    local measured=font.GetStringHeight and font:GetStringHeight() or 16
+    local height=math.max(16,math.min(160,(measured or 16)+4))
+    font:SetHeight(height)
+    font:Show()
+    return y+height+4
+end
+local function professionIcon(itemId)
+    if type(itemId)=="number" and type(GetItemIcon)=="function" then
+        local ok,texture=pcall(GetItemIcon,itemId)
+        if ok and texture then return texture end
+    end
+    if type(itemId)=="number" and C_Item and type(C_Item.GetItemIconByID)=="function" then
+        local ok,texture=pcall(C_Item.GetItemIconByID,itemId)
+        if ok and texture then return texture end
+    end
+    return "Interface\\Icons\\INV_Misc_QuestionMark"
+end
+local function newMaterialCard(content)
+    local card=CreateFrame("Frame",nil,content)
+    theme:Panel(card,theme.elevated,theme.border)
+    card.icon=card:CreateTexture(nil,"ARTWORK")
+    card.icon:SetPoint("TOPLEFT",card,"TOPLEFT",10,-12)
+    card.icon:SetSize(36,36)
+    card.title=theme:Text(card,"",12,theme.ivory)
+    card.details=theme:Text(card,"",10,theme.muted)
+    card.status=theme:Text(card,"",10,theme.gold,"RIGHT")
+    card.track=card:CreateTexture(nil,"BACKGROUND")
+    card.track:SetColorTexture(0.14,0.25,0.30,1)
+    card.track:SetPoint("BOTTOMLEFT",card,"BOTTOMLEFT",56,11)
+    card.track:SetHeight(5)
+    card.fill=card:CreateTexture(nil,"ARTWORK")
+    card.fill:SetColorTexture(unpack(theme.teal))
+    card.fill:SetPoint("LEFT",card.track,"LEFT")
+    card.fill:SetHeight(5)
+    return card
+end
+local function newCraftCard(content)
+    local card=CreateFrame("Frame",nil,content)
+    theme:Panel(card,theme.elevated,theme.border)
+    card.range=theme:Text(card,"",10,theme.teal)
+    card.title=theme:Text(card,"",12,theme.ivory)
+    card.count=theme:Text(card,"",10,theme.muted,"RIGHT")
+    card.source=theme:Text(card,"",10,theme.muted)
+    card.track=card:CreateTexture(nil,"BACKGROUND")
+    card.track:SetColorTexture(0.14,0.25,0.30,1)
+    card.track:SetPoint("BOTTOMLEFT",card,"BOTTOMLEFT",12,10)
+    card.track:SetHeight(5)
+    card.fill=card:CreateTexture(nil,"ARTWORK")
+    card.fill:SetColorTexture(unpack(theme.teal))
+    card.fill:SetPoint("LEFT",card.track,"LEFT")
+    card.fill:SetHeight(5)
+    return card
+end
+local function paintFill(card,amount,total,width)
+    local fraction=total>0 and math.max(0,math.min(1,amount/total)) or 0
+    card.track:SetWidth(math.max(2,width))
+    card.fill:SetWidth(math.max(1,width*fraction))
+    if fraction==0 then card.fill:Hide() else card.fill:Show() end
+    card.fill:SetColorTexture(unpack(fraction>=1 and theme.green or theme.teal))
+end
+
+function Tracker:RenderProfessionChecklist(plan,width)
+    local content=self.professionMaterialContent
+    local prep=plan.preparation or {materials=plan.materials or {},intermediates={}}
+    local list=prep.materials or {}
+    local y=0
+    y=professionLine(self,"professionPrepLabels","heading",content,
+        "STEP 1  |  GATHER MATERIALS",y,width,13,theme.gold)
+    y=professionLine(self,"professionPrepLabels","skill",content,
+        "Skill "..plan.skill.." / "..plan.target.."  |  Bags + bank (when accessible)",y,width,10,theme.teal)
+    local routeLabel=(plan.offline or plan.verifiedSegment) and "Source-verified route + yellow reserve"
+        or plan.gathering and "Gathering guide" or "Current orange/yellow craft only"
+    y=professionLine(self,"professionPrepLabels","route",content,routeLabel,y,width,10,theme.muted)
+    if plan.yellowBuffer and plan.yellowBuffer>0 then
+        y=professionLine(self,"professionPrepLabels","buffer",content,
+            "Yellow reserve: +"..plan.yellowBuffer.." planned crafts (10%); skill gains are not guaranteed.",y,width,10,theme.gold)
+    elseif self.professionPrepLabels and self.professionPrepLabels.buffer then
+        self.professionPrepLabels.buffer:Hide()
+    end
+    y=y+7
+    y=professionLine(self,"professionPrepLabels","checklist",content,
+        prep.expanded and "RAW MATERIAL CHECKLIST" or "MATERIAL CHECKLIST",y,width,12,theme.teal)
+    y=professionLine(self,"professionPrepLabels","types",content,
+        #list.." ingredient types  |  Counts update from your inventory",y,width,10,theme.muted)
+    self.professionMaterialCards=self.professionMaterialCards or {}
+    for i,item in ipairs(list) do
+        local card=self.professionMaterialCards[i]
+        if not card then
+            card=newMaterialCard(content)
+            self.professionMaterialCards[i]=card
+        end
+        card:SetSize(width,70)
+        card:ClearAllPoints()
+        card:SetPoint("TOPLEFT",content,"TOPLEFT",0,-y)
+        card.icon:SetTexture(professionIcon(item.itemId))
+        setProfessionText(card.title,card,item.name,55,8,width-160,19,theme.ivory)
+        setProfessionText(card.details,card,
+            "Have "..item.owned.."  /  "..item.required.."  |  Need "..item.missing,
+            55,29,width-75,18,theme.muted)
+        setProfessionText(card.status,card,item.missing==0 and "READY" or "MISSING",
+            width-99,8,86,18,item.missing==0 and theme.green or theme.gold)
+        paintFill(card,math.min(item.owned,item.required),item.required,width-69)
+        card:Show()
+        y=y+77
+    end
+    for i=#list+1,#self.professionMaterialCards do self.professionMaterialCards[i]:Hide() end
+    if #list==0 then
+        y=professionLine(self,"professionPrepLabels","empty",content,
+            plan.instructions or "No remaining raw materials are required.",y,width,11,theme.ivory)
+    elseif self.professionPrepLabels and self.professionPrepLabels.empty then
+        self.professionPrepLabels.empty:Hide()
+    end
+
+    local collected,total=0,0
+    for _,item in ipairs(list) do
+        total=total+item.required
+        collected=collected+math.min(item.owned,item.required)
+    end
+    if not self.professionSummary then
+        local summary=CreateFrame("Frame",nil,content)
+        theme:Panel(summary,theme.panel,theme.border)
+        summary.caption=theme:Text(summary,"COLLECTED",10,theme.teal)
+        summary.count=theme:Text(summary,"",12,theme.ivory,"RIGHT")
+        summary.track=summary:CreateTexture(nil,"BACKGROUND")
+        summary.track:SetColorTexture(0.14,0.25,0.30,1)
+        summary.track:SetPoint("BOTTOMLEFT",summary,"BOTTOMLEFT",12,9)
+        summary.track:SetHeight(5)
+        summary.fill=summary:CreateTexture(nil,"ARTWORK")
+        summary.fill:SetColorTexture(unpack(theme.teal))
+        summary.fill:SetPoint("LEFT",summary.track,"LEFT")
+        summary.fill:SetHeight(5)
+        self.professionSummary=summary
+    end
+    local summary=self.professionSummary
+    summary:SetSize(width,53)
+    summary:ClearAllPoints()
+    summary:SetPoint("TOPLEFT",content,"TOPLEFT",0,-y)
+    setProfessionText(summary.caption,summary,"COLLECTED",12,9,width-120,19,theme.teal)
+    setProfessionText(summary.count,summary,collected.." / "..total.." items",width-170,8,158,20,theme.ivory)
+    paintFill(summary,collected,total,width-24)
+    summary:Show()
+    y=y+64
+
+    -- Material conversion is distinct from skill-point progress. These are
+    -- source-verified recipes, but the player must have learned each one.
+    local conversions=prep.intermediates or {}
+    if #conversions>0 then
+        y=professionLine(self,"professionPrepLabels","convertHeading",content,
+            "PREPARE CRAFTED INTERMEDIATES",y,width,11,theme.gold)
+        y=professionLine(self,"professionPrepLabels","convertNote",content,
+            "Optional conversion route. Learn the recipes first, or obtain the finished items directly.",y,width,10,theme.muted)
+    else
+        for _,key in ipairs({"convertHeading","convertNote"}) do
+            if self.professionPrepLabels and self.professionPrepLabels[key] then self.professionPrepLabels[key]:Hide() end
+        end
+    end
+    self.professionConversionLabels=self.professionConversionLabels or {}
+    for i,entry in ipairs(conversions) do
+        local field=self.professionConversionLabels[i]
+        if not field then
+            field=theme:Text(content,"",11,theme.ivory)
+            field:SetWordWrap(true)
+            self.professionConversionLabels[i]=field
+        end
+        local label=entry.crafts.."x "..entry.name..
+            (entry.acquisition and ("  |  "..entry.acquisition) or "  |  Recipe must be learned")
+        setProfessionText(field,content,label,7,y,width-16,400,theme.ivory)
+        local h=math.max(19,math.min(70,(field:GetStringHeight() or 15)+6))
+        field:SetHeight(h)
+        field:Show()
+        y=y+h+4
+    end
+    for i=#conversions+1,#self.professionConversionLabels do self.professionConversionLabels[i]:Hide() end
+    y=y+7
+    y=professionLine(self,"professionPrepLabels","nextHeading",content,
+        plan.gathering and "THEN FOLLOW THE GATHERING ROUTE" or "THEN CRAFT IN THIS ORDER",y,width,12,theme.gold)
+    if plan.gathering then
+        y=professionLine(self,"professionPrepLabels","nextEmpty",content,
+            plan.instructions or "Gather verified nodes to raise skill.",y,width,11,theme.ivory)
+    else
+        local current=1
+        for i,craft in ipairs(plan.crafts or {}) do
+            if not craft.toSkill or plan.skill<craft.toSkill then current=i;break end
+            current=i+1
+        end
+        local previewCount=0
+        self.professionPreviewLabels=self.professionPreviewLabels or {}
+        for i=current,math.min(#(plan.crafts or {}),current+2) do
+            local craft=plan.crafts[i]
+            local row=self.professionPreviewLabels[previewCount+1]
+            if not row then
+                row=theme:Text(content,"",10,theme.ivory)
+                self.professionPreviewLabels[previewCount+1]=row
+            end
+            local range=craft.fromSkill and (craft.fromSkill.."-"..craft.toSkill.."  ") or ""
+            local progress=craft.progressType=="observed-cast" and
+                (craft.completed.."/"..craft.required.." crafts") or "craft count unavailable"
+            setProfessionText(row,content,range..craft.name.."  |  "..progress,7,y,width-12,38,
+                craft.color=="yellow" and theme.gold or theme.ivory)
+            local h=math.max(18,math.min(36,(row:GetStringHeight() or 14)+3))
+            row:SetHeight(h)
+            row:Show()
+            y=y+h+4
+            previewCount=previewCount+1
+        end
+        for i=previewCount+1,#(self.professionPreviewLabels or {}) do self.professionPreviewLabels[i]:Hide() end
+        if previewCount==0 then
+            y=professionLine(self,"professionPrepLabels","nextEmpty",content,
+                plan.complete and "Profession skill cap reached." or
+                (plan.instructions or "No verified crafting sequence is available."),y,width,11,theme.ivory)
+        elseif self.professionPrepLabels and self.professionPrepLabels.nextEmpty then
+            self.professionPrepLabels.nextEmpty:Hide()
+        end
+        y=professionLine(self,"professionPrepLabels","nextHelp",content,
+            "Open CRAFTING PLAN for every recipe, acquisition method and live craft progress.",y,width,10,theme.teal)
+    end
+    content:SetSize(width,math.max(1,y+8))
+end
+
+function Tracker:RenderProfessionCrafts(plan,width)
+    local content=self.professionCraftContent
+    local y=0
+    y=professionLine(self,"professionCraftLabels","heading",content,
+        plan.gathering and "STEP 2  |  GATHERING ROUTE" or "STEP 2  |  CRAFTING PLAN",
+        y,width,13,theme.gold)
+    y=professionLine(self,"professionCraftLabels","source",content,
+        (plan.offline or plan.verifiedSegment) and "Recipe data: ForeverDB.net (foreverdb.net)"
+        or "Live recipe color and known Forever data only",y,width,10,theme.teal)
+    if plan.needsTrainer then
+        y=professionLine(self,"professionCraftLabels","trainer",content,
+            "TRAIN NEXT RANK before crafting",y,width,11,theme.gold)
+    elseif self.professionCraftLabels and self.professionCraftLabels.trainer then
+        self.professionCraftLabels.trainer:Hide()
+    end
+    y=professionLine(self,"professionCraftLabels","warning",content,
+        plan.gathering and (plan.instructions or "Find source-observed zones for gathering.")
+        or "Orange first; yellow crafts have a +10% reserve. A yellow skill-up is not guaranteed.",
+        y,width,10,theme.muted)
+    y=y+8
+    self.professionCraftCards=self.professionCraftCards or {}
+    local cards=0
+    if not plan.gathering then
+        for _,craft in ipairs(plan.crafts or {}) do
+            cards=cards+1
+            local card=self.professionCraftCards[cards]
+            if not card then
+                card=newCraftCard(content)
+                self.professionCraftCards[cards]=card
+            end
+            card:SetSize(width,101)
+            card:ClearAllPoints()
+            card:SetPoint("TOPLEFT",content,"TOPLEFT",0,-y)
+            local color=craft.color=="yellow" and theme.gold or {1,.63,.32,1}
+            setProfessionText(card.range,card,
+                craft.fromSkill and ("SKILL "..craft.fromSkill.." -> "..craft.toSkill) or
+                    ("CURRENT SKILL "..plan.skill),12,10,145,17,theme.teal)
+            setProfessionText(card.title,card,craft.name.." ("..(craft.color or "orange")..")",
+                12,31,width-26,22,color)
+            if craft.progressType=="observed-cast" then
+                setProfessionText(card.count,card,"Crafted "..craft.completed.." / "..craft.required,
+                    width-146,9,132,18,theme.ivory)
+            else
+                setProfessionText(card.count,card,"Craft count unavailable",
+                    width-168,9,154,18,theme.gold)
+            end
+            local details=craft.acquisition or (craft.trainer and "Trainer recipe" or "Check learned recipes")
+            if (craft.bufferExtra or 0)>0 then
+                details=details.."  |  Yellow reserve: +"..craft.bufferExtra
+            end
+            if craft.learnAt then details=details.."  |  Learn at "..craft.learnAt end
+            setProfessionText(card.source,card,details,12,59,width-24,20,theme.muted)
+            local done=craft.progressType=="observed-cast" and craft.completed or 0
+            paintFill(card,done,craft.required,width-25)
+            card:Show()
+            y=y+108
+        end
+    end
+    for i=cards+1,#self.professionCraftCards do self.professionCraftCards[i]:Hide() end
+    if plan.gathering then
+        for _,option in ipairs(plan.gatheringOptions or {}) do
+            y=professionLine(self,"professionCraftLabels","zone"..tostring(_),content,
+                (option.verified and "[Observed] " or "[Candidate] ")..
+                option.zone.." (map "..option.mapId..")",y,width,11,theme.ivory)
+        end
+    elseif cards==0 then
+        y=professionLine(self,"professionCraftLabels","none",content,
+            plan.instructions or "Learn an orange/yellow recipe or visit a trainer.",y,width,11,theme.ivory)
+    elseif self.professionCraftLabels and self.professionCraftLabels.none then
+        self.professionCraftLabels.none:Hide()
+    end
+    if not plan.gathering and cards>0 then
+        y=professionLine(self,"professionCraftLabels","footer",content,
+            plan.instructions or "Craft counts update from successful player spellcast events. Recheck actual skill after each craft.",
+            y,width,10,theme.muted)
+    elseif self.professionCraftLabels and self.professionCraftLabels.footer then
+        self.professionCraftLabels.footer:Hide()
+    end
+    content:SetSize(width,math.max(1,y+10))
+end
+
 function Tracker:RenderProfession()
     local guide=ns.Modules.Guides:GetGuide()
     if not guide or not guide.isProfession or not self.professionPanel then return end
     local profession=ns.Modules.ProfessionGuides
     local plan=profession and profession:GatherPlan(guide.professionId)
     if not plan then return end
-    local column=math.max(230,self.professionPanel:GetWidth()-26)
+    self.professionPlan=plan
+    local width=math.max(230,self.professionPanel:GetWidth()-26)
     local left=self.professionMaterials
     local right=self.professionCrafting
     for _,scroll in ipairs({left,right}) do
@@ -720,101 +1064,11 @@ function Tracker:RenderProfession()
     self.craftsTab.surface:SetColorTexture(unpack(view=="crafts" and theme.elevated or theme.panel))
     self.materialsTab.label:SetTextColor(unpack(view=="materials" and theme.teal or theme.ivory))
     self.craftsTab.label:SetTextColor(unpack(view=="crafts" and theme.teal or theme.ivory))
-    local function render(content,rows,lines)
-        local y=0
-        for i,value in ipairs(lines) do
-            local row=rows[i]
-            if not row then
-                row=theme:Text(content,"",i==1 and 13 or 11,i==1 and theme.gold or theme.ivory)
-                row:SetWordWrap(true)
-                rows[i]=row
-            end
-            row:SetWidth(column-12)
-            row:SetText(value.text)
-            row:SetTextColor(unpack(value.color or theme.ivory))
-            row:ClearAllPoints()
-            row:SetPoint("TOPLEFT",content,"TOPLEFT",0,-y)
-            -- Give the font string room to measure its wrapped content before
-            -- applying the final row height. A zero-height string can render blank.
-            row:SetHeight(1000)
-            local measured=row:GetStringHeight() or 0
-            local h=math.max(18,measured+4)
-            row:SetHeight(h)
-            row:Show()
-            y=y+h+5
-        end
-        for i=#lines+1,#rows do rows[i]:Hide() end
-        content:SetWidth(column-12)
-        content:SetHeight(math.max(1,y))
+    self:RenderProfessionChecklist(plan,width)
+    self:RenderProfessionCrafts(plan,width)
+    if self.professionNextButton then
+        self.professionNextButton:SetLabel(view=="materials" and "VIEW CRAFTS >" or "< BACK TO PREP")
     end
-    local leftLines={{text="STEP 1  |  GATHER MATERIALS",color=theme.gold},
-        {text="Skill "..plan.skill.." / "..plan.target.."  |  Bags + bank",color=theme.teal}}
-    if plan.complete then
-        leftLines[#leftLines+1]={text="Profession skill cap reached.",color=theme.green}
-    elseif plan.gathering then
-        leftLines[#leftLines+1]={text="Gathering uses nodes, not crafting reagents."}
-    elseif #plan.materials==0 then
-        leftLines[#leftLines+1]={text=plan.instructions or "No verified ingredients are available yet."}
-    else
-        leftLines[#leftLines+1]={text=(plan.offline or plan.verifiedSegment)
-            and "Source-verified route + yellow reserve" or "Current orange/yellow craft only",color=theme.teal}
-        if (plan.yellowBuffer or 0)>0 then
-            leftLines[#leftLines+1]={text="Yellow materials: +10% planned crafts ("..plan.yellowBuffer..
-                " additional). This is a buffer, not a guaranteed skill gain.",color=theme.gold}
-        end
-        for _,item in ipairs(plan.materials) do
-            leftLines[#leftLines+1]={text=(item.missing==0 and "[x] " or "[ ] ")..
-                item.name.."  "..math.min(item.owned,item.required).."/"..item.required..
-                (item.missing>0 and ("  (need "..item.missing..")") or ""),
-                color=item.missing==0 and theme.green or theme.ivory}
-        end
-    end
-    local rightLines={{text=plan.gathering and "STEP 2  |  GATHERING ROUTE" or "STEP 2  |  CRAFTING PLAN",color=theme.gold}}
-    if plan.gathering then
-        rightLines[#rightLines+1]={text="Skill "..plan.skill.." -> "..plan.target,color=theme.teal}
-        rightLines[#rightLines+1]={text=plan.instructions or "Find verified nodes matching your skill."}
-        for i,option in ipairs(plan.gatheringOptions or {}) do
-            rightLines[#rightLines+1]={text=(option.verified and "[Observed] " or "[Candidate] ")..
-                option.zone.." (map "..option.mapId..")"}
-        end
-        if plan.gatheringTarget and plan.gatheringTarget.zone then
-            rightLines[#rightLines+1]={text="Zone: "..plan.gatheringTarget.zone}
-        end
-    elseif plan.complete then
-        rightLines[#rightLines+1]={text=plan.instructions or "Skill cap reached."}
-    elseif #plan.crafts==0 then
-        rightLines[#rightLines+1]={text=plan.instructions or "Learn a suitable orange or yellow recipe first."}
-    else
-        if plan.offline then
-            rightLines[#rightLines+1]={text="Recipe data: ForeverDB.net (foreverdb.net)",color=theme.teal}
-        end
-        if plan.needsTrainer then
-            rightLines[#rightLines+1]={text="TRAIN NEXT RANK before crafting",color=theme.gold}
-        end
-        rightLines[#rightLines+1]={text=(plan.offline or plan.verifiedSegment)
-            and "Orange first, yellow +10% buffer" or "Live orange/yellow recipe only",color=theme.teal}
-        rightLines[#rightLines+1]={text=plan.ready and "Materials collected. Check that each recipe is learned."
-            or "Collect missing ingredients before crafting.",color=theme.teal}
-        for _,craft in ipairs(plan.crafts) do
-            rightLines[#rightLines+1]={text=craft.name.." ("..(craft.color or "orange")..")",
-                color=craft.color=="yellow" and theme.gold or theme.ivory}
-            if (craft.bufferExtra or 0)>0 then
-                rightLines[#rightLines+1]={text="Yellow reserve: +"..craft.bufferExtra.." crafts (10%, rounded up); skill-up not guaranteed.",color=theme.gold}
-            end
-            if craft.progressType=="observed-cast" then
-                rightLines[#rightLines+1]={text="Crafted "..craft.completed.."/"..craft.required..
-                    (craft.fromSkill and ("  |  Skill "..craft.fromSkill.." -> "..craft.toSkill) or "")}
-            else
-                rightLines[#rightLines+1]={text="Craft count unavailable; verify client event support."}
-            end
-            if craft.learnAt then rightLines[#rightLines+1]={text="Learn at skill "..craft.learnAt} end
-            if craft.acquisition then rightLines[#rightLines+1]={text=tostring(craft.acquisition)} end
-        end
-        rightLines[#rightLines+1]={text=plan.instructions or
-            "Orange preferred; yellow uses a 10% reserve. Recheck actual skill after crafting."}
-    end
-    render(self.professionMaterialContent,self.professionMaterialRows,leftLines)
-    render(self.professionCraftContent,self.professionCraftRows,rightLines)
     for _,scroll in ipairs({left,right}) do
         local content=scroll==left and self.professionMaterialContent or self.professionCraftContent
         scroll:SetVerticalScroll(math.min(scroll:GetVerticalScroll(),math.max(0,content:GetHeight()-scroll:GetHeight())))
@@ -893,6 +1147,10 @@ function Tracker:Layout()
         if visible>0 and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
         else self.upcomingTitle:Hide() end
         self.controls:Show()
+    end
+    if self.professionNav then
+        if isProfession and not ns.char.trackerMinimized then self.professionNav:Show()
+        else self.professionNav:Hide() end
     end
     if isProfession and not ns.char.trackerMinimized then
         self.objectiveCard:Hide()
