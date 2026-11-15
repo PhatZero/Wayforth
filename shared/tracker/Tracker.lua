@@ -989,6 +989,9 @@ function Tracker:RenderProfessionCrafts(plan,width)
     local cards=0
     if not plan.gathering then
         for _,craft in ipairs(plan.crafts or {}) do
+            -- A returning character must not see unobserved old crafts as
+            -- unfinished. Show the actionable skill bands only.
+            if not craft.toSkill or craft.toSkill>plan.skill then
             cards=cards+1
             local card=self.professionCraftCards[cards]
             if not card then
@@ -1021,14 +1024,22 @@ function Tracker:RenderProfessionCrafts(plan,width)
             paintFill(card,done,craft.required,width-25)
             card:Show()
             y=y+108
+            end
         end
     end
     for i=cards+1,#self.professionCraftCards do self.professionCraftCards[i]:Hide() end
     if plan.gathering then
+        if self.professionCraftLabels and self.professionCraftLabels.none then self.professionCraftLabels.none:Hide() end
+        local shown=0
         for _,option in ipairs(plan.gatheringOptions or {}) do
+            shown=shown+1
             y=professionLine(self,"professionCraftLabels","zone"..tostring(_),content,
                 (option.verified and "[Observed] " or "[Candidate] ")..
                 option.zone.." (map "..option.mapId..")",y,width,11,theme.ivory)
+        end
+        for i=shown+1,3 do
+            local key="zone"..i
+            if self.professionCraftLabels and self.professionCraftLabels[key] then self.professionCraftLabels[key]:Hide() end
         end
     elseif cards==0 then
         for _,key in ipairs({"zone1","zone2","zone3"}) do
@@ -1073,8 +1084,11 @@ function Tracker:RenderProfession()
     self.craftsTab.surface:SetColorTexture(unpack(view=="crafts" and theme.elevated or theme.panel))
     self.materialsTab.label:SetTextColor(unpack(view=="materials" and theme.teal or theme.ivory))
     self.craftsTab.label:SetTextColor(unpack(view=="crafts" and theme.teal or theme.ivory))
-    self:RenderProfessionChecklist(plan,width)
-    self:RenderProfessionCrafts(plan,width)
+    -- Only render the visible scroll page. A 1-to-300 route can contain
+    -- many recipe cards; repainting the hidden page every inventory event
+    -- wastes UI time and created the stuttering seen in earlier betas.
+    if view=="materials" then self:RenderProfessionChecklist(plan,width)
+    else self:RenderProfessionCrafts(plan,width) end
     if self.professionNextButton then
         self.professionNextButton:SetLabel(view=="materials" and "VIEW CRAFTS >" or "< BACK TO PREP")
     end
