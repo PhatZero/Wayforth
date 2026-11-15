@@ -1,0 +1,20 @@
+{
+  "client": "forever",
+  "build": "1.60.1.70938",
+  "status": "discovery-only",
+  "notes": "These are independently visible Forever-source candidates, NOT verified catalog entries. They cannot be routed until build-matched recipe, output, reagents, availability, and orange breakpoints are validated.",
+  "candidates": [
+    {
+      "profession": "leatherworking",
+      "name": "Light Armor Kit",
+      "spellId": 2152,
+      "orangeFrom": 1,
+      "orangeUntil": 30,
+      "reagents": [{"itemId": 2318, "name": "Light Leather", "count": 1}],
+      "source": "https://www.wowhead.com/forever/spell=2152/light-armor-kit",
+      "reagentSource": "https://www.wowhead.com/forever/item=2318/light-leather",
+      "verified": false,
+      "reviewNeeded": "Confirm Forever 1.60.1.70938 recipe variant, resulting item count, and trainer availability in client."
+    }
+  ]
+}

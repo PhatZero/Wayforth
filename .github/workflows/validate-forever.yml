@@ -76,6 +76,8 @@ jobs:
         run: lua5.1 tests/lua/test_log_space_search.lua
       - name: Audit all guides, prerequisites, travel and event bursts
         run: lua5.1 tests/lua/test_all_guide_polish.lua
+      - name: Verify orange-only offline profession route planner
+        run: lua5.1 tests/lua/test_profession_routes.lua
       - name: Run manifest and offline tests
         run: python3 -m unittest discover -s tests -v
       - name: Build installable addon ZIP

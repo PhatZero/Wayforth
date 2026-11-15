@@ -33,6 +33,7 @@ Data/ForeverQuestRequirements.lua
 Data/ForeverDBQuestData.lua
 Core/QuestLocations.lua
 Core/Guides.lua
+Core/ProfessionRoutes.lua
 Core/ProfessionGuides.lua
 Core/LegacyPlanner.lua
 Core/QuestProgress.lua
