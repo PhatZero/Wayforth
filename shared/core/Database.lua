@@ -18,7 +18,7 @@ local DEFAULTS = {
     trackerScale = 1,
     trackerLocked = false,
     dashboardWidth = 900, dashboardHeight = 660,
-    trackerWidth = 380, trackerHeight = 448,
+    trackerWidth = 620, trackerHeight = 680,
     guideOpacity = 0.98, arrowOpacity = 1,
     arrowScale = 1, showArrow = true,
     autoAdvance = true, guidePaused = false,
@@ -102,10 +102,19 @@ function Database:Initialize()
         if personal.trackerHeight == 480 then personal.trackerHeight = 448 end
         personal._visualDefaultsUpdated = true
     end
+    -- The early compact tracker cannot fit the profession preparation cards.
+    -- Upgrade only the untouched legacy dimensions; leave user-sized layouts
+    -- alone except for the new minimum that keeps the controls readable.
+    if personal._professionTrackerLayoutV2 ~= true then
+        if personal.trackerWidth == 380 and personal.trackerHeight == 448 then
+            personal.trackerWidth,personal.trackerHeight = 620,680
+        end
+        personal._professionTrackerLayoutV2 = true
+    end
     personal.dashboardWidth = safeNumber(personal.dashboardWidth, 900, 720, 1400)
     personal.dashboardHeight = safeNumber(personal.dashboardHeight, 660, 600, 950)
-    personal.trackerWidth = safeNumber(personal.trackerWidth, 380, 370, 700)
-    personal.trackerHeight = safeNumber(personal.trackerHeight, 448, 440, 850)
+    personal.trackerWidth = safeNumber(personal.trackerWidth, 620, 500, 1000)
+    personal.trackerHeight = safeNumber(personal.trackerHeight, 680, 560, 1050)
     personal.guideOpacity = safeNumber(personal.guideOpacity, 0.98, 0.2, 1)
     personal.arrowOpacity = safeNumber(personal.arrowOpacity, 1, 0.2, 1)
     personal.arrowScale = safeNumber(personal.arrowScale, 1, 0.6, 2)
