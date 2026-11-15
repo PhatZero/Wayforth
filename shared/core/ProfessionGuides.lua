@@ -298,6 +298,10 @@ local function inventoryCount(id,name,fallback)
             if ok and type(amount)=="number" and amount>=0 then return amount end
         end
     end
+    if type(C_Item)=="table" and type(C_Item.GetItemCount)=="function" then
+        local ok,amount=pcall(C_Item.GetItemCount,id or name,true)
+        if ok and type(amount)=="number" and amount>=0 then return amount end
+    end
     return fallback or 0
 end
 
