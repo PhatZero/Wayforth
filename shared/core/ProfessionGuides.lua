@@ -407,8 +407,34 @@ function Profession:GatherPlan(id)
             return plan
         end
         plan.coverageGap=remaining.uncoveredSkill or all.uncoveredSkill
-        -- Preserve an honest gap marker even when a live current recipe exists.
         plan.partial=true
+        -- A gap later in the skill line must not discard a verified, playable
+        -- orange sequence that reaches that gap. Display only its exact
+        -- materials and mark the remaining range unavailable.
+        if not remaining.complete and #remaining.crafts>0 then
+            plan.verifiedSegment=true
+            plan.segmentEnd=remaining.uncoveredSkill
+            plan.instructions="Verified Forever orange recipes until skill "..tostring(plan.segmentEnd)..
+                ". No verified orange recipe is available at that boundary. Scan the profession window there."
+            local counts=ns.char.professionSuccessfulCrafts and ns.char.professionSuccessfulCrafts[id] or {}
+            for _,craft in ipairs(remaining.crafts) do
+                local observed=counts[craft.spellId] or 0
+                if saved.baseline[craft.spellId]==nil then saved.baseline[craft.spellId]=observed end
+                plan.crafts[#plan.crafts+1]={name=craft.name,spellId=craft.spellId,
+                    color="orange",required=craft.count,
+                    completed=math.min(craft.count,math.max(0,observed-saved.baseline[craft.spellId])),
+                    fromSkill=craft.fromSkill,toSkill=craft.toSkill,progressType="observed-cast",
+                    acquisition=craft.acquisition,learnAt=craft.learnAt}
+            end
+            plan.ready=true
+            for _,item in ipairs(remaining.materials) do
+                local owned=inventoryCount(item.itemId,item.name,0)
+                plan.materials[#plan.materials+1]={itemId=item.itemId,name=item.name,
+                    required=item.required,owned=owned,missing=math.max(0,item.required-owned)}
+                if owned<item.required then plan.ready=false end
+            end
+            return plan
+        end
     end
 
     -- If there is no fully verified offline route, never multiply one
