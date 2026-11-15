@@ -63,3 +63,7 @@ These sources disagree on catalog counts and builds. **Do not automatically reco
 ## Source policy
 
 Production recipe records must carry `provenance.client="forever"`, `provenance.verified=true`, a Forever source URL, and `provenance.checkedBuild`. Mark verified only after the verification gate above is met.
+
+## ForeverDB client-yellow source recovery
+
+The verified Forever 1.60.1.70938 source snapshot contains records whose orange boundary is derived from Classic but whose yellow-to-green range is client-reported. WayForth now imports those as **yellow-only**, not orange, and budgets a rounded-up 10% yellow craft/material reserve. This recovers 69 Engineering and 8 First Aid recipe records. After recovery, full orange-or-yellow path coverage is still absent at **Engineering 52–54** and **First Aid 45–49 and 75–79**. No source-free workaround or green crafting is hidden in the guide. See `data/forever/profession_coverage.json` for the source audit.
