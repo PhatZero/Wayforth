@@ -61,8 +61,10 @@ jobs:
         with:
           name: WayForth-Forever
           path: dist
-      - name: Verify full Forever coverage and game QA before public release
-        run: python3 scripts/check_forever_release_readiness.py
+      - name: Verify pre-QA beta disclosures and source gap provenance
+        env:
+          CHANGELOG: ${{ inputs.changelog }}
+        run: python3 scripts/check_forever_beta_readiness.py
       - name: Publish the tested ZIP as a GitHub prerelease
         env:
           GH_TOKEN: ${{ github.token }}
