@@ -46,6 +46,25 @@ assert(plan.materials[1].owned==5 and plan.materials[1].missing==14)
 assert(plan.materials[2].itemId==2101 and plan.materials[2].required==11)
 assert(plan.materials[3].itemId==2103 and plan.materials[3].required==310)
 assert(ns.char.professionRouteProgress.tailoring.startSkill==1)
+-- Preparation expands the missing intermediate Bolt into raw Cloth, without
+-- modifying the authoritative external-material list used by the craft route.
+local prep=assert(plan.preparation)
+assert(#prep.intermediates==1 and prep.intermediates[1].crafts==11)
+local cloth,thread
+for _,entry in ipairs(prep.materials) do
+    if entry.itemId==2100 then cloth=entry end
+    if entry.itemId==2103 then thread=entry end
+end
+assert(cloth and cloth.required==30 and cloth.owned==5 and cloth.missing==25,
+    "Raw-material checklist must include cloth for verified bolt conversions")
+assert(thread and thread.required==310 and thread.missing==310)
+assert(prep.total==340 and prep.collected==5 and prep.missing==335 and not prep.ready)
+-- Inventory events repaint live owned/required, independently of craft counts.
+items[2100],items[2103]=30,310
+local gathered=guides:GatherPlan("tailoring")
+assert(gathered.preparation.ready and gathered.preparation.collected==340)
+assert(not gathered.ready, "Raw materials alone do not mean intermediate bolts are crafted")
+items[2100],items[2103]=5,0
 local selected=guides:Recommendation("tailoring")
 assert(selected and selected.spellId==9001 and selected.reagents[1].itemId==2100)
 local ok,id=guides:RecordCraftEvent("player","CAST-1",9001)
