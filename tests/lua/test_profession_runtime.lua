@@ -2,7 +2,8 @@
 -- live orange recipe fallback, observed successful casts and saved progress.
 local ns={Modules={},char={}}
 function ns:RegisterModule(name,module) self.Modules[name]=module end
-ns.professionProfiles={{id="tailoring",name="Tailoring",skillLine=197,method="Gather cloth."}}
+ns.professionProfiles={{id="tailoring",name="Tailoring",skillLine=197,method="Gather cloth."},
+    {id="fishing",name="Fishing",skillLine=356,method="Fish the appropriate waters."}}
 function GetProfessions() return 1 end
 function GetProfessionInfo(index)
     assert(index==1)
@@ -72,4 +73,14 @@ ns.professionRecipeCatalog.tailoring[1].provenance={client="forever",verified=fa
 GetTradeSkillLine=function() return "Other" end
 local stale=guides:GatherPlan("tailoring")
 assert(not stale.offline and stale.requiresScan and #stale.materials==0)
+ns.professionGatheringCatalog={fishing={
+    {client="forever",skillFrom=1,skillUntil=301,zone="Durotar",verified=true,
+        mapId=1411,instructions="Observed catch."},
+    {client="forever",skillFrom=1,skillUntil=301,zone="Elwynn Forest",verified=true,
+        mapId=1429,instructions="Observed catch."},
+}}
+UnitFactionGroup=function(unit) assert(unit=="player") return "Alliance" end
+local gathering=guides:GatherPlan("fishing")
+assert(gathering.gathering and #gathering.gatheringOptions==1)
+assert(gathering.gatheringTarget.zone=="Elwynn Forest")
 print("profession runtime fixture: OK")
