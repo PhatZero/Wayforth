@@ -23,12 +23,12 @@ class ProfessionPlannerRegressionTests(unittest.TestCase):
         self.assertIn("Tracker:RenderProfession()", tracker)
         self.assertIn("professionElapsed>=1.5", tracker)
 
-    def test_orange_only_recommendations(self):
+    def test_orange_preferred_yellow_padded_recommendations(self):
         source = ENGINE.read_text()
         self.assertIn('colorName=="optimal"', source)
-        self.assertNotIn('colorName=="medium"', source)
+        self.assertIn('colorName=="medium"', source)
         self.assertIn('if candidate.color=="orange"', source)
-        self.assertIn("No known orange recipe", source)
+        self.assertIn("No orange or yellow recipe", source)
 
     def test_no_false_completed_craft_claims(self):
         tracker = TRACKER.read_text()
@@ -46,10 +46,12 @@ class ProfessionPlannerRegressionTests(unittest.TestCase):
 
     def test_offline_full_route_not_misrepresented(self):
         tracker = TRACKER.read_text()
-        self.assertIn("Verified remaining-route totals", tracker)
-        self.assertIn("Current orange craft only", tracker)
-        self.assertIn("Current learned recipe only", tracker)
-        self.assertIn("routes:Plan(id,saved.startSkill,target)", ENGINE.read_text())
+        self.assertIn("Source-verified route + yellow reserve", tracker)
+        self.assertIn("Current orange/yellow craft only", tracker)
+        self.assertIn("Live orange/yellow recipe only", tracker)
+        self.assertIn("routes:Plan(id,saved.startSkill,target,options)", ENGINE.read_text())
+        self.assertIn("yellowPadding=0.10", ENGINE.read_text())
+        self.assertIn("Yellow reserve:", tracker)
 
 if __name__ == "__main__":
     unittest.main()
