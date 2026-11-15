@@ -149,7 +149,14 @@ function Profession:Recommendation(id)
             end
             if #reagents>0 then
                 -- Orange-only: never plan yellow crafts as guaranteed skill-ups.
-                candidates[#candidates+1]={name=name,color="orange",reagents=reagents,
+                local spellId=nil
+                if type(GetTradeSkillRecipeLink)=="function" then
+                    local linkOk,link=pcall(GetTradeSkillRecipeLink,index)
+                    if linkOk and type(link)=="string" then
+                        spellId=tonumber(link:match("enchant:(%d+)") or link:match("spell:(%d+)"))
+                    end
+                end
+                candidates[#candidates+1]={name=name,spellId=spellId,color="orange",reagents=reagents,
                     total=total,missing=missing,colorRank=1}
             end
         end
@@ -173,6 +180,28 @@ function Profession:Recommendation(id)
         ns.char.professionRecipeCache[id]=candidates
     end
     return lastRecommendation[id]
+end
+
+-- Track observed successful spellcasts separately from skill gains.
+-- This is a per-character record and never assumes a skill point equals a craft.
+function Profession:RecordCraft(spellId)
+    if type(spellId)~="number" or not ns.char then return false end
+    local professionId,recipeName
+    for id,candidates in pairs(recipeSnapshots) do
+        for _,candidate in ipairs(candidates) do
+            if candidate.spellId==spellId then
+                professionId,recipeName=id,candidate.name
+                break
+            end
+        end
+        if professionId then break end
+    end
+    if not professionId then return false end
+    ns.char.professionSuccessfulCrafts=ns.char.professionSuccessfulCrafts or {}
+    local counts=ns.char.professionSuccessfulCrafts
+    counts[professionId]=counts[professionId] or {}
+    counts[professionId][spellId]=(counts[professionId][spellId] or 0)+1
+    return true,professionId,recipeName
 end
 
 function Profession:PlanText(id)
@@ -297,8 +326,12 @@ function Profession:GatherPlan(id)
     plan.partial=true
     plan.ready=false
     plan.requiresVerification=true
-    plan.crafts[1]={name=selected.name,color=selected.color,
-        required=1,completed=0,progressType="unverified"}
+    local completed=0
+    if selected.spellId and ns.char and ns.char.professionSuccessfulCrafts then
+        completed=(ns.char.professionSuccessfulCrafts[id] or {})[selected.spellId] or 0
+    end
+    plan.crafts[1]={name=selected.name,color=selected.color,spellId=selected.spellId,
+        required=1,completed=completed,progressType=selected.spellId and "observed-cast" or "unverified"}
     for _,item in ipairs(selected.reagents or {}) do
         local owned=item.owned or 0
         if type(GetItemCount)=="function" then
