@@ -629,8 +629,8 @@ function Tracker:RenderProfession()
         if plan.gatheringTarget and plan.gatheringTarget.zone then
             rightLines[#rightLines+1]={text="Zone: "..plan.gatheringTarget.zone}
         end
-    elseif plan.complete or plan.needsTrainer then
-        rightLines[#rightLines+1]={text=plan.instructions or "Train your next rank."}
+    elseif plan.complete then
+        rightLines[#rightLines+1]={text=plan.instructions or "Skill cap reached."}
     elseif #plan.crafts==0 then
         rightLines[#rightLines+1]={text=plan.instructions or "Learn a verified orange recipe first."}
     else
