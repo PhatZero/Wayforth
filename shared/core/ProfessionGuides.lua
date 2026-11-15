@@ -200,6 +200,21 @@ function Profession:RecordCraft(spellId)
         end
         if professionId then break end
     end
+    -- The offline catalog also supplies spell IDs before the trade-skill
+    -- window has ever been opened. Never infer success from a skill gain.
+    if not professionId then
+        for id,recipes in pairs(ns.professionRecipeCatalog or {}) do
+            for _,recipe in ipairs(recipes) do
+                if recipe.spellId==spellId and recipe.provenance
+                    and recipe.provenance.client=="forever"
+                    and recipe.provenance.verified==true then
+                    professionId,recipeName=id,recipe.name
+                    break
+                end
+            end
+            if professionId then break end
+        end
+    end
     if not professionId then return false end
     ns.char.professionSuccessfulCrafts=ns.char.professionSuccessfulCrafts or {}
     local counts=ns.char.professionSuccessfulCrafts
@@ -311,9 +326,9 @@ function Profession:GatherPlan(id)
     local snapshot=self:Read()[id]
     local skill=snapshot and snapshot.skill or 0
     local cap=snapshot and snapshot.maxSkill or 0
-    local target=math.min(300,math.max(50,math.ceil(math.max(skill,1)/50)*50))
-    if skill>=target then target=math.min(300,target+50) end
-    if cap>0 then target=math.min(target,cap) end
+    -- Show full 1-to-300 material and craft requirements up front when
+    -- the entire route has source-verified orange coverage.
+    local target=gathering[id] and math.min(300,math.max(50,math.ceil(math.max(skill,1)/50)*50)) or 300
     local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,
         materials={},crafts={},gathering=gathering[id],ready=false}
     if skill>=300 then
@@ -322,9 +337,7 @@ function Profession:GatherPlan(id)
         return plan
     end
     if cap>0 and skill>=cap then
-        plan.instructions="Your current skill cap is reached. Train the next rank before continuing."
         plan.needsTrainer=true
-        return plan
     end
     if plan.gathering then
         local catalog=ns.professionGatheringCatalog and ns.professionGatheringCatalog[id] or {}
@@ -366,7 +379,9 @@ function Profession:GatherPlan(id)
         if all.complete and remaining.complete then
             plan.verified=true
             plan.offline=true
-            plan.instructions="Verified Forever orange-only route. Gather all missing materials first; train new ranks and recipes as indicated."
+            plan.instructions=plan.needsTrainer
+                and "Train your next profession rank before crafting. Full 1-to-300 materials are shown below."
+                or "Verified Forever orange-only route. Gather all missing materials first; train new ranks and recipes as indicated."
             local counts=ns.char.professionSuccessfulCrafts and ns.char.professionSuccessfulCrafts[id] or {}
             local accounted={}
             for _,craft in ipairs(all.crafts) do
@@ -392,6 +407,8 @@ function Profession:GatherPlan(id)
             return plan
         end
         plan.coverageGap=remaining.uncoveredSkill or all.uncoveredSkill
+        -- Preserve an honest gap marker even when a live current recipe exists.
+        plan.partial=true
     end
 
     -- If there is no fully verified offline route, never multiply one
