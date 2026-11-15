@@ -74,6 +74,23 @@ function Route:Plan(profession, fromSkill, toSkill)
         end
         skill=skill+count
     end
+    -- Intermediate outputs from earlier steps satisfy later reagent demand.
+    -- Consume crafted output before reporting raw shopping requirements.
+    local produced={}
+    for _,craft in ipairs(result.crafts) do
+        for _,recipe in ipairs(catalog) do
+            if recipe.spellId==craft.spellId and valid(recipe)
+                and type(recipe.outputItemId)=="number" then
+                local yield=type(recipe.yield)=="number" and recipe.yield>0 and recipe.yield or 1
+                produced[recipe.outputItemId]=(produced[recipe.outputItemId] or 0)+craft.count*yield
+                break
+            end
+        end
+    end
+    for itemId,entry in pairs(totals) do
+        entry.required=math.max(0,entry.required-(produced[itemId] or 0))
+        if entry.required==0 then totals[itemId]=nil end
+    end
     for _,entry in pairs(totals) do
         result.materials[#result.materials+1]=entry
     end
