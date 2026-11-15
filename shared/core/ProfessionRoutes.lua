@@ -7,6 +7,7 @@ ns:RegisterModule("ProfessionRoutes", Route)
 -- A catalog entry: {name, spellId, outputItemId, yield, orangeFrom,
 -- orangeUntil, reagents={{itemId,name,count}}, source}.
 -- orangeUntil and optional yellowUntil (first green skill) are exclusive.
+-- Source client-yellow-only records can have orangeFrom==orangeUntil.
 -- Orange is preferred; eligible yellow segments carry a 10% craft reserve.
 -- provenance = {client="forever", verified=true, url="https://www.wowhead.com/forever/...", checkedBuild="..."}.
 -- Only verified Forever records are eligible for planning.
@@ -22,7 +23,10 @@ local function valid(recipe)
     if type(recipe)~="table" or type(recipe.name)~="string"
         or type(recipe.spellId)~="number" or type(recipe.orangeFrom)~="number"
         or type(recipe.orangeUntil)~="number"
-        or recipe.orangeUntil<=recipe.orangeFrom
+        or (recipe.orangeUntil<=recipe.orangeFrom and not (
+            recipe.yellowOnly==true and recipe.orangeUntil==recipe.orangeFrom
+            and type(recipe.yellowUntil)=="number"
+            and recipe.yellowUntil>recipe.orangeUntil))
         or type(recipe.source)~="string" or recipe.source=="" then return false end
     if type(recipe.reagents)~="table" or #recipe.reagents==0 then return false end
     for _,reagent in ipairs(recipe.reagents) do

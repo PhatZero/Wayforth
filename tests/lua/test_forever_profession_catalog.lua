@@ -37,7 +37,28 @@ local steel=route:Plan("blacksmithing",20,30,options)
 assert(steel.complete and (steel.yellowCrafts or 0)>0)
 assert((steel.yellowBuffer or 0)>0,"yellow reserve missing")
 local engineering=route:Plan("engineering",1,300,options)
-assert(not engineering.complete and engineering.uncoveredSkill==45)
+assert(not engineering.complete and engineering.uncoveredSkill==52)
+-- Classic-derived orange thresholds are not guaranteed. These same
+-- records contain client-reported yellow-to-green bands, which we may use
+-- as YELLOW ONLY with the 10% craft reserve.
+for _,slug in ipairs({"engineering","first-aid"}) do
+    local recovered=0
+    for _,recipe in ipairs(ns.professionRecipeCatalog[slug]) do
+        if recipe.yellowOnly==true and recipe.provenance
+            and recipe.provenance.orangeSource=="classic"
+            and recipe.provenance.yellowSource=="forever-client" then
+            assert(recipe.orangeFrom==recipe.orangeUntil)
+            assert(recipe.yellowUntil>recipe.orangeUntil)
+            recovered=recovered+1
+        end
+    end
+    assert(recovered>0,slug.." must recover Forever-client yellow-only records")
+end
+local copper=route:Plan("engineering",45,52,options)
+assert(copper.complete and (copper.yellowCrafts or 0)>0)
+assert(not route:Plan("engineering",45,52).complete)
+local linen=route:Plan("first-aid",50,75,options)
+assert(linen.complete and (linen.yellowCrafts or 0)>0)
 local firstAid=route:Plan("first-aid",1,300,options)
 assert(not firstAid.complete and firstAid.uncoveredSkill==45)
 for _,slug in ipairs({"fishing","herbalism","mining","skinning"}) do

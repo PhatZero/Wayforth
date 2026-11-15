@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Compile downloaded ForeverDB build-stamped recipe records into offline Lua.
 
-Only client-sourced skill-color ranges and documented acquisition methods are
-eligible for orange-first planning with yellow reserve. Classic inferred skill thresholds,
+Only client-verified orange, and client-reported yellow-to-green thresholds,
+are eligible. Classic-derived orange values are never treated as guaranteed.
 unlearnable/unknown recipes, and speculative records are never promoted.
 No API key or player data is packaged in the addon.
 """
@@ -48,11 +48,24 @@ def recipe_line(r, build):
     learn_at = acquisition.get("learnAtSkill")
     ways = acquisition.get("ways") or []
     reagents = r.get("reagents") or []
-    # Explicit client-sourced orange intervals; Classic inference is discovery only.
-    if (skill.get("orangeSource") != "client" or r.get("speculation")
-        or not isinstance(origin, int) or not isinstance(stop, int)
-        or not 1 <= origin < stop or not isinstance(learn_at, int)
-        or not 1 <= learn_at < stop or not isinstance(r.get("spellId"), int)
+    client_orange = (
+        skill.get("orangeSource") == "client"
+        and isinstance(origin, int) and isinstance(stop, int)
+        and 1 <= origin < stop
+    )
+    # ForeverDB explicitly marks orangeSource="classic" for orange breakpoints
+    # inferred from Classic trainer data. Yellow and green thresholds are from
+    # the Forever client. Import those as YELLOW-ONLY: never claim the
+    # uncorroborated Classic orange range is guaranteed.
+    client_yellow = (
+        skill.get("orangeSource") in ("client", "classic")
+        and isinstance(stop, int) and isinstance(green, int)
+        and 1 <= stop < green <= 450
+    )
+    if (r.get("speculation") or not (client_orange or client_yellow)
+        or not isinstance(learn_at, int) or learn_at < 1
+        or learn_at > (origin if client_orange else stop)
+        or not isinstance(r.get("spellId"), int)
         or not isinstance(r.get("name"), str)
         or not isinstance(r.get("url"), str)
         or not r["url"].startswith("https://foreverdb.net/spell/")
@@ -63,22 +76,30 @@ def recipe_line(r, build):
            or not isinstance(x.get("count"), int) or x["count"] < 1
            for x in reagents):
         return None
+    orange_start = origin if client_orange else stop
+    orange_stop = stop
     parts = ["name=" + lua_str(r["name"]), "spellId=" + str(r["spellId"]),
-             "orangeFrom=" + str(origin), "orangeUntil=" + str(stop),
+             "orangeFrom=" + str(orange_start), "orangeUntil=" + str(orange_stop),
              "learnAt=" + str(learn_at)]
-    # A yellow recipe stops being eligible at the first GREEN skill, never
-    # at its gray threshold. The skill bands come from this Forever record.
-    if isinstance(green, int) and stop < green and green <= 301:
+    if not client_orange:
+        parts.append("yellowOnly=true")
+    if client_yellow:
         parts.append("yellowUntil=" + str(green))
     output = r.get("makes") or {}
     if isinstance(output.get("itemId"), int) and isinstance(output.get("count"), int) and output["count"] > 0:
         parts.extend(["outputItemId=" + str(output["itemId"]), "yield=" + str(output["count"])])
     method = next(w for w in SOURCE_WAYS if w in ways)
+    acquisition_description = WAY_NAMES[method]
+    if skill.get("orangeSource") == "classic" and method == "trainer":
+        acquisition_description += " (Forever availability must be checked)"
     parts.extend(["source=" + lua_str(r["url"]),
-                  "acquisition=" + lua_str(WAY_NAMES[method]),
+                  "acquisition=" + lua_str(acquisition_description),
                   "sourcePriority=" + str(SOURCE_WAYS.index(method)),
                   "provenance={client=\"forever\",verified=true,url=" + lua_str(r["url"])
-                  + ",checkedBuild=" + lua_str(build) + "}"])
+                  + ",checkedBuild=" + lua_str(build)
+                  + ",orangeSource=" + lua_str(skill.get("orangeSource", "unknown"))
+                  + ",yellowSource=" + lua_str("forever-client" if client_yellow else "none")
+                  + "}"])
     reags = ["{itemId=%d,name=%s,count=%d}" % (x["itemId"], lua_str(x["name"]), x["count"])
              for x in reagents]
     parts.append("reagents={" + ",".join(reags) + "}")
@@ -89,12 +110,17 @@ def gaps(recipes, cap=300, include_yellow=False):
     covered = [False] * (cap + 1)
     for r in recipes:
         skill = r["skill"]
-        limit=skill.get("green") if include_yellow else skill["yellow"]
-        if include_yellow and not (isinstance(limit,int) and limit>skill["yellow"]):
-            limit=skill["yellow"]
-        for n in range(max(1, skill["orange"], r["learnedFrom"]["sources"]["learnAtSkill"]),
-                       min(cap, limit - 1) + 1):
-            covered[n] = True
+        learn = r["learnedFrom"]["sources"]["learnAtSkill"]
+        orange, yellow, green = skill.get("orange"), skill.get("yellow"), skill.get("green")
+        if (skill.get("orangeSource") == "client"
+                and isinstance(orange, int) and isinstance(yellow, int)
+                and orange < yellow):
+            for n in range(max(1, orange, learn), min(cap + 1, yellow)):
+                covered[n] = True
+        if (include_yellow and isinstance(yellow, int)
+                and isinstance(green, int) and green > yellow):
+            for n in range(max(1, yellow, learn), min(cap + 1, green)):
+                covered[n] = True
     ranges, opened = [], None
     for n in range(1, cap + 2):
         missing = n <= cap and not covered[n]
@@ -162,7 +188,7 @@ def main():
     result = {"client": "forever", "build": build, "professions": {}}
     out = ["-- Generated from ForeverDB.net build " + build,
            "-- Data from ForeverDB.net (https://foreverdb.net).",
-           "-- Client-sourced orange/yellow skill bands; yellow plans use 10% reserve.",
+           "-- Client-verified orange; client-reported yellow including Classic-orange rows.",
            "-- No API key, assumed recipe or guessed waypoint is included.",
            "local _,ns=...", "ns.professionRecipeCatalog=ns.professionRecipeCatalog or {}"]
     for slug in CRAFTING:
@@ -178,7 +204,17 @@ def main():
         out.extend(rendered)
         out.append("}")
         result["professions"][slug] = {
-            "sourceRecipes": len(records), "verifiedOrangeRecipes": len(admitted),
+            "sourceRecipes": len(records),
+            "verifiedOrangeRecipes": sum(
+                r["skill"].get("orangeSource") == "client"
+                and isinstance(r["skill"].get("orange"), int)
+                and r["skill"]["orange"] < r["skill"]["yellow"]
+                for r in admitted),
+            "clientYellowRecovered": sum(
+                r["skill"].get("orangeSource") == "classic"
+                and isinstance(r["skill"].get("green"), int)
+                and r["skill"]["green"] > r["skill"]["yellow"]
+                for r in admitted),
             "verifiedYellowRecipes": sum(isinstance(r["skill"].get("green"),int)
                 and r["skill"]["green"]>r["skill"]["yellow"] for r in admitted),
             "missingOrangeBands": gaps(admitted),
