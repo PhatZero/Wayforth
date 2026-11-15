@@ -127,7 +127,7 @@ end
 function Tracker:MakeFrame()
     if self.frame then return end
     local panel = CreateFrame("Frame", "WayForthGuideTracker", UIParent)
-    panel:SetSize(pref("trackerWidth", 380), pref("trackerHeight", 448))
+    panel:SetSize(math.max(370,pref("trackerWidth",480)), math.max(490,pref("trackerHeight",620)))
     panel:SetFrameStrata("HIGH")
     panel:SetToplevel(true)
     panel:SetClampedToScreen(true)
@@ -908,7 +908,7 @@ function Tracker:ToggleMinimize()
     if not self.frame then return end
     local minimized=not (ns.char and ns.char.trackerMinimized)
     if ns.char then ns.char.trackerMinimized=minimized end
-    self.frame:SetHeight(minimized and 50 or pref("trackerHeight",448))
+    self.frame:SetHeight(minimized and 50 or math.max(490,pref("trackerHeight",620)))
     self.minimizeButton:SetLabel(minimized and "+" or "-")
     self:Refresh()
     self:Layout()
