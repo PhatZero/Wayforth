@@ -20,8 +20,8 @@ Client-sourced color-band recipe catalogs were imported from **ForeverDB.net**; 
 | Blacksmithing | 231 | Gap: 20–29 | Full color coverage |
 | Cooking | 86 | No missing data bands | Full color coverage |
 | Enchanting | 125 | No missing data bands | Full color coverage |
-| Engineering | 80 | Gap: 30–74 | Gap: 45–74 |
-| First Aid | 3 | Gaps: 30–139 and 175–300 | Gaps: 45–139 and 195–300 |
+| Engineering | 80 client-verified orange, 69 recovered yellow-only | Gap: 30–74 | Gap: 52–54 |
+| First Aid | 3 client-verified orange, 8 recovered yellow-only | Gaps: 30–139 and 175–300 | Gaps: 45–49 and 75–79 |
 | Leatherworking | 272 | No missing data bands | Full color coverage |
 | Tailoring | 242 | No missing data bands | Full color coverage |
 | Fishing | 18 Forever-observed zones | Zone observations, not full node routing | N/A |
@@ -29,7 +29,7 @@ Client-sourced color-band recipe catalogs were imported from **ForeverDB.net**; 
 | Mining | 6 Forever-observed zones | Zone observations, not full node routing | N/A |
 | Skinning | 0 Forever-observed zones | Unverified candidate zones only | N/A |
 
-**Important:** A gap means the source does not establish a verified orange path. Some real skills may have no guaranteed orange recipe at certain ranks at all. Never fill a gap from Classic's inferred color transitions, use green/gray recipes, or assume that the 10% yellow buffer guarantees a skill point. Source records, player-observed zones, source discrepancy reviews, and in-game QA remain separate evidence levels.
+**Important:** A gap means the source does not establish a verified orange path. Some real skills may have no confirmed orange or yellow recipe at certain ranks. Client-yellow-only records derived from Classic orange rows are imported strictly as yellow, never as guaranteed orange. Never fill a gap from Classic's inferred color transitions, use green/gray recipes, or assume that the 10% yellow buffer guarantees a skill point. Source records, player-observed zones, source discrepancy reviews, and in-game QA remain separate evidence levels.
 
 ## Before a public CurseForge release
 
