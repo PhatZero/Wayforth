@@ -31,6 +31,95 @@ local function textHeight(font, minimum)
     return math.max(minimum, height or minimum)
 end
 
+local MAX_OPEN_TABS = 8
+local VISIBLE_TABS = 3
+
+-- Open tabs are presentation state only. The guide's completed steps and
+-- profession craft counters remain in their existing per-character stores.
+function Tracker:EnsureOpenTabs(activeId)
+    if not ns.char then return {} end
+    local previous=type(ns.char.trackerOpenTabs)=="table" and ns.char.trackerOpenTabs or {}
+    local tabs,seen={},{}
+    for _,id in ipairs(previous) do
+        local guide=type(id)=="string" and ns.Modules.Guides:GetGuide(id)
+        if guide and guide.id==id and not seen[id] then
+            tabs[#tabs+1]=id
+            seen[id]=true
+        end
+    end
+    if activeId and not seen[activeId] then tabs[#tabs+1]=activeId end
+    while #tabs>MAX_OPEN_TABS do table.remove(tabs,1) end
+    ns.char.trackerOpenTabs=tabs
+    return tabs
+end
+
+function Tracker:ActivateGuideTab(id)
+    local guide=ns.Modules.Guides:GetGuide(id)
+    if not guide or guide.id~=id then return end
+    ns.Modules.Guides:SetActive(id)
+    ns:Call("Navigator","ResetTarget")
+    self.upcomingSignature=nil
+    self:Refresh()
+end
+
+function Tracker:CloseGuideTab(id)
+    if not ns.char then return end
+    local tabs=self:EnsureOpenTabs(nil)
+    local index
+    for i,value in ipairs(tabs) do
+        if value==id then index=i;break end
+    end
+    if not index then return end
+    table.remove(tabs,index)
+    ns.char.trackerOpenTabs=tabs
+    local active=ns.Modules.Guides:GetGuide()
+    if active and active.id==id then
+        if #tabs==0 then self:Hide();return end
+        self:ActivateGuideTab(tabs[math.min(index,#tabs)])
+    else
+        self:RefreshTabs()
+    end
+end
+
+function Tracker:RefreshTabs()
+    if not self.tabStrip then return end
+    local active=ns.Modules.Guides:GetGuide()
+    local activeId=active and active.id
+    local tabs=self:EnsureOpenTabs(activeId)
+    local count=#tabs
+    local start=math.max(1,math.min(self.tabStart or 1,math.max(1,count-VISIBLE_TABS+1)))
+    local current=1
+    for i,id in ipairs(tabs) do if id==activeId then current=i;break end end
+    if current<start then start=current end
+    if current>=start+VISIBLE_TABS then start=current-VISIBLE_TABS+1 end
+    self.tabStart=start
+    local overflow=count>VISIBLE_TABS
+    local available=math.max(230,self.frame:GetWidth()-18-36-(overflow and 46 or 0))
+    local visible=math.min(VISIBLE_TABS,count)
+    local tabWidth=math.floor(available/math.max(1,visible))
+    local baseX=overflow and 45 or 1
+    for i,tab in ipairs(self.guideTabs or {}) do
+        local id=tabs[start+i-1]
+        tab.id=id
+        if id then
+            local guide=ns.Modules.Guides:GetGuide(id)
+            local maxLetters=math.max(8,math.floor((tabWidth-30)/6))
+            local title=tostring(guide.title or id)
+            if #title>maxLetters then title=title:sub(1,maxLetters-2)..".." end
+            tab.button:SetWidth(tabWidth-3)
+            tab.button.label:SetWidth(math.max(16,tabWidth-29))
+            tab.button:SetLabel(title)
+            tab.button.surface:SetColorTexture(unpack(id==activeId and theme.elevated or theme.panel))
+            tab.button.label:SetTextColor(unpack(id==activeId and theme.teal or theme.ivory))
+            tab.button:ClearAllPoints()
+            tab.button:SetPoint("TOPLEFT",self.tabStrip,"TOPLEFT",baseX+(i-1)*tabWidth,-2)
+            tab.button:Show()
+        else tab.button:Hide() end
+    end
+    self.tabPrevious:SetShown(overflow and start>1)
+    self.tabNext:SetShown(overflow and start+VISIBLE_TABS-1<count)
+end
+
 function Tracker:MakeFrame()
     if self.frame then return end
     local panel = CreateFrame("Frame", "WayForthGuideTracker", UIParent)
@@ -41,8 +130,8 @@ function Tracker:MakeFrame()
     panel:SetMovable(true)
     panel:SetResizable(true)
     panel:EnableMouse(true)
-    if panel.SetResizeBounds then panel:SetResizeBounds(370, 440, 700, 850)
-    elseif panel.SetMinResize then panel:SetMinResize(370, 440) end
+    if panel.SetResizeBounds then panel:SetResizeBounds(370, 490, 850, 1000)
+    elseif panel.SetMinResize then panel:SetMinResize(370, 490) end
     panel:SetScale(pref("trackerScale", 1))
     panel:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", pref("trackerX",-30), pref("trackerY",-235))
     self.bg = theme:Panel(panel, theme.navy, theme.gold)
@@ -91,9 +180,45 @@ function Tracker:MakeFrame()
     local close = theme:Button(header,25,25,"X",function() Tracker:Hide() end,"quiet")
     close:SetPoint("TOPRIGHT",header,"TOPRIGHT",-8,-11)
 
+    -- Reopen and close several guides without resetting their individual progress.
+    local strip=CreateFrame("Frame",nil,panel)
+    strip:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-54)
+    strip:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-54)
+    strip:SetHeight(30)
+    self.tabStrip=strip
+    self.tabStart=1
+    self.guideTabs={}
+    for i=1,VISIBLE_TABS do
+        local tab={}
+        tab.button=theme:Button(strip,98,26,"",function()
+            if tab.id then Tracker:ActivateGuideTab(tab.id) end
+        end,"quiet")
+        tab.button.label:ClearAllPoints()
+        tab.button.label:SetPoint("CENTER",tab.button,"CENTER",-9,0)
+        tab.close=theme:Button(tab.button,20,20,"X",function()
+            if tab.id then Tracker:CloseGuideTab(tab.id) end
+        end,"quiet")
+        tab.close:SetPoint("RIGHT",tab.button,"RIGHT",-3,0)
+        tab.close.label:SetTextColor(unpack(theme.muted))
+        self.guideTabs[i]=tab
+    end
+    self.tabPrevious=theme:Button(strip,21,25,"<",function()
+        Tracker.tabStart=math.max(1,(Tracker.tabStart or 1)-1)
+        Tracker:RefreshTabs()
+    end,"quiet")
+    self.tabPrevious:SetPoint("TOPLEFT",strip,"TOPLEFT",0,-2)
+    self.tabNext=theme:Button(strip,21,25,">",function()
+        local tabs=Tracker:EnsureOpenTabs(nil)
+        Tracker.tabStart=math.min(math.max(1,#tabs-VISIBLE_TABS+1),(Tracker.tabStart or 1)+1)
+        Tracker:RefreshTabs()
+    end,"quiet")
+    self.tabNext:SetPoint("TOPLEFT",strip,"TOPLEFT",23,-2)
+    self.tabAdd=theme:Button(strip,30,25,"+",function() Tracker:ToggleGuidePicker() end,"quiet")
+    self.tabAdd:SetPoint("TOPRIGHT",strip,"TOPRIGHT",-1,-2)
+
     local summary = CreateFrame("Frame",nil,panel)
-    summary:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-55)
-    summary:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-55)
+    summary:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-89)
+    summary:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-89)
     summary:SetHeight(84)
     self.summaryBg = theme:Panel(summary,theme.panelLight)
     self.summary = summary
@@ -123,8 +248,8 @@ function Tracker:MakeFrame()
     selectButton:SetScript("OnClick",function() Tracker:ToggleGuidePicker() end)
 
     local objective = CreateFrame("Frame",nil,panel)
-    objective:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-149)
-    objective:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-149)
+    objective:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
+    objective:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-183)
     objective:SetHeight(138)
     self.objectiveBg=theme:Panel(objective,theme.panelLight,theme.gold)
     -- Narrow cyan accent makes the active objective unmistakable without
@@ -177,10 +302,25 @@ function Tracker:MakeFrame()
 
     -- Dedicated profession workspace: materials and crafting in the same tracker.
     local professionPanel=CreateFrame("Frame",nil,panel)
-    professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-149)
+    professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
     professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,55)
     theme:Panel(professionPanel,theme.panelLight,theme.gold)
     self.professionPanel=professionPanel
+    -- One full-width scrollable page at a time. The old half-width columns
+    -- wrapped even short recipe names into unreadable multi-line fragments.
+    self.professionView=ns.char and ns.char.professionView=="crafts" and "crafts" or "materials"
+    self.materialsTab=theme:Button(professionPanel,150,28,"MATERIALS",function()
+        Tracker.professionView="materials"
+        if ns.char then ns.char.professionView="materials" end
+        Tracker:RenderProfession()
+    end,"quiet")
+    self.materialsTab:SetPoint("TOPLEFT",professionPanel,"TOPLEFT",9,-8)
+    self.craftsTab=theme:Button(professionPanel,150,28,"CRAFTING PLAN",function()
+        Tracker.professionView="crafts"
+        if ns.char then ns.char.professionView="crafts" end
+        Tracker:RenderProfession()
+    end,"quiet")
+    self.craftsTab:SetPoint("LEFT",self.materialsTab,"RIGHT",6,0)
     local materials=CreateFrame("ScrollFrame",nil,professionPanel)
     local materialContent=CreateFrame("Frame",nil,materials)
     materials:SetScrollChild(materialContent)
@@ -520,7 +660,7 @@ function Tracker:LayoutObjectives(width,height)
     self.liveContentHeight=rowsH
     local viewport=math.min(rowsH,math.max(52,math.min(120,height-360)))
     local desired=snapshot and rowsY+viewport+locationH+20 or descriptionY+descriptionH+locationH+20
-    local cardH=math.min(math.max(138,desired),math.max(138,height-149-112))
+    local cardH=math.min(math.max(138,desired),math.max(138,height-183-112))
     self.objectiveCard:SetHeight(cardH)
     viewport=math.max(0,math.min(viewport,cardH-rowsY-locationH-20))
     if snapshot then
@@ -562,18 +702,21 @@ function Tracker:RenderProfession()
     local profession=ns.Modules.ProfessionGuides
     local plan=profession and profession:GatherPlan(guide.professionId)
     if not plan then return end
-    local width=math.max(370,self.frame:GetWidth()-18)
-    local column=math.floor((width-30)/2)
+    local column=math.max(230,self.professionPanel:GetWidth()-26)
     local left=self.professionMaterials
     local right=self.professionCrafting
-    left:ClearAllPoints()
-    left:SetPoint("TOPLEFT",self.professionPanel,"TOPLEFT",10,-12)
-    left:SetPoint("BOTTOMLEFT",self.professionPanel,"BOTTOMLEFT",10,10)
-    left:SetWidth(column)
-    right:ClearAllPoints()
-    right:SetPoint("TOPRIGHT",self.professionPanel,"TOPRIGHT",-10,-12)
-    right:SetPoint("BOTTOMRIGHT",self.professionPanel,"BOTTOMRIGHT",-10,10)
-    right:SetWidth(column)
+    for _,scroll in ipairs({left,right}) do
+        scroll:ClearAllPoints()
+        scroll:SetPoint("TOPLEFT",self.professionPanel,"TOPLEFT",12,-44)
+        scroll:SetPoint("BOTTOMRIGHT",self.professionPanel,"BOTTOMRIGHT",-12,12)
+    end
+    local view=self.professionView or "materials"
+    left:SetShown(view=="materials")
+    right:SetShown(view=="crafts")
+    self.materialsTab.surface:SetColorTexture(unpack(view=="materials" and theme.elevated or theme.panel))
+    self.craftsTab.surface:SetColorTexture(unpack(view=="crafts" and theme.elevated or theme.panel))
+    self.materialsTab.label:SetTextColor(unpack(view=="materials" and theme.teal or theme.ivory))
+    self.craftsTab.label:SetTextColor(unpack(view=="crafts" and theme.teal or theme.ivory))
     local function render(content,rows,lines)
         local y=0
         for i,value in ipairs(lines) do
@@ -592,7 +735,7 @@ function Tracker:RenderProfession()
             -- applying the final row height. A zero-height string can render blank.
             row:SetHeight(1000)
             local measured=row:GetStringHeight() or 0
-            local h=math.max(22,measured+10)
+            local h=math.max(18,measured+4)
             row:SetHeight(h)
             row:Show()
             y=y+h+5
@@ -640,7 +783,7 @@ function Tracker:RenderProfession()
         rightLines[#rightLines+1]={text=plan.instructions or "Learn a suitable orange or yellow recipe first."}
     else
         if plan.offline then
-            rightLines[#rightLines+1]={text="Data from ForeverDB.net (https://foreverdb.net)",color=theme.teal}
+            rightLines[#rightLines+1]={text="Recipe data: ForeverDB.net (foreverdb.net)",color=theme.teal}
         end
         if plan.needsTrainer then
             rightLines[#rightLines+1]={text="TRAIN NEXT RANK before crafting",color=theme.gold}
@@ -669,6 +812,10 @@ function Tracker:RenderProfession()
     end
     render(self.professionMaterialContent,self.professionMaterialRows,leftLines)
     render(self.professionCraftContent,self.professionCraftRows,rightLines)
+    for _,scroll in ipairs({left,right}) do
+        local content=scroll==left and self.professionMaterialContent or self.professionCraftContent
+        scroll:SetVerticalScroll(math.min(scroll:GetVerticalScroll(),math.max(0,content:GetHeight()-scroll:GetHeight())))
+    end
 end
 
 function Tracker:Layout()
@@ -686,6 +833,7 @@ function Tracker:Layout()
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
     local isProfession=ns.Modules.Guides:GetGuide() and ns.Modules.Guides:GetGuide().isProfession
+    if self.tabStrip then self.tabStrip:SetShown(not ns.char.trackerMinimized) end
     if self.professionPanel then
         if isProfession and not ns.char.trackerMinimized then
             self.professionPanel:Show()
@@ -693,7 +841,7 @@ function Tracker:Layout()
         else self.professionPanel:Hide() end
     end
     local cardH=self:LayoutObjectives(width,height)
-    local upcomingY=149+cardH+12
+    local upcomingY=183+cardH+12
     self.upcomingTitle:ClearAllPoints()
     self.upcomingTitle:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-upcomingY)
     local visible=math.max(0,math.min(6,math.floor((height-56-(upcomingY+23)+4)/33)))
@@ -799,6 +947,7 @@ function Tracker:Refresh()
     local guides=ns.Modules.Guides
     guides:Sync()
     local g=guides:GetGuide()
+    self:RefreshTabs()
     local step,index,total=guides:CurrentStep()
     if not g or not step or not total or total==0 then
         self.displayStep,self.liveSnapshot=nil,nil
