@@ -26,4 +26,17 @@ ns.professionRecipeCatalog.leatherworking[2].provenance.client="forever"
 ns.professionRecipeCatalog.leatherworking[2].orangeFrom=76
 local gap=routes:Plan("leatherworking",61,100)
 assert(not gap.complete and gap.uncoveredSkill==75)
+-- Intermediate output must not be purchased twice.
+ns.professionRecipeCatalog.tailoring={
+    {name="Bolt",spellId=910001,outputItemId=2101,yield=1,orangeFrom=1,orangeUntil=2,
+        source="fixture",provenance={client="forever",verified=true,url="https://www.wowhead.com/forever/spell=910001",checkedBuild="synthetic"},
+        reagents={{itemId=2100,name="Cloth",count=3}}},
+    {name="Robe",spellId=910002,outputItemId=2102,yield=1,orangeFrom=2,orangeUntil=3,
+        source="fixture",provenance={client="forever",verified=true,url="https://www.wowhead.com/forever/spell=910002",checkedBuild="synthetic"},
+        reagents={{itemId=2101,name="Bolt",count=1},{itemId=2103,name="Thread",count=2}}},
+}
+local net=routes:Plan("tailoring",1,3)
+assert(net.complete and #net.materials==2)
+assert(net.materials[1].itemId==2100 and net.materials[1].required==3)
+assert(net.materials[2].itemId==2103 and net.materials[2].required==2)
 print("profession route fixture: OK")
