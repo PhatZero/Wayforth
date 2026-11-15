@@ -112,17 +112,14 @@ function Profession:Recommendation(id)
     if type(GetTradeSkillLine)~="function" or type(GetNumTradeSkills)~="function"
         or type(GetTradeSkillInfo)~="function" then
         return nil,"Recipe color cannot be verified while the profession window is closed. Reopen it before crafting."
-        return nil,"Open this profession's crafting window once to calculate its next skill-up recipe."
     end
     local ok,line=pcall(GetTradeSkillLine)
     if not ok or self:IdForName(line)~=id then
         return nil,"Recipe color cannot be verified while the profession window is closed. Reopen it before crafting."
-        return nil,"Open the "..profile.name.." window to calculate the next recipe from its learned plans."
     end
     local countOk,count=pcall(GetNumTradeSkills)
     if not countOk or type(count)~="number" then
         return nil,"Recipe color cannot be verified while the profession window is closed. Reopen it before crafting."
-        return nil,"The profession recipe list is not available yet."
     end
 
     local candidates={}
