@@ -26,6 +26,19 @@ jobs:
             exit 1
           fi
           python3 scripts/fetch_foreverdb_professions.py build/foreverdb
+      - name: Inspect published Forever recipe schema
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for slug in ("alchemy", "leatherworking", "fishing"):
+              data=json.loads((Path("build/foreverdb")/(slug+".json")).read_text())
+              page=data["pages"][0]
+              rows=page.get("data",[])
+              if isinstance(rows,dict): rows=rows.get("recipes",rows.get("results",[]))
+              print("PROFESSION SCHEMA",slug,json.dumps(rows[0] if rows else {},ensure_ascii=True)[:10000],flush=True)
+          print("META SCHEMA",json.dumps(json.loads(Path("build/foreverdb/meta.json").read_text()),ensure_ascii=True)[:4000],flush=True)
+          PY
       - name: Upload source snapshot for review
         uses: actions/upload-artifact@v4
         with:
