@@ -336,6 +336,101 @@ local function inventoryCount(id,name,fallback)
     return fallback or 0
 end
 
+-- Calculate the actual external shopping list for a proposed crafting route.
+-- Where a VERIFIED Forever recipe makes a needed intermediate, show the
+-- underlying reagents as preparation materials and the conversion separately.
+-- Do not alter the authoritative route bill of materials or assume a recipe
+-- has been learned; this is an optional preparation path, not an auto-craft.
+function Profession:PreparationPlan(id,plan)
+    local result={materials={},intermediates={},collected=0,total=0,missing=0,ready=true}
+    local raw,production,available,conversions={}, {}, {}, {}
+    local catalog=ns.professionRecipeCatalog and ns.professionRecipeCatalog[id] or {}
+    local skill=math.max(1,tonumber(plan.skill) or 1)
+    for _,recipe in ipairs(catalog) do
+        local provenance=recipe.provenance
+        if type(recipe.outputItemId)=="number"
+            and type(recipe.yield)~="string"
+            and provenance and provenance.client=="forever" and provenance.verified==true
+            and type(recipe.reagents)=="table" and #recipe.reagents>0
+            and (type(recipe.learnAt)~="number" or recipe.learnAt<=skill) then
+            local cost=0
+            for _,reagent in ipairs(recipe.reagents) do
+                cost=cost+(tonumber(reagent.count) or 0)
+            end
+            -- Prefer the simplest verified conversion, keeping selection stable.
+            local previous=production[recipe.outputItemId]
+            if not previous or cost<previous.cost
+                or (cost==previous.cost and recipe.spellId<previous.recipe.spellId) then
+                production[recipe.outputItemId]={recipe=recipe,cost=cost}
+            end
+        end
+    end
+    local function addRaw(itemId,name,amount)
+        if amount<=0 then return end
+        local key=itemId or name
+        local row=raw[key]
+        if not row then
+            row={itemId=itemId,name=name or "Unknown ingredient",required=0}
+            raw[key]=row
+        end
+        row.required=row.required+amount
+    end
+    local function expand(itemId,name,amount,depth,seen)
+        if amount<=0 then return end
+        local option=itemId and production[itemId]
+        if not option or depth>=5 or seen[itemId] then
+            addRaw(itemId,name,amount)
+            return
+        end
+        local owned=available[itemId]
+        if owned==nil then owned=inventoryCount(itemId,name,0) end
+        local stock=math.min(owned,amount)
+        available[itemId]=owned-stock
+        local outstanding=amount-stock
+        if outstanding<=0 then return end
+        local recipe=option.recipe
+        local yield=type(recipe.yield)=="number" and recipe.yield>0 and recipe.yield or 1
+        local crafts=math.ceil(outstanding/yield)
+        local entry=conversions[recipe.spellId]
+        if not entry then
+            entry={spellId=recipe.spellId,name=recipe.name,
+                outputName=name,outputItemId=itemId,crafts=0,
+                learnAt=recipe.learnAt,acquisition=recipe.acquisition}
+            conversions[recipe.spellId]=entry
+        end
+        entry.crafts=entry.crafts+crafts
+        seen[itemId]=true
+        for _,reagent in ipairs(recipe.reagents) do
+            expand(reagent.itemId,reagent.name,reagent.count*crafts,depth+1,seen)
+        end
+        seen[itemId]=nil
+    end
+    for _,item in ipairs(plan.materials or {}) do
+        expand(item.itemId,item.name,item.required,0,{})
+    end
+    for _,item in pairs(raw) do
+        item.owned=inventoryCount(item.itemId,item.name,0)
+        item.collected=math.min(item.required,item.owned)
+        item.missing=math.max(0,item.required-item.owned)
+        result.total=result.total+item.required
+        result.collected=result.collected+item.collected
+        result.missing=result.missing+item.missing
+        result.materials[#result.materials+1]=item
+    end
+    for _,entry in pairs(conversions) do
+        result.intermediates[#result.intermediates+1]=entry
+    end
+    table.sort(result.materials,function(a,b)
+        return tostring(a.name)<tostring(b.name)
+    end)
+    table.sort(result.intermediates,function(a,b)
+        return tostring(a.name)<tostring(b.name)
+    end)
+    result.ready=result.missing==0
+    result.expanded=#result.intermediates>0
+    return result
+end
+
 function Profession:GatherPlan(id)
     local profile=profiles[id]
     if not profile then return nil end
@@ -426,6 +521,7 @@ function Profession:GatherPlan(id)
                 plan.materials[#plan.materials+1]=entry
                 if entry.missing>0 then plan.ready=false end
             end
+            plan.preparation=self:PreparationPlan(id,plan)
             return plan
         end
         plan.coverageGap=remaining.uncoveredSkill or all.uncoveredSkill
@@ -456,6 +552,7 @@ function Profession:GatherPlan(id)
                     required=item.required,owned=owned,missing=math.max(0,item.required-owned)}
                 if owned<item.required then plan.ready=false end
             end
+            plan.preparation=self:PreparationPlan(id,plan)
             return plan
         end
     end
@@ -510,6 +607,11 @@ function Profession:GatherPlan(id)
     plan.yellowCrafts=isYellow and craftNeeded or 0
     plan.yellowBuffer=isYellow and craftNeeded-1 or 0
     plan.instructions="Current learned "..selected.color.." recipe only. Yellow crafts have a rounded-up 10% reserve, not guaranteed skill points. Recalculate after every skill gain; missing color ranges remain unverified."
+    plan.ready=true
+    for _,item in ipairs(plan.materials) do
+        if item.missing>0 then plan.ready=false;break end
+    end
+    plan.preparation=self:PreparationPlan(id,plan)
     return plan
 end
 
