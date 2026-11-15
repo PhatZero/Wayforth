@@ -111,17 +111,17 @@ function Profession:Recommendation(id)
     end
     if type(GetTradeSkillLine)~="function" or type(GetNumTradeSkills)~="function"
         or type(GetTradeSkillInfo)~="function" then
-        if lastRecommendation[id] then return lastRecommendation[id] end
+        return nil,"Recipe color cannot be verified while the profession window is closed. Reopen it before crafting."
         return nil,"Open this profession's crafting window once to calculate its next skill-up recipe."
     end
     local ok,line=pcall(GetTradeSkillLine)
     if not ok or self:IdForName(line)~=id then
-        if lastRecommendation[id] then return lastRecommendation[id] end
+        return nil,"Recipe color cannot be verified while the profession window is closed. Reopen it before crafting."
         return nil,"Open the "..profile.name.." window to calculate the next recipe from its learned plans."
     end
     local countOk,count=pcall(GetNumTradeSkills)
     if not countOk or type(count)~="number" then
-        if lastRecommendation[id] then return lastRecommendation[id] end
+        return nil,"Recipe color cannot be verified while the profession window is closed. Reopen it before crafting."
         return nil,"The profession recipe list is not available yet."
     end
 
@@ -265,6 +265,11 @@ function Profession:GatherPlan(id)
     if (not candidates or #candidates==0) and ns.char and ns.char.professionRecipeCache then
         candidates=ns.char.professionRecipeCache[id]
         if type(candidates)=="table" then recipeSnapshots[id]=candidates end
+    end
+    if not recipe then
+        plan.instructions=message or "Reopen the profession window to verify orange recipe color."
+        plan.requiresScan=true
+        return plan
     end
     if not candidates or #candidates==0 then
         plan.instructions=message
