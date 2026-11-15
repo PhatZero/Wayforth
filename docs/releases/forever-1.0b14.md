@@ -21,3 +21,4 @@
 - **Professions are not finished:** Full verified 1-to-max recipe catalogs, complete shopping lists, live crafting integration and end-to-end testing remain tracked in issue #28.
 
 **Data attribution:** Quest reference data from ForeverDB.net.
+- **Offline packaging check:** Corrected generated data attribution formatting so the offline-only source validation passes.
