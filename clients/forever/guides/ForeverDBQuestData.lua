@@ -1,4 +1,4 @@
--- Generated from ForeverDB.net quest API. Attribution: https://foreverdb.net
+-- Generated from ForeverDB.net quest API. Attribution: ForeverDB.net
 -- Only Forever-observed coordinates may be used for navigation.
 -- Not a verified optimized route. No objective waypoints are inferred.
 local _,ns=...

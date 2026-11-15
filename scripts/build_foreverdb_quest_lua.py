@@ -51,7 +51,7 @@ def build(input_dir, output):
         raise ValueError("Duplicate quest IDs")
     output.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        "-- Generated from ForeverDB.net quest API. Attribution: https://foreverdb.net",
+        "-- Generated from ForeverDB.net quest API. Attribution: ForeverDB.net",
         "-- Only Forever-observed coordinates may be used for navigation.",
         "-- Not a verified optimized route. No objective waypoints are inferred.",
         "local _,ns=...",
