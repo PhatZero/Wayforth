@@ -24,3 +24,5 @@
 - **Offline packaging check:** Corrected generated data attribution formatting so the offline-only source validation passes.
 
 - **Build regression fix:** Corrected the synthetic profession-planner test fixture so CI can validate the new route engine.
+
+- **Release validation:** Offline tests now permit static recipe attribution links while checking that the addon does not call HTTP APIs.
