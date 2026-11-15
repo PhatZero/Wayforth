@@ -284,37 +284,28 @@ function Profession:GatherPlan(id)
         plan.instructions="No verified orange recipe is available. Train a new recipe or rescan the profession window."
         return plan
     end
+    -- The live recipe window proves only the current recipe is orange.
+    -- It does NOT prove that it remains orange until target, nor that
+    -- skill gains equal successful craft completions. Never advertise
+    -- estimated full-range counts or a ready-to-craft shopping list.
     plan.cached=true
-    local completed=0
-    if ns.char then
-        ns.char.professionCraftProgress=ns.char.professionCraftProgress or {}
-        local progress=ns.char.professionCraftProgress[id]
-        if not progress or progress.recipe~=selected.name or progress.target~=target
-            or skill<progress.startSkill then
-            progress={recipe=selected.name,target=target,startSkill=skill}
-            ns.char.professionCraftProgress[id]=progress
-        end
-        completed=math.max(0,skill-progress.startSkill)
-    end
+    plan.partial=true
+    plan.ready=false
+    plan.requiresVerification=true
     plan.crafts[1]={name=selected.name,color=selected.color,
-        required=remaining+completed,completed=completed,progressType="skill"}
+        required=1,completed=0,progressType="unverified"}
     for _,item in ipairs(selected.reagents or {}) do
-        local needed=item.count*remaining
         local owned=item.owned or 0
         if type(GetItemCount)=="function" then
             local ok,value=pcall(GetItemCount,item.name)
             if ok and type(value)=="number" then owned=value end
         end
-        totals[#totals+1]={name=item.name,required=needed,owned=owned,
-            missing=math.max(0,needed-owned)}
+        totals[#totals+1]={name=item.name,required=item.count,owned=owned,
+            missing=math.max(0,item.count-owned)}
     end
     plan.materials=totals
-    plan.ready=true
-    for _,item in ipairs(totals) do
-        if item.missing>0 then plan.ready=false;break end
-    end
-    plan.partial=true
-    plan.instructions="This is a current-recipe estimate, not a verified full-range recipe route."
+    plan.instructions="Only the next orange craft is verified by the live profession window. Full-range materials and successful craft counts are unavailable until verified Forever routes and craft events are implemented."
+
     return plan
 end
 
