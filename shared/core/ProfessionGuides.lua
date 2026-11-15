@@ -305,6 +305,20 @@ end
 -- Profession planning is offline first. Only verified Forever recipe data
 -- can establish a full shopping list. Live scans are limited to the next craft.
 local gathering={fishing=true,herbalism=true,mining=true,skinning=true}
+local allianceOnly={["Elwynn Forest"]=true,["Dun Morogh"]=true,
+    ["Teldrassil"]=true,["Loch Modan"]=true,["Westfall"]=true,
+    ["Redridge Mountains"]=true,["Darkshore"]=true,["Darnassus"]=true,
+    ["Ironforge"]=true,["Stormwind City"]=true}
+local hordeOnly={["Durotar"]=true,["Mulgore"]=true,["Tirisfal Glades"]=true,
+    ["The Barrens"]=true,["Silverpine Forest"]=true,
+    ["Orgrimmar"]=true,["Undercity"]=true,["Thunder Bluff"]=true}
+local function availableZone(zone)
+    if type(UnitFactionGroup)~="function" then return true end
+    local ok,faction=pcall(UnitFactionGroup,"player")
+    if not ok then return true end
+    return not (faction=="Alliance" and hordeOnly[zone]
+        or faction=="Horde" and allianceOnly[zone])
+end
 local function inventoryCount(id,name,fallback)
     if type(GetItemCount)=="function" then
         local lookup=id or name
@@ -345,7 +359,8 @@ function Profession:GatherPlan(id)
         for _,entry in ipairs(catalog) do
             if entry.client=="forever" and type(entry.skillFrom)=="number"
                 and type(entry.skillUntil)=="number"
-                and entry.skillFrom<=math.max(1,skill) and skill<entry.skillUntil then
+                and entry.skillFrom<=math.max(1,skill) and skill<entry.skillUntil
+                and availableZone(entry.zone) then
                 options[#options+1]=entry
             end
         end
