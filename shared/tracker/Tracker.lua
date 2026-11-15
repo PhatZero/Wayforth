@@ -558,7 +558,7 @@ end
 
 function Tracker:RenderProfession()
     local guide=ns.Modules.Guides:GetGuide()
-    if not guide or not guide.isProfession then return end
+    if not guide or not guide.isProfession or not self.professionPanel then return end
     local profession=ns.Modules.ProfessionGuides
     local plan=profession and profession:GatherPlan(guide.professionId)
     if not plan then return end
@@ -583,46 +583,76 @@ function Tracker:RenderProfession()
                 row:SetWordWrap(true)
                 rows[i]=row
             end
-            row:SetWidth(column-8)
+            row:SetWidth(column-12)
             row:SetText(value.text)
             row:SetTextColor(unpack(value.color or theme.ivory))
             row:ClearAllPoints()
             row:SetPoint("TOPLEFT",content,"TOPLEFT",0,-y)
-            row:SetHeight(0)
-            local h=math.max(20,row:GetStringHeight()+8)
+            -- Give the font string room to measure its wrapped content before
+            -- applying the final row height. A zero-height string can render blank.
+            row:SetHeight(1000)
+            local measured=row:GetStringHeight() or 0
+            local h=math.max(22,measured+10)
             row:SetHeight(h)
             row:Show()
             y=y+h+5
         end
         for i=#lines+1,#rows do rows[i]:Hide() end
-        content:SetSize(column-8,math.max(1,y))
+        content:SetWidth(column-12)
+        content:SetHeight(math.max(1,y))
     end
     local leftLines={{text="STEP 1  |  GATHER MATERIALS",color=theme.gold},
-        {text="Skill "..plan.skill.." / "..plan.target.."  |  Bag counts refresh live",color=theme.teal}}
-    if plan.gathering then
-        leftLines[#leftLines+1]={text="Gathering profession: no crafting reagents required."}
+        {text="Skill "..plan.skill.." / "..plan.target.."  |  Bags + bank",color=theme.teal}}
+    if plan.complete then
+        leftLines[#leftLines+1]={text="Profession skill cap reached.",color=theme.green}
+    elseif plan.gathering then
+        leftLines[#leftLines+1]={text="Gathering uses nodes, not crafting reagents."}
     elseif #plan.materials==0 then
-        leftLines[#leftLines+1]={text="Recipe data not loaded. Open "..plan.name.." once to scan known recipes. Full offline shopping lists are not available yet."}
+        leftLines[#leftLines+1]={text=plan.instructions or "No verified ingredients are available yet."}
     else
+        leftLines[#leftLines+1]={text=plan.offline and "Verified remaining-route totals" or "Current orange craft only",color=theme.teal}
         for _,item in ipairs(plan.materials) do
             leftLines[#leftLines+1]={text=(item.missing==0 and "[x] " or "[ ] ")..
-                item.name.."  "..math.min(item.owned,item.required).."/"..item.required,
+                item.name.."  "..math.min(item.owned,item.required).."/"..item.required..
+                (item.missing>0 and ("  (need "..item.missing..")") or ""),
                 color=item.missing==0 and theme.green or theme.ivory}
         end
     end
     local rightLines={{text=plan.gathering and "STEP 2  |  GATHERING ROUTE" or "STEP 2  |  CRAFTING PLAN",color=theme.gold}}
     if plan.gathering then
         rightLines[#rightLines+1]={text="Skill "..plan.skill.." -> "..plan.target,color=theme.teal}
-        rightLines[#rightLines+1]={text=plan.instructions or "Gather nodes that grant skill."}
-    elseif #plan.crafts==0 then
-        rightLines[#rightLines+1]={text=plan.instructions or "Learn a suitable recipe at your trainer."}
-    else
-        rightLines[#rightLines+1]={text=plan.ready and "Materials ready. Begin crafting." or "Collect all ingredients before crafting.",color=theme.teal}
-        for _,craft in ipairs(plan.crafts) do
-            rightLines[#rightLines+1]={text=craft.name.." ("..craft.color..")"}
-            rightLines[#rightLines+1]={text="Skill gains "..craft.completed.."/"..craft.required.."  |  Skill "..plan.skill.." -> "..plan.target}
+        rightLines[#rightLines+1]={text=plan.instructions or "Find verified nodes matching your skill."}
+        for i,option in ipairs(plan.gatheringOptions or {}) do
+            rightLines[#rightLines+1]={text=(option.verified and "[Observed] " or "[Candidate] ")..
+                option.zone.." (map "..option.mapId..")"}
         end
-        rightLines[#rightLines+1]={text="Current learned recipe only. Recheck after each skill-up; the next recipe may change."}
+        if plan.gatheringTarget and plan.gatheringTarget.zone then
+            rightLines[#rightLines+1]={text="Zone: "..plan.gatheringTarget.zone}
+        end
+    elseif plan.complete then
+        rightLines[#rightLines+1]={text=plan.instructions or "Skill cap reached."}
+    elseif #plan.crafts==0 then
+        rightLines[#rightLines+1]={text=plan.instructions or "Learn a verified orange recipe first."}
+    else
+        if plan.offline then
+            rightLines[#rightLines+1]={text="Data from ForeverDB.net (https://foreverdb.net)",color=theme.teal}
+        end
+        rightLines[#rightLines+1]={text=plan.offline and "Verified orange-only recipe sequence"
+            or "Current learned recipe only",color=theme.teal}
+        rightLines[#rightLines+1]={text=plan.ready and "Materials collected. Check that each recipe is learned."
+            or "Collect missing ingredients before crafting.",color=theme.teal}
+        for _,craft in ipairs(plan.crafts) do
+            rightLines[#rightLines+1]={text=craft.name.." (orange)"}
+            if craft.progressType=="observed-cast" then
+                rightLines[#rightLines+1]={text="Crafted "..craft.completed.."/"..craft.required..
+                    (craft.fromSkill and ("  |  Skill "..craft.fromSkill.." -> "..craft.toSkill) or "")}
+            else
+                rightLines[#rightLines+1]={text="Craft count unavailable; verify client event support."}
+            end
+            if craft.learnAt then rightLines[#rightLines+1]={text="Learn at skill "..craft.learnAt} end
+            if craft.acquisition then rightLines[#rightLines+1]={text=tostring(craft.acquisition)} end
+        end
+        rightLines[#rightLines+1]={text=plan.instructions or "Only verified orange recipes count toward this plan."}
     end
     render(self.professionMaterialContent,self.professionMaterialRows,leftLines)
     render(self.professionCraftContent,self.professionCraftRows,rightLines)

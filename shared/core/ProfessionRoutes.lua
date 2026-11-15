@@ -15,7 +15,8 @@ local function valid(recipe)
     local provenance=recipe and recipe.provenance
     if type(provenance)~="table" or provenance.client~="forever"
         or provenance.verified~=true or type(provenance.url)~="string"
-        or not provenance.url:match("^https://www%.wowhead%.com/forever/")
+        or not (provenance.url:match("^https://www%.wowhead%.com/forever/")
+            or provenance.url:match("^https://foreverdb%.net/"))
         or type(provenance.checkedBuild)~="string" or provenance.checkedBuild=="" then return false end
     if type(recipe)~="table" or type(recipe.name)~="string"
         or type(recipe.spellId)~="number" or type(recipe.orangeFrom)~="number"
@@ -39,20 +40,35 @@ function Route:Plan(profession, fromSkill, toSkill)
         return result
     end
     local catalog=ns.professionRecipeCatalog[profession] or {}
-    local totals,skill={},fromSkill
+    local totals,stock,skill={},{},fromSkill
+    local function materialize()
+        result.materials={}
+        for _,entry in pairs(totals) do result.materials[#result.materials+1]=entry end
+        table.sort(result.materials,function(a,b) return a.itemId<b.itemId end)
+    end
+    -- Evaluate every craft in actual route order. An intermediate made by a
+    -- *later* recipe cannot satisfy an earlier craft. Count missing external
+    -- materials only when needed and consume available intermediate stock.
     while skill<toSkill do
         local chosen
+        local chosenCost,chosenPriority
         for _,recipe in ipairs(catalog) do
-            if valid(recipe) and recipe.orangeFrom<=skill and skill<recipe.orangeUntil then
-                if not chosen or #recipe.reagents<#chosen.reagents
-                    or (#recipe.reagents==#chosen.reagents and recipe.spellId<chosen.spellId) then
-                    chosen=recipe
+            if valid(recipe) and recipe.orangeFrom<=skill and skill<recipe.orangeUntil
+                and (type(recipe.learnAt)~="number" or recipe.learnAt<=skill) then
+                local cost=0
+                for _,reagent in ipairs(recipe.reagents) do cost=cost+reagent.count end
+                local priority=type(recipe.sourcePriority)=="number" and recipe.sourcePriority or 0
+                if not chosen or priority<chosenPriority
+                    or (priority==chosenPriority and cost<chosenCost)
+                    or (priority==chosenPriority and cost==chosenCost and recipe.spellId<chosen.spellId) then
+                    chosen,chosenCost,chosenPriority=recipe,cost,priority
                 end
             end
         end
         if not chosen then
             result.uncoveredSkill=skill
             result.error="No source-verified orange recipe at skill "..skill
+            materialize()
             return result
         end
         local count=math.min(toSkill,chosen.orangeUntil)-skill
@@ -62,39 +78,31 @@ function Route:Plan(profession, fromSkill, toSkill)
             previous.toSkill=skill+count
         else
             result.crafts[#result.crafts+1]={name=chosen.name,spellId=chosen.spellId,
-                count=count,fromSkill=skill,toSkill=skill+count,source=chosen.source}
+                count=count,fromSkill=skill,toSkill=skill+count,source=chosen.source,
+                outputItemId=chosen.outputItemId,outputCount=chosen.yield or 1,
+                learnAt=chosen.learnAt,trainer=chosen.trainer,acquisition=chosen.acquisition}
         end
         for _,reagent in ipairs(chosen.reagents) do
-            local entry=totals[reagent.itemId]
-            if not entry then
-                entry={itemId=reagent.itemId,name=reagent.name,required=0}
-                totals[reagent.itemId]=entry
+            local required=reagent.count*count
+            local used=math.min(stock[reagent.itemId] or 0,required)
+            stock[reagent.itemId]=(stock[reagent.itemId] or 0)-used
+            local external=required-used
+            if external>0 then
+                local entry=totals[reagent.itemId]
+                if not entry then
+                    entry={itemId=reagent.itemId,name=reagent.name,required=0}
+                    totals[reagent.itemId]=entry
+                end
+                entry.required=entry.required+external
             end
-            entry.required=entry.required+reagent.count*count
+        end
+        if type(chosen.outputItemId)=="number" then
+            local yield=type(chosen.yield)=="number" and chosen.yield>0 and chosen.yield or 1
+            stock[chosen.outputItemId]=(stock[chosen.outputItemId] or 0)+count*yield
         end
         skill=skill+count
     end
-    -- Intermediate outputs from earlier steps satisfy later reagent demand.
-    -- Consume crafted output before reporting raw shopping requirements.
-    local produced={}
-    for _,craft in ipairs(result.crafts) do
-        for _,recipe in ipairs(catalog) do
-            if recipe.spellId==craft.spellId and valid(recipe)
-                and type(recipe.outputItemId)=="number" then
-                local yield=type(recipe.yield)=="number" and recipe.yield>0 and recipe.yield or 1
-                produced[recipe.outputItemId]=(produced[recipe.outputItemId] or 0)+craft.count*yield
-                break
-            end
-        end
-    end
-    for itemId,entry in pairs(totals) do
-        entry.required=math.max(0,entry.required-(produced[itemId] or 0))
-        if entry.required==0 then totals[itemId]=nil end
-    end
-    for _,entry in pairs(totals) do
-        result.materials[#result.materials+1]=entry
-    end
-    table.sort(result.materials,function(a,b) return a.itemId<b.itemId end)
+    materialize()
     result.complete=true
     return result
 end

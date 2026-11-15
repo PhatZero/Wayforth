@@ -6,6 +6,7 @@ on:
 permissions:
   contents: read
 
+
 jobs:
   import:
     runs-on: ubuntu-latest
@@ -24,6 +25,17 @@ jobs:
             exit 1
           fi
           python3 scripts/fetch_foreverdb_professions.py build/foreverdb
+      - name: Build verified offline profession catalogs and coverage report
+        run: |
+          python3 scripts/build_foreverdb_profession_lua.py build/foreverdb clients/forever/guides/ForeverProfessionData.lua data/forever/profession_coverage.json
+      - name: Upload compiled offline catalog for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: foreverdb-professions-compiled
+          path: |
+            clients/forever/guides/ForeverProfessionData.lua
+            data/forever/profession_coverage.json
+          retention-days: 7
       - name: Upload source snapshot for review
         uses: actions/upload-artifact@v4
         with:

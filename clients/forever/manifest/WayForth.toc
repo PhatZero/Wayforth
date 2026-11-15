@@ -2,7 +2,7 @@
 ## Title: |cff24c9e0Way|r|cffffcd73Forth|r
 ## Notes: Offline-first adventure guide and character companion for WoW: Forever.
 ## Author: WoW Forever
-## Version: 1.0b1
+## Version: 1.0b15
 ## SavedVariables: WoWForeverDB
 ## SavedVariablesPerCharacter: WoWForeverCharDB
 ## X-Category: Quest
@@ -17,6 +17,7 @@ Core/Diagnostics.lua
 Core/Character.lua
 Data/StarterGuide.lua
 Data/ProfessionGuides.lua
+Data/ForeverProfessionData.lua
 Data/LegacyPerks.lua
 Data/ZephrasLocations.lua
 Data/ZephrasIsle.lua

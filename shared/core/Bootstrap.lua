@@ -68,17 +68,29 @@ local function dispatch(event, ...)
         else
             ns:Call("Tracker", "RequestObjectiveRefresh")
         end
-    elseif event == "QUEST_DATA_LOAD_RESULT" or event == "BAG_UPDATE_DELAYED" then
+    elseif event == "QUEST_DATA_LOAD_RESULT" or event == "BAG_UPDATE_DELAYED"
+        or event == "PLAYERBANKSLOTS_CHANGED" or event == "BANKFRAME_OPENED"
+        or event == "BANKFRAME_CLOSED" then
         ns:Call("Tracker", "RequestObjectiveRefresh", event == "QUEST_DATA_LOAD_RESULT" and (...) or nil)
+        if event ~= "QUEST_DATA_LOAD_RESULT" then
+            local guide=ns.Modules.Guides:GetGuide()
+            local tracker=ns.Modules.Tracker
+            if guide and guide.isProfession and tracker and tracker.frame and tracker.frame:IsShown() then
+                ns:Call("Tracker","RenderProfession")
+            end
+        end
     elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
-        local unit,_,spellId=...
-        if unit=="player" and type(spellId)=="number" then
-            local ok,recorded=ns:Call("ProfessionGuides","RecordCraft",spellId)
-            if ok and recorded then ns:Call("Tracker","Refresh") end
+        local ok,recorded=ns:Call("ProfessionGuides","RecordCraftEvent",...)
+        if ok and recorded then
+            ns:Call("Tracker","Refresh")
+            if ns.Modules.UI and ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then
+                ns:Call("UI","Refresh")
+            end
         end
     elseif event == "TRADE_SKILL_UPDATE" or event == "TRADE_SKILL_LIST_UPDATE"
         or event == "SKILL_LINES_CHANGED" then
         ns:Call("ProfessionGuides", "Sync")
+        ns:Call("ProfessionGuides", "CaptureOpenProfession")
         if ns.Modules.UI and ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
         local guide=ns.Modules.Guides:GetGuide()
         if guide and guide.isProfession then ns:Call("Tracker", "Refresh") end
@@ -135,6 +147,7 @@ for _, event in ipairs({
     "QUEST_ACCEPTED", "QUEST_TURNED_IN", "QUEST_REMOVED", "QUEST_LOG_UPDATE",
     "TRADE_SKILL_UPDATE", "TRADE_SKILL_LIST_UPDATE", "SKILL_LINES_CHANGED",
 }) do frame:RegisterEvent(event) end
-for _, event in ipairs({"QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED", "UNIT_SPELLCAST_SUCCEEDED"}) do
+for _, event in ipairs({"QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED",
+    "BANKFRAME_OPENED", "BANKFRAME_CLOSED", "PLAYERBANKSLOTS_CHANGED", "UNIT_SPELLCAST_SUCCEEDED"}) do
     pcall(frame.RegisterEvent, frame, event)
 end

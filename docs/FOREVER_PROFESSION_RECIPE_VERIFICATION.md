@@ -2,6 +2,12 @@
 
 **Scope:** Issue #28, phase 1. Forever client only. No Classic or Retail recipes may enter the published catalog.
 
+## Imported client data (November 15, 2026)
+
+An authenticated ForeverDB snapshot for client **1.60.1.70938** was acquired from GitHub Actions and compiled into `clients/forever/guides/ForeverProfessionData.lua` with `scripts/build_foreverdb_profession_lua.py`. The compiler admits only recipes whose `skill.orangeSource` is **client**, with valid IDs, ingredients, known learning skill and acquisition source; inferred Classic breakpoints are rejected. Full counts and gaps: `data/forever/profession_coverage.json`. This verified-import stage does **not** replace in-game screenshots or user acceptance.
+
+**Skill bands needing fresh Forever corroboration before public release:** Blacksmithing 20–29, Engineering 30–74, First Aid 30–139 and 175–300. Some First Aid skills may intrinsically lack orange recipes, in which case an orange-only full route is not possible without a game rule change. The tracker safely displays a shorter verified route or a live, single-craft orange fallback, never an invented full list.
+
 ## Verification gate
 
 A recipe is **not approved for WayForth routing** merely because it appears on a Forever-themed website. Approval requires:
@@ -17,7 +23,7 @@ A Classic or Retail page is never sufficient. Unconfirmed candidates remain outs
 
 ## Full catalog coverage (all professions, 1–Forever cap)
 
-All twelve professions are in scope simultaneously. A single Leatherworking skill range is **not** the deliverable or a release gate by itself. Crafting professions require complete recipe and ingredient coverage; gathering professions require Forever-verified nodes, skill thresholds, trainer/rank gates, and region-specific routes.
+All twelve professions are in scope simultaneously. This table was originally written before the first client-verified import; refer to the source coverage JSON and update above for current measured coverage. A single Leatherworking skill range is **not** the deliverable or a release gate by itself. Crafting professions require complete recipe and ingredient coverage; gathering professions require Forever-verified nodes, skill thresholds, trainer/rank gates, and region-specific routes.
 
 | Profession | Required data | Verification status |
 | --- | --- | --- |

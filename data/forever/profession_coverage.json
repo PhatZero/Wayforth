@@ -1,0 +1,81 @@
+{
+  "client": "forever",
+  "build": "1.60.1.70938",
+  "professions": {
+    "alchemy": {
+      "sourceRecipes": 196,
+      "verifiedOrangeRecipes": 99,
+      "missingOrangeBands": []
+    },
+    "blacksmithing": {
+      "sourceRecipes": 506,
+      "verifiedOrangeRecipes": 231,
+      "missingOrangeBands": [
+        [
+          20,
+          29
+        ]
+      ]
+    },
+    "cooking": {
+      "sourceRecipes": 132,
+      "verifiedOrangeRecipes": 86,
+      "missingOrangeBands": []
+    },
+    "enchanting": {
+      "sourceRecipes": 262,
+      "verifiedOrangeRecipes": 125,
+      "missingOrangeBands": []
+    },
+    "engineering": {
+      "sourceRecipes": 275,
+      "verifiedOrangeRecipes": 80,
+      "missingOrangeBands": [
+        [
+          30,
+          74
+        ]
+      ]
+    },
+    "first-aid": {
+      "sourceRecipes": 32,
+      "verifiedOrangeRecipes": 3,
+      "missingOrangeBands": [
+        [
+          30,
+          139
+        ],
+        [
+          175,
+          300
+        ]
+      ]
+    },
+    "leatherworking": {
+      "sourceRecipes": 592,
+      "verifiedOrangeRecipes": 272,
+      "missingOrangeBands": []
+    },
+    "tailoring": {
+      "sourceRecipes": 471,
+      "verifiedOrangeRecipes": 242,
+      "missingOrangeBands": []
+    },
+    "fishing": {
+      "candidateZones": 43,
+      "foreverObservedZones": 18
+    },
+    "herbalism": {
+      "candidateZones": 12,
+      "foreverObservedZones": 7
+    },
+    "mining": {
+      "candidateZones": 15,
+      "foreverObservedZones": 6
+    },
+    "skinning": {
+      "candidateZones": 18,
+      "foreverObservedZones": 0
+    }
+  }
+}

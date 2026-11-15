@@ -32,18 +32,24 @@ class ProfessionPlannerRegressionTests(unittest.TestCase):
 
     def test_no_false_completed_craft_claims(self):
         tracker = TRACKER.read_text()
-        self.assertIn("Skill gains ", tracker)
-        self.assertNotIn('text="Crafted "..craft.completed', tracker)
+        self.assertIn("Crafted ", tracker)
+        self.assertIn("progressType==\"observed-cast\"", tracker)
+        self.assertIn('if craft.progressType=="observed-cast"', tracker)
+        self.assertIn("Craft count unavailable", tracker)
 
     def test_profession_events_are_dispatched(self):
         source = BOOTSTRAP.read_text()
         for event in ("TRADE_SKILL_UPDATE", "TRADE_SKILL_LIST_UPDATE", "SKILL_LINES_CHANGED"):
             self.assertIn(event, source)
+        self.assertIn("UNIT_SPELLCAST_SUCCEEDED", source)
+        self.assertIn("BANKFRAME_OPENED", source)
 
     def test_offline_full_route_not_misrepresented(self):
         tracker = TRACKER.read_text()
-        self.assertIn("Full offline shopping lists are not available yet", tracker)
+        self.assertIn("Verified remaining-route totals", tracker)
+        self.assertIn("Current orange craft only", tracker)
         self.assertIn("Current learned recipe only", tracker)
+        self.assertIn("routes:Plan(id,saved.startSkill,target)", ENGINE.read_text())
 
 if __name__ == "__main__":
     unittest.main()
