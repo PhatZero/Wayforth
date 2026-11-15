@@ -39,4 +39,33 @@ local net=routes:Plan("tailoring",1,3)
 assert(net.complete and #net.materials==2)
 assert(net.materials[1].itemId==2100 and net.materials[1].required==3)
 assert(net.materials[2].itemId==2103 and net.materials[2].required==2)
+-- Client-verified yellow is allowed only below its GREEN threshold.
+-- A 10-skill yellow segment plans 11 crafts, rounded up (10% reserve).
+local proof={client="forever",verified=true,
+    url="https://www.wowhead.com/forever/spell=990001",checkedBuild="synthetic"}
+ns.professionRecipeCatalog.yellowtest={
+    {name="Yellow Wax",spellId=990001,orangeFrom=1,orangeUntil=3,yellowUntil=13,
+        learnAt=1,source="fixture",provenance=proof,
+        reagents={{itemId=9991,name="Wax",count=2}}},
+}
+local orangeOnly=routes:Plan("yellowtest",3,13)
+assert(not orangeOnly.complete and orangeOnly.uncoveredSkill==3)
+local yellowPlan=routes:Plan("yellowtest",3,13,{allowYellow=true,yellowPadding=0.10})
+assert(yellowPlan.complete and #yellowPlan.crafts==1)
+assert(yellowPlan.crafts[1].color=="yellow")
+assert(yellowPlan.crafts[1].skillPoints==10)
+assert(yellowPlan.crafts[1].count==11 and yellowPlan.crafts[1].bufferExtra==1)
+assert(yellowPlan.yellowBuffer==1 and yellowPlan.yellowCrafts==11)
+assert(yellowPlan.materials[1].itemId==9991 and yellowPlan.materials[1].required==22)
+local turnsGreen=routes:Plan("yellowtest",13,14,{allowYellow=true})
+assert(not turnsGreen.complete and turnsGreen.uncoveredSkill==13)
+-- Orange must take precedence over an inexpensive eligible yellow recipe.
+ns.professionRecipeCatalog.yellowtest[2]={
+    name="Orange Oil",spellId=990002,orangeFrom=3,orangeUntil=5,
+    source="fixture",provenance=proof,reagents={{itemId=9992,name="Oil",count=4}}}
+local preferred=routes:Plan("yellowtest",3,6,{allowYellow=true,yellowPadding=0.10})
+assert(preferred.complete and #preferred.crafts==2)
+assert(preferred.crafts[1].color=="orange" and preferred.crafts[1].count==2)
+assert(preferred.crafts[2].color=="yellow" and preferred.crafts[2].count==2)
+assert(preferred.crafts[2].bufferExtra==1 and preferred.crafts[2].skillPoints==1)
 print("profession route fixture: OK")
