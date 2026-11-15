@@ -622,6 +622,10 @@ function Tracker:RenderProfession()
     if plan.gathering then
         rightLines[#rightLines+1]={text="Skill "..plan.skill.." -> "..plan.target,color=theme.teal}
         rightLines[#rightLines+1]={text=plan.instructions or "Find verified nodes matching your skill."}
+        for i,option in ipairs(plan.gatheringOptions or {}) do
+            rightLines[#rightLines+1]={text=(option.verified and "[Observed] " or "[Candidate] ")..
+                option.zone.." (map "..option.mapId..")"}
+        end
         if plan.gatheringTarget and plan.gatheringTarget.zone then
             rightLines[#rightLines+1]={text="Zone: "..plan.gatheringTarget.zone}
         end
@@ -630,6 +634,9 @@ function Tracker:RenderProfession()
     elseif #plan.crafts==0 then
         rightLines[#rightLines+1]={text=plan.instructions or "Learn a verified orange recipe first."}
     else
+        if plan.offline then
+            rightLines[#rightLines+1]={text="Data from ForeverDB.net (https://foreverdb.net)",color=theme.teal}
+        end
         rightLines[#rightLines+1]={text=plan.offline and "Verified orange-only recipe sequence"
             or "Current learned recipe only",color=theme.teal}
         rightLines[#rightLines+1]={text=plan.ready and "Materials collected. Check that each recipe is learned."
