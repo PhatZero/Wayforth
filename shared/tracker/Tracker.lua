@@ -90,8 +90,12 @@ function Tracker:RefreshTabs()
     local start=math.max(1,math.min(self.tabStart or 1,math.max(1,count-VISIBLE_TABS+1)))
     local current=1
     for i,id in ipairs(tabs) do if id==activeId then current=i;break end end
-    if current<start then start=current end
-    if current>=start+VISIBLE_TABS then start=current-VISIBLE_TABS+1 end
+    -- User paging must not snap back to the active tab on every refresh.
+    if self.tabActiveId~=activeId then
+        if current<start then start=current end
+        if current>=start+VISIBLE_TABS then start=current-VISIBLE_TABS+1 end
+    end
+    self.tabActiveId=activeId
     self.tabStart=start
     local overflow=count>VISIBLE_TABS
     local available=math.max(230,self.frame:GetWidth()-18-36-(overflow and 46 or 0))
@@ -116,8 +120,8 @@ function Tracker:RefreshTabs()
             tab.button:Show()
         else tab.button:Hide() end
     end
-    self.tabPrevious:SetShown(overflow and start>1)
-    self.tabNext:SetShown(overflow and start+VISIBLE_TABS-1<count)
+    if overflow and start>1 then self.tabPrevious:Show() else self.tabPrevious:Hide() end
+    if overflow and start+VISIBLE_TABS-1<count then self.tabNext:Show() else self.tabNext:Hide() end
 end
 
 function Tracker:MakeFrame()
@@ -303,7 +307,7 @@ function Tracker:MakeFrame()
     -- Dedicated profession workspace: materials and crafting in the same tracker.
     local professionPanel=CreateFrame("Frame",nil,panel)
     professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
-    professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,55)
+    professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,13)
     theme:Panel(professionPanel,theme.panelLight,theme.gold)
     self.professionPanel=professionPanel
     -- One full-width scrollable page at a time. The old half-width columns
@@ -711,8 +715,7 @@ function Tracker:RenderProfession()
         scroll:SetPoint("BOTTOMRIGHT",self.professionPanel,"BOTTOMRIGHT",-12,12)
     end
     local view=self.professionView or "materials"
-    left:SetShown(view=="materials")
-    right:SetShown(view=="crafts")
+    if view=="materials" then left:Show();right:Hide() else left:Hide();right:Show() end
     self.materialsTab.surface:SetColorTexture(unpack(view=="materials" and theme.elevated or theme.panel))
     self.craftsTab.surface:SetColorTexture(unpack(view=="crafts" and theme.elevated or theme.panel))
     self.materialsTab.label:SetTextColor(unpack(view=="materials" and theme.teal or theme.ivory))
@@ -833,7 +836,9 @@ function Tracker:Layout()
     self.location:SetWidth(contentW)
     self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
     local isProfession=ns.Modules.Guides:GetGuide() and ns.Modules.Guides:GetGuide().isProfession
-    if self.tabStrip then self.tabStrip:SetShown(not ns.char.trackerMinimized) end
+    if self.tabStrip then
+        if ns.char.trackerMinimized then self.tabStrip:Hide() else self.tabStrip:Show() end
+    end
     if self.professionPanel then
         if isProfession and not ns.char.trackerMinimized then
             self.professionPanel:Show()
