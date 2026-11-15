@@ -1,6 +1,8 @@
 name: Import WoW Forever profession source data
 
 on:
+  push:
+    branches: [fix/forever-profession-ac-validation]
   workflow_dispatch:
 
 permissions:
