@@ -6,7 +6,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: foreverdb-profession-import
+  cancel-in-progress: true
 
 jobs:
   import:
@@ -26,19 +30,19 @@ jobs:
             exit 1
           fi
           python3 scripts/fetch_foreverdb_professions.py build/foreverdb
-      - name: Inspect published Forever recipe schema
+      - name: Build verified offline profession catalogs and coverage report
         run: |
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          for slug in ("alchemy", "leatherworking", "fishing"):
-              data=json.loads((Path("build/foreverdb")/(slug+".json")).read_text())
-              page=data["pages"][0]
-              rows=page.get("data",[])
-              if isinstance(rows,dict): rows=rows.get("recipes",rows.get("results",[]))
-              print("PROFESSION SCHEMA",slug,json.dumps(rows[0] if rows else {},ensure_ascii=True)[:10000],flush=True)
-          print("META SCHEMA",json.dumps(json.loads(Path("build/foreverdb/meta.json").read_text()),ensure_ascii=True)[:4000],flush=True)
-          PY
+          python3 scripts/build_foreverdb_profession_lua.py build/foreverdb clients/forever/guides/ForeverProfessionData.lua data/forever/profession_coverage.json
+      - name: Commit compiled data to the development branch
+        if: github.event_name == 'push' && github.ref_name == 'fix/forever-profession-ac-validation'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add clients/forever/guides/ForeverProfessionData.lua data/forever/profession_coverage.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: import verified Forever 1.60.1 profession recipe catalog"
+            git push origin HEAD:refs/heads/fix/forever-profession-ac-validation
+          fi
       - name: Upload source snapshot for review
         uses: actions/upload-artifact@v4
         with:
