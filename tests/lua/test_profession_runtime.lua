@@ -73,6 +73,15 @@ ns.professionRecipeCatalog.tailoring[1].provenance={client="forever",verified=fa
 GetTradeSkillLine=function() return "Other" end
 local stale=guides:GatherPlan("tailoring")
 assert(not stale.offline and stale.requiresScan and #stale.materials==0)
+-- Live medium/yellow skill-up is a one-step fallback with a rounded
+-- 10% reserve; count each actual craft separately from gained skill.
+GetTradeSkillLine=function() return "Tailoring" end
+GetTradeSkillInfo=function() return "Fixture Bolt","medium" end
+local yellow=guides:GatherPlan("tailoring")
+assert(yellow.partial and yellow.crafts[1].color=="yellow")
+assert(yellow.crafts[1].required==2 and yellow.crafts[1].bufferExtra==1)
+assert(yellow.materials[1].required==2)
+assert(yellow.yellowPadding==0.10)
 ns.professionGatheringCatalog={fishing={
     {client="forever",skillFrom=1,skillUntil=301,zone="Durotar",verified=true,
         mapId=1411,instructions="Observed catch."},
