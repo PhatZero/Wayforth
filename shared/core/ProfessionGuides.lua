@@ -140,7 +140,14 @@ function Profession:Recommendation(id)
                         owned=type(owned)=="number" and owned or 0
                         total=total+amount
                         missing=missing+math.max(0,amount-owned)
-                        reagents[#reagents+1]={name=reagentName,count=amount,owned=owned}
+                        local itemId=nil
+                        if type(GetTradeSkillReagentItemLink)=="function" then
+                            local linkOk,link=pcall(GetTradeSkillReagentItemLink,index,reagentIndex)
+                            if linkOk and type(link)=="string" then
+                                itemId=tonumber(link:match("item:(%d+)"))
+                            end
+                        end
+                        reagents[#reagents+1]={name=reagentName,itemId=itemId,count=amount,owned=owned}
                     end
                 end
             end
@@ -199,6 +206,20 @@ function Profession:RecordCraft(spellId)
     counts[professionId]=counts[professionId] or {}
     counts[professionId][spellId]=(counts[professionId][spellId] or 0)+1
     return true,professionId,recipeName
+end
+
+function Profession:RecordCraftEvent(unit,...)
+    if unit~="player" then return false end
+    -- Signature differs between WoW client families. Only match numeric spell
+    -- IDs already read from actual profession links; never count unrelated casts.
+    for i=1,select("#",...) do
+        local value=select(i,...)
+        if type(value)=="number" then
+            local recorded,id,name=self:RecordCraft(value)
+            if recorded then return true,id,name end
+        end
+    end
+    return false
 end
 
 function Profession:PlanText(id)
@@ -291,6 +312,16 @@ function Profession:GatherPlan(id)
     if cap>0 then target=math.min(target,cap) end
     local plan={id=id,name=profile.name,skill=skill,target=target,cap=cap,
         materials={},crafts={},gathering=gathering[id],ready=false}
+    if skill>=300 then
+        plan.instructions="Maximum profession skill reached."
+        plan.complete=true
+        return plan
+    end
+    if cap>0 and skill>=cap then
+        plan.instructions="Your current skill cap is reached. Train the next rank before continuing."
+        plan.needsTrainer=true
+        return plan
+    end
     if plan.gathering then
         local catalog=ns.professionGatheringCatalog and ns.professionGatheringCatalog[id]
         if catalog and type(catalog)=="table" then
@@ -308,7 +339,7 @@ function Profession:GatherPlan(id)
     end
 
     local routes=ns.Modules.ProfessionRoutes
-    if routes and skill>0 and target>skill then
+    if routes and ns.char and skill>0 and target>skill then
         ns.char.professionRouteProgress=ns.char.professionRouteProgress or {}
         local saved=ns.char.professionRouteProgress[id]
         if not saved or saved.target~=target or (saved.startSkill or skill)>skill then
