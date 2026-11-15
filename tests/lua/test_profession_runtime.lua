@@ -62,9 +62,13 @@ assert(ns.char.professionRouteProgress.tailoring.baseline[9001]==0)
 ns.professionRecipeCatalog.tailoring[2].provenance={client="forever",verified=false,
     checkedBuild="synthetic",url="https://www.wowhead.com/forever/spell=9002"}
 local gap=guides:GatherPlan("tailoring")
-assert(not gap.offline and gap.partial and not gap.ready)
-assert(#gap.crafts==1 and gap.crafts[1].required==1)
--- Once the window closes, the cached scan cannot claim current orange status.
+assert(not gap.offline and gap.verifiedSegment and gap.segmentEnd==20)
+assert(#gap.crafts==1 and gap.crafts[1].required==19)
+assert(gap.materials[1].itemId==2100 and gap.materials[1].required==19)
+-- Once all client-verified coverage disappears and the window closes,
+-- a cached scan cannot claim current orange status.
+ns.professionRecipeCatalog.tailoring[1].provenance={client="forever",verified=false,
+    checkedBuild="synthetic",url="https://www.wowhead.com/forever/spell=9001"}
 GetTradeSkillLine=function() return "Other" end
 local stale=guides:GatherPlan("tailoring")
 assert(not stale.offline and stale.requiresScan and #stale.materials==0)
