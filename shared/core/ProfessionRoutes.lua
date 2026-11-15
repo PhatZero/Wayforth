@@ -41,6 +41,11 @@ function Route:Plan(profession, fromSkill, toSkill)
     end
     local catalog=ns.professionRecipeCatalog[profession] or {}
     local totals,stock,skill={},{},fromSkill
+    local function materialize()
+        result.materials={}
+        for _,entry in pairs(totals) do result.materials[#result.materials+1]=entry end
+        table.sort(result.materials,function(a,b) return a.itemId<b.itemId end)
+    end
     -- Evaluate every craft in actual route order. An intermediate made by a
     -- *later* recipe cannot satisfy an earlier craft. Count missing external
     -- materials only when needed and consume available intermediate stock.
@@ -63,6 +68,7 @@ function Route:Plan(profession, fromSkill, toSkill)
         if not chosen then
             result.uncoveredSkill=skill
             result.error="No source-verified orange recipe at skill "..skill
+            materialize()
             return result
         end
         local count=math.min(toSkill,chosen.orangeUntil)-skill
@@ -96,10 +102,7 @@ function Route:Plan(profession, fromSkill, toSkill)
         end
         skill=skill+count
     end
-    for _,entry in pairs(totals) do
-        result.materials[#result.materials+1]=entry
-    end
-    table.sort(result.materials,function(a,b) return a.itemId<b.itemId end)
+    materialize()
     result.complete=true
     return result
 end
