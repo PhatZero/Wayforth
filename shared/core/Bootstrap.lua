@@ -70,6 +70,12 @@ local function dispatch(event, ...)
         end
     elseif event == "QUEST_DATA_LOAD_RESULT" or event == "BAG_UPDATE_DELAYED" then
         ns:Call("Tracker", "RequestObjectiveRefresh", event == "QUEST_DATA_LOAD_RESULT" and (...) or nil)
+    elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
+        local unit,_,spellId=...
+        if unit=="player" and type(spellId)=="number" then
+            local ok,recorded=ns:Call("ProfessionGuides","RecordCraft",spellId)
+            if ok and recorded then ns:Call("Tracker","Refresh") end
+        end
     elseif event == "TRADE_SKILL_UPDATE" or event == "TRADE_SKILL_LIST_UPDATE"
         or event == "SKILL_LINES_CHANGED" then
         ns:Call("ProfessionGuides", "Sync")
@@ -129,6 +135,6 @@ for _, event in ipairs({
     "QUEST_ACCEPTED", "QUEST_TURNED_IN", "QUEST_REMOVED", "QUEST_LOG_UPDATE",
     "TRADE_SKILL_UPDATE", "TRADE_SKILL_LIST_UPDATE", "SKILL_LINES_CHANGED",
 }) do frame:RegisterEvent(event) end
-for _, event in ipairs({"QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED"}) do
+for _, event in ipairs({"QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED", "UNIT_SPELLCAST_SUCCEEDED"}) do
     pcall(frame.RegisterEvent, frame, event)
 end
