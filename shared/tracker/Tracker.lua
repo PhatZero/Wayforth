@@ -452,12 +452,18 @@ function Tracker:MakeFrame()
 
     local menu=CreateFrame("Frame",nil,panel)
     menu:SetFrameLevel(panel:GetFrameLevel()+12)
-    menu:SetSize(236,456)
+    -- Reserve a dedicated header for the visible close control.
+    -- The extra height preserves every existing utility row and its spacing.
+    menu:SetSize(236,472)
     menu:SetClampedToScreen(true)
     menu:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-7,53)
     theme:Panel(menu,theme.panel,theme.gold)
     menu:Hide()
     self.menu=menu
+    local menuHeading=theme:Text(menu,"OPTIONS",11,theme.gold)
+    menuHeading:SetPoint("TOPLEFT",menu,"TOPLEFT",13,-13)
+    self.menuClose=theme:Button(menu,30,28,"X",function() Tracker:CloseMenu() end,"quiet")
+    self.menuClose:SetPoint("TOPRIGHT",menu,"TOPRIGHT",-8,-6)
     self.menuButtons={}
     local entries={
         {"Pause Guide","guidePaused"},
@@ -472,7 +478,7 @@ function Tracker:MakeFrame()
             if key=="showArrow" then ns:Call("Navigator","UpdateDirection") end
             Tracker:Refresh()
         end,"quiet")
-        item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-10-(i-1)*35)
+        item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-44-(i-1)*35)
         self.menuButtons[key]=item
     end
     local entries2={
@@ -508,7 +514,7 @@ function Tracker:MakeFrame()
             local ok,err=pcall(action)
             if not ok and ns.Modules.Diagnostics then ns.Modules.Diagnostics:Error("Tracker utility",err) end
         end,"quiet")
-        item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-116-(i-1)*35)
+        item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-150-(i-1)*35)
     end
 
     local picker=CreateFrame("Frame",nil,panel)
@@ -1198,9 +1204,15 @@ function Tracker:ToggleMinimize()
     end
 end
 
+-- The overflow X dismisses only the menu. Keep tracker visibility, the
+-- navigation arrow, current guide, and per-character checkpoints untouched.
+function Tracker:CloseMenu()
+    if self.menu then self.menu:Hide() end
+end
+
 function Tracker:ToggleMenu()
     if not self.menu then return end
-    if self.menu:IsShown() then self.menu:Hide()
+    if self.menu:IsShown() then self:CloseMenu()
     else
         if self.picker then self.picker:Hide() end
         self.menu:Show()
