@@ -22,3 +22,5 @@
 
 **Data attribution:** Quest reference data from ForeverDB.net.
 - **Offline packaging check:** Corrected generated data attribution formatting so the offline-only source validation passes.
+
+- **Build regression fix:** Corrected the synthetic profession-planner test fixture so CI can validate the new route engine.
