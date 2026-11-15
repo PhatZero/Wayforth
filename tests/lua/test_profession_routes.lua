@@ -9,7 +9,7 @@ ns.professionRecipeCatalog.leatherworking={
     {name="Fixture A",spellId=900001,orangeFrom=1,orangeUntil=75,
         source="test fixture only",provenance={client="forever",verified=true,url="https://www.wowhead.com/forever/spell=900001",checkedBuild="synthetic-test-only"},reagents={{itemId=1001,name="Hide",count=2}}},
     {name="Fixture B",spellId=900002,orangeFrom=75,orangeUntil=100,
-        source="test fixture only",reagents={{itemId=1001,name="Hide",count=3},
+        source="test fixture only",provenance={client="forever",verified=true,url="https://www.wowhead.com/forever/spell=900002",checkedBuild="synthetic-test-only"},reagents={{itemId=1001,name="Hide",count=3},
             {itemId=1002,name="Thread",count=1}}},
     {name="Fixture Yellow",spellId=900003,orangeFrom=1,orangeUntil=61,
         source="test fixture only",reagents={{itemId=1003,name="Wrong",count=1}}},
