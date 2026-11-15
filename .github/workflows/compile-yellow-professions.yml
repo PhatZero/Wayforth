@@ -1,0 +1,43 @@
+name: Compile Forever yellow skill data (one-time repair)
+
+on:
+  push:
+    branches: [feat/forever-yellow-10pct-buffer]
+    paths:
+      - '.github/workflows/compile-yellow-professions.yml'
+      - 'scripts/build_foreverdb_profession_lua.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: compile-yellow-professions
+  cancel-in-progress: false
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/forever-yellow-10pct-buffer
+      - name: Restore original build-stamped ForeverDB snapshot
+        uses: actions/download-artifact@v4
+        with:
+          name: foreverdb-professions-source
+          run-id: 43670381695
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: build/foreverdb
+      - name: Compile color thresholds, materials and coverage
+        run: python3 scripts/build_foreverdb_profession_lua.py build/foreverdb clients/forever/guides/ForeverProfessionData.lua data/forever/profession_coverage.json
+      - name: Commit regenerated catalog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add clients/forever/guides/ForeverProfessionData.lua data/forever/profession_coverage.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: include Forever yellow skill bands and coverage audit"
+            git push origin HEAD:refs/heads/feat/forever-yellow-10pct-buffer
+          fi
