@@ -29,6 +29,7 @@ local function dispatch(event, ...)
         invoke("QuestCleanup", "Initialize")
         ns:Call("Guides", "Sync")
         ns:Call("SmartRoutes", "Recalculate")
+        ns:Call("NextZone", "OnZoneChanged") -- Login starts a fresh settling window.
         invoke("UI", "Initialize")
         invoke("Tracker", "Initialize")
         invoke("Minimap", "Initialize")
@@ -104,6 +105,9 @@ local function dispatch(event, ...)
             ns.state.lastHubEventAt = nil
         end
         ns:Call("Character", "Capture")
+        if event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
+            ns:Call("NextZone", "OnZoneChanged")
+        end
         local routeOK, rerouted
         if event == "PLAYER_LEVEL_UP" or event == "PLAYER_ENTERING_WORLD"
             or event == "ZONE_CHANGED_NEW_AREA" then
@@ -120,6 +124,7 @@ end
 
 -- Coalesce noisy log/watch bursts without delaying accepted/removed/turned-in events.
 local pendingQuestUpdate, elapsedQuestUpdate=false,0
+local elapsedZoneCheck=0
 local function safelyDispatch(event, ...)
     local ok, err = pcall(dispatch, event, ...)
     if not ok then diagnostics:Error("Event " .. event, err) end
@@ -135,6 +140,21 @@ frame:SetScript("OnEvent", function(_, event, ...)
     safelyDispatch(event, ...)
 end)
 frame:SetScript("OnUpdate", function(_, elapsed)
+    -- One inexpensive state check per second lets a landed player see a
+    -- suggestion after 30 seconds without requiring a new quest event.
+    elapsedZoneCheck=elapsedZoneCheck+elapsed
+    if elapsedZoneCheck>=1 then
+        elapsedZoneCheck=elapsedZoneCheck%1
+        if ns.state.loggedIn and ns.Modules.NextZone then
+            local ok,changed=ns:Call("NextZone","Tick")
+            if ok and changed then
+                local tracker=ns.Modules.Tracker
+                if tracker and tracker.frame and tracker.frame:IsShown() then
+                    ns:Call("Tracker","Refresh")
+                end
+            end
+        end
+    end
     if not pendingQuestUpdate then return end
     elapsedQuestUpdate=elapsedQuestUpdate+elapsed
     if elapsedQuestUpdate<0.15 then return end
