@@ -70,7 +70,7 @@ assert(#zones:Options()==0,'No premature zone switch')
 for _,s in ipairs(guides.home.steps) do progress.home.completed[s.id]=true end
 level=10
 local options=zones:Options()
-assert(#options==2 and options[1].id=='next','Recommend both continents but prefer current region')
+assert(#options==1 and options[1].id=='next','Recommend only the best eligible next guide')
 assert(current=='home','Recommendation must not switch automatically')
 assert(zones:Switch('next') and current=='next')
 current='home';settings.zoneSuggestions=false
