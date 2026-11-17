@@ -1139,6 +1139,9 @@ function Tracker:Layout()
     local isProfession=ns.Modules.Guides:GetGuide() and ns.Modules.Guides:GetGuide().isProfession
     if self.tabStrip then
         if ns.char.trackerMinimized then self.tabStrip:Hide() else self.tabStrip:Show() end
+        -- OnSizeChanged calls Layout: tab widths and pager counts must respond
+        -- immediately while the player drags the resize grip.
+        self:RefreshTabs()
     end
     if self.professionPanel then
         if isProfession and not ns.char.trackerMinimized then
