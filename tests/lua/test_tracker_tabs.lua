@@ -121,5 +121,15 @@ assert(activeVisible,"Shrinking must keep the active guide tab within the visibl
 assert(ns.char.guideProgress.tailoring.completed.stepA and
     ns.char.professionSuccessfulCrafts.tailoring[1234]==7,
     "Resizing must not mutate quest or profession progress")
+-- Window size events call Layout. Assert Layout reflows tabs as well as
+-- the direct RefreshTabs harness, or a resize won't update until a quest event.
+local handle=assert(io.open("shared/tracker/Tracker.lua","r"))
+local source=handle:read("*a")
+handle:close()
+assert(source:find('panel:SetScript("OnSizeChanged",function() Tracker:Layout() end)',1,true))
+local layout=assert(source:match("function Tracker:Layout%(%)(.-)\nend"))
+assert(layout:find("self:RefreshTabs()",1,true),
+    "Dragging tracker edges must reflow visible tabs immediately")
+print("WayForth live tab reflow on tracker resize passed")
 print("WayForth responsive tab layout at 500, 620 and 1000px passed")
 print("WayForth closable guide tab lifecycle and paging tests passed")
