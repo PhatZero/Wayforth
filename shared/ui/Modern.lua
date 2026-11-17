@@ -377,6 +377,7 @@ function UI:LibraryCard(prefix, id, x, y, width)
     if guide.levelMin then
         meta = meta .. (guide.levelRangeEstimate and "  |  Est. levels " or "  |  Levels ") .. guide.levelMin .. "-" .. (guide.levelMax or "?")
     end
+    if guide.isDungeon then meta = "DUNGEON  |  PARTIAL QUEST COVERAGE" end
     if guide.testingOnly then meta = meta .. (guide.limitedData and "  |  LIMITED DATA" or "  |  SOURCE TEST") end
     self:Label(prefix.."meta", meta, x+61, y+29, width-250, 10, theme.muted)
     self:Label(prefix.."status", active and "ACTIVE" or status,
@@ -425,13 +426,14 @@ function UI:FilterGuides()
         local region = guide.continent or ""
         local name = ((guide.title or "") .. " " .. (guide.zone or "") .. " " .. region):lower()
         local accept = view == "all"
-            or view == "near" and not guide.isProfession and guide.levelMin and guide.levelMax and level >= guide.levelMin - 2 and level <= guide.levelMax + 2
+            or view == "dungeons" and guide.isDungeon
+            or view == "near" and not guide.isDungeon and not guide.isProfession and guide.levelMin and guide.levelMax and level >= guide.levelMin - 2 and level <= guide.levelMax + 2
             or view == "professions" and guide.isProfession
-            or view == "starters" and (region == "Starter Zones"
+            or view == "starters" and not guide.isDungeon and (region == "Starter Zones"
                 or ((guide.levelMin or 1) <= 5 and (guide.levelMax or 999) <= 15))
-            or view == "kalimdor" and region == "Kalimdor"
-            or view == "eastern" and region == "Eastern Kingdoms"
-        if (accept or (view == "near" and not guide.levelMin and not guide.isProfession)) and (search == "" or name:find(search, 1, true)) then
+            or view == "kalimdor" and not guide.isDungeon and region == "Kalimdor"
+            or view == "eastern" and not guide.isDungeon and region == "Eastern Kingdoms"
+        if (accept or (view == "near" and not guide.levelMin and not guide.isProfession and not guide.isDungeon)) and (search == "" or name:find(search, 1, true)) then
             result[#result + 1] = guide
         end
     end
@@ -632,6 +634,8 @@ function UI:Refresh()
         self:Label("catHeading", "Guide Categories", 6, 255, width - 160, 16, theme.gold)
         self:Button("browseAll", "Browse all guides  >", width - 175, 248, 166, 29,
             function() UI.guideView="all"; UI:ShowTab("Guide Library") end)
+        self:Button("browseDungeons", "Dungeon Guides", width - 348, 248, 164, 29,
+            function() UI.guideView="dungeons"; UI.guidePage=1; UI:ShowTab("Guide Library") end)
         local tileGap = 7
         local tileW = (width - tileGap * #CATEGORIES) / #CATEGORIES
         local texts = {
@@ -677,11 +681,11 @@ function UI:Refresh()
             or "Your recently opened routes, newest first."
         self:Title(tab,subtitle,width)
         local filters={
-            {"Near My Level","near"},{"Starter Zones","starters"},
-            {"Kalimdor","kalimdor"},{"Eastern Kingdoms","eastern"},{"All Zones","all"},{"Professions","professions"}
+            {"Near Level","near"},{"Starters","starters"},
+            {"Kalimdor","kalimdor"},{"Eastern","eastern"},{"All Zones","all"},{"Skills","professions"},{"Dungeons","dungeons"}
         }
         if tab=="Guide Library" then
-            local filterW=math.floor((width-32)/6)
+            local filterW=math.floor((width-32)/#filters)
             for i,option in ipairs(filters) do
                 local x=6+(i-1)*(filterW+5)
                 self:Button("filter"..i,option[1],x,62,filterW,31,function()
@@ -904,6 +908,7 @@ function UI:Refresh()
         end
         local progress = #steps > 0 and math.floor(100 * completed / #steps + 0.5) or 0
         local location = tostring(selected.continent or "Starter Zones")
+        local dungeon=selected.isDungeon and ns.Modules.DungeonGuides
         local band = selected.levelMin and
             ((selected.levelRangeEstimate and "Estimated Levels " or "Levels ") .. tostring(selected.levelMin) .. "-" .. tostring(selected.levelMax or "?")) or "All Levels"
         local playerLevel = type(UnitLevel)=="function" and UnitLevel("player") or 1
@@ -925,9 +930,9 @@ function UI:Refresh()
             or "Follow this route at your pace. Guide steps update from your quest progress."
         if #overview > 165 then overview = overview:sub(1,162) .. "..." end
         self:Label("detailsDescription", overview, 140, 102, width-155, 11, theme.ivory)
-        self:Label("detailsProgress", "Saved step " .. tostring(saved and saved.current or 1)
+        self:Label("detailsProgress", dungeon and dungeon:Summary(selected.id) or ("Saved step " .. tostring(saved and saved.current or 1)
             .. " of " .. tostring(#steps) .. "     |     " .. progress
-            .. "% confirmed" .. (skipped > 0 and ("     |     " .. skipped .. " skipped") or ""),
+            .. "% confirmed" .. (skipped > 0 and ("     |     " .. skipped .. " skipped") or "")),
             140, 157, width-155, 10, theme.muted)
         local fillWidth=math.max(30,width-161)
         local bg=self:Surface("detailsBarBg",140,181,fillWidth,6)

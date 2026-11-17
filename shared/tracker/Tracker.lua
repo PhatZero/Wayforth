@@ -1305,8 +1305,17 @@ function Tracker:Refresh()
         end
     end
     local progressText=math.floor(100*count/total) .. "% complete"
-    self.stepCount:SetText(focus and ("Viewing " .. index .. " | Route " .. routeIndex .. "/" .. total .. " | " .. progressText)
-        or ("Step " .. index .. " / " .. total .. "  |  " .. progressText))
+    local dungeon=g.isDungeon and ns.Modules.DungeonGuides
+    if dungeon then
+        local overview=dungeon:Overview(g.id)
+        if overview then
+            self.stepCount:SetText("Dungeon quests "..overview.collected.."/"..overview.eligible..
+                " collected  |  "..overview.completed.."/"..overview.eligible.." turned in")
+        end
+    else
+        self.stepCount:SetText(focus and ("Viewing " .. index .. " | Route " .. routeIndex .. "/" .. total .. " | " .. progressText)
+            or ("Step " .. index .. " / " .. total .. "  |  " .. progressText))
+    end
     local space=ns.Modules.QuestLogSpace
     local logStatus=space and space:Status()
     self.logWarning=space and space:Message(logStatus)

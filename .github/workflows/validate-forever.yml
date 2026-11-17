@@ -88,6 +88,8 @@ jobs:
         run: lua5.1 tests/lua/test_forever_profession_catalog.lua
       - name: Verify profession runtime materials, skill bands, and observed craft events
         run: lua5.1 tests/lua/test_profession_runtime.lua
+      - name: Verify source-backed dungeon quest manifest and live checklist
+        run: lua5.1 tests/lua/test_dungeon_guides.lua
       - name: Guard unsupported Forever profession events during bootstrap
         run: lua5.1 tests/lua/test_bootstrap_event_compat.lua
       - name: Run manifest and offline tests

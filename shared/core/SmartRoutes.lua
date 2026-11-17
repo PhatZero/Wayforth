@@ -125,7 +125,7 @@ function Routes:ZoneSuggestions(limit, excludeId)
     local level = currentLevel()
     local choices = {}
     for _, guide in ipairs(self:ListGuides()) do
-        if guide.continent == "Kalimdor" and not guide.isOptional
+        if guide.continent == "Kalimdor" and not guide.isDungeon and not guide.isOptional
             and guide.id ~= excludeId and guide.levelMin and guide.levelMax then
             local low, high = guide.levelMin, guide.levelMax
             local outside = math.max(low - level, level - high, 0)

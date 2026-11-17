@@ -77,7 +77,7 @@ function Guides:GetSteps(id, legacy)
         and C_Map.GetBestMapForUnit("player") or nil
     for _, step in ipairs(legacy and guide.legacySteps or guide.steps or {}) do
         if (legacy or not step.hidden)
-            and (not step.faction or step.faction == guide.faction)
+            and (not step.faction or step.faction == (guide.faction or (type(UnitFactionGroup)=="function" and UnitFactionGroup("player"))))
             and (not step.class or step.class == classToken)
             and canUseRace(step.races) then
             -- Each visible step gets its own resolved metadata. Shared raw step IDs

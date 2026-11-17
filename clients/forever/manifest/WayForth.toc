@@ -32,12 +32,14 @@ Data/ForeverQuestLocations.lua
 Data/ForeverQuestLocationUpdates.lua
 Data/ForeverQuestRequirements.lua
 Data/ForeverDBQuestData.lua
+Data/DungeonGuides.lua
 Core/QuestLocations.lua
 Core/Guides.lua
 Core/ProfessionRoutes.lua
 Core/ProfessionGuides.lua
 Core/LegacyPlanner.lua
 Core/QuestProgress.lua
+Core/DungeonGuides.lua
 Core/HubRoutes.lua
 Core/SmartRoutes.lua
 Core/QuestAudit.lua
