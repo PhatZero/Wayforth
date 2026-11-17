@@ -88,8 +88,8 @@ local function dispatch(event, ...)
                 ns:Call("UI","Refresh")
             end
         end
-    elseif event == "TRADE_SKILL_UPDATE" or event == "TRADE_SKILL_LIST_UPDATE"
-        or event == "SKILL_LINES_CHANGED" then
+    elseif event == "TRADE_SKILL_SHOW" or event == "TRADE_SKILL_UPDATE"
+        or event == "TRADE_SKILL_LIST_UPDATE" or event == "SKILL_LINES_CHANGED" then
         ns:Call("ProfessionGuides", "Sync")
         ns:Call("ProfessionGuides", "CaptureOpenProfession")
         if ns.Modules.UI and ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
@@ -165,9 +165,13 @@ for _, event in ipairs({
     "ADDON_LOADED", "PLAYER_LOGIN", "PLAYER_ENTERING_WORLD", "PLAYER_LEVEL_UP",
     "PLAYER_XP_UPDATE", "ZONE_CHANGED_NEW_AREA", "PLAYER_MONEY", "PLAYER_LOGOUT",
     "QUEST_ACCEPTED", "QUEST_TURNED_IN", "QUEST_REMOVED", "QUEST_LOG_UPDATE",
-    "TRADE_SKILL_UPDATE", "TRADE_SKILL_LIST_UPDATE", "SKILL_LINES_CHANGED",
 }) do frame:RegisterEvent(event) end
-for _, event in ipairs({"QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED",
+-- Forever does not expose every trade-skill event found in other WoW clients.
+-- Treat these as optional so an unsupported event cannot abort addon loading.
+-- TRADE_SKILL_SHOW provides a compatible refresh when a profession is opened.
+for _, event in ipairs({"TRADE_SKILL_SHOW", "TRADE_SKILL_UPDATE",
+    "TRADE_SKILL_LIST_UPDATE", "SKILL_LINES_CHANGED",
+    "QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED",
     "BANKFRAME_OPENED", "BANKFRAME_CLOSED", "PLAYERBANKSLOTS_CHANGED", "UNIT_SPELLCAST_SUCCEEDED"}) do
     pcall(frame.RegisterEvent, frame, event)
 end
