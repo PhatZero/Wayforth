@@ -32,7 +32,14 @@ local function textHeight(font, minimum)
 end
 
 local MAX_OPEN_TABS = 8
-local VISIBLE_TABS = 3
+local MAX_VISIBLE_TABS = 5
+local MIN_TAB_WIDTH = 160
+
+local function visibleTabCount(width)
+    -- Never squeeze fixed-width labels and their close buttons on narrow trackers.
+    local available = math.max(0, width - 18 - 36 - 46)
+    return math.max(2, math.min(MAX_VISIBLE_TABS, math.floor(available / MIN_TAB_WIDTH)))
+end
 
 -- Open tabs are presentation state only. The guide's completed steps and
 -- profession craft counters remain in their existing per-character stores.
@@ -87,31 +94,42 @@ function Tracker:RefreshTabs()
     local activeId=active and active.id
     local tabs=self:EnsureOpenTabs(activeId)
     local count=#tabs
-    local start=math.max(1,math.min(self.tabStart or 1,math.max(1,count-VISIBLE_TABS+1)))
+    local frameWidth=self.frame:GetWidth()
+    local capacity=visibleTabCount(frameWidth)
+    local visible=math.min(count,capacity)
+    local overflow=count>capacity
+    local maximumStart=math.max(1,count-capacity+1)
+    local start=math.max(1,math.min(self.tabStart or 1,maximumStart))
     local current=1
     for i,id in ipairs(tabs) do if id==activeId then current=i;break end end
-    -- User paging must not snap back to the active tab on every refresh.
-    if self.tabActiveId~=activeId then
+    local resized=self.tabLayoutWidth~=frameWidth or self.tabVisibleCount~=capacity
+    -- Resizing or changing guides must reveal the active tab. Explicit paging
+    -- stays in place across the ordinary objective/inventory refresh events.
+    if resized or self.tabActiveId~=activeId then
         if current<start then start=current end
-        if current>=start+VISIBLE_TABS then start=current-VISIBLE_TABS+1 end
+        if current>=start+capacity then start=current-capacity+1 end
+        start=math.max(1,math.min(start,maximumStart))
     end
     self.tabActiveId=activeId
+    self.tabLayoutWidth=frameWidth
+    self.tabVisibleCount=capacity
     self.tabStart=start
-    local overflow=count>VISIBLE_TABS
-    local available=math.max(230,self.frame:GetWidth()-18-36-(overflow and 46 or 0))
-    local visible=math.min(VISIBLE_TABS,count)
+    -- The + button stays anchored at right. Paging controls only occupy
+    -- the left gutter when more guides exist than fit at this width.
+    local available=math.max(0,frameWidth-18-36-(overflow and 46 or 0))
     local tabWidth=math.floor(available/math.max(1,visible))
     local baseX=overflow and 45 or 1
     for i,tab in ipairs(self.guideTabs or {}) do
-        local id=tabs[start+i-1]
+        local id=i<=capacity and tabs[start+i-1] or nil
         tab.id=id
         if id then
             local guide=ns.Modules.Guides:GetGuide(id)
-            local maxLetters=math.max(8,math.floor((tabWidth-30)/6))
+            local textWidth=math.max(22,tabWidth-37)
+            local maxLetters=math.max(3,math.floor(textWidth/6))
             local title=tostring(guide.title or id)
-            if #title>maxLetters then title=title:sub(1,maxLetters-2)..".." end
+            if #title>maxLetters then title=title:sub(1,math.max(1,maxLetters-2))..".." end
             tab.button:SetWidth(tabWidth-3)
-            tab.button.label:SetWidth(math.max(16,tabWidth-29))
+            tab.button.label:SetWidth(textWidth)
             tab.button:SetLabel(title)
             tab.button.surface:SetColorTexture(unpack(id==activeId and theme.elevated or theme.panel))
             tab.button.label:SetTextColor(unpack(id==activeId and theme.teal or theme.ivory))
@@ -121,9 +139,8 @@ function Tracker:RefreshTabs()
         else tab.button:Hide() end
     end
     if overflow and start>1 then self.tabPrevious:Show() else self.tabPrevious:Hide() end
-    if overflow and start+VISIBLE_TABS-1<count then self.tabNext:Show() else self.tabNext:Hide() end
+    if overflow and start+capacity-1<count then self.tabNext:Show() else self.tabNext:Hide() end
 end
-
 function Tracker:MakeFrame()
     if self.frame then return end
     local panel = CreateFrame("Frame", "WayForthGuideTracker", UIParent)
@@ -192,13 +209,14 @@ function Tracker:MakeFrame()
     self.tabStrip=strip
     self.tabStart=1
     self.guideTabs={}
-    for i=1,VISIBLE_TABS do
+    for i=1,MAX_VISIBLE_TABS do
         local tab={}
         tab.button=theme:Button(strip,98,26,"",function()
             if tab.id then Tracker:ActivateGuideTab(tab.id) end
         end,"quiet")
         tab.button.label:ClearAllPoints()
         tab.button.label:SetPoint("CENTER",tab.button,"CENTER",-9,0)
+        if tab.button.label.SetWordWrap then tab.button.label:SetWordWrap(false) end
         tab.close=theme:Button(tab.button,20,20,"X",function()
             if tab.id then Tracker:CloseGuideTab(tab.id) end
         end,"quiet")
@@ -213,7 +231,7 @@ function Tracker:MakeFrame()
     self.tabPrevious:SetPoint("TOPLEFT",strip,"TOPLEFT",0,-2)
     self.tabNext=theme:Button(strip,21,25,">",function()
         local tabs=Tracker:EnsureOpenTabs(nil)
-        Tracker.tabStart=math.min(math.max(1,#tabs-VISIBLE_TABS+1),(Tracker.tabStart or 1)+1)
+        Tracker.tabStart=math.min(math.max(1,#tabs-(Tracker.tabVisibleCount or 2)+1),(Tracker.tabStart or 1)+1)
         Tracker:RefreshTabs()
     end,"quiet")
     self.tabNext:SetPoint("TOPLEFT",strip,"TOPLEFT",23,-2)
