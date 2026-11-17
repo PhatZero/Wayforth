@@ -64,19 +64,21 @@ assert(#trimmed==8 and trimmed[#trimmed]=="tailoring",
 local function fake()
     local f={}
     function f:SetWidth(n) self.width=n end
+    function f:GetWidth() return self.width end
     function f:SetTextColor(...) self.color={...} end
     function f:SetColorTexture(...) self.color={...} end
     function f:SetLabel(v) self.text=v end
     function f:ClearAllPoints() end
-    function f:SetPoint() end
+    function f:SetPoint(_,_,_,x) self.x=x end
     function f:Show() self.visible=true end
     function f:Hide() self.visible=false end
     return f
 end
 tracker.tabStrip=fake()
-tracker.frame={GetWidth=function() return 480 end}
+local frameWidth=500
+tracker.frame={GetWidth=function() return frameWidth end}
 tracker.guideTabs={}
-for i=1,3 do
+for i=1,5 do
     local button=fake()
     button.label=fake()
     button.surface=fake()
@@ -92,4 +94,32 @@ local page=2
 tracker.tabStart=page
 tracker:RefreshTabs()
 assert(tracker.tabStart==page,"Manual tab paging must survive regular refreshes")
+-- Responsive layout: the current guide stays visible, each close button
+-- retains its dedicated 20px target, and tabs never enter the + picker.
+assert(tracker.tabVisibleCount==2, "500px tracker must show two readable tabs")
+local narrowWidth=tracker.guideTabs[1].button.width
+assert(narrowWidth>=150 and tracker.guideTabs[3].button.visible==false)
+frameWidth=620
+tracker:RefreshTabs()
+assert(tracker.tabVisibleCount==3 and tracker.guideTabs[3].button.visible==true,
+    "Default width should reveal a third guide tab")
+frameWidth=1000
+tracker:RefreshTabs()
+assert(tracker.tabVisibleCount==5 and tracker.guideTabs[5].button.visible==true,
+    "Wide tracker should reveal five guide tabs without resizing the X")
+local wideRight=tracker.guideTabs[5].button.x+tracker.guideTabs[5].button.width
+assert(wideRight<frameWidth-18-30, "Last guide overlaps add-guide picker")
+frameWidth=500
+tracker:RefreshTabs()
+assert(tracker.tabVisibleCount==2 and tracker.guideTabs[3].button.visible==false,
+    "Shrink must hide surplus tab buttons")
+local activeVisible=false
+for _,tab in ipairs(tracker.guideTabs) do
+    if tab.id==ns.char.activeGuide and tab.button.visible then activeVisible=true end
+end
+assert(activeVisible,"Shrinking must keep the active guide tab within the visible page")
+assert(ns.char.guideProgress.tailoring.completed.stepA and
+    ns.char.professionSuccessfulCrafts.tailoring[1234]==7,
+    "Resizing must not mutate quest or profession progress")
+print("WayForth responsive tab layout at 500, 620 and 1000px passed")
 print("WayForth closable guide tab lifecycle and paging tests passed")
