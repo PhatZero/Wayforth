@@ -63,7 +63,10 @@ function Locations:Apply(step, guide, currentMap)
     if record then step.questName = record.name end
     -- Authoritative observed Forever dungeon phase points must never be
     -- replaced by older general-catalog coordinates for another NPC/phase.
-    if guide.isDungeon and step.locationSource and step.mapId and step.x and step.y then return end
+    -- Dungeon pins require explicit Forever-observed phase verification.
+    -- Never fall back to speculative generic source coordinates, including
+    -- for quests whose location is not yet observed.
+    if guide.isDungeon then return end
     -- The authored Zephras route also has deliberate cave entrances and ship stops.
     if step.x and step.y and guide.id:find("^zephras%-") then return end
     if role == "pickup" and record and record.pickupText then step.text = record.pickupText end
