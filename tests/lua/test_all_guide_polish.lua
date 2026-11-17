@@ -25,7 +25,7 @@ assert(not routes:BlockedReason({questId=999,minLevel=61,action='objective'},{})
 active[999]=nil
 local checked=0
 for _,guide in ipairs(guides:List()) do
-    if guide.id~='first-steps' then
+    if guide.id~='first-steps' and not guide.isDungeon then
         ns.char.activeGuide=guide.id
         local steps=guides:GetSteps()
         local candidate
