@@ -344,7 +344,7 @@ function Guides:Sync(id, catchUp)
         saved.hubVisit = nil
         saved.awaitingQuestMatch = false
         saved.recoveryReason = nil
-        if catchUp and not anchor then
+        if catchUp and (not anchor or anchor < saved.current) then
             -- When the current quest is missing, explicit Sync can point back
             -- to its authored pickup or prerequisites. It never marks them done.
             local routes = ns.Modules.SmartRoutes
