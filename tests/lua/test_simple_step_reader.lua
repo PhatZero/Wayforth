@@ -95,6 +95,7 @@ assert(guides:Sync() == true and saved.current == 7)
 
 -- The recommended mode is only applied after a player explicitly requests it.
 guides:SetCurrent(4)
+ready[20] = nil
 assert(routes:Switch("step-reader-test", "recommended"))
 assert(saved.current == 6, "Explicit switch may jump to a live quest")
 assert(not saved.completed["trainer"])
