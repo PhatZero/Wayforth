@@ -324,8 +324,9 @@ function Guides:Sync(id, catchUp)
     -- Explicit "Sync Quests" can catch up to newer proven quests beyond an
     -- unverified manual checkpoint. Those earlier steps stay available via Prev.
     local settings = ns.Modules.Database
+    local simple = settings and settings:Get("simpleStepReader") == true
     local automatic = (not settings or settings:Get("autoAdvance") ~= false)
-        and (not settings or settings:Get("autoRecovery") ~= false)
+        and (simple or not settings or settings:Get("autoRecovery") ~= false)
         and (not settings or settings:Get("guidePaused") ~= true)
     if catchUp and anchor and anchor > saved.current then
         self:SetCurrent(anchor, id)
@@ -336,31 +337,53 @@ function Guides:Sync(id, catchUp)
         self:SetCurrent(saved.current + 1, id)
     end
     local recoveryReason
-    local hubs=ns.Modules.HubRoutes
-    if hubs and (catchUp or automatic) then
-        local hubIndex,hubReason=hubs:Update(self:GetGuide(id).id,steps,saved,steps[previous],catchUp)
-        if hubIndex then
-            self:SetCurrent(hubIndex,id)
-            recoveryReason,saved.recoveryReason=hubReason,hubReason
+    if simple then
+        -- Only the guide reader owns automatic cursor progression. Hub sweeps,
+        -- log-capacity helpers and smart routes may provide information but may
+        -- not silently replace the player's selected step.
+        saved.hubVisit = nil
+        saved.awaitingQuestMatch = false
+        saved.recoveryReason = nil
+        if catchUp and not anchor then
+            -- When the current quest is missing, explicit Sync can point back
+            -- to its authored pickup or prerequisites. It never marks them done.
+            local routes = ns.Modules.SmartRoutes
+            local guide = self:GetGuide(id)
+            if routes and guide and routes:NeedsLiveQuest(guide.id) then
+                local pickup, reason = routes:Preview(guide.id, "recommended")
+                if pickup and pickup < saved.current then
+                    self:SetCurrent(pickup, id)
+                    recoveryReason = reason
+                end
+            end
         end
-    end
-    local space=ns.Modules.QuestLogSpace
-    if space and (catchUp or automatic) then
-        local priority,reason=space:Priority(steps,saved)
-        if priority then
-            self:SetCurrent(priority,id)
-            saved.awaitingQuestMatch=false
-            saved.recoveryReason=reason
-            recoveryReason=reason
+    else
+        local hubs=ns.Modules.HubRoutes
+        if hubs and (catchUp or automatic) then
+            local hubIndex,hubReason=hubs:Update(self:GetGuide(id).id,steps,saved,steps[previous],catchUp)
+            if hubIndex then
+                self:SetCurrent(hubIndex,id)
+                recoveryReason,saved.recoveryReason=hubReason,hubReason
+            end
         end
-    end
-    if catchUp and ns.Modules.SmartRoutes
-        and ns.Modules.SmartRoutes:NeedsLiveQuest(self:GetGuide(id).id) then
-        -- Explicit Sync means rebuild the cursor from actual quest evidence and
-        -- authored prerequisites, even when the player selected Story mode.
-        -- We do NOT mark unavailable/older steps complete just to catch up.
-        ns.Modules.SmartRoutes:Recalculate(true)
-        recoveryReason = saved.recoveryReason
+        local space=ns.Modules.QuestLogSpace
+        if space and (catchUp or automatic) then
+            local priority,reason=space:Priority(steps,saved)
+            if priority then
+                self:SetCurrent(priority,id)
+                saved.awaitingQuestMatch=false
+                saved.recoveryReason=reason
+                recoveryReason=reason
+            end
+        end
+        if catchUp and ns.Modules.SmartRoutes
+            and ns.Modules.SmartRoutes:NeedsLiveQuest(self:GetGuide(id).id) then
+            -- Explicit Sync means rebuild the cursor from actual quest evidence and
+            -- authored prerequisites, even when the player selected Story mode.
+            -- We do NOT mark unavailable/older steps complete just to catch up.
+            ns.Modules.SmartRoutes:Recalculate(true)
+            recoveryReason = saved.recoveryReason
+        end
     end
     local moved = saved.current ~= previous
     local changed = newCompletions > 0 or moved
