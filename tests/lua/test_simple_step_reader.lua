@@ -89,7 +89,9 @@ guides:Sync()
 assert(saved.current == 5, "Paused guide should retain its cursor")
 settings.guidePaused = false
 guides:Sync()
-assert(saved.current == 7, "Resuming applies only sequential, verified completions")
+assert(saved.current == 6, "Resuming stops at the next objective until verified")
+ready[20] = true
+assert(guides:Sync() == true and saved.current == 7)
 
 -- The recommended mode is only applied after a player explicitly requests it.
 guides:SetCurrent(4)
