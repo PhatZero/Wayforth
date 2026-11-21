@@ -282,11 +282,14 @@ end
 
 local function satisfied(step, status)
     if not status then return false end
+    -- Manual checkpoints always require the player's Done / Next action,
+    -- even if they reference a completed quest for context.
+    if step.action == "manual" then return false end
     -- A fully turned-in quest also completes its earlier accept/objective steps.
     if status.turnedIn then return true end
     if step.action == "accept" then return status.active end
     if step.action == "objective" then return status.ready end
-    return false -- turn-ins and manual class tasks need real completed quest evidence
+    return false -- Turn-ins need real completed quest evidence.
 end
 
 function Guides:Sync(id, catchUp)
