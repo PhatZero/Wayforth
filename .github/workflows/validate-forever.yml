@@ -42,6 +42,10 @@ jobs:
         run: lua5.1 tests/lua/test_quest_sync.lua
       - name: Verify simple step reader never silently reroutes
         run: lua5.1 tests/lua/test_simple_step_reader.lua
+      - name: Simulate a real Forever quest hub, manual checkpoint and reload
+        run: lua5.1 tests/lua/test_step_reader_real_guide.lua
+      - name: Verify login, quest and zone events do not recalculate routes
+        run: lua5.1 tests/lua/test_step_reader_event_flow.lua
       - name: Verify live quest objective counters and tracker refresh
         run: lua5.1 tests/lua/test_live_objectives.lua
       - name: Verify hub pickup rounds and grouped quest turn-ins
