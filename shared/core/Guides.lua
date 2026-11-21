@@ -334,6 +334,10 @@ function Guides:Sync(id, catchUp)
     while (catchUp or automatic) and saved.current < #steps do
         local step = steps[saved.current]
         if not saved.completed[stepKey(step, saved.current)] then break end
+        -- Old acceptance evidence is not proof that an abandoned quest is
+        -- still active. Never race past a missing quest on stale checkpoints.
+        if simple and type(step.questId) == "number"
+            and not satisfied(step, readQuestStatus(step.questId, cache)) then break end
         self:SetCurrent(saved.current + 1, id)
     end
     local recoveryReason
