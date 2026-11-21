@@ -279,6 +279,39 @@ function Routes:Preview(id, mode)
         return saved.current, "Resume the saved position; completed quests remain completed."
     end
 
+    local settings = ns.Modules.Database
+    if settings and settings:Get("simpleStepReader") == true then
+        if mode == "beginning" then
+            return 1, "Start at the first authored step."
+        end
+        -- Recommended is an explicit, evidence-based jump, not a background
+        -- route optimizer. The first active quest in guide order wins.
+        for index, step in ipairs(steps) do
+            local id = step.questId
+            if type(id) == "number" and active(id) and not flag(id) then
+                local audit = ns.Modules.QuestAudit
+                local mismatch = audit and audit:IsMismatched(id)
+                local isReady = ready(id)
+                local usable = step.action ~= "accept"
+                    and (step.action ~= "objective" or not isReady)
+                    and (step.action ~= "turnin" or isReady or not questHasObjective(id, steps))
+                if usable and not mismatch then
+                    return index, "Continue the active quest at its current guide step."
+                end
+            end
+        end
+        -- No matching live quest: keep the saved cursor unless its own quest
+        -- is missing, in which case show the authored pickup/prerequisite.
+        local current = steps[saved.current]
+        if current and type(current.questId) == "number"
+            and current.action ~= "accept" and not active(current.questId)
+            and not flag(current.questId) then
+            local pickup, reason = recoveryPickup(current.questId, steps, {}, true)
+            if pickup then return pickup, reason end
+        end
+        return saved.current, "No matching active quests. Continue from the saved step or choose From Beginning."
+    end
+
     local level = currentLevel()
     if mode == "recommended" then
         local space=ns.Modules.QuestLogSpace
@@ -663,6 +696,9 @@ end
 -- Keep recommended routes near the player's level after completed quests/level-ups.
 -- Does not mark any skipped step complete, and never switches region without consent.
 function Routes:Recalculate(force)
+    local settings = ns.Modules.Database
+    -- The step-reader owns advancement; legacy heuristics never move its cursor.
+    if settings and settings:Get("simpleStepReader") == true then return false end
     local guides = ns.Modules.Guides
     local id = guides:GetGuide().id
     local saved = guides:GetProgress(id)

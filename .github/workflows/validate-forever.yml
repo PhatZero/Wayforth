@@ -40,6 +40,8 @@ jobs:
         run: lua5.1 tests/lua/test_tracker_menu.lua
       - name: Exercise quest sync in Lua 5.1
         run: lua5.1 tests/lua/test_quest_sync.lua
+      - name: Verify simple step reader never silently reroutes
+        run: lua5.1 tests/lua/test_simple_step_reader.lua
       - name: Verify live quest objective counters and tracker refresh
         run: lua5.1 tests/lua/test_live_objectives.lua
       - name: Verify hub pickup rounds and grouped quest turn-ins

@@ -2,6 +2,10 @@ local addonName, ns = ...
 
 local frame = CreateFrame("Frame")
 local diagnostics = ns.Modules.Diagnostics
+local function allowLegacyRerouting()
+    local db = ns.Modules.Database
+    return not db or db:Get("simpleStepReader") ~= true
+end
 local function invoke(name, method, ...)
     local ok = ns:Call(name, method, ...)
     if ok then ns.state.initialized[name] = true end
@@ -28,7 +32,7 @@ local function dispatch(event, ...)
         invoke("ProfessionGuides", "Initialize")
         invoke("QuestCleanup", "Initialize")
         ns:Call("Guides", "Sync")
-        ns:Call("SmartRoutes", "Recalculate")
+        if allowLegacyRerouting() then ns:Call("SmartRoutes", "Recalculate") end
         ns:Call("NextZone", "OnZoneChanged") -- Login starts a fresh settling window.
         invoke("UI", "Initialize")
         invoke("Tracker", "Initialize")
@@ -46,7 +50,10 @@ local function dispatch(event, ...)
         end
         ns:Call("QuestLogSpace", "Notify")
         local ok, advanced = ns:Call("Guides", "Sync")
-        local routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
+        local routeOK, rerouted
+        if allowLegacyRerouting() then
+            routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
+        end
         ns:Call("Navigator", "Refresh")
         local changed = (ok and advanced) or (routeOK and rerouted)
         local tracker = ns.Modules.Tracker
@@ -109,8 +116,8 @@ local function dispatch(event, ...)
             ns:Call("NextZone", "OnZoneChanged")
         end
         local routeOK, rerouted
-        if event == "PLAYER_LEVEL_UP" or event == "PLAYER_ENTERING_WORLD"
-            or event == "ZONE_CHANGED_NEW_AREA" then
+        if allowLegacyRerouting() and (event == "PLAYER_LEVEL_UP" or event == "PLAYER_ENTERING_WORLD"
+            or event == "ZONE_CHANGED_NEW_AREA") then
             routeOK, rerouted = ns:Call("SmartRoutes", "Recalculate")
         end
         ns:Call("Navigator", "Refresh")

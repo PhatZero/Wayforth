@@ -23,6 +23,9 @@ local DEFAULTS = {
     arrowScale = 1, showArrow = true,
     autoAdvance = true, guidePaused = false,
     autoRecovery = true, recoveryNotifications = true,
+    -- The default experience is a linear, event-driven step reader.
+    -- Legacy route heuristics remain dormant for existing integrations.
+    simpleStepReader = true,
     smartRouting = true, zoneSuggestions = true,
     showAdditionalQuests = false,
     autoAcceptQuests = false, autoTurnInQuests = false,
@@ -38,6 +41,7 @@ local PERSONAL = {
     guideOpacity=true, arrowOpacity=true, arrowScale=true, showArrow=true,
     autoAdvance=true, guidePaused=true, autoRecovery=true,
     recoveryNotifications=true, smartRouting=true, zoneSuggestions=true,
+    simpleStepReader=true,
     showAdditionalQuests=true,
     autoAcceptQuests=true, autoTurnInQuests=true, cleanupSideQuestsOnZoneChange=true,
 }
