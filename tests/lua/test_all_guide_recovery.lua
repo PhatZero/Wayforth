@@ -40,7 +40,16 @@ for _, path in ipairs({
 }) do
     assert(loadfile(path))( "WayForth", ns)
 end
-assert(loadfile("clients/forever/guides/ForeverQuestLocations.lua"))( "WayForth", ns)
+for _,path in ipairs({
+    "ForeverQuestLocations.lua",
+    "ForeverQuestLocationUpdates.lua",
+    "ForeverQuestRequirements.lua",
+    "ForeverDBQuestData.lua",
+    "WestfallRoute.lua",
+    "AllZoneRoutes.lua",
+}) do
+    assert(loadfile("clients/forever/guides/"..path))("WayForth", ns)
+end
 assert(loadfile("shared/core/QuestLocations.lua"))( "WayForth", ns)
 assert(loadfile("shared/core/Guides.lua"))("WayForth", ns)
 assert(loadfile("shared/core/SmartRoutes.lua"))("WayForth", ns)
