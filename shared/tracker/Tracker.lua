@@ -1413,12 +1413,31 @@ function Tracker:Refresh()
         append(item,item.action.." | "..tostring(item.step.title or "Quest"))
     end
     local fallback=0
+    -- Keep the next actionable steps in guide order. If earlier steps were
+    -- completed or skipped on this character, explain the numbering gap
+    -- instead of appearing to lose guide instructions (e.g. 25 -> 46).
+    local hiddenDone,hiddenSkipped=0,0
     for i=routeIndex+1,#steps do
         if fallback>=12 then break end
-        if not shown[i] and not stepComplete(steps[i],i,saved)
-            and not (saved.skipped and saved.skipped[steps[i].id or i]) then
-            append({index=i},tostring(i) .. ". "..tostring(steps[i].title or "Next step"))
-            fallback=fallback+1
+        if not shown[i] then
+            local key=steps[i].id or i
+            if simpleReader and stepComplete(steps[i],i,saved) then
+                hiddenDone=hiddenDone+1
+            elseif simpleReader and saved.skipped and saved.skipped[key] then
+                hiddenSkipped=hiddenSkipped+1
+            elseif not stepComplete(steps[i],i,saved)
+                and not (saved.skipped and saved.skipped[key]) then
+                local label=tostring(i)..". "..tostring(steps[i].title or "Next step")
+                if simpleReader and (hiddenDone>0 or hiddenSkipped>0) then
+                    local hidden={}
+                    if hiddenDone>0 then hidden[#hidden+1]=hiddenDone.." DONE" end
+                    if hiddenSkipped>0 then hidden[#hidden+1]=hiddenSkipped.." SKIPPED" end
+                    label=table.concat(hidden,", ").." | "..label
+                end
+                append({index=i},label)
+                fallback=fallback+1
+                hiddenDone,hiddenSkipped=0,0
+            end
         end
     end
     local zones=ns.Modules.NextZone
