@@ -1266,7 +1266,8 @@ function Tracker:Refresh()
     local guides=ns.Modules.Guides
     guides:Sync()
     local g=guides:GetGuide()
-    local simpleReader=pref("simpleStepReader",true)==true
+    -- Match the guide engine exactly; a missing setting is not an enabled reader.
+    local simpleReader=pref("simpleStepReader",false)==true
     self:RefreshTabs()
     local step,index,total=guides:CurrentStep()
     if not g or not step or not total or total==0 then
