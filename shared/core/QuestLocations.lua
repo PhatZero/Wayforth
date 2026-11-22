@@ -51,7 +51,9 @@ function Locations:Prepare(guide)
         steps[#steps + 1] = step
     end
     if changed or #steps ~= #guide.steps then
-        guide.legacySteps = guide.steps
+        -- An authored route may already retain the former catalog order for
+        -- numeric-only SavedVariables from an older release.
+        guide.legacySteps = guide.legacySteps or guide.steps
         guide.steps = steps
     end
 end
