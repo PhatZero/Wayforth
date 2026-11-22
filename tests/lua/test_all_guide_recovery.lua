@@ -58,8 +58,15 @@ local guides, routes = ns.Modules.Guides, ns.Modules.SmartRoutes
 -- Alliance starter routes previously had no 'accept' step at all. Existing
 -- turn-in step keys must remain identical for SavedVariables compatibility.
 local starter = guides:GetSteps("alliance-teldrassil")
-assert(starter[1].id == "quest-458-accept" and starter[1].action == "accept")
-assert(starter[2].id == "quest-458" and starter[2].action == "turnin")
+local byKey,indices={},{}
+for index,step in ipairs(starter) do
+    byKey[step.id]=step
+    indices[step.id]=index
+end
+assert(byKey["quest-458-accept"] and byKey["quest-458-accept"].action=="accept")
+assert(byKey["quest-458"] and byKey["quest-458"].action=="turnin")
+assert(indices["quest-458-accept"]<indices["quest-458"],
+    "Original starter quest IDs must survive pickup-first guide reordering")
 level = 3
 guides:SetActive("alliance-teldrassil")
 local progress = guides:GetProgress()
