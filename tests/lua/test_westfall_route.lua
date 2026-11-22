@@ -93,7 +93,7 @@ assert(positions[13].turnin<positions[14].accept,
     "Third People's Militia stage must wait until second is handed in")
 
 -- Optional/specialization and level-40 quests do not interrupt core quests.
-for _,id in ipairs({92910,92911,92109,92110,79008,1076,48,49,50,51,53}) do
+for _,id in ipairs({184,109,93928,92910,92911,92109,92110,79008,1076,48,49,50,51,53}) do
     assert(positions[155].turnin<positions[id].accept,
         "Optional quest "..id.." interrupted the main Westfall route")
 end
