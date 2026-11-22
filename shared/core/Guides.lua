@@ -471,10 +471,13 @@ end
 -- completion flags or addon-cached turn-ins. A failed API query aborts the entire
 -- rebuild before any SavedVariables are modified.
 local function liveFlagged(id)
-    local methods = {
-        C_QuestLog and C_QuestLog.IsQuestFlaggedCompleted,
-        IsQuestFlaggedCompleted,
-    }
+    local methods = {}
+    if C_QuestLog and type(C_QuestLog.IsQuestFlaggedCompleted) == "function" then
+        methods[#methods+1] = C_QuestLog.IsQuestFlaggedCompleted
+    end
+    if type(IsQuestFlaggedCompleted) == "function" then
+        methods[#methods+1] = IsQuestFlaggedCompleted
+    end
     local checked = false
     for _, fn in ipairs(methods) do
         if type(fn) == "function" then
@@ -499,10 +502,14 @@ local function liveActive(id)
             checked = true
         end
     end
-    for _, fn in ipairs({
-        C_QuestLog and C_QuestLog.GetLogIndexForQuestID,
-        GetQuestLogIndexByID,
-    }) do
+    local indexMethods = {}
+    if C_QuestLog and type(C_QuestLog.GetLogIndexForQuestID) == "function" then
+        indexMethods[#indexMethods+1] = C_QuestLog.GetLogIndexForQuestID
+    end
+    if type(GetQuestLogIndexByID) == "function" then
+        indexMethods[#indexMethods+1] = GetQuestLogIndexByID
+    end
+    for _, fn in ipairs(indexMethods) do
         if type(fn) == "function" then
             local ok, value = pcall(fn, id)
             if ok and (value == nil or type(value) == "number") then
@@ -516,10 +523,14 @@ local function liveActive(id)
 end
 
 local function liveReady(id)
-    for _, fn in ipairs({
-        C_QuestLog and C_QuestLog.ReadyForTurnIn,
-        C_QuestLog and C_QuestLog.IsComplete,
-    }) do
+    local readyMethods = {}
+    if C_QuestLog and type(C_QuestLog.ReadyForTurnIn) == "function" then
+        readyMethods[#readyMethods+1] = C_QuestLog.ReadyForTurnIn
+    end
+    if C_QuestLog and type(C_QuestLog.IsComplete) == "function" then
+        readyMethods[#readyMethods+1] = C_QuestLog.IsComplete
+    end
+    for _, fn in ipairs(readyMethods) do
         if type(fn) == "function" then
             local ok, value = pcall(fn, id)
             if ok and type(value) == "boolean" then
