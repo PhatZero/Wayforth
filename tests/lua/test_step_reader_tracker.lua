@@ -75,6 +75,7 @@ tracker.menuButtons={}
 tracker.minimizeButton=widget()
 tracker.pageButton=widget()
 tracker.upcomingPage=1
+tracker.upcomingPageCount=1
 tracker.RefreshTabs=function() end
 tracker.RefreshObjectives=function() end
 tracker.ApplyOpacity=function() end
