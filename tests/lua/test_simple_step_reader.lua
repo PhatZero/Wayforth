@@ -100,4 +100,25 @@ assert(routes:Switch("step-reader-test", "recommended"))
 assert(saved.current == 6, "Explicit switch may jump to a live quest")
 assert(not saved.completed["trainer"])
 
+-- A migrated character can have step 1 selected while later quest history is
+-- already recorded. Normal quest events cannot guess a new route, but the
+-- one-time login recovery may use a real active quest from the same guide.
+turnedIn[10]=nil
+ready[20]=nil
+guides:SetCurrent(1)
+saved.routeMode="recommended"
+assert(guides:Sync()==false and saved.current==1,
+    "Ordinary sync must not jump across unfinished authored steps")
+assert(guides:ResumeOnLogin()==true and saved.current==6,
+    "Login should recover a stale first-step cursor from a live quest")
+assert(guides:ResumeOnLogin()==false,"Login recovery should not re-route a valid cursor")
+guides:SetCurrent(1)
+saved.routeMode="beginning"
+assert(not guides:ResumeOnLogin() and saved.current==1,
+    "An explicit From Beginning choice must be preserved across reload")
+saved.routeMode="recommended"
+active[20]=nil
+assert(not guides:ResumeOnLogin() and saved.current==1,
+    "No matching live quest must leave the cursor unchanged")
+
 print("WayForth simple step reader regression tests passed")

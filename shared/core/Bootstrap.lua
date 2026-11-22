@@ -32,6 +32,9 @@ local function dispatch(event, ...)
         invoke("ProfessionGuides", "Initialize")
         invoke("QuestCleanup", "Initialize")
         ns:Call("Guides", "Sync")
+        -- One-time recovery from a stale first-step cursor using a real active
+        -- quest. Never run this during ordinary quest/zone updates.
+        ns:Call("Guides", "ResumeOnLogin")
         if allowLegacyRerouting() then ns:Call("SmartRoutes", "Recalculate") end
         ns:Call("NextZone", "OnZoneChanged") -- Login starts a fresh settling window.
         invoke("UI", "Initialize")

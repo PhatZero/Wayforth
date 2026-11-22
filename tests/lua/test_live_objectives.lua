@@ -124,7 +124,9 @@ local function widget(kind,parent)
 end
 function CreateFrame(kind,_,parent) return widget(kind,parent) end
 UIParent=widget("Frame")
-local settings={autoAdvance=true,autoRecovery=true,smartRouting=false}
+-- This fixture covers legacy optional next-zone suggestions; the new reader
+-- is covered separately by test_step_reader_tracker.lua.
+local settings={autoAdvance=true,autoRecovery=true,smartRouting=false,simpleStepReader=false}
 ns.Modules.Database={Get=function(_,key) return settings[key] end,Set=function(_,key,value) settings[key]=value end}
 ns.Modules.Navigator={Refresh=function() end,Show=function() end,Hide=function() end}
 ns.Modules.UI={RefreshFooter=function() end}
