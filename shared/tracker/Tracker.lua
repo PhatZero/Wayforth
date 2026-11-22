@@ -565,6 +565,8 @@ function Tracker:MakeFrame()
         item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-150-(i-1)*35)
         if entry[1]=="Rebuild Guide Progress" then
             self.rebuildProgressButton=item
+        elseif entry[1]=="Restore Previous Progress" then
+            self.restoreProgressButton=item
         end
     end
 
