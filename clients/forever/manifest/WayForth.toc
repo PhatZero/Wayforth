@@ -33,6 +33,7 @@ Data/ForeverQuestLocationUpdates.lua
 Data/ForeverQuestRequirements.lua
 Data/ForeverDBQuestData.lua
 Data/WestfallRoute.lua
+Data/AllZoneRoutes.lua
 Data/DungeonGuides.lua
 Core/QuestLocations.lua
 Core/Guides.lua
