@@ -30,6 +30,7 @@ end
 
 fire("PLAYER_LOGIN")
 assert(calls["Guides.Sync"]==1,"Login must synchronize existing guide")
+assert(calls["Guides.ResumeOnLogin"]==1,"Run one safe recovery from saved cursor on login")
 assert(not calls["SmartRoutes.Recalculate"],"Login must not silently reroute")
 fire("QUEST_ACCEPTED",1,92460)
 assert(calls["Guides.RecordQuestEvent"]==1,"Record real accepted quest event")
@@ -42,6 +43,7 @@ fire("QUEST_LOG_UPDATE")
 frame.scripts.OnUpdate(frame,0.16)
 assert(calls["Guides.Sync"]==3,"Delayed quest-log scan should occur once")
 assert(not calls["SmartRoutes.Recalculate"],"Log update must not reroute")
+assert(calls["Guides.ResumeOnLogin"]==1,"Zone and quest events must not re-run login recovery")
 
 -- Compatibility path remains available only when legacy mode is deliberately selected.
 simple=false
