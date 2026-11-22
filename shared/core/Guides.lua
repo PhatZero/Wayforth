@@ -564,7 +564,7 @@ end
 -- Deliberately explicit and reversible. Never run this from regular Sync.
 function Guides:RebuildProgress(id)
     local guide = self:GetGuide(id)
-    if not guide or guide.isProfession then
+    if not guide or (id and guide.id ~= id) or guide.isProfession then
         return false, "Rebuild is for quest guides only. Profession progress was not changed."
     end
     if not ns.char or type(ns.char.guideProgress) ~= "table" then
@@ -583,7 +583,10 @@ function Guides:RebuildProgress(id)
                 return false, "WoW quest verification is unavailable for quest "..id..
                     ". No guide progress was changed."
             end
-            local status = { turnedIn=flagged, active=active,
+            -- The player can repeat a quest whose historical flag is true.
+            -- While it is currently in the log, use the live phase instead
+            -- of treating that older turn-in as completion of this run.
+            local status = { turnedIn=flagged and not active, active=active,
                 ready=active and liveReady(id) or false }
             statuses[id] = status
             unique = unique + 1
@@ -647,7 +650,8 @@ end
 
 function Guides:RestorePreviousProgress(id)
     local guide = self:GetGuide(id)
-    if not guide or not self:HasProgressBackup(guide.id)
+    if not guide or (id and guide.id ~= id)
+        or not self:HasProgressBackup(guide.id)
         or not ns.char or type(ns.char.guideProgress) ~= "table" then
         return false, "No progress backup exists for this guide."
     end
