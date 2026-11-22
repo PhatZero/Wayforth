@@ -1266,6 +1266,7 @@ function Tracker:Refresh()
     local guides=ns.Modules.Guides
     guides:Sync()
     local g=guides:GetGuide()
+    local simpleReader=pref("simpleStepReader",true)==true
     self:RefreshTabs()
     local step,index,total=guides:CurrentStep()
     if not g or not step or not total or total==0 then
@@ -1304,10 +1305,14 @@ function Tracker:Refresh()
         else
             self.brandTitle:SetFont("Fonts\\FRIZQT__.TTF", 18, "")
             self.brandTitle:SetText("WAYFORTH")
-            self.brandCaption:SetText("GUIDE TRACKER")
+            self.brandCaption:SetText(simpleReader
+                and ("STEP READER | " .. tostring(ns.version or "dev"))
+                or "GUIDE TRACKER")
         end
     end
-    local progressText=math.floor(100*count/total) .. "% complete"
+    -- Count completed steps separately from the saved cursor. Older characters
+    -- can resume at step 1 with many later quests already completed.
+    local progressText=count .. "/" .. total .. " steps complete"
     local dungeon=g.isDungeon and ns.Modules.DungeonGuides
     if dungeon then
         local overview=dungeon:Overview(g.id)
@@ -1326,7 +1331,10 @@ function Tracker:Refresh()
     self.stepCount:SetTextColor(unpack(self.logWarning and theme.gold or theme.teal))
     self.stepTitle:SetText(step.title or "Next objective")
     self.next:SetLabel(step.action=="manual" and "Done / Next" or "Next Step")
-    local grouped=ns.Modules.SmartRoutes and ns.Modules.SmartRoutes:NearbyGroup(focus) or {}
+    -- In step-reader mode the tracker shows the authored guide, not a separate
+    -- hub router. These advisory helpers must not replace or obscure its steps.
+    local grouped=not simpleReader and ns.Modules.SmartRoutes
+        and ns.Modules.SmartRoutes:NearbyGroup(focus) or {}
     local actions={accept="PICK UP",objective="DO",turnin="TURN IN"}
     local counts={accept=0,objective=0,turnin=0}
     for _,entry in ipairs(grouped) do
@@ -1335,7 +1343,10 @@ function Tracker:Refresh()
         end
     end
     if focus then
-        self.objectiveCaption:SetText(navigator.pinnedIndex and "PINNED SIDE OBJECTIVE" or "SELECTED SIDE OBJECTIVE")
+        self.objectiveCaption:SetText(simpleReader and "SELECTED GUIDE STEP"
+            or (navigator.pinnedIndex and "PINNED SIDE OBJECTIVE" or "SELECTED SIDE OBJECTIVE"))
+    elseif simpleReader and not g.isProfession then
+        self.objectiveCaption:SetText("CURRENT STEP | "..(actions[step.action] or "FOLLOW"))
     elseif #grouped>1 then
         local statuses={}
         if counts.turnin>0 then statuses[#statuses+1]=counts.turnin.." TURN-INS" end
@@ -1386,7 +1397,7 @@ function Tracker:Refresh()
         entries[#entries+1]={index=candidate.index,label=label}
         shown[candidate.index]=true
     end
-    if logStatus and logStatus.near then
+    if not simpleReader and logStatus and logStatus.near then
         for _,item in ipairs(space:ReadyTurnIns(steps,saved)) do
             append(item,"FREE A SLOT | "..tostring(item.step.title or "Turn in quest"))
         end
@@ -1395,7 +1406,8 @@ function Tracker:Refresh()
         local name=tostring(item.step.title or "Quest"):gsub("^Pick up:%s*","")
         append(item,(actions[item.step.action] or "VISIT").." | "..name)
     end
-    local work=ns.Modules.SmartRoutes and ns.Modules.SmartRoutes:ConcurrentQuestSteps(30) or {}
+    local work=not simpleReader and ns.Modules.SmartRoutes
+        and ns.Modules.SmartRoutes:ConcurrentQuestSteps(30) or {}
     for _,item in ipairs(work) do
         append(item,item.action.." | "..tostring(item.step.title or "Quest"))
     end
@@ -1409,7 +1421,7 @@ function Tracker:Refresh()
         end
     end
     local zones=ns.Modules.NextZone
-    local options=zones and zones:Options() or {}
+    local options=not simpleReader and zones and zones:Options() or {}
     for pos=#options,1,-1 do
         local option=options[pos]
         table.insert(entries,1,{index=0,label="NEXT ZONE | "..option.title,action=function()
@@ -1426,7 +1438,9 @@ function Tracker:Refresh()
         self.upcomingPage=1
     end
     self.upcomingEntries=entries
-    if #options>0 then
+    if simpleReader then
+        self.upcomingTitle:SetText("NEXT GUIDE STEPS")
+    elseif #options>0 then
         self.upcomingTitle:SetText("SUGGESTED NEXT ZONES")
     elseif #entries>0 then
         self.upcomingTitle:SetText(#grouped>1 and "HUB & ACTIVE QUESTS"
