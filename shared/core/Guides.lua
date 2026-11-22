@@ -296,9 +296,11 @@ end
 
 local function satisfied(step, status)
     if not status then return false end
-    -- Manual checkpoints always require the player's Done / Next action,
-    -- even if they reference a completed quest for context.
-    if step.action == "manual" then return false end
+    -- Only quest phases can be completed from quest evidence. Travel,
+    -- trainer and other manually authored checkpoints require Done / Next
+    -- even if they include a quest ID for context.
+    if step.action ~= "accept" and step.action ~= "objective"
+        and step.action ~= "turnin" then return false end
     -- A fully turned-in quest also completes its earlier accept/objective steps.
     if status.turnedIn then return true end
     if step.action == "accept" then return status.active end
