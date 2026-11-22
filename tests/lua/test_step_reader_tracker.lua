@@ -99,4 +99,19 @@ tracker:Refresh()
 assert(tracker.objectiveCaption.text=="CURRENT STEP | FOLLOW")
 assert(tracker.next.text=="Done / Next")
 
-print("WayForth Step Reader tracker displays authored guide steps without old hub UI")
+-- A returning character can have completed and skipped steps between the
+-- current instruction and a later actionable step. Explain the gap instead
+-- of implying that authored guide steps disappeared.
+saved.current=1
+saved.completed={objective=true,turnin=true}
+saved.skipped={last=true}
+steps[5]={id="later",title="Travel to Westfall",action="manual",text="Travel onward"}
+tracker:Refresh()
+assert(#tracker.upcomingEntries==1 and tracker.upcomingEntries[1].index==5,
+    "Only the next unfinished step should remain actionable")
+assert(tracker.upcomingEntries[1].label=="2 DONE, 1 SKIPPED | 5. Travel to Westfall",
+    "Explain why step numbering jumps without restoring completed steps")
+assert(saved.current==1 and saved.completed.objective and saved.skipped.last,
+    "Rendering must not edit saved progress or skipped flags")
+
+print("WayForth Step Reader tracker displays authored steps with explained completion gaps")
