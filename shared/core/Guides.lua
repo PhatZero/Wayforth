@@ -209,10 +209,17 @@ local function queryBoolean(func, questID)
     return ok and value == true
 end
 
-local function questCompleted(questID)
-    return queryBoolean(C_QuestLog and C_QuestLog.IsQuestFlaggedCompleted, questID)
-        or queryBoolean(IsQuestFlaggedCompleted, questID)
-        or (ns.char and ns.char.turnedInQuests and ns.char.turnedInQuests[questID] == true)
+local function questCompleted(questID, saved)
+    if queryBoolean(C_QuestLog and C_QuestLog.IsQuestFlaggedCompleted, questID)
+        or queryBoolean(IsQuestFlaggedCompleted, questID) then return true end
+    if saved and saved.rebuiltFromGame then
+        -- A rebuilt guide must not re-import pre-rebuild addon-only turn-in
+        -- history during normal Sync. New, observed turn-ins are recorded below.
+        return type(saved.rebuiltTurnInEvents) == "table"
+            and saved.rebuiltTurnInEvents[questID] == true
+    end
+    return ns.char and ns.char.turnedInQuests
+        and ns.char.turnedInQuests[questID] == true
 end
 
 local function questActive(questID)
@@ -266,13 +273,20 @@ function Guides:RecordQuestEvent(event, first, second)
         -- This record is local to this character and survives /reload.
         if type(ns.char.turnedInQuests) ~= "table" then ns.char.turnedInQuests = {} end
         ns.char.turnedInQuests[questID] = true
+        local selected = self:GetGuide()
+        local progress = selected and ns.char.guideProgress
+            and ns.char.guideProgress[selected.id]
+        if progress and progress.rebuiltFromGame then
+            progress.rebuiltTurnInEvents = progress.rebuiltTurnInEvents or {}
+            progress.rebuiltTurnInEvents[questID] = true
+        end
     end
 end
 
-local function readQuestStatus(questID, cache)
+local function readQuestStatus(questID, cache, saved)
     if cache[questID] then return cache[questID] end
     local status = {
-        turnedIn = questCompleted(questID),
+        turnedIn = questCompleted(questID, saved),
         active = questActive(questID),
         ready = questReady(questID),
     }
@@ -282,9 +296,11 @@ end
 
 local function satisfied(step, status)
     if not status then return false end
-    -- Manual checkpoints always require the player's Done / Next action,
-    -- even if they reference a completed quest for context.
-    if step.action == "manual" then return false end
+    -- Only quest phases can be completed from quest evidence. Travel,
+    -- trainer and other manually authored checkpoints require Done / Next
+    -- even if they include a quest ID for context.
+    if step.action ~= "accept" and step.action ~= "objective"
+        and step.action ~= "turnin" then return false end
     -- A fully turned-in quest also completes its earlier accept/objective steps.
     if status.turnedIn then return true end
     if step.action == "accept" then return status.active end
@@ -304,7 +320,7 @@ function Guides:Sync(id, catchUp)
     -- manual checkpoint, making Sync appear broken for returning characters.
     for index, step in ipairs(steps) do
         if type(step.questId) == "number" then
-            local status = readQuestStatus(step.questId, cache)
+            local status = readQuestStatus(step.questId, cache, saved)
             if (status.turnedIn or status.active or status.ready) and not foundIDs[step.questId] then
                 foundIDs[step.questId] = true
                 found = found + 1
@@ -340,7 +356,7 @@ function Guides:Sync(id, catchUp)
         -- Old acceptance evidence is not proof that an abandoned quest is
         -- still active. Never race past a missing quest on stale checkpoints.
         if simple and type(step.questId) == "number"
-            and not satisfied(step, readQuestStatus(step.questId, cache)) then break end
+            and not satisfied(step, readQuestStatus(step.questId, cache, saved)) then break end
         self:SetCurrent(saved.current + 1, id)
     end
     local recoveryReason
@@ -444,13 +460,211 @@ function Guides:ResumeOnLogin()
     local index=routes:Preview(guide.id,"recommended")
     local step=index and steps[index]
     if not step or index<=1 or type(step.questId)~="number"
-        or not questActive(step.questId) or questCompleted(step.questId) then
+        or not questActive(step.questId) or questCompleted(step.questId, saved) then
         return false
     end
     self:SetCurrent(index,guide.id)
     saved.awaitingQuestMatch=false
     saved.recoveryReason=nil
     return true
+end
+
+-- Read authoritative game evidence without consulting previous WayForth
+-- completion flags or addon-cached turn-ins. A failed API query aborts the entire
+-- rebuild before any SavedVariables are modified.
+local function liveFlagged(id)
+    local methods = {}
+    if C_QuestLog and type(C_QuestLog.IsQuestFlaggedCompleted) == "function" then
+        methods[#methods+1] = C_QuestLog.IsQuestFlaggedCompleted
+    end
+    if type(IsQuestFlaggedCompleted) == "function" then
+        methods[#methods+1] = IsQuestFlaggedCompleted
+    end
+    local checked = false
+    for _, fn in ipairs(methods) do
+        if type(fn) == "function" then
+            local ok, value = pcall(fn, id)
+            if ok and type(value) == "boolean" then
+                if value then return true end
+                checked = true
+            end
+        end
+    end
+    if checked then return false end
+    return nil
+end
+
+local function liveActive(id)
+    local checked = false
+    local onQuest = C_QuestLog and C_QuestLog.IsOnQuest
+    if type(onQuest) == "function" then
+        local ok, value = pcall(onQuest, id)
+        if ok and type(value) == "boolean" then
+            if value then return true end
+            checked = true
+        end
+    end
+    local indexMethods = {}
+    if C_QuestLog and type(C_QuestLog.GetLogIndexForQuestID) == "function" then
+        indexMethods[#indexMethods+1] = C_QuestLog.GetLogIndexForQuestID
+    end
+    if type(GetQuestLogIndexByID) == "function" then
+        indexMethods[#indexMethods+1] = GetQuestLogIndexByID
+    end
+    for _, fn in ipairs(indexMethods) do
+        if type(fn) == "function" then
+            local ok, value = pcall(fn, id)
+            if ok and (value == nil or type(value) == "number") then
+                if type(value) == "number" and value > 0 then return true end
+                checked = true
+            end
+        end
+    end
+    if checked then return false end
+    return nil
+end
+
+local function liveReady(id)
+    local readyMethods = {}
+    if C_QuestLog and type(C_QuestLog.ReadyForTurnIn) == "function" then
+        readyMethods[#readyMethods+1] = C_QuestLog.ReadyForTurnIn
+    end
+    if C_QuestLog and type(C_QuestLog.IsComplete) == "function" then
+        readyMethods[#readyMethods+1] = C_QuestLog.IsComplete
+    end
+    for _, fn in ipairs(readyMethods) do
+        if type(fn) == "function" then
+            local ok, value = pcall(fn, id)
+            if ok and type(value) == "boolean" then
+                if value then return true end
+            end
+        end
+    end
+    return false -- Never infer objective completion from missing APIs.
+end
+
+local function copyProgress(value, seen)
+    if type(value) ~= "table" then return value end
+    seen = seen or {}
+    if seen[value] then return seen[value] end
+    local duplicate = {}
+    seen[value] = duplicate
+    for key, entry in pairs(value) do
+        duplicate[copyProgress(key, seen)] = copyProgress(entry, seen)
+    end
+    return duplicate
+end
+
+function Guides:HasProgressBackup(id)
+    local guide = self:GetGuide(id)
+    return guide and ns.char and type(ns.char.guideProgressBackups) == "table"
+        and type(ns.char.guideProgressBackups[guide.id]) == "table" or false
+end
+
+-- Deliberately explicit and reversible. Never run this from regular Sync.
+function Guides:RebuildProgress(id)
+    local guide = self:GetGuide(id)
+    if not guide or (id and guide.id ~= id) or guide.isProfession then
+        return false, "Rebuild is for quest guides only. Profession progress was not changed."
+    end
+    if not ns.char or type(ns.char.guideProgress) ~= "table" then
+        return false, "Character progress is unavailable. Nothing was changed."
+    end
+    local steps, saved = self:GetSteps(guide.id), self:GetProgress(guide.id)
+    if not saved or #steps == 0 then
+        return false, "This guide has no steps. Nothing was changed."
+    end
+    local statuses, unique, matched = {}, 0, 0
+    for _, step in ipairs(steps) do
+        local id = step.questId
+        if type(id) == "number" and id > 0 and not statuses[id] then
+            local flagged, active = liveFlagged(id), liveActive(id)
+            if flagged == nil or active == nil then
+                return false, "WoW quest verification is unavailable for quest "..id..
+                    ". No guide progress was changed."
+            end
+            -- The player can repeat a quest whose historical flag is true.
+            -- While it is currently in the log, use the live phase instead
+            -- of treating that older turn-in as completion of this run.
+            local status = { turnedIn=flagged and not active, active=active,
+                ready=active and liveReady(id) or false }
+            statuses[id] = status
+            unique = unique + 1
+            if flagged or active then matched = matched + 1 end
+        end
+    end
+    if unique == 0 then
+        return false, "No quest IDs to verify. Nothing was changed."
+    end
+
+    local rebuilt = { current=1, completed={}, skipped={},
+        routeMode="recommended", rebuiltFromGame=true, rebuiltTurnInEvents={} }
+    local oldCount, newCount = 0, 0
+    for index, step in ipairs(steps) do
+        if saved.completed[stepKey(step,index)] then oldCount=oldCount+1 end
+        if type(step.questId) == "number" and statuses[step.questId]
+            and satisfied(step, statuses[step.questId]) then
+            rebuilt.completed[stepKey(step,index)] = true
+            newCount = newCount + 1
+        end
+    end
+
+    -- An active quest is a trustworthy resume point. Do not mark unvisited
+    -- manual steps complete, and never select a pickup already in the log.
+    local target, match = nil, false
+    for index, step in ipairs(steps) do
+        local status = statuses[step.questId]
+        if status and status.active and not status.turnedIn
+            and not rebuilt.completed[stepKey(step,index)]
+            and (step.action == "objective" or step.action == "turnin") then
+            target, match = index, true
+            break
+        end
+    end
+    if not target then
+        for index, step in ipairs(steps) do
+            if not rebuilt.completed[stepKey(step,index)] then
+                target = index
+                break
+            end
+        end
+    end
+    target = target or #steps
+    rebuilt.current = target
+    rebuilt.currentStepId = stepKey(steps[target], target)
+
+    -- Back up the entire selected-guide record, including old skip markers
+    -- and metadata, before replacing it. Other guides and preferences remain
+    -- untouched. Only the most recent rebuild is available for restoration.
+    ns.char.guideProgressBackups = type(ns.char.guideProgressBackups) == "table"
+        and ns.char.guideProgressBackups or {}
+    ns.char.guideProgressBackups[guide.id] = copyProgress(saved)
+    ns.char.guideProgress[guide.id] = rebuilt
+    local report = guide.title..": rebuilt "..oldCount.." -> "..newCount..
+        " verified steps. "..matched.." of "..unique.." quests matched; now at "..
+        target.."/"..#steps..(match and " (active quest)." or " (first unverified step).")..
+        " Previous progress backed up. Use Restore Previous Progress to undo."
+    self.lastSyncReport = report
+    return true, report
+end
+
+function Guides:RestorePreviousProgress(id)
+    local guide = self:GetGuide(id)
+    if not guide or (id and guide.id ~= id)
+        or not self:HasProgressBackup(guide.id)
+        or not ns.char or type(ns.char.guideProgress) ~= "table" then
+        return false, "No progress backup exists for this guide."
+    end
+    local backup = ns.char.guideProgressBackups[guide.id]
+    ns.char.guideProgress[guide.id] = copyProgress(backup)
+    ns.char.guideProgressBackups[guide.id] = nil
+    -- Normal Sync will subsequently incorporate any genuinely new quest
+    -- events; restoration itself does not force progression.
+    local progress = self:GetProgress(guide.id)
+    local report = guide.title..": previous progress restored at step "..
+        tostring(progress and progress.current or 1).."."
+    self.lastSyncReport = report
+    return true, report
 end
 
 function Guides:LastSyncReport()

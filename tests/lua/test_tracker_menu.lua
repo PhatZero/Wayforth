@@ -63,12 +63,15 @@ assert(source:find('self.menuClose=theme:Button(menu,30,28,"X",function() Tracke
     "An X button must be bound to CloseMenu on the overflow menu parent")
 assert(source:find('self.menuClose:SetPoint("TOPRIGHT",menu,"TOPRIGHT",-8,-6)',1,true),
     "Close control must be visible at the top right of the menu")
-assert(source:find('menu:SetSize(236,472)',1,true),
+assert(source:find('menu:SetSize(236,548)',1,true),
     "Menu must reserve enough height to avoid clipping the final utility row")
 assert(source:find('item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-44-(i-1)*35)',1,true),
     "First toggle row must not overlap the header")
 assert(source:find('item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-150-(i-1)*35)',1,true),
     "Utility actions must be moved below the header without overlapping toggles")
+assert(source:find('"Rebuild Guide Progress"',1,true)
+    and source:find('"Restore Previous Progress"',1,true),
+    "Confirmed rebuild and restore actions must be available in the tracker menu")
 assert(source:find('local menu=CreateFrame("Frame",nil,panel)',1,true),
     "Overflow close control must belong to the original tracker menu")
 assert(source:find('self.moreButton=theme:Button(control,34,34,"..."',1,true),

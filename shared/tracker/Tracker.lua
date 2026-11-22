@@ -472,7 +472,7 @@ function Tracker:MakeFrame()
     menu:SetFrameLevel(panel:GetFrameLevel()+12)
     -- Reserve a dedicated header for the visible close control.
     -- The extra height preserves every existing utility row and its spacing.
-    menu:SetSize(236,472)
+    menu:SetSize(236,548)
     menu:SetClampedToScreen(true)
     menu:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-7,53)
     theme:Panel(menu,theme.panel,theme.gold)
@@ -513,6 +513,36 @@ function Tracker:MakeFrame()
             ns:Print(report or "Sync attempted")
             Tracker:Refresh()
         end},
+        {"Rebuild Guide Progress",function()
+            local guides=ns.Modules.Guides
+            local guide=guides:GetGuide()
+            if not guide or guide.isProfession then
+                ns:Print("Rebuild applies to quest guides only.")
+                return
+            end
+            if Tracker.confirmRebuildGuideId~=guide.id then
+                Tracker.confirmRebuildGuideId=guide.id
+                if Tracker.rebuildProgressButton then
+                    Tracker.rebuildProgressButton:SetLabel("CONFIRM REBUILD")
+                end
+                ns:Print("Rebuild will replace saved progress for "..guide.title..
+                    " using WoW quest evidence. Your old progress will be backed up."..
+                    " Click CONFIRM REBUILD again to proceed.")
+                return
+            end
+            Tracker.confirmRebuildGuideId=nil
+            local ok,report=guides:RebuildProgress(guide.id)
+            ns:Print(report or "Rebuild could not run.")
+            if ok then ns:Call("Navigator","ResetTarget") end
+            Tracker:Refresh()
+        end},
+        {"Restore Previous Progress",function()
+            Tracker.confirmRebuildGuideId=nil
+            local ok,report=ns.Modules.Guides:RestorePreviousProgress()
+            ns:Print(report or "No guide backup to restore.")
+            if ok then ns:Call("Navigator","ResetTarget") end
+            Tracker:Refresh()
+        end},
         {"Reset Target",function() ns:Call("Navigator","ResetTarget");Tracker:Refresh() end},
         {"Undo Skip",function() ns.Modules.Guides:UndoSkip();Tracker:Refresh() end},
         {"Guide Library",function()
@@ -533,6 +563,11 @@ function Tracker:MakeFrame()
             if not ok and ns.Modules.Diagnostics then ns.Modules.Diagnostics:Error("Tracker utility",err) end
         end,"quiet")
         item:SetPoint("TOPLEFT",menu,"TOPLEFT",10,-150-(i-1)*35)
+        if entry[1]=="Rebuild Guide Progress" then
+            self.rebuildProgressButton=item
+        elseif entry[1]=="Restore Previous Progress" then
+            self.restoreProgressButton=item
+        end
     end
 
     local picker=CreateFrame("Frame",nil,panel)
@@ -1228,6 +1263,10 @@ end
 -- The overflow X dismisses only the menu. Keep tracker visibility, the
 -- navigation arrow, current guide, and per-character checkpoints untouched.
 function Tracker:CloseMenu()
+    self.confirmRebuildGuideId=nil
+    if self.rebuildProgressButton then
+        self.rebuildProgressButton:SetLabel("Rebuild Guide Progress")
+    end
     if self.menu then self.menu:Hide() end
 end
 
@@ -1242,7 +1281,7 @@ end
 function Tracker:ToggleGuidePicker()
     if not self.picker then return end
     if self.picker:IsShown() then self.picker:Hide();return end
-    if self.menu then self.menu:Hide() end
+    if self.menu then self:CloseMenu() end
     self.pickerIds={}
     local all=ns.char and ns.char.recentGuides or {}
     for i=1,3 do
@@ -1517,6 +1556,13 @@ function Tracker:Refresh()
     for key,item in pairs(self.menuButtons) do
         local title=key=="guidePaused" and "Pause Guide" or key=="autoAdvance" and "Auto Advance" or "Show Arrow"
         item:SetLabel(title .. ": " .. (pref(key,false) and "ON" or "OFF"))
+    end
+    if self.confirmRebuildGuideId and self.confirmRebuildGuideId~=g.id then
+        self.confirmRebuildGuideId=nil
+    end
+    if self.rebuildProgressButton then
+        self.rebuildProgressButton:SetLabel(self.confirmRebuildGuideId==g.id
+            and "CONFIRM REBUILD" or "Rebuild Guide Progress")
     end
     if self.minimizeButton then self.minimizeButton:SetLabel(ns.char and ns.char.trackerMinimized and "+" or "-") end
     self.displayStep=step

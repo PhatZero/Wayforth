@@ -42,6 +42,8 @@ jobs:
         run: lua5.1 tests/lua/test_quest_sync.lua
       - name: Verify simple step reader never silently reroutes
         run: lua5.1 tests/lua/test_simple_step_reader.lua
+      - name: Verify safe guide progress rebuild and restore
+        run: lua5.1 tests/lua/test_rebuild_progress.lua
       - name: Verify tracker displays the step reader instead of legacy hub sweep
         run: lua5.1 tests/lua/test_step_reader_tracker.lua
       - name: Simulate a real Forever quest hub, manual checkpoint and reload

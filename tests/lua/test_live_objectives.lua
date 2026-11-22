@@ -304,3 +304,38 @@ assert(tracker.upcomingIndices[1]==pageSize+1, "Paging must not skip rows hidden
 tracker.frame:SetSize(620,700)
 tracker:Layout()
 assert(tracker.upcomingPage<=tracker.upcomingPageCount)
+-- The tracker menu must require two deliberate clicks, and closing the menu
+-- must cancel any pending destructive action. Restore is a separate control.
+local action,restore=0,0
+local rebuilt=tracker.rebuildProgressButton
+local restoreButton=tracker.restoreProgressButton
+assert(rebuilt and rebuilt.scripts.OnClick and restoreButton and restoreButton.scripts.OnClick,
+    "Progress repair and restore must have functional tracker menu controls")
+local originalRebuild,originalRestore=guides.RebuildProgress,guides.RestorePreviousProgress
+guides.RebuildProgress=function(_,id)
+    assert(id=="second")
+    action=action+1
+    return false,"Simulated API failure; no mutation"
+end
+guides.RestorePreviousProgress=function(_,id)
+    restore=restore+1
+    return false,"No backup"
+end
+local progressBefore=guides:GetProgress()
+rebuilt.scripts.OnClick(rebuilt)
+assert(action==0 and rebuilt.label.text=="CONFIRM REBUILD",
+    "First click must only arm a confirmation")
+tracker:CloseMenu()
+assert(rebuilt.label.text=="Rebuild Guide Progress",
+    "Closing the overflow menu must cancel the confirmation")
+rebuilt.scripts.OnClick(rebuilt)
+rebuilt.scripts.OnClick(rebuilt)
+assert(action==1 and tracker.confirmRebuildGuideId==nil
+    and guides:GetProgress()==progressBefore,
+    "Only the second click may run a rebuild, and failed rebuilds are harmless")
+restoreButton.scripts.OnClick(restoreButton)
+assert(restore==1 and guides:GetProgress()==progressBefore,
+    "Restore control must call the guide restoration method")
+guides.RebuildProgress,guides.RestorePreviousProgress=originalRebuild,originalRestore
+print("WayForth rebuild menu two-click confirmation and restore controls passed")
+
