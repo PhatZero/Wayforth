@@ -419,6 +419,40 @@ function Guides:Sync(id, catchUp)
     return changed, report
 end
 
+-- One-time login recovery for characters with old, noncontiguous progress.
+-- A stale step-1 cursor is not a reason to discard completed quest history.
+-- Only a real active quest in the selected guide can move the cursor here;
+-- ordinary quest/zone updates never invoke this recovery.
+function Guides:ResumeOnLogin()
+    local settings=ns.Modules.Database
+    if not settings or settings:Get("simpleStepReader") ~= true then return false end
+    local guide=self:GetGuide()
+    local saved=guide and self:GetProgress(guide.id)
+    if not saved or saved.current ~= 1
+        or (saved.routeMode and saved.routeMode ~= "recommended") then return false end
+    local steps=self:GetSteps(guide.id)
+    local hasHistory=false
+    for i=2,#steps do
+        if saved.completed[stepKey(steps[i],i)] then
+            hasHistory=true
+            break
+        end
+    end
+    if not hasHistory then return false end
+    local routes=ns.Modules.SmartRoutes
+    if not routes then return false end
+    local index=routes:Preview(guide.id,"recommended")
+    local step=index and steps[index]
+    if not step or index<=1 or type(step.questId)~="number"
+        or not questActive(step.questId) or questCompleted(step.questId) then
+        return false
+    end
+    self:SetCurrent(index,guide.id)
+    saved.awaitingQuestMatch=false
+    saved.recoveryReason=nil
+    return true
+end
+
 function Guides:LastSyncReport()
     return self.lastSyncReport or "Sync checks completed, active and ready quests."
 end
