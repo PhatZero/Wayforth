@@ -26,6 +26,7 @@ Data/ForeverQuestCatalog.lua
 Data/KalimdorAlliance.lua
 Data/HordeKalimdor.lua
 Data/EasternEarly.lua
+Data/WestfallRoute.lua
 Data/EasternHigh.lua
 Data/HordeRaceStarterExtras.lua
 Data/ForeverQuestLocations.lua
