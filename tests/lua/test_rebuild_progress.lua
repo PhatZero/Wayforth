@@ -194,4 +194,20 @@ local keepTailoring=ns.char.guideProgress.tailoring
 assert(not guides:RebuildProgress("tailoring"))
 assert(ns.char.guideProgress.tailoring==keepTailoring,
     "Professional progress must be unaffected by this quest repair")
+assert(not guides:RebuildProgress("does-not-exist"),
+    "Unknown guide IDs must never be mapped to the fallback tutorial")
+assert(not guides:RestorePreviousProgress("does-not-exist"),
+    "Restore must not silently target a different guide")
+
+-- A repeatable quest with an old completed flag and a currently active run
+-- must not skip its new objective/turn-in.
+flagged[10]=true
+active[10]=true
+assert(guides:RebuildProgress())
+assert(guides:GetProgress().current==3,
+    "Live repeatable quest progress must take precedence over old turn-in flags")
+assert(guides:GetProgress().completed["q10-accept"])
+assert(not guides:GetProgress().completed["q10-work"]
+    and not guides:GetProgress().completed["q10-turnin"])
+
 print("WayForth verified guide rebuild, backup, restore and strict sync tests passed")
