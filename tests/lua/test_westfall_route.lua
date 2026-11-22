@@ -6,6 +6,15 @@ local ns,guides = coverage.ns,coverage.guides
 UnitFactionGroup=function() return "Alliance" end
 UnitRace=function() return "Human","HUMAN" end
 UnitClass=function() return "Hunter","HUNTER" end
+local manifest=assert(io.open("clients/forever/manifest/WayForth.toc")):read("*a")
+assert(manifest:find("Data/ForeverQuestLocations.lua",1,true)
+        < manifest:find("Data/WestfallRoute.lua",1,true)
+    and manifest:find("Data/ForeverDBQuestData.lua",1,true)
+        < manifest:find("Data/WestfallRoute.lua",1,true)
+    and manifest:find("Data/WestfallRoute.lua",1,true)
+        < manifest:find("Core/QuestLocations.lua",1,true),
+    "Westfall route authoring must run after complete Forever quest records")
+
 local guide = guides:GetGuide("alliance-westfall")
 assert(guide and guide.id=="alliance-westfall")
 assert(guide.routeStyle=="authored-circuits",
@@ -91,6 +100,14 @@ assert(positions[102].accept<positions[12].accept
     "Sentinel Hill pickup loop must collect both quests before fieldwork")
 assert(positions[13].turnin<positions[14].accept,
     "Third People's Militia stage must wait until second is handed in")
+-- Real quest-location data must already exist when the route is authored.
+-- All field objectives for a circuit come before its first return trip.
+assert(positions[9].objective and positions[22].objective
+    and positions[151].objective and positions[102].objective,
+    "Quest objective phases must be authored using the full source catalog")
+assert(positions[22].objective<positions[9].turnin
+    and positions[102].objective<positions[151].turnin,
+    "A hub circuit must do nearby field objectives before grouped hand-ins")
 
 -- Optional/specialization and level-40 quests do not interrupt core quests.
 for _,id in ipairs({184,109,93928,92910,92911,92109,92110,79008,1076,48,49,50,51,53}) do
