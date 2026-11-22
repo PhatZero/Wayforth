@@ -23,16 +23,16 @@ end
 -- that are unlocked only when an earlier quest has been handed in.
 -- No coordinates are guessed: locations come from known phase-specific data.
 local circuits = {
-    { name="Jansen Stead: collect errands", pickups={184,151,36,64}, turnins={184} },
+    { name="Jansen Stead: collect errands", pickups={151,36,64} },
     { name="Saldean's Farm: pick up nearby quests", pickups={9,22,92909}, turnins={36} },
     { name="Saldean's Farm: stew follow-up", pickups={38} },
-    { name="Sentinel Hill: collect the first round", pickups={102,109,12,153,92742}, turnins={109} },
+    { name="Sentinel Hill: collect the first round", pickups={102,12,153,92742} },
     { name="Northern farms and Sentinel Hill: work then return", turnins={151,64,9,22,92909,38,102,153,92742,12} },
     { name="Militia and the western shore", pickups={13,92744,103,152}, turnins={13,92744,103,152} },
     { name="Militia final patrol and Alba's mines", pickups={14,92745}, turnins={14,92745} },
     { name="Alba Fairmoon: Moonbrook survey", pickups={92747}, turnins={92747} },
     { name="Alba Fairmoon: consult Stormwind", pickups={92748}, turnins={92748} },
-    { name="Sentinel Hill: begin the Defias investigation", pickups={65,93928}, turnins={65,93928} },
+    { name="Sentinel Hill: begin the Defias investigation", pickups={65}, turnins={65} },
     { name="Defias Brotherhood: return from Redridge", pickups={132}, turnins={132} },
     { name="Defias Brotherhood: visit Stormwind", pickups={135}, turnins={135} },
     { name="Defias Brotherhood: report back to Sentinel Hill", pickups={141}, turnins={141} },
@@ -49,7 +49,7 @@ local circuits = {
     { name="Optional: engineering follow-up", pickups={92911}, turnins={92911} },
     { name="Optional: alchemy errands", pickups={92109}, turnins={92109} },
     { name="Optional: alchemy follow-up", pickups={92110}, turnins={92110} },
-    { name="Optional: found note and outside-zone chain", pickups={79008,1076}, turnins={79008,1076} },
+    { name="Optional: found items and outside-zone chains", pickups={184,109,79008,1076,93928}, turnins={184,109,79008,1076,93928} },
 
     -- Sweet Amber belongs to a level-40 chain; never put it in a 9-24 lap.
     { name="Optional later: Sweet Amber (level 40)", pickups={48}, turnins={48} },
