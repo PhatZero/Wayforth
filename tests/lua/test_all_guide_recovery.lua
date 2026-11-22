@@ -34,6 +34,7 @@ for _, path in ipairs({
     "clients/forever/guides/KalimdorAlliance.lua",
     "clients/forever/guides/HordeKalimdor.lua",
     "clients/forever/guides/EasternEarly.lua",
+    "clients/forever/guides/WestfallRoute.lua",
     "clients/forever/guides/EasternHigh.lua",
     "clients/forever/guides/HordeRaceStarterExtras.lua",
 }) do
