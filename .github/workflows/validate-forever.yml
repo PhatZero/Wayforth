@@ -68,6 +68,8 @@ jobs:
         run: lua5.1 tests/lua/test_all_guide_recovery.lua
       - name: Verify Westfall authored quest circuits and stable step IDs
         run: lua5.1 tests/lua/test_westfall_route.lua
+      - name: Verify all leveling-zone pickup circuits and saved-step migration
+        run: lua5.1 tests/lua/test_all_zone_circuits.lua
       - name: Verify phase-specific quest destinations and saved progress
         run: lua5.1 tests/lua/test_quest_locations.lua
       - name: Verify full 1-60 faction leveling tester library
