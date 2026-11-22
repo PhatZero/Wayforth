@@ -35,8 +35,16 @@ ns.char.guideProgress["alliance-elwynn"] = {currentStepId = objective.id, curren
 guides:Sync()
 assert(guides:CurrentStep().action == "objective", "An accepted quest still has work to do")
 questReady = true
+local previousIndex=guides:GetProgress().current
 guides:Sync()
-assert(guides:CurrentStep().action == "turnin", "Ready quests advance to the finisher")
+local nextStep=guides:CurrentStep()
+local finishedStep=assert(find("alliance-elwynn",7,"turnin"))
+assert(guides:GetProgress().current>previousIndex and nextStep.id~=objective.id,
+    "Ready quests must advance past their completed objective")
+assert(finishedStep.questId==7,
+    "Grouped fieldwork still retains the original source-backed quest finisher")
+-- A pickup-first circuit may contain other field objectives between this
+-- quest's objective and the grouped hand-in. It must not force an early return.
 
 -- Old releases stored only a filtered numeric cursor. Inserting an objective
 -- must preserve the prior turn-in, including a Horde race-filtered guide.

@@ -40,7 +40,16 @@ for _, path in ipairs({
 }) do
     assert(loadfile(path))( "WayForth", ns)
 end
-assert(loadfile("clients/forever/guides/ForeverQuestLocations.lua"))( "WayForth", ns)
+for _,path in ipairs({
+    "ForeverQuestLocations.lua",
+    "ForeverQuestLocationUpdates.lua",
+    "ForeverQuestRequirements.lua",
+    "ForeverDBQuestData.lua",
+    "WestfallRoute.lua",
+    "AllZoneRoutes.lua",
+}) do
+    assert(loadfile("clients/forever/guides/"..path))("WayForth", ns)
+end
 assert(loadfile("shared/core/QuestLocations.lua"))( "WayForth", ns)
 assert(loadfile("shared/core/Guides.lua"))("WayForth", ns)
 assert(loadfile("shared/core/SmartRoutes.lua"))("WayForth", ns)
@@ -49,8 +58,15 @@ local guides, routes = ns.Modules.Guides, ns.Modules.SmartRoutes
 -- Alliance starter routes previously had no 'accept' step at all. Existing
 -- turn-in step keys must remain identical for SavedVariables compatibility.
 local starter = guides:GetSteps("alliance-teldrassil")
-assert(starter[1].id == "quest-458-accept" and starter[1].action == "accept")
-assert(starter[2].id == "quest-458" and starter[2].action == "turnin")
+local byKey,indices={},{}
+for index,step in ipairs(starter) do
+    byKey[step.id]=step
+    indices[step.id]=index
+end
+assert(byKey["quest-458-accept"] and byKey["quest-458-accept"].action=="accept")
+assert(byKey["quest-458"] and byKey["quest-458"].action=="turnin")
+assert(indices["quest-458-accept"]<indices["quest-458"],
+    "Original starter quest IDs must survive pickup-first guide reordering")
 level = 3
 guides:SetActive("alliance-teldrassil")
 local progress = guides:GetProgress()
