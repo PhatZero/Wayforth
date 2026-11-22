@@ -102,15 +102,22 @@ for _,guide in ipairs(guides:List()) do
         -- Stable source IDs prevent migration from reinterpreting the numeric
         -- cursor after adding grouped quest phases.
         local saved=guides:GetProgress(guide.id)
-        local marker=guide.legacySteps[math.min(4,#guide.legacySteps)]
+        local visible=guides:GetSteps(guide.id)
+        local visibleKeys={}
+        for _,step in ipairs(visible) do visibleKeys[step.id]=true end
+        local marker
+        for _,old in ipairs(guide.legacySteps) do
+            if visibleKeys[old.id] then marker=old; break end
+        end
+        assert(marker,guide.id.." has no visible saved-step candidate")
         saved.currentStepId=marker.id
         saved.current=1
         saved.completed[marker.id]=true
         local restored=guides:GetProgress(guide.id)
         assert(restored.currentStepId==marker.id
-            and guide.steps[restored.current].id==marker.id
+            and visible[restored.current].id==marker.id
             and restored.completed[marker.id],
-            guide.id.." did not restore saved step key")
+            guide.id.." did not restore a visible saved step key")
     end
 end
 assert(converted==stats.converted)
