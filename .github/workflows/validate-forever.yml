@@ -34,6 +34,8 @@ jobs:
         run: lua5.1 tests/lua/test_forever_names.lua
       - name: Verify primary buttons render single captions
         run: lua5.1 tests/lua/test_button_labels.lua
+      - name: Verify minimap placement and EllesmereUI ownership
+        run: lua5.1 tests/lua/test_minimap_compat.lua
       - name: Verify closable tracker tabs and guide progress preservation
         run: lua5.1 tests/lua/test_tracker_tabs.lua
       - name: Verify navigation three-dot close button preserves tracker state
