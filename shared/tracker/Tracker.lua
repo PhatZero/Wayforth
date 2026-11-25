@@ -390,26 +390,31 @@ function Tracker:MakeFrame()
     professionPanel:Hide()
 
     self.upcomingTitle=label(panel,"UPCOMING STEPS",11,theme.teal,15,300,200)
-    self.upcomingPage=1
-    self.pageButton=theme:Button(panel,94,24,"MORE  >",function()
-        Tracker.upcomingPage=(Tracker.upcomingPage or 1)+1
-        if Tracker.upcomingPage>(Tracker.upcomingPageCount or 1) then
-            Tracker.upcomingPage=1
-        end
-        Tracker:Refresh()
-    end,"quiet")
-    self.pageButton:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-15,-294)
+    self.upcomingOffset=0
+    self.upcomingScroll=CreateFrame("ScrollFrame",nil,panel)
+    self.upcomingContent=CreateFrame("Frame",nil,self.upcomingScroll)
+    self.upcomingContent:SetSize(350,1)
+    self.upcomingScroll:SetScrollChild(self.upcomingContent)
+    self.upcomingScroll:EnableMouse(true)
+    self.upcomingScroll:EnableMouseWheel(true)
+    local function scrollUpcoming(_,delta)
+        Tracker.upcomingOffset=math.max(0,math.min(Tracker.upcomingMaxOffset or 0,(Tracker.upcomingOffset or 0)-delta*36))
+        Tracker:Layout()
+    end
+    self.upcomingScroll:SetScript("OnMouseWheel",scrollUpcoming)
+    self.upcomingRange=label(panel,"",10,theme.muted,0,0,110)
+    self.upcomingRange:SetJustifyH("RIGHT")
     self.upcomingButtons={}
-    for i=1,12 do
+    for i=1,22 do
         local idx=i
-        local button=theme:Button(panel,350,46,"",function()
+        local button=theme:Button(self.upcomingContent,350,46,"",function()
             if Tracker.upcomingActions and Tracker.upcomingActions[idx] then
                 Tracker.upcomingActions[idx]()
             elseif Tracker.upcomingIndices and Tracker.upcomingIndices[idx] then
                 navigate(Tracker.upcomingIndices[idx],false)
             end
         end,"quiet")
-        button:SetPoint("TOPLEFT",panel,"TOPLEFT",15,-(323+(i-1)*33))
+        button:SetPoint("TOPLEFT",self.upcomingContent,"TOPLEFT",0,-(i-1)*49)
         button.label:ClearAllPoints()
         button.label:SetPoint("TOPLEFT",button,"TOPLEFT",8,-5)
         button.label:SetJustifyH("LEFT")
@@ -419,10 +424,7 @@ function Tracker:MakeFrame()
         button.number=theme:Text(button,"",10,theme.muted,"RIGHT")
         button.number:SetPoint("TOPRIGHT",button,"TOPRIGHT",-8,-5)
         button:EnableMouseWheel(true)
-        button:SetScript("OnMouseWheel",function(_,delta)
-            Tracker.upcomingPage=math.max(1,math.min(Tracker.upcomingPageCount or 1,(Tracker.upcomingPage or 1)-delta))
-            Tracker:Layout()
-        end)
+        button:SetScript("OnMouseWheel",scrollUpcoming)
         button:SetScript("OnEnter",function(self)
             if GameTooltip and self.entry then
                 GameTooltip:SetOwner(self,"ANCHOR_RIGHT")
@@ -1304,14 +1306,31 @@ function Tracker:Layout()
     local upcomingY=151+cardH+9
     self.upcomingTitle:ClearAllPoints()
     self.upcomingTitle:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-upcomingY)
-    local visible=math.max(0,math.min(12,math.floor((height-56-(upcomingY+23)+3)/49)))
     local entries=self.upcomingEntries or {}
-    self.upcomingPageCount=math.max(1,math.ceil(#entries/math.max(1,visible)))
-    self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
+    local rowHeight=49
+    local viewport=math.max(0,height-56-(upcomingY+23))
+    local total=#entries*rowHeight
+    local visible=viewport>0 and #entries>0 and not ns.char.trackerMinimized and not isProfession
+    self.upcomingMaxOffset=math.max(0,total-viewport)
+    self.upcomingOffset=math.max(0,math.min(self.upcomingOffset or 0,self.upcomingMaxOffset))
+    local first=math.floor(self.upcomingOffset/rowHeight)+1
+    local remainder=self.upcomingOffset%rowHeight
     self.upcomingIndices={}
     self.upcomingActions={}
+    self.upcomingScroll:ClearAllPoints()
+    self.upcomingScroll:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23))
+    self.upcomingScroll:SetSize(math.max(1,width-30),math.max(1,viewport))
+    -- Virtualize the rows: only allocate enough buttons for the viewport.
+    -- The native scroll clips partial rows at both ends.
+    self.upcomingContent:SetSize(math.max(1,width-30),math.max(1,viewport+rowHeight))
+    self.upcomingScroll:SetVerticalScroll(remainder)
+    self.upcomingRange:ClearAllPoints()
+    self.upcomingRange:SetPoint("TOPRIGHT",self.frame,"TOPRIGHT",-15,-upcomingY)
+    self.upcomingRange:SetText(visible and (first.."-"..math.min(#entries,math.ceil((self.upcomingOffset+viewport)/rowHeight)).." / "..#entries) or "")
+    if visible then self.upcomingScroll:Show();self.upcomingRange:Show()
+    else self.upcomingScroll:Hide();self.upcomingRange:Hide() end
     for i,button in ipairs(self.upcomingButtons or {}) do
-        local entry=i<=visible and entries[(self.upcomingPage-1)*visible+i]
+        local entry=visible and (i-1)*rowHeight<viewport+remainder and entries[first+i-1]
         if entry then
             self.upcomingIndices[i]=entry.index
             self.upcomingActions[i]=entry.action
@@ -1327,25 +1346,11 @@ function Tracker:Layout()
             button.detail:SetText(entry.detail or "")
             button.detail:SetTextColor(unpack(theme.ivory))
             button.number:SetText(entry.index>0 and tostring(entry.index) or "")
-        else
-            button.entry=nil
-        end
-    end
-    if self.pageButton then
-        self.pageButton:ClearAllPoints()
-        self.pageButton:SetPoint("TOPRIGHT",self.frame,"TOPRIGHT",-15,-upcomingY+6)
-        self.pageButton:SetLabel(self.upcomingPage.."/"..self.upcomingPageCount.."  >")
-        if visible>0 and self.upcomingPageCount>1 then self.pageButton:Show() else self.pageButton:Hide() end
-    end
-    for i,button in ipairs(self.upcomingButtons or {}) do
-        button:SetWidth(width-30)
-        button:ClearAllPoints()
-        button:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23+(i-1)*49))
-        if self.upcomingIndices and self.upcomingIndices[i]
-            and i <= visible
-            and not (ns.char and ns.char.trackerMinimized) then
+            button:SetWidth(width-30)
+            button:ClearAllPoints()
+            button:SetPoint("TOPLEFT",self.upcomingContent,"TOPLEFT",0,-(i-1)*rowHeight)
             button:Show()
-        else button:Hide() end
+        else button.entry=nil;button:Hide() end
     end
     if self.resizeGrip then
         if ns.char.trackerMinimized or pref("trackerLocked",false) then self.resizeGrip:Hide() else self.resizeGrip:Show() end
@@ -1354,14 +1359,13 @@ function Tracker:Layout()
         self.summary:Hide()
         self.objectiveCard:Hide()
         self.upcomingTitle:Hide()
-        if self.pageButton then self.pageButton:Hide() end
         self.controls:Hide()
         if self.menu then self.menu:Hide() end
         if self.picker then self.picker:Hide() end
     else
         self.summary:Show()
         self.objectiveCard:Show()
-        if visible>0 and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
+        if visible and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
         else self.upcomingTitle:Hide() end
         self.controls:Show()
     end
@@ -1372,7 +1376,6 @@ function Tracker:Layout()
     if isProfession and not ns.char.trackerMinimized then
         self.objectiveCard:Hide()
         self.upcomingTitle:Hide()
-        if self.pageButton then self.pageButton:Hide() end
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
         self.controls:Hide()
     end
@@ -1639,7 +1642,7 @@ function Tracker:Refresh()
     local key=table.concat(signature,":")
     if self.upcomingSignature~=key then
         self.upcomingSignature=key
-        self.upcomingPage=1
+        self.upcomingOffset=0
     end
     self.upcomingEntries=entries
     if simpleReader then
@@ -1651,12 +1654,6 @@ function Tracker:Refresh()
             or (#work>0 and "ACTIVE QUESTS" or "UPCOMING STEPS"))
     else
         self.upcomingTitle:SetText("UPCOMING STEPS")
-    end
-    if self.pageButton then
-        if self.upcomingPageCount>1 then
-            self.pageButton:SetLabel(self.upcomingPage.."/"..self.upcomingPageCount.."  >")
-            self.pageButton:Show()
-        else self.pageButton:Hide() end
     end
     if saved.awaitingQuestMatch then
         -- The cached step remains saved, but is not presented as an available
@@ -1675,7 +1672,6 @@ function Tracker:Refresh()
         end
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
-        if self.pageButton then self.pageButton:Hide() end
     end
     if not focus and not saved.awaitingQuestMatch and step.action == "accept"
         and saved.recoveryReason and saved.recoveryReason:find("Quest pickup needed", 1, true) then
