@@ -34,6 +34,7 @@ Data/ForeverQuestRequirements.lua
 Data/ForeverDBQuestData.lua
 Data/WestfallRoute.lua
 Data/AllZoneRoutes.lua
+Data/SpecializedLeveling.lua
 Data/DungeonGuides.lua
 Data/WalkthroughObjectives.lua
 Core/QuestLocations.lua
