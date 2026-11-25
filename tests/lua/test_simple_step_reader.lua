@@ -191,3 +191,26 @@ assert(guides:GetProgress().current==3)
 ns.starterGuides[2].steps[3].waypoints[1].x=101
 assert(not travel:Start())
 print("WayForth authored waypoint loop regression passed")
+
+-- Travel checkpoints never invent completion evidence.
+GetBindLocation=function() return "Other Inn" end
+local bind={kind="bindHearth",bindName="Test Inn",text="Bind at Test Inn"}
+assert(travel:CheckpointStatus(bind)==false)
+GetBindLocation=function() return "Test Inn" end
+assert(travel:CheckpointStatus(bind)==true)
+assert(travel:CheckpointStatus({kind="hearth"})==nil)
+Enum={FlightPathState={Current=1,Reachable=2,Unreachable=3}}
+C_TaxiMap={GetTaxiNodesForMap=function() return {{nodeID=12,state=2}} end}
+assert(travel:CheckpointStatus({kind="flightPath",nodeId=12,mapId=1436})==true)
+assert(travel:CheckpointStatus({kind="flightPath",nodeId=13,mapId=1436})==nil)
+local onTaxi=true
+UnitOnTaxi=function() return onTaxi end
+C_Map={GetBestMapForUnit=function() return 1436 end}
+local fly={kind="fly",destinationMapId=1436}
+assert(travel:CheckpointStatus(fly)==false)
+onTaxi=false
+assert(travel:CheckpointStatus(fly)==true)
+travel:Stop()
+assert(travel:CheckpointStatus(fly)==nil)
+assert(guides:GetProgress().current==3)
+print("WayForth travel checkpoint regression passed")
