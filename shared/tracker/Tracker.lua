@@ -469,6 +469,15 @@ function Tracker:MakeFrame()
                 local reason=g:ConditionReason(current)
                 if reason then ns:Print(reason); Tracker:Refresh(); return end
             end
+            if current and current.checkpoint and g.LevelCheckpoint then
+                local evidence=g:LevelCheckpoint(current)
+                if not evidence.finished then ns:Print(evidence.display); Tracker:Refresh(); return end
+                g:SetCurrent(index)
+                g:CompleteCurrent()
+                ns:Call("Navigator","ResetTarget")
+                Tracker:Refresh()
+                return
+            end
             if current and current.visit and g.VisitSnapshot then
                 local visit=g:VisitSnapshot(index)
                 if visit and visit.completed<#visit.rows then
@@ -768,6 +777,10 @@ function Tracker:RefreshObjectives(fromRefresh)
     local progress=ns.Modules.QuestProgress
     local visit=step and step.visit and guides.VisitSnapshot and guides:VisitSnapshot(self.displayIndex)
     local snapshot=visit or (step and progress and progress:Get(step.questId) or nil)
+    local checkpoint=step and step.checkpoint and guides.LevelCheckpoint and guides:LevelCheckpoint(step)
+    if checkpoint then
+        snapshot={questID="checkpoint:"..tostring(step.id),status=checkpoint.finished and "CHECKPOINT REACHED" or "LEVELING CHECKPOINT",state=checkpoint.finished and "ready" or "active",rows={checkpoint}}
+    end
     if ns.Modules.Travel and ns.Modules.Travel:Current(step) then snapshot=nil end
     if snapshot and snapshot.state=="inactive" and step.action=="accept" then snapshot=nil end
     if snapshot and snapshot.ready and step.action=="objective" and not fromRefresh then
@@ -1501,7 +1514,7 @@ function Tracker:Refresh()
     -- hub router. These advisory helpers must not replace or obscure its steps.
     local grouped=not simpleReader and ns.Modules.SmartRoutes
         and ns.Modules.SmartRoutes:NearbyGroup(focus) or {}
-    local actions={accept="PICK UP",objective="DO",turnin="TURN IN"}
+    local actions={accept="PICK UP",objective="DO",turnin="TURN IN",checkpoint="LEVEL UP"}
     local counts={accept=0,objective=0,turnin=0}
     for _,entry in ipairs(grouped) do
         if entry.index ~= index and counts[entry.step.action] then
