@@ -136,19 +136,46 @@ local alliance={
     ["alliance-tanaris"]={id="alliance-ungoro",level=50},
     ["alliance-ungoro"]={id="alliance-winterspring",level=55},
 }
+local horde={
+    ["zephras-horde"]={id="horde-the-barrens",level=13},
+    ["horde-durotar"]={id="horde-the-barrens",level=10},
+    ["horde-mulgore"]={id="horde-the-barrens",level=10},
+    ["horde-tirisfal-glades"]={id="horde-silverpine-forest",level=10},
+    ["horde-the-barrens"]={id="horde-stonetalon-mountains",level=18},
+    ["horde-stonetalon-mountains"]={id="horde-ashenvale",level=24},
+    ["horde-ashenvale"]={id="horde-thousand-needles",level=30},
+    ["horde-thousand-needles"]={id="horde-desolace",level=35},
+    ["horde-desolace"]={id="horde-feralas",level=42},
+    ["horde-dustwallow-marsh"]={id="horde-feralas",level=42},
+    ["horde-feralas"]={id="horde-tanaris",level=46},
+    ["horde-tanaris"]={id="horde-un-goro-crater",level=51},
+    ["horde-un-goro-crater"]={id="horde-winterspring",level=55},
+    ["horde-felwood"]={id="horde-winterspring",level=55},
+    ["horde-silverpine-forest"]={id="horde-hillsbrad-foothills",level=20},
+    ["horde-hillsbrad-foothills"]={id="horde-arathi-highlands",level=30},
+    ["horde-alterac-mountains"]={id="horde-arathi-highlands",level=32},
+    ["horde-arathi-highlands"]={id="horde-stranglethorn-vale",level=36},
+    ["horde-stranglethorn-vale"]={id="horde-the-hinterlands",level=44},
+    ["horde-the-hinterlands"]={id="horde-searing-gorge",level=49},
+    ["horde-searing-gorge"]={id="horde-burning-steppes",level=53},
+    ["horde-burning-steppes"]={id="horde-western-plaguelands",level=55},
+    ["horde-western-plaguelands"]={id="horde-eastern-plaguelands",level=57},
+}
+Zones.hordeChapters=horde
 Zones.allianceChapters=alliance
 function Zones:ChapterOption()
     self:Tick()
     if not enabled() or not self.ready then return nil end
     local guides=ns.Modules.Guides
     local current=guides and guides:GetGuide()
-    if not current or current.faction~="Alliance" then return nil end
-    if type(UnitFactionGroup)~="function" or UnitFactionGroup("player")~="Alliance" then return nil end
-    local link=alliance[current.id]
+    local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
+    if not current or current.faction~=faction then return nil end
+    local chapters=faction=="Alliance" and alliance or faction=="Horde" and horde
+    local link=chapters and chapters[current.id]
     local level=type(UnitLevel)=="function" and UnitLevel("player")
     if not link or type(level)~="number" or level<link.level then return nil end
     local target=guides:GetGuide(link.id)
-    if not target or target.id~=link.id or target.faction~="Alliance"
+    if not target or target.id~=link.id or target.faction~=faction
         or level<target.levelMin or level>target.levelMax or finished(target) then return nil end
     local saved=guides:GetProgress()
     local steps=guides:GetSteps()
@@ -159,7 +186,7 @@ function Zones:ChapterOption()
         if not step.optional and not saved.completed[step.id or i]
             and not (saved.skipped and saved.skipped[step.id or i]) then return nil end
     end
-    return {id=target.id,title=target.zone or target.title,reason="Next Alliance chapter",chapter=true}
+    return {id=target.id,title=target.zone or target.title,reason="Next "..faction.." chapter",chapter=true}
 end
 
 function Zones:Options(force)
