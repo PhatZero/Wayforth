@@ -20,7 +20,7 @@ local ns = {
 ns.starterGuides[2]={id="visit-test",title="Visit test",steps={
     {id="visit-a",action="accept",questId=100,title="Pick up: First",visit={id="hub",title="Talk to NPC"}},
     {id="visit-b",action="accept",questId=101,title="Pick up: Second",visit={id="hub",title="Talk to NPC"}},
-    {id="visit-end",action="manual",title="Leave hub"},
+    {id="visit-end",action="manual",title="Leave hub",concurrentQuestIds={100,101,100,999}},
 }}
 function ns:RegisterModule(name, module) self.Modules[name] = module end
 function ns:Call() return true end
@@ -144,3 +144,14 @@ active[100]=nil
 assert(guides:VisitSnapshot(1).completed==1)
 assert(guides:GetProgress().current==1)
 print("WayForth grouped visit regression passed")
+
+ns.Modules.QuestProgress={Get=function(_,id)
+    if id==100 then return {active=true,rows={{display="Items (2/5)",finished=false},{display="Done",finished=true}}} end
+    if id==101 then return {active=true,ready=true,rows={{display="Ready",finished=false}}} end
+    return {active=true,rows={{display="Not in guide",finished=false}}}
+end}
+guides:SetCurrent(3)
+local concurrent=guides:ConcurrentSnapshot(3)
+assert(#concurrent==1 and concurrent[1].questId==100 and concurrent[1].display=="First: Items (2/5)")
+assert(guides:GetProgress().current==3 and not guides:GetProgress().completed["visit-end"])
+print("WayForth concurrent objective regression passed")
