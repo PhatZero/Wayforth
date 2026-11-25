@@ -721,6 +721,10 @@ function Tracker:RefreshObjectives(fromRefresh)
         self.liveScroll:SetVerticalScroll(0)
     end
     self.liveSnapshot=snapshot
+    if step and step.useLiveInstructions and snapshot and snapshot.active and #snapshot.rows>0
+        and self.allowLiveInstructionText then
+        self.objectiveText:SetText("Complete the remaining requirements listed below. Follow the marked location where available.")
+    end
     if not fromRefresh then self:Layout() end
 end
 
@@ -1186,7 +1190,11 @@ function Tracker:Layout()
     local contentW=math.max(240,width-45)
     local _,hasItem=ns:Call("QuestItemButton","Refresh",self)
     self.guideTitle:SetWidth(contentW-30)
+    if self.guideTitle.SetMaxLines then self.guideTitle:SetMaxLines(1) end
+    self.guideTitle:SetHeight(16)
     self.stepCount:SetWidth(contentW-30)
+    if self.stepCount.SetMaxLines then self.stepCount:SetMaxLines(1) end
+    self.stepCount:SetHeight(15)
     -- Keep the title/caption clear of the quest-item and PIN controls.
     self.stepTitle:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
     self.objectiveCaption:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
@@ -1210,7 +1218,7 @@ function Tracker:Layout()
     local upcomingY=151+cardH+9
     self.upcomingTitle:ClearAllPoints()
     self.upcomingTitle:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-upcomingY)
-    local visible=math.max(0,math.min(12,math.floor((height-52-(upcomingY+23)+3)/49)))
+    local visible=math.max(0,math.min(12,math.floor((height-56-(upcomingY+23)+3)/49)))
     local entries=self.upcomingEntries or {}
     self.upcomingPageCount=math.max(1,math.ceil(#entries/math.max(1,visible)))
     self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
@@ -1225,12 +1233,13 @@ function Tracker:Layout()
             local heading=entry.label
             if entry.index>0 then heading=heading:gsub("^%d+%.%s*",""):gsub("| %d+%.%s*","| ") end
             button:SetLabel(heading)
-            button.label:SetSize(math.max(100,width-90),15)
+            button.label:SetSize(math.max(100,width-100),15)
             if button.label.SetMaxLines then button.label:SetMaxLines(1) end
             button.detail:SetWidth(math.max(100,width-48))
             button.detail:SetHeight(24)
             if button.detail.SetMaxLines then button.detail:SetMaxLines(2) end
             button.detail:SetText(entry.detail or "")
+            button.detail:SetTextColor(unpack(theme.ivory))
             button.number:SetText(entry.index>0 and tostring(entry.index) or "")
         else
             button.entry=nil
@@ -1439,6 +1448,9 @@ function Tracker:Refresh()
             or g.testingOnly and "TEST ROUTE - VERIFY QUEST" or "CURRENT OBJECTIVE")
     end
     self.objectiveCaption:SetTextColor(unpack(theme.teal))
+    if simpleReader and not g.isProfession and self.progressBar and not focus then
+        self.objectiveCaption:SetText(index.." | CURRENT STEP | "..(actions[step.action] or "FOLLOW"))
+    end
     local objectiveText=step.text or ""
     if g.isProfession then
         local profession=ns.Modules.ProfessionGuides
@@ -1608,6 +1620,7 @@ function Tracker:Refresh()
     end
     if self.minimizeButton then self.minimizeButton:SetLabel(ns.char and ns.char.trackerMinimized and "+" or "-") end
     self.displayStep=step
+    self.allowLiveInstructionText=not blocked and not leg and not saved.awaitingQuestMatch
     if saved.awaitingQuestMatch then self.displayStep=nil end
     self.displayIndex=index
     self:RefreshObjectives(true)
