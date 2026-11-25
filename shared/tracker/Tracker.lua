@@ -437,7 +437,7 @@ function Tracker:MakeFrame()
 
     local control = CreateFrame("Frame",nil,panel)
     control:SetPoint("BOTTOMLEFT",panel,"BOTTOMLEFT",10,9)
-    control:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-10,9)
+    control:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-30,9)
     control:SetHeight(37)
     self.controls=control
     self.prev=theme:Button(control,97,34,"Previous",function()
@@ -621,21 +621,61 @@ function Tracker:MakeFrame()
         self.pickerButtons[i]=button
     end
 
-    local grip=theme:Button(panel,13,12,"/",nil,"quiet")
-    grip:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-1,1)
-    grip:SetScript("OnMouseDown",function()
-        if not pref("trackerLocked",false) and not ns.char.trackerMinimized then
-            panel:StartSizing("BOTTOMRIGHT")
+    -- Original pixel-dot diagonal grip: no font glyph or extra texture asset.
+    -- The larger hit area stays clear of the footer's overflow button.
+    local grip=CreateFrame("Button",nil,panel)
+    grip:SetSize(24,24)
+    grip:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-3,3)
+    grip:SetFrameLevel(panel:GetFrameLevel()+4)
+    self.resizeGrip=grip
+    local dots={}
+    for row=0,2 do
+        for col=0,row do
+            local dot=grip:CreateTexture(nil,"ARTWORK")
+            dot:SetSize(3,3)
+            dot:SetPoint("BOTTOMRIGHT",grip,"BOTTOMRIGHT",-4-col*5,4+(2-row)*5)
+            dots[#dots+1]=dot
+        end
+    end
+    local function paintGrip(active)
+        for _,dot in ipairs(dots) do
+            dot:SetColorTexture(unpack(active and theme.teal or theme.gold))
+        end
+    end
+    paintGrip(false)
+    grip:SetScript("OnEnter",function(self)
+        paintGrip(true)
+        if GameTooltip then
+            GameTooltip:SetOwner(self,"ANCHOR_LEFT")
+            GameTooltip:SetText("Resize WayForth")
+            GameTooltip:AddLine("Drag to resize the guide tracker.",1,1,1,true)
+            GameTooltip:Show()
         end
     end)
-    grip:SetScript("OnMouseUp",function()
+    grip:SetScript("OnLeave",function(self)
+        if not self.sizing then paintGrip(false) end
+        if GameTooltip and GameTooltip:IsOwned(self) then GameTooltip:Hide() end
+    end)
+    local function finishResize(self)
+        if not self.sizing then return end
+        self.sizing=nil
         panel:StopMovingOrSizing()
+        paintGrip(false)
         if not ns.char.trackerMinimized then
             db:Set("trackerWidth",math.floor(panel:GetWidth()+0.5))
             db:Set("trackerHeight",math.floor(panel:GetHeight()+0.5))
         end
         Tracker:Layout()
+    end
+    grip:SetScript("OnMouseDown",function(self,button)
+        if button=="LeftButton" and not pref("trackerLocked",false) and not ns.char.trackerMinimized then
+            self.sizing=true
+            paintGrip(true)
+            panel:StartSizing("BOTTOMRIGHT")
+        end
     end)
+    grip:SetScript("OnMouseUp",finishResize)
+    grip:SetScript("OnHide",finishResize)
 
     panel:SetScript("OnSizeChanged",function() Tracker:Layout() end)
     panel:SetScript("OnHide",function() ns:Call("QuestItemButton","Refresh",Tracker) end)
@@ -1260,6 +1300,9 @@ function Tracker:Layout()
             and not (ns.char and ns.char.trackerMinimized) then
             button:Show()
         else button:Hide() end
+    end
+    if self.resizeGrip then
+        if ns.char.trackerMinimized or pref("trackerLocked",false) then self.resizeGrip:Hide() else self.resizeGrip:Show() end
     end
     if ns.char.trackerMinimized then
         self.summary:Hide()
