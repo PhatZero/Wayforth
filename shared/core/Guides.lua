@@ -63,6 +63,27 @@ local function canUseRace(restrictions)
     return false
 end
 
+-- Static character conditions never change as the player levels. Keep dynamic
+-- prerequisites on the step rather than removing it from the saved route.
+local function member(values, token)
+    if not values or not token then return false end
+    for _,value in ipairs(values) do
+        if tostring(value):upper()==tostring(token):upper() then return true end
+    end
+    return false
+end
+
+local function characterMatches(condition, classToken)
+    if not condition then return true end
+    local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
+    if condition.classes and not member(condition.classes,classToken) then return false end
+    if condition.excludeClasses and (not classToken or member(condition.excludeClasses,classToken)) then return false end
+    if condition.factions and not member(condition.factions,faction) then return false end
+    if condition.races and not canUseRace(condition.races) then return false end
+    if condition.excludeRaces and (type(UnitRace)~="function" or canUseRace(condition.excludeRaces)) then return false end
+    return true
+end
+
 function Guides:GetSteps(id, legacy)
     local guide = self:GetGuide(id)
     if not guide then return {} end
@@ -79,7 +100,7 @@ function Guides:GetSteps(id, legacy)
         if (legacy or not step.hidden)
             and (not step.faction or step.faction == (guide.faction or (type(UnitFactionGroup)=="function" and UnitFactionGroup("player"))))
             and (not step.class or step.class == classToken)
-            and canUseRace(step.races) then
+            and canUseRace(step.races) and (legacy or characterMatches(step.condition,classToken)) then
             -- Each visible step gets its own resolved metadata. Shared raw step IDs
             -- remain untouched so old SavedVariables checkpoints keep working.
             local resolved = {}
@@ -310,6 +331,32 @@ end
 
 -- A walkthrough visit is an authored, contiguous set of atomic quest actions.
 -- Keep the existing cursor and stable keys: no second route engine or saved schema.
+-- Dynamic eligibility is informational and fail-closed. Never mark a
+-- prerequisite complete, remove a saved step or invent availability.
+function Guides:ConditionReason(step,id)
+    local c=step and step.condition
+    if not c then return nil end
+    local saved=self:GetProgress(id)
+    if not saved then return "Guide progress unavailable." end
+    local level=type(UnitLevel)=="function" and UnitLevel("player")
+    if c.minLevel and (type(level)~="number" or level<c.minLevel) then return "Requires level "..c.minLevel.."." end
+    if c.maxLevel and (type(level)~="number" or level>c.maxLevel) then return "Intended for level "..c.maxLevel.." or below. Review or skip this step." end
+    for _,qid in ipairs(c.requiresQuests or {}) do
+        if not questCompleted(qid,saved) or questActive(qid) then return "Complete prerequisite quest "..qid.." first." end
+    end
+    if c.requiresAnyQuests and #c.requiresAnyQuests>0 then
+        local met=false
+        for _,qid in ipairs(c.requiresAnyQuests) do
+            if questCompleted(qid,saved) and not questActive(qid) then met=true;break end
+        end
+        if not met then return "Complete one of the prerequisite quests first." end
+    end
+    for _,key in ipairs(c.requiresSteps or {}) do
+        if not saved.completed[key] then return "Complete prerequisite guide step "..key.." first." end
+    end
+    return nil
+end
+
 -- Concurrent work is explicitly authored on a route step. It is advisory:
 -- never changes the cursor, destination, completion or saved variables.
 function Guides:ConcurrentSnapshot(index, id)
