@@ -197,6 +197,35 @@ for _, step in ipairs(allSteps) do
     for name, value in pairs(amendments[step.id] or {}) do step[name] = value end
 end
 
+-- Walkthrough pass: retain every original ID and authored quest destination.
+-- Group only adjacent actions at the same documented endpoint. Hunting
+-- objectives are advisory companions, never an alternate route engine.
+local walkthrough = {
+    ["start-report"]={visit={id="thendal-rorian-intro",title="Speak with Rorian the Dayseeker"}},
+    ["harmony-accept"]={visit={id="thendal-rorian-intro",title="Speak with Rorian the Dayseeker"}},
+    ["harmony-clear"]={title="Harmony in Balance",text="Hunt juvenile vuldren east of Thendal. Check the live kill counter and defeat cirrusflies when you encounter them.",concurrentQuestIds={92462}},
+    ["flies-clear"]={title="Infestation Investigation",text="Hunt cirrusflies in the grove until the quest counter is complete.",concurrentQuestIds={92461}},
+    ["scholar-92727-turnin"]={visit={id="scholar-satchel",title="Investigate the bloodstained satchel"}},
+    ["scholar-92849-accept"]={visit={id="scholar-satchel",title="Investigate the bloodstained satchel"}},
+    ["scholar-92849-turnin"]={visit={id="scholar-fillion",title="Speak with Fillion Flamebreeze"}},
+    ["scholar-92850-accept"]={visit={id="scholar-fillion",title="Speak with Fillion Flamebreeze"}},
+    ["construct-93735-turnin"]={visit={id="construct-riaani",title="Speak with Riaani Nightwind"}},
+    ["construct-93737-accept"]={visit={id="construct-riaani",title="Speak with Riaani Nightwind"}},
+    ["wind-92840-turnin"]={visit={id="wind-elaadrin",title="Speak with Elaadrin Evengale"}},
+    ["service-92860-accept"]={visit={id="wind-elaadrin",title="Speak with Elaadrin Evengale"}},
+    ["turncoat"]={visit={id="cultist-house",title="Investigate the dead cultist"}},
+    ["unfortunate-news-92644-accept"]={visit={id="cultist-house",title="Investigate the dead cultist"}},
+    ["shrine-92947-turnin"]={visit={id="shrine-hyusaa",title="Speak with Hyusaa Quickbreeze"}},
+    ["shrine-93958-accept"]={visit={id="shrine-hyusaa",title="Speak with Hyusaa Quickbreeze"}},
+    ["confront-93835-turnin"]={visit={id="finale-alliance",title="Speak with Elaadrin Evengale"}},
+    ["fate-94369-accept"]={visit={id="finale-alliance",title="Speak with Elaadrin Evengale"}},
+    ["confront-92646-turnin"]={visit={id="finale-horde",title="Speak with Ayessa Dawnsinger"}},
+    ["fate-93836-accept"]={visit={id="finale-horde",title="Speak with Ayessa Dawnsinger"}},
+}
+for _,step in ipairs(allSteps) do
+    for key,value in pairs(walkthrough[step.id] or {}) do step[key]=value end
+end
+
 -- Attach the verified zone map to every Skyborne guide step without altering stable step IDs.
 for _, step in ipairs(allSteps) do step.mapId = 2521 end
 
