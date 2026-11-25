@@ -251,12 +251,49 @@ function Guides:LevelCheckpoint(step)
     return {finished=done,display=status,valid=valid,level=level,xp=xp,maxXP=maxXP}
 end
 
+-- Inventory and training checkpoints verify state without performing purchases,
+-- selling items, or learning spells on the player's behalf.
+function Guides:Checkpoint(step)
+    local target=step and step.checkpoint
+    if not target then return nil end
+    if not target.kind or target.kind=="xp" then return self:LevelCheckpoint(step) end
+    local function read(fn,...)
+        if type(fn)~="function" then return nil end
+        local ok,value=pcall(fn,...)
+        if ok then return value end
+    end
+    local function positive(n) return type(n)=="number" and n>0 and n<math.huge and n==math.floor(n) end
+    local done,display=false,"Invalid authored checkpoint"
+    if target.kind=="spell" and positive(target.spellId) then
+        local known=read(IsPlayerSpell,target.spellId)
+        if known~=true then
+            local alternative=read(IsSpellKnown,target.spellId)
+            if alternative~=nil then known=alternative end
+        end
+        done=known==true
+        display=(target.name or ("Spell "..target.spellId))..(done and " learned" or known==nil and " | Spell verification unavailable" or " | Not learned")
+    elseif target.kind=="item" and positive(target.itemId) and positive(target.count) then
+        local count=read(C_Item and C_Item.GetItemCount,target.itemId,false)
+        if type(count)~="number" then count=read(GetItemCount,target.itemId,false) end
+        done=type(count)=="number" and count>=target.count
+        display=(target.name or ("Item "..target.itemId)).." ("..tostring(count or "?").."/"..target.count..")"
+    elseif target.kind=="money" and positive(target.copper) then
+        local money=read(GetMoney)
+        done=type(money)=="number" and money>=target.copper
+        display=tostring(money or "?").." / "..target.copper.." copper"
+    elseif target.kind=="vendor" then
+        -- Opening a merchant window does not prove a sale or repair occurred.
+        return {finished=false,manual=true,display="Confirm vendor tasks manually after completing them."}
+    end
+    return {finished=done,display=display}
+end
+
 function Guides:CompleteCurrent(id)
     local saved = self:GetProgress(id)
     local steps = self:GetSteps(id)
     if not saved or #steps == 0 then return end
-    local checkpoint=self:LevelCheckpoint(steps[saved.current])
-    if checkpoint and not checkpoint.finished then return false,checkpoint.display end
+    local checkpoint=self:Checkpoint(steps[saved.current])
+    if checkpoint and not checkpoint.finished and not checkpoint.manual then return false,checkpoint.display end
     saved.completed[stepKey(steps[saved.current], saved.current)] = true
     if saved.current < #steps then self:SetCurrent(saved.current + 1, id) end
 end
@@ -467,7 +504,7 @@ function Guides:Sync(id, catchUp)
     -- Scan ALL quest-linked steps. The old implementation stopped at the first
     -- manual checkpoint, making Sync appear broken for returning characters.
     for index, step in ipairs(steps) do
-        local checkpoint=self:LevelCheckpoint(step)
+        local checkpoint=self:Checkpoint(step)
         if checkpoint then
             local key=stepKey(step,index)
             if checkpoint.finished and not saved.completed[key] then
@@ -510,8 +547,8 @@ function Guides:Sync(id, catchUp)
         if not saved.completed[stepKey(step, saved.current)] then break end
         -- Old acceptance evidence is not proof that an abandoned quest is
         -- still active. Never race past a missing quest on stale checkpoints.
-        local checkpoint=self:LevelCheckpoint(step)
-        if checkpoint and not checkpoint.finished then break end
+        local checkpoint=self:Checkpoint(step)
+        if checkpoint and not checkpoint.finished and not checkpoint.manual then break end
         if simple and not checkpoint and type(step.questId) == "number"
             and not satisfied(step, readQuestStatus(step.questId, cache, saved)) then break end
         self:SetCurrent(saved.current + 1, id)
