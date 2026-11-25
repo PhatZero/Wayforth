@@ -262,3 +262,41 @@ assert(guides:Checkpoint(cp).manual and not guides:Checkpoint(cp).finished)
 cp.checkpoint={kind="item",itemId=159,count=-1}
 assert(not guides:Checkpoint(cp).finished)
 print("WayForth training and inventory checkpoint regression passed")
+
+-- Explicit chapter handoffs are level-gated, faction-safe and do not mutate
+-- unfinished quest progress or switch while traveling.
+local chapterGuides={
+ ["alliance-elwynn"]={id="alliance-elwynn",faction="Alliance",levelMin=1,levelMax=12},
+ ["alliance-westfall"]={id="alliance-westfall",faction="Alliance",levelMin=8,levelMax=24,zone="Westfall"},
+}
+local currentChapter="alliance-elwynn"
+local chapterSaved={completed={},skipped={}}
+local chapterSteps={{id="required"},{id="optional",optional=true}}
+local chapterLevel=10
+UnitLevel=function() return chapterLevel end
+UnitFactionGroup=function() return "Alliance" end
+UnitOnTaxi=function() return false end
+GetTime=nil
+ns.Modules.Guides={
+ GetGuide=function(_,id) return chapterGuides[id or currentChapter] end,
+ GetSteps=function(_,id) return id=="alliance-westfall" and {{id="target"}} or chapterSteps end,
+ GetProgress=function(_,id) return id=="alliance-westfall" and {completed={}} or chapterSaved end,
+}
+ns.Modules.SmartRoutes={Switch=function(_,id,mode) assert(id=="alliance-westfall" and mode=="recommended");return true end}
+assert(loadfile("shared/core/NextZone.lua"))("WayForth",ns)
+local zones=ns.Modules.NextZone
+assert(not zones:ChapterOption())
+chapterSaved.completed.required=true
+assert(zones:ChapterOption().id=="alliance-westfall")
+chapterLevel=9
+assert(not zones:ChapterOption())
+chapterLevel=10
+UnitOnTaxi=function() return true end
+assert(not zones:ChapterOption())
+UnitOnTaxi=function() return false end
+zones:Reset()
+assert(zones:Switch("alliance-westfall"))
+assert(currentChapter=="alliance-elwynn")
+UnitFactionGroup=function() return "Horde" end
+assert(not zones:ChapterOption())
+print("WayForth Alliance chapter handoff regression passed")
