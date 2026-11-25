@@ -35,6 +35,7 @@ Data/ForeverDBQuestData.lua
 Data/WestfallRoute.lua
 Data/AllZoneRoutes.lua
 Data/DungeonGuides.lua
+Data/WalkthroughObjectives.lua
 Core/QuestLocations.lua
 Core/Guides.lua
 Core/ProfessionRoutes.lua
