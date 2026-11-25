@@ -9,12 +9,73 @@ local function selected()
     if nav and nav.overrideIndex then step=guides:GetSteps()[nav.overrideIndex] end
     return step,guides:GetGuide()
 end
+-- Read-only checkpoint evidence. A missing client API is unknown, not success.
+local function query(fn,...)
+    if type(fn)~="function" then return nil end
+    local ok,value=pcall(fn,...)
+    if ok then return value end
+end
+local function atDestination(leg)
+    if not leg.destinationMapId then return nil end
+    if query(C_Map and C_Map.GetBestMapForUnit,"player")~=leg.destinationMapId then return false end
+    if leg.destinationSubzone then
+        return query(GetSubZoneText)==leg.destinationSubzone
+    end
+    return true
+end
+function Travel:CheckpointStatus(leg)
+    if not leg then return nil end
+    if leg.kind=="flightPath" then
+        if type(leg.nodeId)~="number" then return nil end
+        local nodes=query(C_TaxiMap and C_TaxiMap.GetTaxiNodesForMap,leg.mapId)
+        if type(nodes)~="table" then return nil end
+        for _,node in ipairs(nodes) do
+            if node.nodeID==leg.nodeId then
+                local states=Enum and Enum.FlightPathState
+                if states and states.Current~=nil and node.state==states.Current then return true end
+                if states and states.Reachable~=nil and node.state==states.Reachable then return true end
+                if states and states.Unreachable~=nil and node.state==states.Unreachable then return nil end
+                return nil
+            end
+        end
+        return nil
+    elseif leg.kind=="bindHearth" then
+        if not leg.bindName then return nil end
+        local bind=query(GetBindLocation)
+        if type(bind)~="string" then return nil end
+        return bind==leg.bindName
+    elseif leg.kind=="fly" then
+        -- Require observed taxi travel followed by landing at the authored
+        -- destination. Merely walking into a destination map proves nothing.
+        local taxi=query(UnitOnTaxi,"player")
+        if taxi==true then self.observedTaxi=true;return false end
+        if taxi==false and self.observedTaxi then return atDestination(leg) end
+        return nil
+    elseif leg.kind=="hearth" then
+        -- Location alone cannot prove the hearthstone was cast.
+        -- Return steps are confirmed manually by the player.
+        return nil
+    end
+    return nil
+end
+function Travel:CheckpointInstruction(leg)
+    local state=self:CheckpointStatus(leg)
+    if state==true then return "Verified in game. Continue to the next travel leg." end
+    if state==false then return "Travel requirement not yet met." end
+    return "Confirm this travel action yourself if the client cannot verify it."
+end
 function Travel:Plan(step)
     local current,guide=selected()
     step=step or current
     if not step then return {legs={},message="Select a guide step."} end
     local legs={}
-    for _,leg in ipairs(step.travel or {}) do legs[#legs+1]=leg end
+    for _,leg in ipairs(step.travel or {}) do
+        if (leg.kind=="flightPath" or leg.kind=="fly" or leg.kind=="bindHearth" or leg.kind=="hearth")
+            and type(leg.text)~="string" then
+            return {legs={},message="Travel checkpoint requires authored instructions."}
+        end
+        legs[#legs+1]=leg
+    end
     if #legs==0 and step.waypoints then
         for _,point in ipairs(step.waypoints) do
             if type(point.mapId)~="number" or type(point.x)~="number" or type(point.y)~="number"
@@ -73,13 +134,17 @@ function Travel:Start()
         local blocked=guides:ConditionReason(step)
         if blocked then return false,blocked end
     end
-    plan.index=1;self.route=plan
+    plan.index=1;self.route=plan;self.observedTaxi=nil
     ns:Call("Navigator","Refresh")
     return true,plan.legs[1].text
 end
 function Travel:Next()
     if not self:Current() then return false,"No travel route is active." end
     local route=self.route
+    local leg=route.legs[route.index]
+    local status=self:CheckpointStatus(leg)
+    if status==false then return false,self:CheckpointInstruction(leg) end
+    self.observedTaxi=nil
     route.index=route.index+1
     if route.index>#route.legs and route.loop then
         local progress=ns.Modules.QuestProgress
@@ -95,5 +160,6 @@ function Travel:Next()
 end
 function Travel:Stop()
     self.route=nil
+    self.observedTaxi=nil
     ns:Call("Navigator","Refresh")
 end
