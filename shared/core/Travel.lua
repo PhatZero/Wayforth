@@ -65,7 +65,8 @@ function Travel:Start()
     local plan=self:Plan()
     if #plan.legs==0 then return false,plan.message end
     local step=selected()
-    local reason=ns.Modules.SmartRoutes:BlockedReason(step,ns.Modules.Guides:GetSteps())
+    local routes=ns.Modules.SmartRoutes
+    local reason=routes and routes.BlockedReason and routes:BlockedReason(step,ns.Modules.Guides:GetSteps())
     if reason then return false,reason end
     local guides=ns.Modules.Guides
     if guides.ConditionReason then
