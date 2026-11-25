@@ -239,3 +239,26 @@ assert(not guides:LevelCheckpoint(cp).finished)
 cp.checkpoint={level=12,xp=100,remainingXP=100}
 assert(not guides:LevelCheckpoint(cp).valid)
 print("WayForth XP checkpoint regression passed")
+
+-- Training, inventory and vendor checkpoints use live or manual evidence.
+local known,count,copper=false,3,99
+IsPlayerSpell=function(id) return id==1459 and known end
+GetItemCount=function(id,bank) assert(bank==false); return count end
+GetMoney=function() return copper end
+cp.checkpoint={kind="spell",spellId=1459}
+assert(not guides:Checkpoint(cp).finished)
+known=true
+assert(guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="item",itemId=159,count=5}
+assert(not guides:Checkpoint(cp).finished)
+count=5
+assert(guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="money",copper=100}
+assert(not guides:Checkpoint(cp).finished)
+copper=100
+assert(guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="vendor"}
+assert(guides:Checkpoint(cp).manual and not guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="item",itemId=159,count=-1}
+assert(not guides:Checkpoint(cp).finished)
+print("WayForth training and inventory checkpoint regression passed")
