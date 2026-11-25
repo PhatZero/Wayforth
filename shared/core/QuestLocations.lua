@@ -77,10 +77,17 @@ function Locations:Apply(step, guide, currentMap)
         step.objectiveKind = record.objectiveKind
         step.objectiveSource = record.objectiveSource
     end
+    local instruction = role == "objective" and ns.walkthroughObjectives and ns.walkthroughObjectives[step.questId]
+    if instruction and not (record and record.objectiveText) then
+        step.text = instruction.text
+        step.objectiveSource = instruction.source
+    elseif role == "objective" and not (record and record.objectiveText) then
+        step.useLiveInstructions = true
+    end
     local point = record and choosePoint(record[role], guide, currentMap)
     if not point then
         local name = record and record[role .. "Name"]
-        if name then
+        if name and role ~= "objective" then
             step.hub = name
             step.text = (role == "pickup" and "Accept the quest from " or "Return to ") .. name ..
                 ". Follow the live quest marker for its location."
@@ -101,15 +108,17 @@ function Locations:Apply(step, guide, currentMap)
         step.text = "Obtain the quest-starting item from " .. tostring(point.name or step.zone) ..
             ". Use the item to accept the quest."
     elseif role == "pickup" then
-        step.text = "Accept the quest from " .. tostring(point.name or step.zone) ..
-            " if it is available. Check its prerequisites if it is not offered."
+        local name = tostring(point.name or step.zone)
+        local quest = tostring(record.name or step.questName or step.title or "the quest")
+        local verb = point.kind == "object" and "Interact with " or "Talk to "
+        step.text = verb .. name .. " in " .. tostring(step.zone or guide.zone or "the marked area") .. ". Accept " .. quest .. " if offered."
     elseif role == "objective" and point.requiredQuest then
         step.text = "Complete quest " .. point.requiredQuest .. " with " .. tostring(point.name or step.zone) ..
             " to obtain the required item."
-    elseif role == "objective" and not record.objectiveText then
-        step.text = "Work on the quest objectives near " .. tostring(point.name or step.zone) ..
-            ". Check your quest log for remaining requirements."
+    elseif role == "objective" and not record.objectiveText and not instruction then
+        -- A navigation point is not proof of the required target.
+        step.text = "Follow the quest requirements at the marked area near " .. tostring(point.name or step.zone) .. "."
     elseif role == "turnin" then
-        step.text = "Return to " .. tostring(point.name or step.zone) .. " when the quest objectives are complete."
+        step.text = "Go to " .. tostring(point.name or step.zone) .. " in " .. tostring(step.zone or guide.zone or "the marked area") .. ". Turn in " .. tostring(record.name or step.questName or step.title or "the quest") .. " when ready."
     end
 end
