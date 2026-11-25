@@ -15,6 +15,16 @@ function Travel:Plan(step)
     if not step then return {legs={},message="Select a guide step."} end
     local legs={}
     for _,leg in ipairs(step.travel or {}) do legs[#legs+1]=leg end
+    if #legs==0 and step.waypoints then
+        for _,point in ipairs(step.waypoints) do
+            if type(point.mapId)~="number" or type(point.x)~="number" or type(point.y)~="number"
+                or not (point.x>=0 and point.x<=100 and point.y>=0 and point.y<=100) then
+                return {legs={},message="Invalid authored waypoint; route not started."}
+            end
+            legs[#legs+1]={kind="waypoint",mapId=point.mapId,x=point.x,y=point.y,
+                text=point.text or string.format("Travel to %.1f, %.1f.",point.x,point.y)}
+        end
+    end
     if #legs==0 and step.questId==92850 and step.action=="objective"
         and (guide.id=="zephras-alliance") then
         local source=ns.zephrasQuestLocations and ns.zephrasQuestLocations[92850]
@@ -38,7 +48,7 @@ function Travel:Plan(step)
                 tostring(step.zone or guide.zone or "quest area")..string.format(" (%.1f, %.1f). ",step.x,step.y)..
                 "This pin marks the destination, not a walkable path. Use roads and available transport shown in game."}
     end
-    return {guideId=guide.id,stepId=step.id,legs=legs,message=#legs>0 and "Follow each leg, then click Next Travel Leg. Guide progress stays unchanged."
+    return {guideId=guide.id,stepId=step.id,legs=legs,loop=step.waypointLoop==true and step.waypoints~=nil and #legs>1,questId=step.questId,message=#legs>0 and "Follow each leg, then click Next Travel Leg. Guide progress stays unchanged."
         or guide.travelHint or "No verified travel route is bundled for this step. Use the guide instructions and in-game map; no transport connection is assumed."}
 end
 function Travel:Current(step)
@@ -57,14 +67,27 @@ function Travel:Start()
     local step=selected()
     local reason=ns.Modules.SmartRoutes:BlockedReason(step,ns.Modules.Guides:GetSteps())
     if reason then return false,reason end
+    local guides=ns.Modules.Guides
+    if guides.ConditionReason then
+        local blocked=guides:ConditionReason(step)
+        if blocked then return false,blocked end
+    end
     plan.index=1;self.route=plan
     ns:Call("Navigator","Refresh")
     return true,plan.legs[1].text
 end
 function Travel:Next()
     if not self:Current() then return false,"No travel route is active." end
-    self.route.index=self.route.index+1
-    local leg=self.route.legs[self.route.index]
+    local route=self.route
+    route.index=route.index+1
+    if route.index>#route.legs and route.loop then
+        local progress=ns.Modules.QuestProgress
+        local snapshot=progress and route.questId and progress:Get(route.questId)
+        if snapshot and snapshot.active and not snapshot.ready and not snapshot.failed then
+            route.index=1
+        end
+    end
+    local leg=route.legs[route.index]
     if not leg then self.route=nil end
     ns:Call("Navigator","Refresh")
     return true,leg and leg.text or "Travel directions finished. Continue the guide objective."
