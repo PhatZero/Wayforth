@@ -58,6 +58,19 @@ function Locations:Prepare(guide)
     end
 end
 
+-- Use phase-specific data only. NPC/object names and coordinates identify
+-- destinations, not necessarily kill or collection targets.
+local function destination(point,guide)
+    local zone=(ns.foreverLocationMaps or {})[point.mapId] or guide.zone
+    local name=point.name or zone or "the marked area"
+    local text=tostring(name)
+    if zone and zone~=name then text=text.." in "..zone end
+    if type(point.x)=="number" and type(point.y)=="number" then
+        text=text..string.format(" (%.1f, %.1f)",point.x,point.y)
+    end
+    return text
+end
+
 function Locations:Apply(step, guide, currentMap)
     local role = step.locationRole or (step.action == "accept" and "pickup" or step.action)
     if role ~= "pickup" and role ~= "objective" and role ~= "turnin" then return end
@@ -71,7 +84,7 @@ function Locations:Apply(step, guide, currentMap)
     if guide.isDungeon then return end
     -- The authored Zephras route also has deliberate cave entrances and ship stops.
     if step.x and step.y and guide.id:find("^zephras%-") then return end
-    if role == "pickup" and record and record.pickupText then step.text = record.pickupText end
+    if role == "pickup" and record and record.pickupText then step.text = record.pickupText; step.instructionSource=record.pickupSource or "Bundled quest metadata" end
     if role == "objective" and record and record.objectiveText then
         step.text = record.objectiveText .. " Check your quest log for current requirements and quantities."
         step.objectiveKind = record.objectiveKind
@@ -86,6 +99,7 @@ function Locations:Apply(step, guide, currentMap)
     end
     local point = record and choosePoint(record[role], guide, currentMap)
     if not point then
+        step.instructionNeedsLocation=true
         local name = record and record[role .. "Name"]
         if name and role ~= "objective" then
             step.hub = name
@@ -104,21 +118,23 @@ function Locations:Apply(step, guide, currentMap)
     step.hub = point.name or step.hub
     step.locationSource = point.source or "QuestieDB"
     step.locationKind = point.kind
+    step.instructionSource=step.objectiveSource or point.source or "Bundled quest metadata"
     if role == "pickup" and record.startItem then
         step.text = "Obtain the quest-starting item from " .. tostring(point.name or step.zone) ..
             ". Use the item to accept the quest."
     elseif role == "pickup" then
-        local name = tostring(point.name or step.zone)
         local quest = tostring(record.name or step.questName or step.title or "the quest")
         local verb = point.kind == "object" and "Interact with " or "Talk to "
-        step.text = verb .. name .. " in " .. tostring(step.zone or guide.zone or "the marked area") .. ". Accept " .. quest .. " if offered."
+        if not record.pickupText then step.text = verb .. destination(point,guide) .. ". Accept " .. quest .. " if offered." end
     elseif role == "objective" and point.requiredQuest then
         step.text = "Complete quest " .. point.requiredQuest .. " with " .. tostring(point.name or step.zone) ..
             " to obtain the required item."
     elseif role == "objective" and not record.objectiveText and not instruction then
         -- A navigation point is not proof of the required target.
-        step.text = "Follow the quest requirements at the marked area near " .. tostring(point.name or step.zone) .. "."
+        step.text = "Travel to " .. destination(point,guide) .. ". Complete the remaining requirements shown in your live quest log."
+        step.instructionNeedsObjectives=true
     elseif role == "turnin" then
-        step.text = "Go to " .. tostring(point.name or step.zone) .. " in " .. tostring(step.zone or guide.zone or "the marked area") .. ". Turn in " .. tostring(record.name or step.questName or step.title or "the quest") .. " when ready."
+        local verb=point.kind=="object" and "Interact with " or "Speak with "
+        step.text = verb .. destination(point,guide) .. ". Turn in " .. tostring(record.name or step.questName or step.title or "the quest") .. " when ready."
     end
 end
