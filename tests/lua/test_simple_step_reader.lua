@@ -170,3 +170,24 @@ assert(#guides:GetSteps()==2 and #guides:GetSteps(nil,true)==3)
 ns.starterGuides[2].steps[3].condition.classes={"MAGE"}
 assert(#guides:GetSteps()==3)
 print("WayForth condition regression passed")
+
+-- Authored waypoint loops are independent of quest cursor progression.
+ns.starterGuides[2].steps[3].condition=nil
+ns.starterGuides[2].steps[3].questId=100
+ns.starterGuides[2].steps[3].waypoints={{mapId=1436,x=50,y=30},{mapId=1436,x=51,y=31}}
+ns.starterGuides[2].steps[3].waypointLoop=true
+assert(loadfile("shared/core/Travel.lua"))("WayForth",ns)
+local travel=ns.Modules.Travel
+local readyForTurnIn=false
+ns.Modules.QuestProgress={Get=function() return {active=true,ready=readyForTurnIn} end}
+assert(travel:Start())
+assert(travel:Current().x==50)
+assert(travel:Next() and travel:Current().x==51)
+assert(travel:Next() and travel:Current().x==50)
+readyForTurnIn=true
+assert(travel:Next())
+assert(travel:Next() and not travel:Current())
+assert(guides:GetProgress().current==3)
+ns.starterGuides[2].steps[3].waypoints[1].x=101
+assert(not travel:Start())
+print("WayForth authored waypoint loop regression passed")
