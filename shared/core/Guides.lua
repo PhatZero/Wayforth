@@ -308,6 +308,35 @@ local function satisfied(step, status)
     return false -- Turn-ins need real completed quest evidence.
 end
 
+-- A walkthrough visit is an authored, contiguous set of atomic quest actions.
+-- Keep the existing cursor and stable keys: no second route engine or saved schema.
+function Guides:VisitSnapshot(index, id)
+    local steps = self:GetSteps(id)
+    local saved = self:GetProgress(id)
+    local current = index and steps[index]
+    local visit = current and current.visit
+    if not saved or not visit or not visit.id then return nil end
+    local first, last = index, index
+    while first > 1 and steps[first-1].visit and steps[first-1].visit.id == visit.id do first=first-1 end
+    while last < #steps and steps[last+1].visit and steps[last+1].visit.id == visit.id do last=last+1 end
+    if first == last then return nil end
+    local rows, cache, done, skipped = {}, {}, 0, 0
+    for i=first,last do
+        local action=steps[i]
+        if type(action.questId)~="number" or (action.action~="accept" and action.action~="turnin") then return nil end
+        local status=readQuestStatus(action.questId,cache,saved)
+        local complete=satisfied(action,status)
+        local wasSkipped=not complete and saved.skipped[stepKey(action,i)]==true
+        if complete then done=done+1 elseif wasSkipped then skipped=skipped+1 end
+        local title=action.questName or tostring(action.title or "Quest"):gsub("^Pick up:%s*",""):gsub("^Complete:%s*","")
+        rows[#rows+1]={index=i,finished=not not complete,skipped=wasSkipped,
+            display=(wasSkipped and "Skipped: " or "")..(action.action=="accept" and "Accept " or "Turn in ")..title}
+    end
+    return {questID="visit:"..visit.id, first=first,last=last,title=visit.title,rows=rows,
+        completed=done, state=done==#rows and "ready" or "active",
+        status=done.."/"..#rows.." ACTIONS COMPLETE"..(skipped>0 and " | "..skipped.." skipped" or "")}
+end
+
 function Guides:Sync(id, catchUp)
     local saved = self:GetProgress(id)
     local steps = self:GetSteps(id)
