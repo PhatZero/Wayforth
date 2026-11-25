@@ -465,6 +465,10 @@ function Tracker:MakeFrame()
             local nav=ns.Modules.Navigator
             local index=(nav and nav.overrideIndex) or p.current
             local current=g:GetSteps()[index]
+            if current and g.ConditionReason then
+                local reason=g:ConditionReason(current)
+                if reason then ns:Print(reason); Tracker:Refresh(); return end
+            end
             if current and current.visit and g.VisitSnapshot then
                 local visit=g:VisitSnapshot(index)
                 if visit and visit.completed<#visit.rows then
@@ -1666,6 +1670,7 @@ function Tracker:Refresh()
     end
     local routes=ns.Modules.SmartRoutes
     local blocked=routes and routes.BlockedReason and routes:BlockedReason(step,steps)
+    if not blocked and guides.ConditionReason then blocked=guides:ConditionReason(step,g.id) end
     if blocked and not saved.awaitingQuestMatch then
         self.objectiveCaption:SetText("QUEST BLOCKED")
         self.objectiveCaption:SetTextColor(1,0.74,0.37,1)
