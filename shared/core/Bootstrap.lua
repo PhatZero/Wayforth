@@ -83,6 +83,11 @@ local function dispatch(event, ...)
         or event == "PLAYERBANKSLOTS_CHANGED" or event == "BANKFRAME_OPENED"
         or event == "BANKFRAME_CLOSED" then
         ns:Call("Tracker", "RequestObjectiveRefresh", event == "QUEST_DATA_LOAD_RESULT" and (...) or nil)
+        if event=="BAG_UPDATE_DELAYED" then
+            local guides=ns.Modules.Guides
+            local step=guides and guides.CurrentStep and guides:CurrentStep()
+            if step and step.checkpoint then ns:Call("Guides","Sync"); ns:Call("Tracker","Refresh") end
+        end
         if event ~= "QUEST_DATA_LOAD_RESULT" then
             local guide=ns.Modules.Guides:GetGuide()
             local tracker=ns.Modules.Tracker
@@ -90,6 +95,10 @@ local function dispatch(event, ...)
                 ns:Call("Tracker","RenderProfession")
             end
         end
+    elseif event == "SPELLS_CHANGED" or event=="TRAINER_CLOSED" or event=="MERCHANT_CLOSED" then
+        local guides=ns.Modules.Guides
+        local step=guides and guides.CurrentStep and guides:CurrentStep()
+        if step and step.checkpoint then ns:Call("Guides","Sync"); ns:Call("Tracker","Refresh") end
     elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
         local ok,recorded=ns:Call("ProfessionGuides","RecordCraftEvent",...)
         if ok and recorded then
@@ -125,8 +134,9 @@ local function dispatch(event, ...)
         end
         ns:Call("Navigator", "Refresh")
         if (routeOK and rerouted) or event=="PLAYER_LEVEL_UP" or event=="ZONE_CHANGED_NEW_AREA" then ns:Call("Tracker", "Refresh") end
-        if event == "PLAYER_XP_UPDATE" or event == "PLAYER_LEVEL_UP" then
-            local step=ns.Modules.Guides:CurrentStep()
+        if event == "PLAYER_XP_UPDATE" or event == "PLAYER_LEVEL_UP" or event=="PLAYER_MONEY" then
+            local guides=ns.Modules.Guides
+            local step=guides and guides.CurrentStep and guides:CurrentStep()
             if step and step.checkpoint then
                 ns:Call("Guides","Sync")
                 ns:Call("Tracker","Refresh")
@@ -189,6 +199,6 @@ for _, event in ipairs({
 for _, event in ipairs({"TRADE_SKILL_SHOW", "TRADE_SKILL_UPDATE",
     "TRADE_SKILL_LIST_UPDATE", "SKILL_LINES_CHANGED",
     "QUEST_WATCH_UPDATE", "QUEST_DATA_LOAD_RESULT", "BAG_UPDATE_DELAYED",
-    "BANKFRAME_OPENED", "BANKFRAME_CLOSED", "PLAYERBANKSLOTS_CHANGED", "UNIT_SPELLCAST_SUCCEEDED"}) do
+    "BANKFRAME_OPENED", "BANKFRAME_CLOSED", "PLAYERBANKSLOTS_CHANGED", "UNIT_SPELLCAST_SUCCEEDED", "SPELLS_CHANGED", "TRAINER_CLOSED", "MERCHANT_CLOSED"}) do
     pcall(frame.RegisterEvent, frame, event)
 end
