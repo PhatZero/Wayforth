@@ -109,6 +109,59 @@ local function finished(guide)
     return true
 end
 
+-- Editorial chapter links based on the existing Forever zone ranges.
+-- These are suggested handoffs, not an optimized or playtested speedrun.
+local alliance={
+    ["zephras-alliance"]={id="alliance-westfall",level=13},
+    ["alliance-elwynn"]={id="alliance-westfall",level=10},
+    ["alliance-dun-morogh"]={id="alliance-loch-modan",level=10},
+    ["alliance-teldrassil"]={id="alliance-darkshore",level=10},
+    ["alliance-loch-modan"]={id="alliance-wetlands",level=20},
+    ["alliance-westfall"]={id="alliance-redridge-mountains",level=18},
+    ["alliance-redridge-mountains"]={id="alliance-duskwood",level=24},
+    ["alliance-darkshore"]={id="alliance-ashenvale",level=20},
+    ["alliance-ashenvale"]={id="alliance-thousand-needles",level=28},
+    ["alliance-stonetalon"]={id="alliance-ashenvale",level=20},
+    ["alliance-wetlands"]={id="alliance-arathi-highlands",level=30},
+    ["alliance-duskwood"]={id="alliance-stranglethorn-vale",level=30},
+    ["alliance-arathi-highlands"]={id="alliance-the-hinterlands",level=40},
+    ["alliance-thousand-needles"]={id="alliance-desolace",level=33},
+    ["alliance-desolace"]={id="alliance-feralas",level=40},
+    ["alliance-stranglethorn-vale"]={id="alliance-the-hinterlands",level=42},
+    ["alliance-the-hinterlands"]={id="alliance-searing-gorge",level=48},
+    ["alliance-searing-gorge"]={id="alliance-burning-steppes",level=52},
+    ["alliance-burning-steppes"]={id="alliance-western-plaguelands",level=54},
+    ["alliance-western-plaguelands"]={id="alliance-eastern-plaguelands",level=57},
+    ["alliance-feralas"]={id="alliance-tanaris",level=45},
+    ["alliance-tanaris"]={id="alliance-ungoro",level=50},
+    ["alliance-ungoro"]={id="alliance-winterspring",level=55},
+}
+Zones.allianceChapters=alliance
+function Zones:ChapterOption()
+    self:Tick()
+    if not enabled() or not self.ready then return nil end
+    local guides=ns.Modules.Guides
+    local current=guides and guides:GetGuide()
+    if not current or current.faction~="Alliance" then return nil end
+    if type(UnitFactionGroup)~="function" or UnitFactionGroup("player")~="Alliance" then return nil end
+    local link=alliance[current.id]
+    local level=type(UnitLevel)=="function" and UnitLevel("player")
+    if not link or type(level)~="number" or level<link.level then return nil end
+    local target=guides:GetGuide(link.id)
+    if not target or target.id~=link.id or target.faction~="Alliance"
+        or level<target.levelMin or level>target.levelMax or finished(target) then return nil end
+    local saved=guides:GetProgress()
+    local steps=guides:GetSteps()
+    if not saved or #steps==0 then return nil end
+    -- Require completion or explicit skip of every nonoptional step.
+    -- Active unfinished quests never become completed from a zone handoff.
+    for i,step in ipairs(steps) do
+        if not step.optional and not saved.completed[step.id or i]
+            and not (saved.skipped and saved.skipped[step.id or i]) then return nil end
+    end
+    return {id=target.id,title=target.zone or target.title,reason="Next Alliance chapter",chapter=true}
+end
+
 function Zones:Options(force)
     -- This must run before consulting the short-lived recommendation cache.
     -- force bypasses ranking cache only; it cannot bypass flight safety.
@@ -121,6 +174,8 @@ function Zones:Options(force)
     local now=clock()
     local cacheKey=current.id..":"..level
     if not force and now and self.cache and self.cache.key==cacheKey and now-self.cache.time<2 then return self.cache.options end
+    local chapter=self:ChapterOption()
+    if chapter then return {chapter} end
     local reason=finished(current) and "Guide complete" or nil
     local steps=guides:GetSteps()
     local remaining,overleveled=false,true
@@ -153,6 +208,10 @@ function Zones:Options(force)
 end
 
 function Zones:Switch(id)
+    local chapter=self:ChapterOption()
+    if chapter and chapter.id==id then
+        return ns.Modules.SmartRoutes:Switch(id,"recommended")
+    end
     for _,option in ipairs(self:Options(true)) do
         if option.id==id then return ns.Modules.SmartRoutes:Switch(id,"recommended") end
     end
