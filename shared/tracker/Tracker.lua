@@ -465,6 +465,14 @@ function Tracker:MakeFrame()
             local nav=ns.Modules.Navigator
             local index=(nav and nav.overrideIndex) or p.current
             local current=g:GetSteps()[index]
+            if current and current.visit and g.VisitSnapshot then
+                local visit=g:VisitSnapshot(index)
+                if visit and visit.completed<#visit.rows then
+                    ns:Print("Finish the remaining visit actions, or use Skip to explicitly skip an action.")
+                    Tracker:Refresh()
+                    return
+                end
+            end
             if current and current.action=="manual" then
                 g:SetCurrent(index)
                 g:CompleteCurrent()
@@ -727,7 +735,7 @@ end
 function Tracker:RequestObjectiveRefresh(questID)
     if not self.frame or not self.frame:IsShown() or not self.displayStep
         or ns.char and ns.char.trackerMinimized then return end
-    if questID and questID ~= self.displayStep.questId then return end
+    if questID and questID ~= self.displayStep.questId and not self.displayStep.visit then return end
     if not self.objectiveDirty then self.objectiveElapsed=0 end
     self.objectiveDirty=true
 end
@@ -750,7 +758,8 @@ function Tracker:RefreshObjectives(fromRefresh)
         end
     end
     local progress=ns.Modules.QuestProgress
-    local snapshot=step and progress and progress:Get(step.questId) or nil
+    local visit=step and step.visit and guides.VisitSnapshot and guides:VisitSnapshot(self.displayIndex)
+    local snapshot=visit or (step and progress and progress:Get(step.questId) or nil)
     if ns.Modules.Travel and ns.Modules.Travel:Current(step) then snapshot=nil end
     if snapshot and snapshot.state=="inactive" and step.action=="accept" then snapshot=nil end
     if snapshot and snapshot.ready and step.action=="objective" and not fromRefresh then
@@ -761,6 +770,11 @@ function Tracker:RefreshObjectives(fromRefresh)
         self.liveScroll:SetVerticalScroll(0)
     end
     self.liveSnapshot=snapshot
+    if visit and snapshot==visit and self.allowLiveInstructionText then
+        self.stepTitle:SetText(visit.title or "Quest giver visit")
+        self.objectiveText:SetText("Complete the listed quest actions at this stop.")
+        self.objectiveCaption:SetText(visit.first.."–"..visit.last.." | CURRENT VISIT")
+    end
     if step and step.useLiveInstructions and snapshot and snapshot.active and #snapshot.rows>0
         and self.allowLiveInstructionText then
         self.objectiveText:SetText("Complete the remaining requirements listed below. Follow the marked location where available.")
@@ -1526,6 +1540,8 @@ function Tracker:Refresh()
     -- Combine all hub pickups, genuinely active parallel objectives and
     -- upcoming route steps. Page through them in the same compact tracker.
     local entries,shown={},{}
+    local visit=simpleReader and not focus and step.visit and guides.VisitSnapshot and guides:VisitSnapshot(index)
+    if visit then for i=visit.first,visit.last do shown[i]=true end end
     local function append(candidate,label)
         if not candidate or not candidate.index or shown[candidate.index]
             or candidate.index==index or stepComplete(steps[candidate.index],candidate.index,saved) then return end
