@@ -300,3 +300,29 @@ assert(currentChapter=="alliance-elwynn")
 UnitFactionGroup=function() return "Horde" end
 assert(not zones:ChapterOption())
 print("WayForth Alliance chapter handoff regression passed")
+
+-- Horde uses the same completion, faction and flight gates.
+chapterGuides["horde-durotar"]={id="horde-durotar",faction="Horde",levelMin=1,levelMax=14}
+chapterGuides["horde-the-barrens"]={id="horde-the-barrens",faction="Horde",levelMin=8,levelMax=30,zone="The Barrens"}
+currentChapter="horde-durotar"
+ns.Modules.Guides.GetSteps=function(_,id) return id=="horde-the-barrens" and {{id="target"}} or chapterSteps end
+ns.Modules.Guides.GetProgress=function(_,id) return id=="horde-the-barrens" and {completed={}} or chapterSaved end
+ns.Modules.SmartRoutes.Switch=function(_,id,mode) assert(id=="horde-the-barrens" and mode=="recommended");return true end
+zones:Reset()
+assert(zones:ChapterOption().id=="horde-the-barrens")
+assert(zones:ChapterOption().reason=="Next Horde chapter")
+chapterSaved.completed.required=nil
+assert(not zones:ChapterOption())
+chapterSaved.skipped.required=true
+assert(zones:ChapterOption())
+chapterLevel=9
+assert(not zones:ChapterOption())
+chapterLevel=10
+UnitOnTaxi=function() return true end
+assert(not zones:ChapterOption())
+UnitOnTaxi=function() return false end
+zones:Reset()
+assert(zones:Switch("horde-the-barrens"))
+UnitFactionGroup=function() return "Alliance" end
+assert(not zones:ChapterOption())
+print("WayForth Horde chapter handoff regression passed")
