@@ -1629,9 +1629,13 @@ function Tracker:Refresh()
     end
     local zones=ns.Modules.NextZone
     local options=not simpleReader and zones and zones:Options() or {}
+    if simpleReader and zones and zones.ChapterOption then
+        local chapter=zones:ChapterOption()
+        if chapter then options={chapter} end
+    end
     for pos=#options,1,-1 do
         local option=options[pos]
-        table.insert(entries,1,{index=0,label="NEXT ZONE | "..option.title,action=function()
+        table.insert(entries,1,{index=0,label=(option.chapter and "NEXT CHAPTER | " or "NEXT ZONE | ")..option.title,action=function()
             local ok,message=zones:Switch(option.id)
             if not ok then ns:Print(message) end
             Tracker:Refresh()
