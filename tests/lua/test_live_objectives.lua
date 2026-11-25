@@ -188,8 +188,8 @@ local cardBottom=149+tracker.objectiveCard:GetHeight()
 assert(cardBottom<=tracker.frame:GetHeight()-56)
 for _,button in ipairs(tracker.upcomingButtons) do
     if button:IsShown() then
-        local top=-button.points.TOPLEFT[4]
-        assert(top>cardBottom and top+button:GetHeight()<=tracker.frame:GetHeight()-56)
+        local top=-tracker.upcomingScroll.points.TOPLEFT[4]
+        assert(top>cardBottom and top+tracker.upcomingScroll:GetHeight()<=tracker.frame:GetHeight()-56)
     end
 end
 tracker.liveScroll.scripts.OnMouseWheel(tracker.liveScroll,-3)
@@ -207,8 +207,8 @@ for _,size in ipairs({{370,440},{380,448},{620,700}}) do
     assert(149+tracker.objectiveCard:GetHeight()<=size[2]-56)
     for _,button in ipairs(tracker.upcomingButtons) do
         if button:IsShown() then
-            local top=-button.points.TOPLEFT[4]
-            assert(top>149+tracker.objectiveCard:GetHeight() and top+button:GetHeight()<=size[2]-56)
+            local top=-tracker.upcomingScroll.points.TOPLEFT[4]
+            assert(top>149+tracker.objectiveCard:GetHeight() and top+tracker.upcomingScroll:GetHeight()<=size[2]-56)
         end
     end
 end
@@ -290,20 +290,27 @@ tracker:RequestObjectiveRefresh(20)
 tracker:RefreshObjectives()
 assert(tracker.displayIndex==3 and tracker.liveSnapshot.questID==20)
 ns.Modules.Navigator.overrideIndex=nil
--- Pagination uses the space remaining below the live objective card.
+-- Continuous scrolling retains partial rows and never skips a route entry.
 tracker.frame:SetSize(380,448)
 tracker.upcomingEntries={}
+tracker.upcomingOffset=0
 for i=1,14 do tracker.upcomingEntries[i]={index=i,label="Quest "..i} end
 tracker:Layout()
-local first=tracker.upcomingIndices[1]
-assert(first==1 and tracker.upcomingPageCount>1 and tracker.pageButton:IsShown())
-local pageSize=#tracker.upcomingIndices
-tracker.upcomingPage=2
+assert(tracker.upcomingIndices[1]==1 and tracker.upcomingMaxOffset>0 and tracker.upcomingScroll:IsShown())
+tracker.upcomingScroll.scripts.OnMouseWheel(tracker.upcomingScroll,-1)
+assert(tracker.upcomingIndices[1]==1 and tracker.upcomingScroll:GetVerticalScroll()==36)
+tracker.upcomingScroll.scripts.OnMouseWheel(tracker.upcomingScroll,-1)
+assert(tracker.upcomingIndices[1]==2 and tracker.upcomingScroll:GetVerticalScroll()==23)
 tracker:Layout()
-assert(tracker.upcomingIndices[1]==pageSize+1, "Paging must not skip rows hidden by live progress")
+assert(tracker.upcomingOffset==72,"Layout must retain scroll offset")
+tracker.upcomingScroll.scripts.OnMouseWheel(tracker.upcomingScroll,-100)
+assert(tracker.upcomingOffset==tracker.upcomingMaxOffset)
+assert(tracker.upcomingIndices[#tracker.upcomingIndices]==14)
 tracker.frame:SetSize(620,700)
 tracker:Layout()
-assert(tracker.upcomingPage<=tracker.upcomingPageCount)
+assert(tracker.upcomingOffset<=tracker.upcomingMaxOffset)
+tracker.upcomingScroll.scripts.OnMouseWheel(tracker.upcomingScroll,100)
+assert(tracker.upcomingOffset==0 and tracker.upcomingIndices[1]==1)
 -- The tracker menu must require two deliberate clicks, and closing the menu
 -- must cancel any pending destructive action. Restore is a separate control.
 local action,restore=0,0
