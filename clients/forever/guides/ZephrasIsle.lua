@@ -226,16 +226,40 @@ for _,step in ipairs(allSteps) do
     for key,value in pairs(walkthrough[step.id] or {}) do step[key]=value end
 end
 
+-- Close the phase gaps for already documented quests. Keep legacy keys
+-- and route order intact for numeric-only and stable-ID saved progress.
+local legacySteps=allSteps
+local extraBefore={
+    ["glide-complete"]={
+        {id="wf11-glide-objective",title="Practice Walk on Air",text="Use Walk on Air to fulfill Falling With Style. Check the live objective before returning to Rorian.",questId=92474,action="objective",hub="Thendal Watchtower",level=2},
+    },
+    ["anchors-done"]={
+        {id="wf11-anchor-objective",title="The Anchors of Zephras",text="Interact with Halaan Hawk-Eye and follow the anchor quest's live objective at the watchtower.",questId=94414,action="objective",hub="Thendal Village",level=3,x=43.8,y=24.1},
+    },
+}
+local extraAfter={
+    ["queen-objective"]={
+        {id="wf11-queen-turnin",title="Return the queen quest",text="Turn in The Cirrusfly Queen when ready. Use the live quest marker to locate the recipient.",questId=92463,action="turnin",hub="Thendal Village",level=4},
+    },
+}
+allSteps={}
+for _,step in ipairs(legacySteps) do
+    for _,extra in ipairs(extraBefore[step.id] or {}) do allSteps[#allSteps+1]=extra end
+    allSteps[#allSteps+1]=step
+    for _,extra in ipairs(extraAfter[step.id] or {}) do allSteps[#allSteps+1]=extra end
+end
+for _,step in ipairs(legacySteps) do step.mapId=2521 end
+
 -- Attach the verified zone map to every Skyborne guide step without altering stable step IDs.
 for _, step in ipairs(allSteps) do step.mapId = 2521 end
 
 ns.starterGuides[#ns.starterGuides + 1] = {
     id = "zephras-alliance", title = "Skyborne: Zephras Isle (Alliance)",
     description = "High Order leveling route, roughly levels 1-13. Confirm optional quests in your live quest log.",
-    faction = "Alliance", steps = allSteps,
+    faction = "Alliance", steps = allSteps, legacySteps=legacySteps,
 }
 ns.starterGuides[#ns.starterGuides + 1] = {
     id = "zephras-horde", title = "Skyborne: Zephras Isle (Horde)",
     description = "Windshaper leveling route, roughly levels 1-13. Confirm optional quests in your live quest log.",
-    faction = "Horde", steps = allSteps,
+    faction = "Horde", steps = allSteps, legacySteps=legacySteps,
 }
