@@ -155,3 +155,18 @@ local concurrent=guides:ConcurrentSnapshot(3)
 assert(#concurrent==1 and concurrent[1].questId==100 and concurrent[1].display=="First: Items (2/5)")
 assert(guides:GetProgress().current==3 and not guides:GetProgress().completed["visit-end"])
 print("WayForth concurrent objective regression passed")
+
+ns.starterGuides[2].steps[3].condition={minLevel=12,requiresQuests={100},requiresSteps={"visit-a"}}
+local conditional=guides:GetSteps()[3]
+assert(guides:ConditionReason(conditional):find("level 12",1,true))
+UnitLevel=function() return 12 end
+assert(guides:ConditionReason(conditional):find("quest 100",1,true))
+turnedIn[100]=true
+assert(not guides:ConditionReason(conditional))
+assert(guides:GetProgress().current==3)
+UnitClass=function() return "Mage","MAGE" end
+ns.starterGuides[2].steps[3].condition.classes={"WARRIOR"}
+assert(#guides:GetSteps()==2 and #guides:GetSteps(nil,true)==3)
+ns.starterGuides[2].steps[3].condition.classes={"MAGE"}
+assert(#guides:GetSteps()==3)
+print("WayForth condition regression passed")
