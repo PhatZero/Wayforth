@@ -23,6 +23,7 @@ for _,file in ipairs({
     load("WayForth",ns)
 end
 assert(loadfile("clients/forever/guides/ForeverQuestLocations.lua"))( "WayForth", ns)
+assert(loadfile("clients/forever/guides/SpecializedLeveling.lua"))("WayForth",ns)
 assert(loadfile("shared/core/QuestLocations.lua"))( "WayForth", ns)
 assert(loadfile("shared/core/Guides.lua"))("WayForth",ns)
 assert(loadfile("shared/core/SmartRoutes.lua"))("WayForth",ns)
@@ -109,3 +110,31 @@ assert(ns.char.guideProgress["horde-durotar"]~=nil,
     "Switching factions/guides erased other saved progress")
 print("WayForth main leveling routes passed: "..total.." guides, "..
       candidates.." test guides, "..eligibleQuestIDs.." candidate steps")
+
+-- Specialized guides are opt-in and require the correct class and faction.
+local function visibleSpecialized(id)
+    for _,guide in ipairs(route:ListGuides()) do
+        if guide.id==id then return guide end
+    end
+end
+assert(not visibleSpecialized("alliance-mage-aoe-prep"))
+assert(#guides:GetSteps("alliance-mage-aoe-prep")==0)
+UnitClass=function() return "Mage","MAGE" end
+faction="Alliance"
+local mage=assert(visibleSpecialized("alliance-mage-aoe-prep"))
+assert(mage.isOptional and mage.isSpecialized)
+assert(not visibleSpecialized("horde-mage-aoe-prep"))
+local steps=guides:GetSteps(mage.id)
+assert(#steps==7 and steps[1].checkpoint.level==14)
+assert(steps[2].checkpoint.kind=="spell" and steps[2].checkpoint.spellId==122)
+assert(steps[3].checkpoint.kind=="vendor")
+assert(steps[5].checkpoint.spellId==10)
+assert(route:Preview(mage.id,"beginning")==1)
+faction="Horde"
+assert(visibleSpecialized("horde-mage-aoe-prep"))
+assert(not visibleSpecialized("alliance-mage-aoe-prep"))
+assert(not route:Preview("alliance-mage-aoe-prep","beginning"))
+UnitClass=function() return "Warrior","WARRIOR" end
+assert(not visibleSpecialized("horde-mage-aoe-prep"))
+assert(not route:Preview("horde-mage-aoe-prep","beginning"))
+print("WayForth specialized guide class/faction eligibility passed")
