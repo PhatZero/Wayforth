@@ -241,22 +241,22 @@ function Tracker:MakeFrame()
     local summary = CreateFrame("Frame",nil,panel)
     summary:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-89)
     summary:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-89)
-    summary:SetHeight(84)
+    summary:SetHeight(52)
     self.summaryBg = theme:Panel(summary,theme.panelLight)
     self.summary = summary
 
     local guideIcon = summary:CreateTexture(nil,"ARTWORK")
     guideIcon:SetTexture(theme.artAtlas)
     guideIcon:SetTexCoord(theme:ArtCoords(1))
-    guideIcon:SetSize(53,53)
-    guideIcon:SetPoint("TOPLEFT",summary,"TOPLEFT",9,-12)
+    guideIcon:SetSize(34,34)
+    guideIcon:SetPoint("TOPLEFT",summary,"TOPLEFT",9,-8)
     self.guideIcon = guideIcon
-    self.guideTitle = label(summary,"No guide selected",12,theme.ivory,72,10,270)
-    self.stepCount = label(summary,"",10,theme.teal,72,35,260)
+    self.guideTitle = label(summary,"No guide selected",12,theme.ivory,52,5,270)
+    self.stepCount = label(summary,"",10,theme.teal,52,21,260)
     local progressBg = summary:CreateTexture(nil,"BACKGROUND")
     progressBg:SetColorTexture(.18,.26,.31,1)
-    progressBg:SetPoint("BOTTOMLEFT",summary,"BOTTOMLEFT",72,11)
-    progressBg:SetPoint("BOTTOMRIGHT",summary,"BOTTOMRIGHT",-13,11)
+    progressBg:SetPoint("BOTTOMLEFT",summary,"BOTTOMLEFT",52,7)
+    progressBg:SetPoint("BOTTOMRIGHT",summary,"BOTTOMRIGHT",-13,7)
     progressBg:SetHeight(5)
     self.progressBg = progressBg
     local progress = summary:CreateTexture(nil,"ARTWORK")
@@ -270,8 +270,8 @@ function Tracker:MakeFrame()
     selectButton:SetScript("OnClick",function() Tracker:ToggleGuidePicker() end)
 
     local objective = CreateFrame("Frame",nil,panel)
-    objective:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
-    objective:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-183)
+    objective:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-151)
+    objective:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-151)
     objective:SetHeight(138)
     self.objectiveBg=theme:Panel(objective,theme.panelLight,theme.gold)
     -- Narrow cyan accent makes the active objective unmistakable without
@@ -324,7 +324,7 @@ function Tracker:MakeFrame()
 
     -- Dedicated profession workspace: materials and crafting in the same tracker.
     local professionPanel=CreateFrame("Frame",nil,panel)
-    professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
+    professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-151)
     professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,55)
     theme:Panel(professionPanel,theme.panelLight,theme.gold)
     self.professionPanel=professionPanel
@@ -400,9 +400,9 @@ function Tracker:MakeFrame()
     end,"quiet")
     self.pageButton:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-15,-294)
     self.upcomingButtons={}
-    for i=1,6 do
+    for i=1,12 do
         local idx=i
-        local button=theme:Button(panel,350,29,"",function()
+        local button=theme:Button(panel,350,46,"",function()
             if Tracker.upcomingActions and Tracker.upcomingActions[idx] then
                 Tracker.upcomingActions[idx]()
             elseif Tracker.upcomingIndices and Tracker.upcomingIndices[idx] then
@@ -410,6 +410,28 @@ function Tracker:MakeFrame()
             end
         end,"quiet")
         button:SetPoint("TOPLEFT",panel,"TOPLEFT",15,-(323+(i-1)*33))
+        button.label:ClearAllPoints()
+        button.label:SetPoint("TOPLEFT",button,"TOPLEFT",8,-5)
+        button.label:SetJustifyH("LEFT")
+        button.label:SetJustifyV("TOP")
+        button.label:SetTextColor(unpack(theme.gold))
+        button.detail=label(button,"",10,theme.ivory,8,20,320)
+        button.number=theme:Text(button,"",10,theme.muted,"RIGHT")
+        button.number:SetPoint("TOPRIGHT",button,"TOPRIGHT",-8,-5)
+        button:EnableMouseWheel(true)
+        button:SetScript("OnMouseWheel",function(_,delta)
+            Tracker.upcomingPage=math.max(1,math.min(Tracker.upcomingPageCount or 1,(Tracker.upcomingPage or 1)-delta))
+            Tracker:Layout()
+        end)
+        button:SetScript("OnEnter",function(self)
+            if GameTooltip and self.entry then
+                GameTooltip:SetOwner(self,"ANCHOR_RIGHT")
+                GameTooltip:SetText(self.entry.label)
+                if self.entry.detail and self.entry.detail~="" then GameTooltip:AddLine(self.entry.detail,1,1,1,true) end
+                GameTooltip:Show()
+            end
+        end)
+        button:SetScript("OnLeave",function(self) if GameTooltip and GameTooltip:IsOwned(self) then GameTooltip:Hide() end end)
         self.upcomingButtons[i]=button
     end
 
@@ -747,7 +769,7 @@ function Tracker:LayoutObjectives(width,height)
     self.liveContentHeight=rowsH
     local viewport=math.min(rowsH,math.max(52,math.min(120,height-360)))
     local desired=snapshot and rowsY+viewport+locationH+20 or descriptionY+descriptionH+locationH+20
-    local cardH=math.min(math.max(138,desired),math.max(138,height-183-112))
+    local cardH=math.min(math.max(118,desired),math.max(118,height-151-112))
     self.objectiveCard:SetHeight(cardH)
     viewport=math.max(0,math.min(viewport,cardH-rowsY-locationH-20))
     if snapshot then
@@ -1163,14 +1185,14 @@ function Tracker:Layout()
     if width <= 0 or height <= 0 then return end
     local contentW=math.max(240,width-45)
     local _,hasItem=ns:Call("QuestItemButton","Refresh",self)
-    self.guideTitle:SetWidth(contentW-46)
-    self.stepCount:SetWidth(contentW-40)
+    self.guideTitle:SetWidth(contentW-30)
+    self.stepCount:SetWidth(contentW-30)
     -- Keep the title/caption clear of the quest-item and PIN controls.
     self.stepTitle:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
     self.objectiveCaption:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
-    self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
+    self.progressBar:SetWidth(math.max(1,(width-83)*(self.progressFraction or 0)))
     local isProfession=ns.Modules.Guides:GetGuide() and ns.Modules.Guides:GetGuide().isProfession
     if self.tabStrip then
         if ns.char.trackerMinimized then self.tabStrip:Hide() else self.tabStrip:Show() end
@@ -1185,10 +1207,10 @@ function Tracker:Layout()
         else self.professionPanel:Hide() end
     end
     local cardH=self:LayoutObjectives(width,height)
-    local upcomingY=183+cardH+12
+    local upcomingY=151+cardH+9
     self.upcomingTitle:ClearAllPoints()
     self.upcomingTitle:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-upcomingY)
-    local visible=math.max(0,math.min(6,math.floor((height-56-(upcomingY+23)+4)/33)))
+    local visible=math.max(0,math.min(12,math.floor((height-52-(upcomingY+23)+3)/49)))
     local entries=self.upcomingEntries or {}
     self.upcomingPageCount=math.max(1,math.ceil(#entries/math.max(1,visible)))
     self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
@@ -1199,7 +1221,19 @@ function Tracker:Layout()
         if entry then
             self.upcomingIndices[i]=entry.index
             self.upcomingActions[i]=entry.action
-            button:SetLabel(tostring(entry.label):sub(1,51))
+            button.entry=entry
+            local heading=entry.label
+            if entry.index>0 then heading=heading:gsub("^%d+%.%s*",""):gsub("| %d+%.%s*","| ") end
+            button:SetLabel(heading)
+            button.label:SetSize(math.max(100,width-90),15)
+            if button.label.SetMaxLines then button.label:SetMaxLines(1) end
+            button.detail:SetWidth(math.max(100,width-48))
+            button.detail:SetHeight(24)
+            if button.detail.SetMaxLines then button.detail:SetMaxLines(2) end
+            button.detail:SetText(entry.detail or "")
+            button.number:SetText(entry.index>0 and tostring(entry.index) or "")
+        else
+            button.entry=nil
         end
     end
     if self.pageButton then
@@ -1211,7 +1245,7 @@ function Tracker:Layout()
     for i,button in ipairs(self.upcomingButtons or {}) do
         button:SetWidth(width-30)
         button:ClearAllPoints()
-        button:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23+(i-1)*33))
+        button:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23+(i-1)*49))
         if self.upcomingIndices and self.upcomingIndices[i]
             and i <= visible
             and not (ns.char and ns.char.trackerMinimized) then
@@ -1312,6 +1346,7 @@ function Tracker:Refresh()
     if not g or not step or not total or total==0 then
         self.displayStep,self.liveSnapshot=nil,nil
         self.upcomingIndices={}
+        self.upcomingEntries={}
         self.stepTitle:SetText("No guide selected")
         self.objectiveText:SetText("Choose a guide from the Guide Library.")
         self.location:SetText("")
@@ -1363,6 +1398,12 @@ function Tracker:Refresh()
     else
         self.stepCount:SetText(focus and ("Viewing " .. index .. " | Route " .. routeIndex .. "/" .. total .. " | " .. progressText)
             or ("Step " .. index .. " / " .. total .. "  |  " .. progressText))
+        if self.progressBar then
+            local low,high=g.levelMin,g.levelMax
+            local band=low and high and ("Lv "..low.."-"..high.."  |  ") or ""
+            self.stepCount:SetText(band.."Step "..index.."/"..total.."  |  "..math.floor(self.progressFraction*100+0.5).."% complete")
+            if focus then self.stepCount:SetText("Viewing "..index.." | Route "..routeIndex.."/"..total.." | "..math.floor(self.progressFraction*100+0.5).."% complete") end
+        end
     end
     local space=ns.Modules.QuestLogSpace
     local logStatus=space and space:Status()
@@ -1434,7 +1475,8 @@ function Tracker:Refresh()
         if not candidate or not candidate.index or shown[candidate.index]
             or candidate.index==index or stepComplete(steps[candidate.index],candidate.index,saved) then return end
         if saved.skipped and saved.skipped[steps[candidate.index].id or candidate.index] then return end
-        entries[#entries+1]={index=candidate.index,label=label}
+        local source=steps[candidate.index]
+        entries[#entries+1]={index=candidate.index,label=label,detail=source.text or ""}
         shown[candidate.index]=true
     end
     if not simpleReader and logStatus and logStatus.near then
@@ -1457,7 +1499,7 @@ function Tracker:Refresh()
     -- instead of appearing to lose guide instructions (e.g. 25 -> 46).
     local hiddenDone,hiddenSkipped=0,0
     for i=routeIndex+1,#steps do
-        if fallback>=12 then break end
+        if not simpleReader and fallback>=12 then break end
         if not shown[i] then
             local key=steps[i].id or i
             if simpleReader and stepComplete(steps[i],i,saved) then
