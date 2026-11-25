@@ -79,6 +79,9 @@ local function append(id, kind, circuit)
         step.routeChapter = circuit.name
         if circuit.name:find("^Optional") then step.optional = true end
     end
+    if kind=="accept" and (id==151 or id==36) then
+        step.visit={id="westfall-verna-pickups",title="Talk to Verna Furlbrow"}
+    end
     order[#order+1] = step
 end
 
