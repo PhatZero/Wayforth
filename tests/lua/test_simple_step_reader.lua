@@ -214,3 +214,28 @@ travel:Stop()
 assert(travel:CheckpointStatus(fly)==nil)
 assert(guides:GetProgress().current==3)
 print("WayForth travel checkpoint regression passed")
+
+-- XP checkpoints are live evidence, independent of quest history.
+local cp=ns.starterGuides[2].steps[3]
+cp.questId=nil; cp.checkpoint={level=12,xp=1200}; cp.action="checkpoint"
+local xp=1199
+UnitLevel=function() return 12 end
+UnitXP=function() return xp end
+UnitXPMax=function() return 2000 end
+assert(not guides:LevelCheckpoint(cp).finished)
+assert(guides:CompleteCurrent()==false)
+xp=1200
+assert(guides:LevelCheckpoint(cp).finished)
+guides:Sync()
+assert(guides:GetProgress().completed["visit-end"])
+cp.checkpoint={level=12,remainingXP=100}
+assert(not guides:LevelCheckpoint(cp).finished)
+xp=1900
+assert(guides:LevelCheckpoint(cp).finished)
+UnitLevel=function() return 13 end
+assert(guides:LevelCheckpoint(cp).finished)
+UnitLevel=nil
+assert(not guides:LevelCheckpoint(cp).finished)
+cp.checkpoint={level=12,xp=100,remainingXP=100}
+assert(not guides:LevelCheckpoint(cp).valid)
+print("WayForth XP checkpoint regression passed")
