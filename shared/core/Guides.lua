@@ -310,6 +310,39 @@ end
 
 -- A walkthrough visit is an authored, contiguous set of atomic quest actions.
 -- Keep the existing cursor and stable keys: no second route engine or saved schema.
+-- Concurrent work is explicitly authored on a route step. It is advisory:
+-- never changes the cursor, destination, completion or saved variables.
+function Guides:ConcurrentSnapshot(index, id)
+    local steps=self:GetSteps(id)
+    local step=index and steps[index]
+    local progress=ns.Modules.QuestProgress
+    if not step or not progress or not step.concurrentQuestIds then return {} end
+    local rows,seen={},{}
+    for _,questId in ipairs(step.concurrentQuestIds) do
+        if type(questId)=="number" and questId~=step.questId and not seen[questId] then
+            seen[questId]=true
+            local snapshot=progress:Get(questId)
+            if snapshot and snapshot.active and not snapshot.ready and not snapshot.failed then
+                local name
+                for _,candidate in ipairs(steps) do
+                    if candidate.questId==questId then
+                        name=candidate.questName or tostring(candidate.title or "Quest"):gsub("^Pick up:%s*",""):gsub("^Work on:%s*",""):gsub("^Complete:%s*","")
+                        break
+                    end
+                end
+                if name then
+                    for _,row in ipairs(snapshot.rows or {}) do
+                        if not row.finished then
+                            rows[#rows+1]={questId=questId,display=name..": "..row.display,finished=false,concurrent=true}
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return rows
+end
+
 function Guides:VisitSnapshot(index, id)
     local steps = self:GetSteps(id)
     local saved = self:GetProgress(id)
