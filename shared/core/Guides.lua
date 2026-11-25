@@ -37,10 +37,12 @@ end
 
 function Guides:List(kind)
 	local result = {}
+    local classToken
+    if type(UnitClass)=="function" then local _,token=UnitClass("player");classToken=token end
 	for _, guide in ipairs(ns.starterGuides or {}) do
-		if kind == "all"
+		if (not guide.class or guide.class==classToken) and (kind == "all"
 			or kind == "professions" and guide.isProfession
-			or kind ~= "all" and kind ~= "professions" and not guide.isProfession then
+			or kind ~= "all" and kind ~= "professions" and not guide.isProfession) then
 			result[#result + 1] = guide
 		end
 	end
@@ -92,6 +94,7 @@ function Guides:GetSteps(id, legacy)
         local _, token = UnitClass("player")
         classToken = token
     end
+    if guide.class and guide.class~=classToken then return {} end
     local visible = {}
     local locations = ns.Modules.QuestLocations
     local currentMap = C_Map and type(C_Map.GetBestMapForUnit) == "function"
