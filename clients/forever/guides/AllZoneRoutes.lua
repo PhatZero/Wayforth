@@ -95,6 +95,44 @@ local function canRelease(node, completed, nodes)
     return not internal or oneMet
 end
 
+local starterZones={
+    ["alliance-elwynn"]=true,["alliance-dun-morogh"]=true,["alliance-teldrassil"]=true,
+    ["horde-durotar"]=true,["horde-mulgore"]=true,["horde-tirisfal-glades"]=true,
+}
+-- Only group identical source NPC endpoints, not merely nearby quest givers.
+local function endpoint(guide,node,role)
+    local found
+    for _,point in ipairs(node.record and node.record[role] or {}) do
+        if (not point.faction or point.faction==guide.faction) and point.kind=="npc"
+            and type(point.mapId)=="number" and type(point.x)=="number" and type(point.y)=="number"
+            and type(point.name)=="string" and point.name~="" then
+            local key=point.mapId..":"..point.x..":"..point.y..":"..point.name
+            if found and found.key~=key then return nil end
+            found={key=key,name=point.name}
+        end
+    end
+    return found
+end
+local function groupVisits(guide,batch,role,output)
+    if not starterZones[guide.id] then return end
+    local action=role=="pickup" and "accept" or "turnin"
+    local first=#output-#batch+1
+    local previous,start
+    for i,node in ipairs(batch) do
+        local point=endpoint(guide,node,role)
+        local step=output[first+i-1]
+        if point and previous and point.key==previous.key
+            and not node.accept.races and not node.accept.class
+            and not batch[i-1].accept.races and not batch[i-1].accept.class
+            and not node.optional and not batch[i-1].optional then
+            local visit={id=guide.id..":"..action..":"..output[start].id,title="Speak with "..point.name}
+            output[start].visit=visit
+            step.visit=visit
+        else start=first+i-1 end
+        previous=point
+    end
+end
+
 local function createCircuit(guide, batch, output, chapter, nodes)
     -- Every pickup is listed before leaving the hub. Never silently pick up
     -- a quest behind its unturned-in prerequisite inside the same batch.
@@ -104,6 +142,7 @@ local function createCircuit(guide, batch, output, chapter, nodes)
         step.optional=node.optional or nil
         output[#output+1]=step
     end
+    groupVisits(guide,batch,"pickup",output)
     -- The reader's original stable objective keys survive the migration.
     -- Objective destination and quantities come from actual source metadata.
     for _,node in ipairs(batch) do
@@ -126,6 +165,7 @@ local function createCircuit(guide, batch, output, chapter, nodes)
         step.optional=node.optional or nil
         output[#output+1]=step
     end
+    groupVisits(guide,batch,"turnin",output)
 end
 
 local function convert(guide)
