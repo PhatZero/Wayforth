@@ -214,10 +214,49 @@ function Guides:SetCurrent(index, id)
     saved.currentStepId = stepKey(steps[saved.current], saved.current)
 end
 
+-- A checkpoint uses live character evidence, never estimated XP rewards.
+-- XP is relative to the specified level, not lifetime experience.
+function Guides:LevelCheckpoint(step)
+    local target=step and step.checkpoint
+    if not target then return nil end
+    local function read(fn)
+        if type(fn)~="function" then return nil end
+        local ok,value=pcall(fn,"player")
+        if ok and type(value)=="number" and value==value and value>=0 then return value end
+    end
+    local level,xp,maxXP=read(UnitLevel),read(UnitXP),read(UnitXPMax)
+    local valid=type(target.level)=="number" and target.level>=1
+        and target.level==math.floor(target.level)
+        and (target.xp==nil or type(target.xp)=="number" and target.xp>=0 and target.xp<math.huge)
+        and (target.remainingXP==nil or type(target.remainingXP)=="number" and target.remainingXP>=0 and target.remainingXP<math.huge)
+        and not (target.xp~=nil and target.remainingXP~=nil)
+    local done=false
+    local status="Character XP unavailable"
+    if not valid then status="Invalid authored level checkpoint"
+    elseif level then
+        if level>target.level then done=true
+        elseif level==target.level then
+            if target.xp~=nil then done=xp~=nil and xp>=target.xp
+            elseif target.remainingXP~=nil then
+                done=xp~=nil and maxXP~=nil and maxXP>0 and math.max(0,maxXP-xp)<=target.remainingXP
+            else done=true end
+        end
+        status="Level "..level.." / "..target.level
+        if target.xp~=nil then
+            status=status.." | "..tostring(xp or "?").." / "..target.xp.." XP"
+        elseif target.remainingXP~=nil then
+            status=status.." | "..tostring(xp and maxXP and maxXP>0 and math.max(0,maxXP-xp) or "?").." XP remaining (target "..target.remainingXP..")"
+        end
+    end
+    return {finished=done,display=status,valid=valid,level=level,xp=xp,maxXP=maxXP}
+end
+
 function Guides:CompleteCurrent(id)
     local saved = self:GetProgress(id)
     local steps = self:GetSteps(id)
     if not saved or #steps == 0 then return end
+    local checkpoint=self:LevelCheckpoint(steps[saved.current])
+    if checkpoint and not checkpoint.finished then return false,checkpoint.display end
     saved.completed[stepKey(steps[saved.current], saved.current)] = true
     if saved.current < #steps then self:SetCurrent(saved.current + 1, id) end
 end
@@ -428,7 +467,14 @@ function Guides:Sync(id, catchUp)
     -- Scan ALL quest-linked steps. The old implementation stopped at the first
     -- manual checkpoint, making Sync appear broken for returning characters.
     for index, step in ipairs(steps) do
-        if type(step.questId) == "number" then
+        local checkpoint=self:LevelCheckpoint(step)
+        if checkpoint then
+            local key=stepKey(step,index)
+            if checkpoint.finished and not saved.completed[key] then
+                saved.completed[key]=true
+                newCompletions=newCompletions+1
+            end
+        elseif type(step.questId) == "number" then
             local status = readQuestStatus(step.questId, cache, saved)
             if (status.turnedIn or status.active or status.ready) and not foundIDs[step.questId] then
                 foundIDs[step.questId] = true
@@ -464,7 +510,9 @@ function Guides:Sync(id, catchUp)
         if not saved.completed[stepKey(step, saved.current)] then break end
         -- Old acceptance evidence is not proof that an abandoned quest is
         -- still active. Never race past a missing quest on stale checkpoints.
-        if simple and type(step.questId) == "number"
+        local checkpoint=self:LevelCheckpoint(step)
+        if checkpoint and not checkpoint.finished then break end
+        if simple and not checkpoint and type(step.questId) == "number"
             and not satisfied(step, readQuestStatus(step.questId, cache, saved)) then break end
         self:SetCurrent(saved.current + 1, id)
     end
