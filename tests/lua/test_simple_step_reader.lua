@@ -17,6 +17,11 @@ local ns = {
         },
     }},
 }
+ns.starterGuides[2]={id="visit-test",title="Visit test",steps={
+    {id="visit-a",action="accept",questId=100,title="Pick up: First",visit={id="hub",title="Talk to NPC"}},
+    {id="visit-b",action="accept",questId=101,title="Pick up: Second",visit={id="hub",title="Talk to NPC"}},
+    {id="visit-end",action="manual",title="Leave hub"},
+}}
 function ns:RegisterModule(name, module) self.Modules[name] = module end
 function ns:Call() return true end
 UnitLevel = function() return 10 end
@@ -122,3 +127,20 @@ assert(not guides:ResumeOnLogin() and saved.current==1,
     "No matching live quest must leave the cursor unchanged")
 
 print("WayForth simple step reader regression tests passed")
+
+assert(guides:SetActive("visit-test"))
+local v=guides:VisitSnapshot(1)
+assert(v and #v.rows==2 and v.completed==0)
+active[100]=true
+assert(guides:Sync() and guides:GetProgress().current==2)
+v=guides:VisitSnapshot(2)
+assert(v.first==1 and v.last==2 and v.completed==1 and v.rows[1].finished and not v.rows[2].finished)
+active[101]=true
+assert(guides:Sync() and guides:GetProgress().current==3)
+assert(guides:VisitSnapshot(2).completed==2)
+assert(not guides:VisitSnapshot(3))
+guides:SetCurrent(1)
+active[100]=nil
+assert(guides:VisitSnapshot(1).completed==1)
+assert(guides:GetProgress().current==1)
+print("WayForth grouped visit regression passed")
