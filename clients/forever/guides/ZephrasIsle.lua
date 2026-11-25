@@ -231,7 +231,7 @@ end
 local legacySteps=allSteps
 local extraBefore={
     ["glide-complete"]={
-        {id="wf11-glide-objective",title="Practice Walk on Air",text="Use Walk on Air to fulfill Falling With Style. Check the live objective before returning to Rorian.",questId=92474,action="objective",hub="Thendal Watchtower",level=2},
+        {id="wf11-glide-objective",title="Practice Walk on Air",text="Use Walk on Air to fulfill Falling With Style. Check the live objective before returning to Rorian.",questId=92474,action="objective",hub="Thendal Watchtower",level=2,x=43.8,y=24.1},
     },
     ["anchors-done"]={
         {id="wf11-anchor-objective",title="The Anchors of Zephras",text="Interact with Halaan Hawk-Eye and follow the anchor quest's live objective at the watchtower.",questId=94414,action="objective",hub="Thendal Village",level=3,x=43.8,y=24.1},
@@ -239,7 +239,7 @@ local extraBefore={
 }
 local extraAfter={
     ["queen-objective"]={
-        {id="wf11-queen-turnin",title="Return the queen quest",text="Turn in The Cirrusfly Queen when ready. Use the live quest marker to locate the recipient.",questId=92463,action="turnin",hub="Thendal Village",level=4},
+        {id="wf11-queen-turnin",title="Return the queen quest",text="Turn in The Cirrusfly Queen when ready. Use the live quest marker to locate the recipient.",questId=92463,action="turnin",hub="Thendal Village",level=4,liveLocationOnly=true},
     },
 }
 allSteps={}
