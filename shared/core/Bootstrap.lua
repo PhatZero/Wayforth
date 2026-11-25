@@ -125,6 +125,13 @@ local function dispatch(event, ...)
         end
         ns:Call("Navigator", "Refresh")
         if (routeOK and rerouted) or event=="PLAYER_LEVEL_UP" or event=="ZONE_CHANGED_NEW_AREA" then ns:Call("Tracker", "Refresh") end
+        if event == "PLAYER_XP_UPDATE" or event == "PLAYER_LEVEL_UP" then
+            local step=ns.Modules.Guides:CurrentStep()
+            if step and step.checkpoint then
+                ns:Call("Guides","Sync")
+                ns:Call("Tracker","Refresh")
+            end
+        end
         if event == "PLAYER_MONEY" then ns:Call("Tracker", "RequestObjectiveRefresh") end
         if ns.Modules.UI.frame and ns.Modules.UI.frame:IsShown() then ns:Call("UI", "Refresh") end
     elseif event == "PLAYER_LOGOUT" then
