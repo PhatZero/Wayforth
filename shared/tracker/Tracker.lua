@@ -469,9 +469,9 @@ function Tracker:MakeFrame()
                 local reason=g:ConditionReason(current)
                 if reason then ns:Print(reason); Tracker:Refresh(); return end
             end
-            if current and current.checkpoint and g.LevelCheckpoint then
-                local evidence=g:LevelCheckpoint(current)
-                if not evidence.finished then ns:Print(evidence.display); Tracker:Refresh(); return end
+            if current and current.checkpoint and g.Checkpoint then
+                local evidence=g:Checkpoint(current)
+                if not evidence.finished and not evidence.manual then ns:Print(evidence.display); Tracker:Refresh(); return end
                 g:SetCurrent(index)
                 g:CompleteCurrent()
                 ns:Call("Navigator","ResetTarget")
@@ -777,9 +777,9 @@ function Tracker:RefreshObjectives(fromRefresh)
     local progress=ns.Modules.QuestProgress
     local visit=step and step.visit and guides.VisitSnapshot and guides:VisitSnapshot(self.displayIndex)
     local snapshot=visit or (step and progress and progress:Get(step.questId) or nil)
-    local checkpoint=step and step.checkpoint and guides.LevelCheckpoint and guides:LevelCheckpoint(step)
+    local checkpoint=step and step.checkpoint and guides.Checkpoint and guides:Checkpoint(step)
     if checkpoint then
-        snapshot={questID="checkpoint:"..tostring(step.id),status=checkpoint.finished and "CHECKPOINT REACHED" or "LEVELING CHECKPOINT",state=checkpoint.finished and "ready" or "active",rows={checkpoint}}
+        snapshot={questID="checkpoint:"..tostring(step.id),status=checkpoint.finished and "CHECKPOINT REACHED" or "GUIDE CHECKPOINT",state=checkpoint.finished and "ready" or "active",rows={checkpoint}}
     end
     if ns.Modules.Travel and ns.Modules.Travel:Current(step) then snapshot=nil end
     if snapshot and snapshot.state=="inactive" and step.action=="accept" then snapshot=nil end
