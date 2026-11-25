@@ -724,7 +724,7 @@ function Tracker:ShowObjectiveTooltip()
         GameTooltip:AddLine(self.liveSnapshot.status,theme.teal[1],theme.teal[2],theme.teal[3],true)
         for _,row in ipairs(self.liveSnapshot.rows) do
             local color=row.finished and theme.green or theme.ivory
-            GameTooltip:AddLine((row.finished and "[x] " or "[ ] ")..row.display,color[1],color[2],color[3],true)
+            GameTooltip:AddLine((row.heading and "" or row.finished and "[x] " or "[ ] ")..row.display,color[1],color[2],color[3],true)
         end
     end
     GameTooltip:Show()
@@ -735,7 +735,11 @@ end
 function Tracker:RequestObjectiveRefresh(questID)
     if not self.frame or not self.frame:IsShown() or not self.displayStep
         or ns.char and ns.char.trackerMinimized then return end
-    if questID and questID ~= self.displayStep.questId and not self.displayStep.visit then return end
+    if questID and questID ~= self.displayStep.questId and not self.displayStep.visit then
+        local tracked=false
+        for _,id in ipairs(self.displayStep.concurrentQuestIds or {}) do if id==questID then tracked=true;break end end
+        if not tracked then return end
+    end
     if not self.objectiveDirty then self.objectiveElapsed=0 end
     self.objectiveDirty=true
 end
@@ -765,6 +769,17 @@ function Tracker:RefreshObjectives(fromRefresh)
     if snapshot and snapshot.ready and step.action=="objective" and not fromRefresh then
         local changed=guides:Sync()
         if changed then self:Refresh();return end
+    end
+    local concurrent=step and self.allowLiveInstructionText and not visit and guides.ConcurrentSnapshot and guides:ConcurrentSnapshot(self.displayIndex) or {}
+    if #concurrent>0 then
+        local combined={rows={},questID=step.questId or step.id,status="TRACK WHILE TRAVELING",state="active"}
+        if snapshot then
+            for k,v in pairs(snapshot) do if k~="rows" then combined[k]=v end end
+            for _,row in ipairs(snapshot.rows or {}) do combined.rows[#combined.rows+1]=row end
+            if #combined.rows>0 then combined.rows[#combined.rows+1]={heading=true,display="ALSO TRACK ALONG THE WAY"} end
+        end
+        for _,row in ipairs(concurrent) do combined.rows[#combined.rows+1]=row end
+        snapshot=combined
     end
     if not snapshot or not self.liveSnapshot or snapshot.questID~=self.liveSnapshot.questID then
         self.liveScroll:SetVerticalScroll(0)
@@ -813,8 +828,8 @@ function Tracker:LayoutObjectives(width,height)
         end
         line:SetWidth(contentW)
         line:SetHeight(0)
-        line:SetText((row.finished and "[x] " or "[ ] ")..row.display)
-        line:SetTextColor(unpack(row.finished and theme.green or theme.ivory))
+        line:SetText((row.heading and "" or row.finished and "[x] " or "[ ] ")..row.display)
+        line:SetTextColor(unpack(row.heading and theme.teal or row.finished and theme.green or theme.ivory))
         line:ClearAllPoints()
         line:SetPoint("TOPLEFT",self.liveContent,"TOPLEFT",0,-rowsH)
         local lineH=textHeight(line,15)
