@@ -1683,7 +1683,10 @@ function Tracker:Refresh()
     local leg=travel and travel:Current(step)
     if leg and not saved.awaitingQuestMatch then
         self.objectiveCaption:SetText("TRAVEL LEG "..travel.route.index.." / "..#travel.route.legs)
-        self.objectiveText:SetText(leg.text)
+        local checkpoint=leg.kind=="flightPath" or leg.kind=="fly" or leg.kind=="bindHearth" or leg.kind=="hearth"
+        if checkpoint and travel.CheckpointInstruction then
+            self.objectiveText:SetText(leg.text.."\n"..travel:CheckpointInstruction(leg))
+        else self.objectiveText:SetText(leg.text) end
         self.next:SetLabel("Next Travel")
     end
     for key,item in pairs(self.menuButtons) do
