@@ -199,6 +199,23 @@ function Zones:ChapterOption()
     return {id=target.id,title=target.generatedChapter and target.title or target.zone or target.title,reason="Next "..faction.." chapter",chapter=true}
 end
 
+-- XP is observed, never added to the character's level as eligibility.
+-- Rested XP is a bonus pool, not earned experience or guaranteed quest XP.
+function Zones:XPState()
+    local function read(fn,...)
+        if type(fn)~="function" then return nil end
+        local ok,v=pcall(fn,...)
+        if ok and type(v)=="number" and v==v and v>=0 and v<math.huge then return v end
+    end
+    local level=read(UnitLevel,"player")
+    local xp,maxXP=read(UnitXP,"player"),read(UnitXPMax,"player")
+    local rested=read(GetXPExhaustion)
+    local fraction=0
+    if xp and maxXP and maxXP>0 and xp<=maxXP then fraction=xp/maxXP else xp,maxXP=nil,nil end
+    return {level=level,xp=xp,maxXP=maxXP,fraction=fraction,rested=rested,
+        remainingXP=xp and maxXP-xp or nil,atCap=level and level>=60 or false}
+end
+
 -- Rank original generated chapters using live quest evidence, not estimated
 -- XP or invented inter-zone distances. Only recommend after a safe handoff.
 function Zones:OptimizedChapter(current,level)
@@ -206,6 +223,8 @@ function Zones:OptimizedChapter(current,level)
     if not current or not (current.generatedChapter or current.factionProgression or current.allianceProgression) or not routes then return nil end
     local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
     if not faction or current.faction~=faction then return nil end
+    local xp=self:XPState()
+    if xp.atCap then return nil end
     local states={}
     local function state(id)
         if not states[id] then states[id]=routes:QuestState(id) end
@@ -213,13 +232,20 @@ function Zones:OptimizedChapter(current,level)
     end
     local saved=guides:GetProgress(current.id)
     if not saved then return nil end
+    local ahead=type(current.levelMax)=="number" and level>current.levelMax
     for i,step in ipairs(guides:GetSteps(current.id)) do
         local q=step.questId and state(step.questId)
         -- Do not strand active quests even when their steps were skipped.
         if q and q.active and not q.turnedIn then return nil end
         if not step.optional and not (q and q.turnedIn)
             and not saved.completed[step.id or i]
-            and not (saved.skipped and saved.skipped[step.id or i]) then return nil end
+            and not (saved.skipped and saved.skipped[step.id or i]) then
+            -- When ahead, allow an explicit handoff only at a clean quest
+            -- boundary. Never bypass unfinished manual or travel steps.
+            local oldPickup=step.questId and q and not q.active
+                and type(step.level)=="number" and step.level<=level-5
+            if not ahead or not oldPickup then return nil end
+        end
     end
     local map=C_Map and type(C_Map.GetBestMapForUnit)=="function"
         and C_Map.GetBestMapForUnit("player") or nil
@@ -227,7 +253,7 @@ function Zones:OptimizedChapter(current,level)
     for _,g in ipairs(routes:ListGuides()) do
         if (g.generatedChapter or g.factionProgression or g.allianceProgression) and g.id~=current.id and g.faction==faction
             and not g.isOptional and not g.isDungeon and not g.isProfession
-            and g.levelMin and g.levelMax and level>=g.levelMin and level<=g.levelMax then
+            and g.levelMin and g.levelMax and level>=g.levelMin and level<=g.levelMax+2 then
             local steps=guides:GetSteps(g.id)
             local progress=guides:GetProgress(g.id)
             local index=progress and routes:Preview(g.id,"recommended")
@@ -256,10 +282,11 @@ function Zones:OptimizedChapter(current,level)
                     or g.zone==current.zone and 2
                     or g.continent and current.continent and g.continent==current.continent and 6
                     or 15
-                local score=travel+math.abs(level-(g.levelMin+g.levelMax)/2)
+                local score=travel+math.abs(level+xp.fraction-(g.levelMin+g.levelMax)/2)
+                    +math.max(0,level-g.levelMax)*4
                     -math.min(count,10)*0.25-math.min(active,5)*8
                 if not best or score<best.score or score==best.score and g.id<best.id then
-                    best={id=g.id,title=g.title,reason="Recommended level-appropriate chapter",
+                    best={id=g.id,title=g.title,reason=ahead and "Ahead of chapter level; unfinished quests preserved" or level<current.levelMax and "More level-appropriate quests for experience" or "Recommended level-appropriate chapter",
                         chapter=true,score=score}
                 end
             end
@@ -278,7 +305,8 @@ function Zones:Options(force)
     if not current then return {} end
     local level=type(UnitLevel)=="function" and UnitLevel("player") or 1
     local now=clock()
-    local cacheKey=current.id..":"..level
+    local xp=self:XPState()
+    local cacheKey=current.id..":"..level..":"..tostring(xp.xp)..":"..tostring(xp.rested)
     if not force and now and self.cache and self.cache.key==cacheKey and now-self.cache.time<2 then return self.cache.options end
     local chapter
     if current.generatedChapter or current.factionProgression or current.allianceProgression then
