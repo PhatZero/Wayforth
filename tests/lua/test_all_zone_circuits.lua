@@ -11,7 +11,7 @@ assert(stats.circuits>0)
 local converted,questCount,groupedPairs=0,0,0
 local function key(step,i) return step.id or i end
 for _,guide in ipairs(guides:List()) do
-    if guide.routeStyle=="source-circuits" then
+    if guide.routeStyle=="source-circuits" and not guide.generatedChapter then
         converted=converted+1
         assert(not guide.isProfession and not guide.isDungeon)
         assert(guide.testingOnly and guide.contentStatus:find("verification pending",1,true),
