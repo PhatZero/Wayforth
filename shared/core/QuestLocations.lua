@@ -71,11 +71,27 @@ local function destination(point,guide)
     return text
 end
 
+-- Static requirements are factual identities, not an invented count or kill
+-- instruction. The live log supplies the precise action and quantity.
+function Locations:RequirementText(record)
+    local names,seen={},{}
+    for _,row in ipairs(record and record.objectiveRequirements or {}) do
+        if type(row.name)=="string" and row.name~="" and not seen[row.name] then
+            seen[row.name]=true
+            names[#names+1]=row.name
+        end
+    end
+    if #names==0 then return nil end
+    return "Quest requirements: "..table.concat(names,", ")..". Follow the live objective counters."
+end
+
 function Locations:Apply(step, guide, currentMap)
     local role = step.locationRole or (step.action == "accept" and "pickup" or step.action)
     if role ~= "pickup" and role ~= "objective" and role ~= "turnin" then return end
     local record = recordFor(step)
+    local catalog=(ns.foreverDBQuests or {})[step.questId]
     if record then step.questName = record.name end
+    if not step.questName and catalog then step.questName=catalog.name end
     -- Authoritative observed Forever dungeon phase points must never be
     -- replaced by older general-catalog coordinates for another NPC/phase.
     -- Dungeon pins require explicit Forever-observed phase verification.
@@ -96,10 +112,18 @@ function Locations:Apply(step, guide, currentMap)
         step.objectiveSource = instruction.source
     elseif role == "objective" and not (record and record.objectiveText) then
         step.useLiveInstructions = true
+        local requirements=self:RequirementText(record)
+        if requirements then
+            step.text=requirements
+            step.objectiveSource="Corrected Forever objective entity table"
+        else
+            step.instructionNeedsObjectives=true
+        end
     end
     local point = record and choosePoint(record[role], guide, currentMap)
     if not point then
         step.instructionNeedsLocation=true
+        if role=="objective" then step.useLiveInstructions=true end
         local name = record and record[role .. "Name"]
         if name and role ~= "objective" then
             step.hub = name
@@ -131,8 +155,9 @@ function Locations:Apply(step, guide, currentMap)
             " to obtain the required item."
     elseif role == "objective" and not record.objectiveText and not instruction then
         -- A navigation point is not proof of the required target.
-        step.text = "Travel to " .. destination(point,guide) .. ". Complete the remaining requirements shown in your live quest log."
-        step.instructionNeedsObjectives=true
+        local requirements=self:RequirementText(record)
+        step.text = "Travel to " .. destination(point,guide) .. ". " .. (requirements or "Complete the remaining requirements shown in your live quest log.")
+        step.instructionNeedsObjectives=not requirements or nil
     elseif role == "turnin" then
         local verb=point.kind=="object" and "Interact with " or "Speak with "
         step.text = verb .. destination(point,guide) .. ". Turn in " .. tostring(record.name or step.questName or step.title or "the quest") .. " when ready."
