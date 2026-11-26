@@ -405,8 +405,7 @@ local function generateChapters(guide)
     end
     if circuit then addCircuit(circuit) end
     flush()
-    -- A single chapter adds no meaningful alternative to the original.
-    if #chapters<2 and guide.faction~="Alliance" then return {} end
+    -- Include single-band zones for both faction progression inventories.
     for i,chapter in ipairs(chapters) do
         chapter.chapterIndex=i
         chapter.chapterCount=#chapters
@@ -432,30 +431,31 @@ for _,chapter in ipairs(generated) do
 end
 stats.chapters=#generated
 
--- Alliance progression inventory includes curated routes and single-band zones.
--- Keep them selectable without rewriting their authored steps or saved keys.
--- Only leveling guides with a declared Alliance faction participate.
-local allianceProgression={chapters={},coverage={},gaps={}}
-local splitParents={}
-for _,g in ipairs(ns.starterGuides or {}) do
-    if g.generatedChapter and g.faction=="Alliance" then splitParents[g.parentGuideId]=true end
-end
-for _,g in ipairs(ns.starterGuides or {}) do
-    if g.faction=="Alliance" and not g.isProfession and not g.isDungeon
-        and not g.isOptional and not g.isSpecialized and g.id~="first-steps"
-        and g.levelMin and g.levelMax and #g.steps>0
-        and (g.generatedChapter or not splitParents[g.id]) then
-        g.allianceProgression=true
-        allianceProgression.chapters[#allianceProgression.chapters+1]=g.id
-        for level=math.max(1,g.levelMin),math.min(60,g.levelMax) do
-            allianceProgression.coverage[level]=(allianceProgression.coverage[level] or 0)+1
+-- Both factions use the same progression inventory and coverage contract.
+local function buildProgression(faction)
+    local inventory={chapters={},coverage={},gaps={}}
+    local splitParents={}
+    for _,g in ipairs(ns.starterGuides or {}) do
+        if g.generatedChapter and g.faction==faction then splitParents[g.parentGuideId]=true end
+    end
+    for _,g in ipairs(ns.starterGuides or {}) do
+        if g.faction==faction and not g.isProfession and not g.isDungeon
+            and not g.isOptional and not g.isSpecialized and g.id~="first-steps"
+            and g.levelMin and g.levelMax and #g.steps>0
+            and (g.generatedChapter or not splitParents[g.id]) then
+            g.factionProgression=true
+            if faction=="Alliance" then g.allianceProgression=true else g.hordeProgression=true end
+            inventory.chapters[#inventory.chapters+1]=g.id
+            for level=math.max(1,g.levelMin),math.min(60,g.levelMax) do
+                inventory.coverage[level]=(inventory.coverage[level] or 0)+1
+            end
         end
     end
-end
-table.sort(allianceProgression.chapters)
-for level=1,60 do
-    if not allianceProgression.coverage[level] then
-        allianceProgression.gaps[#allianceProgression.gaps+1]=level
+    table.sort(inventory.chapters)
+    for level=1,60 do
+        if not inventory.coverage[level] then inventory.gaps[#inventory.gaps+1]=level end
     end
+    return inventory
 end
-ns.allianceProgression=allianceProgression
+ns.allianceProgression=buildProgression("Alliance")
+ns.hordeProgression=buildProgression("Horde")
