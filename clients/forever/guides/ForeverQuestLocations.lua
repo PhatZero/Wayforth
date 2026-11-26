@@ -92,6 +92,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 48.92, y = 41.61, kind = "npc", id = 197, name = "Marshal McBride", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6, name = "Kobold Vermin"},
+        },
     },
     [8] = {
         name = "A Rogue's Deal",
@@ -120,6 +123,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.04, y = 31.23, kind = "npc", id = 233, name = "Farmer Saldean", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 114, name = "Harvest Watcher"},
+        },
     },
     [10] = {
         name = "The Scrimshank Redemption",
@@ -133,6 +139,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 50.21, y = 27.48, kind = "npc", id = 7724, name = "Senior Surveyor Fizzledowser"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8593, name = "Scrimshank's Surveying Gear"},
+        },
     },
     [12] = {
         name = "The People's Militia",
@@ -148,6 +157,10 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.33, y = 47.52, kind = "npc", id = 234, name = "Gryan Stoutmantle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 504, name = "Defias Trapper"},
+            {kind = "target", id = 95, name = "Defias Smuggler"},
+        },
     },
     [13] = {
         name = "The People's Militia",
@@ -163,6 +176,10 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.33, y = 47.52, kind = "npc", id = 234, name = "Gryan Stoutmantle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 589, name = "Defias Pillager"},
+            {kind = "target", id = 590, name = "Defias Looter"},
+        },
     },
     [14] = {
         name = "The People's Militia",
@@ -179,6 +196,11 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.33, y = 47.52, kind = "npc", id = 234, name = "Gryan Stoutmantle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 122, name = "Defias Highwayman"},
+            {kind = "target", id = 121, name = "Defias Pathstalker"},
+            {kind = "target", id = 449, name = "Defias Knuckleduster"},
+        },
     },
     [15] = {
         name = "Investigate Echo Ridge",
@@ -193,6 +215,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 48.92, y = 41.61, kind = "npc", id = 197, name = "Marshal McBride", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 257, name = "Kobold Worker"},
+        },
     },
     [17] = {
         name = "Uldaman Reagent Run",
@@ -209,6 +234,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 37.07, y = 49.38, kind = "npc", id = 1470, name = "Ghak Healtouch", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8047, name = "Magenta Fungus Cap"},
+        },
     },
     [18] = {
         name = "Brotherhood of Thieves",
@@ -223,6 +251,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 48.17, y = 42.94, kind = "npc", id = 823, name = "Deputy Willem", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 752, name = "Red Burlap Bandana"},
+        },
     },
     [19] = {
         name = "Tharil'zun",
@@ -237,6 +268,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 28.41, y = 48.97, kind = "npc", id = 382, name = "Marshal Marris", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1260, name = "Tharil'zun's Head"},
+        },
     },
     [20] = {
         name = "Blackrock Menace",
@@ -261,6 +295,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 28.41, y = 48.97, kind = "npc", id = 382, name = "Marshal Marris", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3014, name = "Battleworn Axe"},
+        },
     },
     [21] = {
         name = "Skirmish at Echo Ridge",
@@ -275,6 +312,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 48.92, y = 41.61, kind = "npc", id = 197, name = "Marshal McBride", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 80, name = "Kobold Laborer"},
+        },
     },
     [22] = {
         name = "Goretusk Liver Pie",
@@ -293,6 +333,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.42, y = 30.52, kind = "npc", id = 235, name = "Salma Saldean", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 723, name = "Goretusk Liver"},
+        },
     },
     [23] = {
         name = "Ursangous's Paw",
@@ -330,6 +373,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 73.67, y = 60, kind = "npc", id = 12737, name = "Mastok Wrilehiss", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3917, name = "Befouled Water Elemental"},
+        },
     },
     [26] = {
         name = "A Lesson to Learn",
@@ -354,6 +400,9 @@ ns.foreverQuestLocations = {
             {mapId = 1450, x = 36.52, y = 40.1, kind = "npc", id = 11799, name = "Tajarri"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 15885, name = "Shrine Of Remulos"},
+        },
     },
     [33] = {
         name = "Wolves Across the Border",
@@ -371,6 +420,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 48.94, y = 40.16, kind = "npc", id = 196, name = "Eagan Peltskinner", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 750, name = "Tough Wolf Meat"},
+        },
     },
     [34] = {
         name = "An Unwelcome Guest",
@@ -385,6 +437,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 16.77, y = 46.33, kind = "npc", id = 342, name = "Martie Jainrose", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3631, name = "Bellygrub's Tusk"},
+        },
     },
     [36] = {
         name = "Westfall Stew",
@@ -471,6 +526,12 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.42, y = 30.52, kind = "npc", id = 235, name = "Salma Saldean", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 729, name = "Stringy Vulture Meat"},
+            {kind = "item", id = 730, name = "Murloc Eye"},
+            {kind = "item", id = 731, name = "Goretusk Snout"},
+            {kind = "item", id = 732, name = "Okra"},
+        },
     },
     [39] = {
         name = "Deliver Thomas' Report",
@@ -500,6 +561,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 42.14, y = 67.26, kind = "npc", id = 241, name = "Remy \"Two Times\"", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 773, name = "Gold Dust"},
+        },
     },
     [48] = {
         name = "Sweet Amber",
@@ -514,6 +578,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 44.62, y = 80.25, kind = "npc", id = 239, name = "Grimbooze Thunderbrew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 737, name = "Holy Spring Water"},
+        },
     },
     [49] = {
         name = "Sweet Amber",
@@ -530,6 +597,11 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 44.62, y = 80.25, kind = "npc", id = 239, name = "Grimbooze Thunderbrew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 738, name = "Sack of Barley"},
+            {kind = "item", id = 739, name = "Sack of Corn"},
+            {kind = "item", id = 740, name = "Sack of Rye"},
+        },
     },
     [50] = {
         name = "Sweet Amber",
@@ -560,6 +632,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 44.62, y = 80.25, kind = "npc", id = 239, name = "Grimbooze Thunderbrew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6037, name = "Truesilver Bar"},
+        },
     },
     [51] = {
         name = "Sweet Amber",
@@ -574,6 +649,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 44.62, y = 80.25, kind = "npc", id = 239, name = "Grimbooze Thunderbrew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 742, name = "A Sycamore Branch"},
+        },
     },
     [52] = {
         name = "Protect the Frontier",
@@ -589,6 +667,10 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 73.97, y = 72.18, kind = "npc", id = 261, name = "Guard Thomas", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 118, name = "Prowler"},
+            {kind = "target", id = 822, name = "Young Forest Bear"},
+        },
     },
     [53] = {
         name = "Sweet Amber",
@@ -603,6 +685,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 44.62, y = 80.25, kind = "npc", id = 239, name = "Grimbooze Thunderbrew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 743, name = "Bundle of Charred Oak"},
+        },
     },
     [54] = {
         name = "Report to Goldshire",
@@ -627,6 +712,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 7.78, y = 34.07, kind = "npc", id = 311, name = "Sven Yorgen", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1200, name = "Morbent Fel"},
+        },
     },
     [56] = {
         name = "The Night Watch",
@@ -642,6 +730,10 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 73.54, y = 46.82, kind = "npc", id = 264, name = "Commander Althea Ebonlocke", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 48, name = "Skeletal Warrior"},
+            {kind = "target", id = 203, name = "Skeletal Mage"},
+        },
     },
     [57] = {
         name = "The Night Watch",
@@ -657,6 +749,10 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 73.54, y = 46.82, kind = "npc", id = 264, name = "Commander Althea Ebonlocke", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 531, name = "Skeletal Fiend"},
+            {kind = "target", id = 202, name = "Skeletal Horror"},
+        },
     },
     [58] = {
         name = "The Night Watch",
@@ -671,6 +767,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 73.54, y = 46.82, kind = "npc", id = 264, name = "Commander Althea Ebonlocke", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 604, name = "Plague Spreader"},
+        },
     },
     [60] = {
         name = "Kobold Candles",
@@ -690,6 +789,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 43.32, y = 65.7, kind = "npc", id = 253, name = "William Pestle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 772, name = "Large Candle"},
+        },
     },
     [62] = {
         name = "The Fargodeep Mine",
@@ -718,6 +820,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 59.95, y = 19.36, kind = "npc", id = 237, name = "Farmer Furlbrow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 841, name = "Furlbrow's Pocket Watch"},
+        },
     },
     [65] = {
         name = "The Defias Brotherhood",
@@ -782,6 +887,9 @@ ns.foreverQuestLocations = {
             {mapId = 1453, x = 42.53, y = 72.36, kind = "npc", id = 297, name = "Caretaker Folsom", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 910, name = "An Undelivered Letter"},
+        },
     },
     [72] = {
         name = "The Legend of Stalvan",
@@ -816,6 +924,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 84.61, y = 69.38, kind = "npc", id = 294, name = "Marshal Haggard", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 921, name = "A Faded Journal Page"},
+        },
     },
     [76] = {
         name = "The Jasperlode Mine",
@@ -844,6 +955,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 26.71, y = 48.59, kind = "npc", id = 7801, name = "Gilveradin Sunchaser"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8684, name = "Hinterlands Honey Ripple"},
+        },
     },
     [78] = {
         name = "The Legend of Stalvan",
@@ -902,6 +1016,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 50.89, y = 26.96, kind = "npc", id = 5594, name = "Alchemist Pestlezugg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8587, name = "Centipaar Insect Parts"},
+        },
     },
     [84] = {
         name = "Back to Billy",
@@ -956,6 +1073,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 34.49, y = 84.25, kind = "npc", id = 246, name = "\"Auntie\" Bernice Stonefield", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 769, name = "Chunk of Boar Meat"},
+        },
     },
     [89] = {
         name = "The Everstill Bridge",
@@ -973,6 +1093,10 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 27.05, y = 48.64, kind = "npc", id = 341, name = "Foreman Oslow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2856, name = "Iron Pike"},
+            {kind = "item", id = 1013, name = "Iron Rivet"},
+        },
     },
     [90] = {
         name = "Seasoned Wolf Kabobs",
@@ -997,6 +1121,10 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 73.75, y = 43.48, kind = "npc", id = 272, name = "Chef Grual", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1015, name = "Lean Wolf Flank"},
+            {kind = "item", id = 2665, name = "Stormwind Seasoning Herbs"},
+        },
     },
     [91] = {
         name = "Solomon's Law",
@@ -1019,6 +1147,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 24.63, y = 44.26, kind = "npc", id = 900, name = "Bailiff Conacher", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1075, name = "Shadowhide Pendant"},
+        },
     },
     [92] = {
         name = "Redridge Goulash",
@@ -1073,6 +1204,11 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 17.59, y = 43.84, kind = "npc", id = 343, name = "Chef Breanna", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2296, name = "Great Goretusk Snout"},
+            {kind = "item", id = 1080, name = "Tough Condor Meat"},
+            {kind = "item", id = 1081, name = "Crisp Spider Meat"},
+        },
     },
     [93] = {
         name = "Dusky Crab Cakes",
@@ -1106,6 +1242,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 73.75, y = 43.48, kind = "npc", id = 272, name = "Chef Grual", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2251, name = "Gooey Spider Leg"},
+        },
     },
     [94] = {
         name = "A Watchful Eye",
@@ -1150,6 +1289,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 75.79, y = 45.32, kind = "npc", id = 265, name = "Madame Eva", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3629, name = "Mistmantle Family Ring"},
+        },
     },
     [99] = {
         name = "Arugal's Folly",
@@ -1175,6 +1317,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 44.2, y = 39.81, kind = "npc", id = 1938, name = "Dalar Dawnweaver", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3218, name = "Pyrewood Shackle"},
+        },
     },
     [101] = {
         name = "The Totem of Infliction",
@@ -1207,6 +1352,11 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 75.79, y = 45.32, kind = "npc", id = 265, name = "Madame Eva", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1129, name = "Ghoul Fang"},
+            {kind = "item", id = 1130, name = "Vial of Spider Venom"},
+            {kind = "item", id = 2378, name = "Skeleton Finger"},
+        },
     },
     [102] = {
         name = "Patrolling Westfall",
@@ -1232,6 +1382,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.42, y = 47.62, kind = "npc", id = 821, name = "Captain Danuvin", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 725, name = "Gnoll Paw"},
+        },
     },
     [103] = {
         name = "Keeper of the Flame",
@@ -1260,6 +1413,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 30.01, y = 86.02, kind = "npc", id = 392, name = "Captain Grayson"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 814, name = "Flask of Oil"},
+        },
     },
     [104] = {
         name = "The Coastal Menace",
@@ -1273,6 +1429,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 30.01, y = 86.02, kind = "npc", id = 392, name = "Captain Grayson"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3636, name = "Scale of Old Murk-Eye"},
+        },
     },
     [109] = {
         name = "Report to Gryan Stoutmantle",
@@ -1320,6 +1479,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 28.41, y = 48.97, kind = "npc", id = 382, name = "Marshal Marris", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1261, name = "Midnight Orb"},
+        },
     },
     [116] = {
         name = "Dry Times",
@@ -1337,6 +1499,12 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 21.39, y = 43.96, kind = "npc", id = 346, name = "Barkeep Daniels", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1262, name = "Keg of Thunderbrew"},
+            {kind = "item", id = 1941, name = "Cask of Merlot"},
+            {kind = "item", id = 1942, name = "Bottle of Moonshine"},
+            {kind = "item", id = 1939, name = "Skin of Sweet Rum"},
+        },
     },
     [118] = {
         name = "The Price of Shoes",
@@ -1392,6 +1560,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 25.88, y = 47.27, kind = "npc", id = 415, name = "Verner Osgood", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1221, name = "Underbelly Whelp Scale"},
+        },
     },
     [123] = {
         name = "The Collector",
@@ -1421,6 +1592,10 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 25.88, y = 47.27, kind = "npc", id = 415, name = "Verner Osgood", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 426, name = "Redridge Brute"},
+            {kind = "target", id = 430, name = "Redridge Mystic"},
+        },
     },
     [125] = {
         name = "The Lost Tools",
@@ -1435,6 +1610,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 27.05, y = 48.64, kind = "npc", id = 341, name = "Foreman Oslow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1309, name = "Oslow's Toolbox"},
+        },
     },
     [126] = {
         name = "Howling in the Hills",
@@ -1449,6 +1627,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 25.88, y = 47.27, kind = "npc", id = 415, name = "Verner Osgood", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3614, name = "Yowler's Paw"},
+        },
     },
     [127] = {
         name = "Selling Fish",
@@ -1469,6 +1650,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 22.63, y = 47.38, kind = "npc", id = 381, name = "Dockmaster Baren", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1467, name = "Spotted Sunfish"},
+        },
     },
     [128] = {
         name = "Blackrock Bounty",
@@ -1483,6 +1667,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 26.45, y = 57.85, kind = "npc", id = 903, name = "Guard Howe", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 435, name = "Blackrock Champion"},
+        },
     },
     [129] = {
         name = "A Free Lunch",
@@ -1541,6 +1728,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 28.11, y = 31.46, kind = "npc", id = 289, name = "Abercrombie", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 884, name = "Ghoul Rib"},
+        },
     },
     [134] = {
         name = "Ogre Thieves",
@@ -1556,6 +1746,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 28.11, y = 31.46, kind = "npc", id = 289, name = "Abercrombie", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1349, name = "Abercrombie's Crate"},
+        },
     },
     [135] = {
         name = "The Defias Brotherhood",
@@ -1635,6 +1828,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 56.33, y = 47.52, kind = "npc", id = 234, name = "Gryan Stoutmantle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1381, name = "A Mysterious Message"},
+        },
     },
     [143] = {
         name = "Messenger to Westfall",
@@ -1729,6 +1925,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 22.63, y = 47.38, kind = "npc", id = 381, name = "Dockmaster Baren", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1468, name = "Murloc Fin"},
+        },
     },
     [151] = {
         name = "Poor Old Blanchy",
@@ -1743,6 +1942,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 59.92, y = 19.42, kind = "npc", id = 238, name = "Verna Furlbrow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1528, name = "Handful of Oats"},
+        },
     },
     [152] = {
         name = "The Coast Isn't Clear",
@@ -1759,6 +1961,12 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 30.01, y = 86.02, kind = "npc", id = 392, name = "Captain Grayson"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 126, name = "Murloc Coastrunner"},
+            {kind = "target", id = 171, name = "Murloc Warrior"},
+            {kind = "target", id = 127, name = "Murloc Tidehunter"},
+            {kind = "target", id = 517, name = "Murloc Oracle"},
+        },
     },
     [153] = {
         name = "Red Leather Bandanas",
@@ -1783,6 +1991,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 53.98, y = 52.98, kind = "npc", id = 878, name = "Scout Galiaan", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 829, name = "Red Leather Bandana"},
+        },
     },
     [154] = {
         name = "Return the Comb",
@@ -1822,6 +2033,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 73.78, y = 44.49, kind = "npc", id = 273, name = "Tavernkeep Smitts", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1598, name = "Rot Blossom"},
+        },
     },
     [157] = {
         name = "Deliver the Thread",
@@ -1926,6 +2140,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 24.9, y = 44.45, kind = "npc", id = 344, name = "Magistrate Solomon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3633, name = "Head of Gath'Ilzogg"},
+        },
     },
     [170] = {
         name = "A New Threat",
@@ -1941,6 +2158,10 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 29.71, y = 71.25, kind = "npc", id = 713, name = "Balir Frosthammer", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 707, name = "Rockjaw Trogg"},
+            {kind = "target", id = 724, name = "Burly Rockjaw Trogg"},
+        },
     },
     [173] = {
         name = "Worgen in the Woods",
@@ -1955,6 +2176,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 75.75, y = 47.57, kind = "npc", id = 663, name = "Calor", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 533, name = "Nightbane Shadow Weaver"},
+        },
     },
     [174] = {
         name = "Look To The Stars",
@@ -1971,6 +2195,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 79.8, y = 48.02, kind = "npc", id = 276, name = "Viktori Prism'Antras", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4371, name = "Bronze Tube"},
+        },
     },
     [175] = {
         name = "Look To The Stars",
@@ -1996,6 +2223,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 42.11, y = 65.93, kind = "npc", id = 240, name = "Marshal Dughan", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1931, name = "Huge Gnoll Claw"},
+        },
     },
     [177] = {
         name = "Look To The Stars",
@@ -2010,6 +2240,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 79.8, y = 48.02, kind = "npc", id = 276, name = "Viktori Prism'Antras", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1946, name = "Mary's Looking Glass"},
+        },
     },
     [178] = {
         name = "Theocritus' Retrieval",
@@ -2046,6 +2279,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 29.93, y = 71.2, kind = "npc", id = 658, name = "Sten Stoutarm", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 750, name = "Tough Wolf Meat"},
+        },
     },
     [180] = {
         name = "WANTED: Lieutenant Fangore",
@@ -2060,6 +2296,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 24.9, y = 44.45, kind = "npc", id = 344, name = "Magistrate Solomon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3632, name = "Fangore's Paw"},
+        },
     },
     [181] = {
         name = "Look To The Stars",
@@ -2074,6 +2313,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 79.8, y = 48.02, kind = "npc", id = 276, name = "Viktori Prism'Antras", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1968, name = "Ogre's Monocle"},
+        },
     },
     [182] = {
         name = "The Troll Cave",
@@ -2088,6 +2330,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 25.08, y = 75.71, kind = "npc", id = 786, name = "Grelin Whitebeard", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 706, name = "Frostmane Troll Whelp"},
+        },
     },
     [183] = {
         name = "The Boar Hunter",
@@ -2102,6 +2347,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 22.6, y = 71.43, kind = "npc", id = 714, name = "Talin Keeneye", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 708, name = "Small Crag Boar"},
+        },
     },
     [184] = {
         name = "Furlbrow's Deed",
@@ -2133,6 +2381,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.62, y = 10.62, kind = "npc", id = 717, name = "Ajeck Rouack"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 681, name = "Young Stranglethorn Tiger"},
+        },
     },
     [186] = {
         name = "Tiger Mastery",
@@ -2146,6 +2397,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.62, y = 10.62, kind = "npc", id = 717, name = "Ajeck Rouack"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 682, name = "Stranglethorn Tiger"},
+        },
     },
     [187] = {
         name = "Tiger Mastery",
@@ -2159,6 +2413,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.62, y = 10.62, kind = "npc", id = 717, name = "Ajeck Rouack"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1085, name = "Elder Stranglethorn Tiger"},
+        },
     },
     [188] = {
         name = "Tiger Mastery",
@@ -2172,6 +2429,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.62, y = 10.62, kind = "npc", id = 717, name = "Ajeck Rouack"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3879, name = "Paw of Sin'Dall"},
+        },
     },
     [189] = {
         name = "Bloodscalp Ears",
@@ -2195,6 +2455,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27, y = 77.13, kind = "npc", id = 737, name = "Kebok"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1519, name = "Bloodscalp Ear"},
+        },
     },
     [190] = {
         name = "Panther Mastery",
@@ -2208,6 +2471,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.55, y = 10.55, kind = "npc", id = 718, name = "Sir S. J. Erlgadin"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 683, name = "Young Panther"},
+        },
     },
     [191] = {
         name = "Panther Mastery",
@@ -2221,6 +2487,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.55, y = 10.55, kind = "npc", id = 718, name = "Sir S. J. Erlgadin"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 736, name = "Panther"},
+        },
     },
     [192] = {
         name = "Panther Mastery",
@@ -2234,6 +2503,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.55, y = 10.55, kind = "npc", id = 718, name = "Sir S. J. Erlgadin"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 684, name = "Shadowmaw Panther"},
+        },
     },
     [193] = {
         name = "Panther Mastery",
@@ -2247,6 +2519,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.55, y = 10.55, kind = "npc", id = 718, name = "Sir S. J. Erlgadin"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3876, name = "Fang of Bhag'thera"},
+        },
     },
     [194] = {
         name = "Raptor Mastery",
@@ -2260,6 +2535,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.81, kind = "npc", id = 715, name = "Hemet Nesingwary"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 685, name = "Stranglethorn Raptor"},
+        },
     },
     [195] = {
         name = "Raptor Mastery",
@@ -2273,6 +2551,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.81, kind = "npc", id = 715, name = "Hemet Nesingwary"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 686, name = "Lashtail Raptor"},
+        },
     },
     [196] = {
         name = "Raptor Mastery",
@@ -2286,6 +2567,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.81, kind = "npc", id = 715, name = "Hemet Nesingwary"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 687, name = "Jungle Stalker"},
+        },
     },
     [197] = {
         name = "Raptor Mastery",
@@ -2299,6 +2583,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.81, kind = "npc", id = 715, name = "Hemet Nesingwary"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3877, name = "Talon of Tethis"},
+        },
     },
     [198] = {
         name = "Supplies to Private Thorsen",
@@ -2358,6 +2645,11 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 38.04, y = 3.01, kind = "npc", id = 469, name = "Lieutenant Doren", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 939, name = "Kurzen Elite"},
+            {kind = "target", id = 978, name = "Kurzen Subchief"},
+            {kind = "item", id = 3615, name = "Kurzen's Head"},
+        },
     },
     [203] = {
         name = "The Second Rebellion",
@@ -2372,6 +2664,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 38.02, y = 3.33, kind = "npc", id = 733, name = "Sergeant Yohwa", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 937, name = "Kurzen Jungle Fighter"},
+        },
     },
     [204] = {
         name = "Bad Medicine",
@@ -2390,6 +2685,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 38.02, y = 3.33, kind = "npc", id = 733, name = "Sergeant Yohwa", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2633, name = "Jungle Remedy"},
+            {kind = "item", id = 2634, name = "Venom Fern Extract"},
+        },
     },
     [205] = {
         name = "Troll Witchery",
@@ -2405,6 +2704,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 37.83, y = 3.56, kind = "npc", id = 739, name = "Brother Nimetz", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2466, name = "Skullsplitter Fetish"},
+        },
     },
     [206] = {
         name = "Mai'Zoth",
@@ -2419,6 +2721,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 37.83, y = 3.56, kind = "npc", id = 739, name = "Brother Nimetz", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3616, name = "Mind's Eye"},
+        },
     },
     [207] = {
         name = "Kurzen's Mystery",
@@ -2437,6 +2742,12 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 37.83, y = 3.56, kind = "npc", id = 739, name = "Brother Nimetz", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2005, name = "The First Troll Legend"},
+            {kind = "item", id = 2006, name = "The Second Troll Legend"},
+            {kind = "item", id = 2007, name = "The Third Troll Legend"},
+            {kind = "item", id = 2008, name = "The Fourth Troll Legend"},
+        },
     },
     [208] = {
         name = "Big Game Hunter",
@@ -2450,6 +2761,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.81, kind = "npc", id = 715, name = "Hemet Nesingwary"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3880, name = "Head of Bangalash"},
+        },
     },
     [209] = {
         name = "Skullsplitter Tusks",
@@ -2475,6 +2789,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27, y = 77.13, kind = "npc", id = 737, name = "Kebok"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1524, name = "Skullsplitter Tusk"},
+        },
     },
     [210] = {
         name = "Krazek's Cookery",
@@ -2498,6 +2815,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27, y = 77.13, kind = "npc", id = 737, name = "Kebok"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4106, name = "Tumbled Crystal"},
+        },
     },
     [215] = {
         name = "Jungle Secrets",
@@ -2523,6 +2843,10 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 11.9, y = 34.54, kind = "npc", id = 12757, name = "Karang Amakkar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3925, name = "Thistlefur Avenger"},
+            {kind = "target", id = 3924, name = "Thistlefur Shaman"},
+        },
     },
     [217] = {
         name = "In Defense of the King's Lands",
@@ -2539,6 +2863,11 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 23.23, y = 73.68, kind = "npc", id = 1092, name = "Captain Rugelfuss", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1205, name = "Grawmug"},
+            {kind = "target", id = 1206, name = "Gnasher"},
+            {kind = "target", id = 1207, name = "Brawler"},
+        },
     },
     [218] = {
         name = "The Stolen Journal",
@@ -2553,6 +2882,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 25.08, y = 75.71, kind = "npc", id = 786, name = "Grelin Whitebeard", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2004, name = "Grelin Whitebeard's Journal"},
+        },
     },
     [219] = {
         name = "Missing In Action",
@@ -2581,6 +2913,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 75.75, y = 47.57, kind = "npc", id = 663, name = "Calor", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 205, name = "Nightbane Dark Runner"},
+        },
     },
     [222] = {
         name = "Worgen in the Woods",
@@ -2596,6 +2931,10 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 75.75, y = 47.57, kind = "npc", id = 663, name = "Calor", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 206, name = "Nightbane Vile Fang"},
+            {kind = "target", id = 920, name = "Nightbane Tainted One"},
+        },
     },
     [223] = {
         name = "Worgen in the Woods",
@@ -2621,6 +2960,10 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 22.07, y = 73.13, kind = "npc", id = 1089, name = "Mountaineer Cobbleflint", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1161, name = "Stonesplinter Trogg"},
+            {kind = "target", id = 1162, name = "Stonesplinter Scout"},
+        },
     },
     [225] = {
         name = "The Weathered Grave",
@@ -2646,6 +2989,10 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 7.71, y = 33.2, kind = "npc", id = 893, name = "Lars", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 213, name = "Starving Dire Wolf"},
+            {kind = "target", id = 565, name = "Rabid Dire Wolf"},
+        },
     },
     [227] = {
         name = "Morgan Ladimore",
@@ -2670,6 +3017,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 73.54, y = 46.82, kind = "npc", id = 264, name = "Commander Althea Ebonlocke", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3514, name = "Mor'Ladim's Skull"},
+        },
     },
     [229] = {
         name = "The Daughter Who Lived",
@@ -2745,6 +3095,10 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 23.54, y = 76.4, kind = "npc", id = 1091, name = "Mountaineer Gravelgaw", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1163, name = "Stonesplinter Skullthumper"},
+            {kind = "target", id = 1166, name = "Stonesplinter Seer"},
+        },
     },
     [239] = {
         name = "Westbrook Garrison Needs Help!",
@@ -2789,6 +3143,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 45.12, y = 67.03, kind = "npc", id = 888, name = "Watcher Dodds", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 539, name = "Pygmy Venom Web Spider"},
+        },
     },
     [246] = {
         name = "Assessing the Threat",
@@ -2804,6 +3161,10 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 25.64, y = 60, kind = "npc", id = 1070, name = "Deputy Feldon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 423, name = "Redridge Mongrel"},
+            {kind = "target", id = 424, name = "Redridge Poacher"},
+        },
     },
     [247] = {
         name = "The Hunt Completed",
@@ -2839,6 +3200,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 65.22, y = 69.71, kind = "npc", id = 313, name = "Theocritus", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3617, name = "Pendant of Shadow"},
+        },
     },
     [250] = {
         name = "A Dark Threat Looms",
@@ -2883,6 +3247,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 71.93, y = 46.42, kind = "npc", id = 263, name = "Lord Ello Ebonlocke", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2382, name = "The Embalmer's Heart"},
+        },
     },
     [255] = {
         name = "Mercenaries",
@@ -2899,6 +3266,11 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 34.6, y = 44.47, kind = "npc", id = 1139, name = "Magistrate Bluntnose", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1178, name = "Mo'grosh Ogre"},
+            {kind = "target", id = 1180, name = "Mo'grosh Brute"},
+            {kind = "target", id = 1179, name = "Mo'grosh Enforcer"},
+        },
     },
     [256] = {
         name = "WANTED: Chok'sul",
@@ -2913,6 +3285,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 34.6, y = 44.47, kind = "npc", id = 1139, name = "Magistrate Bluntnose", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2561, name = "Chok'sul's Head"},
+        },
     },
     [257] = {
         name = "A Hunter's Boast",
@@ -2927,6 +3302,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 83.47, y = 65.46, kind = "npc", id = 1187, name = "Daryl the Youngling", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1194, name = "Mountain Buzzard"},
+        },
     },
     [258] = {
         name = "A Hunter's Challenge",
@@ -2941,6 +3319,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 83.47, y = 65.46, kind = "npc", id = 1187, name = "Daryl the Youngling", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1192, name = "Elder Mountain Boar"},
+        },
     },
     [261] = {
         name = "Down the Scarlet Path",
@@ -2955,6 +3336,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 66.52, y = 7.91, kind = "npc", id = 1182, name = "Brother Anton", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11561, name = "Undead Ravager"},
+        },
     },
     [262] = {
         name = "The Shadowy Figure",
@@ -2980,6 +3364,10 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 23.47, y = 74.51, kind = "npc", id = 1090, name = "Mountaineer Wallbang", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1197, name = "Stonesplinter Shaman"},
+            {kind = "target", id = 1164, name = "Stonesplinter Bonesnapper"},
+        },
     },
     [265] = {
         name = "The Shadowy Search Continues",
@@ -3022,6 +3410,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 23.23, y = 73.68, kind = "npc", id = 1092, name = "Captain Rugelfuss", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2536, name = "Trogg Stone Tooth"},
+        },
     },
     [268] = {
         name = "Return to Sven",
@@ -3066,6 +3457,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 83.47, y = 65.46, kind = "npc", id = 1187, name = "Daryl the Youngling", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2713, name = "Ol' Sooty's Head"},
+        },
     },
     [272] = {
         name = "Trial of the Sea Lion",
@@ -3080,6 +3474,9 @@ ns.foreverQuestLocations = {
             {mapId = 1450, x = 56.21, y = 30.64, kind = "npc", id = 11802, name = "Dendrite Starblaze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15885, name = "Pendant of the Sea Lion"},
+        },
     },
     [273] = {
         name = "Resupplying the Excavation",
@@ -3120,6 +3517,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 56.37, y = 40.4, kind = "npc", id = 1244, name = "Rethiel the Greenwarden", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1040, name = "Fen Creeper"},
+        },
     },
     [276] = {
         name = "Tramping Paws",
@@ -3135,6 +3535,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 56.37, y = 40.4, kind = "npc", id = 1244, name = "Rethiel the Greenwarden", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1007, name = "Mosshide Gnoll"},
+            {kind = "target", id = 1008, name = "Mosshide Mongrel"},
+        },
     },
     [277] = {
         name = "Fire Taboo",
@@ -3155,6 +3559,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 56.37, y = 40.4, kind = "npc", id = 1244, name = "Rethiel the Greenwarden", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2611, name = "Crude Flint"},
+        },
     },
     [278] = {
         name = "A Dark Threat Looms",
@@ -3181,6 +3588,11 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 46.05, y = 13.61, kind = "npc", id = 1093, name = "Chief Engineer Hinderweir VII", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2606, name = "Lurker Venom"},
+            {kind = "item", id = 2607, name = "Mo'grosh Crystal"},
+            {kind = "item", id = 2939, name = "Crocolisk Tear"},
+        },
     },
     [279] = {
         name = "Claws from the Deep",
@@ -3196,6 +3608,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 8.32, y = 58.57, kind = "npc", id = 1242, name = "Karl Boran", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1024, name = "Bluegill Murloc"},
+            {kind = "item", id = 3618, name = "Gobbler's Head"},
+        },
     },
     [280] = {
         name = "A Dark Threat Looms",
@@ -3281,6 +3697,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 46.73, y = 53.83, kind = "npc", id = 1252, name = "Senir Whitebeard", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1123, name = "Frostmane Headhunter"},
+        },
     },
     [288] = {
         name = "The Third Fleet",
@@ -3317,6 +3736,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.9, y = 59.64, kind = "npc", id = 1239, name = "First Mate Fitzsimmons", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2594, name = "Flagon of Mead"},
+        },
     },
     [289] = {
         name = "The Cursed Crew",
@@ -3333,6 +3755,11 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.9, y = 59.64, kind = "npc", id = 1239, name = "First Mate Fitzsimmons", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1157, name = "Cursed Sailor"},
+            {kind = "target", id = 1158, name = "Cursed Marine"},
+            {kind = "item", id = 3619, name = "Snellig's Snuffbox"},
+        },
     },
     [290] = {
         name = "Lifting the Curse",
@@ -3347,6 +3774,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 14.38, y = 24.04, kind = "object", id = 112948, name = "Intrepid's Locked Strongbox"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2629, name = "Intrepid Strongbox Key"},
+        },
     },
     [292] = {
         name = "The Eye of Paleth",
@@ -3382,6 +3812,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 38.18, y = 50.89, kind = "npc", id = 1078, name = "Ormer Ironbraid", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1020, name = "Mottled Raptor"},
+            {kind = "target", id = 1021, name = "Mottled Screecher"},
+        },
     },
     [295] = {
         name = "Ormer's Revenge",
@@ -3397,6 +3831,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 38.18, y = 50.89, kind = "npc", id = 1078, name = "Ormer Ironbraid", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1022, name = "Mottled Scytheclaw"},
+            {kind = "target", id = 1023, name = "Mottled Razormaw"},
+        },
     },
     [296] = {
         name = "Ormer's Revenge",
@@ -3411,6 +3849,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 38.18, y = 50.89, kind = "npc", id = 1078, name = "Ormer Ironbraid", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3638, name = "Sarltooth's Talon"},
+        },
     },
     [297] = {
         name = "Gathering Idols",
@@ -3427,6 +3868,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 64.9, y = 66.66, kind = "npc", id = 1345, name = "Magmar Fellhew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2636, name = "Carved Stone Idol"},
+        },
     },
     [298] = {
         name = "Excavation Progress Report",
@@ -3454,6 +3898,12 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 38.81, y = 52.39, kind = "npc", id = 1077, name = "Prospector Whelgar", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2658, name = "Ados Fragment"},
+            {kind = "item", id = 2659, name = "Modr Fragment"},
+            {kind = "item", id = 2660, name = "Golm Fragment"},
+            {kind = "item", id = 2661, name = "Neru Fragment"},
+        },
     },
     [301] = {
         name = "Report to Ironforge",
@@ -3491,6 +3941,12 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 49.67, y = 18.23, kind = "npc", id = 1074, name = "Motley Garmason", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1051, name = "Dark Iron Dwarf"},
+            {kind = "target", id = 1053, name = "Dark Iron Tunneler"},
+            {kind = "target", id = 1052, name = "Dark Iron Saboteur"},
+            {kind = "target", id = 1054, name = "Dark Iron Demolitionist"},
+        },
     },
     [304] = {
         name = "A Grim Task",
@@ -3505,6 +3961,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 49.8, y = 18.26, kind = "npc", id = 1071, name = "Longbraid the Grim", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3639, name = "Ear of Balgaras"},
+        },
     },
     [305] = {
         name = "In Search of The Excavation Team",
@@ -3539,6 +3998,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 24.76, y = 18.4, kind = "npc", id = 1343, name = "Mountaineer Stormpike", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2640, name = "Miners' Gear"},
+        },
     },
     [309] = {
         name = "Protecting the Shipment",
@@ -3609,6 +4071,11 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 7.78, y = 34.07, kind = "npc", id = 311, name = "Sven Yorgen", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1110, name = "Skeletal Raider"},
+            {kind = "target", id = 787, name = "Skeletal Healer"},
+            {kind = "target", id = 785, name = "Skeletal Warder"},
+        },
     },
     [324] = {
         name = "The Lost Ingots",
@@ -3624,6 +4091,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.58, y = 60.59, kind = "npc", id = 1217, name = "Glorin Steelbrow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2702, name = "Lightforge Ingot"},
+        },
     },
     [325] = {
         name = "Armed and Ready",
@@ -3730,6 +4200,12 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.53, kind = "npc", id = 716, name = "Barnil Stonepot"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2756, name = "Green Hills of Stranglethorn - Chapter I"},
+            {kind = "item", id = 2757, name = "Green Hills of Stranglethorn - Chapter II"},
+            {kind = "item", id = 2758, name = "Green Hills of Stranglethorn - Chapter III"},
+            {kind = "item", id = 2759, name = "Green Hills of Stranglethorn - Chapter IV"},
+        },
     },
     [339] = {
         name = "Chapter I",
@@ -3844,6 +4320,12 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.53, kind = "npc", id = 716, name = "Barnil Stonepot"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2725, name = "Green Hills of Stranglethorn - Page 1"},
+            {kind = "item", id = 2728, name = "Green Hills of Stranglethorn - Page 4"},
+            {kind = "item", id = 2730, name = "Green Hills of Stranglethorn - Page 6"},
+            {kind = "item", id = 2732, name = "Green Hills of Stranglethorn - Page 8"},
+        },
     },
     [340] = {
         name = "Chapter II",
@@ -3957,6 +4439,12 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.53, kind = "npc", id = 716, name = "Barnil Stonepot"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2734, name = "Green Hills of Stranglethorn - Page 10"},
+            {kind = "item", id = 2735, name = "Green Hills of Stranglethorn - Page 11"},
+            {kind = "item", id = 2738, name = "Green Hills of Stranglethorn - Page 14"},
+            {kind = "item", id = 2740, name = "Green Hills of Stranglethorn - Page 16"},
+        },
     },
     [341] = {
         name = "Chapter III",
@@ -4071,6 +4559,12 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.53, kind = "npc", id = 716, name = "Barnil Stonepot"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2742, name = "Green Hills of Stranglethorn - Page 18"},
+            {kind = "item", id = 2744, name = "Green Hills of Stranglethorn - Page 20"},
+            {kind = "item", id = 2745, name = "Green Hills of Stranglethorn - Page 21"},
+            {kind = "item", id = 2748, name = "Green Hills of Stranglethorn - Page 24"},
+        },
     },
     [342] = {
         name = "Chapter IV",
@@ -4185,6 +4679,11 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 35.66, y = 10.53, kind = "npc", id = 716, name = "Barnil Stonepot"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2749, name = "Green Hills of Stranglethorn - Page 25"},
+            {kind = "item", id = 2750, name = "Green Hills of Stranglethorn - Page 26"},
+            {kind = "item", id = 2751, name = "Green Hills of Stranglethorn - Page 27"},
+        },
     },
     [347] = {
         name = "Rethban Ore",
@@ -4201,6 +4700,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 49.61, y = 40.41, kind = "npc", id = 951, name = "Brother Paxton", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2798, name = "Rethban Ore"},
+        },
     },
     [348] = {
         name = "Stranglethorn Fever",
@@ -4214,6 +4716,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.61, y = 76.74, kind = "npc", id = 2486, name = "Fin Fizracket"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2797, name = "Heart of Mokk"},
+        },
     },
     [351] = {
         name = "Find OOX-17/TN!",
@@ -4298,6 +4803,11 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.72, y = 52.29, kind = "npc", id = 1500, name = "Coleman Farthing", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2829, name = "Gregor's Remains"},
+            {kind = "item", id = 2828, name = "Nissa's Remains"},
+            {kind = "item", id = 2830, name = "Thurman's Remains"},
+        },
     },
     [355] = {
         name = "Speak with Sevren",
@@ -4323,6 +4833,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 65.49, y = 60.25, kind = "npc", id = 1495, name = "Deathguard Linnea", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1529, name = "Bleeding Horror"},
+            {kind = "target", id = 1532, name = "Wandering Spirit"},
+        },
     },
     [357] = {
         name = "The Lich's Identity",
@@ -4337,6 +4851,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 84.07, y = 17.45, kind = "npc", id = 1498, name = "Bethor Iceshard", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2833, name = "The Lich's Spellbook"},
+        },
     },
     [358] = {
         name = "Graverobbers",
@@ -4355,6 +4872,11 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.26, y = 50.84, kind = "npc", id = 1499, name = "Magistrate Sevren", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1941, name = "Rot Hide Graverobber"},
+            {kind = "target", id = 1675, name = "Rot Hide Mongrel"},
+            {kind = "item", id = 2834, name = "Embalming Ichor"},
+        },
     },
     [359] = {
         name = "Forsaken Duties",
@@ -4403,6 +4925,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.72, y = 52.29, kind = "npc", id = 1500, name = "Coleman Farthing", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2831, name = "Devlin's Remains"},
+        },
     },
     [363] = {
         name = "Rude Awakening",
@@ -4428,6 +4953,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 30.84, y = 66.2, kind = "npc", id = 1569, name = "Shadow Priest Sarvis", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1501, name = "Mindless Zombie"},
+            {kind = "target", id = 1502, name = "Wretched Zombie"},
+        },
     },
     [365] = {
         name = "Fields of Grief",
@@ -4442,6 +4971,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 59.45, y = 52.4, kind = "npc", id = 1518, name = "Apothecary Johaan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2846, name = "Tirisfal Pumpkin"},
+        },
     },
     [366] = {
         name = "Return the Book",
@@ -4468,6 +5000,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 59.45, y = 52.4, kind = "npc", id = 1518, name = "Apothecary Johaan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2858, name = "Darkhound Blood"},
+        },
     },
     [368] = {
         name = "A New Plague",
@@ -4486,6 +5021,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 59.45, y = 52.4, kind = "npc", id = 1518, name = "Apothecary Johaan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2859, name = "Vile Fin Scale"},
+        },
     },
     [369] = {
         name = "A New Plague",
@@ -4500,6 +5038,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 59.45, y = 52.4, kind = "npc", id = 1518, name = "Apothecary Johaan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2872, name = "Vicious Night Web Spider Venom"},
+        },
     },
     [370] = {
         name = "At War With The Scarlet Crusade",
@@ -4516,6 +5057,11 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 60.59, y = 51.76, kind = "npc", id = 1515, name = "Executor Zygand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1662, name = "Captain Perrine"},
+            {kind = "target", id = 1537, name = "Scarlet Zealot"},
+            {kind = "target", id = 1536, name = "Scarlet Missionary"},
+        },
     },
     [371] = {
         name = "At War With The Scarlet Crusade",
@@ -4531,6 +5077,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 60.59, y = 51.76, kind = "npc", id = 1515, name = "Executor Zygand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1664, name = "Captain Vachon"},
+            {kind = "target", id = 1538, name = "Scarlet Friar"},
+        },
     },
     [372] = {
         name = "At War With The Scarlet Crusade",
@@ -4546,6 +5096,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 60.59, y = 51.76, kind = "npc", id = 1515, name = "Executor Zygand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1665, name = "Captain Melrache"},
+            {kind = "target", id = 1660, name = "Scarlet Bodyguard"},
+        },
     },
     [374] = {
         name = "Proof of Demise",
@@ -4570,6 +5124,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 60.93, y = 52.01, kind = "npc", id = 1652, name = "Deathguard Burgess", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2875, name = "Scarlet Insignia Ring"},
+        },
     },
     [375] = {
         name = "The Chill of Death",
@@ -4708,6 +5265,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.89, y = 52.73, kind = "npc", id = 1521, name = "Gretchen Dedmar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2876, name = "Duskbat Pelt"},
+            {kind = "item", id = 2320, name = "Coarse Thread"},
+        },
     },
     [376] = {
         name = "The Damned",
@@ -4725,6 +5286,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 30.86, y = 66.05, kind = "npc", id = 1661, name = "Novice Elreth", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3265, name = "Scavenger Paw"},
+            {kind = "item", id = 3264, name = "Duskbat Wing"},
+        },
     },
     [379] = {
         name = "Slake That Thirst",
@@ -4745,6 +5310,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.46, y = 28.51, kind = "npc", id = 7407, name = "Chief Engineer Bilgewhizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8483, name = "Wastewander Water Pouch"},
+        },
     },
     [380] = {
         name = "Night Web's Hollow",
@@ -4760,6 +5328,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 32.15, y = 66.01, kind = "npc", id = 1570, name = "Executor Arren", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1504, name = "Young Night Web Spider"},
+            {kind = "target", id = 1505, name = "Night Web Spider"},
+        },
     },
     [381] = {
         name = "The Scarlet Crusade",
@@ -4776,6 +5348,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 32.15, y = 66.01, kind = "npc", id = 1570, name = "Executor Arren", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3266, name = "Scarlet Armband"},
+        },
     },
     [382] = {
         name = "The Red Messenger",
@@ -4790,6 +5365,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 32.15, y = 66.01, kind = "npc", id = 1570, name = "Executor Arren", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2885, name = "Scarlet Crusade Documents"},
+        },
     },
     [383] = {
         name = "Vital Intelligence",
@@ -4825,6 +5403,10 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 81.76, y = 61.66, kind = "npc", id = 1154, name = "Marek Ironheart", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2924, name = "Crocolisk Meat"},
+            {kind = "item", id = 2925, name = "Crocolisk Skin"},
+        },
     },
     [398] = {
         name = "WANTED: Maggot Eye",
@@ -4839,6 +5421,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 60.59, y = 51.76, kind = "npc", id = 1515, name = "Executor Zygand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3635, name = "Maggot Eye's Paw"},
+        },
     },
     [401] = {
         name = "Wait for Sirra to Finish",
@@ -4864,6 +5449,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 58.2, y = 51.45, kind = "npc", id = 1496, name = "Deathguard Dillinger", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2855, name = "Putrid Claw"},
+        },
     },
     [405] = {
         name = "The Prodigal Lich",
@@ -4900,6 +5488,11 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.26, y = 50.84, kind = "npc", id = 1499, name = "Magistrate Sevren", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1534, name = "Wailing Ancestor"},
+            {kind = "target", id = 1530, name = "Rotting Ancestor"},
+            {kind = "item", id = 3082, name = "Dargol's Skull"},
+        },
     },
     [409] = {
         name = "Proving Allegiance",
@@ -4914,6 +5507,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 68.2, y = 41.92, kind = "npc", id = 1497, name = "Gunther Arcanus", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1946, name = "Lillith Nefara"},
+        },
     },
     [411] = {
         name = "The Prodigal Lich Returns",
@@ -4939,6 +5535,10 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 45.85, y = 49.37, kind = "npc", id = 1269, name = "Razzle Sprysprocket", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3083, name = "Restabilization Cog"},
+            {kind = "item", id = 3084, name = "Gyromechanic Gear"},
+        },
     },
     [416] = {
         name = "Rat Catching",
@@ -4959,6 +5559,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 32.63, y = 49.74, kind = "npc", id = 1340, name = "Mountaineer Kadrell", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3110, name = "Tunnel Rat Ear"},
+        },
     },
     [418] = {
         name = "Thelsamar Blood Sausages",
@@ -5020,6 +5623,11 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 34.83, y = 49.28, kind = "npc", id = 1963, name = "Vidra Hearthstove", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3172, name = "Boar Intestines"},
+            {kind = "item", id = 3173, name = "Bear Meat"},
+            {kind = "item", id = 3174, name = "Spider Ichor"},
+        },
     },
     [419] = {
         name = "The Lost Pilot",
@@ -5054,6 +5662,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 44.2, y = 39.81, kind = "npc", id = 1938, name = "Dalar Dawnweaver", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1769, name = "Moonrage Whitescalp"},
+        },
     },
     [422] = {
         name = "Arugal's Folly",
@@ -5068,6 +5679,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 44.2, y = 39.81, kind = "npc", id = 1938, name = "Dalar Dawnweaver", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3155, name = "Remedy of Arugal"},
+        },
     },
     [423] = {
         name = "Arugal's Folly",
@@ -5083,6 +5697,10 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 44.2, y = 39.81, kind = "npc", id = 1938, name = "Dalar Dawnweaver", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3156, name = "Glutton Shackle"},
+            {kind = "item", id = 3157, name = "Darksoul Shackle"},
+        },
     },
     [424] = {
         name = "Arugal's Folly",
@@ -5097,6 +5715,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 44.2, y = 39.81, kind = "npc", id = 1938, name = "Dalar Dawnweaver", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3634, name = "Head of Grimson"},
+        },
     },
     [425] = {
         name = "Ivar the Foul",
@@ -5111,6 +5732,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 53.46, y = 13.43, kind = "npc", id = 1950, name = "Rane Yorick", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3621, name = "Ivar's Head"},
+        },
     },
     [426] = {
         name = "The Mills Overrun",
@@ -5128,6 +5752,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 58.2, y = 51.45, kind = "npc", id = 1496, name = "Deathguard Dillinger", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3162, name = "Notched Rib"},
+            {kind = "item", id = 3163, name = "Blackened Skull"},
+        },
     },
     [427] = {
         name = "At War With The Scarlet Crusade",
@@ -5142,6 +5770,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 60.59, y = 51.76, kind = "npc", id = 1515, name = "Executor Zygand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1535, name = "Scarlet Warrior"},
+        },
     },
     [428] = {
         name = "Lost Deathstalkers",
@@ -5170,6 +5801,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 42.8, y = 40.86, kind = "npc", id = 1937, name = "Apothecary Renferrel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3164, name = "Discolored Worg Heart"},
+        },
     },
     [430] = {
         name = "Return to Quinn",
@@ -5219,6 +5853,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 43.42, y = 40.86, kind = "npc", id = 1952, name = "High Executor Hadrec", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3622, name = "Essence of Nightlash"},
+        },
     },
     [438] = {
         name = "The Decrepit Ferry",
@@ -5273,6 +5910,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 43.42, y = 40.86, kind = "npc", id = 1952, name = "High Executor Hadrec", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3623, name = "Thule's Head"},
+        },
     },
     [443] = {
         name = "Rot Hide Ichor",
@@ -5291,6 +5931,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 42.8, y = 40.86, kind = "npc", id = 1937, name = "Apothecary Renferrel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3236, name = "Rot Hide Ichor"},
+        },
     },
     [444] = {
         name = "Rot Hide Origins",
@@ -5342,6 +5985,10 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 48.82, y = 69.28, kind = "npc", id = 2055, name = "Master Apothecary Faranell", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3253, name = "Grizzled Bear Heart"},
+            {kind = "item", id = 3254, name = "Skittering Blood"},
+        },
     },
     [448] = {
         name = "Report to Hadrec",
@@ -5376,6 +6023,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 42.8, y = 40.86, kind = "npc", id = 1937, name = "Apothecary Renferrel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3255, name = "Berard's Journal"},
+        },
     },
     [451] = {
         name = "A Recipe For Death",
@@ -5400,6 +6050,11 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 48.82, y = 69.28, kind = "npc", id = 2055, name = "Master Apothecary Faranell", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3256, name = "Lake Skulker Moss"},
+            {kind = "item", id = 3257, name = "Lake Creeper Moss"},
+            {kind = "item", id = 3258, name = "Hardened Tumor"},
+        },
     },
     [452] = {
         name = "Pyrewood Ambush",
@@ -5458,6 +6113,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.1, y = 56.9, kind = "npc", id = 2086, name = "Valstag Ironjaw", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2103, name = "Dragonmaw Scout"},
+            {kind = "target", id = 2102, name = "Dragonmaw Grunt"},
+        },
     },
     [456] = {
         name = "The Balance of Nature",
@@ -5473,6 +6132,10 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 58.69, y = 44.27, kind = "npc", id = 2079, name = "Conservator Ilthalaine", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2031, name = "Young Nightsaber"},
+            {kind = "target", id = 1984, name = "Young Thistle Boar"},
+        },
     },
     [457] = {
         name = "The Balance of Nature",
@@ -5488,6 +6151,10 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 58.69, y = 44.27, kind = "npc", id = 2079, name = "Conservator Ilthalaine", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2032, name = "Mangy Nightsaber"},
+            {kind = "target", id = 1985, name = "Thistle Boar"},
+        },
     },
     [458] = {
         name = "The Woodland Protector",
@@ -5513,6 +6180,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 57.83, y = 45.21, kind = "npc", id = 1992, name = "Tarindrella", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3297, name = "Fel Moss"},
+        },
     },
     [460] = {
         name = "Resting in Pieces",
@@ -5571,6 +6241,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 9.86, y = 57.49, kind = "npc", id = 2104, name = "Captain Stoutfist", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3337, name = "Dragonmaw War Banner"},
+        },
     },
     [465] = {
         name = "Nek'rosh's Gambit",
@@ -5618,6 +6291,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 11.8, y = 57.99, kind = "npc", id = 2111, name = "Sida", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3349, name = "Sida's Bag"},
+        },
     },
     [471] = {
         name = "Apprentice's Duties",
@@ -5632,6 +6308,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 8.55, y = 55.74, kind = "npc", id = 2094, name = "James Halloran", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3348, name = "Giant Crocolisk Skin"},
+        },
     },
     [472] = {
         name = "Fall of Dun Modr",
@@ -5667,6 +6346,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 9.86, y = 57.49, kind = "npc", id = 2104, name = "Captain Stoutfist", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3625, name = "Nek'rosh's Head"},
+        },
     },
     [475] = {
         name = "A Troubling Breeze",
@@ -5723,6 +6405,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 43.98, y = 40.93, kind = "npc", id = 2121, name = "Shadow Priest Allister", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3354, name = "Dalaran Pendant"},
+        },
     },
     [480] = {
         name = "The Weaver",
@@ -5737,6 +6422,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 43.98, y = 40.93, kind = "npc", id = 2121, name = "Shadow Priest Allister", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3515, name = "Ataeric's Staff"},
+        },
     },
     [481] = {
         name = "Dalar's Analysis",
@@ -5774,6 +6462,12 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 55.96, y = 57.27, kind = "npc", id = 2078, name = "Athridas Bearmantle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3405, name = "Raven Claw Talisman"},
+            {kind = "item", id = 3406, name = "Black Feather Quill"},
+            {kind = "item", id = 3407, name = "Sapphire of Sky"},
+            {kind = "item", id = 3408, name = "Rune of Nesting"},
+        },
     },
     [484] = {
         name = "Young Crocolisk Skins",
@@ -5788,6 +6482,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 8.55, y = 55.74, kind = "npc", id = 2094, name = "James Halloran", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3397, name = "Young Crocolisk Skin"},
+        },
     },
     [485] = {
         name = "Find OOX-09/HL!",
@@ -5864,6 +6561,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 52.91, y = 57.2, kind = "npc", id = 2151, name = "Moon Priestess Amara", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2152, name = "Gnarlpine Ambusher"},
+        },
     },
     [491] = {
         name = "Wand to Bethor",
@@ -5938,6 +6638,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3476, name = "Gray Bear Tongue"},
+            {kind = "item", id = 3477, name = "Creeper Ichor"},
+        },
     },
     [498] = {
         name = "The Rescue",
@@ -5953,6 +6657,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 63.24, y = 20.66, kind = "npc", id = 2229, name = "Krusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 1721, name = "Locked ball and chain"},
+            {kind = "object", id = 1722, name = "Locked ball and chain"},
+        },
     },
     [499] = {
         name = "Elixir of Suffering",
@@ -5983,6 +6691,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 49.47, y = 58.73, kind = "npc", id = 2263, name = "Marshal Redpath", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2843, name = "Dirty Knucklebones"},
+        },
     },
     [501] = {
         name = "Elixir of Pain",
@@ -6001,6 +6712,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3496, name = "Mountain Lion Blood"},
+        },
     },
     [502] = {
         name = "Elixir of Pain",
@@ -6027,6 +6741,10 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 59.96, y = 43.74, kind = "npc", id = 2316, name = "Gol'dir", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2316, name = "Gol'dir"},
+            {kind = "item", id = 3704, name = "Rusted Iron Key"},
+        },
     },
     [504] = {
         name = "Crushridge Warmongers",
@@ -6041,6 +6759,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 49.47, y = 58.73, kind = "npc", id = 2263, name = "Marshal Redpath", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2287, name = "Crushridge Warmonger"},
+        },
     },
     [505] = {
         name = "Syndicate Assassins",
@@ -6056,6 +6777,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 48.14, y = 59.11, kind = "npc", id = 2276, name = "Magistrate Henry Maleb", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2240, name = "Syndicate Footpad"},
+            {kind = "target", id = 2241, name = "Syndicate Thief"},
+        },
     },
     [506] = {
         name = "Blackmoore's Legacy",
@@ -6080,6 +6805,9 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 39.3, y = 14.31, kind = "npc", id = 2317, name = "Elysa"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2423, name = "Lord Aliden Perenolde"},
+        },
     },
     [508] = {
         name = "Taretha's Gift",
@@ -6104,6 +6832,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3502, name = "Mudsnout Blossoms"},
+        },
     },
     [510] = {
         name = "Foreboding Plans",
@@ -6144,6 +6875,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 48.14, y = 59.11, kind = "npc", id = 2276, name = "Magistrate Henry Maleb", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3505, name = "Alterac Signet Ring"},
+        },
     },
     [513] = {
         name = "Elixir of Agony",
@@ -6187,6 +6921,11 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3388, name = "Strong Troll's Blood Potion"},
+            {kind = "item", id = 3509, name = "Daggerspine Scale"},
+            {kind = "item", id = 3510, name = "Torn Fin Eye"},
+        },
     },
     [516] = {
         name = "Beren's Peril",
@@ -6202,6 +6941,10 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 43.98, y = 40.93, kind = "npc", id = 2121, name = "Shadow Priest Allister", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1974, name = "Ravenclaw Drudger"},
+            {kind = "target", id = 1973, name = "Ravenclaw Guardian"},
+        },
     },
     [517] = {
         name = "Elixir of Agony",
@@ -6216,6 +6959,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3517, name = "Keg of Shindigger Stout"},
+        },
     },
     [518] = {
         name = "The Crown of Will",
@@ -6230,6 +6976,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.63, y = 20.65, kind = "npc", id = 2278, name = "Melisara", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2254, name = "Crushridge Mauler"},
+        },
     },
     [519] = {
         name = "The Crown of Will",
@@ -6246,6 +6995,11 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.63, y = 20.65, kind = "npc", id = 2278, name = "Melisara", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3550, name = "Targ's Head"},
+            {kind = "item", id = 3551, name = "Muckrake's Head"},
+            {kind = "item", id = 3552, name = "Glommus's Head"},
+        },
     },
     [520] = {
         name = "The Crown of Will",
@@ -6260,6 +7014,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.63, y = 20.65, kind = "npc", id = 2278, name = "Melisara", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3553, name = "Mug'thol's Head"},
+            {kind = "item", id = 3554, name = "Crown of Will"},
+        },
     },
     [521] = {
         name = "The Crown of Will",
@@ -6295,6 +7053,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 48.14, y = 59.11, kind = "npc", id = 2276, name = "Magistrate Henry Maleb", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3626, name = "Head of Baron Vardus"},
+        },
     },
     [524] = {
         name = "Elixir of Agony",
@@ -6330,6 +7091,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.58, y = 60.59, kind = "npc", id = 1217, name = "Glorin Steelbrow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2702, name = "Lightforge Ingot"},
+        },
     },
     [527] = {
         name = "Battle of Hillsbrad",
@@ -6347,6 +7111,12 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2266, name = "Hillsbrad Farmer"},
+            {kind = "target", id = 2360, name = "Hillsbrad Farmhand"},
+            {kind = "target", id = 232, name = "Farmer Ray"},
+            {kind = "target", id = 2403, name = "Farmer Getz"},
+        },
     },
     [528] = {
         name = "Battle of Hillsbrad",
@@ -6361,6 +7131,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2267, name = "Hillsbrad Peasant"},
+        },
     },
     [529] = {
         name = "Battle of Hillsbrad",
@@ -6377,6 +7150,11 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2404, name = "Blacksmith Verringtan"},
+            {kind = "target", id = 2265, name = "Hillsbrad Apprentice Blacksmith"},
+            {kind = "item", id = 3564, name = "Shipment of Iron"},
+        },
     },
     [530] = {
         name = "A Husband's Revenge",
@@ -6391,6 +7169,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 62.01, y = 42.75, kind = "npc", id = 2050, name = "Raleigh Andrean", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3613, name = "Valdred's Hands"},
+        },
     },
     [531] = {
         name = "Vyrin's Revenge",
@@ -6418,6 +7199,12 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2335, name = "Magistrate Burnside"},
+            {kind = "target", id = 2387, name = "Hillsbrad Councilman"},
+            {kind = "object", id = 1761, name = "Hillsbrad Proclamation"},
+            {kind = "item", id = 3657, name = "Hillsbrad Town Registry"},
+        },
     },
     [533] = {
         name = "Infiltration",
@@ -6433,6 +7220,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 63.24, y = 20.66, kind = "npc", id = 2229, name = "Krusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3601, name = "Syndicate Missive"},
+        },
     },
     [535] = {
         name = "Valik",
@@ -6447,6 +7237,9 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 57.17, y = 69.51, kind = "npc", id = 2333, name = "Henchman Valik", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3703, name = "Southshore Stout"},
+        },
     },
     [536] = {
         name = "Down the Coast",
@@ -6462,6 +7255,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 51.46, y = 58.39, kind = "npc", id = 2228, name = "Lieutenant Farren Orinelle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2377, name = "Torn Fin Tidehunter"},
+            {kind = "target", id = 2376, name = "Torn Fin Oracle"},
+        },
     },
     [537] = {
         name = "Dark Council",
@@ -6477,6 +7274,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 48.14, y = 59.11, kind = "npc", id = 2276, name = "Magistrate Henry Maleb", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2318, name = "Argus Shadow Mage"},
+            {kind = "item", id = 3672, name = "Head of Nagaz"},
+        },
     },
     [538] = {
         name = "Southshore",
@@ -6502,6 +7303,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2305, name = "Foreman Bonds"},
+            {kind = "target", id = 2269, name = "Hillsbrad Miner"},
+        },
     },
     [540] = {
         name = "Preserving Knowledge",
@@ -6523,6 +7328,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 50.57, y = 57.09, kind = "npc", id = 2277, name = "Loremaster Dibbs", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3658, name = "Recovered Tome"},
+            {kind = "item", id = 3659, name = "Worn Leather Book"},
+        },
     },
     [541] = {
         name = "Battle of Hillsbrad",
@@ -6540,6 +7349,12 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2344, name = "Dun Garok Mountaineer"},
+            {kind = "target", id = 2345, name = "Dun Garok Rifleman"},
+            {kind = "target", id = 2346, name = "Dun Garok Priest"},
+            {kind = "target", id = 2304, name = "Captain Ironhill"},
+        },
     },
     [542] = {
         name = "Return to Milton",
@@ -6567,6 +7382,12 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.6, y = 20.85, kind = "npc", id = 2410, name = "Magus Wordeen Voidglare", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3691, name = "Bloodstone Wedge"},
+            {kind = "item", id = 3689, name = "Bloodstone Marble"},
+            {kind = "item", id = 3690, name = "Bloodstone Shard"},
+            {kind = "item", id = 3688, name = "Bloodstone Oval"},
+        },
     },
     [545] = {
         name = "Dalaran Patrols",
@@ -6582,6 +7403,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.6, y = 20.85, kind = "npc", id = 2410, name = "Magus Wordeen Voidglare", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2358, name = "Dalaran Summoner"},
+            {kind = "target", id = 2359, name = "Elemental Slave"},
+        },
     },
     [546] = {
         name = "Souvenirs of Death",
@@ -6622,6 +7447,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.11, y = 19.7, kind = "npc", id = 2418, name = "Deathguard Samsa", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3692, name = "Hillsbrad Human Skull"},
+        },
     },
     [547] = {
         name = "Humbert's Sword",
@@ -6639,6 +7467,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.76, y = 20.21, kind = "npc", id = 2419, name = "Deathguard Humbert", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3693, name = "Humbert's Sword"},
+        },
     },
     [549] = {
         name = "WANTED: Syndicate Personnel",
@@ -6655,6 +7486,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2260, name = "Syndicate Rogue"},
+            {kind = "target", id = 2261, name = "Syndicate Watchman"},
+        },
     },
     [550] = {
         name = "Battle of Hillsbrad",
@@ -6693,6 +7528,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 63.88, y = 19.66, kind = "npc", id = 2429, name = "Novice Thaivand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3708, name = "Helcular's Rod"},
+        },
     },
     [553] = {
         name = "Helcular's Revenge",
@@ -6709,6 +7547,11 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 52.75, y = 53.37, kind = "object", id = 1767, name = "Helcular's Grave"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 1768, name = "Flame of Azel"},
+            {kind = "object", id = 1769, name = "Flame of Veraz"},
+            {kind = "object", id = 1770, name = "Flame of Uzel"},
+        },
     },
     [554] = {
         name = "Stormpike's Deciphering",
@@ -6737,6 +7580,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.5, y = 20.93, kind = "npc", id = 2437, name = "Keeper Bel'varil", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3714, name = "Worn Stone Token"},
+        },
     },
     [557] = {
         name = "Bracers of Binding",
@@ -6751,6 +7597,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.5, y = 20.93, kind = "npc", id = 2437, name = "Keeper Bel'varil", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3715, name = "Bracers of Earth Binding"},
+        },
     },
     [559] = {
         name = "Farren's Proof",
@@ -6769,6 +7618,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 51.46, y = 58.39, kind = "npc", id = 2228, name = "Lieutenant Farren Orinelle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3716, name = "Murloc Head"},
+        },
     },
     [560] = {
         name = "Farren's Proof",
@@ -6804,6 +7656,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 51.46, y = 58.39, kind = "npc", id = 2228, name = "Lieutenant Farren Orinelle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2369, name = "Daggerspine Shorehunter"},
+            {kind = "target", id = 2371, name = "Daggerspine Siren"},
+        },
     },
     [563] = {
         name = "Reassignment",
@@ -6830,6 +7686,10 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 52.42, y = 55.96, kind = "npc", id = 2382, name = "Darren Malvew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2406, name = "Mountain Lion"},
+            {kind = "target", id = 2407, name = "Hulking Mountain Lion"},
+        },
     },
     [565] = {
         name = "Bartolo's Yeti Fur Cloak",
@@ -6994,6 +7854,12 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 49.43, y = 55.53, kind = "npc", id = 2438, name = "Bartolo Ginsetti", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2997, name = "Bolt of Woolen Cloth"},
+            {kind = "item", id = 2321, name = "Fine Thread"},
+            {kind = "item", id = 3719, name = "Hillman's Cloak"},
+            {kind = "item", id = 3720, name = "Yeti Fur"},
+        },
     },
     [566] = {
         name = "WANTED: Baron Vardus",
@@ -7008,6 +7874,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3626, name = "Head of Baron Vardus"},
+        },
     },
     [567] = {
         name = "Dangerous!",
@@ -7026,6 +7895,12 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 62.33, y = 20.45, kind = "npc", id = 2215, name = "High Executor Darthalia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2448, name = "Clerk Horrace Whitesteed"},
+            {kind = "target", id = 2449, name = "Citizen Wilkes"},
+            {kind = "target", id = 2450, name = "Miner Hackett"},
+            {kind = "target", id = 2451, name = "Farmer Kalaba"},
+        },
     },
     [568] = {
         name = "The Defense of Grom'gol",
@@ -7040,6 +7915,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.17, y = 28.9, kind = "npc", id = 2464, name = "Commander Aggro'gosh", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 686, name = "Lashtail Raptor"},
+        },
     },
     [569] = {
         name = "The Defense of Grom'gol",
@@ -7055,6 +7933,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.17, y = 28.9, kind = "npc", id = 2464, name = "Commander Aggro'gosh", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1142, name = "Mosh'Ogg Brute"},
+            {kind = "target", id = 1144, name = "Mosh'Ogg Witch Doctor"},
+        },
     },
     [570] = {
         name = "Mok'thardin's Enchantment",
@@ -7071,6 +7953,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.12, y = 29.24, kind = "npc", id = 2465, name = "Far Seer Mok'thardin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3838, name = "Shadowmaw Claw"},
+            {kind = "item", id = 3839, name = "Pristine Tigress Fang"},
+        },
     },
     [571] = {
         name = "Mok'thardin's Enchantment",
@@ -7085,6 +7971,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.12, y = 29.24, kind = "npc", id = 2465, name = "Far Seer Mok'thardin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3862, name = "Aged Gorilla Sinew"},
+        },
     },
     [572] = {
         name = "Mok'thardin's Enchantment",
@@ -7099,6 +7988,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.12, y = 29.24, kind = "npc", id = 2465, name = "Far Seer Mok'thardin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3863, name = "Jungle Stalker Feather"},
+        },
     },
     [573] = {
         name = "Mok'thardin's Enchantment",
@@ -7114,6 +8006,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.12, y = 29.24, kind = "npc", id = 2465, name = "Far Seer Mok'thardin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1907, name = "Naga Explorer"},
+            {kind = "item", id = 737, name = "Holy Spring Water"},
+        },
     },
     [574] = {
         name = "Special Forces",
@@ -7129,6 +8025,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 38.04, y = 3.01, kind = "npc", id = 469, name = "Lieutenant Doren", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 938, name = "Kurzen Commando"},
+            {kind = "target", id = 941, name = "Kurzen Headshrinker"},
+        },
     },
     [575] = {
         name = "Supply and Demand",
@@ -7142,6 +8042,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.29, y = 77.59, kind = "npc", id = 2495, name = "Drizzlik"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4053, name = "Large River Crocolisk Skin"},
+        },
     },
     [576] = {
         name = "Keep An Eye Out",
@@ -7167,6 +8070,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.59, y = 75.9, kind = "npc", id = 2493, name = "Dizzy One-Eye"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3897, name = "Dizzy's Eye"},
+        },
     },
     [577] = {
         name = "Some Assembly Required",
@@ -7180,6 +8086,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.29, y = 77.59, kind = "npc", id = 2495, name = "Drizzlik"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4104, name = "Snapjaw Crocolisk Skin"},
+        },
     },
     [578] = {
         name = "The Stone of the Tides",
@@ -7207,6 +8116,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.14, y = 77.45, kind = "npc", id = 2491, name = "Whiskey Slim"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3900, name = "Pupellyverbos Port"},
+        },
     },
     [581] = {
         name = "Hunt for Yenniku",
@@ -7231,6 +8143,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.16, y = 27.72, kind = "npc", id = 2497, name = "Nimboya", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3901, name = "Bloodscalp Tusk"},
+        },
     },
     [582] = {
         name = "Headhunting",
@@ -7245,6 +8160,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.16, y = 27.72, kind = "npc", id = 2497, name = "Nimboya", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1532, name = "Shrunken Head"},
+        },
     },
     [583] = {
         name = "Welcome to the Jungle",
@@ -7269,6 +8187,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.22, y = 27.6, kind = "object", id = 2076, name = "Bubbling Cauldron"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3904, name = "Gan'zulah's Head"},
+            {kind = "item", id = 3905, name = "Nezzliok's Head"},
+        },
     },
     [585] = {
         name = "Speaking with Nezzliok",
@@ -7285,6 +8207,11 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.22, y = 27.6, kind = "object", id = 2076, name = "Bubbling Cauldron"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3906, name = "Balia'mah Trophy"},
+            {kind = "item", id = 3907, name = "Ziata'jai Trophy"},
+            {kind = "item", id = 3908, name = "Zul'Mamwe Trophy"},
+        },
     },
     [586] = {
         name = "Speaking with Gan'zulah",
@@ -7302,6 +8229,12 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.22, y = 27.6, kind = "object", id = 2076, name = "Bubbling Cauldron"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 669, name = "Skullsplitter Hunter"},
+            {kind = "target", id = 781, name = "Skullsplitter Headhunter"},
+            {kind = "target", id = 783, name = "Skullsplitter Berserker"},
+            {kind = "item", id = 3909, name = "Broken Armor of Ana'thek"},
+        },
     },
     [587] = {
         name = "Up to Snuff",
@@ -7329,6 +8262,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.92, y = 77.35, kind = "npc", id = 2488, name = "Deeg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3910, name = "Snuff"},
+        },
     },
     [588] = {
         name = "The Fate of Yenniku",
@@ -7353,6 +8289,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.27, y = 27.71, kind = "npc", id = 2519, name = "Kin'weelay", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3911, name = "Pulsing Blue Shard"},
+        },
     },
     [590] = {
         name = "A Rogue's Deal",
@@ -7368,6 +8307,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 38.23, y = 56.79, kind = "npc", id = 6784, name = "Calvin Montague", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6784, name = "Calvin Montague"},
+        },
     },
     [591] = {
         name = "The Mind's Eye",
@@ -7382,6 +8324,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.27, y = 27.71, kind = "npc", id = 2519, name = "Kin'weelay", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3616, name = "Mind's Eye"},
+        },
     },
     [592] = {
         name = "Saving Yenniku",
@@ -7396,6 +8341,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.16, y = 27.72, kind = "npc", id = 2497, name = "Nimboya", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3913, name = "Filled Soul Gem"},
+        },
     },
     [594] = {
         name = "Message in a Bottle",
@@ -7439,6 +8387,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.27, y = 27.71, kind = "npc", id = 2519, name = "Kin'weelay", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3915, name = "Bloody Bone Necklace"},
+        },
     },
     [597] = {
         name = "The Bloodsail Buccaneers",
@@ -7472,6 +8423,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.27, y = 27.71, kind = "npc", id = 2519, name = "Kin'weelay", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3916, name = "Split Bone Necklace"},
+        },
     },
     [599] = {
         name = "The Bloodsail Buccaneers",
@@ -7497,6 +8451,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.12, y = 77.21, kind = "npc", id = 2498, name = "Crank Fizzlebub"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3917, name = "Singing Blue Crystal"},
+        },
     },
     [601] = {
         name = "Water Elementals",
@@ -7511,6 +8468,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.23, y = 76.87, kind = "npc", id = 2496, name = "Baron Revilgaz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3923, name = "Water Elemental Bracers"},
+        },
     },
     [602] = {
         name = "Magical Analysis",
@@ -7546,6 +8506,11 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.17, y = 77.01, kind = "npc", id = 2487, name = "Fleet Master Seahorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1563, name = "Bloodsail Swashbuckler"},
+            {kind = "item", id = 3920, name = "Bloodsail Charts"},
+            {kind = "item", id = 3921, name = "Bloodsail Orders"},
+        },
     },
     [605] = {
         name = "Singing Blue Shards",
@@ -7563,6 +8528,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.12, y = 77.21, kind = "npc", id = 2498, name = "Crank Fizzlebub"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3918, name = "Singing Crystal Shard"},
+        },
     },
     [606] = {
         name = "Scaring Shaky",
@@ -7576,6 +8544,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.9, y = 73.59, kind = "npc", id = 2502, name = "\"Shaky\" Phillipe"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3919, name = "Mistvale Giblets"},
+        },
     },
     [607] = {
         name = "Return to MacKinley",
@@ -7600,6 +8571,11 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.17, y = 77.01, kind = "npc", id = 2487, name = "Fleet Master Seahorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2550, name = "Captain Stillwater"},
+            {kind = "target", id = 2548, name = "Captain Keelhaul"},
+            {kind = "target", id = 2546, name = "Fleet Master Firallon"},
+        },
     },
     [609] = {
         name = "Voodoo Dues",
@@ -7615,6 +8591,11 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.78, y = 77.07, kind = "npc", id = 2501, name = "\"Sea Wolf\" MacKinley"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3924, name = "Maury's Clubbed Foot"},
+            {kind = "item", id = 3925, name = "Jon-Jon's Golden Spyglass"},
+            {kind = "item", id = 3926, name = "Chucky's Huge Ring"},
+        },
     },
     [610] = {
         name = "\"Pretty Boy\" Duncan",
@@ -7629,6 +8610,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.28, y = 77.53, kind = "npc", id = 2542, name = "Catelyn the Blade"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4027, name = "Catelyn's Blade"},
+        },
     },
     [611] = {
         name = "The Curse of the Tides",
@@ -7643,6 +8627,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.23, y = 76.87, kind = "npc", id = 2496, name = "Baron Revilgaz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4034, name = "Stone of the Tides"},
+        },
     },
     [613] = {
         name = "Cracking Maury's Foot",
@@ -7661,6 +8648,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.78, y = 77.07, kind = "npc", id = 2501, name = "\"Sea Wolf\" MacKinley"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3930, name = "Maury's Key"},
+        },
     },
     [616] = {
         name = "The Haunted Isle",
@@ -7685,6 +8675,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.76, y = 76.38, kind = "npc", id = 2494, name = "Privateer Bloads"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4029, name = "Akiris Reed"},
+        },
     },
     [621] = {
         name = "Zanzil's Secret",
@@ -7706,6 +8699,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.12, y = 77.21, kind = "npc", id = 2498, name = "Crank Fizzlebub"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4016, name = "Zanzil's Mixture"},
+        },
     },
     [622] = {
         name = "Return to Corporal Kaleb",
@@ -7768,6 +8764,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.95, y = 77.21, kind = "npc", id = 773, name = "Krazek"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4278, name = "Lesser Bloodstone Ore"},
+        },
     },
     [628] = {
         name = "Excelsior",
@@ -7781,6 +8780,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.29, y = 77.59, kind = "npc", id = 2495, name = "Drizzlik"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4105, name = "Elder Crocolisk Skin"},
+        },
     },
     [629] = {
         name = "The Vile Reef",
@@ -7796,6 +8798,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.27, y = 27.71, kind = "npc", id = 2519, name = "Kin'weelay", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4094, name = "Tablet Shard"},
+        },
     },
     [630] = {
         name = "Message in a Bottle",
@@ -7809,6 +8814,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 38.53, y = 80.58, kind = "npc", id = 2634, name = "Princess Poobah"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4103, name = "Shackle Key"},
+        },
     },
     [631] = {
         name = "The Thandol Span",
@@ -7843,6 +8851,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 49.9, y = 18.24, kind = "npc", id = 1075, name = "Rhag Garmason", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 2704, name = "Cache of Explosives"},
+        },
     },
     [634] = {
         name = "Plea To The Alliance",
@@ -8149,6 +9160,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 73.8, y = 33.96, kind = "npc", id = 2703, name = "Zengu", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4440, name = "Sigil of Strom"},
+        },
     },
     [640] = {
         name = "The Broken Sigil",
@@ -8165,6 +9179,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.72, y = 36.29, kind = "npc", id = 2706, name = "Tor'gan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4450, name = "Sigil Fragment"},
+        },
     },
     [641] = {
         name = "Sigil of Thoradin",
@@ -8190,6 +9207,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 84.31, y = 30.95, kind = "object", id = 2701, name = "Iridescent Shards"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4435, name = "Mote of Myzrael"},
+        },
     },
     [643] = {
         name = "Sigil of Arathor",
@@ -8204,6 +9224,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 73.8, y = 33.96, kind = "npc", id = 2703, name = "Zengu", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4458, name = "Sigil of Arathor"},
+        },
     },
     [644] = {
         name = "Sigil of Trollbane",
@@ -8218,6 +9241,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 73.8, y = 33.96, kind = "npc", id = 2703, name = "Zengu", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4466, name = "Sigil of Trollbane"},
+        },
     },
     [645] = {
         name = "Trol'kalar",
@@ -8296,6 +9322,11 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 36.23, y = 57.38, kind = "object", id = 2702, name = "Stone of Inner Binding"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4483, name = "Burning Key"},
+            {kind = "item", id = 4484, name = "Cresting Key"},
+            {kind = "item", id = 4485, name = "Thundering Key"},
+        },
     },
     [652] = {
         name = "Breaking the Keystone",
@@ -8309,6 +9340,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 36.08, y = 58.09, kind = "object", id = 2688, name = "Keystone"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4469, name = "Rod of Order"},
+        },
     },
     [653] = {
         name = "Myzrael's Allies",
@@ -8333,6 +9367,12 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.46, y = 28.51, kind = "npc", id = 7407, name = "Chief Engineer Bilgewhizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9440, name = "Acceptable Basilisk Sample"},
+            {kind = "item", id = 9441, name = "Acceptable Hyena Sample"},
+            {kind = "item", id = 9438, name = "Acceptable Scorpid Sample"},
+            {kind = "item", id = 8523, name = "Field Testing Kit"},
+        },
         startItem = 8524,
     },
     [655] = {
@@ -8357,6 +9397,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 62.5, y = 33.73, kind = "object", id = 138492, name = "Shards of Myzrael"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4473, name = "Eldritch Shackles"},
+        },
     },
     [657] = {
         name = "Hints of a New Plague?",
@@ -8382,6 +9425,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 60.18, y = 53.85, kind = "npc", id = 2712, name = "Quae", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4482, name = "Sealed Folder"},
+        },
     },
     [659] = {
         name = "Hints of a New Plague?",
@@ -8432,6 +9478,12 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 32.8, y = 81.48, kind = "npc", id = 2767, name = "First Mate Nilzlix"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4487, name = "Maiden's Folly Charts"},
+            {kind = "item", id = 4489, name = "Maiden's Folly Log"},
+            {kind = "item", id = 4488, name = "Spirit of Silverpine Charts"},
+            {kind = "item", id = 4490, name = "Spirit of Silverpine Log"},
+        },
     },
     [663] = {
         name = "Land Ho!",
@@ -8455,6 +9507,10 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 34, y = 80.8, kind = "npc", id = 2769, name = "Captain Steelgut"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2595, name = "Daggerspine Raider"},
+            {kind = "target", id = 2596, name = "Daggerspine Sorceress"},
+        },
     },
     [665] = {
         name = "Sunken Treasure",
@@ -8481,6 +9537,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 33.86, y = 80.45, kind = "npc", id = 2774, name = "Doctor Draxlegauge"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4492, name = "Elven Gem"},
+        },
     },
     [667] = {
         name = "Death From Below",
@@ -8537,6 +9596,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.72, y = 36.29, kind = "npc", id = 2706, name = "Tor'gan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4495, name = "Bloodstone Amulet"},
+        },
     },
     [672] = {
         name = "Raising Spirits",
@@ -8552,6 +9614,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.72, y = 36.29, kind = "npc", id = 2706, name = "Tor'gan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4512, name = "Highland Raptor Eye"},
+        },
     },
     [673] = {
         name = "Foul Magics",
@@ -8566,6 +9631,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.72, y = 36.29, kind = "npc", id = 2706, name = "Tor'gan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4510, name = "Befouled Bloodstone Orb"},
+        },
     },
     [674] = {
         name = "Raising Spirits",
@@ -8601,6 +9669,10 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.24, y = 33.92, kind = "npc", id = 2771, name = "Drum Fel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2562, name = "Boulderfist Ogre"},
+            {kind = "target", id = 2564, name = "Boulderfist Enforcer"},
+        },
     },
     [677] = {
         name = "Call to Arms",
@@ -8617,6 +9689,11 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.24, y = 33.92, kind = "npc", id = 2771, name = "Drum Fel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2554, name = "Witherbark Axe Thrower"},
+            {kind = "target", id = 2556, name = "Witherbark Headhunter"},
+            {kind = "target", id = 2555, name = "Witherbark Witch Doctor"},
+        },
     },
     [678] = {
         name = "Call to Arms",
@@ -8632,6 +9709,10 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.24, y = 33.92, kind = "npc", id = 2771, name = "Drum Fel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2566, name = "Boulderfist Brute"},
+            {kind = "target", id = 2567, name = "Boulderfist Magus"},
+        },
     },
     [679] = {
         name = "Call to Arms",
@@ -8647,6 +9728,10 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.24, y = 33.92, kind = "npc", id = 2771, name = "Drum Fel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2570, name = "Boulderfist Shaman"},
+            {kind = "target", id = 2571, name = "Boulderfist Lord"},
+        },
     },
     [680] = {
         name = "The Real Threat",
@@ -8661,6 +9746,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.04, y = 33.07, kind = "npc", id = 2772, name = "Korin Fel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4551, name = "Or'Kalar's Head"},
+        },
     },
     [681] = {
         name = "Northfold Manor",
@@ -8676,6 +9764,10 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 45.83, y = 47.56, kind = "npc", id = 2700, name = "Captain Nials", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2586, name = "Syndicate Highwayman"},
+            {kind = "target", id = 2589, name = "Syndicate Mercenary"},
+        },
     },
     [682] = {
         name = "Stromgarde Badges",
@@ -8692,6 +9784,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 45.83, y = 47.56, kind = "npc", id = 2700, name = "Captain Nials", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4506, name = "Stromgarde Badge"},
+        },
     },
     [684] = {
         name = "WANTED: Marez Cowl",
@@ -8706,6 +9801,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 45.83, y = 47.56, kind = "npc", id = 2700, name = "Captain Nials", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4515, name = "Marez's Head"},
+        },
     },
     [685] = {
         name = "WANTED: Otto and Falconcrest",
@@ -8721,6 +9819,10 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 45.83, y = 47.56, kind = "npc", id = 2700, name = "Captain Nials", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4516, name = "Otto's Head"},
+            {kind = "item", id = 4517, name = "Falconcrest's Head"},
+        },
     },
     [687] = {
         name = "Theldurin the Lost",
@@ -8772,6 +9874,11 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 46.2, y = 47.75, kind = "npc", id = 2788, name = "Apprentice Kryten", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4503, name = "Witherbark Tusk"},
+            {kind = "item", id = 4522, name = "Witherbark Medicine Pouch"},
+            {kind = "item", id = 5040, name = "Shadow Hunter Knife"},
+        },
     },
     [692] = {
         name = "The Lost Fragments",
@@ -8785,6 +9892,11 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 51.39, y = 76.87, kind = "npc", id = 2785, name = "Theldurin the Lost"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4518, name = "Torn Scroll Fragment"},
+            {kind = "item", id = 4519, name = "Crumpled Scroll Fragment"},
+            {kind = "item", id = 4520, name = "Singed Scroll Fragment"},
+        },
     },
     [693] = {
         name = "Wand over Fist",
@@ -8799,6 +9911,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 46.65, y = 47.01, kind = "npc", id = 2789, name = "Skuerto", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4525, name = "Trelane's Wand of Invocation"},
+        },
     },
     [694] = {
         name = "Trelane's Defenses",
@@ -8813,6 +9928,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 46.2, y = 47.75, kind = "npc", id = 2788, name = "Apprentice Kryten", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4527, name = "Azure Agate"},
+        },
     },
     [695] = {
         name = "An Apprentice's Enchantment",
@@ -8839,6 +9957,11 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 46.65, y = 47.01, kind = "npc", id = 2789, name = "Skuerto", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4530, name = "Trelane's Phylactery"},
+            {kind = "item", id = 4531, name = "Trelane's Orb"},
+            {kind = "item", id = 4532, name = "Trelane's Ember Agate"},
+        },
     },
     [697] = {
         name = "Malin's Request",
@@ -8864,6 +9987,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 81.32, y = 80.97, kind = "npc", id = 5592, name = "Tok'Kar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6169, name = "Unprepared Sawtooth Flank"},
+        },
     },
     [699] = {
         name = "Lack of Surplus",
@@ -8878,6 +10004,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 81.32, y = 80.97, kind = "npc", id = 5592, name = "Tok'Kar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6168, name = "Sawtooth Snapper Claw"},
+        },
     },
     [701] = {
         name = "Guile of the Raptor",
@@ -8892,6 +10021,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 74.72, y = 36.29, kind = "npc", id = 2706, name = "Tor'gan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4513, name = "Raptor Heart"},
+        },
     },
     [702] = {
         name = "Guile of the Raptor",
@@ -8935,6 +10067,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 42.39, y = 52.93, kind = "npc", id = 2817, name = "Rigglefuzz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3404, name = "Buzzard Wing"},
+        },
     },
     [704] = {
         name = "Agmond's Fate",
@@ -8949,6 +10084,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 65.93, y = 65.62, kind = "npc", id = 1344, name = "Prospector Ironband", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4610, name = "Carved Stone Urn"},
+        },
     },
     [705] = {
         name = "Pearl Diving",
@@ -8962,6 +10100,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 42.39, y = 52.93, kind = "npc", id = 2817, name = "Rigglefuzz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4611, name = "Blue Pearl"},
+        },
     },
     [706] = {
         name = "Fiery Blaze Enchantments",
@@ -8977,6 +10118,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 53.8, y = 43.3, kind = "npc", id = 2860, name = "Sigrun Ironhew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4612, name = "Black Drake's Heart"},
+        },
     },
     [709] = {
         name = "Solution to Doom",
@@ -8990,6 +10134,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 51.39, y = 76.87, kind = "npc", id = 2785, name = "Theldurin the Lost"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4631, name = "Tablet of Ryun'eh"},
+        },
     },
     [710] = {
         name = "Study of the Elements: Rock",
@@ -9003,6 +10150,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.95, y = 44.87, kind = "npc", id = 2921, name = "Lotwil Veriatus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4626, name = "Small Stone Shard"},
+        },
     },
     [711] = {
         name = "Study of the Elements: Rock",
@@ -9016,6 +10166,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.95, y = 44.87, kind = "npc", id = 2921, name = "Lotwil Veriatus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4627, name = "Large Stone Slab"},
+        },
     },
     [712] = {
         name = "Study of the Elements: Rock",
@@ -9029,6 +10182,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.95, y = 44.87, kind = "npc", id = 2921, name = "Lotwil Veriatus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4628, name = "Bracers of Rock Binding"},
+        },
     },
     [713] = {
         name = "Coolant Heads Prevail",
@@ -9043,6 +10199,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.95, y = 44.87, kind = "npc", id = 2921, name = "Lotwil Veriatus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3829, name = "Frost Oil"},
+        },
     },
     [714] = {
         name = "Gyro... What?",
@@ -9076,6 +10235,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.95, y = 44.87, kind = "npc", id = 2921, name = "Lotwil Veriatus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4389, name = "Gyrochronatom"},
+        },
     },
     [715] = {
         name = "Liquid Stone",
@@ -9682,6 +10844,10 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.82, y = 44.24, kind = "npc", id = 2920, name = "Lucien Tosselwrench"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 929, name = "Healing Potion"},
+            {kind = "item", id = 3823, name = "Lesser Invisibility Potion"},
+        },
     },
     [716] = {
         name = "Stone Is Better than Cloth",
@@ -9692,6 +10858,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.82, y = 44.24, kind = "npc", id = 2920, name = "Lucien Tosselwrench"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2868, name = "Patterned Bronze Bracers"},
+        },
         objectiveText = "Have a blacksmith craft Patterned Bronze Bracers, or buy them for Lucien Tosselwrench.",
         objectiveKind = "craft",
         objectiveSource = "Wowhead Classic",
@@ -9710,6 +10879,10 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 61.94, y = 54.26, kind = "npc", id = 2888, name = "Garek"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4615, name = "Blacklash's Bindings"},
+            {kind = "item", id = 4645, name = "Chains of Hematus"},
+        },
     },
     [718] = {
         name = "Mirages",
@@ -9724,6 +10897,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 53.8, y = 43.3, kind = "npc", id = 2860, name = "Sigrun Ironhew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4629, name = "Supply Crate"},
+        },
     },
     [719] = {
         name = "A Dwarf and His Tools",
@@ -9741,6 +10917,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 53.42, y = 43.39, kind = "npc", id = 2910, name = "Prospector Ryedol", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4616, name = "Ryedol's Lucky Pick"},
+        },
     },
     [720] = {
         name = "A Sign of Hope",
@@ -9775,6 +10954,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 37.9, y = 10.59, kind = "npc", id = 2909, name = "Hammertoe Grez", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4635, name = "Hammertoe's Amulet"},
+        },
     },
     [723] = {
         name = "Prospect of Faith",
@@ -9873,6 +11055,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 61.94, y = 54.26, kind = "npc", id = 2888, name = "Garek"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4640, name = "Sign of the Earth"},
+        },
     },
     [733] = {
         name = "Scrounging",
@@ -9895,6 +11080,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 53.8, y = 43.3, kind = "npc", id = 2860, name = "Sigrun Ironhew", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4630, name = "Scrap Metal"},
+        },
     },
     [734] = {
         name = "This Is Going to Be Hard",
@@ -9920,6 +11108,11 @@ ns.foreverQuestLocations = {
             {mapId = 1455, x = 50.83, y = 5.62, kind = "npc", id = 2786, name = "Gerrig Bonegrip", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4646, name = "Star of Xil'yeh"},
+            {kind = "item", id = 4641, name = "Hand of Dagun"},
+            {kind = "item", id = 4644, name = "The Legacy Heart"},
+        },
     },
     [736] = {
         name = "The Star, the Hand and the Heart",
@@ -9936,6 +11129,11 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 53.74, y = 54.46, kind = "npc", id = 2934, name = "Keeper Bel'dugur", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4646, name = "Star of Xil'yeh"},
+            {kind = "item", id = 4641, name = "Hand of Dagun"},
+            {kind = "item", id = 4644, name = "The Legacy Heart"},
+        },
     },
     [737] = {
         name = "Forbidden Knowledge",
@@ -9971,6 +11169,10 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 65.93, y = 65.62, kind = "npc", id = 1344, name = "Prospector Ironband", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2945, name = "Murdaloc"},
+            {kind = "target", id = 2893, name = "Stonevault Bonesnapper"},
+        },
     },
     [741] = {
         name = "The Absent Minded Prospector",
@@ -10006,6 +11208,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.54, y = 64.94, kind = "npc", id = 2985, name = "Ruul Eagletalon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4751, name = "Windfury Talon"},
+        },
     },
     [744] = {
         name = "Preparation for Ceremony",
@@ -10022,6 +11227,10 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 37.75, y = 59.57, kind = "npc", id = 2987, name = "Eyahn Eagletalon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4752, name = "Azure Feather"},
+            {kind = "item", id = 4753, name = "Bronze Feather"},
+        },
     },
     [745] = {
         name = "Sharing the Land",
@@ -10038,6 +11247,11 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.67, y = 63.38, kind = "npc", id = 2993, name = "Baine Bloodhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2949, name = "Palemane Tanner"},
+            {kind = "target", id = 2950, name = "Palemane Skinner"},
+            {kind = "target", id = 2951, name = "Palemane Poacher"},
+        },
     },
     [746] = {
         name = "Dwarven Digging",
@@ -10052,6 +11266,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.67, y = 63.38, kind = "npc", id = 2993, name = "Baine Bloodhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4703, name = "Broken Tools"},
+        },
     },
     [747] = {
         name = "The Hunt Begins",
@@ -10066,6 +11283,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.47, y = 77.5, kind = "npc", id = 2980, name = "Grull Hawkwind", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4739, name = "Plainstrider Meat"},
+            {kind = "item", id = 4740, name = "Plainstrider Feather"},
+        },
     },
     [748] = {
         name = "Poison Water",
@@ -10093,6 +11314,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 47.52, y = 63.58, kind = "npc", id = 2948, name = "Mull Thunderhorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4758, name = "Prairie Wolf Paw"},
+            {kind = "item", id = 4759, name = "Plainstrider Talon"},
+        },
     },
     [749] = {
         name = "The Ravaged Caravan",
@@ -10117,6 +11342,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.47, y = 77.5, kind = "npc", id = 2980, name = "Grull Hawkwind", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4742, name = "Mountain Cougar Pelt"},
+        },
     },
     [751] = {
         name = "The Ravaged Caravan",
@@ -10151,6 +11379,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 43.89, y = 76.66, kind = "npc", id = 2981, name = "Chief Hawkwind", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4755, name = "Water Pitcher"},
+        },
     },
     [754] = {
         name = "Winterhoof Cleansing",
@@ -10192,6 +11423,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 47.52, y = 63.58, kind = "npc", id = 2948, name = "Mull Thunderhorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4801, name = "Stalker Claws"},
+            {kind = "item", id = 4802, name = "Cougar Claws"},
+        },
     },
     [757] = {
         name = "Rite of Strength",
@@ -10207,6 +11442,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 43.89, y = 76.66, kind = "npc", id = 2981, name = "Chief Hawkwind", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4770, name = "Bristleback Belt"},
+        },
     },
     [758] = {
         name = "Thunderhorn Cleansing",
@@ -10236,6 +11474,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 47.52, y = 63.58, kind = "npc", id = 2948, name = "Mull Thunderhorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4803, name = "Prairie Alpha Tooth"},
+        },
     },
     [760] = {
         name = "Wildmane Cleansing",
@@ -10266,6 +11507,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 47.67, y = 62.68, kind = "npc", id = 2947, name = "Harken Windtotem", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4769, name = "Trophy Swoop Quill"},
+        },
     },
     [762] = {
         name = "An Ambassador of Evil",
@@ -10280,6 +11524,9 @@ ns.foreverQuestLocations = {
             {mapId = 1455, x = 77.34, y = 9.71, kind = "npc", id = 2918, name = "Advisor Belgrum", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4621, name = "Ambassador Infernus' Bracer"},
+        },
     },
     [763] = {
         name = "Rites of the Earthmother",
@@ -10305,6 +11552,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 54.76, y = 64.27, kind = "npc", id = 2988, name = "Morin Cloudstalker", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2978, name = "Venture Co. Worker"},
+            {kind = "target", id = 2979, name = "Venture Co. Supervisor"},
+        },
     },
     [765] = {
         name = "Supervisor Fizsprocket",
@@ -10319,6 +11570,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 54.76, y = 64.27, kind = "npc", id = 2988, name = "Morin Cloudstalker", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4819, name = "Fizsprocket's Clipboard"},
+        },
     },
     [766] = {
         name = "Mazzranache",
@@ -10347,6 +11601,12 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.23, y = 60.8, kind = "npc", id = 3055, name = "Maur Raincaller", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4804, name = "Prairie Wolf Heart"},
+            {kind = "item", id = 4805, name = "Flatland Cougar Femur"},
+            {kind = "item", id = 4806, name = "Plainstrider Scale"},
+            {kind = "item", id = 4807, name = "Swoop Gizzard"},
+        },
     },
     [767] = {
         name = "Rite of Vision",
@@ -10383,6 +11643,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.88, y = 61.19, kind = "npc", id = 3054, name = "Zarlman Two-Moons", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4808, name = "Well Stone"},
+            {kind = "item", id = 4809, name = "Ambercorn"},
+        },
     },
     [772] = {
         name = "Rite of Vision",
@@ -10427,6 +11691,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 60.3, y = 51.68, kind = "npc", id = 3057, name = "Cairne Bloodhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4841, name = "Horn of Arra'chea"},
+        },
     },
     [777] = {
         name = "This Is Going to Be Hard",
@@ -10449,6 +11716,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 25.95, y = 44.87, kind = "npc", id = 2921, name = "Lotwil Veriatus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4847, name = "Lotwil's Shackles of Elemental Binding"},
+        },
     },
     [780] = {
         name = "The Battleboars",
@@ -10464,6 +11734,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.47, y = 77.5, kind = "npc", id = 2980, name = "Grull Hawkwind", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4848, name = "Battleboar Snout"},
+            {kind = "item", id = 4849, name = "Battleboar Flank"},
+        },
     },
     [781] = {
         name = "Attack on Camp Narache",
@@ -10489,6 +11763,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 2.91, y = 45.6, kind = "npc", id = 1068, name = "Gorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4640, name = "Sign of the Earth"},
+        },
     },
     [783] = {
         name = "A Threat Within",
@@ -10515,6 +11792,11 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.95, y = 43.5, kind = "npc", id = 3139, name = "Gar'Thok", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3128, name = "Kul Tiras Sailor"},
+            {kind = "target", id = 3129, name = "Kul Tiras Marine"},
+            {kind = "target", id = 3192, name = "Lieutenant Benedict"},
+        },
     },
     [786] = {
         name = "Thwarting Kolkar Aggression",
@@ -10531,6 +11813,11 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 54.44, y = 74.35, kind = "npc", id = 3140, name = "Lar Prowltusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 3189, name = "Attack Plan: Valley of Trials"},
+            {kind = "object", id = 3190, name = "Attack Plan: Sen'jin Village"},
+            {kind = "object", id = 3192, name = "Attack Plan: Orgrimmar"},
+        },
     },
     [788] = {
         name = "Cutting Teeth",
@@ -10545,6 +11832,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 42.06, y = 68.33, kind = "npc", id = 3143, name = "Gornek", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3098, name = "Mottled Boar"},
+        },
     },
     [789] = {
         name = "Sting of the Scorpid",
@@ -10560,6 +11850,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 42.06, y = 68.33, kind = "npc", id = 3143, name = "Gornek", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4862, name = "Scorpid Worker Tail"},
+        },
     },
     [790] = {
         name = "Sarkoth",
@@ -10574,6 +11867,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 40.6, y = 62.58, kind = "npc", id = 3287, name = "Hana'zua", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4905, name = "Sarkoth's Mangled Claw"},
+        },
     },
     [791] = {
         name = "Carry Your Weight",
@@ -10594,6 +11890,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 49.88, y = 40.39, kind = "npc", id = 3147, name = "Furl Scornbrow", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4870, name = "Canvas Scraps"},
+        },
     },
     [793] = {
         name = "Broken Alliances",
@@ -10609,6 +11908,10 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 2.91, y = 45.6, kind = "npc", id = 1068, name = "Gorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4615, name = "Blacklash's Bindings"},
+            {kind = "item", id = 4645, name = "Chains of Hematus"},
+        },
     },
     [794] = {
         name = "Burning Blade Medallion",
@@ -10623,6 +11926,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 42.85, y = 69.15, kind = "npc", id = 3145, name = "Zureetha Fargaze", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4859, name = "Burning Blade Medallion"},
+        },
     },
     [804] = {
         name = "Sarkoth",
@@ -10657,6 +11963,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 52.24, y = 43.15, kind = "npc", id = 3142, name = "Orgnil Soulscar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4869, name = "Fizzle's Claw"},
+        },
     },
     [808] = {
         name = "Minshina's Skull",
@@ -10671,6 +11980,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 55.95, y = 74.72, kind = "npc", id = 3188, name = "Master Gadrin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4864, name = "Minshina's Skull"},
+        },
     },
     [809] = {
         name = "Ak'Zeloth",
@@ -10699,6 +12011,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 41.54, y = 18.6, kind = "npc", id = 3190, name = "Rhinag", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4904, name = "Venomtail Antidote"},
+        },
     },
     [815] = {
         name = "Break a Few Eggs",
@@ -10713,6 +12028,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.11, y = 42.45, kind = "npc", id = 3191, name = "Cook Torka", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4890, name = "Taillasher Egg"},
+        },
     },
     [816] = {
         name = "Lost But Not Forgotten",
@@ -10730,6 +12048,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 43.1, y = 30.24, kind = "npc", id = 3193, name = "Misha Tor'kren", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4891, name = "Kron's Amulet"},
+        },
     },
     [817] = {
         name = "Practical Prey",
@@ -10745,6 +12066,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 55.96, y = 73.93, kind = "npc", id = 3194, name = "Vel'rin Fang", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4892, name = "Durotar Tiger Fur"},
+        },
     },
     [818] = {
         name = "A Solvent Spirit",
@@ -10767,6 +12091,10 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 55.94, y = 74.39, kind = "npc", id = 3304, name = "Master Vornal", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4887, name = "Intact Makrura Eye"},
+            {kind = "item", id = 4888, name = "Crawler Mucus"},
+        },
     },
     [819] = {
         name = "Chen's Empty Keg",
@@ -10805,6 +12133,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.26, y = 38.39, kind = "npc", id = 3292, name = "Brewmaster Drohn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4893, name = "Savannah Lion Tusk"},
+            {kind = "item", id = 4894, name = "Plainstrider Kidney"},
+            {kind = "item", id = 4895, name = "Thunder Lizard Horn"},
+        },
     },
     [823] = {
         name = "Report to Orgnil",
@@ -10839,6 +12172,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.95, y = 43.5, kind = "npc", id = 3139, name = "Gar'Thok", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4863, name = "Gnomish Tools"},
+        },
     },
     [826] = {
         name = "Zalazane",
@@ -10855,6 +12191,11 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 55.95, y = 74.72, kind = "npc", id = 3188, name = "Master Gadrin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3207, name = "Hexed Troll"},
+            {kind = "target", id = 3206, name = "Voodoo Troll"},
+            {kind = "item", id = 4866, name = "Zalazane's Head"},
+        },
     },
     [827] = {
         name = "Skull Rock",
@@ -10873,6 +12214,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 56.41, y = 20.04, kind = "npc", id = 3208, name = "Margoz", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4871, name = "Searing Collar"},
+        },
     },
     [828] = {
         name = "Margoz",
@@ -10939,6 +12283,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 56.98, y = 34.55, kind = "npc", id = 3233, name = "Lorekeeper Raintotem", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3232, name = "Bristleback Interloper"},
+        },
     },
     [834] = {
         name = "Winds in the Desert",
@@ -10952,6 +12299,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 46.37, y = 22.94, kind = "npc", id = 3293, name = "Rezlak"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4918, name = "Sack of Supplies"},
+        },
     },
     [835] = {
         name = "Securing the Lines",
@@ -10966,6 +12316,10 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 46.37, y = 22.94, kind = "npc", id = 3293, name = "Rezlak"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3117, name = "Dustwind Savage"},
+            {kind = "target", id = 3118, name = "Dustwind Storm Witch"},
+        },
     },
     [836] = {
         name = "Rescue OOX-09/HL!",
@@ -10996,6 +12350,12 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.95, y = 43.5, kind = "npc", id = 3139, name = "Gar'Thok", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3111, name = "Razormane Quilboar"},
+            {kind = "target", id = 3112, name = "Razormane Scout"},
+            {kind = "target", id = 3113, name = "Razormane Dustrunner"},
+            {kind = "target", id = 3114, name = "Razormane Battleguard"},
+        },
     },
     [840] = {
         name = "Conscript of the Horde",
@@ -11032,6 +12392,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.89, y = 77, kind = "npc", id = 3341, name = "Gann Stonespire", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3374, name = "Bael'dun Excavator"},
+            {kind = "target", id = 3375, name = "Bael'dun Foreman"},
+            {kind = "item", id = 5006, name = "Khazgorm's Journal"},
+        },
     },
     [844] = {
         name = "Plainstrider Menace",
@@ -11048,6 +12413,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.23, y = 31.01, kind = "npc", id = 3338, name = "Sergra Darkthorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5087, name = "Plainstrider Beak"},
+        },
     },
     [845] = {
         name = "The Zhevra",
@@ -11064,6 +12432,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.23, y = 31.01, kind = "npc", id = 3338, name = "Sergra Darkthorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5086, name = "Zhevra Hooves"},
+        },
     },
     [846] = {
         name = "Revenge of Gann",
@@ -11081,6 +12452,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.89, y = 77, kind = "npc", id = 3341, name = "Gann Stonespire", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5017, name = "Nitroglycerin"},
+            {kind = "item", id = 5018, name = "Wood Pulp"},
+            {kind = "item", id = 5019, name = "Sodium Nitrate"},
+        },
     },
     [847] = {
         name = "Guile of the Raptor",
@@ -11105,6 +12481,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.44, y = 30.15, kind = "npc", id = 3390, name = "Apothecary Helbrim", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5012, name = "Fungal Spores"},
+        },
     },
     [849] = {
         name = "Revenge of Gann",
@@ -11119,6 +12498,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.89, y = 77, kind = "npc", id = 3341, name = "Gann Stonespire", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 3644, name = "Bael Modan Flying Machine"},
+        },
     },
     [850] = {
         name = "Kolkar Leaders",
@@ -11133,6 +12515,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.34, y = 28.41, kind = "npc", id = 3389, name = "Regthar Deathgate", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5022, name = "Barak's Head"},
+        },
     },
     [851] = {
         name = "Verog the Dervish",
@@ -11147,6 +12532,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.34, y = 28.41, kind = "npc", id = 3389, name = "Regthar Deathgate", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5023, name = "Verog's Head"},
+        },
     },
     [852] = {
         name = "Hezrul Bloodmark",
@@ -11161,6 +12549,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.34, y = 28.41, kind = "npc", id = 3389, name = "Regthar Deathgate", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5025, name = "Hezrul's Head"},
+        },
     },
     [853] = {
         name = "Apothecary Zamah",
@@ -11208,6 +12599,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.34, y = 28.41, kind = "npc", id = 3389, name = "Regthar Deathgate", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5030, name = "Centaur Bracers"},
+        },
     },
     [857] = {
         name = "The Tear of the Moons",
@@ -11222,6 +12616,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 48.97, y = 86.31, kind = "npc", id = 3421, name = "Feegly the Exiled", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5038, name = "Tear of the Moons"},
+        },
     },
     [858] = {
         name = "Ignition",
@@ -11235,6 +12632,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 56.52, y = 7.45, kind = "npc", id = 3439, name = "Wizzlecrank's Shredder"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5050, name = "Ignition Key"},
+        },
     },
     [860] = {
         name = "Sergra Darkthorn",
@@ -11260,6 +12660,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 61.54, y = 80.92, kind = "npc", id = 3441, name = "Melor Stonehoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5203, name = "Flatland Prowler Claw"},
+        },
     },
     [862] = {
         name = "Dig Rat Stew",
@@ -11274,6 +12677,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 55.31, y = 31.79, kind = "npc", id = 3443, name = "Grub", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5051, name = "Dig Rat"},
+        },
     },
     [863] = {
         name = "The Escape",
@@ -11312,6 +12718,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.37, y = 37.62, kind = "npc", id = 3446, name = "Mebok Mizzyrix"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5055, name = "Intact Raptor Horn"},
+        },
     },
     [866] = {
         name = "Root Samples",
@@ -11330,6 +12739,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.37, y = 37.62, kind = "npc", id = 3446, name = "Mebok Mizzyrix"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5056, name = "Root Sample"},
+        },
     },
     [867] = {
         name = "Harpy Raiders",
@@ -11349,6 +12761,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.62, y = 30.9, kind = "npc", id = 3449, name = "Darsok Swiftdagger", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5064, name = "Witchwing Talon"},
+        },
     },
     [868] = {
         name = "Egg Hunt",
@@ -11363,6 +12778,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.07, y = 29.63, kind = "npc", id = 3428, name = "Korran", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5058, name = "Silithid Egg"},
+        },
     },
     [869] = {
         name = "Raptor Thieves",
@@ -11381,6 +12799,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.93, y = 30.32, kind = "npc", id = 3464, name = "Gazrog", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5062, name = "Raptor Head"},
+        },
     },
     [870] = {
         name = "The Forgotten Pools",
@@ -11411,6 +12832,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.5, y = 30.87, kind = "npc", id = 3429, name = "Thork", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3267, name = "Razormane Water Seeker"},
+            {kind = "target", id = 3268, name = "Razormane Thornweaver"},
+            {kind = "target", id = 3265, name = "Razormane Hunter"},
+        },
     },
     [872] = {
         name = "The Disruption Ends",
@@ -11427,6 +12853,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.5, y = 30.87, kind = "npc", id = 3429, name = "Thork", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3269, name = "Razormane Geomancer"},
+            {kind = "target", id = 3266, name = "Razormane Defender"},
+            {kind = "item", id = 5063, name = "Kreenig Snarlsnout's Tusk"},
+        },
     },
     [873] = {
         name = "Isha Awak",
@@ -11441,6 +12872,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 65.84, y = 43.86, kind = "npc", id = 3388, name = "Mahren Skyseer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5104, name = "Heart of Isha Awak"},
+        },
     },
     [874] = {
         name = "Mahren Skyseer",
@@ -11465,6 +12899,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.62, y = 30.9, kind = "npc", id = 3449, name = "Darsok Swiftdagger", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5065, name = "Harpy Lieutenant Ring"},
+        },
     },
     [876] = {
         name = "Serena Bloodfeather",
@@ -11479,6 +12916,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.62, y = 30.9, kind = "npc", id = 3449, name = "Darsok Swiftdagger", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5067, name = "Serena's Head"},
+        },
     },
     [877] = {
         name = "The Stagnant Oasis",
@@ -11493,6 +12933,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.26, y = 31.93, kind = "npc", id = 3448, name = "Tonga Runetotem", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 3737, name = "Bubbling Fissure"},
+        },
     },
     [878] = {
         name = "Tribes at War",
@@ -11509,6 +12952,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 44.55, y = 59.26, kind = "npc", id = 3430, name = "Mangletooth", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3260, name = "Bristleback Water Seeker"},
+            {kind = "target", id = 3261, name = "Bristleback Thornweaver"},
+            {kind = "target", id = 3263, name = "Bristleback Geomancer"},
+        },
     },
     [879] = {
         name = "Betrayal from Within",
@@ -11525,6 +12973,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 44.55, y = 59.26, kind = "npc", id = 3430, name = "Mangletooth", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5074, name = "Kuz's Skull"},
+            {kind = "item", id = 5073, name = "Nak's Skull"},
+            {kind = "item", id = 5072, name = "Lok's Skull"},
+        },
     },
     [880] = {
         name = "Altered Beings",
@@ -11540,6 +12993,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.26, y = 31.93, kind = "npc", id = 3448, name = "Tonga Runetotem", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5098, name = "Altered Snapjaw Shell"},
+        },
     },
     [881] = {
         name = "Echeyakee",
@@ -11554,6 +13010,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.23, y = 31.01, kind = "npc", id = 3338, name = "Sergra Darkthorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5100, name = "Echeyakee's Hide"},
+        },
     },
     [882] = {
         name = "Ishamuhale",
@@ -11568,6 +13027,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 44.86, y = 59.14, kind = "npc", id = 3387, name = "Jorn Skyseer", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5101, name = "Ishamuhale's Fang"},
+        },
     },
     [883] = {
         name = "Lakota'mani",
@@ -11625,6 +13087,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.68, y = 36.23, kind = "npc", id = 3391, name = "Gazlowe"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3381, name = "Southsea Brigand"},
+            {kind = "target", id = 3382, name = "Southsea Cannoneer"},
+        },
     },
     [888] = {
         name = "Stolen Booty",
@@ -11639,6 +13105,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.68, y = 36.23, kind = "npc", id = 3391, name = "Gazlowe"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5076, name = "Shipment of Boots"},
+            {kind = "item", id = 5077, name = "Telescopic Lens"},
+        },
     },
     [890] = {
         name = "The Missing Shipment",
@@ -11670,6 +13140,12 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.29, y = 39.03, kind = "npc", id = 3339, name = "Captain Thalo'thas Brightsun"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3393, name = "Captain Fairmount"},
+            {kind = "target", id = 3455, name = "Cannoneer Whessan"},
+            {kind = "target", id = 3454, name = "Cannoneer Smythe"},
+            {kind = "item", id = 5078, name = "Theramore Medal"},
+        },
     },
     [892] = {
         name = "The Missing Shipment",
@@ -11696,6 +13172,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.1, y = 57.68, kind = "npc", id = 3433, name = "Tatternack Steelforge", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5093, name = "Razormane Backstabber"},
+            {kind = "item", id = 5092, name = "Charred Razormane Wand"},
+            {kind = "item", id = 5094, name = "Razormane War Shield"},
+        },
     },
     [894] = {
         name = "Samophlange",
@@ -11718,6 +13199,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.68, y = 36.23, kind = "npc", id = 3391, name = "Gazlowe"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5084, name = "Baron Longshore's Head"},
+        },
     },
     [896] = {
         name = "Miner's Fortune",
@@ -11733,6 +13217,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 63.35, y = 38.45, kind = "npc", id = 3453, name = "Wharfmaster Dizzywig"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5097, name = "Cats Eye Emerald"},
+        },
     },
     [897] = {
         name = "The Harvester",
@@ -11776,6 +13263,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.95, y = 31.58, kind = "npc", id = 3432, name = "Mankrik", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5085, name = "Bristleback Quilboar Tusk"},
+        },
     },
     [900] = {
         name = "Samophlange",
@@ -11791,6 +13281,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.4, y = 11.65, kind = "object", id = 4141, name = "Control Console"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 4072, name = "Main Control Valve"},
+            {kind = "object", id = 61936, name = "Fuel Control Valve"},
+            {kind = "object", id = 61935, name = "Regulator Valve"},
+        },
     },
     [901] = {
         name = "Samophlange",
@@ -11804,6 +13299,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.4, y = 11.65, kind = "object", id = 4141, name = "Control Console"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5089, name = "Console Key"},
+        },
     },
     [902] = {
         name = "Samophlange",
@@ -11827,6 +13325,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.23, y = 31.01, kind = "npc", id = 3338, name = "Sergra Darkthorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5096, name = "Prowler Claws"},
+        },
     },
     [905] = {
         name = "The Angry Scytheclaws",
@@ -11843,6 +13344,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.23, y = 31.01, kind = "npc", id = 3338, name = "Sergra Darkthorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 6907, name = "Blue Raptor Nest"},
+            {kind = "object", id = 6908, name = "Yellow Raptor Nest"},
+            {kind = "object", id = 6906, name = "Red Raptor Nest"},
+        },
     },
     [906] = {
         name = "Betrayal from Within",
@@ -11869,6 +13375,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 44.86, y = 59.14, kind = "npc", id = 3387, name = "Jorn Skyseer", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5143, name = "Thunder Lizard Blood"},
+        },
     },
     [913] = {
         name = "Cry of the Thunderhawk",
@@ -11885,6 +13394,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 44.86, y = 59.14, kind = "npc", id = 3387, name = "Jorn Skyseer", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5164, name = "Thunderhawk Wings"},
+        },
     },
     [916] = {
         name = "Webwood Venom",
@@ -11899,6 +13411,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 57.81, y = 41.65, kind = "npc", id = 2082, name = "Gilshalan Windwalker", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5166, name = "Webwood Venom Sac"},
+        },
     },
     [920] = {
         name = "Tenaron's Summons",
@@ -11923,6 +13438,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 59.06, y = 39.45, kind = "npc", id = 3514, name = "Tenaron Stormgrip", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5184, name = "Filled Crystal Phial"},
+        },
     },
     [924] = {
         name = "The Demon Seed",
@@ -11937,6 +13455,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.34, y = 20.07, kind = "npc", id = 3521, name = "Ak'Zeloth", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 3525, name = "The Altar of Fire"},
+        },
     },
     [928] = {
         name = "Crown of the Earth",
@@ -11962,6 +13483,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 56.14, y = 61.71, kind = "npc", id = 3515, name = "Corithras Moonrage", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5639, name = "Filled Jade Phial"},
+        },
     },
     [932] = {
         name = "Twisted Hatred",
@@ -11976,6 +13500,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 55.57, y = 56.95, kind = "npc", id = 3567, name = "Tallonkai Swiftroot", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5221, name = "Melenas' Head"},
+        },
     },
     [933] = {
         name = "Crown of the Earth",
@@ -11990,6 +13517,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 56.14, y = 61.71, kind = "npc", id = 3515, name = "Corithras Moonrage", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5645, name = "Filled Tourmaline Phial"},
+        },
     },
     [935] = {
         name = "Crown of the Earth",
@@ -12020,6 +13550,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.35, y = 81.51, kind = "npc", id = 9116, name = "Eridan Bluewind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11674, name = "Jadefire Felbind"},
+        },
         startItem = 11668,
     },
     [943] = {
@@ -12039,6 +13572,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.84, y = 60.43, kind = "npc", id = 2911, name = "Archaeologist Flagongut", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5233, name = "Stone of Relu"},
+            {kind = "item", id = 5234, name = "Flagongut's Fossil"},
+        },
     },
     [944] = {
         name = "The Master's Glaive",
@@ -12082,6 +13619,10 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.32, y = 43.64, kind = "npc", id = 3583, name = "Barithras Moonshade", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5271, name = "Scaber Stalk"},
+            {kind = "item", id = 5270, name = "Death Cap"},
+        },
     },
     [948] = {
         name = "Onu",
@@ -12128,6 +13669,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 43.55, y = 76.29, kind = "npc", id = 3616, name = "Onu", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5273, name = "Mathystra Relic"},
+        },
     },
     [953] = {
         name = "The Fall of Ameth'Aran",
@@ -12143,6 +13687,10 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 40.3, y = 59.73, kind = "npc", id = 3639, name = "Sentinel Tysha Moonblade", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 17188, name = "The Lay of Ameth'Aran"},
+            {kind = "object", id = 17189, name = "The Fall of Ameth'Aran"},
+        },
     },
     [954] = {
         name = "Bashal'Aran",
@@ -12172,6 +13720,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 44.17, y = 36.29, kind = "npc", id = 3650, name = "Asterion", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5336, name = "Grell Earring"},
+        },
     },
     [956] = {
         name = "Bashal'Aran",
@@ -12186,6 +13737,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 44.17, y = 36.29, kind = "npc", id = 3650, name = "Asterion", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5338, name = "Ancient Moonstone Seal"},
+        },
     },
     [957] = {
         name = "Bashal'Aran",
@@ -12200,6 +13754,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 44.17, y = 36.29, kind = "npc", id = 3650, name = "Asterion", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 16393, name = "Ancient Flame"},
+        },
     },
     [958] = {
         name = "Tools of the Highborne",
@@ -12216,6 +13773,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.4, y = 40.13, kind = "npc", id = 3649, name = "Thundris Windweaver", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5360, name = "Highborne Relic"},
+        },
     },
     [959] = {
         name = "Trouble at the Docks",
@@ -12229,6 +13789,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 63.09, y = 37.61, kind = "npc", id = 3665, name = "Crane Operator Bigglefuzz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5334, name = "99-Year-Old Port"},
+        },
     },
     [960] = {
         name = "Onu is meditating",
@@ -12263,6 +13826,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 35.74, y = 43.71, kind = "npc", id = 3644, name = "Cerellean Whiteclaw", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5382, name = "Anaya's Pendant"},
+        },
     },
     [965] = {
         name = "The Tower of Althalaxx",
@@ -12287,6 +13853,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 54.97, y = 24.89, kind = "npc", id = 3661, name = "Balthule Shadowstrike", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5348, name = "Worn Parchment"},
+        },
     },
     [967] = {
         name = "The Tower of Althalaxx",
@@ -12325,6 +13894,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12334, name = "Frostmaul Shards"},
+        },
     },
     [970] = {
         name = "The Tower of Althalaxx",
@@ -12343,6 +13915,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 26.2, y = 38.7, kind = "npc", id = 3663, name = "Delgren the Purifier", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5366, name = "Glowing Soul Gem"},
+        },
     },
     [973] = {
         name = "The Tower of Althalaxx",
@@ -12357,6 +13932,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 26.2, y = 38.7, kind = "npc", id = 3663, name = "Delgren the Purifier", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5533, name = "Ilkrud Magthrull's Tome"},
+        },
     },
     [974] = {
         name = "Finding the Source",
@@ -12370,6 +13948,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 30.93, y = 50.44, kind = "npc", id = 10302, name = "Krakle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 148503, name = "Fire Plume Ridge Hot Spot"},
+        },
     },
     [975] = {
         name = "Cache of Mau'ari",
@@ -12407,6 +13988,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 60.88, y = 37.62, kind = "npc", id = 10305, name = "Umi Rumplesnicker"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12367, name = "Pristine Yeti Horn"},
+        },
     },
     [978] = {
         name = "Moontouched Wildkin",
@@ -12421,6 +14005,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 55.5, y = 92.05, kind = "npc", id = 7916, name = "Erelas Ambersky", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12383, name = "Moontouched Feather"},
+        },
     },
     [979] = {
         name = "Find Ranshalla",
@@ -12465,6 +14052,10 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 38.11, y = 41.17, kind = "npc", id = 6301, name = "Gorbold Steelhand", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12191, name = "Silver Dawning's Lockbox"},
+            {kind = "item", id = 12192, name = "Mist Veil's Lockbox"},
+        },
     },
     [983] = {
         name = "Buzzbox 827",
@@ -12484,6 +14075,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.64, y = 46.26, kind = "object", id = 17182, name = "Buzzbox 827"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5385, name = "Crawler Leg"},
+        },
     },
     [984] = {
         name = "How Big a Threat?",
@@ -12513,6 +14107,10 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 39.37, y = 43.48, kind = "npc", id = 3693, name = "Terenthis", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2167, name = "Blackwood Pathfinder"},
+            {kind = "target", id = 2324, name = "Blackwood Windtalker"},
+        },
     },
     [986] = {
         name = "A Lost Master",
@@ -12528,6 +14126,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 39.37, y = 43.48, kind = "npc", id = 3693, name = "Terenthis", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5386, name = "Fine Moonstalker Pelt"},
+        },
     },
     [990] = {
         name = "Trek to Ashenvale",
@@ -12561,6 +14162,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 50.21, y = 27.48, kind = "npc", id = 7724, name = "Senior Surveyor Fizzledowser"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8585, name = "Tapped Dowsing Widget"},
+        },
     },
     [993] = {
         name = "A Lost Master",
@@ -12613,6 +14217,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 36.98, y = 61.54, kind = "object", id = 174602, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [997] = {
         name = "Denalan's Earth",
@@ -12637,6 +14244,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 34.67, y = 48.88, kind = "object", id = 174603, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [1001] = {
         name = "Buzzbox 411",
@@ -12652,6 +14262,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 41.96, y = 28.62, kind = "object", id = 17183, name = "Buzzbox 411"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5412, name = "Thresher Eye"},
+        },
     },
     [1002] = {
         name = "Buzzbox 323",
@@ -12669,6 +14282,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 51.29, y = 24.57, kind = "object", id = 17184, name = "Buzzbox 323"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5413, name = "Moonstalker Fang"},
+        },
     },
     [1003] = {
         name = "Buzzbox 525",
@@ -12684,6 +14300,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 41.39, y = 80.56, kind = "object", id = 17185, name = "Buzzbox 525"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5414, name = "Grizzled Scalp"},
+        },
     },
     [1007] = {
         name = "The Ancient Statuette",
@@ -12698,6 +14317,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 14.79, y = 31.29, kind = "npc", id = 3846, name = "Talen", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5424, name = "Ancient Statuette"},
+        },
     },
     [1008] = {
         name = "The Zoram Strand",
@@ -12717,6 +14339,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 34.67, y = 48.84, kind = "npc", id = 3845, name = "Shindrell Swiftfire", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5490, name = "Wrathtail Head"},
+        },
     },
     [1009] = {
         name = "Ruuzel",
@@ -12731,6 +14356,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 14.79, y = 31.29, kind = "npc", id = 3846, name = "Talen", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5445, name = "Ring of Zoram"},
+        },
     },
     [1010] = {
         name = "Bathran's Hair",
@@ -12745,6 +14373,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 26.44, y = 38.59, kind = "npc", id = 3847, name = "Orendil Broadleaf", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5437, name = "Bathran's Hair"},
+        },
     },
     [1011] = {
         name = "Forsaken Diseases",
@@ -12759,6 +14390,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 85.24, y = 44.71, kind = "npc", id = 3848, name = "Kayneth Stillwind", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5440, name = "Bottle of Disease"},
+        },
     },
     [1012] = {
         name = "Insane Druids",
@@ -12775,6 +14409,11 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 85.24, y = 44.71, kind = "npc", id = 3848, name = "Kayneth Stillwind", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3940, name = "Taneel Darkwood"},
+            {kind = "target", id = 3941, name = "Uthil Mooncall"},
+            {kind = "target", id = 3942, name = "Mavoris Cloudsbreak"},
+        },
     },
     [1015] = {
         name = "The New Frontier",
@@ -12796,6 +14435,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 49.8, y = 67.21, kind = "npc", id = 3885, name = "Sentinel Velene Starstrike", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5455, name = "Divined Scroll"},
+        },
         objective = {
             {mapId = 1440, x = 47.6, y = 70.6, kind = "loot", id = 3917, name = "Befouled Water Elemental", source = "Wowhead Forever", entityType = "npc"},
             {mapId = 1440, x = 47.6, y = 70, kind = "loot", id = 12759, name = "Tideress", source = "Wowhead Forever", entityType = "npc"},
@@ -12814,6 +14456,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 49.8, y = 67.21, kind = "npc", id = 3885, name = "Sentinel Velene Starstrike", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5537, name = "Sarilus Foulborne's Head"},
+        },
     },
     [1019] = {
         name = "The New Frontier",
@@ -12858,6 +14503,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 22.23, y = 52.98, kind = "npc", id = 3880, name = "Sentinel Melyria Frostshadow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 19027, name = "Tome of Mel'Thandris"},
+        },
     },
     [1023] = {
         name = "Raene's Cleansing",
@@ -12875,6 +14523,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 36.62, y = 49.58, kind = "npc", id = 3691, name = "Raene Wolfrunner", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5463, name = "Glowing Gem"},
+        },
     },
     [1024] = {
         name = "Raene's Cleansing",
@@ -12902,6 +14553,12 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 36.62, y = 49.58, kind = "npc", id = 3691, name = "Raene Wolfrunner", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3746, name = "Foulweald Den Watcher"},
+            {kind = "target", id = 3749, name = "Foulweald Ursa"},
+            {kind = "target", id = 3750, name = "Foulweald Totemic"},
+            {kind = "target", id = 3743, name = "Foulweald Warrior"},
+        },
     },
     [1026] = {
         name = "Raene's Cleansing",
@@ -12916,6 +14573,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 53.54, y = 46.22, kind = "npc", id = 3916, name = "Shael'dryn", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5464, name = "Iron Shaft"},
+        },
     },
     [1027] = {
         name = "Raene's Cleansing",
@@ -12930,6 +14590,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 53.54, y = 46.22, kind = "npc", id = 3916, name = "Shael'dryn", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5519, name = "Iron Pommel"},
+        },
     },
     [1028] = {
         name = "Raene's Cleansing",
@@ -12974,6 +14637,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 21.73, y = 53.34, kind = "npc", id = 3901, name = "Illiyana", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5461, name = "Branch of Cenarius"},
+        },
     },
     [1032] = {
         name = "Satyr Slaying!",
@@ -13004,6 +14670,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 21.73, y = 53.34, kind = "npc", id = 3901, name = "Illiyana", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5481, name = "Satyr Horns"},
+        },
     },
     [1033] = {
         name = "Elune's Tear",
@@ -13018,6 +14687,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 37.37, y = 51.79, kind = "npc", id = 3894, name = "Pelturas Whitemoon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5493, name = "Elune's Tear"},
+        },
     },
     [1034] = {
         name = "The Ruins of Stardust",
@@ -13032,6 +14704,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 37.37, y = 51.79, kind = "npc", id = 3894, name = "Pelturas Whitemoon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5494, name = "Handful of Stardust"},
+        },
     },
     [1035] = {
         name = "Fallen Sky Lake",
@@ -13046,6 +14721,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 37.37, y = 51.79, kind = "npc", id = 3894, name = "Pelturas Whitemoon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5508, name = "Fallen Moonstone"},
+        },
     },
     [1036] = {
         name = "Avast Ye, Scallywag",
@@ -13113,6 +14791,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 75.32, y = 49.02, kind = "npc", id = 661, name = "Jonathan Carevin", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 19030, name = "Mound of Dirt"},
+        },
     },
     [1044] = {
         name = "Answered Questions",
@@ -13138,6 +14819,10 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 50.84, y = 75.08, kind = "npc", id = 3897, name = "Krolg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3696, name = "Ran Bloodtooth"},
+            {kind = "target", id = 3932, name = "Bloodtooth Guard"},
+        },
     },
     [1046] = {
         name = "Raene's Cleansing",
@@ -13153,6 +14838,10 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 36.62, y = 49.58, kind = "npc", id = 3691, name = "Raene Wolfrunner", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5388, name = "Ran Bloodtooth's Skull"},
+            {kind = "item", id = 5462, name = "Dartol's Rod of Transformation"},
+        },
     },
     [1047] = {
         name = "The New Frontier",
@@ -13187,6 +14876,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 36.62, y = 49.58, kind = "npc", id = 3691, name = "Raene Wolfrunner", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5544, name = "Dal Bloodclaw's Skull"},
+        },
     },
     [1055] = {
         name = "Raene's Cleansing",
@@ -13224,6 +14916,12 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 37.1, y = 8.1, kind = "npc", id = 3994, name = "Keeper Albagorm", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4022, name = "Bloodfury Harpy"},
+            {kind = "target", id = 4025, name = "Bloodfury Ambusher"},
+            {kind = "target", id = 4024, name = "Bloodfury Slayer"},
+            {kind = "target", id = 4023, name = "Bloodfury Roguefeather"},
+        },
     },
     [1058] = {
         name = "Jin'Zil's Forest Magic",
@@ -13244,6 +14942,12 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 74.54, y = 97.94, kind = "npc", id = 3995, name = "Witch Doctor Jin'Zil", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5582, name = "Stonetalon Sap"},
+            {kind = "item", id = 5584, name = "Twilight Whisker"},
+            {kind = "item", id = 5585, name = "Courser Eye"},
+            {kind = "item", id = 5583, name = "Fey Dragon Scale"},
+        },
     },
     [1059] = {
         name = "Reclaiming the Charred Vale",
@@ -13288,6 +14992,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 35.26, y = 27.88, kind = "npc", id = 4049, name = "Seereth Stonebreak", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3989, name = "Venture Co. Logger"},
+        },
     },
     [1063] = {
         name = "The Elder Crone",
@@ -13322,6 +15029,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5620, name = "Vial of Innocent Blood"},
+        },
     },
     [1067] = {
         name = "Return to Thunder Bluff",
@@ -13347,6 +15057,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 35.26, y = 27.88, kind = "npc", id = 4049, name = "Seereth Stonebreak", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4073, name = "XT:4"},
+            {kind = "target", id = 4074, name = "XT:9"},
+        },
     },
     [1069] = {
         name = "Deepmoss Spider Eggs",
@@ -13360,6 +15074,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.37, y = 37.62, kind = "npc", id = 3446, name = "Mebok Mizzyrix"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5570, name = "Deepmoss Egg"},
+        },
     },
     [1070] = {
         name = "On Guard in Stonetalon",
@@ -13385,6 +15102,10 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 59.52, y = 67.15, kind = "npc", id = 4077, name = "Gaxim Rustfizzle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3989, name = "Venture Co. Logger"},
+            {kind = "target", id = 3991, name = "Venture Co. Deforester"},
+        },
     },
     [1072] = {
         name = "An Old Colleague",
@@ -13419,6 +15140,9 @@ ns.foreverQuestLocations = {
             {mapId = 1453, x = 53.02, y = 86.64, kind = "npc", id = 4078, name = "Collin Mauren", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5669, name = "Dust Devil Debris"},
+        },
     },
     [1077] = {
         name = "Special Delivery for Gaxim",
@@ -13446,6 +15170,9 @@ ns.foreverQuestLocations = {
             {mapId = 1453, x = 53.02, y = 86.64, kind = "npc", id = 4078, name = "Collin Mauren", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5675, name = "Crystalized Scales"},
+        },
     },
     [1079] = {
         name = "Covert Ops - Alpha",
@@ -13460,6 +15187,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 59.52, y = 67.15, kind = "npc", id = 4077, name = "Gaxim Rustfizzle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5718, name = "Venture Co. Engineering Plans"},
+        },
     },
     [1080] = {
         name = "Covert Ops - Beta",
@@ -13474,6 +15204,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 59.52, y = 67.15, kind = "npc", id = 4077, name = "Gaxim Rustfizzle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5717, name = "Venture Co. Letters"},
+        },
     },
     [1081] = {
         name = "Reception from Tyrande",
@@ -13510,6 +15243,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 59.9, y = 66.85, kind = "npc", id = 4080, name = "Kaela Shadowspear", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5659, name = "Smoldering Embers"},
+        },
     },
     [1084] = {
         name = "Wounded Ancients",
@@ -13526,6 +15262,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 59.9, y = 66.85, kind = "npc", id = 4080, name = "Kaela Shadowspear", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5664, name = "Corroded Shrapnel"},
+        },
     },
     [1085] = {
         name = "On Guard in Stonetalon",
@@ -13552,6 +15291,11 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 45.94, y = 60.42, kind = "npc", id = 4198, name = "Braelyn Firehand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4057, name = "Son of Cenarius"},
+            {kind = "target", id = 4053, name = "Daughter of Cenarius"},
+            {kind = "target", id = 4051, name = "Cenarion Botanist"},
+        },
     },
     [1088] = {
         name = "Ordanus",
@@ -13566,6 +15310,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 45.94, y = 60.42, kind = "npc", id = 4198, name = "Braelyn Firehand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5686, name = "Ordanus' Head"},
+        },
     },
     [1089] = {
         name = "The Den",
@@ -13582,6 +15329,11 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 26.6, y = 10.87, kind = "object", id = 19599, name = "Talon Den Hoard"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5689, name = "Sleepers' Key"},
+            {kind = "item", id = 5690, name = "Claw Key"},
+            {kind = "item", id = 5691, name = "Barrow Key"},
+        },
     },
     [1090] = {
         name = "Gerenzo's Orders",
@@ -13595,6 +15347,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 71.87, y = 60, kind = "npc", id = 4276, name = "Piznik"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4276, name = "Piznik"},
+        },
     },
     [1091] = {
         name = "Kaela's Update",
@@ -13627,6 +15382,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 58.99, y = 62.6, kind = "npc", id = 4201, name = "Ziz Fizziks"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5734, name = "Super Reaper 6000 Blueprints"},
+        },
     },
     [1094] = {
         name = "Further Instructions",
@@ -13658,6 +15416,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 58.99, y = 62.6, kind = "npc", id = 4201, name = "Ziz Fizziks"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5736, name = "Gerenzo's Mechanical Arm"},
+        },
     },
     [1104] = {
         name = "Salt Flat Venom",
@@ -13673,6 +15434,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 78.06, y = 77.13, kind = "npc", id = 4454, name = "Fizzle Brassbolts"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5794, name = "Salty Scorpid Venom"},
+        },
     },
     [1105] = {
         name = "Hardened Shells",
@@ -13688,6 +15452,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 78.14, y = 77.12, kind = "npc", id = 4453, name = "Wizzle Brassbolts"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5795, name = "Hardened Tortoise Shell"},
+        },
     },
     [1106] = {
         name = "Martek the Exiled",
@@ -13714,6 +15481,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 78.14, y = 77.12, kind = "npc", id = 4453, name = "Wizzle Brassbolts"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5796, name = "Encrusted Tail Fin"},
+        },
     },
     [1108] = {
         name = "Indurium",
@@ -13730,6 +15500,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 42.22, y = 52.69, kind = "npc", id = 4618, name = "Martek the Exiled"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5797, name = "Indurium Flake"},
+        },
     },
     [1110] = {
         name = "Rocket Car Parts",
@@ -13748,6 +15521,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 77.79, y = 77.27, kind = "npc", id = 4452, name = "Kravel Koalbeard"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5798, name = "Rocket Car Parts"},
+        },
     },
     [1111] = {
         name = "Wharfmaster Dizzywig",
@@ -13804,6 +15580,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.95, y = 77.21, kind = "npc", id = 773, name = "Krazek"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5803, name = "Speck of Dream Dust"},
+        },
     },
     [1117] = {
         name = "Rumors for Kravel",
@@ -13881,6 +15660,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 81.87, y = 18.93, kind = "npc", id = 13220, name = "Layo Starstrike"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 12178, name = "Tortured Druid"},
+            {kind = "target", id = 12179, name = "Tortured Sentinel"},
+        },
     },
     [1126] = {
         name = "Hive in the Tower",
@@ -13894,6 +15677,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 81.87, y = 18.93, kind = "npc", id = 13220, name = "Layo Starstrike"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 17346, name = "Encrusted Silithid Object"},
+        },
     },
     [1132] = {
         name = "Fiora Longears",
@@ -13935,6 +15721,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 34.67, y = 48.84, kind = "npc", id = 3845, name = "Shindrell Swiftfire", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5808, name = "Pridewing Venom Sac"},
+        },
     },
     [1135] = {
         name = "Highperch Venom",
@@ -13952,6 +15741,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 66.46, y = 45.15, kind = "npc", id = 4456, name = "Fiora Longears", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5809, name = "Highperch Venom Sac"},
+        },
     },
     [1137] = {
         name = "News for Fizzle",
@@ -13976,6 +15768,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.1, y = 44.93, kind = "npc", id = 10216, name = "Gubber Blump", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12237, name = "Fine Crab Chunks"},
+        },
     },
     [1140] = {
         name = "The Tower of Althalaxx",
@@ -13991,6 +15786,10 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 26.2, y = 38.7, kind = "npc", id = 3663, name = "Delgren the Purifier", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 19901, name = "Circle of Imprisonment"},
+            {kind = "object", id = 20352, name = "Circle of Imprisonment"},
+        },
     },
     [1141] = {
         name = "The Family and the Fishing Pole",
@@ -14005,6 +15804,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.1, y = 44.93, kind = "npc", id = 10216, name = "Gubber Blump", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12238, name = "Darkshore Grouper"},
+        },
     },
     [1143] = {
         name = "The Tower of Althalaxx",
@@ -14020,6 +15822,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 54.97, y = 24.89, kind = "npc", id = 3661, name = "Balthule Shadowstrike", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5383, name = "Athrikus Narassin's Head"},
+        },
     },
     [1145] = {
         name = "The Swarm Grows",
@@ -14056,6 +15861,11 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 67.58, y = 63.94, kind = "npc", id = 4483, name = "Moktar Krin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4130, name = "Silithid Searcher"},
+            {kind = "target", id = 4133, name = "Silithid Hive Drone"},
+            {kind = "target", id = 4131, name = "Silithid Invader"},
+        },
     },
     [1148] = {
         name = "Parts of the Swarm",
@@ -14075,6 +15885,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.07, y = 29.63, kind = "npc", id = 3428, name = "Korran", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5855, name = "Silithid Heart"},
+            {kind = "item", id = 5854, name = "Silithid Talon"},
+            {kind = "item", id = 5853, name = "Intact Silithid Carapace"},
+        },
         startItem = 5877,
     },
     [1149] = {
@@ -14104,6 +15919,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 53.95, y = 41.49, kind = "npc", id = 2986, name = "Dorn Plainstalker", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5843, name = "Grenka's Claw"},
+        },
     },
     [1151] = {
         name = "Test of Strength",
@@ -14118,6 +15936,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 53.95, y = 41.49, kind = "npc", id = 2986, name = "Dorn Plainstalker", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5844, name = "Fragments of Rok'Alim"},
+        },
     },
     [1152] = {
         name = "Test of Lore",
@@ -14144,6 +15965,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.1, y = 57.68, kind = "npc", id = 3433, name = "Tatternack Steelforge", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5842, name = "Unrefined Ore Sample"},
+        },
     },
     [1154] = {
         name = "Test of Lore",
@@ -14158,6 +15982,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 78.8, y = 45.69, kind = "npc", id = 4489, name = "Braug Dimspirit", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5860, name = "Legacy of the Aspects"},
+        },
     },
     [1159] = {
         name = "Test of Lore",
@@ -14184,6 +16011,11 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 36.29, y = 31.41, kind = "npc", id = 4500, name = "Overlord Mok'Morokk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5834, name = "Mok'Morokk's Snuff"},
+            {kind = "item", id = 5835, name = "Mok'Morokk's Grog"},
+            {kind = "item", id = 5836, name = "Mok'Morokk's Strongbox"},
+        },
     },
     [1167] = {
         name = "The Tower of Althalaxx",
@@ -14210,6 +16042,11 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 37.37, y = 31.39, kind = "npc", id = 4502, name = "Tharg", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4329, name = "Firemane Scout"},
+            {kind = "target", id = 4331, name = "Firemane Ash Tail"},
+            {kind = "target", id = 4328, name = "Firemane Scalebane"},
+        },
     },
     [1169] = {
         name = "Identifying the Brood",
@@ -14225,6 +16062,10 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 37.15, y = 33.09, kind = "npc", id = 4501, name = "Draz'Zilb", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5840, name = "Searing Tongue"},
+            {kind = "item", id = 5841, name = "Searing Heart"},
+        },
     },
     [1170] = {
         name = "The Brood of Onyxia",
@@ -14259,6 +16100,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 37.15, y = 33.09, kind = "npc", id = 4501, name = "Draz'Zilb", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 20359, name = "Egg of Onyxia"},
+        },
     },
     [1173] = {
         name = "Challenge Overlord Mok'Morokk",
@@ -14288,6 +16132,11 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 81.63, y = 77.95, kind = "npc", id = 4629, name = "Trackmaster Zherin"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4147, name = "Saltstone Basilisk"},
+            {kind = "target", id = 4151, name = "Saltstone Crystalhide"},
+            {kind = "target", id = 4150, name = "Saltstone Gazer"},
+        },
     },
     [1176] = {
         name = "Load Lightening",
@@ -14302,6 +16151,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 80.18, y = 75.88, kind = "npc", id = 4630, name = "Pozzik"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5848, name = "Hollow Vulture Bone"},
+        },
     },
     [1177] = {
         name = "Hungry!",
@@ -14320,6 +16172,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 35.15, y = 38.26, kind = "npc", id = 4503, name = "Mudcrush Durtfeet"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5847, name = "Mirefin Head"},
+        },
     },
     [1178] = {
         name = "Goblin Sponsorship",
@@ -14370,6 +16225,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 27.23, y = 76.87, kind = "npc", id = 2496, name = "Baron Revilgaz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5852, name = "Fuel Regulator Blueprints"},
+        },
     },
     [1183] = {
         name = "Goblin Sponsorship",
@@ -14420,6 +16278,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 80.33, y = 76.09, kind = "npc", id = 4706, name = "Razzeric"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5862, name = "Seaforium Booster"},
+        },
     },
     [1188] = {
         name = "Safety First",
@@ -14466,6 +16327,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 80.18, y = 75.88, kind = "npc", id = 4630, name = "Pozzik"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5833, name = "Indurium Ore"},
+        },
         objectiveText = "Collect 4 Indurium Ore. Check the quest log for the current source and remaining quantity.",
         objectiveKind = "loot",
         objectiveSource = "WoWDB",
@@ -14493,6 +16357,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 35.21, y = 30.66, kind = "npc", id = 4791, name = "Nazeer Bloodpike", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4834, name = "Theramore Infiltrator"},
+        },
     },
     [1202] = {
         name = "The Theramore Docks",
@@ -14507,6 +16374,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 35.21, y = 30.66, kind = "npc", id = 4791, name = "Nazeer Bloodpike", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5882, name = "Captain's Documents"},
+        },
     },
     [1203] = {
         name = "Jarl Needs a Blade",
@@ -14517,6 +16387,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 55.44, y = 26.27, kind = "npc", id = 4792, name = "\"Swamp Eye\" Jarl"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3853, name = "Moonsteel Broadsword"},
+        },
         objectiveText = "Craft or buy a Moonsteel Broadsword for Jarl in Dustwallow Marsh.",
         objectiveKind = "craft",
         objectiveSource = "Wowhead Classic",
@@ -14538,6 +16411,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 66.34, y = 45.47, kind = "npc", id = 4794, name = "Morgan Stern", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5883, name = "Forked Mudrock Tongue"},
+        },
     },
     [1206] = {
         name = "Jarl Needs Eyes",
@@ -14555,6 +16431,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 55.44, y = 26.27, kind = "npc", id = 4792, name = "\"Swamp Eye\" Jarl"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5884, name = "Unpopped Darkmist Eye"},
+        },
     },
     [1218] = {
         name = "Soothing Spices",
@@ -14631,6 +16510,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 55.44, y = 26.27, kind = "npc", id = 4792, name = "\"Swamp Eye\" Jarl"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3713, name = "Soothing Spices"},
+        },
     },
     [1219] = {
         name = "The Orc Report",
@@ -14695,6 +16577,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.6, y = 60.77, kind = "npc", id = 4963, name = "Mikhail", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4962, name = "Tapoke \"Slim\" Jahn"},
+        },
     },
     [1250] = {
         name = "The Missing Diplomat",
@@ -14750,6 +16635,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 66.34, y = 45.47, kind = "npc", id = 4794, name = "Morgan Stern", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5938, name = "Pristine Crawler Leg"},
+        },
     },
     [1259] = {
         name = "Lieutenant Paval Reethe",
@@ -14789,6 +16677,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 35.21, y = 30.66, kind = "npc", id = 4791, name = "Nazeer Bloodpike", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5942, name = "Jeweled Pendant"},
+        },
     },
     [1262] = {
         name = "Report to Zor",
@@ -14889,6 +16780,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 36.42, y = 31.88, kind = "npc", id = 4926, name = "Krog", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4980, name = "Paval Reethe"},
+        },
     },
     [1276] = {
         name = "The Black Shield",
@@ -15017,6 +16911,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 36.53, y = 30.79, kind = "npc", id = 5087, name = "Do'gol", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5959, name = "Acidic Venom Sac"},
+        },
     },
     [1323] = {
         name = "The Black Shield",
@@ -15041,6 +16938,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 66.42, y = 49.26, kind = "npc", id = 4967, name = "Archmage Tervosh", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4966, name = "Private Hendel"},
+        },
     },
     [1338] = {
         name = "Stormpike's Order",
@@ -15085,6 +16985,9 @@ ns.foreverQuestLocations = {
             {mapId = 1455, x = 74.19, y = 9.39, kind = "npc", id = 6294, name = "Krom Stoutarm", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8027, name = "Krom Stoutarm's Treasure"},
+        },
     },
     [1361] = {
         name = "Regthar Deathgate",
@@ -15121,6 +17024,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 56.19, y = 59.57, kind = "npc", id = 5395, name = "Felgur Twocuts", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6066, name = "Khan Dez'hepah's Head"},
+        },
     },
     [1366] = {
         name = "Centaur Bounty",
@@ -15177,6 +17083,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 56.19, y = 59.57, kind = "npc", id = 5395, name = "Felgur Twocuts", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6067, name = "Centaur Ear"},
+        },
     },
     [1367] = {
         name = "Magram Alliance",
@@ -15242,6 +17151,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 74.97, y = 68.16, kind = "npc", id = 5398, name = "Warug"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6083, name = "Broken Tears"},
+        },
     },
     [1370] = {
         name = "Stealing Supplies",
@@ -15255,6 +17167,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 36.22, y = 79.25, kind = "npc", id = 5397, name = "Uthek the Wise"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6069, name = "Crudely Dried Meat"},
+        },
     },
     [1371] = {
         name = "Gizmo for Warug",
@@ -15265,6 +17180,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 74.97, y = 68.16, kind = "npc", id = 5398, name = "Warug"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4392, name = "Advanced Target Dummy"},
+        },
         objectiveText = "Obtain an Advanced Target Dummy and keep your Magram reputation high enough to speak with Warug.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -15281,6 +17199,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 36.22, y = 79.25, kind = "npc", id = 5397, name = "Uthek the Wise"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6190, name = "Draenethyst Shard"},
+        },
     },
     [1374] = {
         name = "Khan Jehn",
@@ -15294,6 +17215,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 36.22, y = 79.25, kind = "npc", id = 5397, name = "Uthek the Wise"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6072, name = "Khan Jehn's Head"},
+        },
     },
     [1375] = {
         name = "Khan Shaka",
@@ -15307,6 +17231,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 74.97, y = 68.16, kind = "npc", id = 5398, name = "Warug"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6073, name = "Khan Shaka's Head"},
+        },
     },
     [1380] = {
         name = "Khan Hratha",
@@ -15320,6 +17247,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 36.22, y = 79.25, kind = "npc", id = 5397, name = "Uthek the Wise"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6077, name = "Maraudine Key Fragment"},
+        },
     },
     [1381] = {
         name = "Khan Hratha",
@@ -15333,6 +17263,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 74.97, y = 68.16, kind = "npc", id = 5398, name = "Warug"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6077, name = "Maraudine Key Fragment"},
+        },
     },
     [1382] = {
         name = "Strange Alliance",
@@ -15381,6 +17314,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 36.22, y = 79.25, kind = "npc", id = 5397, name = "Uthek the Wise"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6079, name = "Crude Charm"},
+        },
     },
     [1385] = {
         name = "Brutal Politics",
@@ -15422,6 +17358,11 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 74.97, y = 68.16, kind = "npc", id = 5398, name = "Warug"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4632, name = "Kolkar Centaur"},
+            {kind = "target", id = 4633, name = "Kolkar Scout"},
+            {kind = "target", id = 4634, name = "Kolkar Mauler"},
+        },
     },
     [1387] = {
         name = "Centaur Bounty",
@@ -15478,6 +17419,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 66.74, y = 10.87, kind = "npc", id = 5752, name = "Corporal Melkins", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6067, name = "Centaur Ear"},
+        },
     },
     [1389] = {
         name = "Draenethyst Crystals",
@@ -15491,6 +17435,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 25.98, y = 31.4, kind = "npc", id = 1776, name = "Magtoor"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6071, name = "Draenethyst Crystal"},
+        },
     },
     [1392] = {
         name = "Noboru the Cudgel",
@@ -15550,6 +17497,11 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 26.74, y = 59.83, kind = "npc", id = 5476, name = "Watcher Biggs", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1084, name = "Young Sawtooth Crocolisk"},
+            {kind = "target", id = 858, name = "Sorrow Spinner"},
+            {kind = "target", id = 767, name = "Swamp Jaguar"},
+        },
     },
     [1398] = {
         name = "Driftwood",
@@ -15564,6 +17516,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 26.74, y = 59.83, kind = "npc", id = 5476, name = "Watcher Biggs", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6146, name = "Sundried Driftwood"},
+        },
     },
     [1418] = {
         name = "Neeka Bloodscar",
@@ -15591,6 +17546,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 6.49, y = 47.2, kind = "npc", id = 5394, name = "Neeka Bloodscar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6166, name = "Coyote Jawbone"},
+        },
     },
     [1420] = {
         name = "Report to Helgrum",
@@ -15615,6 +17573,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 26.74, y = 59.83, kind = "npc", id = 5476, name = "Watcher Biggs", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6170, name = "Wizards' Reagents"},
+        },
     },
     [1422] = {
         name = "Threat From the Sea",
@@ -15641,6 +17602,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 47.93, y = 54.78, kind = "npc", id = 1443, name = "Fel'zerul", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6175, name = "Atal'ai Artifact"},
+        },
     },
     [1425] = {
         name = "Deliver the Shipment",
@@ -15667,6 +17631,11 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 83.76, y = 80.41, kind = "npc", id = 5593, name = "Katar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 747, name = "Marsh Murloc"},
+            {kind = "target", id = 750, name = "Marsh Inkspewer"},
+            {kind = "target", id = 751, name = "Marsh Flesheater"},
+        },
     },
     [1427] = {
         name = "Threat From the Sea",
@@ -15693,6 +17662,11 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 83.76, y = 80.41, kind = "npc", id = 5593, name = "Katar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 750, name = "Marsh Inkspewer"},
+            {kind = "target", id = 751, name = "Marsh Flesheater"},
+            {kind = "target", id = 752, name = "Marsh Oracle"},
+        },
     },
     [1429] = {
         name = "The Atal'ai Exile",
@@ -15717,6 +17691,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 44.7, y = 57.21, kind = "npc", id = 5591, name = "Dar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6184, name = "Monstrous Crawler Leg"},
+        },
     },
     [1431] = {
         name = "Alliance Relations",
@@ -15764,6 +17741,12 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 52.57, y = 54.39, kind = "npc", id = 5641, name = "Takata Steelblade", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4670, name = "Hatefury Rogue"},
+            {kind = "target", id = 4672, name = "Hatefury Felsworn"},
+            {kind = "target", id = 4673, name = "Hatefury Betrayer"},
+            {kind = "target", id = 4675, name = "Hatefury Hellcaller"},
+        },
     },
     [1435] = {
         name = "The Burning of Spirits",
@@ -15785,6 +17768,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 52.25, y = 53.44, kind = "npc", id = 4498, name = "Maurin Bonesplitter", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6435, name = "Infused Burning Gem"},
+        },
     },
     [1436] = {
         name = "Alliance Relations",
@@ -15829,6 +17815,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 54.86, y = 26.13, kind = "npc", id = 5644, name = "Dalinda Malem"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6767, name = "Tyranis' Pendant"},
+        },
     },
     [1440] = {
         name = "Return to Vahlarriel",
@@ -15894,6 +17883,11 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 26.94, y = 48.59, kind = "npc", id = 5634, name = "Rhapsody Shindigger"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6257, name = "Roc Gizzard"},
+            {kind = "item", id = 6258, name = "Ironfur Liver"},
+            {kind = "item", id = 6259, name = "Groddoc Liver"},
+        },
     },
     [1453] = {
         name = "Reclaimers' Business in Desolace",
@@ -15939,6 +17933,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 66.2, y = 9.63, kind = "npc", id = 5638, name = "Kreldig Ungor", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6245, name = "Karnitol's Satchel"},
+        },
     },
     [1457] = {
         name = "The Karnitol Shipwreck",
@@ -15969,6 +17966,10 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 66.2, y = 9.63, kind = "npc", id = 5638, name = "Kreldig Ungor", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6246, name = "Hatefury Claw"},
+            {kind = "item", id = 6247, name = "Hatefury Horn"},
+        },
     },
     [1459] = {
         name = "Reagents for Reclaimers Inc.",
@@ -15986,6 +17987,10 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 66.2, y = 9.63, kind = "npc", id = 5638, name = "Kreldig Ungor", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6248, name = "Scorpashi Venom"},
+            {kind = "item", id = 6249, name = "Aged Kodo Hide"},
+        },
     },
     [1465] = {
         name = "Vahlarriel's Search",
@@ -16018,6 +18023,11 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 66.2, y = 9.63, kind = "npc", id = 5638, name = "Kreldig Ungor", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6250, name = "Felhound Brain"},
+            {kind = "item", id = 6251, name = "Nether Wing"},
+            {kind = "item", id = 6252, name = "Doomwarder Blood"},
+        },
     },
     [1467] = {
         name = "Reagents for Reclaimers Inc.",
@@ -16080,6 +18090,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 52.25, y = 53.44, kind = "npc", id = 4498, name = "Maurin Bonesplitter", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6441, name = "Shadowstalker Scalp"},
+        },
     },
     [1482] = {
         name = "The Corrupter",
@@ -16094,6 +18107,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 52.25, y = 53.44, kind = "npc", id = 4498, name = "Maurin Bonesplitter", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6442, name = "Oracle Crystal"},
+        },
     },
     [1483] = {
         name = "Ziz Fizziks",
@@ -16128,6 +18144,10 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 52.57, y = 54.39, kind = "npc", id = 5641, name = "Takata Steelblade", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5760, name = "Lord Azrethoc"},
+            {kind = "target", id = 5771, name = "Jugkar Grim'rod"},
+        },
     },
     [1492] = {
         name = "Wharfmaster Dizzywig",
@@ -16182,6 +18202,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 57.53, y = 20, kind = "object", id = 174709, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [1515] = {
         name = "Dogran's Captivity",
@@ -16214,6 +18237,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 66.58, y = 25.67, kind = "npc", id = 6015, name = "Torta"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6015, name = "Torta"},
+        },
     },
     [1579] = {
         name = "Gaffer Jacks",
@@ -16228,6 +18254,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.97, y = 44.13, kind = "npc", id = 3666, name = "Wizbang Cranktoggle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6717, name = "Gaffer Jack"},
+        },
     },
     [1580] = {
         name = "Electropellers",
@@ -16242,6 +18271,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.97, y = 44.13, kind = "npc", id = 3666, name = "Wizbang Cranktoggle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6718, name = "Electropeller"},
+        },
     },
     [1656] = {
         name = "A Task Unfinished",
@@ -16266,6 +18298,10 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.46, y = 28.51, kind = "npc", id = 7407, name = "Chief Engineer Bilgewhizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5618, name = "Wastewander Bandit"},
+            {kind = "target", id = 5616, name = "Wastewander Thief"},
+        },
     },
     [1691] = {
         name = "More Wastewander Justice",
@@ -16281,6 +18317,11 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.46, y = 28.51, kind = "npc", id = 7407, name = "Chief Engineer Bilgewhizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5615, name = "Wastewander Rogue"},
+            {kind = "target", id = 5623, name = "Wastewander Assassin"},
+            {kind = "target", id = 5617, name = "Wastewander Shadow Mage"},
+        },
     },
     [1707] = {
         name = "Water Pouch Bounty",
@@ -16300,6 +18341,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.49, y = 28.45, kind = "npc", id = 7408, name = "Spigot Operator Luglunket"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8483, name = "Wastewander Water Pouch"},
+        },
     },
     [1716] = {
         name = "Devourer of Souls",
@@ -16337,6 +18381,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 68.62, y = 49.16, kind = "npc", id = 6236, name = "Klannoc Macleod"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6238, name = "Big Will"},
+        },
     },
     [1738] = {
         name = "Heartswood",
@@ -16351,6 +18398,9 @@ ns.foreverQuestLocations = {
             {mapId = 1453, x = 39.22, y = 85.23, kind = "npc", id = 6122, name = "Gakin the Darkbinder", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6912, name = "Heartswood"},
+        },
     },
     [1758] = {
         name = "Tome of the Cabal",
@@ -16383,6 +18433,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.63, y = 35.5, kind = "npc", id = 6251, name = "Strahad Farsan"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6268, name = "Summoned Felhunter"},
+        },
     },
     [1796] = {
         name = "Components for the Enchanted Gold Bloodrobe",
@@ -16393,6 +18446,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5770, name = "Robes of Arcana"},
+        },
         objectiveText = "Craft or buy Robes of Arcana for Menara Voidrender.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -16420,6 +18476,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 46.06, y = 57.09, kind = "npc", id = 6546, name = "Tabetha"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7291, name = "Infernal Orb"},
+        },
     },
     [1802] = {
         name = "Tome of the Cabal",
@@ -16435,6 +18494,10 @@ ns.foreverQuestLocations = {
             {mapId = 1455, x = 74.19, y = 9.39, kind = "npc", id = 6294, name = "Krom Stoutarm", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6931, name = "Moldy Tome"},
+            {kind = "item", id = 6997, name = "Tattered Manuscript"},
+        },
     },
     [1804] = {
         name = "Tome of the Cabal",
@@ -16450,6 +18513,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.63, y = 35.5, kind = "npc", id = 6251, name = "Strahad Farsan"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6930, name = "Rod of Channeling"},
+        },
     },
     [1878] = {
         name = "Water Pouch Bounty",
@@ -16469,6 +18535,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.49, y = 28.45, kind = "npc", id = 7408, name = "Spigot Operator Luglunket"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8483, name = "Wastewander Water Pouch"},
+        },
     },
     [1918] = {
         name = "The Befouled Element",
@@ -17346,6 +19415,10 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 46.06, y = 57.09, kind = "npc", id = 6546, name = "Tabetha"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 1529, name = "Jade"},
+            {kind = "item", id = 7272, name = "Bolt Charged Bramble"},
+        },
     },
     [1949] = {
         name = "Hidden Secrets",
@@ -17368,6 +19441,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 78.29, y = 75.7, kind = "npc", id = 6548, name = "Magus Tirth"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6626, name = "\"Plucky\" Johnson"},
+        },
     },
     [1952] = {
         name = "Mage's Wand",
@@ -17403,6 +19479,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 46.06, y = 57.09, kind = "npc", id = 6546, name = "Tabetha"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7291, name = "Infernal Orb"},
+        },
     },
     [1955] = {
         name = "The Exorcism",
@@ -17417,6 +19496,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 46.06, y = 57.09, kind = "npc", id = 6546, name = "Tabetha"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6549, name = "Demon of the Orb"},
+        },
     },
     [1957] = {
         name = "Mana Surges",
@@ -17430,6 +19512,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 46.06, y = 57.09, kind = "npc", id = 6546, name = "Tabetha"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6550, name = "Mana Surge"},
+        },
     },
     [1958] = {
         name = "Celestial Power",
@@ -17456,6 +19541,12 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 63.56, y = 47.92, kind = "npc", id = 6577, name = "Bingles Blastenheimer", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7343, name = "Bingles' Wrench"},
+            {kind = "item", id = 7345, name = "Bingles' Screwdriver"},
+            {kind = "item", id = 7346, name = "Bingles' Hammer"},
+            {kind = "item", id = 7376, name = "Bingles' Blastencapper"},
+        },
     },
     [2078] = {
         name = "Gyromast's Revenge",
@@ -17470,6 +19561,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 56.66, y = 13.48, kind = "npc", id = 6667, name = "Gelkak Gyromast", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6669, name = "The Threshwackonator 4100"},
+        },
     },
     [2098] = {
         name = "Gyromast's Retrieval",
@@ -17495,6 +19589,11 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 56.66, y = 13.48, kind = "npc", id = 6667, name = "Gelkak Gyromast", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7498, name = "Top of Gelkak's Key"},
+            {kind = "item", id = 7499, name = "Middle of Gelkak's Key"},
+            {kind = "item", id = 7500, name = "Bottom of Gelkak's Key"},
+        },
     },
     [2118] = {
         name = "Plagued Lands",
@@ -17509,6 +19608,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 38.84, y = 43.42, kind = "npc", id = 3701, name = "Tharnariun Treetender", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2164, name = "Rabid Thistle Bear"},
+        },
     },
     [2138] = {
         name = "Cleansing of the Infected",
@@ -17523,6 +19625,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 38.84, y = 43.42, kind = "npc", id = 3701, name = "Tharnariun Treetender", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2164, name = "Rabid Thistle Bear"},
+        },
     },
     [2139] = {
         name = "Tharnariun's Hope",
@@ -17537,6 +19642,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 38.84, y = 43.42, kind = "npc", id = 3701, name = "Tharnariun Treetender", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6788, name = "Den Mother"},
+        },
     },
     [2159] = {
         name = "Dolanaar Delivery",
@@ -17578,6 +19686,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.69, y = 40.66, kind = "npc", id = 3702, name = "Alanndarian Nightsong", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5469, name = "Strider Meat"},
+        },
     },
     [2202] = {
         name = "Uldaman Reagent Run",
@@ -17594,6 +19705,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 2.42, y = 46.06, kind = "npc", id = 6868, name = "Jarkal Mossmeld", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8047, name = "Magenta Fungus Cap"},
+        },
     },
     [2203] = {
         name = "Badlands Reagent Run II",
@@ -17608,6 +19722,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 2.42, y = 46.06, kind = "npc", id = 6868, name = "Jarkal Mossmeld", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7867, name = "Vessel of Dragon's Blood"},
+        },
     },
     [2258] = {
         name = "Badlands Reagent Run",
@@ -17636,6 +19753,11 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 2.42, y = 46.06, kind = "npc", id = 6868, name = "Jarkal Mossmeld", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7847, name = "Buzzard Gizzard"},
+            {kind = "item", id = 7846, name = "Crag Coyote Fang"},
+            {kind = "item", id = 7848, name = "Rock Elemental Shard"},
+        },
     },
     [2342] = {
         name = "Reclaimed Treasures",
@@ -17650,6 +19772,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 62.32, y = 48.61, kind = "npc", id = 5651, name = "Patrick Garrett", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8026, name = "Garrett Family Treasure"},
+        },
     },
     [2418] = {
         name = "Power Stones",
@@ -17665,6 +19790,10 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 42.39, y = 52.93, kind = "npc", id = 2817, name = "Rigglefuzz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8009, name = "Dentrium Power Stone"},
+            {kind = "item", id = 8052, name = "An'Alleum Power Stone"},
+        },
     },
     [2438] = {
         name = "The Emerald Dreamcatcher",
@@ -17679,6 +19808,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 55.57, y = 56.95, kind = "npc", id = 3567, name = "Tallonkai Swiftroot", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8048, name = "Emerald Dreamcatcher"},
+        },
     },
     [2500] = {
         name = "Badlands Reagent Run",
@@ -17707,6 +19839,11 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 37.07, y = 49.38, kind = "npc", id = 1470, name = "Ghak Healtouch", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7847, name = "Buzzard Gizzard"},
+            {kind = "item", id = 7846, name = "Crag Coyote Fang"},
+            {kind = "item", id = 7848, name = "Rock Elemental Shard"},
+        },
     },
     [2501] = {
         name = "Badlands Reagent Run II",
@@ -17721,6 +19858,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 37.07, y = 49.38, kind = "npc", id = 1470, name = "Ghak Healtouch", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7867, name = "Vessel of Dragon's Blood"},
+        },
     },
     [2521] = {
         name = "To Serve Kum'isha",
@@ -17777,6 +19917,9 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 51.98, y = 35.65, kind = "npc", id = 7363, name = "Kum'isha the Collector"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8244, name = "Flawless Draenethyst Sphere"},
+        },
     },
     [2523] = {
         name = "Corrupted Songflower",
@@ -17791,6 +19934,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 52.94, y = 88.95, kind = "object", id = 164886, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [2581] = {
         name = "Snickerfang Jowls",
@@ -17811,6 +19957,11 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 50.55, y = 14.2, kind = "npc", id = 7505, name = "Bloodmage Drazial"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8391, name = "Snickerfang Jowl"},
+            {kind = "item", id = 8392, name = "Blasted Boar Lung"},
+            {kind = "item", id = 8393, name = "Scorpok Pincer"},
+        },
     },
     [2583] = {
         name = "A Boar's Vitality",
@@ -17831,6 +19982,11 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 50.55, y = 14.2, kind = "npc", id = 7505, name = "Bloodmage Drazial"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8392, name = "Blasted Boar Lung"},
+            {kind = "item", id = 8393, name = "Scorpok Pincer"},
+            {kind = "item", id = 8394, name = "Basilisk Brain"},
+        },
     },
     [2585] = {
         name = "The Decisive Striker",
@@ -17850,6 +20006,11 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 50.55, y = 14.2, kind = "npc", id = 7505, name = "Bloodmage Drazial"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8393, name = "Scorpok Pincer"},
+            {kind = "item", id = 8396, name = "Vulture Gizzard"},
+            {kind = "item", id = 8392, name = "Blasted Boar Lung"},
+        },
     },
     [2601] = {
         name = "The Basilisk's Bite",
@@ -17867,6 +20028,10 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 50.64, y = 14.3, kind = "npc", id = 7506, name = "Bloodmage Lynnore"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8394, name = "Basilisk Brain"},
+            {kind = "item", id = 8396, name = "Vulture Gizzard"},
+        },
     },
     [2603] = {
         name = "Vulture's Vigor",
@@ -17884,6 +20049,10 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 50.64, y = 14.3, kind = "npc", id = 7506, name = "Bloodmage Lynnore"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8396, name = "Vulture Gizzard"},
+            {kind = "item", id = 8391, name = "Snickerfang Jowl"},
+        },
     },
     [2605] = {
         name = "The Thirsty Goblin",
@@ -17897,6 +20066,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.81, y = 28.66, kind = "npc", id = 7564, name = "Marin Noggenfogger"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8428, name = "Laden Dew Gland"},
+        },
     },
     [2606] = {
         name = "In Good Taste",
@@ -17940,6 +20112,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 34.29, y = 66.14, kind = "npc", id = 7572, name = "Fallen Hero of the Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8463, name = "Warchief's Orders"},
+        },
     },
     [2641] = {
         name = "Sprinkle's Secret Ingredient",
@@ -17953,6 +20128,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.06, y = 26.87, kind = "npc", id = 7583, name = "Sprinkle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8526, name = "Violet Tragan"},
+        },
     },
     [2661] = {
         name = "Delivery for Marin",
@@ -17987,6 +20165,12 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 34.29, y = 66.14, kind = "npc", id = 7572, name = "Fallen Hero of the Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7668, name = "Servant of Razelikh"},
+            {kind = "target", id = 7669, name = "Servant of Grol"},
+            {kind = "target", id = 7670, name = "Servant of Allistarj"},
+            {kind = "target", id = 7671, name = "Servant of Sevine"},
+        },
     },
     [2701] = {
         name = "Heroes of Old",
@@ -18027,6 +20211,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.39, y = 26.97, kind = "object", id = 142071, name = "Egg-O-Matic"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8564, name = "Hippogryph Egg"},
+        },
     },
     [2742] = {
         name = "Rin'ji is Trapped!",
@@ -18063,6 +20250,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 60.82, y = 66.35, kind = "npc", id = 7783, name = "Loramus Thalipedes"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7783, name = "Loramus Thalipedes"},
+        },
     },
     [2747] = {
         name = "An Extraordinary Egg",
@@ -18076,6 +20266,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.36, y = 26.91, kind = "npc", id = 7763, name = "Curgle Cranklehop"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8643, name = "Extraordinary Egg"},
+        },
     },
     [2748] = {
         name = "A Fine Egg",
@@ -18089,6 +20282,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.36, y = 26.91, kind = "npc", id = 7763, name = "Curgle Cranklehop"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8644, name = "Fine Egg"},
+        },
     },
     [2749] = {
         name = "An Ordinary Egg",
@@ -18102,6 +20298,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.36, y = 26.91, kind = "npc", id = 7763, name = "Curgle Cranklehop"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8645, name = "Ordinary Egg"},
+        },
     },
     [2750] = {
         name = "A Bad Egg",
@@ -18115,6 +20314,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.36, y = 26.91, kind = "npc", id = 7763, name = "Curgle Cranklehop"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8646, name = "Bad Egg"},
+        },
     },
     [2760] = {
         name = "The Mithril Order",
@@ -18134,6 +20336,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 50.62, y = 20.48, kind = "npc", id = 7802, name = "Galvan the Ancient"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3575, name = "Iron Bar"},
+            {kind = "item", id = 3860, name = "Mithril Bar"},
+        },
         objective = {
             {mapId = 1413, x = 50.2, y = 80.6, kind = "loot", id = 223542, name = "Fel Interloper", source = "Wowhead Classic", entityType = "npc"},
             {mapId = 1433, x = 24.71, y = 30.0, kind = "loot", id = 223542, name = "Fel Interloper", source = "Wowhead Classic", entityType = "npc"},
@@ -18170,6 +20376,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 50.62, y = 20.48, kind = "npc", id = 7802, name = "Galvan the Ancient"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3860, name = "Mithril Bar"},
+            {kind = "item", id = 6037, name = "Truesilver Bar"},
+        },
     },
     [2763] = {
         name = "The Art of the Imbue",
@@ -19253,6 +21463,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 50.62, y = 20.48, kind = "npc", id = 7802, name = "Galvan the Ancient"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3860, name = "Mithril Bar"},
+            {kind = "item", id = 3864, name = "Citrine"},
+        },
     },
     [2764] = {
         name = "Galvan's Finest Pupil",
@@ -19275,6 +21489,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 50.62, y = 20.48, kind = "npc", id = 7802, name = "Galvan the Ancient"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7802, name = "Galvan the Ancient"},
+        },
     },
     [2766] = {
         name = "Find OOX-22/FE!",
@@ -19389,6 +21606,10 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.41, y = 28.75, kind = "npc", id = 7804, name = "Trenton Lighthammer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7931, name = "Mithril Coif"},
+            {kind = "item", id = 7928, name = "Ornate Mithril Shoulder"},
+        },
         objectiveText = "Prepare 2 Mithril Coifs and 1 Ornate Mithril Shoulder for Trenton Lighthammer.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -19402,6 +21623,10 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.41, y = 28.75, kind = "npc", id = 7804, name = "Trenton Lighthammer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7933, name = "Heavy Mithril Boots"},
+            {kind = "item", id = 7926, name = "Ornate Mithril Pants"},
+        },
         objectiveText = "Prepare 2 Heavy Mithril Boots and 1 Ornate Mithril Pants for Trenton Lighthammer.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -19415,6 +21640,10 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.41, y = 28.75, kind = "npc", id = 7804, name = "Trenton Lighthammer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7930, name = "Heavy Mithril Breastplate"},
+            {kind = "item", id = 7927, name = "Ornate Mithril Gloves"},
+        },
         objectiveText = "Prepare 2 Heavy Mithril Breastplates and 1 Ornate Mithril Gloves for Trenton Lighthammer.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -19432,6 +21661,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.46, y = 28.51, kind = "npc", id = 7407, name = "Chief Engineer Bilgewhizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8723, name = "Caliph Scorpidsting's Head"},
+        },
     },
     [2782] = {
         name = "Rin'ji's Secret",
@@ -19466,6 +21698,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 34.29, y = 66.14, kind = "npc", id = 7572, name = "Fallen Hero of the Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7572, name = "Fallen Hero of the Horde"},
+        },
     },
     [2801] = {
         name = "A Tale of Sorrow",
@@ -19479,6 +21714,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 34.29, y = 66.14, kind = "npc", id = 7572, name = "Fallen Hero of the Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7572, name = "Fallen Hero of the Horde"},
+        },
     },
     [2821] = {
         name = "The Mark of Quality",
@@ -19497,6 +21735,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8973, name = "Thick Yeti Hide"},
+        },
     },
     [2822] = {
         name = "The Mark of Quality",
@@ -19515,6 +21756,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.43, y = 42.91, kind = "npc", id = 7854, name = "Jangdor Swiftstrider", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8973, name = "Thick Yeti Hide"},
+        },
     },
     [2844] = {
         name = "The Giant Guardian",
@@ -19540,6 +21784,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 42.39, y = 22, kind = "npc", id = 7765, name = "Rockbiter", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9189, name = "Shay's Bell"},
+        },
     },
     [2847] = {
         name = "Wild Leather Armor",
@@ -19555,6 +21802,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4304, name = "Thick Leather"},
+        },
     },
     [2848] = {
         name = "Wild Leather Shoulders",
@@ -19676,6 +21926,10 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8173, name = "Thick Armor Kit"},
+            {kind = "item", id = 8153, name = "Wildvine"},
+        },
     },
     [2849] = {
         name = "Wild Leather Vest",
@@ -19796,6 +22050,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8189, name = "Turtle Scale Breastplate"},
+            {kind = "item", id = 8187, name = "Turtle Scale Gloves"},
+            {kind = "item", id = 8153, name = "Wildvine"},
+        },
     },
     [2850] = {
         name = "Wild Leather Helmet",
@@ -19916,6 +22175,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8175, name = "Nightscape Tunic"},
+            {kind = "item", id = 8176, name = "Nightscape Headband"},
+            {kind = "item", id = 8153, name = "Wildvine"},
+        },
     },
     [2851] = {
         name = "Wild Leather Boots",
@@ -20036,6 +22300,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8193, name = "Nightscape Pants"},
+            {kind = "item", id = 8197, name = "Nightscape Boots"},
+            {kind = "item", id = 8153, name = "Wildvine"},
+        },
     },
     [2852] = {
         name = "Wild Leather Leggings",
@@ -20156,6 +22425,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8191, name = "Turtle Scale Helm"},
+            {kind = "item", id = 8198, name = "Turtle Scale Bracers"},
+            {kind = "item", id = 8153, name = "Wildvine"},
+        },
     },
     [2853] = {
         name = "Master of the Wild Leather",
@@ -20185,6 +22459,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.91, y = 42.46, kind = "npc", id = 7875, name = "Hadoken Swiftstrider", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9237, name = "Woodpaw Gnoll Mane"},
+        },
     },
     [2863] = {
         name = "Alpha Strike",
@@ -20199,6 +22476,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.91, y = 42.46, kind = "npc", id = 7875, name = "Hadoken Swiftstrider", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5258, name = "Woodpaw Alpha"},
+        },
     },
     [2864] = {
         name = "Tran'rek",
@@ -20250,6 +22530,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.38, y = 46.17, kind = "npc", id = 7877, name = "Latronicus Moonspear", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9247, name = "Hatecrest Naga Scale"},
+        },
     },
     [2870] = {
         name = "Against Lord Shalzaru",
@@ -20264,6 +22547,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.38, y = 46.17, kind = "npc", id = 7877, name = "Latronicus Moonspear", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9248, name = "Mysterious Relic"},
+        },
     },
     [2871] = {
         name = "Delivering the Relic",
@@ -20296,6 +22582,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 67.11, y = 23.98, kind = "npc", id = 7881, name = "Stoley"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9244, name = "Stoley's Shipment"},
+        },
     },
     [2874] = {
         name = "Deliver to MacKinley",
@@ -20319,6 +22608,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 67.06, y = 23.89, kind = "npc", id = 7882, name = "Security Chief Bilgewhizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9246, name = "Firebeard's Head"},
+        },
     },
     [2876] = {
         name = "Ship Schedules",
@@ -20347,6 +22639,10 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 14.83, y = 44.57, kind = "npc", id = 7884, name = "Fraggar Thundermantle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2655, name = "Green Sludge"},
+            {kind = "target", id = 2656, name = "Jade Ooze"},
+        },
     },
     [2878] = {
         name = "Corrupted Songflower",
@@ -20361,6 +22657,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 40.4, y = 56.71, kind = "object", id = 174594, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [2879] = {
         name = "The Stave of Equinex",
@@ -20375,6 +22674,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 38.83, y = 13.17, kind = "object", id = 144063, name = "Equinex Monolith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9306, name = "Stave of Equinex"},
+        },
     },
     [2880] = {
         name = "Troll Necklace Bounty",
@@ -20416,6 +22718,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 14.83, y = 44.57, kind = "npc", id = 7884, name = "Fraggar Thundermantle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9259, name = "Troll Tribal Necklace"},
+        },
     },
     [2882] = {
         name = "Cuergo's Gold",
@@ -20430,6 +22735,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 1446, x = 55.4, y = 92.2, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 9275, name = "Cuergo's Key"},
         },
         startItem = 9254,
     },
@@ -20490,6 +22798,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9322, name = "Undamaged Venom Sac"},
+        },
     },
     [2935] = {
         name = "Consult Master Gadrin",
@@ -20514,6 +22825,9 @@ ns.foreverQuestLocations = {
             {mapId = 1424, x = 61.44, y = 19.06, kind = "npc", id = 2216, name = "Apothecary Lydon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9324, name = "Shadra's Venom"},
+        },
     },
     [2938] = {
         name = "Venom to the Undercity",
@@ -20548,6 +22862,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 31.78, y = 45.5, kind = "npc", id = 7764, name = "Troyas Moonbreeze", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9307, name = "A Sparkling Stone"},
+        },
     },
     [2944] = {
         name = "The Super Snapper FX",
@@ -20562,6 +22879,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 55.41, y = 92.23, kind = "npc", id = 7907, name = "Daryn Lightwind", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9330, name = "Snapshot of Gammerita"},
+        },
     },
     [2969] = {
         name = "Freedom for All Creatures",
@@ -20592,6 +22912,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 65.95, y = 45.61, kind = "npc", id = 7957, name = "Jer'kai Moonweaver", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7726, name = "Grimtotem Naturalist"},
+            {kind = "target", id = 7725, name = "Grimtotem Raider"},
+            {kind = "target", id = 7727, name = "Grimtotem Shaman"},
+        },
     },
     [2972] = {
         name = "Doling Justice",
@@ -20617,6 +22942,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 75.94, y = 42.74, kind = "npc", id = 4544, name = "Krueg Skullsplitter", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9369, name = "Iridescent Sprite Darter Wing"},
+        },
     },
     [2974] = {
         name = "A Grim Discovery",
@@ -20633,6 +22961,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 75.94, y = 42.74, kind = "npc", id = 4544, name = "Krueg Skullsplitter", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9460, name = "Grimtotem Horn"},
+        },
     },
     [2975] = {
         name = "The Ogres of Feralas",
@@ -20649,6 +22980,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 75.8, y = 43.58, kind = "npc", id = 7777, name = "Rok Orhan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5229, name = "Gordunni Ogre"},
+            {kind = "target", id = 5237, name = "Gordunni Ogre Mage"},
+            {kind = "target", id = 5232, name = "Gordunni Brute"},
+        },
     },
     [2976] = {
         name = "A Grim Discovery",
@@ -20684,6 +23020,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 75.8, y = 43.58, kind = "npc", id = 7777, name = "Rok Orhan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9371, name = "Gordunni Orb"},
+        },
     },
     [2980] = {
         name = "The Ogres of Feralas",
@@ -20700,6 +23039,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 75.8, y = 43.58, kind = "npc", id = 7777, name = "Rok Orhan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5236, name = "Gordunni Shaman"},
+            {kind = "target", id = 5240, name = "Gordunni Warlock"},
+            {kind = "target", id = 5234, name = "Gordunni Mauler"},
+        },
     },
     [2981] = {
         name = "A Threat in Feralas",
@@ -20726,6 +23070,11 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 31.83, y = 45.61, kind = "npc", id = 7900, name = "Angelas Moonbreeze", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5240, name = "Gordunni Warlock"},
+            {kind = "target", id = 5236, name = "Gordunni Shaman"},
+            {kind = "target", id = 5232, name = "Gordunni Brute"},
+        },
     },
     [2987] = {
         name = "Gordunni Cobalt",
@@ -20740,6 +23089,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 75.7, y = 44.31, kind = "npc", id = 8021, name = "Orwin Gizzmick", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9463, name = "Gordunni Cobalt"},
+        },
     },
     [2988] = {
         name = "Witherbark Cages",
@@ -20756,6 +23108,11 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 9.75, y = 44.47, kind = "npc", id = 5636, name = "Gryphon Master Talonaxe", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 144066, name = "First Witherbark Cage"},
+            {kind = "object", id = 144067, name = "Second Witherbark Cage"},
+            {kind = "object", id = 144068, name = "Third Witherbark Cage"},
+        },
     },
     [2989] = {
         name = "The Altar of Zul",
@@ -20794,6 +23151,9 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 66.9, y = 19.47, kind = "npc", id = 8022, name = "Thadius Grimshade", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8022, name = "Thadius Grimshade"},
+        },
     },
     [2993] = {
         name = "Return to the Hinterlands",
@@ -20818,6 +23178,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 9.75, y = 44.47, kind = "npc", id = 5636, name = "Gryphon Master Talonaxe", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 144070, name = "Sharpbeak's Cage"},
+        },
     },
     [2996] = {
         name = "Seeking Strahad",
@@ -20872,6 +23235,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 76.18, y = 43.83, kind = "npc", id = 7776, name = "Talo Thornhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9528, name = "Edana's Dark Heart"},
+        },
     },
     [3063] = {
         name = "Vengeance on the Northspring",
@@ -20889,6 +23255,12 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 76.18, y = 43.83, kind = "npc", id = 7776, name = "Talo Thornhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5362, name = "Northspring Harpy"},
+            {kind = "target", id = 5363, name = "Northspring Roguefeather"},
+            {kind = "target", id = 5364, name = "Northspring Slayer"},
+            {kind = "target", id = 5366, name = "Northspring Windcaller"},
+        },
     },
     [3121] = {
         name = "A Strange Request",
@@ -20925,6 +23297,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.42, y = 43.36, kind = "npc", id = 8115, name = "Witch Doctor Uzer'i", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9594, name = "Wildkin Muisek"},
+        },
     },
     [3124] = {
         name = "Hippogryph Muisek",
@@ -20942,6 +23317,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.42, y = 43.36, kind = "npc", id = 8115, name = "Witch Doctor Uzer'i", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9595, name = "Hippogryph Muisek"},
+        },
     },
     [3125] = {
         name = "Faerie Dragon Muisek",
@@ -20957,6 +23335,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.42, y = 43.36, kind = "npc", id = 8115, name = "Witch Doctor Uzer'i", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9596, name = "Faerie Dragon Muisek"},
+        },
     },
     [3126] = {
         name = "Treant Muisek",
@@ -20971,6 +23352,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.42, y = 43.36, kind = "npc", id = 8115, name = "Witch Doctor Uzer'i", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9593, name = "Treant Muisek"},
+        },
     },
     [3127] = {
         name = "Mountain Giant Muisek",
@@ -20988,6 +23372,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.42, y = 43.36, kind = "npc", id = 8115, name = "Witch Doctor Uzer'i", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9597, name = "Mountain Giant Muisek"},
+        },
     },
     [3128] = {
         name = "Natural Materials",
@@ -21019,6 +23406,12 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.42, y = 43.36, kind = "npc", id = 8115, name = "Witch Doctor Uzer'i", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 9590, name = "Splintered Log"},
+            {kind = "item", id = 9589, name = "Encrusted Minerals"},
+            {kind = "item", id = 9591, name = "Resilient Sinew"},
+            {kind = "item", id = 9592, name = "Metallic Fragments"},
+        },
     },
     [3129] = {
         name = "Weapons of Spirit",
@@ -21052,6 +23445,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 60.82, y = 66.35, kind = "npc", id = 7783, name = "Loramus Thalipedes"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7783, name = "Loramus Thalipedes"},
+        },
     },
     [3161] = {
         name = "Gahz'ridian",
@@ -21065,6 +23461,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.71, y = 45.92, kind = "npc", id = 7771, name = "Marvon Rivetseeker"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8443, name = "Gahz'ridian Ornament"},
+        },
     },
     [3181] = {
         name = "The Horn of the Beast",
@@ -21130,6 +23529,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.93, y = 30.32, kind = "npc", id = 3464, name = "Gazrog", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5061, name = "Stolen Silver"},
+        },
     },
     [3301] = {
         name = "Mura Runetotem",
@@ -21153,6 +23555,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.41, y = 28.75, kind = "npc", id = 7804, name = "Trenton Lighthammer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7804, name = "Trenton Lighthammer"},
+        },
     },
     [3361] = {
         name = "A Refugee's Quandary",
@@ -21169,6 +23574,11 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 28.55, y = 67.64, kind = "npc", id = 8416, name = "Felix Whindlebolt", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10438, name = "Felix's Box"},
+            {kind = "item", id = 16313, name = "Felix's Chest"},
+            {kind = "item", id = 16314, name = "Felix's Bucket of Bolts"},
+        },
     },
     [3362] = {
         name = "Thistleshrub Valley",
@@ -21183,6 +23593,10 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.57, y = 26.76, kind = "npc", id = 7876, name = "Tran'rek"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5490, name = "Gnarled Thistleshrub"},
+            {kind = "target", id = 5485, name = "Thistleshrub Rootshaper"},
+        },
     },
     [3363] = {
         name = "Corrupted Songflower",
@@ -21197,6 +23611,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 63.91, y = 6.09, kind = "object", id = 174595, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [3367] = {
         name = "Suntara Stones",
@@ -21245,6 +23662,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 41.25, y = 25.41, kind = "object", id = 148498, name = "Altar of Suntara"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10442, name = "Mysterious Artifact"},
+        },
     },
     [3376] = {
         name = "Break Sharptusk!",
@@ -21259,6 +23679,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.18, y = 77.03, kind = "npc", id = 3209, name = "Brave Windfeather", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10459, name = "Chief Sharptusk Thornmantle's Head"},
+        },
     },
     [3377] = {
         name = "Prayer to Elune",
@@ -21273,6 +23696,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 29.57, y = 26.29, kind = "npc", id = 8436, name = "Zamael Lunthistle", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8436, name = "Zamael Lunthistle"},
+        },
     },
     [3378] = {
         name = "Prayer to Elune",
@@ -21290,6 +23716,9 @@ ns.foreverQuestLocations = {
             {mapId = 1457, x = 38.33, y = 80.95, kind = "npc", id = 4090, name = "Astarii Starseeker", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10458, name = "Prayer to Elune"},
+        },
     },
     [3379] = {
         name = "Shadoweaver",
@@ -21303,6 +23732,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 40.99, y = 74.95, kind = "npc", id = 8439, name = "Nilith Lokrav"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8442, name = "Shadowsilk Poacher"},
+        },
     },
     [3380] = {
         name = "The Sunken Temple",
@@ -21351,6 +23783,11 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 40.99, y = 74.95, kind = "npc", id = 8439, name = "Nilith Lokrav"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8444, name = "Trade Master Kovic"},
+            {kind = "target", id = 8447, name = "Clunk"},
+            {kind = "item", id = 10467, name = "Trader's Satchel"},
+        },
     },
     [3402] = {
         name = "The Undermarket",
@@ -21382,6 +23819,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 39.06, y = 38.99, kind = "npc", id = 8479, name = "Kalaran Windblade"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8479, name = "Kalaran Windblade"},
+        },
     },
     [3442] = {
         name = "The Flawless Flame",
@@ -21399,6 +23839,10 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 39.06, y = 38.99, kind = "npc", id = 8479, name = "Kalaran Windblade"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10509, name = "Heart of Flame"},
+            {kind = "item", id = 10511, name = "Golem Oil"},
+        },
     },
     [3443] = {
         name = "Forging the Shaft",
@@ -21420,6 +23864,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 39.06, y = 38.99, kind = "npc", id = 8479, name = "Kalaran Windblade"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10551, name = "Thorium Plated Dagger"},
+        },
     },
     [3444] = {
         name = "The Stone Circle",
@@ -21433,6 +23880,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.71, y = 45.92, kind = "npc", id = 7771, name = "Marvon Rivetseeker"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10556, name = "Stone Circle"},
+        },
     },
     [3445] = {
         name = "The Sunken Temple",
@@ -21459,6 +23909,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 39.06, y = 38.99, kind = "npc", id = 8479, name = "Kalaran Windblade"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10552, name = "Symbol of Ragnaros"},
+        },
     },
     [3453] = {
         name = "The Torch of Retribution",
@@ -21472,6 +23925,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 39.06, y = 38.99, kind = "npc", id = 8479, name = "Kalaran Windblade"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8479, name = "Kalaran Windblade"},
+        },
     },
     [3454] = {
         name = "The Torch of Retribution",
@@ -21506,6 +23962,12 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 39.17, y = 39, kind = "npc", id = 8509, name = "Squire Maltrake"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 149025, name = "Sentry Brazier"},
+            {kind = "object", id = 149030, name = "Sentry Brazier"},
+            {kind = "object", id = 149031, name = "Sentry Brazier"},
+            {kind = "object", id = 149032, name = "Sentry Brazier"},
+        },
     },
     [3481] = {
         name = "Trinkets...",
@@ -21571,6 +24033,9 @@ ns.foreverQuestLocations = {
             {mapId = 1419, x = 51.98, y = 35.65, kind = "npc", id = 7363, name = "Kum'isha the Collector"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10593, name = "Imperfect Draenethyst Fragment"},
+        },
     },
     [3503] = {
         name = "Meeting with the Master",
@@ -21606,6 +24071,10 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 59.51, y = 31.3, kind = "object", id = 151286, name = "Kaldorei Tome of Summoning"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6199, name = "Blood Elf Reclaimer"},
+            {kind = "target", id = 6198, name = "Blood Elf Surveyor"},
+        },
     },
     [3506] = {
         name = "Betrayed",
@@ -21620,6 +24089,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 22.26, y = 51.48, kind = "npc", id = 8576, name = "Ag'tor Bloodfist", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10597, name = "Head of Magus Rimtori"},
+        },
     },
     [3507] = {
         name = "Betrayed",
@@ -21661,6 +24133,11 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 77.13, y = 42.79, kind = "npc", id = 6134, name = "Lord Arkkoroc"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10599, name = "Hetaera's Beaten Head"},
+            {kind = "item", id = 10598, name = "Hetaera's Bloodied Head"},
+            {kind = "item", id = 10600, name = "Hetaera's Bruised Head"},
+        },
     },
     [3511] = {
         name = "The Name of the Beast",
@@ -21695,6 +24172,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 48.12, y = 5.42, kind = "npc", id = 8582, name = "Kadrak", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8518, name = "Rynthariel the Keymaster"},
+        },
     },
     [3517] = {
         name = "Stealing Knowledge",
@@ -21712,6 +24192,12 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 22.56, y = 51.42, kind = "npc", id = 8587, name = "Jediga", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10538, name = "Tablet of Beth'Amara"},
+            {kind = "item", id = 10539, name = "Tablet of Jin'yael"},
+            {kind = "item", id = 10540, name = "Tablet of Markri"},
+            {kind = "item", id = 10541, name = "Tablet of Sael'hai"},
+        },
     },
     [3518] = {
         name = "Delivery to Magatha",
@@ -21745,6 +24231,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 66.99, y = 22.36, kind = "npc", id = 8579, name = "Yeh'kinya"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8612, name = "Screecher Spirit"},
+        },
     },
     [3521] = {
         name = "Iverron's Antidote",
@@ -21763,6 +24252,11 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 60.9, y = 41.96, kind = "npc", id = 8583, name = "Dirania Silvershine", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10639, name = "Hyacinth Mushroom"},
+            {kind = "item", id = 10641, name = "Moonpetal Lily"},
+            {kind = "item", id = 10640, name = "Webwood Ichor"},
+        },
     },
     [3522] = {
         name = "Iverron's Antidote",
@@ -21787,6 +24281,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.62, y = 45.59, kind = "npc", id = 10219, name = "Gwennyth Bly'Leggonde", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12242, name = "Sea Creature Bones"},
+        },
     },
     [3541] = {
         name = "Delivery to Jes'rimon",
@@ -21872,6 +24369,10 @@ ns.foreverQuestLocations = {
             {mapId = 1455, x = 71.5, y = 15.74, kind = "npc", id = 8256, name = "Curator Thorius", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10447, name = "Head of Lathoric the Black"},
+            {kind = "item", id = 10446, name = "Heart of Obsidion"},
+        },
     },
     [3567] = {
         name = "To the Top",
@@ -21894,6 +24395,12 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 53.45, y = 21.82, kind = "npc", id = 8420, name = "Kim'jael"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10717, name = "Kim'Jael's Compass"},
+            {kind = "item", id = 10715, name = "Kim'Jael's Scope"},
+            {kind = "item", id = 10722, name = "Kim'Jael's Stuffed Chicken"},
+            {kind = "item", id = 10718, name = "Kim'Jael's Wizzlegoober"},
+        },
     },
     [3602] = {
         name = "Azsharite",
@@ -21910,6 +24417,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 60.82, y = 66.35, kind = "npc", id = 7783, name = "Loramus Thalipedes"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10714, name = "Crystallized Azsharite"},
+        },
     },
     [3621] = {
         name = "The Formation of Felbane",
@@ -21932,6 +24442,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 50.62, y = 20.48, kind = "npc", id = 7802, name = "Galvan the Ancient"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7802, name = "Galvan the Ancient"},
+        },
     },
     [3626] = {
         name = "Return to the Blasted Lands",
@@ -21956,6 +24469,11 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 34.29, y = 66.14, kind = "npc", id = 7572, name = "Fallen Hero of the Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10755, name = "Amulet of Allistarj"},
+            {kind = "item", id = 10753, name = "Amulet of Grol"},
+            {kind = "item", id = 10754, name = "Amulet of Sevine"},
+        },
     },
     [3628] = {
         name = "You Are Rakh'likh, Demon",
@@ -21969,6 +24487,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 34.29, y = 66.14, kind = "npc", id = 7572, name = "Fallen Hero of the Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10759, name = "Severed Horn of the Defiler"},
+        },
     },
     [3633] = {
         name = "Goblin Engineering",
@@ -22008,6 +24529,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.48, y = 27.33, kind = "npc", id = 8126, name = "Nixx Sprocketspring"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11270, name = "Nixx's Signed Pledge"},
+        },
         objectiveText = "Use the provided Pledge of Secrecy to sign it, then speak with Nixx Sprocketspring in Gadgetzan.",
         objectiveKind = "use-item",
         objectiveSource = "WoWDB",
@@ -22027,6 +24551,11 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.48, y = 27.33, kind = "npc", id = 8126, name = "Nixx Sprocketspring"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4394, name = "Big Iron Bomb"},
+            {kind = "item", id = 10507, name = "Solid Dynamite"},
+            {kind = "item", id = 4384, name = "Explosive Sheep"},
+        },
         objectiveText = "Prepare 20 Big Iron Bombs, 20 Solid Dynamite and 5 Explosive Sheep for Nixx Sprocketspring.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -22041,6 +24570,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.36, y = 76.35, kind = "npc", id = 7406, name = "Oglethorpe Obnoticus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11282, name = "Oglethorpe's Signed Pledge"},
+        },
         objectiveText = "Sign the provided Pledge of Secrecy, then speak with Oglethorpe Obnoticus in Booty Bay.",
         objectiveKind = "use-item",
         objectiveSource = "Wowhead Classic",
@@ -22058,6 +24590,11 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.36, y = 76.35, kind = "npc", id = 7406, name = "Oglethorpe Obnoticus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10559, name = "Mithril Tube"},
+            {kind = "item", id = 4407, name = "Accurate Scope"},
+            {kind = "item", id = 4392, name = "Advanced Target Dummy"},
+        },
         objectiveText = "Prepare Mithril Tubes, an Accurate Scope and Advanced Target Dummies for Oglethorpe Obnoticus.",
         objectiveKind = "craft",
         objectiveSource = "Wowhead Classic",
@@ -22101,6 +24638,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 24.15, y = 53.63, kind = "npc", id = 8962, name = "Hilary"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10958, name = "Hilary's Necklace"},
+        },
     },
     [3783] = {
         name = "Are We There, Yeti?",
@@ -22115,6 +24655,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 60.88, y = 37.62, kind = "npc", id = 10305, name = "Umi Rumplesnicker"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12366, name = "Thick Yeti Fur"},
+        },
     },
     [3787] = {
         name = "Jonespyre's Request",
@@ -22146,6 +24689,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 32.45, y = 43.79, kind = "npc", id = 7879, name = "Quintis Jonespyre", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11040, name = "Morrowgrain"},
+        },
         objectiveText = "Collect 10 Morrowgrain for Quintis Jonespyre. The quest supplies an Evergreen Pouch.",
         objectiveKind = "supplies",
         objectiveSource = "WoWDB",
@@ -22160,6 +24706,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 32.45, y = 43.79, kind = "npc", id = 7879, name = "Quintis Jonespyre", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11040, name = "Morrowgrain"},
+        },
         objectiveText = "Grow or obtain Morrowgrain for Quintis Jonespyre. Use the Evergreen Pouch with the required soil and seeds.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Classic",
@@ -22187,6 +24736,9 @@ ns.foreverQuestLocations = {
             {mapId = 1418, x = 3.36, y = 48.06, kind = "npc", id = 9082, name = "Thal'trak Proudtusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11058, name = "Sha'ni's Nose-Ring"},
+        },
     },
     [3823] = {
         name = "Extinguish the Firegut",
@@ -22203,6 +24755,11 @@ ns.foreverQuestLocations = {
             {mapId = 1428, x = 84.56, y = 68.68, kind = "npc", id = 9177, name = "Oralius", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7034, name = "Firegut Ogre Mage"},
+            {kind = "target", id = 7033, name = "Firegut Ogre"},
+            {kind = "target", id = 7035, name = "Firegut Brute"},
+        },
     },
     [3824] = {
         name = "Gor'tesh the Brute Lord",
@@ -22218,6 +24775,9 @@ ns.foreverQuestLocations = {
             {mapId = 1428, x = 84.56, y = 68.68, kind = "npc", id = 9177, name = "Oralius", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11080, name = "Gor'tesh's Lopped Off Head"},
+        },
     },
     [3825] = {
         name = "Ogre Head On A Stick = Party",
@@ -22232,6 +24792,9 @@ ns.foreverQuestLocations = {
             {mapId = 1428, x = 84.56, y = 68.68, kind = "npc", id = 9177, name = "Oralius", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 160840, name = "Soft Dirt Mound"},
+        },
     },
     [3841] = {
         name = "An Orphan Looking For a Home",
@@ -22257,6 +24820,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 78.35, y = 74.72, kind = "npc", id = 9238, name = "Quentin", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3825, name = "Elixir of Fortitude"},
+        },
     },
     [3843] = {
         name = "The Newest Member of the Family",
@@ -22286,6 +24852,11 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 44.66, y = 8.1, kind = "npc", id = 8737, name = "Linken"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11104, name = "Large Compass"},
+            {kind = "item", id = 11105, name = "Curled Map Parchment"},
+            {kind = "item", id = 11106, name = "Lion-headed Key"},
+        },
         objective = {
             {mapId = 1449, x = 45.2, y = 5.8, kind = "loot", id = 10583, name = "Gryfe", source = "Wowhead Forever", entityType = "npc"},
         },
@@ -22303,6 +24874,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 43.95, y = 7.14, kind = "npc", id = 9270, name = "Williden Marshal"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11113, name = "Crate of Foodstuffs"},
+            {kind = "item", id = 11112, name = "Research Equipment"},
+        },
     },
     [3882] = {
         name = "Roll the Bones",
@@ -22323,6 +24898,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 43.5, y = 7.42, kind = "npc", id = 9272, name = "Spark Nilminer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11114, name = "Dinosaur Bone"},
+        },
     },
     [3883] = {
         name = "Alien Ecology",
@@ -22336,6 +24914,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 43.89, y = 7.24, kind = "npc", id = 9271, name = "Hol'anyee Marshal"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11131, name = "Hive Wall Sample"},
+        },
     },
     [3884] = {
         name = "Williden's Journal",
@@ -22407,6 +24988,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 30.84, y = 66.2, kind = "npc", id = 1569, name = "Shadow Priest Sarvis", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1890, name = "Rattlecage Skeleton"},
+        },
     },
     [3902] = {
         name = "Scavenging Deathknell",
@@ -22421,6 +25005,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 31.61, y = 65.6, kind = "npc", id = 1740, name = "Deathguard Saltain", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11127, name = "Scavenged Goods"},
+        },
     },
     [3908] = {
         name = "It's a Secret to Everybody",
@@ -22443,6 +25030,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 31.27, y = 45.16, kind = "npc", id = 9298, name = "Donova Snowden"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11243, name = "Videre Elixir"},
+        },
     },
     [3912] = {
         name = "Meet at the Grave",
@@ -22494,6 +25084,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 49.05, y = 11.17, kind = "npc", id = 9316, name = "Wenikee Boltbucket"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11143, name = "Nugget Slug"},
+        },
     },
     [3923] = {
         name = "Rilli Greasygob",
@@ -22515,6 +25108,9 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 76.52, y = 24.41, kind = "npc", id = 9317, name = "Rilli Greasygob", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11149, name = "Samophlange Manual"},
+        },
         objective = {
             {mapId = 1413, x = 61.4, y = 5.6, kind = "loot", id = 3283, name = "Venture Co. Enforcer", source = "Wowhead Forever", entityType = "npc"},
             {mapId = 1413, x = 61.6, y = 4.8, kind = "loot", id = 3286, name = "Venture Co. Overseer", source = "Wowhead Forever", entityType = "npc"},
@@ -22561,6 +25157,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 44.66, y = 8.1, kind = "npc", id = 8737, name = "Linken"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 9376, name = "Blazerunner"},
+            {kind = "item", id = 11179, name = "Golden Flame"},
+        },
     },
     [4005] = {
         name = "Aquementas",
@@ -22574,6 +25174,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 41.92, y = 2.7, kind = "npc", id = 9117, name = "J.D. Collie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11522, name = "Silver Totem of Aquementas"},
+        },
     },
     [4021] = {
         name = "Counterattack!",
@@ -22588,6 +25191,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 45.34, y = 28.41, kind = "npc", id = 3389, name = "Regthar Deathgate", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11227, name = "Piece of Krom'zar's Banner"},
+        },
     },
     [4041] = {
         name = "The Videre Elixir",
@@ -22601,6 +25207,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 45.12, y = 25.57, kind = "npc", id = 7775, name = "Gregan Brewspewer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11242, name = "Evoroot"},
+        },
     },
     [4084] = {
         name = "Silver Heart",
@@ -22623,6 +25232,10 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.35, y = 81.51, kind = "npc", id = 9116, name = "Eridan Bluewind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11172, name = "Silvery Claws"},
+            {kind = "item", id = 11173, name = "Irontree Heart"},
+        },
     },
     [4101] = {
         name = "Cleansing Felwood",
@@ -22639,6 +25252,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11503, name = "Blood Amber"},
+        },
     },
     [4103] = {
         name = "Salve via Hunting",
@@ -22713,6 +25329,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11515, name = "Corrupted Soul Shard"},
+        },
     },
     [4104] = {
         name = "Salve via Mining",
@@ -22824,6 +25443,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11513, name = "Tainted Vitriol"},
+        },
     },
     [4105] = {
         name = "Salve via Gathering",
@@ -22854,6 +25476,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11514, name = "Fel Creep"},
+        },
     },
     [4106] = {
         name = "Salve via Skinning",
@@ -22865,6 +25490,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11512, name = "Patch of Tainted Skin"},
+        },
         objective = {
             {mapId = 1448, x = 35.4, y = 57.8, kind = "loot", id = 7126, name = "Jaedenar Hunter", source = "Wowhead Classic", entityType = "npc"},
             {mapId = 1448, x = 55.8, y = 10.4, kind = "loot", id = 8957, name = "Angerclaw Grizzly", source = "Wowhead Classic", entityType = "npc"},
@@ -22881,6 +25509,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11174, name = "Lesser Nether Essence"},
+        },
         objectiveText = "Disenchant suitable magic items, or buy Lesser Nether Essence, for the Cenarion plant salve exchange.",
         objectiveKind = "craft",
         objectiveSource = "Wowhead Classic",
@@ -22898,6 +25529,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 55.8, y = 10.44, kind = "object", id = 174596, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4114] = {
         name = "Corrupted Songflower",
@@ -22912,6 +25546,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 62.85, y = 21.8, kind = "object", id = 174597, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4115] = {
         name = "Corrupted Windblossom",
@@ -22926,6 +25563,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 44.78, y = 41.74, kind = "object", id = 173327, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4116] = {
         name = "Corrupted Songflower",
@@ -22940,6 +25580,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 50.58, y = 13.91, kind = "object", id = 174598, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4117] = {
         name = "Corrupted Whipper Root",
@@ -22954,6 +25597,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 45.19, y = 21.6, kind = "object", id = 164888, name = "Corrupted Whipper Root"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4118] = {
         name = "Corrupted Songflower",
@@ -22968,6 +25614,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 56.01, y = 10.67, kind = "object", id = 174712, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4119] = {
         name = "Corrupted Night Dragon",
@@ -22982,6 +25631,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 52.45, y = 86.14, kind = "object", id = 164885, name = "Corrupted Night Dragon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4120] = {
         name = "The Strength of Corruption",
@@ -22997,6 +25649,10 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 76.18, y = 43.83, kind = "npc", id = 7776, name = "Talo Thornhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8957, name = "Angerclaw Grizzly"},
+            {kind = "target", id = 8961, name = "Felpaw Ravager"},
+        },
     },
     [4124] = {
         name = "The Missing Courier",
@@ -23085,6 +25741,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 42.94, y = 9.64, kind = "npc", id = 9119, name = "Muigin", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11316, name = "Bloodpetal"},
+        },
     },
     [4142] = {
         name = "A Visit to Gregan",
@@ -23143,6 +25802,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 42.94, y = 9.64, kind = "npc", id = 9119, name = "Muigin", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11315, name = "Bloodpetal Sprout"},
+        },
     },
     [4145] = {
         name = "Larion and Muigin",
@@ -23160,6 +25822,12 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 45.54, y = 8.72, kind = "npc", id = 9118, name = "Larion", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6509, name = "Bloodpetal Lasher"},
+            {kind = "target", id = 6512, name = "Bloodpetal Trapper"},
+            {kind = "target", id = 6510, name = "Bloodpetal Flayer"},
+            {kind = "target", id = 6511, name = "Bloodpetal Thresher"},
+        },
     },
     [4147] = {
         name = "Marvon's Workshop",
@@ -23218,6 +25886,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 45.54, y = 8.72, kind = "npc", id = 9118, name = "Larion", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11315, name = "Bloodpetal Sprout"},
+        },
     },
     [4221] = {
         name = "Corrupted Windblossom",
@@ -23232,6 +25903,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 55.22, y = 23.48, kind = "object", id = 174599, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4222] = {
         name = "Corrupted Windblossom",
@@ -23246,6 +25920,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 39.08, y = 22.48, kind = "object", id = 174600, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4243] = {
         name = "Chasing A-Me 01",
@@ -23269,6 +25946,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 67.66, y = 16.76, kind = "npc", id = 9623, name = "A-Me 01"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 10561, name = "Mithril Casing"},
+        },
     },
     [4245] = {
         name = "Chasing A-Me 01",
@@ -23365,6 +26045,9 @@ ns.foreverQuestLocations = {
             {mapId = 1428, x = 84.56, y = 68.68, kind = "npc", id = 9177, name = "Oralius", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11467, name = "Blackrock Medallion"},
+        },
     },
     [4284] = {
         name = "Crystals of Power",
@@ -23385,6 +26068,12 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 41.92, y = 2.7, kind = "npc", id = 9117, name = "J.D. Collie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11186, name = "Red Power Crystal"},
+            {kind = "item", id = 11188, name = "Yellow Power Crystal"},
+            {kind = "item", id = 11185, name = "Green Power Crystal"},
+            {kind = "item", id = 11184, name = "Blue Power Crystal"},
+        },
     },
     [4285] = {
         name = "The Northern Pylon",
@@ -23398,6 +26087,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 41.92, y = 2.7, kind = "npc", id = 9117, name = "J.D. Collie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 164955, name = "Northern Crystal Pylon"},
+        },
     },
     [4287] = {
         name = "The Eastern Pylon",
@@ -23411,6 +26103,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 41.92, y = 2.7, kind = "npc", id = 9117, name = "J.D. Collie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 164957, name = "Eastern Crystal Pylon"},
+        },
     },
     [4288] = {
         name = "The Western Pylon",
@@ -23424,6 +26119,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 41.92, y = 2.7, kind = "npc", id = 9117, name = "J.D. Collie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 164956, name = "Western Crystal Pylon"},
+        },
     },
     [4289] = {
         name = "The Apes of Un'Goro",
@@ -23439,6 +26137,11 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 71.64, y = 75.96, kind = "npc", id = 9619, name = "Torwa Pathfinder"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11478, name = "Un'Goro Gorilla Pelt"},
+            {kind = "item", id = 11479, name = "Un'Goro Stomper Pelt"},
+            {kind = "item", id = 11480, name = "Un'Goro Thunderer Pelt"},
+        },
     },
     [4290] = {
         name = "The Fare of Lar'korwi",
@@ -23452,6 +26155,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 71.64, y = 75.96, kind = "npc", id = 9619, name = "Torwa Pathfinder"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11504, name = "Piece of Threshadon Carcass"},
+        },
     },
     [4291] = {
         name = "The Scent of Lar'korwi",
@@ -23465,6 +26171,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 71.64, y = 75.96, kind = "npc", id = 9619, name = "Torwa Pathfinder"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11509, name = "Ravasaur Pheromone Gland"},
+        },
     },
     [4292] = {
         name = "The Bait for Lar'korwi",
@@ -23478,6 +26187,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 71.64, y = 75.96, kind = "npc", id = 9619, name = "Torwa Pathfinder"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11510, name = "Lar'korwi's Head"},
+        },
     },
     [4296] = {
         name = "Tablet of the Seven",
@@ -23491,6 +26203,9 @@ ns.foreverQuestLocations = {
             {mapId = 1428, x = 65.15, y = 23.91, kind = "npc", id = 9536, name = "Maxwort Uberglint"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11470, name = "Tablet Transcript"},
+        },
     },
     [4297] = {
         name = "Food for Baby",
@@ -23505,6 +26220,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 14.16, y = 43.62, kind = "npc", id = 9660, name = "Agnar Beastamer", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11472, name = "Silvermane Stalker Flank"},
+        },
     },
     [4298] = {
         name = "Becoming a Parent",
@@ -23528,6 +26246,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 71.64, y = 75.96, kind = "npc", id = 9619, name = "Torwa Pathfinder"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11476, name = "U'cha's Pelt"},
+        },
     },
     [4321] = {
         name = "Making Sense of It",
@@ -23551,6 +26272,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 50, y = 80, kind = "object", id = 164887, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4381] = {
         name = "Crystal Restore",
@@ -23567,6 +26291,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 56.52, y = 12.54, kind = "object", id = 164955, name = "Northern Crystal Pylon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11188, name = "Yellow Power Crystal"},
+            {kind = "item", id = 11185, name = "Green Power Crystal"},
+        },
     },
     [4382] = {
         name = "Crystal Force",
@@ -23583,6 +26311,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 77.16, y = 49.98, kind = "object", id = 164957, name = "Eastern Crystal Pylon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11185, name = "Green Power Crystal"},
+            {kind = "item", id = 11184, name = "Blue Power Crystal"},
+        },
     },
     [4383] = {
         name = "Crystal Ward",
@@ -23599,6 +26331,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 23.86, y = 59.19, kind = "object", id = 164956, name = "Western Crystal Pylon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11186, name = "Red Power Crystal"},
+            {kind = "item", id = 11185, name = "Green Power Crystal"},
+        },
     },
     [4384] = {
         name = "Crystal Yield",
@@ -23615,6 +26351,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 23.86, y = 59.19, kind = "object", id = 164956, name = "Western Crystal Pylon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11186, name = "Red Power Crystal"},
+            {kind = "item", id = 11184, name = "Blue Power Crystal"},
+        },
     },
     [4385] = {
         name = "Crystal Charge",
@@ -23631,6 +26371,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 56.52, y = 12.54, kind = "object", id = 164955, name = "Northern Crystal Pylon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11186, name = "Red Power Crystal"},
+            {kind = "item", id = 11188, name = "Yellow Power Crystal"},
+        },
     },
     [4386] = {
         name = "Crystal Spire",
@@ -23647,6 +26391,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 77.16, y = 49.98, kind = "object", id = 164957, name = "Eastern Crystal Pylon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11184, name = "Blue Power Crystal"},
+            {kind = "item", id = 11188, name = "Yellow Power Crystal"},
+        },
     },
     [4401] = {
         name = "Corrupted Songflower",
@@ -23661,6 +26409,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 63.78, y = 6.91, kind = "object", id = 174713, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4402] = {
         name = "Galgar's Cactus Apple Surprise",
@@ -23675,6 +26426,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 42.73, y = 67.23, kind = "npc", id = 9796, name = "Galgar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11583, name = "Cactus Apple"},
+        },
     },
     [4403] = {
         name = "Corrupted Windblossom",
@@ -23689,6 +26443,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 45.2, y = 18.54, kind = "object", id = 174601, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4421] = {
         name = "The Corruption of the Jadefire",
@@ -23706,6 +26463,12 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.35, y = 81.51, kind = "npc", id = 9116, name = "Eridan Bluewind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7109, name = "Jadefire Felsworn"},
+            {kind = "target", id = 7110, name = "Jadefire Shadowstalker"},
+            {kind = "target", id = 7106, name = "Jadefire Rogue"},
+            {kind = "target", id = 9454, name = "Xavathras"},
+        },
     },
     [4441] = {
         name = "Felbound Ancients",
@@ -23720,6 +26483,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.35, y = 81.51, kind = "npc", id = 9116, name = "Eridan Bluewind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5646, name = "Vial of Blessed Water"},
+        },
     },
     [4442] = {
         name = "Purified!",
@@ -23744,6 +26510,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 50.59, y = 18.26, kind = "object", id = 173284, name = "Corrupted Whipper Root"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4444] = {
         name = "Corrupted Whipper Root",
@@ -23758,6 +26527,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 49.42, y = 12.17, kind = "object", id = 174605, name = "Corrupted Whipper Root"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4445] = {
         name = "Corrupted Whipper Root",
@@ -23772,6 +26544,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 40.56, y = 20.35, kind = "object", id = 174606, name = "Corrupted Whipper Root"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4446] = {
         name = "Corrupted Whipper Root",
@@ -23786,6 +26561,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 50.61, y = 18.24, kind = "object", id = 174607, name = "Corrupted Whipper Root"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4447] = {
         name = "Corrupted Night Dragon",
@@ -23800,6 +26578,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 49, y = 87.47, kind = "object", id = 173324, name = "Corrupted Night Dragon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4448] = {
         name = "Corrupted Night Dragon",
@@ -23814,6 +26595,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 42.94, y = 14.03, kind = "object", id = 174608, name = "Corrupted Night Dragon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4449] = {
         name = "Caught!",
@@ -23884,6 +26668,10 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 65.59, y = 62.17, kind = "object", id = 173265, name = "Wooden Outhouse"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5839, name = "Dark Iron Geologist"},
+            {kind = "item", id = 4306, name = "Silk Cloth"},
+        },
     },
     [4450] = {
         name = "Ledger from Tanaris",
@@ -23900,6 +26688,12 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.46, y = 28.81, kind = "npc", id = 5411, name = "Krinkle Goodsteel"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11727, name = "Goodsteel Ledger"},
+            {kind = "item", id = 11725, name = "Solid Crystal Leg Shaft"},
+            {kind = "item", id = 11724, name = "Overdue Package"},
+            {kind = "item", id = 11723, name = "Goodsteel's Balanced Flameberge"},
+        },
     },
     [4451] = {
         name = "The Key to Freedom",
@@ -23929,6 +26723,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 49.58, y = 12.09, kind = "object", id = 174686, name = "Corrupted Whipper Root"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4462] = {
         name = "Corrupted Night Dragon",
@@ -23943,6 +26740,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 35.23, y = 59.12, kind = "object", id = 174684, name = "Corrupted Night Dragon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4464] = {
         name = "Corrupted Songflower",
@@ -23957,6 +26757,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 48.51, y = 76.73, kind = "object", id = 171942, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4465] = {
         name = "Corrupted Songflower",
@@ -23971,6 +26774,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 46.2, y = 85.48, kind = "object", id = 171939, name = "Corrupted Songflower"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4466] = {
         name = "Corrupted Windblossom",
@@ -23985,6 +26791,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 44.77, y = 41.58, kind = "object", id = 174604, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4467] = {
         name = "Corrupted Windblossom",
@@ -23999,6 +26808,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.99, y = 22.57, kind = "object", id = 174708, name = "Corrupted Windblossom"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11516, name = "Cenarion Plant Salve"},
+        },
     },
     [4487] = {
         name = "Summon Felsteed",
@@ -24074,6 +26886,10 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 50.89, y = 26.96, kind = "npc", id = 5594, name = "Alchemist Pestlezugg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11837, name = "Gorishi Scent Gland"},
+            {kind = "item", id = 11018, name = "Un'Goro Soil"},
+        },
     },
     [4501] = {
         name = "Beware of Pterrordax",
@@ -24088,6 +26904,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 43.62, y = 8.5, kind = "npc", id = 9997, name = "Spraggle Frock"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 9166, name = "Pterrordax"},
+            {kind = "target", id = 9167, name = "Frenzied Pterrordax"},
+        },
     },
     [4502] = {
         name = "Volcanic Activity",
@@ -24105,6 +26925,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.45, y = 38.73, kind = "npc", id = 8496, name = "Liv Rizzlefix"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11829, name = "Un'Goro Ash"},
+        },
     },
     [4503] = {
         name = "Shizzle's Flyer",
@@ -24123,6 +26946,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 44.23, y = 11.59, kind = "npc", id = 9998, name = "Shizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11830, name = "Webbed Diemetradon Scale"},
+            {kind = "item", id = 11831, name = "Webbed Pterrordax Scale"},
+        },
     },
     [4504] = {
         name = "Super Sticky",
@@ -24139,6 +26966,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.57, y = 26.76, kind = "npc", id = 7876, name = "Tran'rek"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11834, name = "Super Sticky Tar"},
+        },
     },
     [4505] = {
         name = "Well of Corruption",
@@ -24153,6 +26983,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 34.21, y = 52.34, kind = "npc", id = 9996, name = "Winna Hazzard", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12567, name = "Filled Flasket"},
+        },
     },
     [4506] = {
         name = "Corrupted Sabers",
@@ -24180,6 +27013,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 50.89, y = 26.96, kind = "npc", id = 5594, name = "Alchemist Pestlezugg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11835, name = "Gorishi Queen Brain"},
+        },
     },
     [4508] = {
         name = "Calm Before the Storm",
@@ -24205,6 +27041,10 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 34.73, y = 52.79, kind = "npc", id = 10306, name = "Trull Failbane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7451, name = "Raging Owlbeast"},
+            {kind = "target", id = 7450, name = "Ragged Owlbeast"},
+        },
     },
     [4542] = {
         name = "Message to Freewind Post",
@@ -24239,6 +27079,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 30.58, y = 90.63, kind = "npc", id = 2546, name = "Fleet Master Firallon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2496, name = "Baron Revilgaz"},
+            {kind = "target", id = 2487, name = "Fleet Master Seahorn"},
+        },
     },
     [4641] = {
         name = "Your Place In The World",
@@ -24263,6 +27107,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.62, y = 45.59, kind = "npc", id = 10219, name = "Gwennyth Bly'Leggonde", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12289, name = "Sea Turtle Remains"},
+        },
     },
     [4721] = {
         name = "Wild Guardians",
@@ -24277,6 +27124,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 34.73, y = 52.79, kind = "npc", id = 10306, name = "Trull Failbane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7454, name = "Berserk Owlbeast"},
+        },
     },
     [4722] = {
         name = "Beached Sea Turtle",
@@ -24320,6 +27170,9 @@ ns.foreverQuestLocations = {
             {mapId = 1428, x = 65.24, y = 24, kind = "npc", id = 10267, name = "Tinkee Steamboil"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12283, name = "Broodling Essence"},
+        },
     },
     [4727] = {
         name = "Beached Sea Turtle",
@@ -24414,6 +27267,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.7, y = 43.41, kind = "npc", id = 2930, name = "Sentinel Glynda Nal'Shea", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10323, name = "Murkdeep"},
+        },
     },
     [4741] = {
         name = "Wild Guardians",
@@ -24428,6 +27284,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 34.73, y = 52.79, kind = "npc", id = 10306, name = "Trull Failbane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7453, name = "Moontouched Owlbeast"},
+        },
     },
     [4761] = {
         name = "Thundris Windweaver",
@@ -24452,6 +27311,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.4, y = 40.13, kind = "npc", id = 3649, name = "Thundris Windweaver", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12349, name = "Cliffspring River Sample"},
+        },
     },
     [4763] = {
         name = "The Blackwood Corrupted",
@@ -24466,6 +27328,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.4, y = 40.13, kind = "npc", id = 3649, name = "Thundris Windweaver", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12355, name = "Talisman of Corruption"},
+        },
     },
     [4767] = {
         name = "Wind Rider",
@@ -24480,6 +27345,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 44.93, y = 48.92, kind = "npc", id = 10377, name = "Elu", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12356, name = "Highperch Wyvern Egg"},
+        },
     },
     [4770] = {
         name = "Homeward Bound",
@@ -24556,6 +27424,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.71, y = 76.89, kind = "npc", id = 2670, name = "Xizk Goodstitch"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3577, name = "Gold Bar"},
+        },
     },
     [4782] = {
         name = "Components for the Enchanted Gold Bloodrobe",
@@ -24586,6 +27457,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6989, name = "Vial of Hatefury Blood"},
+            {kind = "item", id = 6990, name = "Lesser Infernal Stone"},
+        },
     },
     [4784] = {
         name = "Components for the Enchanted Gold Bloodrobe",
@@ -24600,6 +27475,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12293, name = "Fine Gold Thread"},
+            {kind = "item", id = 6991, name = "Smoldering Coal"},
+            {kind = "item", id = 6265, name = "Soul Shard"},
+        },
     },
     [4786] = {
         name = "The Completed Robe",
@@ -24613,6 +27493,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6266, name = "Menara Voidrender"},
+        },
     },
     [4801] = {
         name = "Frostsaber E'ko",
@@ -24630,6 +27513,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12430, name = "Frostsaber E'ko"},
+        },
     },
     [4802] = {
         name = "Winterfall E'ko",
@@ -24650,6 +27536,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12431, name = "Winterfall E'ko"},
+        },
     },
     [4803] = {
         name = "Shardtooth E'ko",
@@ -24666,6 +27555,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12432, name = "Shardtooth E'ko"},
+        },
     },
     [4804] = {
         name = "Chillwind E'ko",
@@ -24681,6 +27573,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12434, name = "Chillwind E'ko"},
+        },
     },
     [4805] = {
         name = "Ice Thistle E'ko",
@@ -24697,6 +27592,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12435, name = "Ice Thistle E'ko"},
+        },
     },
     [4806] = {
         name = "Frostmaul E'ko",
@@ -24711,6 +27609,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12436, name = "Frostmaul E'ko"},
+        },
     },
     [4807] = {
         name = "Wildkin E'ko",
@@ -24728,6 +27629,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.92, y = 38.3, kind = "npc", id = 10307, name = "Witch Doctor Mau'ari"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12433, name = "Wildkin E'ko"},
+        },
     },
     [4808] = {
         name = "Felnok Steelspring",
@@ -24761,6 +27665,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.7, y = 43.41, kind = "npc", id = 2930, name = "Sentinel Glynda Nal'Shea", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 175524, name = "Mysterious Red Crystal"},
+        },
     },
     [4812] = {
         name = "As Water Cascades",
@@ -24775,6 +27682,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 47.32, y = 48.68, kind = "object", id = 175524, name = "Mysterious Red Crystal"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14339, name = "Moonwell Water Tube"},
+        },
     },
     [4813] = {
         name = "The Fragments Within",
@@ -24799,6 +27709,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 44.64, y = 50.29, kind = "npc", id = 10539, name = "Hagar Lightninghoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12467, name = "Alien Egg"},
+        },
     },
     [4841] = {
         name = "Pacify the Centaur",
@@ -24815,6 +27728,11 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 45.67, y = 50.74, kind = "npc", id = 10537, name = "Cliffwatcher Longhorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4094, name = "Galak Scout"},
+            {kind = "target", id = 4093, name = "Galak Wrangler"},
+            {kind = "target", id = 4096, name = "Galak Windchaser"},
+        },
     },
     [4842] = {
         name = "Strange Sources",
@@ -24866,6 +27784,10 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 52.14, y = 30.43, kind = "npc", id = 10301, name = "Jaron Stoneshaper", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12525, name = "Jaron's Supplies"},
+            {kind = "item", id = 12524, name = "Blue-feathered Amulet"},
+        },
     },
     [4865] = {
         name = "Serpent Wild",
@@ -24955,6 +27877,12 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.35, y = 81.51, kind = "npc", id = 9116, name = "Eridan Bluewind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7111, name = "Jadefire Hellcaller"},
+            {kind = "target", id = 7108, name = "Jadefire Betrayer"},
+            {kind = "target", id = 7107, name = "Jadefire Trickster"},
+            {kind = "target", id = 10648, name = "Xavaric"},
+        },
     },
     [4921] = {
         name = "Lost in Battle",
@@ -24969,6 +27897,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.95, y = 31.58, kind = "npc", id = 3432, name = "Mankrik", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10668, name = "Beaten Corpse"},
+        },
     },
     [4961] = {
         name = "Cleansing of the Orb of Orahil",
@@ -24982,6 +27913,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 46.06, y = 57.09, kind = "npc", id = 6546, name = "Tabetha"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6549, name = "Demon of the Orb"},
+        },
     },
     [4962] = {
         name = "Shard of a Felhound",
@@ -24995,6 +27929,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12648, name = "Imprisoned Felhound Spirit"},
+        },
     },
     [4963] = {
         name = "Shard of an Infernal",
@@ -25008,6 +27945,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12649, name = "Imprisoned Infernal Spirit"},
+        },
     },
     [4964] = {
         name = "The Completed Orb of Dar'Orahil",
@@ -25021,6 +27961,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6266, name = "Menara Voidrender"},
+        },
     },
     [4965] = {
         name = "Knowledge of the Orb of Orahil",
@@ -25045,6 +27988,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 21.25, y = 32.06, kind = "npc", id = 10638, name = "Kanati Greycloud", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10720, name = "Galak Assassin"},
+        },
     },
     [4968] = {
         name = "Knowledge of the Orb of Orahil",
@@ -25075,6 +28021,10 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 49.94, y = 9.84, kind = "npc", id = 10618, name = "Rivern Frostwind", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12622, name = "Shardtooth Meat"},
+            {kind = "item", id = 12623, name = "Chillwind Meat"},
+        },
     },
     [4971] = {
         name = "A Matter of Time",
@@ -25088,6 +28038,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 39.46, y = 66.76, kind = "npc", id = 10667, name = "Chromie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10717, name = "Temporal Parasite"},
+        },
     },
     [4972] = {
         name = "Counting Out Time",
@@ -25101,6 +28054,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 39.46, y = 66.76, kind = "npc", id = 10667, name = "Chromie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12638, name = "Andorhal Watch"},
+        },
     },
     [4975] = {
         name = "The Completed Orb of Noh'Orahil",
@@ -25114,6 +28070,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.51, y = 35.45, kind = "npc", id = 6266, name = "Menara Voidrender"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6266, name = "Menara Voidrender"},
+        },
     },
     [4976] = {
         name = "Returning the Cleansed Orb",
@@ -25136,6 +28095,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 53.73, y = 64.66, kind = "npc", id = 10739, name = "Mulgris Deepriver"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1817, name = "Diseased Wolf"},
+        },
     },
     [4985] = {
         name = "The Wildlife Suffers Too",
@@ -25149,6 +28111,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 53.73, y = 64.66, kind = "npc", id = 10739, name = "Mulgris Deepriver"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1816, name = "Diseased Grizzly"},
+        },
     },
     [5021] = {
         name = "Better Late Than Never",
@@ -25172,6 +28137,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.5, y = 30.87, kind = "npc", id = 3429, name = "Thork", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12708, name = "Crossroads' Supply Crates"},
+        },
     },
     [5048] = {
         name = "Good Natured Emma",
@@ -25212,6 +28180,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 38.4, y = 54.05, kind = "npc", id = 10778, name = "Janice Felstone"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12723, name = "Good Luck Charm"},
+        },
         objective = {
             {mapId = 1422, x = 38, y = 56.4, kind = "loot", id = 10801, name = "Jabbering Ghoul", source = "Wowhead Forever", entityType = "npc"},
         },
@@ -25282,6 +28253,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 44.55, y = 59.26, kind = "npc", id = 3430, name = "Mangletooth", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5075, name = "Blood Shard"},
+        },
     },
     [5054] = {
         name = "Ursius of the Shardtooth",
@@ -25296,6 +28270,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.93, y = 38.38, kind = "npc", id = 10303, name = "Storm Shadowhoof"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10806, name = "Ursius"},
+        },
     },
     [5055] = {
         name = "Brumeran of the Chillwind",
@@ -25310,6 +28287,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.93, y = 38.38, kind = "npc", id = 10303, name = "Storm Shadowhoof"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10807, name = "Brumeran"},
+        },
     },
     [5056] = {
         name = "Shy-Rotam",
@@ -25324,6 +28304,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.93, y = 38.38, kind = "npc", id = 10303, name = "Storm Shadowhoof"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10737, name = "Shy-Rotam"},
+        },
     },
     [5057] = {
         name = "Past Endeavors",
@@ -25356,6 +28339,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 47.35, y = 49.63, kind = "object", id = 175924, name = "Locked Cabinet"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12739, name = "Dalson Cabinet Key"},
+        },
     },
     [5061] = {
         name = "Aquatic Form",
@@ -25380,6 +28366,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 69.85, y = 30.91, kind = "npc", id = 4046, name = "Magatha Grimtotem", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12732, name = "Incendia Agave"},
+        },
     },
     [5064] = {
         name = "Grimtotem Spying",
@@ -25396,6 +28385,11 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 45.67, y = 50.74, kind = "npc", id = 10537, name = "Cliffwatcher Longhorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12765, name = "Secret Note #1"},
+            {kind = "item", id = 12766, name = "Secret Note #2"},
+            {kind = "item", id = 12768, name = "Secret Note #3"},
+        },
     },
     [5066] = {
         name = "A Call to Arms: The Plaguelands!",
@@ -25421,6 +28415,11 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 31.27, y = 45.16, kind = "npc", id = 9298, name = "Donova Snowden"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7442, name = "Winterfall Pathfinder"},
+            {kind = "target", id = 7440, name = "Winterfall Den Watcher"},
+            {kind = "target", id = 7441, name = "Winterfall Totemic"},
+        },
     },
     [5083] = {
         name = "Winterfall Firewater",
@@ -25468,6 +28467,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 31.27, y = 45.16, kind = "npc", id = 9298, name = "Donova Snowden"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12822, name = "Toxic Horror Droplet"},
+        },
     },
     [5087] = {
         name = "Winterfall Runners",
@@ -25482,6 +28484,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 31.27, y = 45.16, kind = "npc", id = 9298, name = "Donova Snowden"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12829, name = "Winterfall Crate"},
+        },
     },
     [5088] = {
         name = "Arikara",
@@ -25497,6 +28502,10 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 21.54, y = 32.35, kind = "npc", id = 10428, name = "Motega Firemane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 175944, name = "Sacred Fire of Life"},
+            {kind = "item", id = 12925, name = "Arikara Serpent Skin"},
+        },
     },
     [5090] = {
         name = "A Call to Arms: The Plaguelands!",
@@ -25532,6 +28541,10 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 42.7, y = 84.03, kind = "npc", id = 10838, name = "Commander Ashlam Valorfist", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1783, name = "Skeletal Flayer"},
+            {kind = "target", id = 1791, name = "Slavering Ghoul"},
+        },
     },
     [5093] = {
         name = "A Call to Arms: The Plaguelands!",
@@ -25589,6 +28602,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 31.27, y = 45.16, kind = "npc", id = 9298, name = "Donova Snowden"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10738, name = "High Chief Winterfall"},
+        },
     },
     [5123] = {
         name = "The Final Piece",
@@ -25631,6 +28647,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 45.67, y = 50.74, kind = "npc", id = 10537, name = "Cliffwatcher Longhorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12884, name = "Arnak's Hoof"},
+        },
     },
     [5149] = {
         name = "Pamela's Doll",
@@ -25641,6 +28660,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 31.15, y = 77.98, kind = "npc", id = 10926, name = "Pamela Redpath"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12885, name = "Pamela's Doll"},
+        },
         objectiveText = "Search Darrowshire's houses for the doll's head, left side and right side. Combine the three pieces to make Pamela's Doll.",
         objectiveKind = "combine",
         objectiveSource = "Classic reference",
@@ -25696,6 +28718,9 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 43.63, y = 7.17, kind = "npc", id = 9274, name = "Dadanga"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11315, name = "Bloodpetal Sprout"},
+        },
     },
     [5151] = {
         name = "Hypercapacitor Gizmo",
@@ -25710,6 +28735,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 21.43, y = 32.55, kind = "npc", id = 10941, name = "Wizlo Bearingshiner", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12946, name = "Hypercapacitor Gizmo"},
+        },
     },
     [5152] = {
         name = "Auntie Marlene",
@@ -25732,6 +28760,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 39.46, y = 66.76, kind = "npc", id = 10667, name = "Chromie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12894, name = "Joseph's Wedding Ring"},
+        },
     },
     [5154] = {
         name = "The Annals of Darrowshire",
@@ -25745,6 +28776,9 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 39.46, y = 66.76, kind = "npc", id = 10667, name = "Chromie"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12900, name = "Annals of Darrowshire"},
+        },
     },
     [5155] = {
         name = "Forces of Jaedenar",
@@ -25761,6 +28795,12 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.21, y = 82.11, kind = "npc", id = 10922, name = "Greta Mosshoof"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7125, name = "Jaedenar Hound"},
+            {kind = "target", id = 7113, name = "Jaedenar Guardian"},
+            {kind = "target", id = 7115, name = "Jaedenar Adept"},
+            {kind = "target", id = 7112, name = "Jaedenar Cultist"},
+        },
     },
     [5156] = {
         name = "Verifying the Corruption",
@@ -25776,6 +28816,10 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 50.89, y = 81.62, kind = "npc", id = 10921, name = "Taronn Redfeather"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 9878, name = "Entropic Beast"},
+            {kind = "target", id = 9879, name = "Entropic Horror"},
+        },
     },
     [5157] = {
         name = "Collection of the Corrupt Water",
@@ -25789,6 +28833,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.21, y = 82.11, kind = "npc", id = 10922, name = "Greta Mosshoof"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12907, name = "Corrupt Moonwell Water"},
+        },
     },
     [5158] = {
         name = "Seeking Spiritual Aid",
@@ -25822,6 +28869,11 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 60.88, y = 37.62, kind = "npc", id = 10305, name = "Umi Rumplesnicker"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10978, name = "Legacki"},
+            {kind = "target", id = 7583, name = "Sprinkle"},
+            {kind = "target", id = 10977, name = "Quixxil"},
+        },
     },
     [5165] = {
         name = "Dousing the Flames of Protection",
@@ -25838,6 +28890,12 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.21, y = 82.11, kind = "npc", id = 10922, name = "Greta Mosshoof"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 176158, name = "Brazier of Pain"},
+            {kind = "object", id = 176159, name = "Brazier of Malice"},
+            {kind = "object", id = 176160, name = "Brazier of Suffering"},
+            {kind = "object", id = 176161, name = "Brazier of Hatred"},
+        },
     },
     [5168] = {
         name = "Heroes of Darrowshire",
@@ -25852,6 +28910,10 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.7, y = 50.04, kind = "npc", id = 11063, name = "Carlin Redpath"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12954, name = "Davil's Libram"},
+            {kind = "item", id = 12955, name = "Redpath's Shield"},
+        },
     },
     [5181] = {
         name = "Villains of Darrowshire",
@@ -25866,6 +28928,10 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.7, y = 50.04, kind = "npc", id = 11063, name = "Carlin Redpath"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12956, name = "Skull of Horgus"},
+            {kind = "item", id = 12957, name = "Shattered Sword of Marduk"},
+        },
     },
     [5201] = {
         name = "Winterfall Intrusion",
@@ -25881,6 +28947,10 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 49.94, y = 9.84, kind = "npc", id = 10618, name = "Rivern Frostwind", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7439, name = "Winterfall Shaman"},
+            {kind = "target", id = 7438, name = "Winterfall Ursa"},
+        },
     },
     [5202] = {
         name = "A Strange Red Key",
@@ -25921,6 +28991,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 38.5, y = 50.41, kind = "npc", id = 11020, name = "Remains of Trey Lightforge"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 9518, name = "Rakaiah"},
+        },
     },
     [5206] = {
         name = "Marauders of Darrowshire",
@@ -25934,6 +29007,9 @@ ns.foreverQuestLocations = {
         objective = {
             {mapId = 1423, x = 34.77, y = 40.18, kind = "target", id = 8529, name = "Scourge Champion"},
             {mapId = 1423, x = 34.77, y = 40.18, kind = "loot", id = 8529, name = "Scourge Champion", itemId = 13157},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 13155, name = "Resonating Skull"},
         },
     },
     [5210] = {
@@ -25957,6 +29033,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.7, y = 50.04, kind = "npc", id = 11063, name = "Carlin Redpath"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11064, name = "Darrowshire Spirit"},
+        },
     },
     [5241] = {
         name = "Uncle Carlin",
@@ -25981,6 +29060,11 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 51.21, y = 82.11, kind = "npc", id = 10922, name = "Greta Mosshoof"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 9861, name = "Moora"},
+            {kind = "target", id = 9860, name = "Salia"},
+            {kind = "item", id = 13207, name = "Shadow Lord Fel'dan's Head"},
+        },
     },
     [5244] = {
         name = "The Ruins of Kel'Theril",
@@ -26008,6 +29092,12 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 46.49, y = 16.03, kind = "npc", id = 10304, name = "Aurora Skycaller"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12896, name = "First Relic Fragment"},
+            {kind = "item", id = 12897, name = "Second Relic Fragment"},
+            {kind = "item", id = 12898, name = "Third Relic Fragment"},
+            {kind = "item", id = 12899, name = "Fourth Relic Fragment"},
+        },
     },
     [5246] = {
         name = "Fragments of the Past",
@@ -26022,6 +29112,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 46.49, y = 16.03, kind = "npc", id = 10304, name = "Aurora Skycaller"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13313, name = "Sacred Highborne Writings"},
+        },
     },
     [5247] = {
         name = "Fragments of the Past",
@@ -26037,6 +29130,11 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 46.49, y = 16.03, kind = "npc", id = 10304, name = "Aurora Skycaller"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12655, name = "Enchanted Thorium Bar"},
+            {kind = "item", id = 11562, name = "Crystal Restore"},
+            {kind = "item", id = 16973, name = "Vial of Dire Water"},
+        },
     },
     [5248] = {
         name = "Tormented By the Past",
@@ -26097,6 +29195,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.33, y = 37.13, kind = "npc", id = 11191, name = "Lilith the Lithe"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13351, name = "Crimson Hammersmith's Apron"},
+        },
         objectiveText = "In Stratholme's Scarlet Bastion, interact with the Blacksmithing Plans to summon the Crimson Hammersmith, then recover the Crimson Hammersmith's Apron.",
         objectiveKind = "instance",
         objectiveSource = "Wowhead Classic",
@@ -26110,6 +29211,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.3, y = 37.07, kind = "npc", id = 11192, name = "Kilram"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13352, name = "Vosh'gajin's Snakestone"},
+        },
         objectiveText = "Defeat Shadow Hunter Vosh'gajin in Blackrock Spire and loot Vosh'gajin's Snakestone.",
         objectiveKind = "instance",
         objectiveSource = "WoWDB",
@@ -26123,6 +29227,9 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 61.33, y = 37.19, kind = "npc", id = 11193, name = "Seril Scourgebane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13350, name = "Insignia of the Black Guard"},
+        },
         objectiveText = "Defeat the Black Guard Swordsmith in Stratholme and recover the Insignia of the Black Guard.",
         objectiveKind = "instance",
         objectiveSource = "Classic reference",
@@ -26164,6 +29271,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 25.82, y = 68.21, kind = "npc", id = 11624, name = "Taiga Wisemane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13542, name = "Demon Box"},
+        },
     },
     [5385] = {
         name = "The Remains of Trey Lightforge",
@@ -26187,6 +29297,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 55.41, y = 55.81, kind = "npc", id = 11259, name = "Nataka Longhorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13546, name = "Bloodbelly Fish"},
+        },
     },
     [5441] = {
         name = "Lazy Peons",
@@ -26201,6 +29314,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 44.63, y = 68.65, kind = "npc", id = 11378, name = "Foreman Thazz'ril", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10556, name = "Lazy Peon"},
+        },
     },
     [5481] = {
         name = "Gordo's Task",
@@ -26215,6 +29331,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 57.44, y = 48.85, kind = "npc", id = 10665, name = "Junior Apothecary Holland", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12737, name = "Gloom Weed"},
+        },
     },
     [5482] = {
         name = "Doom Weed",
@@ -26229,6 +29348,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 57.44, y = 48.85, kind = "npc", id = 10665, name = "Junior Apothecary Holland", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13702, name = "Doom Weed"},
+        },
     },
     [5501] = {
         name = "Bone Collector",
@@ -26243,6 +29365,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 62.33, y = 38.99, kind = "npc", id = 11438, name = "Bibbly F'utzbuckle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13703, name = "Kodo Bone"},
+        },
     },
     [5503] = {
         name = "Argent Dawn Commission",
@@ -26267,6 +29392,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.79, y = 50.25, kind = "npc", id = 11536, name = "Quartermaster Miranda Breechlock"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12844, name = "Argent Dawn Valor Token"},
+        },
     },
     [5517] = {
         name = "Chromatic Mantle of the Dawn",
@@ -26282,6 +29410,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.79, y = 50.25, kind = "npc", id = 11536, name = "Quartermaster Miranda Breechlock"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12844, name = "Argent Dawn Valor Token"},
+        },
     },
     [5534] = {
         name = "Kim'jael's \"Missing\" Equipment",
@@ -26298,6 +29429,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 53.45, y = 21.82, kind = "npc", id = 8420, name = "Kim'jael"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13815, name = "Some Rune"},
+        },
     },
     [5535] = {
         name = "Spiritual Unrest",
@@ -26312,6 +29446,10 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 11.37, y = 78.17, kind = "npc", id = 11548, name = "Loh'atu"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6116, name = "Highborne Apparition"},
+            {kind = "target", id = 6117, name = "Highborne Lichling"},
+        },
     },
     [5536] = {
         name = "A Land Filled with Hatred",
@@ -26327,6 +29465,11 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 11.37, y = 78.17, kind = "npc", id = 11548, name = "Loh'atu"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6125, name = "Haldarr Satyr"},
+            {kind = "target", id = 6126, name = "Haldarr Trickster"},
+            {kind = "target", id = 6127, name = "Haldarr Felsworn"},
+        },
     },
     [5542] = {
         name = "Demon Dogs",
@@ -26343,6 +29486,11 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 5.16, y = 35.57, kind = "npc", id = 1855, name = "Tirion Fordring"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8596, name = "Plaguehound Runt"},
+            {kind = "target", id = 8597, name = "Plaguehound"},
+            {kind = "target", id = 8598, name = "Frenzied Plaguehound"},
+        },
     },
     [5543] = {
         name = "Blood Tinged Skies",
@@ -26357,6 +29505,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 5.16, y = 35.57, kind = "npc", id = 1855, name = "Tirion Fordring"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8600, name = "Plaguebat"},
+        },
     },
     [5544] = {
         name = "Carrion Grubbage",
@@ -26372,6 +29523,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 5.16, y = 35.57, kind = "npc", id = 1855, name = "Tirion Fordring"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13853, name = "Slab of Carrion Worm Meat"},
+        },
     },
     [5561] = {
         name = "Kodo Roundup",
@@ -26402,6 +29556,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 25.82, y = 68.21, kind = "npc", id = 11624, name = "Taiga Wisemane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11937, name = "Demon Portal Guardian"},
+        },
     },
     [5601] = {
         name = "Sister Pamela",
@@ -26439,6 +29596,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 31.15, y = 77.98, kind = "npc", id = 10926, name = "Pamela Redpath"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10936, name = "Joseph Redpath"},
+        },
     },
     [5741] = {
         name = "Sceptre of Light",
@@ -26452,6 +29612,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 38.88, y = 27.16, kind = "npc", id = 11863, name = "Azore Aldamort"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15750, name = "Sceptre of Light"},
+        },
     },
     [5762] = {
         name = "Hemet Nesingwary",
@@ -26499,6 +29662,11 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.82, y = 27.4, kind = "npc", id = 11758, name = "Andi Lynn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5474, name = "Dunemaul Brute"},
+            {kind = "target", id = 5472, name = "Dunemaul Enforcer"},
+            {kind = "target", id = 12046, name = "Gor'marok the Ravager"},
+        },
     },
     [5881] = {
         name = "Calling in the Reserves",
@@ -26583,6 +29751,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11515, name = "Corrupted Soul Shard"},
+        },
     },
     [5883] = {
         name = "Salve via Mining",
@@ -26694,6 +29865,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11513, name = "Tainted Vitriol"},
+        },
     },
     [5884] = {
         name = "Salve via Gathering",
@@ -26724,6 +29898,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11514, name = "Fel Creep"},
+        },
     },
     [5885] = {
         name = "Salve via Skinning",
@@ -26735,6 +29912,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11512, name = "Patch of Tainted Skin"},
+        },
         objective = {
             {mapId = 1448, x = 35.4, y = 57.8, kind = "loot", id = 7126, name = "Jaedenar Hunter", source = "Wowhead Classic", entityType = "npc"},
             {mapId = 1448, x = 55.8, y = 10.4, kind = "loot", id = 8957, name = "Angerclaw Grizzly", source = "Wowhead Classic", entityType = "npc"},
@@ -26751,6 +29931,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 54.15, y = 86.83, kind = "npc", id = 9528, name = "Arathandris Silversky"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11174, name = "Lesser Nether Essence"},
+        },
         objectiveText = "Obtain Lesser Nether Essence by disenchanting magic items or buying it for the Cenarion plant salve exchange.",
         objectiveKind = "craft",
         objectiveSource = "Wowhead Classic",
@@ -26828,6 +30011,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 46.75, y = 83.13, kind = "npc", id = 9529, name = "Maybess Riverbreeze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11515, name = "Corrupted Soul Shard"},
+        },
     },
     [5888] = {
         name = "Salve via Mining",
@@ -26939,6 +30125,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 46.75, y = 83.13, kind = "npc", id = 9529, name = "Maybess Riverbreeze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11513, name = "Tainted Vitriol"},
+        },
     },
     [5889] = {
         name = "Salve via Gathering",
@@ -26969,6 +30158,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 46.75, y = 83.13, kind = "npc", id = 9529, name = "Maybess Riverbreeze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11514, name = "Fel Creep"},
+        },
     },
     [5890] = {
         name = "Salve via Skinning",
@@ -26980,6 +30172,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 46.75, y = 83.13, kind = "npc", id = 9529, name = "Maybess Riverbreeze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11512, name = "Patch of Tainted Skin"},
+        },
         objective = {
             {mapId = 1448, x = 35.4, y = 57.8, kind = "loot", id = 7126, name = "Jaedenar Hunter", source = "Wowhead Classic", entityType = "npc"},
             {mapId = 1448, x = 55.8, y = 10.4, kind = "loot", id = 8957, name = "Angerclaw Grizzly", source = "Wowhead Classic", entityType = "npc"},
@@ -26996,6 +30191,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 46.75, y = 83.13, kind = "npc", id = 9529, name = "Maybess Riverbreeze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 11174, name = "Lesser Nether Essence"},
+        },
         objectiveText = "Obtain Lesser Nether Essence by disenchanting magic items or buying it for the Cenarion plant salve exchange.",
         objectiveKind = "craft",
         objectiveSource = "Classic reference",
@@ -27083,6 +30281,9 @@ ns.foreverQuestLocations = {
             {mapId = 1450, x = 56.21, y = 30.64, kind = "npc", id = 11802, name = "Dendrite Starblaze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11956, name = "Great Bear Spirit"},
+        },
     },
     [5931] = {
         name = "Back to Darnassus",
@@ -27153,6 +30354,10 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 49.94, y = 9.84, kind = "npc", id = 10618, name = "Rivern Frostwind", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7428, name = "Frostmaul Giant"},
+            {kind = "target", id = 7429, name = "Frostmaul Preserver"},
+        },
     },
     [6001] = {
         name = "Body and Heart",
@@ -27168,6 +30373,9 @@ ns.foreverQuestLocations = {
             {mapId = 1457, x = 35.37, y = 8.4, kind = "npc", id = 4217, name = "Mathrengyl Bearwalker", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 12144, name = "Lunaclaw Spirit"},
+        },
     },
     [6004] = {
         name = "Unfinished Business",
@@ -27184,6 +30392,12 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 51.92, y = 28.06, kind = "npc", id = 11610, name = "Kirsta Deepshadow"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10605, name = "Scarlet Medic"},
+            {kind = "target", id = 1831, name = "Scarlet Hunter"},
+            {kind = "target", id = 1826, name = "Scarlet Mage"},
+            {kind = "target", id = 1833, name = "Scarlet Knight"},
+        },
     },
     [6021] = {
         name = "Zaeldarr the Outcast",
@@ -27197,6 +30411,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 69.93, y = 53.72, kind = "npc", id = 11038, name = "Caretaker Alen"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15785, name = "Zaeldarr's Head"},
+        },
     },
     [6022] = {
         name = "To Kill With Purpose",
@@ -27217,6 +30434,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 27.47, y = 23.15, kind = "target", id = 8543, name = "Stitched Horror"},
             {mapId = 1423, x = 19.52, y = 16.18, kind = "target", id = 12262, name = "Ziggurat Protector"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 15448, name = "Coagulated Rot"},
+        },
     },
     [6023] = {
         name = "Unfinished Business",
@@ -27231,6 +30451,10 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 51.92, y = 28.06, kind = "npc", id = 11610, name = "Kirsta Deepshadow"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11613, name = "Huntsman Radley"},
+            {kind = "target", id = 11611, name = "Cavalier Durgen"},
+        },
     },
     [6024] = {
         name = "Hameya's Plea",
@@ -27244,6 +30468,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 23.58, y = 73.79, kind = "object", id = 177675, name = "Mound of Dirt"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15767, name = "Hameya's Key"},
+        },
     },
     [6025] = {
         name = "Unfinished Business",
@@ -27267,6 +30494,12 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 70.88, y = 48.43, kind = "npc", id = 11033, name = "Smokey LaRue"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+            {kind = "item", id = 11128, name = "Golden Rod"},
+            {kind = "item", id = 10562, name = "Hi-Explosive Bomb"},
+            {kind = "item", id = 10560, name = "Unstable Trigger"},
+        },
         objective = {
             {mapId = 1423, x = 26.97, y = 23.77, kind = "loot", id = 230146, name = "Fel Interloper", source = "Wowhead Classic", entityType = "npc"},
         },
@@ -27283,6 +30516,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 38.88, y = 27.16, kind = "npc", id = 11863, name = "Azore Aldamort"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15803, name = "Book of the Ancients"},
+        },
     },
     [6028] = {
         name = "The Everlook Report",
@@ -27315,6 +30551,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 70.88, y = 48.43, kind = "npc", id = 11033, name = "Smokey LaRue"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 12247, name = "Scourge Structure"},
+        },
     },
     [6042] = {
         name = "Un-Life's Little Annoyances",
@@ -27330,6 +30569,10 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 22.23, y = 63.51, kind = "npc", id = 11878, name = "Nathanos Blightcaller", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8601, name = "Noxious Plaguebat"},
+            {kind = "target", id = 8602, name = "Monstrous Plaguebat"},
+        },
     },
     [6121] = {
         name = "Lessons Anew",
@@ -27355,6 +30598,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.69, y = 40.66, kind = "npc", id = 3702, name = "Alanndarian Nightsong", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15845, name = "Filled Cliffspring Falls Sampler"},
+        },
     },
     [6123] = {
         name = "Gathering the Cure",
@@ -27738,6 +30984,10 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.69, y = 40.66, kind = "npc", id = 3702, name = "Alanndarian Nightsong", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2449, name = "Earthroot"},
+            {kind = "item", id = 15851, name = "Lunar Fungus"},
+        },
     },
     [6124] = {
         name = "Curing the Sick",
@@ -27752,6 +31002,9 @@ ns.foreverQuestLocations = {
             {mapId = 1450, x = 56.21, y = 30.64, kind = "npc", id = 11802, name = "Dendrite Starblaze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 12298, name = "Sickly Deer"},
+        },
     },
     [6125] = {
         name = "Power over Poison",
@@ -27792,6 +31045,12 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 22.23, y = 63.51, kind = "npc", id = 11878, name = "Nathanos Blightcaller", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 8565, name = "Pathstrider"},
+            {kind = "target", id = 8564, name = "Ranger"},
+            {kind = "target", id = 8563, name = "Woodsman"},
+            {kind = "item", id = 15847, name = "Quel'Thalas Registry"},
+        },
     },
     [6134] = {
         name = "Ghost-o-plasm Round Up",
@@ -27806,6 +31065,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 47.83, y = 61.83, kind = "npc", id = 6019, name = "Hornizz Brimbuzzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15849, name = "Ghost-o-plasm"},
+        },
     },
     [6135] = {
         name = "Duskwing, Oh How I Hate Thee...",
@@ -27820,6 +31082,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 22.23, y = 63.51, kind = "npc", id = 11878, name = "Nathanos Blightcaller", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15850, name = "Patch of Duskwing's Fur"},
+        },
     },
     [6136] = {
         name = "The Corpulent One",
@@ -27834,6 +31099,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 22.23, y = 63.51, kind = "npc", id = 11878, name = "Nathanos Blightcaller", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11896, name = "Borelgore"},
+        },
     },
     [6141] = {
         name = "Brother Anton",
@@ -27859,6 +31127,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 22.64, y = 71.97, kind = "npc", id = 12031, name = "Mai'Lahii", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15924, name = "Soft-shelled Clam Meat"},
+        },
     },
     [6143] = {
         name = "Other Fish to Fry",
@@ -27875,6 +31146,11 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 23.32, y = 72.87, kind = "npc", id = 12340, name = "Drulzegar Skraghook", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4714, name = "Slitherblade Myrmidon"},
+            {kind = "target", id = 4711, name = "Slitherblade Naga"},
+            {kind = "target", id = 4712, name = "Slitherblade Sorceress"},
+        },
     },
     [6144] = {
         name = "The Call to Command",
@@ -27899,6 +31175,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 22.23, y = 63.51, kind = "npc", id = 11878, name = "Nathanos Blightcaller", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15868, name = "The Grand Crusader's Command"},
+        },
     },
     [6146] = {
         name = "Nathanos' Ruse",
@@ -27910,6 +31189,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 75.21, y = 71.17, kind = "npc", id = 11898, name = "Crusader Lord Valdelmar"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 13852, name = "The Grand Crusader's Command"},
+        },
         objective = {
             {mapId = 1423, x = 22.29, y = 63.57, kind = "loot", id = 11878, name = "Nathanos Blightcaller", source = "Wowhead Classic", entityType = "npc"},
         },
@@ -27937,6 +31219,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 22.23, y = 63.51, kind = "npc", id = 11878, name = "Nathanos Blightcaller", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 12339, name = "Demetria"},
+        },
     },
     [6161] = {
         name = "Claim Rackmore's Treasure!",
@@ -27959,6 +31244,10 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 30, y = 8.71, kind = "object", id = 177786, name = "Rackmore's Chest"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15878, name = "Rackmore's Silver Key"},
+            {kind = "item", id = 15881, name = "Rackmore's Golden Key"},
+        },
     },
     [6162] = {
         name = "A Husband's Last Battle",
@@ -27973,6 +31262,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 34.8, y = 52.73, kind = "npc", id = 9620, name = "Dreka'Sur", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15879, name = "Overlord Ror's Claw"},
+        },
     },
     [6164] = {
         name = "Augustus' Receipt Book",
@@ -27986,6 +31278,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 11.36, y = 26.37, kind = "npc", id = 12384, name = "Augustus the Touched"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15884, name = "Augustus' Receipt Book"},
+        },
     },
     [6185] = {
         name = "The Eastern Plagues",
@@ -28004,6 +31299,11 @@ ns.foreverQuestLocations = {
             {mapId = 1422, x = 43.61, y = 84.51, kind = "npc", id = 12425, name = "Flint Shadowmore", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16003, name = "SI:7 Insignia (Rutger)"},
+            {kind = "item", id = 16001, name = "SI:7 Insignia (Fredo)"},
+            {kind = "item", id = 16002, name = "SI:7 Insignia (Turyen)"},
+        },
     },
     [6186] = {
         name = "The Blightcaller Cometh",
@@ -28031,6 +31331,12 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.2, y = 61.16, kind = "npc", id = 11860, name = "Maggran Earthbinder", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4022, name = "Bloodfury Harpy"},
+            {kind = "target", id = 4025, name = "Bloodfury Ambusher"},
+            {kind = "target", id = 4024, name = "Bloodfury Slayer"},
+            {kind = "target", id = 4023, name = "Bloodfury Roguefeather"},
+        },
     },
     [6283] = {
         name = "Bloodfury Bloodline",
@@ -28045,6 +31351,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.2, y = 61.16, kind = "npc", id = 11860, name = "Maggran Earthbinder", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16190, name = "Bloodfury Ripper's Remains"},
+        },
     },
     [6284] = {
         name = "Arachnophobia",
@@ -28059,6 +31368,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.2, y = 61.16, kind = "npc", id = 11860, name = "Maggran Earthbinder", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16192, name = "Besseleth's Fang"},
+        },
     },
     [6301] = {
         name = "Cycle of Rebirth",
@@ -28073,6 +31385,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.46, y = 58.38, kind = "npc", id = 11864, name = "Tammra Windfield", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16205, name = "Gaea Seed"},
+        },
     },
     [6343] = {
         name = "Return to Nessa",
@@ -28107,6 +31422,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.46, y = 58.38, kind = "npc", id = 11864, name = "Tammra Windfield", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 177929, name = "Gaea Dirt Mound"},
+        },
     },
     [6382] = {
         name = "The Ashenvale Hunt",
@@ -28173,6 +31491,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.36, y = 64.25, kind = "npc", id = 11862, name = "Tsunaman", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16312, name = "Incendrites"},
+        },
     },
     [6394] = {
         name = "Thazz'ril's Pick",
@@ -28187,6 +31508,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 44.63, y = 68.65, kind = "npc", id = 11378, name = "Foreman Thazz'ril", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16332, name = "Thazz'ril's Pick"},
+        },
     },
     [6395] = {
         name = "Marla's Last Wish",
@@ -28201,6 +31525,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 30.86, y = 66.05, kind = "npc", id = 1661, name = "Novice Elreth", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 178090, name = "Marla's Grave"},
+        },
     },
     [6401] = {
         name = "Kaya's Alive",
@@ -28228,6 +31555,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.22, y = 64.04, kind = "npc", id = 11861, name = "Mor'rogal", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16581, name = "Resonite Crystal"},
+        },
     },
     [6441] = {
         name = "Satyr Horns",
@@ -28258,6 +31588,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 73.06, y = 61.48, kind = "npc", id = 12724, name = "Pixel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5481, name = "Satyr Horns"},
+        },
     },
     [6442] = {
         name = "Naga at the Zoram Strand",
@@ -28277,6 +31610,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 11.69, y = 34.91, kind = "npc", id = 12719, name = "Marukai", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 5490, name = "Wrathtail Head"},
+        },
     },
     [6461] = {
         name = "Blood Feeders",
@@ -28292,6 +31628,10 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 71.25, y = 95.02, kind = "npc", id = 12816, name = "Xen'Zilla", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4005, name = "Deepmoss Creeper"},
+            {kind = "target", id = 4007, name = "Deepmoss Venomspitter"},
+        },
     },
     [6462] = {
         name = "Troll Charm",
@@ -28306,6 +31646,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 11.65, y = 34.85, kind = "npc", id = 12721, name = "Mitsuwa", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16602, name = "Troll Charm"},
+        },
     },
     [6481] = {
         name = "Earthen Arise",
@@ -28320,6 +31663,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.22, y = 64.04, kind = "npc", id = 11861, name = "Mor'rogal", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11920, name = "Goggeroc"},
+        },
     },
     [6482] = {
         name = "Freedom to Ruul",
@@ -28348,6 +31694,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 71.11, y = 68.12, kind = "npc", id = 12867, name = "Kuray'bin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 12856, name = "Ashenvale Outrunner"},
+        },
     },
     [6504] = {
         name = "The Lost Pages",
@@ -28359,6 +31708,11 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 70.01, y = 71.16, kind = "npc", id = 12718, name = "Gurda Ragescar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16642, name = "Shredder Operating Manual - Chapter 1"},
+            {kind = "item", id = 16643, name = "Shredder Operating Manual - Chapter 2"},
+            {kind = "item", id = 16644, name = "Shredder Operating Manual - Chapter 3"},
+        },
         objectiveText = "Collect the 12 Shredder Operating Manual pages and combine them into Chapters 1, 2 and 3.",
         objectiveKind = "combine",
         objectiveSource = "WoWDB",
@@ -28412,6 +31766,11 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 48.12, y = 5.42, kind = "npc", id = 8582, name = "Kadrak", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16764, name = "Warsong Scout Update"},
+            {kind = "item", id = 16763, name = "Warsong Runner Update"},
+            {kind = "item", id = 16765, name = "Warsong Outrider Update"},
+        },
     },
     [6544] = {
         name = "Torek's Assault",
@@ -28440,6 +31799,9 @@ ns.foreverQuestLocations = {
         objective = {
             {mapId = 1440, x = 12.22, y = 34.22, kind = "vendor", id = 12863, name = "Warsong Runner", faction = "Horde", itemId = 16763},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 16746, name = "Warsong Report"},
+        },
     },
     [6546] = {
         name = "Warsong Outrider Update",
@@ -28454,6 +31816,9 @@ ns.foreverQuestLocations = {
         objective = {
             {mapId = 1440, x = 81.83, y = 53.51, kind = "vendor", id = 12864, name = "Warsong Outrider", faction = "Horde", itemId = 16765},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 16746, name = "Warsong Report"},
+        },
     },
     [6547] = {
         name = "Warsong Scout Update",
@@ -28467,6 +31832,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         objective = {
             {mapId = 1440, x = 71.05, y = 68.36, kind = "vendor", id = 12862, name = "Warsong Scout", faction = "Horde", itemId = 16764},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 16746, name = "Warsong Report"},
         },
     },
     [6548] = {
@@ -28483,6 +31851,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 35.19, y = 27.76, kind = "npc", id = 11857, name = "Makaba Flathoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11910, name = "Grimtotem Ruffian"},
+            {kind = "target", id = 11911, name = "Grimtotem Mercenary"},
+        },
     },
     [6571] = {
         name = "Warsong Supplies",
@@ -28511,6 +31883,12 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 71.4, y = 67.63, kind = "npc", id = 11820, name = "Locke Okarr", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16742, name = "Warsong Saw Blades"},
+            {kind = "item", id = 16745, name = "Warsong Axe Shipment"},
+            {kind = "item", id = 16744, name = "Warsong Oil"},
+            {kind = "item", id = 16743, name = "Logging Rope"},
+        },
     },
     [6603] = {
         name = "Trouble in Winterspring!",
@@ -28556,6 +31934,12 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 58.61, y = 60.06, kind = "npc", id = 12919, name = "Nat Pagle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16967, name = "Feralas Ahi"},
+            {kind = "item", id = 16970, name = "Misty Reed Mahi Mahi"},
+            {kind = "item", id = 16968, name = "Sar'theris Striker"},
+            {kind = "item", id = 16969, name = "Savage Coast Blue Sailfin"},
+        },
     },
     [6610] = {
         name = "Clamlette Surprise",
@@ -29111,6 +32495,11 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.63, y = 28.11, kind = "npc", id = 8125, name = "Dirge Quikcleave"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12207, name = "Giant Egg"},
+            {kind = "item", id = 7974, name = "Zesty Clam Meat"},
+            {kind = "item", id = 8932, name = "Alterac Swiss"},
+        },
     },
     [6621] = {
         name = "King of the Foulweald",
@@ -29126,6 +32515,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 11.9, y = 34.54, kind = "npc", id = 12757, name = "Karang Amakkar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 16976, name = "Murgut's Totem"},
+        },
     },
     [6622] = {
         name = "Triage",
@@ -29217,6 +32609,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 35.19, y = 27.76, kind = "npc", id = 11857, name = "Makaba Flathoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11858, name = "Grundig Darkcloud"},
+            {kind = "target", id = 11912, name = "Grimtotem Brute"},
+        },
     },
     [6641] = {
         name = "Vorsha the Lasher",
@@ -29291,6 +32687,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 44.81, y = 43.42, kind = "npc", id = 14637, name = "Zorbin Fandazzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18956, name = "Miniaturization Residue"},
+        },
     },
     [7383] = {
         name = "Crown of the Earth",
@@ -29305,6 +32704,9 @@ ns.foreverQuestLocations = {
             {mapId = 1438, x = 56.14, y = 61.71, kind = "npc", id = 3515, name = "Corithras Moonrage", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18151, name = "Filled Amethyst Phial"},
+        },
     },
     [7541] = {
         name = "Service to the Horde",
@@ -29341,6 +32743,11 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 41.36, y = 45.02, kind = "npc", id = 14470, name = "Impsy"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18624, name = "Flawless Fel Essence (Azshara)"},
+            {kind = "item", id = 18622, name = "Flawless Fel Essence (Jaedenar)"},
+            {kind = "item", id = 18623, name = "Flawless Fel Essence (Dark Portal)"},
+        },
     },
     [7603] = {
         name = "Kroshius' Infernal Core",
@@ -29355,6 +32762,10 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 41.38, y = 44.85, kind = "npc", id = 14469, name = "Niby the Almighty"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 14467, name = "Kroshius"},
+            {kind = "item", id = 18625, name = "Kroshius' Infernal Core"},
+        },
     },
     [7624] = {
         name = "Ulathek the Traitor",
@@ -29368,6 +32779,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 35.93, y = 44.42, kind = "npc", id = 9516, name = "Lord Banehollow"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18719, name = "The Traitor's Heart"},
+        },
     },
     [7625] = {
         name = "Xorothian Stardust",
@@ -29381,6 +32795,9 @@ ns.foreverQuestLocations = {
             {mapId = 1428, x = 12.44, y = 31.63, kind = "npc", id = 14437, name = "Gorzeeki Wildeyes"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18687, name = "Xorothian Stardust"},
+        },
     },
     [7652] = {
         name = "A Blue Light Bargain",
@@ -29400,6 +32817,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.38, y = 28.67, kind = "npc", id = 14567, name = "Derotain Mudsipper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+        },
         objectiveText = "Collect Thorium Bars for the Imperial Plate Belt plans. Use the quantity shown in your current quest log.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Classic",
@@ -29413,6 +32833,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.38, y = 28.67, kind = "npc", id = 14567, name = "Derotain Mudsipper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+        },
         objectiveText = "Collect Thorium Bars for the Imperial Plate Boots plans. Use the quantity shown in your current quest log.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Classic",
@@ -29426,6 +32849,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.38, y = 28.67, kind = "npc", id = 14567, name = "Derotain Mudsipper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+        },
         objectiveText = "Collect Thorium Bars for the Imperial Plate Bracer plans. Use the quantity shown in your current quest log.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Classic",
@@ -29439,6 +32865,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.38, y = 28.67, kind = "npc", id = 14567, name = "Derotain Mudsipper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+        },
         objectiveText = "Collect Thorium Bars for the Imperial Plate Chest plans. Use the quantity shown in your current quest log.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Classic",
@@ -29452,6 +32881,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.38, y = 28.67, kind = "npc", id = 14567, name = "Derotain Mudsipper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+        },
         objectiveText = "Collect Thorium Bars for the Imperial Plate Helm plans. Use the quantity shown in your current quest log.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Classic",
@@ -29465,6 +32897,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.38, y = 28.67, kind = "npc", id = 14567, name = "Derotain Mudsipper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+        },
         objectiveText = "Collect Thorium Bars for the Imperial Plate Leggings plans. Use the quantity shown in your current quest log.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Classic",
@@ -29478,6 +32913,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 51.38, y = 28.67, kind = "npc", id = 14567, name = "Derotain Mudsipper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12359, name = "Thorium Bar"},
+        },
         objectiveText = "Collect Thorium Bars for the Imperial Plate Shoulders plans. Use the quantity shown in your current quest log.",
         objectiveKind = "supplies",
         objectiveSource = "Classic reference",
@@ -29494,6 +32932,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 37.74, y = 26.56, kind = "npc", id = 14634, name = "Lookout Captain Lolo Longstriker"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18946, name = "Head of Overseer Maltorius"},
+        },
     },
     [7721] = {
         name = "Fuel for the Zapping",
@@ -29508,6 +32949,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 44.81, y = 43.42, kind = "npc", id = 14637, name = "Zorbin Fandazzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18958, name = "Water Elemental Core"},
+        },
     },
     [7722] = {
         name = "What the Flux?",
@@ -29521,6 +32965,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 38.8, y = 28.51, kind = "npc", id = 14624, name = "Master Smith Burninate"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18922, name = "Secret Plans: Fiery Flux"},
+        },
     },
     [7723] = {
         name = "Curse These Fat Fingers",
@@ -29534,6 +32981,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 38.58, y = 27.81, kind = "npc", id = 14627, name = "Hansel Heavyhands"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5854, name = "Heavy War Golem"},
+        },
     },
     [7724] = {
         name = "Fiery Menace!",
@@ -29547,6 +32997,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 38.58, y = 27.81, kind = "npc", id = 14627, name = "Hansel Heavyhands"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5858, name = "Greater Lava Spider"},
+        },
     },
     [7725] = {
         name = "Again With the Zapped Giants",
@@ -29569,6 +33022,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 44.81, y = 43.42, kind = "npc", id = 14637, name = "Zorbin Fandazzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18956, name = "Miniaturization Residue"},
+        },
     },
     [7726] = {
         name = "Refuel for the Zapping",
@@ -29583,6 +33039,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 44.81, y = 43.42, kind = "npc", id = 14637, name = "Zorbin Fandazzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18958, name = "Water Elemental Core"},
+        },
     },
     [7727] = {
         name = "Incendosaurs? Whateverosaur is More Like It",
@@ -29596,6 +33055,9 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 38.58, y = 27.81, kind = "npc", id = 14627, name = "Hansel Heavyhands"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 9318, name = "Incendosaur"},
+        },
     },
     [7728] = {
         name = "STOLEN: Smithing Tuyere and Lookout's Spyglass",
@@ -29610,6 +33072,10 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 38.97, y = 27.51, kind = "npc", id = 14626, name = "Taskmaster Scrange"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18959, name = "Smithing Tuyere"},
+            {kind = "item", id = 18960, name = "Lookout's Spyglass"},
+        },
     },
     [7729] = {
         name = "JOB OPPORTUNITY: Culling the Competition",
@@ -29624,6 +33090,10 @@ ns.foreverQuestLocations = {
             {mapId = 1427, x = 38.97, y = 27.51, kind = "npc", id = 14626, name = "Taskmaster Scrange"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5846, name = "Dark Iron Taskmaster"},
+            {kind = "target", id = 5844, name = "Dark Iron Slaver"},
+        },
     },
     [7730] = {
         name = "Zukk'ash Infestation",
@@ -29642,6 +33112,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.91, y = 42.46, kind = "npc", id = 7875, name = "Hadoken Swiftstrider", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18961, name = "Zukk'ash Carapace"},
+        },
     },
     [7731] = {
         name = "Stinglasher",
@@ -29656,6 +33129,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.91, y = 42.46, kind = "npc", id = 7875, name = "Hadoken Swiftstrider", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18962, name = "Stinglasher's Glands"},
+        },
     },
     [7732] = {
         name = "Zukk'ash Report",
@@ -29683,6 +33159,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 30.63, y = 42.71, kind = "npc", id = 7852, name = "Pratt McGrubben", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18947, name = "Rage Scar Yeti Hide"},
+        },
     },
     [7734] = {
         name = "Improved Quality",
@@ -29700,6 +33179,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 74.43, y = 42.91, kind = "npc", id = 7854, name = "Jangdor Swiftstrider", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 18947, name = "Rage Scar Yeti Hide"},
+        },
     },
     [7735] = {
         name = "Pristine Yeti Hide",
@@ -29728,6 +33210,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 80.33, y = 81.54, kind = "npc", id = 14740, name = "Katoom the Angler", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2505, name = "Saltwater Snapjaw"},
+        },
     },
     [7816] = {
         name = "Gammerita, Mon!",
@@ -29742,6 +33227,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 80.33, y = 81.54, kind = "npc", id = 14740, name = "Katoom the Angler", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 19023, name = "Katoom's Best Lure"},
+        },
     },
     [7828] = {
         name = "Stalking the Stalkers",
@@ -29757,6 +33245,10 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 79.16, y = 79.53, kind = "npc", id = 14741, name = "Huntsman Markhor", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2926, name = "Silvermane Stalker"},
+            {kind = "target", id = 2925, name = "Silvermane Howler"},
+        },
     },
     [7829] = {
         name = "Hunt the Savages",
@@ -29771,6 +33263,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 79.16, y = 79.53, kind = "npc", id = 14741, name = "Huntsman Markhor", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2929, name = "Savage Owlbeast"},
+        },
     },
     [7830] = {
         name = "Avenging the Fallen",
@@ -29785,6 +33280,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 79.16, y = 79.53, kind = "npc", id = 14741, name = "Huntsman Markhor", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 19025, name = "Skylord Plume"},
+        },
     },
     [7839] = {
         name = "Vilebranch Hooligans",
@@ -29799,6 +33297,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 77.23, y = 80.13, kind = "npc", id = 14737, name = "Smith Slagtree", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 19033, name = "Slagtree's Lost Tools"},
+        },
     },
     [7840] = {
         name = "Lard Lost His Lunch",
@@ -29814,6 +33315,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 78.14, y = 81.38, kind = "npc", id = 14731, name = "Lard", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 19034, name = "Lard's Lunch"},
+        },
     },
     [7841] = {
         name = "Message to the Wildhammer",
@@ -29831,6 +33335,12 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 79.38, y = 79.08, kind = "npc", id = 14738, name = "Otho Moji'ko", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2692, name = "Highvale Scout"},
+            {kind = "target", id = 2691, name = "Highvale Outrunner"},
+            {kind = "target", id = 2694, name = "Highvale Ranger"},
+            {kind = "target", id = 2693, name = "Highvale Marksman"},
+        },
     },
     [7842] = {
         name = "Another Message to the Wildhammer",
@@ -29853,6 +33363,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 79.38, y = 79.08, kind = "npc", id = 14738, name = "Otho Moji'ko", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4589, name = "Long Elegant Feather"},
+        },
     },
     [7843] = {
         name = "The Final Message to the Wildhammer",
@@ -29882,6 +33395,10 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 78.8, y = 78.25, kind = "npc", id = 14739, name = "Mystic Yayo'jin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4466, name = "Vilebranch Scalper"},
+            {kind = "target", id = 4467, name = "Vilebranch Soothsayer"},
+        },
     },
     [7845] = {
         name = "Kidnapped Elder Torntusk!",
@@ -29906,6 +33423,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 59.69, y = 77.84, kind = "npc", id = 14757, name = "Elder Torntusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 19064, name = "Shackle Key"},
+        },
     },
     [7847] = {
         name = "Return to Primal Torntusk",
@@ -29931,6 +33451,10 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 79.16, y = 79.53, kind = "npc", id = 14741, name = "Huntsman Markhor", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 19069, name = "Huntsman Malkhor's Skull"},
+            {kind = "item", id = 19070, name = "Huntsman Malkhor's Bones"},
+        },
     },
     [7850] = {
         name = "Dark Vessels",
@@ -29945,6 +33469,9 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 78.2, y = 81.18, kind = "npc", id = 14736, name = "Primal Torntusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 19071, name = "Vessel of Tainted Blood"},
+        },
     },
     [7861] = {
         name = "Wanted: Vile Priestess Hexx and Her Minions",
@@ -29960,6 +33487,10 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 78.2, y = 81.18, kind = "npc", id = 14736, name = "Primal Torntusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7995, name = "Vile Priestess Hexx"},
+            {kind = "target", id = 2648, name = "Vilebranch Aman'zasi Guard"},
+        },
     },
     [7862] = {
         name = "Job Opening: Guard Captain of Revantusk Village",
@@ -29977,6 +33508,12 @@ ns.foreverQuestLocations = {
             {mapId = 1425, x = 78.2, y = 81.18, kind = "npc", id = 14736, name = "Primal Torntusk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2643, name = "Vilebranch Berserker"},
+            {kind = "target", id = 2645, name = "Vilebranch Shadow Hunter"},
+            {kind = "target", id = 2646, name = "Vilebranch Blood Drinker"},
+            {kind = "target", id = 2647, name = "Vilebranch Soul Eater"},
+        },
     },
     [8151] = {
         name = "The Hunter's Charm",
@@ -30003,6 +33540,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 42.4, y = 42.62, kind = "npc", id = 8405, name = "Ogtinc"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20017, name = "Perfect Courser Antler"},
+        },
     },
     [8231] = {
         name = "Wavethrashing",
@@ -30018,6 +33558,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 42.4, y = 42.62, kind = "npc", id = 8405, name = "Ogtinc"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20087, name = "Wavethrasher Scales"},
+        },
     },
     [8250] = {
         name = "Magecraft",
@@ -30047,6 +33590,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 29.25, y = 40.21, kind = "npc", id = 8379, name = "Archmage Xylem"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20028, name = "Glittering Dust"},
+        },
     },
     [8252] = {
         name = "The Siren's Coral",
@@ -30060,6 +33606,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 29.25, y = 40.21, kind = "npc", id = 8379, name = "Archmage Xylem"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20029, name = "Enchanted Coral"},
+        },
     },
     [8254] = {
         name = "Cenarion Aid",
@@ -30085,6 +33634,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 42.4, y = 42.62, kind = "npc", id = 8405, name = "Ogtinc"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20027, name = "Healthy Courser Gland"},
+        },
     },
     [8256] = {
         name = "The Ichor of Undeath",
@@ -30149,6 +33701,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 42.4, y = 42.62, kind = "npc", id = 8405, name = "Ogtinc"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7972, name = "Ichor of Undeath"},
+        },
     },
     [8275] = {
         name = "Taking Back Silithus",
@@ -30183,6 +33738,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.61, y = 38.63, kind = "npc", id = 15189, name = "Beetix Ficklespragg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20373, name = "Stonelash Scorpid Stinger"},
+            {kind = "item", id = 20376, name = "Sand Skitterer Fang"},
+        },
     },
     [8278] = {
         name = "Noggle's Last Hope",
@@ -30198,6 +33757,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.61, y = 38.63, kind = "npc", id = 15189, name = "Beetix Ficklespragg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20375, name = "Stonelash Flayer Stinger"},
+            {kind = "item", id = 20374, name = "Stonelash Pincer Stinger"},
+            {kind = "item", id = 20377, name = "Rock Stalker Fang"},
+        },
     },
     [8279] = {
         name = "The Twilight Lexicon",
@@ -30213,6 +33777,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 67.19, y = 69.76, kind = "npc", id = 15194, name = "Hermit Ortell"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20394, name = "Twilight Lexicon - Chapter 1"},
+            {kind = "item", id = 20395, name = "Twilight Lexicon - Chapter 2"},
+            {kind = "item", id = 20396, name = "Twilight Lexicon - Chapter 3"},
+        },
     },
     [8280] = {
         name = "Securing the Supply Lines",
@@ -30226,6 +33795,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11740, name = "Dredge Striker"},
+        },
     },
     [8281] = {
         name = "Stepping Up Security",
@@ -30239,6 +33811,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11741, name = "Dredge Crusher"},
+        },
     },
     [8282] = {
         name = "Noggle's Lost Satchel",
@@ -30252,6 +33827,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.63, y = 38.5, kind = "npc", id = 15190, name = "Noggle Ficklespragg"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20379, name = "Noggle's Satchel"},
+        },
     },
     [8283] = {
         name = "Wanted - Deathclasp, Terror of the Sands",
@@ -30265,6 +33843,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 50.75, y = 33.65, kind = "npc", id = 15182, name = "Vish Kozus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20385, name = "Deathclasp's Pincer"},
+        },
     },
     [8284] = {
         name = "The Twilight Mystery",
@@ -30279,6 +33860,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.67, y = 37.46, kind = "npc", id = 15183, name = "Geologist Larksbane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20378, name = "Twilight Tablet Fragment"},
+        },
     },
     [8285] = {
         name = "The Deserter",
@@ -30311,6 +33895,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15171, name = "Frankal Stonebridge"},
+            {kind = "target", id = 15170, name = "Rutgar Glyphshaper"},
+        },
     },
     [8306] = {
         name = "Into The Maw of Madness",
@@ -30324,6 +33912,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15215, name = "Mistress Natalia Mar'alith"},
+        },
     },
     [8307] = {
         name = "Desert Recipe",
@@ -30373,6 +33964,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 41.28, y = 88.45, kind = "npc", id = 15170, name = "Rutgar Glyphshaper"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20455, name = "Hive'Ashi Rubbing"},
+            {kind = "item", id = 20454, name = "Hive'Zora Rubbing"},
+            {kind = "item", id = 20456, name = "Hive'Regal Rubbing"},
+        },
     },
     [8310] = {
         name = "Breaking the Code",
@@ -30402,6 +33998,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 40.81, y = 88.86, kind = "npc", id = 15171, name = "Frankal Stonebridge"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20457, name = "Hive'Ashi Silithid Brain"},
+            {kind = "item", id = 20458, name = "Hive'Zora Silithid Brain"},
+            {kind = "item", id = 20459, name = "Hive'Regal Silithid Brain"},
+        },
     },
     [8313] = {
         name = "Sharing the Knowledge",
@@ -30434,6 +34035,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.67, y = 37.46, kind = "npc", id = 15183, name = "Geologist Larksbane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20465, name = "Crystal Unlocking Mechanism"},
+        },
     },
     [8316] = {
         name = "Armaments of War",
@@ -30453,6 +34057,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.89, y = 39.16, kind = "npc", id = 15174, name = "Calandrath"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20452, name = "Smoked Desert Dumplings"},
+        },
         objectiveText = "Prepare 10 Smoked Desert Dumplings for Calandrath.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -30479,6 +34086,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20404, name = "Encrypted Twilight Text"},
+        },
     },
     [8319] = {
         name = "Encrypted Twilight Texts",
@@ -30502,6 +34112,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20404, name = "Encrypted Twilight Text"},
+        },
     },
     [8320] = {
         name = "Twilight Geolords",
@@ -30515,6 +34128,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.62, y = 37.87, kind = "npc", id = 15270, name = "Huum Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11881, name = "Twilight Geolord"},
+        },
     },
     [8321] = {
         name = "Vyral the Vile",
@@ -30528,6 +34144,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.62, y = 37.87, kind = "npc", id = 15270, name = "Huum Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20466, name = "Vyral's Signet Ring"},
+        },
     },
     [8323] = {
         name = "True Believers",
@@ -30551,6 +34170,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 67.19, y = 69.76, kind = "npc", id = 15194, name = "Hermit Ortell"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20404, name = "Encrypted Twilight Text"},
+        },
     },
     [8324] = {
         name = "Still Believing",
@@ -30574,6 +34196,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 67.19, y = 69.76, kind = "npc", id = 15194, name = "Hermit Ortell"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20404, name = "Encrypted Twilight Text"},
+        },
     },
     [8331] = {
         name = "Aurel Goldleaf",
@@ -30599,6 +34224,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.96, y = 38.16, kind = "npc", id = 15282, name = "Aurel Goldleaf"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14344, name = "Large Brilliant Shard"},
+            {kind = "item", id = 20513, name = "Abyssal Crest"},
+        },
     },
     [8333] = {
         name = "Medallion of Station",
@@ -30615,6 +34244,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.96, y = 38.16, kind = "npc", id = 15282, name = "Aurel Goldleaf"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14344, name = "Large Brilliant Shard"},
+            {kind = "item", id = 20513, name = "Abyssal Crest"},
+        },
     },
     [8341] = {
         name = "Lords of the Council",
@@ -30631,6 +34264,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.96, y = 38.16, kind = "npc", id = 15282, name = "Aurel Goldleaf"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14344, name = "Large Brilliant Shard"},
+            {kind = "item", id = 20514, name = "Abyssal Signet"},
+        },
     },
     [8342] = {
         name = "Twilight Ring of Lordship",
@@ -30647,6 +34284,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.96, y = 38.16, kind = "npc", id = 15282, name = "Aurel Goldleaf"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20514, name = "Abyssal Signet"},
+            {kind = "item", id = 14344, name = "Large Brilliant Shard"},
+        },
     },
     [8343] = {
         name = "Goldleaf's Discovery",
@@ -30672,6 +34313,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20514, name = "Abyssal Signet"},
+        },
     },
     [8349] = {
         name = "Bor Wildmane",
@@ -30706,6 +34350,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20515, name = "Abyssal Scepter"},
+        },
     },
     [8361] = {
         name = "Abyssal Contacts",
@@ -30722,6 +34369,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20513, name = "Abyssal Crest"},
+        },
     },
     [8362] = {
         name = "Abyssal Crests",
@@ -30738,6 +34388,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20513, name = "Abyssal Crest"},
+        },
     },
     [8363] = {
         name = "Abyssal Signets",
@@ -30754,6 +34407,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20514, name = "Abyssal Signet"},
+        },
     },
     [8364] = {
         name = "Abyssal Scepters",
@@ -30770,6 +34426,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20515, name = "Abyssal Scepter"},
+        },
     },
     [8365] = {
         name = "Pirate Hats Ahoy!",
@@ -30788,6 +34447,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 66.56, y = 22.27, kind = "npc", id = 15165, name = "Haughty Modiste"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20519, name = "Southsea Pirate Hat"},
+        },
     },
     [8366] = {
         name = "Southsea Shakedown",
@@ -30804,6 +34466,12 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 67.06, y = 23.89, kind = "npc", id = 7882, name = "Security Chief Bilgewhizzle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7855, name = "Southsea Pirate"},
+            {kind = "target", id = 7856, name = "Southsea Freebooter"},
+            {kind = "target", id = 7857, name = "Southsea Dock Worker"},
+            {kind = "target", id = 7858, name = "Southsea Swashbuckler"},
+        },
     },
     [8376] = {
         name = "Armaments of War",
@@ -30910,6 +34578,9 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 41.36, y = 45.02, kind = "npc", id = 14470, name = "Impsy"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14256, name = "Felcloth"},
+        },
     },
     [8421] = {
         name = "The Wrong Stuff",
@@ -30926,6 +34597,10 @@ ns.foreverQuestLocations = {
             {mapId = 1448, x = 41.36, y = 45.02, kind = "npc", id = 14470, name = "Impsy"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20613, name = "Rotting Wood"},
+            {kind = "item", id = 20614, name = "Bloodvenom Essence"},
+        },
     },
     [8496] = {
         name = "Bandages for the Field",
@@ -30941,6 +34616,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14530, name = "Heavy Runecloth Bandage"},
+            {kind = "item", id = 8545, name = "Heavy Mageweave Bandage"},
+            {kind = "item", id = 6451, name = "Heavy Silk Bandage"},
+        },
         objectiveText = "Prepare 30 each of Heavy Runecloth Bandage, Heavy Mageweave Bandage and Heavy Silk Bandage. Keep Logistics Task Briefing X for the delivery.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -30977,6 +34657,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.89, y = 39.16, kind = "npc", id = 15174, name = "Calandrath"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7079, name = "Globe of Water"},
+            {kind = "item", id = 19440, name = "Powerful Anti-Venom"},
+            {kind = "item", id = 20452, name = "Smoked Desert Dumplings"},
+        },
         startItem = 20807,
     },
     [8498] = {
@@ -30992,6 +34677,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20803, name = "Twilight Battle Orders"},
+        },
         startItem = 20943,
     },
     [8501] = {
@@ -31006,6 +34694,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11698, name = "Hive'Ashi Stinger"},
+        },
         startItem = 20941,
     },
     [8502] = {
@@ -31020,6 +34711,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11721, name = "Hive'Ashi Worker"},
+        },
         startItem = 20942,
     },
     [8507] = {
@@ -31036,6 +34730,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.98, y = 36.35, kind = "npc", id = 15540, name = "Windcaller Kaldon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20810, name = "Signed Field Duty Papers"},
+        },
     },
     [8508] = {
         name = "Field Duty Papers",
@@ -31050,6 +34747,9 @@ ns.foreverQuestLocations = {
         objective = {
             {mapId = 1451, x = 32.8, y = 52.6, kind = "reward", id = 15440, name = "Captain Blackanvil", faction = "Alliance", requiredQuest = 8508},
             {mapId = 1451, x = 51.4, y = 68.4, kind = "reward", id = 15612, name = "Krug Skullsplit", faction = "Horde", requiredQuest = 8732},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 23024, name = "Prepared Field Duty Papers"},
         },
     },
     [8534] = {
@@ -31067,6 +34767,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 21158, name = "Hive'Zora Scout Report"},
+        },
         startItem = 21165,
     },
     [8535] = {
@@ -31082,6 +34785,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15212, name = "Hoary Templar"},
+        },
         startItem = 20947,
     },
     [8536] = {
@@ -31099,6 +34805,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15307, name = "Earthen Templar"},
+        },
         startItem = 21751,
     },
     [8537] = {
@@ -31114,6 +34823,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15209, name = "Crimson Templar"},
+        },
         startItem = 20945,
     },
     [8538] = {
@@ -31132,6 +34844,12 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15206, name = "The Duke of Cynders"},
+            {kind = "target", id = 15207, name = "The Duke of Fathoms"},
+            {kind = "target", id = 15220, name = "The Duke of Zephyrs"},
+            {kind = "target", id = 15208, name = "The Duke of Shards"},
+        },
         startItem = 20948,
     },
     [8539] = {
@@ -31148,6 +34866,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11729, name = "Hive'Zora Hive Sister"},
+        },
         startItem = 21249,
     },
     [8540] = {
@@ -31163,6 +34884,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 50.75, y = 33.65, kind = "npc", id = 15182, name = "Vish Kozus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7936, name = "Ornate Mithril Boots"},
+        },
         objectiveText = "Prepare 3 Ornate Mithril Boots. Keep Logistics Task Briefing II for the delivery.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -31181,6 +34905,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 50.75, y = 33.65, kind = "npc", id = 15182, name = "Vish Kozus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12644, name = "Dense Grinding Stone"},
+            {kind = "item", id = 7966, name = "Solid Grinding Stone"},
+            {kind = "item", id = 3486, name = "Heavy Grinding Stone"},
+        },
         objectiveText = "Prepare 10 each of Dense Grinding Stone, Solid Grinding Stone and Heavy Grinding Stone. Keep Logistics Task Briefing III for the delivery.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -31208,6 +34937,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.23, y = 38.86, kind = "npc", id = 15176, name = "Vargus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20802, name = "Cenarion Combat Badge"},
+            {kind = "item", id = 20800, name = "Cenarion Logistics Badge"},
+            {kind = "item", id = 20801, name = "Cenarion Tactical Badge"},
+        },
     },
     [8551] = {
         name = "The Captain's Chest",
@@ -31221,6 +34955,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.69, y = 73.61, kind = "npc", id = 2500, name = "Captain Hecklebury Smotts"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3932, name = "Smotts' Chest"},
+        },
     },
     [8552] = {
         name = "The Monogrammed Sash",
@@ -31253,6 +34990,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.69, y = 73.61, kind = "npc", id = 2500, name = "Captain Hecklebury Smotts"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3935, name = "Smotts' Cutlass"},
+        },
     },
     [8572] = {
         name = "Veteran's Battlegear",
@@ -31276,6 +35016,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.23, y = 38.86, kind = "npc", id = 15176, name = "Vargus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20802, name = "Cenarion Combat Badge"},
+            {kind = "item", id = 20800, name = "Cenarion Logistics Badge"},
+            {kind = "item", id = 20801, name = "Cenarion Tactical Badge"},
+        },
     },
     [8573] = {
         name = "Champion's Battlegear",
@@ -31299,6 +35044,12 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.23, y = 38.86, kind = "npc", id = 15176, name = "Vargus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20802, name = "Cenarion Combat Badge"},
+            {kind = "item", id = 20800, name = "Cenarion Logistics Badge"},
+            {kind = "item", id = 20801, name = "Cenarion Tactical Badge"},
+            {kind = "item", id = 21508, name = "Mark of Cenarius"},
+        },
     },
     [8574] = {
         name = "Stalwart's Battlegear",
@@ -31323,6 +35074,12 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.23, y = 38.86, kind = "npc", id = 15176, name = "Vargus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20802, name = "Cenarion Combat Badge"},
+            {kind = "item", id = 20800, name = "Cenarion Logistics Badge"},
+            {kind = "item", id = 20801, name = "Cenarion Tactical Badge"},
+            {kind = "item", id = 21515, name = "Mark of Remulos"},
+        },
     },
     [8687] = {
         name = "Target: Hive'Zora Tunnelers",
@@ -31338,6 +35095,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11726, name = "Hive'Zora Tunneler"},
+        },
         startItem = 21251,
     },
     [8737] = {
@@ -31355,6 +35115,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "npc", id = 15306, name = "Bor Wildmane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15211, name = "Azure Templar"},
+        },
         startItem = 21245,
     },
     [8738] = {
@@ -31372,6 +35135,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 21160, name = "Hive'Regal Scout Report"},
+        },
         startItem = 21166,
     },
     [8739] = {
@@ -31387,6 +35153,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 21161, name = "Hive'Ashi Scout Report"},
+        },
         startItem = 21167,
     },
     [8740] = {
@@ -31405,6 +35174,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 15541, name = "Twilight Marauder Morna"},
+            {kind = "target", id = 15542, name = "Twilight Marauder"},
+        },
         startItem = 20944,
     },
     [8770] = {
@@ -31419,6 +35192,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11722, name = "Hive'Ashi Defender"},
+        },
         startItem = 21749,
     },
     [8771] = {
@@ -31433,6 +35209,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11723, name = "Hive'Ashi Sandstalker"},
+        },
         startItem = 21750,
     },
     [8772] = {
@@ -31449,6 +35228,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11725, name = "Hive'Zora Waywatcher"},
+        },
         startItem = 21250,
     },
     [8773] = {
@@ -31465,6 +35247,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11728, name = "Hive'Zora Reaver"},
+        },
         startItem = 21248,
     },
     [8774] = {
@@ -31482,6 +35267,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11730, name = "Hive'Regal Ambusher"},
+        },
         startItem = 21252,
     },
     [8775] = {
@@ -31499,6 +35287,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11732, name = "Hive'Regal Spitfire"},
+        },
         startItem = 21253,
     },
     [8776] = {
@@ -31516,6 +35307,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11733, name = "Hive'Regal Slavemaker"},
+        },
         startItem = 21255,
     },
     [8777] = {
@@ -31533,6 +35327,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.2, y = 34.18, kind = "npc", id = 15181, name = "Commander Mar'alith"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11731, name = "Hive'Regal Burrower"},
+        },
         startItem = 21256,
     },
     [8778] = {
@@ -31563,6 +35360,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 32.54, y = 52.03, kind = "npc", id = 15444, name = "Arcanist Nozzlespring", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8956, name = "Oil of Immolation"},
+            {kind = "item", id = 9061, name = "Goblin Rocket Fuel"},
+            {kind = "item", id = 15992, name = "Dense Blasting Powder"},
+        },
         startItem = 21257,
     },
     [8779] = {
@@ -31610,6 +35412,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.67, y = 37.46, kind = "npc", id = 15183, name = "Geologist Larksbane"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14344, name = "Large Brilliant Shard"},
+            {kind = "item", id = 11178, name = "Large Radiant Shard"},
+            {kind = "item", id = 12364, name = "Huge Emerald"},
+        },
         startItem = 21259,
     },
     [8780] = {
@@ -31633,6 +35440,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 32.88, y = 52.53, kind = "npc", id = 15443, name = "Janela Stouthammer", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 15564, name = "Rugged Armor Kit"},
+            {kind = "item", id = 4265, name = "Heavy Armor Kit"},
+        },
         startItem = 21263,
     },
     [8781] = {
@@ -31649,6 +35460,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 32.88, y = 52.53, kind = "npc", id = 15443, name = "Janela Stouthammer", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3853, name = "Moonsteel Broadsword"},
+        },
         objectiveText = "Prepare 2 Moonsteel Broadswords for Janela Stouthammer. Keep Logistics Task Briefing VI for the delivery.",
         objectiveKind = "craft",
         objectiveSource = "WoWDB",
@@ -31680,6 +35494,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.15, y = 38.29, kind = "npc", id = 15191, name = "Windcaller Proudhorn"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14342, name = "Mooncloth"},
+            {kind = "item", id = 14048, name = "Bolt of Runecloth"},
+            {kind = "item", id = 14227, name = "Ironweb Spider Silk"},
+        },
         startItem = 21262,
     },
     [8783] = {
@@ -31699,6 +35518,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.23, y = 38.86, kind = "npc", id = 15176, name = "Vargus"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12655, name = "Enchanted Thorium Bar"},
+            {kind = "item", id = 12810, name = "Enchanted Leather"},
+        },
         startItem = 21265,
     },
     [8798] = {
@@ -31744,6 +35567,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.96, y = 38.16, kind = "npc", id = 15282, name = "Aurel Goldleaf"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12753, name = "Skin of Shadow"},
+            {kind = "item", id = 12735, name = "Frayed Abomination Stitching"},
+            {kind = "item", id = 20407, name = "Twilight Cultist Robe"},
+        },
         startItem = 21514,
     },
     [8856] = {
@@ -31767,6 +35595,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 48.57, y = 37.78, kind = "reward", id = 15306, name = "Bor Wildmane", requiredQuest = 8348},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 7079, name = "Globe of Water"},
+            {kind = "item", id = 19440, name = "Powerful Anti-Venom"},
+            {kind = "item", id = 20452, name = "Smoked Desert Dumplings"},
+        },
         turninName = "Calandrath",
         turnin = {
             {mapId = 1451, x = 51.89, y = 39.16, kind = "npc", id = 15174, name = "Calandrath", source = "WoWDB / QuestieDB"},
@@ -31784,6 +35617,9 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 52.39, y = 26.97, kind = "object", id = 142071, name = "Egg-O-Matic"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 8564, name = "Hippogryph Egg"},
+        },
     },
     [9023] = {
         name = "The Perfect Poison",
@@ -31794,6 +35630,10 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 52.13, y = 39.14, kind = "npc", id = 16091, name = "Dirk Thunderwood"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 22216, name = "Venoxis's Venom Sac"},
+            {kind = "item", id = 22217, name = "Kurinnaxx's Venom Sac"},
+        },
         objectiveText = "Loot the venom sacs from High Priest Venoxis in Zul'Gurub and Kurinnaxx in the Ruins of Ahn'Qiraj.",
         objectiveKind = "instance",
         objectiveSource = "WoWDB",
@@ -31827,6 +35667,10 @@ ns.foreverQuestLocations = {
             {mapId = 1449, x = 71.64, y = 75.96, kind = "npc", id = 9619, name = "Torwa Pathfinder"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 22435, name = "Gorishi Sting"},
+            {kind = "item", id = 22434, name = "Bloodcap"},
+        },
     },
     [9063] = {
         name = "Torwa Pathfinder",
@@ -31856,6 +35700,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.69, y = 48.94, kind = "npc", id = 16132, name = "Huntsman Leopold"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 22525, name = "Crypt Fiend Parts"},
+        },
     },
     [9126] = {
         name = "Bonescythe Digs",
@@ -31883,6 +35730,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.62, y = 48.91, kind = "npc", id = 16131, name = "Rohan the Assassin"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 22526, name = "Bone Fragments"},
+        },
     },
     [9128] = {
         name = "The Elemental Equation",
@@ -31915,6 +35765,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.7, y = 48.69, kind = "npc", id = 16116, name = "Archmage Angela Dosantos"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 22527, name = "Core of Elements"},
+        },
     },
     [9131] = {
         name = "Binding the Dreadnaught",
@@ -31943,6 +35796,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.95, y = 48.52, kind = "npc", id = 16112, name = "Korfax, Champion of the Light"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 22528, name = "Dark Iron Scraps"},
+        },
     },
     [9136] = {
         name = "Savage Flora",
@@ -31962,6 +35818,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.41, y = 49.35, kind = "npc", id = 16135, name = "Rayne"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 22529, name = "Savage Frond"},
+        },
     },
     [9141] = {
         name = "They Call Me \"The Rooster\"",
@@ -31977,6 +35836,9 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.28, y = 48.04, kind = "npc", id = 16212, name = "Dispatch Commander Metz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 12844, name = "Argent Dawn Valor Token"},
+        },
     },
     [9248] = {
         name = "A Humble Offering",
@@ -31993,6 +35855,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 51.96, y = 38.16, kind = "npc", id = 15282, name = "Aurel Goldleaf"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20515, name = "Abyssal Scepter"},
+        },
     },
     [9266] = {
         name = "Making Amends",
@@ -32084,6 +35949,10 @@ ns.foreverQuestLocations = {
             {mapId = 1452, x = 59.77, y = 39.73, kind = "npc", id = 16416, name = "Bronn Fitzwrench"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 14047, name = "Runecloth"},
+            {kind = "item", id = 3857, name = "Coal"},
+        },
     },
     [9267] = {
         name = "Mending Old Wounds",
@@ -32225,6 +36094,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 61.21, y = 37.85, kind = "npc", id = 16418, name = "Mupsi Shacklefridd"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2589, name = "Linen Cloth"},
+            {kind = "item", id = 3371, name = "Empty Vial"},
+        },
     },
     [9268] = {
         name = "War at Sea",
@@ -32612,6 +36485,10 @@ ns.foreverQuestLocations = {
             {mapId = 1446, x = 50.41, y = 26.25, kind = "npc", id = 16417, name = "Rumsen Fizzlebrack"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4338, name = "Mageweave Cloth"},
+            {kind = "item", id = 3466, name = "Strong Flux"},
+        },
     },
     [9272] = {
         name = "Dressing the Part",
@@ -32644,6 +36521,11 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 49.98, y = 36.35, kind = "npc", id = 15540, name = "Windcaller Kaldon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 20802, name = "Cenarion Combat Badge"},
+            {kind = "item", id = 20800, name = "Cenarion Logistics Badge"},
+            {kind = "item", id = 20801, name = "Cenarion Tactical Badge"},
+        },
     },
     [9362] = {
         name = "Warlord Krellian",
@@ -32658,6 +36540,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 29.25, y = 40.21, kind = "npc", id = 8379, name = "Archmage Xylem"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 23250, name = "Prismatic Shell"},
+        },
     },
     [9364] = {
         name = "Fragmented Magic",
@@ -32671,6 +36556,9 @@ ns.foreverQuestLocations = {
             {mapId = 1447, x = 29.25, y = 40.21, kind = "npc", id = 8379, name = "Archmage Xylem"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 16479, name = "Polymorph Clone"},
+        },
     },
     [9415] = {
         name = "Report to Marshal Bluewall",
@@ -32705,6 +36593,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 33.29, y = 51.06, kind = "npc", id = 17080, name = "Marshal Bluewall", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 17090, name = "Silithus Dust Turnin Quest Doodad"},
+        },
     },
     [9422] = {
         name = "Scouring the Desert",
@@ -32719,6 +36610,9 @@ ns.foreverQuestLocations = {
             {mapId = 1451, x = 50.75, y = 69.54, kind = "npc", id = 17079, name = "General Kirika", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 18199, name = "Silithus Dust Turnin Quest Doodad Horde"},
+        },
     },
     [9439] = {
         name = "Unclaimed Baggage",
@@ -32747,6 +36641,12 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 71.51, y = 49.66, kind = "npc", id = 17069, name = "Emmisary Whitebeard"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 17689, name = "<TXT>Crown Guard Capture Quest Doodad"},
+            {kind = "target", id = 17690, name = "<TXT>Eastwall Capture Quest Doodad"},
+            {kind = "target", id = 17696, name = "<TXT>Northpass Capture Quest Doodad"},
+            {kind = "target", id = 17698, name = "<TXT>Plaguewood Capture Quest Doodad"},
+        },
     },
     [9665] = {
         name = "Bolstering Our Defenses",
@@ -32764,6 +36664,12 @@ ns.foreverQuestLocations = {
             {mapId = 1423, x = 70.37, y = 47.94, kind = "npc", id = 17072, name = "Emmisary Gormok"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 17689, name = "<TXT>Crown Guard Capture Quest Doodad"},
+            {kind = "target", id = 17690, name = "<TXT>Eastwall Capture Quest Doodad"},
+            {kind = "target", id = 17696, name = "<TXT>Northpass Capture Quest Doodad"},
+            {kind = "target", id = 17698, name = "<TXT>Plaguewood Capture Quest Doodad"},
+        },
     },
     [55296] = {
         name = "Completed when turning in Chen's Empty Keg (821)",
@@ -32868,6 +36774,9 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 80.5, y = 66.92, kind = "npc", id = 6176, name = "Bath'rah the Windwatcher"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281146, name = "Grant's Mace"},
+        },
         startItem = 281147,
     },
     [79363] = {
@@ -32886,6 +36795,10 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 80.5, y = 66.92, kind = "npc", id = 6176, name = "Bath'rah the Windwatcher"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 909, name = "Defias Night Blade"},
+            {kind = "target", id = 910, name = "Defias Enchanter"},
+        },
         startItem = 281145,
     },
     [79624] = {
@@ -32912,6 +36825,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 57.4, y = 74.4, kind = "npc", id = 217300, name = "Skonk"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 213422, name = "Illegible Recipe"},
+        },
         startItem = 213422,
     },
     [79677] = {
@@ -32928,6 +36844,10 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 57.4, y = 74.4, kind = "npc", id = 217300, name = "Skonk"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 213526, name = "Hybrid Haunch"},
+            {kind = "item", id = 213527, name = "Smuggler's Spice Blend"},
+        },
     },
     [79678] = {
         name = "Taste Testing",
@@ -32992,6 +36912,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 35.79, y = 5.74, kind = "npc", id = 16458, name = "Innkeeper Faralia", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277917, name = "Stonetalon Supply Bundle"},
+        },
     },
     [86576] = {
         name = "Bloodfury Trinkets",
@@ -33013,6 +36936,9 @@ ns.foreverQuestLocations = {
             {mapId = 1442, x = 47.22, y = 64.04, kind = "npc", id = 11861, name = "Mor'rogal", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277936, name = "Glittering Sunstone"},
+        },
     },
     [86585] = {
         name = "Banner of the Fallen",
@@ -33027,6 +36953,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 23.23, y = 73.68, kind = "npc", id = 1092, name = "Captain Rugelfuss", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 269185, name = "Headsplitter"},
+        },
     },
     [86613] = {
         name = "Excavation Tools",
@@ -33041,6 +36970,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 65.93, y = 65.62, kind = "npc", id = 1344, name = "Prospector Ironband", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 278398, name = "Excavation Tools"},
+        },
         startItem = 278049,
     },
     [86614] = {
@@ -33066,6 +36998,9 @@ ns.foreverQuestLocations = {
         objective = {
             {mapId = 1432, x = 19.9, y = 62.6, kind = "area", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 279379, name = "Jar of Snow"},
+        },
     },
     [86757] = {
         name = "Slowing the Orc Advance",
@@ -33081,6 +37016,10 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 49.48, y = 67.09, kind = "npc", id = 3955, name = "Shandrina", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279505, name = "Jagged Orcish Sword"},
+            {kind = "item", id = 279507, name = "Curved Orcish Dagger"},
+        },
     },
     [86758] = {
         name = "Twisting the Knife",
@@ -33095,6 +37034,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 81.76, y = 61.66, kind = "npc", id = 1154, name = "Marek Ironheart", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279591, name = "Marek's Croc-Hunting Knife"},
+        },
     },
     [86776] = {
         name = "Ingredients for the Forge",
@@ -33106,6 +37048,9 @@ ns.foreverQuestLocations = {
             {mapId = 1432, x = 34.02, y = 46.54, kind = "npc", id = 167, name = "Morhan Coppertongue", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2841, name = "Bronze Bar"},
+        },
         objectiveText = "Smelt or buy Bronze Bars for Morhan Coppertongue in Thelsamar.",
         objectiveKind = "supplies",
         objectiveSource = "Wowhead Forever",
@@ -33123,6 +37068,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 57.28, y = 55.49, kind = "npc", id = 265812, name = "Eleanor Shackleton", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279991, name = "Dry Branch"},
+        },
     },
     [87318] = {
         name = "Hearts of the Lost",
@@ -33157,6 +37105,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 36.62, y = 45.59, kind = "npc", id = 10219, name = "Gwennyth Bly'Leggonde", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280686, name = "Rod of Deep Dominion"},
+        },
     },
     [88756] = {
         name = "Bring Back a Bang",
@@ -33171,6 +37122,9 @@ ns.foreverQuestLocations = {
         objective = {
             {mapId = 1437, x = 62.5, y = 28.2, kind = "area", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 280806, name = "Stolen Explosives"},
+        },
     },
     [88757] = {
         name = "Accessories of the Lost",
@@ -33184,6 +37138,11 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         objective = {
             {mapId = 1437, x = 51.4, y = 8.2, kind = "area", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 284705, name = "Essene's Necklace"},
+            {kind = "item", id = 284150, name = "Essene's Spellbook"},
+            {kind = "item", id = 284146, name = "Essene's Waterskin"},
         },
     },
     [88758] = {
@@ -33211,6 +37170,11 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 76.54, y = 71.92, kind = "npc", id = 248265, name = "Ormin Pelford", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 247817, name = "Waterlogged Axe"},
+            {kind = "item", id = 247813, name = "Waterlogged Saw"},
+            {kind = "item", id = 247818, name = "Waterlogged Toolbox"},
+        },
     },
     [91738] = {
         name = "An Apple Treat",
@@ -33225,6 +37189,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 24.08, y = 73.2, kind = "npc", id = 955, name = "Sergeant De Vries", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 247824, name = "Thunder Applejack"},
+        },
     },
     [91752] = {
         name = "The Big Picture",
@@ -33239,6 +37206,9 @@ ns.foreverQuestLocations = {
             {mapId = 1429, x = 48.92, y = 41.61, kind = "npc", id = 197, name = "Marshal McBride", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 247886, name = "Sack of \"Picture\" Books"},
+        },
     },
     [91920] = {
         name = "Wild Eyes",
@@ -33290,6 +37260,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 42.8, y = 40.86, kind = "npc", id = 1937, name = "Apothecary Renferrel", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 730, name = "Murloc Eye"},
+        },
     },
     [91921] = {
         name = "Return to Quinn (Again)",
@@ -33940,6 +37913,11 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 42.83, y = 72.76, kind = "npc", id = 249713, name = "Odd Child"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3371, name = "Empty Vial"},
+            {kind = "item", id = 2447, name = "Peacebloom"},
+            {kind = "item", id = 765, name = "Silverleaf"},
+        },
     },
     [92110] = {
         name = "My First Real Potion",
@@ -33991,6 +37969,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 42.83, y = 72.76, kind = "npc", id = 249713, name = "Odd Child"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 730, name = "Murloc Eye"},
+        },
     },
     [92124] = {
         name = "Book Inventory",
@@ -34025,6 +38006,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 42.05, y = 23.49, kind = "npc", id = 251361, name = "Rorian the Dayseeker"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 250873, name = "Juvenile Vuldren"},
+        },
     },
     [92462] = {
         name = "Infestation Investigation",
@@ -34039,6 +38023,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 43.44, y = 24.79, kind = "npc", id = 251368, name = "Elatrell Featherlight"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 251169, name = "Pesky Cirrusfly"},
+        },
     },
     [92463] = {
         name = "The Cirrusfly Queen",
@@ -34053,6 +38040,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 43.44, y = 24.79, kind = "npc", id = 251368, name = "Elatrell Featherlight"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 251404, name = "Cirrusfly Queen"},
+        },
     },
     [92470] = {
         name = "Foul Matriarch",
@@ -34067,6 +38057,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 42.76, y = 23.66, kind = "npc", id = 251366, name = "Aetheen of the Gales"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 250937, name = "Ursera Scavenger"},
+            {kind = "item", id = 252665, name = "Head of Urs'anah"},
+        },
     },
     [92473] = {
         name = "Aggressive Encroachment",
@@ -34080,6 +38074,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 42.41, y = 25.17, kind = "npc", id = 257551, name = "Valreaa Valewind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 251918, name = "Scrawny Ursera Claw"},
+        },
     },
     [92474] = {
         name = "Falling With Style",
@@ -34153,6 +38150,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 45.67, y = 45.5, kind = "npc", id = 251523, name = "Constable Aonda"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 251902, name = "Illaya Amberwind"},
+            {kind = "target", id = 254089, name = "Coriella Calmbreeze"},
+        },
     },
     [92517] = {
         name = "The Criminal Element",
@@ -34167,6 +38168,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 45.67, y = 45.5, kind = "npc", id = 251523, name = "Constable Aonda"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 251918, name = "Highlands Bandit"},
+            {kind = "target", id = 255534, name = "\"Badwind\" Bennic"},
+        },
     },
     [92519] = {
         name = "Ward Restocking",
@@ -34178,6 +38183,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 73.41, y = 36.89, kind = "npc", id = 12920, name = "Doctor Gregory Victor", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 278462, name = "Packaged Tonics"},
+        },
         objectiveText = "Collect the Packaged Tonics from the toolbox outside Jorell's lab at Go'shek Farm. Return them to Doctor Gregory Victor.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -34214,6 +38222,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 43.51, y = 44.77, kind = "npc", id = 251902, name = "Illaya Amberwind", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 251902, name = "Illaya Amberwind"},
+        },
     },
     [92596] = {
         name = "The High Order",
@@ -34228,6 +38239,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 44.98, y = 46.36, kind = "npc", id = 251903, name = "Rathiril Sunlance", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 251903, name = "Rathiril Sunlance"},
+        },
     },
     [92597] = {
         name = "Reading the Leylines",
@@ -34242,6 +38256,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 43.33, y = 24.92, kind = "npc", id = 251371, name = "Falorne Fallwind", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 460002, name = "Ley Line"},
+        },
     },
     [92598] = {
         name = "The Gift of Skysight",
@@ -34256,6 +38273,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 42.61, y = 24.38, kind = "npc", id = 251487, name = "Ventaari Brightwish", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 460001, name = "Elemental Convergence"},
+        },
     },
     [92640] = {
         name = "Desperate Times",
@@ -34271,6 +38291,11 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 66.14, y = 76.67, kind = "npc", id = 252383, name = "Valennia Stormfist"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252383, name = "Valennia Stormfist"},
+            {kind = "target", id = 251968, name = "Ayessa Dawnsinger"},
+            {kind = "target", id = 252475, name = "Elaadrin Evengale"},
+        },
     },
     [92642] = {
         name = "Disrupting Logistics",
@@ -34285,6 +38310,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 69.65, y = 67.07, kind = "npc", id = 252378, name = "Yorana Windyreed"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 254596, name = "Al'Aketh Healer"},
+            {kind = "target", id = 270201, name = "Al'Aketh Brawler"},
+        },
     },
     [92643] = {
         name = "The Turncoat",
@@ -34299,6 +38328,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 56.04, y = 58.77, kind = "npc", id = 253372, name = "Dead Cultist"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 255013, name = "DNT KILL CREDIT"},
+            {kind = "target", id = 253372, name = "Dead Cultist"},
+        },
     },
     [92644] = {
         name = "Unfortunate News",
@@ -34321,6 +38354,23 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 69.65, y = 67.07, kind = "npc", id = 252378, name = "Yorana Windyreed"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252666, name = "Commander Belguilos"},
+        },
+    },
+    [92646] = {
+        name = "Confront Lorthuna",
+        faction = "Horde",
+        pickup = {
+            {mapId = 2521, x = 65.19, y = 50.35, kind = "npc", id = 253590, name = "Valennia Stormfist"},
+        },
+        objective = {
+            {mapId = 2521, x = 74.87, y = 53.02, kind = "event"},
+        },
+        turnin = {
+            {mapId = 2521, x = 59.15, y = 79.78, kind = "npc", id = 251968, name = "Ayessa Dawnsinger", faction = "Horde"},
+        },
+        hasObjective = true,
     },
     [92679] = {
         name = "Blood Tithe",
@@ -34335,6 +38385,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 46.7, y = 81.95, kind = "npc", id = 252800, name = "Aamelia Windfield"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252800, name = "Aamelia Windfield"},
+            {kind = "target", id = 252448, name = "Alvarion Windfield"},
+        },
     },
     [92699] = {
         name = "The Supreme Magister",
@@ -34369,6 +38423,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.68, y = 36.23, kind = "npc", id = 3391, name = "Gazlowe"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 253710, name = "Bruuz's Dorsal Fin"},
+        },
     },
     [92707] = {
         name = "The Giant in the Den",
@@ -34377,6 +38434,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 67.8, y = 79.4, kind = "loot", id = 218032, name = "Witherbark Goliath", itemId = 253711},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 253711, name = "Goliath's Wristguards"},
+        },
         turninName = "Drum Fel",
         turnin = {
             {mapId = 1417, x = 74.24, y = 33.92, kind = "npc", id = 2771, name = "Drum Fel", faction = "Horde", source = "Wowhead Forever / QuestieDB"},
@@ -34411,6 +38471,10 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 52.48, y = 52.97, kind = "npc", id = 253092, name = "Alba Fairmoon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 254546, name = "Jansen Stead Water Sample"},
+            {kind = "item", id = 254547, name = "Molsen Farm Water Sample"},
+        },
     },
     [92743] = {
         name = "A Conqueror's Crown",
@@ -34445,6 +38509,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 52.48, y = 52.97, kind = "npc", id = 253092, name = "Alba Fairmoon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 254548, name = "Longshore Murloc Gill"},
+        },
     },
     [92745] = {
         name = "The State of the Mines",
@@ -34460,6 +38527,10 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 52.48, y = 52.97, kind = "npc", id = 253092, name = "Alba Fairmoon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1236, name = "Kobold Digger"},
+            {kind = "target", id = 1426, name = "Riverpaw Miner"},
+        },
     },
     [92747] = {
         name = "Moonbrook Espionage",
@@ -34474,6 +38545,9 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 52.48, y = 52.97, kind = "npc", id = 253092, name = "Alba Fairmoon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 254676, name = "Suspicious Industrial Supplies"},
+        },
     },
     [92748] = {
         name = "Explosive Consultation",
@@ -34546,6 +38620,9 @@ ns.foreverQuestLocations = {
         pickup = {
             {mapId = 1443, x = 66.2, y = 79.4, kind = "pickup", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 254432, name = "Carved Centaur Totem"},
+        },
         turnin = {
             {mapId = 1443, x = 66.2, y = 79.4, kind = "npc", id = 253139, name = "Gorhak", source = "Wowhead Forever"},
         },
@@ -34591,6 +38668,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 35.6, y = 92, kind = "npc", source = "ATT", id = 253140, name = "Molkar"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 254432, name = "Carved Centaur Totem"},
+        },
     },
     [92814] = {
         name = "I Need a Tailor",
@@ -34633,6 +38713,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 66.63, y = 79.94, kind = "npc", id = 252475, name = "Elaadrin Evengale", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 697118, name = "Windstone Formation"},
+        },
     },
     [92849] = {
         name = "The Missing Scholar",
@@ -34648,6 +38731,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 52.09, y = 69.39, kind = "npc", id = 253284, name = "Fillion Flamebreeze", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 253002, name = "Fillion Flamebreeze"},
+            {kind = "object", id = 581820, name = "Dusty Bedroll"},
+        },
     },
     [92850] = {
         name = "The Missing Scholar",
@@ -34662,6 +38749,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 66.2, y = 79.88, kind = "npc", id = 253285, name = "Fillion Flamebreeze", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 257107, name = "Shriekling Matriarch's Head"},
+        },
     },
     [92860] = {
         name = "In Service of Zephras",
@@ -34732,6 +38822,10 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 51.53, y = 32.31, kind = "npc", id = 253395, name = "Ozwin Ironsprocket", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 255007, name = "Golem Isospring"},
+            {kind = "item", id = 255010, name = "Harvester Gyrostabilizer"},
+        },
     },
     [92910] = {
         name = "Harvesting the Harvesters",
@@ -34791,6 +38885,11 @@ ns.foreverQuestLocations = {
             {mapId = 1436, x = 51.53, y = 32.31, kind = "npc", id = 253395, name = "Ozwin Ironsprocket", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 255007, name = "Golem Isospring"},
+            {kind = "item", id = 4363, name = "Copper Modulator"},
+            {kind = "item", id = 4405, name = "Crude Scope"},
+        },
     },
     [92947] = {
         name = "Making Our Move",
@@ -34807,6 +38906,12 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 63.78, y = 50.51, kind = "npc", id = 253576, name = "Hyusaa Quickbreeze"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252762, name = "Al'Aketh Guardian"},
+            {kind = "target", id = 252763, name = "Al'Aketh Spiritcaller"},
+            {kind = "target", id = 252765, name = "Al'Aketh Blademaster"},
+            {kind = "target", id = 253576, name = "Hyusaa Quickbreeze"},
+        },
     },
     [93034] = {
         name = "Valley of Bones",
@@ -34934,6 +39039,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 61.15, y = 70.93, kind = "npc", id = 253844, name = "Valennia Stormfist"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 253844, name = "Valennia Stormfist"},
+        },
     },
     [93066] = {
         name = "Bristleback Retreat",
@@ -34956,6 +39064,11 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 63.44, y = 89.38, kind = "target", id = 11559, name = "Outcast Necromancer"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 254283, name = "Outcast Scout"},
+            {kind = "target", id = 254284, name = "Outcast Marauder"},
+            {kind = "target", id = 11559, name = "Outcast Necromancer"},
+        },
         turninName = "Hagiak",
         turnin = {
             {mapId = 2652, x = 58.8, y = 53.8, kind = "npc", id = 253851, name = "Hagiak", source = "Wowhead Forever / QuestieDB"},
@@ -35032,6 +39145,11 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 25.1, y = 54.21, kind = "npc", id = 217412, name = "Amaryllis Webb"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 213566, name = "Arbor Tarantula Specimen"},
+            {kind = "item", id = 213568, name = "Hay Weevil Specimen"},
+            {kind = "item", id = 213567, name = "Flesh Picker Specimen"},
+        },
         objectiveText = "Use the Entomology Starter Kit to catch an Arbor Tarantula, a Hay Weevil and a Flesh Picker.",
         objectiveKind = "capture",
         objectiveSource = "Wowhead Forever",
@@ -35096,6 +39214,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 66.66, y = 10.93, kind = "npc", id = 5396, name = "Captain Pentigast", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 254432, name = "Carved Centaur Totem"},
+        },
     },
     [93225] = {
         name = "Carved Centaur Totems",
@@ -35138,6 +39259,9 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 56.29, y = 59.68, kind = "npc", id = 5412, name = "Gurda Wildmane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 254432, name = "Carved Centaur Totem"},
+        },
     },
     [93226] = {
         name = "Buying Friendship: Magram",
@@ -35200,6 +39324,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 44.03, y = 31.34, kind = "loot", id = 757, name = "Lost One Fisherman", itemId = 258530},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 258530, name = "Lucky Lure"},
+        },
         pickupName = "Pelluk",
         pickup = {
             {mapId = 1435, x = 26.4, y = 30.6, kind = "npc", id = 254770, name = "Pelluk", source = "AHledger / Wowhead Forever"},
@@ -35232,6 +39359,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 45.67, y = 45.5, kind = "npc", id = 251523, name = "Constable Aonda"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 251903, name = "Rathiril Sunlance"},
+            {kind = "target", id = 254089, name = "Coriella Calmbreeze"},
+        },
     },
     [93464] = {
         name = "The Visiting Mage",
@@ -35257,6 +39388,9 @@ ns.foreverQuestLocations = {
         objective = {
             {mapId = 1443, x = 80.8, y = 76.6, kind = "area", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 258774, name = "Gimashi's Findings"},
+        },
     },
     [93585] = {
         name = "This Light of Mine",
@@ -35278,6 +39412,9 @@ ns.foreverQuestLocations = {
             {mapId = 1435, x = 25.98, y = 31.4, kind = "npc", id = 1776, name = "Magtoor"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 260452, name = "Courier's Shipment"},
+        },
         objectiveText = "Search the waters along the road for the missing courier's shipment, then deliver it to the Harborage.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -35325,6 +39462,12 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 59.06, y = 72.98, kind = "npc", id = 256083, name = "Riaani Nightwind", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256083, name = "Riaani Nightwind"},
+            {kind = "item", id = 260881, name = "Crystallized Lightning"},
+            {kind = "item", id = 260883, name = "Enchanted Gyrozephyr"},
+            {kind = "item", id = 260880, name = "Air Construct Core"},
+        },
     },
     [93738] = {
         name = "The Broken Construct",
@@ -35349,6 +39492,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 59.15, y = 79.78, kind = "npc", id = 251968, name = "Ayessa Dawnsinger", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256247, name = "Belathaan Brightwish"},
+        },
     },
     [93786] = {
         name = "A Message in Blood",
@@ -35360,6 +39506,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 45, y = 79, kind = "target", id = 256383, name = "Meadowsbrook Farmhand"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256383, name = "Meadowsbrook Farmhand"},
+        },
         turnin = {
             {mapId = 2548, x = 59.4, y = 45.6, kind = "npc", id = 256418, name = "Krom'rosh", source = "Wowhead Forever"},
         },
@@ -35374,6 +39523,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.37, y = 45.65, kind = "npc", id = 256418, name = "Krom'rosh"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 262640, name = "Feed Satchel"},
+        },
         objectiveText = "Take Feed Satchels from the Alliance farm in Meadowsbrook for Krom'rosh.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -35391,6 +39543,23 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.85, y = 45.98, kind = "npc", id = 256657, name = "Kreza Darkthorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 263972, name = "Woodworker's Axe"},
+        },
+    },
+    [93835] = {
+        name = "Confront Lorthuna",
+        faction = "Alliance",
+        pickup = {
+            {mapId = 2521, x = 65.19, y = 50.35, kind = "npc", id = 253590, name = "Valennia Stormfist"},
+        },
+        objective = {
+            {mapId = 2521, x = 74.87, y = 53.02, kind = "event"},
+        },
+        turnin = {
+            {mapId = 2521, x = 66.63, y = 79.94, kind = "npc", id = 252475, name = "Elaadrin Evengale", faction = "Alliance"},
+        },
+        hasObjective = true,
     },
     [93836] = {
         name = "The Fate of Zephras",
@@ -35405,6 +39574,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 66.17, y = 76.51, kind = "npc", id = 252476, name = "Talaanis Shadowsong"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252476, name = "Talaanis Shadowsong"},
+        },
     },
     [93926] = {
         name = "The Western Watch",
@@ -35419,6 +39591,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 42.34, y = 62.02, kind = "npc", id = 252155, name = "Peacekeeper Vaaniel"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252155, name = "Peacekeeper Vaaniel"},
+        },
     },
     [93928] = {
         name = "Of Mice and Milk",
@@ -35481,6 +39656,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 66.17, y = 76.51, kind = "npc", id = 252476, name = "Talaanis Shadowsong"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252476, name = "Talaanis Shadowsong"},
+        },
     },
     [94414] = {
         name = "The Anchors of Zephras",
@@ -35494,6 +39672,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 43.76, y = 24.06, kind = "npc", id = 257554, name = "Halaan Hawk-Eye"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 257554, name = "Halaan Hawk-Eye"},
+        },
     },
     [94480] = {
         name = "A Gift From Our Enemies",
@@ -35543,6 +39724,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.37, y = 45.65, kind = "npc", id = 256418, name = "Krom'rosh"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 270667, name = "Farholde Priest"},
+            {kind = "target", id = 257926, name = "Farholde Scout"},
+        },
     },
     [94532] = {
         name = "Gnoll Infestation",
@@ -35553,6 +39738,11 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 16.58, y = 67.96, kind = "target", id = 255769, name = "Redridge Brute"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 255770, name = "Redridge Mystic"},
+            {kind = "target", id = 255772, name = "Redridge Trapper"},
+            {kind = "target", id = 255769, name = "Redridge Brute"},
+        },
         pickupName = "Neza Bloodsnout",
         pickup = {
             {mapId = 2548, x = 61.83, y = 47.64, kind = "npc", id = 258031, name = "Neza Bloodsnout", source = "AHledger / QuestieDB"},
@@ -35568,6 +39758,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 16, y = 73.2, kind = "loot", id = 255906, name = "Snargl", source = "Wowhead Forever", entityType = "npc", itemId = 265357},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265357, name = "Snargl's Snout"},
+        },
         pickupName = "Neza Bloodsnout",
         pickup = {
             {mapId = 2548, x = 61.83, y = 47.64, kind = "npc", id = 258031, name = "Neza Bloodsnout", source = "AHledger / QuestieDB"},
@@ -35590,6 +39783,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.85, y = 45.98, kind = "npc", id = 256657, name = "Kreza Darkthorn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265358, name = "Stolen Ore"},
+        },
         pickupName = "Kreza Darkthorn",
         pickup = {
             {mapId = 2548, x = 59.85, y = 45.98, kind = "npc", id = 256657, name = "Kreza Darkthorn", faction = "Horde", source = "AHledger / QuestieDB"},
@@ -35620,6 +39816,9 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 66.17, y = 76.51, kind = "npc", id = 252476, name = "Talaanis Shadowsong"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 252476, name = "Talaanis Shadowsong"},
+        },
     },
     [94613] = {
         name = "My Kingdom for a Horse",
@@ -35644,6 +39843,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 55, y = 72.8, kind = "npc", id = 258317, name = "Benjy Wheeler"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 258574, name = "Mudfin Warrior"},
+            {kind = "target", id = 258573, name = "Mudfin Oracle"},
+        },
     },
     [94615] = {
         name = "Foal Play",
@@ -35654,6 +39857,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 54.6, y = 72.8, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 267223, name = "Pawprint Tracing"},
         },
         objectiveText = "Search beside the stables at Wheeler's Grange and make a tracing of the pawprints left by the missing horses.",
         objectiveKind = "loot",
@@ -35672,6 +39878,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 55, y = 72.8, kind = "npc", id = 258317, name = "Benjy Wheeler"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265738, name = "Sootfur's Pelt"},
+        },
     },
     [94618] = {
         name = "Wheeler's Fleeing Steeds",
@@ -35727,6 +39936,11 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 43.01, y = 52.15, kind = "target", id = 256798, name = "Twilight Neophyte"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256952, name = "Twilight Raider"},
+            {kind = "target", id = 254560, name = "Twilight Shadowmancer"},
+            {kind = "target", id = 256798, name = "Twilight Neophyte"},
+        },
         pickupName = "Tran'gul",
         pickup = {
             {mapId = 2548, x = 59.4, y = 44.2, kind = "npc", id = 256710, name = "Tran'gul", source = "AHledger / QuestieDB"},
@@ -35744,6 +39958,11 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 16.58, y = 67.96, kind = "target", id = 255769, name = "Redridge Brute"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 255770, name = "Redridge Mystic"},
+            {kind = "target", id = 255772, name = "Redridge Trapper"},
+            {kind = "target", id = 255769, name = "Redridge Brute"},
+        },
         pickup = {
             {mapId = 2548, x = 39.4, y = 74.6, kind = "npc", id = 259353, name = "Cedric Dalton", source = "Wowhead Forever"},
         },
@@ -35758,6 +39977,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 16, y = 73.2, kind = "loot", id = 255906, name = "Snargl", source = "Wowhead Forever", entityType = "npc", itemId = 265357},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265357, name = "Snargl's Snout"},
+        },
         pickup = {
             {mapId = 2548, x = 39.4, y = 74.6, kind = "npc", id = 259353, name = "Cedric Dalton", source = "Wowhead Forever"},
         },
@@ -35772,6 +39994,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 46.26, y = 53.98, kind = "loot", id = 254560, name = "Twilight Shadowmancer", itemId = 265745},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265745, name = "Twilight Missive"},
+        },
         pickupName = "Tran'gul",
         pickup = {
             {mapId = 2548, x = 59.4, y = 44.2, kind = "npc", id = 256710, name = "Tran'gul", source = "AHledger / QuestieDB"},
@@ -35812,6 +40037,10 @@ ns.foreverQuestLocations = {
         name = "A Boar's Delight",
         faction = "Horde",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265808, name = "Sweetberry"},
+            {kind = "item", id = 265806, name = "Riverweed"},
+        },
         objectiveText = "Find Sweetberries at the human farm near the ocean and Riverweed along the river for Gobam.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -35874,6 +40103,11 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 27.8, y = 54.65, kind = "target", id = 256799, name = "Twilight Champion"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256795, name = "Twilight Fanatic"},
+            {kind = "target", id = 256797, name = "Twilight Corrupter"},
+            {kind = "target", id = 256799, name = "Twilight Champion"},
+        },
         pickupName = "Da'grosh",
         pickup = {
             {mapId = 2548, x = 33.4, y = 38, kind = "npc", id = 258570, name = "Da'grosh", source = "AHledger / Wowhead Forever"},
@@ -35905,6 +40139,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 26.6, y = 44.8, kind = "loot", id = 256881, name = "Overlord Kilgar", source = "Wowhead Forever", entityType = "npc", itemId = 265837},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265837, name = "Kilgar's Head"},
+        },
         pickupName = "Da'grosh",
         pickup = {
             {mapId = 2548, x = 33.4, y = 38, kind = "npc", id = 258570, name = "Da'grosh", source = "AHledger / Wowhead Forever"},
@@ -35952,6 +40189,11 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 41, y = 62.8, kind = "npc", id = 256438, name = "Halligan Turner"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266157, name = "Jumbo Crawfish Shell"},
+            {kind = "item", id = 266156, name = "Fresh Manure"},
+            {kind = "item", id = 267266, name = "Mudfin Murloc Head"},
+        },
     },
     [94843] = {
         name = "From Seed to Sprout",
@@ -35986,6 +40228,10 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 52.8, y = 42.4, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 266251, name = "Discarded Doll"},
+            {kind = "item", id = 266252, name = "Damaged Locket"},
         },
         turnin = {
             {mapId = 2548, x = 52.8, y = 42.4, kind = "npc", id = 258697, name = "Farmer Elbrim", source = "Wowhead Forever"},
@@ -36038,6 +40284,11 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 43.01, y = 52.15, kind = "target", id = 256798, name = "Twilight Neophyte"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256952, name = "Twilight Raider"},
+            {kind = "target", id = 254560, name = "Twilight Shadowmancer"},
+            {kind = "target", id = 256798, name = "Twilight Neophyte"},
+        },
         pickup = {
             {mapId = 2548, x = 66.6, y = 81, kind = "npc", id = 257558, name = "Demar Brant", source = "Wowhead Forever"},
         },
@@ -36052,6 +40303,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 66.72, y = 81.07, kind = "npc", id = 257591, name = "Ashe Amberhall", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266424, name = "Twilight Page"},
+        },
         objectiveText = "Collect Twilight Pages from the ruined houses in Sunnyglade for Ashe Amberhall. Look for pale pages resting on crates.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -36070,6 +40324,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 43.01, y = 52.15, kind = "loot", id = 256798, name = "Twilight Neophyte", itemId = 266425},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266425, name = "Twilight Charm"},
+        },
         turnin = {
             {mapId = 2548, x = 66.6, y = 81, kind = "npc", id = 257591, name = "Ashe Amberhall", source = "Wowhead Forever"},
         },
@@ -36098,6 +40355,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 41.88, y = 44.65, kind = "loot", id = 256952, name = "Twilight Raider", itemId = 266427},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266427, name = "Field Marshal's Log"},
+        },
         startItem = 266427,
         turnin = {
             {mapId = 2548, x = 66.6, y = 81, kind = "npc", id = 257558, name = "Demar Brant", source = "Wowhead Forever"},
@@ -36151,6 +40411,11 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 27.8, y = 54.65, kind = "target", id = 256799, name = "Twilight Champion"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256795, name = "Twilight Fanatic"},
+            {kind = "target", id = 256797, name = "Twilight Corrupter"},
+            {kind = "target", id = 256799, name = "Twilight Champion"},
+        },
         pickup = {
             {mapId = 2548, x = 30.6, y = 49, kind = "npc", id = 258023, name = "Sergeant Riftan", source = "Wowhead Forever"},
         },
@@ -36167,6 +40432,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 30.7, y = 49.1, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 265837, name = "Kilgar's Head"},
         },
         turnin = {
             {mapId = 2548, x = 30.6, y = 49, kind = "npc", id = 258023, name = "Sergeant Riftan", source = "Wowhead Forever"},
@@ -36260,6 +40528,9 @@ ns.foreverQuestLocations = {
         name = "Hats Off",
         faction = "Alliance",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266884, name = "Robbie's Hat"},
+        },
         objectiveText = "Look for Robbie's Hat in the large clam on the river island west of Wheeler's Grange.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -36277,6 +40548,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 56.82, y = 49.23, kind = "target", id = 259052, name = "Rog'mar Poacher"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 259052, name = "Rog'mar Poacher"},
+        },
         pickup = {
             {mapId = 2548, x = 59.4, y = 63.8, kind = "npc", id = 259352, name = "Watcher Cornelius", source = "Wowhead Forever"},
         },
@@ -36292,6 +40566,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 61.52, y = 50.03, kind = "loot", id = 259055, name = "Wildplains Huntress", itemId = 266888},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266888, name = "Prized Lion Hide"},
+        },
         pickup = {
             {mapId = 2548, x = 59.4, y = 63.8, kind = "npc", id = 259352, name = "Watcher Cornelius", source = "Wowhead Forever"},
         },
@@ -36303,6 +40580,9 @@ ns.foreverQuestLocations = {
         name = "Drop the Hammer",
         faction = "Alliance",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266889, name = "Komuk's Warmaul"},
+        },
         objectiveText = "Recover Komuk's Warmaul from Komuk and take it to Farholde Keep.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -36359,6 +40639,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 41, y = 62.8, kind = "npc", id = 256438, name = "Halligan Turner"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266897, name = "Saw Blade"},
+        },
         objectiveText = "Recover the stashed Saw Blades from gnoll camps in Bristle Hills for Halligan Turner.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -36527,6 +40810,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 64.13, y = 34.43, kind = "target", id = 256749, name = "Rog'mar Trainee"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256749, name = "Rog'mar Trainee"},
+        },
         pickup = {
             {mapId = 2548, x = 59.4, y = 63.8, kind = "npc", id = 259352, name = "Watcher Cornelius", source = "Wowhead Forever"},
         },
@@ -36561,6 +40847,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 67.58, y = 78.14, kind = "target", id = 255898, name = "Murloc Oracle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 256801, name = "Murloc Warrior"},
+            {kind = "target", id = 255898, name = "Murloc Oracle"},
+        },
         turnin = {
             {mapId = 2548, x = 79.4, y = 52.8, kind = "npc", id = 259961, name = "Wharfmaster Whizzbuzz", source = "Wowhead Forever"},
         },
@@ -36578,6 +40868,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 79.34, y = 52.75, kind = "npc", id = 259961, name = "Wharfmaster Whizzbuzz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 257901, name = "Eastsea Buccaneer"},
+            {kind = "target", id = 257910, name = "Eastsea Musketeer"},
+        },
     },
     [95120] = {
         name = "WANTED: Old Rot-Chum",
@@ -36609,6 +40903,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 78.98, y = 54.2, kind = "npc", id = 259962, name = "Fimbo Greasemitz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 268344, name = "Saltwater Murloc Eye"},
+            {kind = "item", id = 268345, name = "Sand Crawler Meat"},
+        },
     },
     [95122] = {
         name = "Unchecked Expansion",
@@ -36703,6 +41001,9 @@ ns.foreverQuestLocations = {
         pickup = {
             {mapId = 2548, x = 66, y = 79.6, kind = "pickup", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 268536, name = "Bundle of Hay"},
+        },
         objectiveText = "Collect Bundles of Hay at Wheeler's farm outside Farholde Keep for Ember Bladewhisper.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -36734,6 +41035,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 36.87, y = 40.07, kind = "loot", id = 3225, name = "Corrupted Mottled Boar", itemId = 769},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 769, name = "Chunk of Boar Meat"},
+        },
         pickupName = "Na'zok",
         pickup = {
             {mapId = 2548, x = 69.98, y = 29.39, kind = "npc", id = 256728, name = "Na'zok", source = "AHledger / QuestieDB"},
@@ -36774,6 +41078,9 @@ ns.foreverQuestLocations = {
         name = "Step One: Rock",
         faction = "Horde",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271892, name = "Good Rock"},
+        },
         objectiveText = "Loot Rock Piles near the river outside Bolder'ok until you have the Good Rocks Hamur needs.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -36794,6 +41101,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 66, y = 79.6, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 7964, name = "Solid Sharpening Stone"},
         },
         objectiveText = "Craft or buy Solid Sharpening Stones for Ember Bladewhisper at Farholde's training grounds.",
         objectiveKind = "craft",
@@ -36831,6 +41141,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 78.98, y = 54.2, kind = "npc", id = 259962, name = "Fimbo Greasemitz"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 268586, name = "Trapclaw's Pincer"},
+        },
     },
     [95260] = {
         name = "Terrors From the Deep",
@@ -36889,6 +41202,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 79.54, y = 52.46, kind = "npc", id = 260231, name = "Argo Brinewhistle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 268633, name = "Sea Monster's Head"},
+        },
     },
     [95278] = {
         name = "It Is Time, Brother...",
@@ -36988,6 +41304,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 59.43, y = 52.19, kind = "npc", id = 2132, name = "Carolai Anise", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 268801, name = "Bottle of Whispering Elixir"},
+        },
     },
     [95315] = {
         name = "The Riverglades Report",
@@ -37077,6 +41396,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 49.14, y = 14.61, kind = "npc", id = 4607, name = "Father Lankester", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 268812, name = "Whispering Horror Residue"},
+        },
         startItem = 268812,
     },
     [95329] = {
@@ -37127,6 +41449,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 47.19, y = 38.55, kind = "loot", id = 780, name = "Skullsplitter Mystic", itemId = 213127},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 213127, name = "Partial Mystical Notes"},
+        },
         startItem = 213127,
         pickupText = "Obtain Partial Mystical Notes. Use the item to accept the quest.",
         pickup = {
@@ -37180,6 +41505,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 74.2, y = 25.4, kind = "target", id = 261497, name = "Twilight Firecaller", source = "Wowhead Forever"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 260968, name = "Twilight Mauler"},
+            {kind = "target", id = 261497, name = "Twilight Firecaller"},
+        },
         pickupName = "Clugfist",
         pickup = {
             {mapId = 2548, x = 64.5, y = 14.85, kind = "npc", id = 255829, name = "Clugfist", source = "AHledger / QuestieDB"},
@@ -37195,6 +41524,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 74, y = 26.8, kind = "loot", id = 260973, name = "Klunk", source = "Wowhead Forever", entityType = "npc", itemId = 269257},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 269257, name = "Skullbasher"},
+        },
         pickupName = "Clugfist",
         pickup = {
             {mapId = 2548, x = 64.5, y = 14.85, kind = "npc", id = 255829, name = "Clugfist", source = "AHledger / QuestieDB"},
@@ -37207,6 +41539,9 @@ ns.foreverQuestLocations = {
         name = "Rog'mar Supplies",
         faction = "Alliance",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 274975, name = "Rog'mar Supply Crate"},
+        },
         objectiveText = "Steal Rog'mar Supply Crates from the Horde training camps north of Rog'mar.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -37224,6 +41559,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 44.8, y = 51.2, kind = "loot", id = 256899, name = "Chogg'Zac", source = "Wowhead Forever", entityType = "npc", itemId = 265750},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 265750, name = "Chogg's Head"},
+            {kind = "item", id = 265751, name = "Zac's Head"},
+        },
         pickupName = "Clubtoe",
         pickup = {
             {mapId = 2548, x = 49.8, y = 47, kind = "npc", id = 260931, name = "Clubtoe", source = "AHledger / Wowhead Forever"},
@@ -37276,6 +41615,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 29.8, y = 41.2, kind = "loot", id = 256891, name = "Executioner Morg", source = "Wowhead Forever", entityType = "npc", itemId = 269351},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 269351, name = "Executioner's Mace"},
+        },
         pickupName = "Crag'rog",
         pickup = {
             {mapId = 2548, x = 27.7, y = 36.66, kind = "npc", id = 260993, name = "Crag'rog", source = "AHledger / QuestieDB"},
@@ -37308,6 +41650,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 43.8, y = 12.21, kind = "npc", id = 3682, name = "Vrang Wildgore", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 269715, name = "Savannah Lion Hide"},
+        },
     },
     [95495] = {
         name = "The Hermit Tanner",
@@ -37332,6 +41677,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 43.8, y = 12.21, kind = "npc", id = 3682, name = "Vrang Wildgore", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 269719, name = "Trapped Game"},
+        },
     },
     [95508] = {
         name = "Unwelcome Guests",
@@ -37362,6 +41710,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 63.8, y = 82.2, kind = "npc", id = 263089, name = "Tessa Dawnbright"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271431, name = "Fresh Apple"},
+        },
         objectiveText = "Gather Fresh Apples beneath the apple trees inside Farholde Keep. Rotten apples cannot be collected.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -37382,6 +41733,10 @@ ns.foreverQuestLocations = {
         pickup = {
             {mapId = 2548, x = 47.6, y = 47.2, kind = "pickup", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 265750, name = "Chogg's Head"},
+            {kind = "item", id = 265751, name = "Zac's Head"},
+        },
     },
     [95601] = {
         name = "The Purple Ones",
@@ -37391,6 +41746,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 47.8, y = 49.4, kind = "target", id = 262169, name = "Twilight Ritualist", source = "Wowhead Forever"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 261711, name = "Empowered Brute"},
+            {kind = "target", id = 262169, name = "Twilight Ritualist"},
+        },
         pickupName = "Twilight Brute",
         turninName = "Clubtoe",
         turnin = {
@@ -37428,6 +41787,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 61.74, y = 83.28, kind = "npc", id = 262031, name = "Sister Rowland"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 262037, name = "Roosting Duskbat"},
+        },
     },
     [95613] = {
         name = "Keeping the Light On",
@@ -37481,6 +41843,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 61.74, y = 83.28, kind = "npc", id = 262031, name = "Sister Rowland"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 17028, name = "Holy Candle"},
+        },
     },
     [95615] = {
         name = "In Memoriam",
@@ -37509,6 +41874,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 42.02, y = 11.45, kind = "npc", id = 261366, name = "Walton", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 270151, name = "Benedict's Orders"},
+        },
     },
     [95642] = {
         name = "Abominable Magics",
@@ -37538,6 +41906,10 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 47.6, y = 47.2, kind = "npc", id = 256831, name = "Apprentice Claire"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 261711, name = "Empowered Brute"},
+            {kind = "target", id = 262169, name = "Twilight Ritualist"},
+        },
     },
     [95737] = {
         name = "Seeking Caitlin",
@@ -37562,6 +41934,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.27, y = 27.71, kind = "npc", id = 2519, name = "Kin'weelay", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2007, name = "The Third Troll Legend"},
+        },
     },
     [95770] = {
         name = "Locating the Lost City",
@@ -37586,6 +41961,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 32.17, y = 28.9, kind = "npc", id = 2464, name = "Commander Aggro'gosh", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 270305, name = "Brinescale Trident"},
+        },
     },
     [95774] = {
         name = "Her Name Is Olgra",
@@ -37600,6 +41978,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 51.95, y = 31.58, kind = "npc", id = 3432, name = "Mankrik", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277277, name = "Olgra's Adornments"},
+        },
     },
     [95786] = {
         name = "An Acquaintance in Southshore",
@@ -37656,6 +42037,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 6.13, y = 71.75, kind = "npc", id = 256391, name = "Elaine Compton", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 270897, name = "Massive Pile of Completed Forms"},
+        },
         objectiveText = "Complete the provided Massive Pile of Forms, then bring the finished forms to Elaine Compton in Redridge Mountains.",
         objectiveKind = "use-item",
         objectiveSource = "Wowhead Forever",
@@ -37671,6 +42055,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 49.58, y = 28.9, kind = "npc", id = 256388, name = "Jornah", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 270897, name = "Massive Pile of Completed Forms"},
+        },
         objectiveText = "Complete the provided Massive Pile of Forms, then bring the finished forms to Jornah in the Barrens.",
         objectiveKind = "use-item",
         objectiveSource = "Wowhead Forever",
@@ -37689,6 +42076,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 61.83, y = 47.64, kind = "npc", id = 258031, name = "Neza Bloodsnout"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 268581, name = "Scoutmaster's Eye"},
+        },
     },
     [95883] = {
         name = "The Tortured Soul",
@@ -37704,6 +42094,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 58.12, y = 69.77, kind = "object", id = 645153, name = "Offering Stone"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271350, name = "Tortured Soul"},
+        },
     },
     [95884] = {
         name = "The Offering Stone",
@@ -37720,6 +42113,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 58.12, y = 69.77, kind = "object", id = 645153, name = "Offering Stone"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271343, name = "Note Scrap"},
+        },
         startItem = 271343,
     },
     [95885] = {
@@ -37736,6 +42132,10 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 58.12, y = 69.77, kind = "object", id = 645153, name = "Offering Stone"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 212753, name = "Tortured Soul"},
+            {kind = "object", id = 645153, name = "Offering Stone"},
+        },
     },
     [95912] = {
         name = "WANTED: Blademaster Kaijo",
@@ -37744,6 +42144,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 57.4, y = 36.6, kind = "loot", id = 263071, name = "Blademaster Kaijo", itemId = 271425},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271425, name = "Blademaster's Banner"},
+        },
         pickup = {
             {mapId = 2548, x = 65.9, y = 81.1, kind = "object", id = 707245, name = "Wanted", source = "Wowhead Forever"},
         },
@@ -37760,6 +42163,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 63.8, y = 82.2, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 271432, name = "Coyote Pelt"},
         },
         turnin = {
             {mapId = 2548, x = 63.8, y = 82.2, kind = "npc", id = 263089, name = "Tessa Dawnbright", source = "Wowhead Forever"},
@@ -37783,6 +42189,9 @@ ns.foreverQuestLocations = {
         name = "Hail the Dragonslayer",
         faction = "Alliance",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271612, name = "Head of Scaldaron"},
+        },
         startItem = 271612,
         pickupText = "Obtain Head of Scaldaron. Use the item to accept the quest.",
         pickup = {
@@ -37799,6 +42208,9 @@ ns.foreverQuestLocations = {
         name = "Hail the Dragonslayer",
         faction = "Horde",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271613, name = "Head of Scaldaron"},
+        },
         startItem = 271613,
         pickupText = "Obtain Head of Scaldaron. Use the item to accept the quest.",
         pickup = {
@@ -37821,6 +42233,9 @@ ns.foreverQuestLocations = {
         pickup = {
             {mapId = 2548, x = 63.2, y = 80.6, kind = "pickup", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 271620, name = "Foreman's Crate"},
+        },
         objectiveText = "Search the broken cart for the Foreman's Crate and bring it to Bertrand Ironbrow.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -37835,6 +42250,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 58.1, y = 45.18, kind = "npc", id = 263190, name = "Tan'jani"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271630, name = "Makeshift Stickin' Spear"},
+        },
         objectiveText = "Loot Wood Bundles from Peasant Woodpiles at Turner's Logging Camp, then use them to fletch Makeshift Stickin' Spears.",
         objectiveKind = "combine",
         objectiveSource = "Wowhead Forever",
@@ -37866,6 +42284,9 @@ ns.foreverQuestLocations = {
         name = "Her World",
         faction = "Alliance",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271823, name = "Wildflower"},
+        },
         objectiveText = "Gather Wildflowers for Tessa Dawnbright in Farholde Keep.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -37890,6 +42311,10 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 43.98, y = 40.93, kind = "npc", id = 2121, name = "Shadow Priest Allister", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 1888, name = "Dalaran Watcher"},
+            {kind = "target", id = 1889, name = "Dalaran Wizard"},
+        },
     },
     [95982] = {
         name = "Not My Circus",
@@ -37897,6 +42322,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 75.88, y = 52.83, kind = "npc", id = 260540, name = "Jasper Geartoggle"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 274971, name = "Briny Seafood Stew"},
+        },
         objectiveText = "Cook or buy Briny Seafood Stew for Jasper Geartoggle in Powderfuse Port.",
         objectiveKind = "craft",
         objectiveSource = "Wowhead Forever",
@@ -37921,6 +42349,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.61, y = 47.94, kind = "loot", id = 263348, name = "Roving Tallstrider", itemId = 271778},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271778, name = "Intact Tallstrider Beak"},
+        },
         pickup = {
             {mapId = 2548, x = 59.4, y = 63.8, kind = "npc", id = 259352, name = "Watcher Cornelius", source = "Wowhead Forever"},
         },
@@ -37935,6 +42366,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.6, y = 53.2, kind = "loot", id = 263315, name = "Ombassa", itemId = 281052},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281052, name = "Ombassa's Hide"},
+        },
         pickup = {
             {mapId = 2548, x = 59.4, y = 63.8, kind = "npc", id = 259352, name = "Watcher Cornelius", source = "Wowhead Forever"},
         },
@@ -37952,6 +42386,12 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 76.81, y = 51.17, kind = "vendor", id = 260560, name = "Krikshank", itemId = 271654},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271650, name = "Crawler Spittle"},
+            {kind = "item", id = 271657, name = "Fresh Chum"},
+            {kind = "item", id = 271653, name = "Goblin Degreaser"},
+            {kind = "item", id = 271654, name = "Expired Poison"},
+        },
         pickup = {
             {mapId = 2548, x = 78.8, y = 54, kind = "npc", id = 255894, name = "Innkeeper Zizplink", source = "Wowhead Forever"},
         },
@@ -37973,6 +42413,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 63.66, y = 84.81, kind = "npc", id = 259859, name = "Wheatley"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271828, name = "Ghostmaw's Fang"},
+        },
     },
     [95992] = {
         name = "WANTED: Ghostmaw",
@@ -37983,6 +42426,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 59.5, y = 47, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 271828, name = "Ghostmaw's Fang"},
         },
         turninName = "Tan'jani",
         turnin = {
@@ -38002,6 +42448,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 24.9, y = 44.45, kind = "npc", id = 344, name = "Magistrate Solomon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271872, name = "Broken Staff of Incinerator Gar'im"},
+        },
     },
     [96009] = {
         name = "High Stakes",
@@ -38012,6 +42461,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 63.4, y = 80.4, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 271877, name = "Wood Bundle"},
         },
         objectiveText = "Collect Wood Bundles at Turner's Logging Camp for Bertrand Ironbrow.",
         objectiveKind = "loot",
@@ -38035,6 +42487,9 @@ ns.foreverQuestLocations = {
         name = "Step Two: More Rock",
         faction = "Horde",
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 3241, name = "Heavy Weightstone"},
+        },
         objectiveText = "Craft or buy Heavy Weightstones for Hamur in Bolder'ok.",
         objectiveKind = "craft",
         objectiveSource = "Wowhead Forever",
@@ -38455,6 +42910,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 65.44, y = 79.09, kind = "npc", id = 263613, name = "Brother Lowley"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4338, name = "Mageweave Cloth"},
+        },
     },
     [96082] = {
         name = "Doctor's Orderly",
@@ -38486,6 +42944,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         pickup = {
             {mapId = 2548, x = 61.8, y = 83.2, kind = "pickup", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 281228, name = "Filled Freshwater Phial"},
         },
         objectiveText = "Fill the Empty Phial at the pools in the plains north of Farholde Keep, then take the sample to Sister Rowland.",
         objectiveKind = "use-item",
@@ -38527,6 +42988,10 @@ ns.foreverQuestLocations = {
             {mapId = 2521, x = 41.66, y = 44.8, kind = "npc", id = 263664, name = "Raan Wildwind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+        },
     },
     [96102] = {
         name = "Camping 101: Tailoring",
@@ -38541,6 +43006,9 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 62.93, y = 49.24, kind = "npc", id = 2855, name = "Snang", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2855, name = "Snang"},
+        },
     },
     [96103] = {
         name = "A Feast for Buzzards",
@@ -38561,6 +43029,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.61, y = 47.94, kind = "loot", id = 263348, name = "Roving Tallstrider", itemId = 271778},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271778, name = "Intact Tallstrider Beak"},
+        },
         pickupName = "Neza Bloodsnout",
         pickup = {
             {mapId = 2548, x = 61.83, y = 47.64, kind = "npc", id = 258031, name = "Neza Bloodsnout", source = "AHledger / QuestieDB"},
@@ -38576,6 +43047,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 59.6, y = 53.2, kind = "loot", id = 263315, name = "Ombassa", itemId = 281052},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281052, name = "Ombassa's Hide"},
+        },
         pickupName = "Neza Bloodsnout",
         pickup = {
             {mapId = 2548, x = 61.83, y = 47.64, kind = "npc", id = 258031, name = "Neza Bloodsnout", source = "AHledger / QuestieDB"},
@@ -38597,6 +43071,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 61.83, y = 47.64, kind = "npc", id = 258031, name = "Neza Bloodsnout"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 271793, name = "Plains Buzzard Feather"},
+        },
     },
     [96108] = {
         name = "Poison Tips",
@@ -38611,6 +43088,9 @@ ns.foreverQuestLocations = {
         pickup = {
             {mapId = 2548, x = 60.4, y = 47.8, kind = "pickup", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "item", id = 271776, name = "Glade Viper Venom"},
+        },
     },
     [96109] = {
         name = "A Hunter's Quiver",
@@ -38620,6 +43100,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 61.52, y = 50.03, kind = "loot", id = 259055, name = "Wildplains Huntress", itemId = 266888},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 266888, name = "Prized Lion Hide"},
+        },
         pickupName = "Neza Bloodsnout",
         pickup = {
             {mapId = 2548, x = 61.83, y = 47.64, kind = "npc", id = 258031, name = "Neza Bloodsnout", source = "AHledger / QuestieDB"},
@@ -38645,6 +43128,9 @@ ns.foreverQuestLocations = {
             {mapId = 2548, x = 67.6, y = 19.2, kind = "loot", id = 263749, name = "Gronok the Butcher", itemId = 272190},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 272190, name = "Gronok's Key"},
+        },
         pickup = {
             {mapId = 2548, x = 68.6, y = 12.6, kind = "npc", id = 259057, name = "Dunston Willis", source = "Wowhead Forever"},
         },
@@ -38665,6 +43151,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.93, y = 59.65, kind = "npc", id = 3065, name = "Yaw Sharpmane", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 270302, name = "Chakuyak's Pelt"},
+        },
     },
     [96136] = {
         name = "Call of Air",
@@ -38685,6 +43174,10 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 72.62, y = 47.62, kind = "npc", id = 268, name = "Sirra Von'Indi", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 923, name = "Young Black Ravager"},
+            {kind = "target", id = 628, name = "Black Ravager"},
+        },
         startItem = 281143,
     },
     [96138] = {
@@ -38701,6 +43194,10 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 72.62, y = 47.62, kind = "npc", id = 268, name = "Sirra Von'Indi", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 212, name = "Splinter Fist Warrior"},
+            {kind = "target", id = 892, name = "Splinter Fist Taskmaster"},
+        },
         startItem = 281142,
     },
     [96139] = {
@@ -38716,6 +43213,9 @@ ns.foreverQuestLocations = {
             {mapId = 1431, x = 72.62, y = 47.62, kind = "npc", id = 268, name = "Sirra Von'Indi", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281046, name = "Raven Hill Tome"},
+        },
     },
     [96222] = {
         name = "Khan Hratha",
@@ -38737,6 +43237,10 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 42.63, y = 77.82, kind = "npc", id = 253066, name = "Umarak"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 6077, name = "Maraudine Key Fragment"},
+            {kind = "item", id = 6074, name = "War Horn Mouthpiece"},
+        },
     },
     [96241] = {
         name = "Talkin' bout Toxins, Mon",
@@ -38751,6 +43255,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 32.5, y = 20.66, kind = "npc", id = 264074, name = "Mazu'kon", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 273001, name = "Gloomrise Toxin Sample"},
+        },
     },
     [96259] = {
         name = "Defending the Dead",
@@ -38766,6 +43273,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 33.41, y = 22.58, kind = "npc", id = 259118, name = "Muln Earthfury", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 264079, name = "Gloomrise Hatchling"},
+            {kind = "target", id = 264083, name = "Gloomrise Soldier"},
+        },
     },
     [96260] = {
         name = "Stronger than Steel",
@@ -38780,6 +43291,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 32.47, y = 19.98, kind = "npc", id = 264072, name = "Yorn Grimtotem", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 273181, name = "Crystalline Silk"},
+        },
     },
     [96261] = {
         name = "The Broodmother",
@@ -38795,6 +43309,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 33.41, y = 22.58, kind = "npc", id = 259118, name = "Muln Earthfury", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 264082, name = "Broodmother Valraxx"},
+        },
     },
     [96294] = {
         name = "A Darker Truth",
@@ -38830,6 +43347,53 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 62.05, y = 39.41, kind = "npc", id = 6791, name = "Innkeeper Wiley"},
         },
     },
+    [96393] = {
+        name = "Old Ironforge Incursion",
+        faction = "Alliance",
+        pickup = {
+            {mapId = 1426, x = 64.87, y = 58.47, kind = "npc", id = 264936, name = "Earthseer Farsen", faction = "Alliance"},
+        },
+        turnin = {
+            {mapId = 1455, x = 39.09, y = 56.2, kind = "npc", id = 2784, name = "King Magni Bronzebeard", faction = "Alliance"},
+        },
+        hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 274286, name = "Durgen Dirgehammer's Head"},
+        },
+    },
+    [96394] = {
+        name = "The Restless Dead",
+        faction = "Alliance",
+        pickup = {
+            {mapId = 1455, x = 33.23, y = 48, kind = "npc", id = 264943, name = "Afadra Dunwall", faction = "Alliance"},
+        },
+        turnin = {
+            {mapId = 1455, x = 33.23, y = 48, kind = "npc", id = 264943, name = "Afadra Dunwall", faction = "Alliance"},
+        },
+        hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 263389, name = "Enraged Apparition"},
+            {kind = "target", id = 263390, name = "Tormented Soul"},
+        },
+    },
+    [96395] = {
+        name = "An Ancient Grudge",
+        faction = "Alliance",
+    },
+    [96403] = {
+        name = "Important Heirlooms",
+        faction = "Alliance",
+        pickup = {
+            {mapId = 1455, x = 32.18, y = 44.5, kind = "npc", id = 265003, name = "Thom Filch"},
+        },
+        turnin = {
+            {mapId = 1455, x = 32.18, y = 44.5, kind = "npc", id = 265003, name = "Thom Filch"},
+        },
+        hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 274289, name = "Dwarven Heirloom"},
+        },
+    },
     [96604] = {
         name = "The Great Outdoors",
         faction = "Horde",
@@ -38849,6 +43413,10 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.98, y = 47.27, kind = "npc", id = 265809, name = "Brakk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+        },
     },
     [96605] = {
         name = "The Great Outdoors",
@@ -38869,6 +43437,10 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.16, y = 67.3, kind = "npc", id = 265810, name = "Kaga Wildhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+        },
     },
     [96607] = {
         name = "The Great Outdoors",
@@ -38889,6 +43461,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 57.28, y = 55.49, kind = "npc", id = 265812, name = "Eleanor Shackleton", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+            {kind = "object", id = 460003, name = "Basic Campfire"},
+        },
     },
     [96652] = {
         name = "The Adventurer",
@@ -38913,6 +43489,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.11, y = 42.45, kind = "npc", id = 3191, name = "Cook Torka", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3191, name = "Cook Torka"},
+        },
     },
     [96656] = {
         name = "The Adventurer",
@@ -38941,6 +43520,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.75, y = 51.44, kind = "npc", id = 265944, name = "William Pickman", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 265944, name = "William Pickman"},
+        },
     },
     [96659] = {
         name = "The Adventurer",
@@ -38965,6 +43547,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.92, y = 61.67, kind = "npc", id = 3067, name = "Pyall Silentstride", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3067, name = "Pyall Silentstride"},
+        },
     },
     [96800] = {
         name = "Past Due",
@@ -38976,6 +43561,9 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 9.75, y = 63.36, kind = "npc", id = 264265, name = "Magus Olvek"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 273169, name = "The Lost Magic of the Runemasters"},
+        },
         objectiveText = "Find The Lost Magic of the Runemasters in Scarlet Monastery's Library. A player report places the book on a table on the right side of the final boss room.",
         objectiveKind = "instance",
         objectiveSource = "Wowhead Forever",
@@ -38994,6 +43582,10 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.95, y = 43.5, kind = "npc", id = 3139, name = "Gar'Thok", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 266850, name = "Ridgeshade Creeper"},
+            {kind = "target", id = 266849, name = "Ridgeshade Lurker"},
+        },
     },
     [96822] = {
         name = "For Honor",
@@ -39010,6 +43602,11 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 53.95, y = 42.59, kind = "npc", id = 266940, name = "Turroc", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 275713, name = "Raider's Bow"},
+            {kind = "item", id = 275716, name = "Raider's Battleaxe"},
+            {kind = "item", id = 275717, name = "Raider's Shield"},
+        },
     },
     [96825] = {
         name = "This Fruit Could Bite Back",
@@ -39024,6 +43621,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.11, y = 42.45, kind = "npc", id = 3191, name = "Cook Torka", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 275718, name = "Prickly Pear Fruit"},
+        },
     },
     [96873] = {
         name = "A Pain in the Neck",
@@ -39035,6 +43635,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 56.69, y = 73.74, kind = "npc", id = 266881, name = "Pa'zula", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 247884, name = "Luminous Residue"},
+        },
         objectiveText = "Loot Hexed Pendants from the Echo Isles trolls, then disenchant them into Luminous Residue for Pa'zula.",
         objectiveKind = "disenchant",
         objectiveSource = "Wowhead Forever",
@@ -39058,6 +43661,10 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 80.77, y = 23.7, kind = "npc", id = 10266, name = "Ug'thok", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 275719, name = "Weathered Spine"},
+            {kind = "item", id = 3470, name = "Rough Grinding Stone"},
+        },
     },
     [96876] = {
         name = "Ukor's Lost Pack",
@@ -39116,6 +43723,10 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 65.93, y = 61.13, kind = "npc", id = 267009, name = "Hadric Harlson", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 267006, name = "Dark Neophyte"},
+            {kind = "target", id = 275437, name = "Dark Enforcer"},
+        },
     },
     [96898] = {
         name = "Remnants of War",
@@ -39132,6 +43743,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 65.93, y = 61.13, kind = "npc", id = 267009, name = "Hadric Harlson", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 275851, name = "Necrotic Crystal Fragment"},
+        },
     },
     [96899] = {
         name = "Bandarion Keep",
@@ -39156,6 +43770,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 52.65, y = 29.06, kind = "npc", id = 267310, name = "Gur'ak", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 276070, name = "Chol'aruk's Head"},
+        },
     },
     [97005] = {
         name = "Chol'aruk the Ravener",
@@ -39170,6 +43787,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 61.88, y = 39.44, kind = "npc", id = 267309, name = "Bainham", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 276070, name = "Chol'aruk's Head"},
+        },
     },
     [97047] = {
         name = "The Cook in the Cage",
@@ -39187,6 +43807,10 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 44.2, y = 8, kind = "npc", id = 218230, name = "Wendel Mathers"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 216616, name = "Compound Cage Key"},
+            {kind = "item", id = 216617, name = "Kurzen Fighter's Uniform"},
+        },
     },
     [97048] = {
         name = "Returning to Port",
@@ -39212,6 +43836,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 55.28, y = 75.49, kind = "npc", id = 7953, name = "Xar'Ti", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277128, name = "Bloodtalon Matriarch Eggs"},
+        },
     },
     [97225] = {
         name = "Forgotten Loa Idols",
@@ -39226,6 +43853,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 55.95, y = 74.72, kind = "npc", id = 3188, name = "Master Gadrin", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277135, name = "Forgotten Loa Idol"},
+        },
     },
     [97250] = {
         name = "Wrongly Blamed, Justly Corrected",
@@ -39241,6 +43871,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 44.62, y = 59.27, kind = "npc", id = 5911, name = "Grunt Logmar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 268622, name = "Encroaching Soldier"},
+            {kind = "target", id = 268623, name = "Outraged Pillager"},
+        },
     },
     [97253] = {
         name = "Parts and Pieces",
@@ -39254,6 +43888,9 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 63.07, y = 36.32, kind = "npc", id = 7161, name = "Wrenix the Wretched"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277331, name = "Handful of Complicated Parts"},
+        },
     },
     [97265] = {
         name = "Hate the Hatefury",
@@ -39269,6 +43906,13 @@ ns.foreverQuestLocations = {
             {mapId = 1443, x = 73.1, y = 11.04, kind = "target", id = 4670, name = "Hatefury Rogue"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4671, name = "Hatefury Trickster"},
+            {kind = "target", id = 4675, name = "Hatefury Hellcaller"},
+            {kind = "target", id = 4674, name = "Hatefury Shadowstalker"},
+            {kind = "target", id = 4672, name = "Hatefury Felsworn"},
+            {kind = "target", id = 4670, name = "Hatefury Rogue"},
+        },
         turnin = {
             {mapId = 1443, x = 25.2, y = 67.2, kind = "npc", id = 268705, name = "Aka'rai", source = "Wowhead Forever", faction = "Horde"},
         },
@@ -39286,6 +43930,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 40.47, y = 68, kind = "npc", id = 3159, name = "Kzan Thornslash", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277653, name = "Abandoned Training Weapon"},
+        },
     },
     [97281] = {
         name = "A Simmering Storm",
@@ -39312,6 +43959,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 46.37, y = 22.94, kind = "npc", id = 3293, name = "Rezlak"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277665, name = "Charged Thunder Lizard Organ"},
+        },
     },
     [97284] = {
         name = "Vahlarriel's Vengeance",
@@ -39326,6 +43976,12 @@ ns.foreverQuestLocations = {
         pickup = {
             {mapId = 1443, x = 66.4, y = 11.4, kind = "pickup", source = "ATT"},
         },
+        objectiveRequirements = {
+            {kind = "target", id = 4663, name = "Burning Blade Augur"},
+            {kind = "target", id = 4664, name = "Burning Blade Reaver"},
+            {kind = "target", id = 4665, name = "Burning Blade Adept"},
+            {kind = "target", id = 4666, name = "Burning Blade Felsworn"},
+        },
         turnin = {
             {mapId = 1443, x = 66.4, y = 11.8, kind = "npc", id = 5642, name = "Vahlarriel Demonslayer", source = "Wowhead Forever", faction = "Alliance"},
         },
@@ -39339,6 +43995,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 26.35, y = 73.56, kind = "npc", id = 4631, name = "Wharfmaster Lozgil"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277953, name = "Stolen Shipment"},
+        },
         objectiveText = "Recover Stolen Shipments from the crates around the Ruins of Zul'Kunda and deliver them to Booty Bay.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -39362,6 +44021,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 23.2, y = 12.4, kind = "npc", id = 268992, name = "Zimmix Sputterspark"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277957, name = "Primitive Key"},
+        },
     },
     [97331] = {
         name = "Zimmix's Great Escape",
@@ -39391,6 +44053,9 @@ ns.foreverQuestLocations = {
             {mapId = 1434, x = 28.63, y = 7.6, kind = "loot", id = 1097, name = "Venture Co. Mechanic", itemId = 277986},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 277986, name = "Drum of Crude Oil"},
+        },
         objectiveText = "Collect Drums of Crude Oil at the Venture Co. operations beside Lake Nazferiti for Knaz Blunderflame.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -39412,6 +44077,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 54.14, y = 47.05, kind = "npc", id = 3024, name = "Tah Winterhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 278201, name = "Mirkweed Pods"},
+        },
     },
     [97539] = {
         name = "Silky Sutures",
@@ -39427,6 +44095,9 @@ ns.foreverQuestLocations = {
             {mapId = 1417, x = 73.41, y = 36.89, kind = "npc", id = 12920, name = "Doctor Gregory Victor", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 278225, name = "Surgical Spidersilk"},
+        },
     },
     [97558] = {
         name = "Hides for the Forsaken",
@@ -39447,6 +44118,11 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 65.43, y = 60.12, kind = "npc", id = 3549, name = "Shelene Rhobart", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 278242, name = "Duskbat Wing Membrane"},
+            {kind = "item", id = 278243, name = "Darkhound Hide"},
+            {kind = "item", id = 278244, name = "Vile Fin Murloc Skin"},
+        },
     },
     [97884] = {
         name = "Armory of Sunnyglade",
@@ -39455,6 +44131,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 61.64, y = 28.95, kind = "npc", id = 5819, name = "Mirelle Tremayne", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 278868, name = "Tremayne Family Blacksmithing Techniques"},
+        },
         objectiveText = "Search the basement of the old Sunnyglade armory for the Tremayne Family Blacksmithing Techniques tome.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -39476,6 +44155,9 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 55.79, y = 32.9, kind = "npc", id = 11046, name = "Whuut", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11046, name = "Whuut"},
+        },
     },
     [97900] = {
         name = "Camping 101: Blacksmithing",
@@ -39490,6 +44172,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 52.03, y = 40.72, kind = "npc", id = 3174, name = "Dwukk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3174, name = "Dwukk"},
+        },
     },
     [97901] = {
         name = "Camping 101: Enchanting",
@@ -39504,6 +44189,9 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 53.47, y = 38.55, kind = "npc", id = 11066, name = "Jhag", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11066, name = "Jhag"},
+        },
     },
     [97902] = {
         name = "Camping 101: Engineering",
@@ -39518,6 +44206,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 52.18, y = 40.8, kind = "npc", id = 11025, name = "Mukdrak", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11025, name = "Mukdrak"},
+        },
     },
     [97903] = {
         name = "Camping 101: First Aid",
@@ -39532,6 +44223,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 54.17, y = 41.93, kind = "npc", id = 5943, name = "Rawrk", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5943, name = "Rawrk"},
+        },
     },
     [97904] = {
         name = "Camping 101: Fishing",
@@ -39546,6 +44240,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 53.25, y = 81.59, kind = "npc", id = 5941, name = "Lau'Tiki", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5941, name = "Lau'Tiki"},
+        },
     },
     [97905] = {
         name = "Camping 101: Herbalism",
@@ -39560,6 +44257,9 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 55.62, y = 39.46, kind = "npc", id = 3404, name = "Jandi", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3404, name = "Jandi"},
+        },
     },
     [97906] = {
         name = "Camping 101: Leatherworking",
@@ -39574,6 +44274,9 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 62.81, y = 44.15, kind = "npc", id = 3365, name = "Karolek", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3365, name = "Karolek"},
+        },
     },
     [97907] = {
         name = "Camping 101: Mining",
@@ -39588,6 +44291,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 51.81, y = 40.88, kind = "npc", id = 3175, name = "Krunn", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3175, name = "Krunn"},
+        },
     },
     [97908] = {
         name = "Camping 101: Skinning",
@@ -39602,6 +44308,9 @@ ns.foreverQuestLocations = {
             {mapId = 1454, x = 63.36, y = 45.42, kind = "npc", id = 7088, name = "Thuwd", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 7088, name = "Thuwd"},
+        },
     },
     [97914] = {
         name = "Expanding Horizons",
@@ -39636,6 +44345,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 46.68, y = 34.43, kind = "npc", id = 11047, name = "Kray", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11047, name = "Kray"},
+        },
     },
     [97928] = {
         name = "Camping 101: Blacksmithing",
@@ -39650,6 +44362,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 39.43, y = 56.66, kind = "npc", id = 10278, name = "Thrag Stonehoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10278, name = "Thrag Stonehoof"},
+        },
     },
     [97929] = {
         name = "Camping 101: Enchanting",
@@ -39664,6 +44379,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 44.61, y = 38.5, kind = "npc", id = 11071, name = "Mot Dawnstrider", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11071, name = "Mot Dawnstrider"},
+        },
     },
     [97930] = {
         name = "Camping 101: Engineering",
@@ -39678,6 +44396,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 58.65, y = 39.38, kind = "npc", id = 10993, name = "Twizwick Sprocketgrind"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10993, name = "Twizwick Sprocketgrind"},
+        },
     },
     [97931] = {
         name = "Camping 101: First Aid",
@@ -39692,6 +44413,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.08, y = 63.96, kind = "npc", id = 5939, name = "Vira Younghoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5939, name = "Vira Younghoof"},
+        },
     },
     [97932] = {
         name = "Camping 101: Fishing",
@@ -39706,6 +44430,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.16, y = 63.8, kind = "npc", id = 5938, name = "Uthan Stillwater", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5938, name = "Uthan Stillwater"},
+        },
     },
     [97933] = {
         name = "Camping 101: Herbalism",
@@ -39720,6 +44447,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 49.95, y = 40.41, kind = "npc", id = 3013, name = "Komin Winterhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3013, name = "Komin Winterhoof"},
+        },
     },
     [97934] = {
         name = "Camping 101: Leatherworking",
@@ -39734,6 +44464,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.94, y = 61.46, kind = "npc", id = 3069, name = "Chaw Stronghide", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3069, name = "Chaw Stronghide"},
+        },
     },
     [97935] = {
         name = "Camping 101: Mining",
@@ -39748,6 +44481,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 34.37, y = 57.9, kind = "npc", id = 3001, name = "Brek Stonehoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3001, name = "Brek Stonehoof"},
+        },
     },
     [97936] = {
         name = "Camping 101: Skinning",
@@ -39762,6 +44498,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 44.97, y = 61.4, kind = "npc", id = 6290, name = "Yonn Deepcut", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6290, name = "Yonn Deepcut"},
+        },
     },
     [97937] = {
         name = "Camping 101: Tailoring",
@@ -39776,6 +44515,9 @@ ns.foreverQuestLocations = {
             {mapId = 1456, x = 44.26, y = 44.34, kind = "npc", id = 11051, name = "Vhan", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 11051, name = "Vhan"},
+        },
     },
     [97951] = {
         name = "Camping 101: Alchemy",
@@ -39790,6 +44532,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 59.43, y = 52.19, kind = "npc", id = 2132, name = "Carolai Anise", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2132, name = "Carolai Anise"},
+        },
     },
     [97952] = {
         name = "Camping 101: Blacksmithing",
@@ -39804,6 +44549,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 60.17, y = 29.09, kind = "npc", id = 4605, name = "Basil Frye", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4605, name = "Basil Frye"},
+        },
     },
     [97953] = {
         name = "Camping 101: Enchanting",
@@ -39818,6 +44566,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.77, y = 51.56, kind = "npc", id = 5695, name = "Vance Undergloom", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5695, name = "Vance Undergloom"},
+        },
     },
     [97954] = {
         name = "Camping 101: Engineering",
@@ -39832,6 +44583,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 75.34, y = 73.13, kind = "npc", id = 4586, name = "Graham Van Talen", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4586, name = "Graham Van Talen"},
+        },
     },
     [97955] = {
         name = "Camping 101: First Aid",
@@ -39846,6 +44600,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 61.82, y = 52.83, kind = "npc", id = 5759, name = "Nurse Neela", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5759, name = "Nurse Neela"},
+        },
     },
     [97956] = {
         name = "Camping 101: Fishing",
@@ -39860,6 +44617,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 67.17, y = 50.99, kind = "npc", id = 5690, name = "Clyde Kellen", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 5690, name = "Clyde Kellen"},
+        },
     },
     [97957] = {
         name = "Camping 101: Herbalism",
@@ -39874,6 +44634,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 59.79, y = 52.12, kind = "npc", id = 2114, name = "Faruza", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2114, name = "Faruza"},
+        },
     },
     [97958] = {
         name = "Camping 101: Leatherworking",
@@ -39888,6 +44651,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 65.43, y = 60.12, kind = "npc", id = 3549, name = "Shelene Rhobart", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3549, name = "Shelene Rhobart"},
+        },
     },
     [97959] = {
         name = "Camping 101: Mining",
@@ -39902,6 +44668,9 @@ ns.foreverQuestLocations = {
             {mapId = 1458, x = 56.03, y = 37.45, kind = "npc", id = 4598, name = "Brom Killian", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4598, name = "Brom Killian"},
+        },
     },
     [97960] = {
         name = "Camping 101: Skinning",
@@ -39916,6 +44685,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 65.58, y = 60.03, kind = "npc", id = 6289, name = "Rand Rhobart", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 6289, name = "Rand Rhobart"},
+        },
     },
     [97961] = {
         name = "Camping 101: Tailoring",
@@ -39930,6 +44702,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 52.59, y = 55.52, kind = "npc", id = 3523, name = "Bowen Brisboise", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3523, name = "Bowen Brisboise"},
+        },
     },
     [98013] = {
         name = "Swelling Forces",
@@ -39946,6 +44721,11 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 43.75, y = 76.5, kind = "npc", id = 270269, name = "Arbal", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2181, name = "Stormscale Myrmidon"},
+            {kind = "target", id = 2182, name = "Stormscale Sorceress"},
+            {kind = "target", id = 2183, name = "Stormscale Warrior"},
+        },
     },
     [98024] = {
         name = "Journey to the Crossroads",
@@ -39970,6 +44750,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.7, y = 43.41, kind = "npc", id = 2930, name = "Sentinel Glynda Nal'Shea", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281038, name = "Feather of Jai'vhanel"},
+        },
     },
     [98027] = {
         name = "Gleaming Crescent Necklace",
@@ -40006,6 +44789,9 @@ ns.foreverQuestLocations = {
             {mapId = 1439, x = 37.4, y = 40.13, kind = "npc", id = 3649, name = "Thundris Windweaver", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279279, name = "Peerless Eye"},
+        },
     },
     [98059] = {
         name = "Hillsbrad's Hoard",
@@ -40027,6 +44813,9 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 46.21, y = 51.51, kind = "npc", id = 4877, name = "Jandia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279383, name = "Stolen Freewind Supplies"},
+        },
         objectiveText = "Recover Stolen Freewind Supplies from the harpy lair west of Freewind Post. Search the cliff base and the cave above.",
         objectiveKind = "loot",
         objectiveSource = "Wowhead Forever",
@@ -40046,6 +44835,11 @@ ns.foreverQuestLocations = {
             {mapId = 1441, x = 46.21, y = 51.51, kind = "npc", id = 4877, name = "Jandia", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4100, name = "Screeching Harpy"},
+            {kind = "target", id = 4101, name = "Screeching Roguefeather"},
+            {kind = "target", id = 4104, name = "Screeching Windcaller"},
+        },
     },
     [98071] = {
         name = "Brewer's Trade",
@@ -40076,6 +44870,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 8.55, y = 55.74, kind = "npc", id = 2094, name = "James Halloran", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279385, name = "Pristine Crimson Scale"},
+        },
     },
     [98093] = {
         name = "Field to Clear",
@@ -40091,6 +44888,10 @@ ns.foreverQuestLocations = {
             {mapId = 1413, x = 47.9, y = 77.6, kind = "npc", source = "ATT", id = 14242, name = "Sulhasa"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 4128, name = "Hecklefang Stalker"},
+            {kind = "target", id = 3238, name = "Stormhide"},
+        },
     },
     [98094] = {
         name = "Scout Support",
@@ -40125,6 +44926,9 @@ ns.foreverQuestLocations = {
             {mapId = 1444, x = 89.42, y = 45.99, kind = "npc", id = 11826, name = "Kristy Grant", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279472, name = "Pristine Pesterhide Pelt"},
+        },
     },
     [98156] = {
         name = "Packaged Pristine Pelts",
@@ -40181,6 +44985,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 10.1, y = 56.9, kind = "npc", id = 2086, name = "Valstag Ironjaw", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279821, name = "Khaz Modan Timber"},
+            {kind = "item", id = 279822, name = "Khaz Modan Iron"},
+        },
     },
     [98208] = {
         name = "Bloom of the Heavens",
@@ -40194,6 +45002,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         objective = {
             {mapId = 1437, x = 12.2, y = 63.8, kind = "area", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 279915, name = "Nord'el"},
         },
     },
     [98209] = {
@@ -40219,6 +45030,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 38.81, y = 52.39, kind = "npc", id = 1077, name = "Prospector Whelgar", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 279993, name = "Titanic Keystone"},
+        },
     },
     [98219] = {
         name = "The Shamed Lieutenant",
@@ -40274,6 +45088,9 @@ ns.foreverQuestLocations = {
             {mapId = 1445, x = 45.16, y = 58.39, kind = "loot", id = 4392, name = "Corrosive Swamp Ooze", itemId = 280203},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280203, name = "Jameson's Training Sword"},
+        },
         turnin = {
             {mapId = 1445, x = 65.6, y = 45.4, kind = "npc", id = 271167, name = "Guard Jameson", source = "Wowhead Forever"},
         },
@@ -40302,6 +45119,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 49.36, y = 42.13, kind = "npc", id = 270637, name = "Howin Kindfeather", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280103, name = "Razormaw Incisor"},
+        },
     },
     [98246] = {
         name = "Trying Times",
@@ -40315,6 +45135,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         objective = {
             {mapId = 1437, x = 35.5, y = 20.2, kind = "area", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 280132, name = "Perfect Razormaw Egg"},
         },
     },
     [98251] = {
@@ -40332,6 +45155,10 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 40.46, y = 61.42, kind = "npc", id = 267214, name = "Va'xug Firefure", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3817, name = "Shadowhorn Stag"},
+            {kind = "target", id = 3809, name = "Ashenvale Bear"},
+        },
     },
     [98252] = {
         name = "A Void Path",
@@ -40357,6 +45184,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 11.88, y = 58.82, kind = "npc", id = 1480, name = "Caitlin Grassman", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280319, name = "Unruptured Stalker Gland"},
+        },
     },
     [98283] = {
         name = "Carnage",
@@ -40372,6 +45202,10 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 56.37, y = 40.4, kind = "npc", id = 1244, name = "Rethiel the Greenwarden", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280331, name = "Malignant Rotclaw Flesh"},
+            {kind = "item", id = 280330, name = "Carnage's Head"},
+        },
     },
     [98291] = {
         name = "Death to the Dragonmaw",
@@ -40388,6 +45222,11 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 49.36, y = 42.13, kind = "npc", id = 270637, name = "Howin Kindfeather", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 271351, name = "Dragonmaw Reclaimer"},
+            {kind = "target", id = 271348, name = "Dragonmaw Soulbinder"},
+            {kind = "target", id = 271346, name = "Dragonmaw Infiltrator"},
+        },
     },
     [98293] = {
         name = "Forced Disarmament",
@@ -40401,6 +45240,9 @@ ns.foreverQuestLocations = {
         hasObjective = true,
         objective = {
             {mapId = 1437, x = 64.8, y = 46.2, kind = "area", source = "ATT"},
+        },
+        objectiveRequirements = {
+            {kind = "item", id = 280369, name = "Dragonmaw Armaments"},
         },
     },
     [98294] = {
@@ -40420,6 +45262,9 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 49.36, y = 42.13, kind = "npc", id = 270637, name = "Howin Kindfeather", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 271373, name = "Subdued Dragonspawn"},
+        },
     },
     [98298] = {
         name = "Arugal's Folly",
@@ -40434,6 +45279,9 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 44.2, y = 39.81, kind = "npc", id = 1938, name = "Dalar Dawnweaver", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280375, name = "Worgen Bits"},
+        },
     },
     [98299] = {
         name = "Stop the Spread",
@@ -40449,6 +45297,10 @@ ns.foreverQuestLocations = {
             {mapId = 1421, x = 44.2, y = 39.81, kind = "npc", id = 1938, name = "Dalar Dawnweaver", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2053, name = "Haggard Refugee"},
+            {kind = "target", id = 2054, name = "Sickly Refugee"},
+        },
     },
     [98300] = {
         name = "Word to Ironforge",
@@ -40476,6 +45328,12 @@ ns.foreverQuestLocations = {
             {mapId = 1437, x = 38.81, y = 52.39, kind = "npc", id = 1077, name = "Prospector Whelgar", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280395, name = "Heart of Ados"},
+            {kind = "item", id = 280396, name = "Heart of Modr"},
+            {kind = "item", id = 280397, name = "Heart of Golm"},
+            {kind = "item", id = 280398, name = "Heart of Neru"},
+        },
     },
     [98313] = {
         name = "For Further Study",
@@ -40500,6 +45358,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 44.1, y = 57.07, kind = "npc", id = 271546, name = "Mountaineer Gretchen", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 278166, name = "Mountaineer Cornelius"},
+        },
     },
     [98322] = {
         name = "Secure the Mountain",
@@ -40534,6 +45395,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 31.53, y = 44.65, kind = "npc", id = 8508, name = "Gretta Ganter", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280426, name = "Sack of Fish"},
+        },
     },
     [98340] = {
         name = "The Great Cat Spirit",
@@ -40569,6 +45433,11 @@ ns.foreverQuestLocations = {
             {mapId = 1450, x = 58.39, y = 73.52, kind = "npc", id = 11957, name = "Great Cat Spirit"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280502, name = "Relic of the Fang"},
+            {kind = "item", id = 280679, name = "Relic of the Claw"},
+            {kind = "item", id = 280680, name = "Relic of the Silent Shadow"},
+        },
     },
     [98362] = {
         name = "To Thunder Bluff",
@@ -40604,6 +45473,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 27.05, y = 48.64, kind = "npc", id = 341, name = "Foreman Oslow", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "object", id = 673101, name = "Tarantula Egg"},
+        },
     },
     [98387] = {
         name = "Blackrock Blockade",
@@ -40620,6 +45492,10 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 28.41, y = 48.97, kind = "npc", id = 382, name = "Marshal Marris", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280841, name = "Stolen Weapon"},
+            {kind = "item", id = 280839, name = "Blackrock Supplies"},
+        },
     },
     [98389] = {
         name = "A Light in the Darkness",
@@ -40671,6 +45547,11 @@ ns.foreverQuestLocations = {
             {mapId = 1450, x = 58.39, y = 73.52, kind = "npc", id = 11957, name = "Great Cat Spirit"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280502, name = "Relic of the Fang"},
+            {kind = "item", id = 280679, name = "Relic of the Claw"},
+            {kind = "item", id = 280680, name = "Relic of the Silent Shadow"},
+        },
     },
     [98397] = {
         name = "To Darnassus",
@@ -40697,6 +45578,11 @@ ns.foreverQuestLocations = {
             {mapId = 1450, x = 43.92, y = 73.44, kind = "npc", id = 272054, name = "Avatar of Saeyleenan"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280502, name = "Relic of the Fang"},
+            {kind = "item", id = 280679, name = "Relic of the Claw"},
+            {kind = "item", id = 280680, name = "Relic of the Silent Shadow"},
+        },
     },
     [98405] = {
         name = "The Great Cat Spirit",
@@ -40721,6 +45607,9 @@ ns.foreverQuestLocations = {
             {mapId = 1433, x = 25.64, y = 60, kind = "npc", id = 1070, name = "Deputy Feldon", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 280911, name = "Spiked Collar"},
+        },
     },
     [98417] = {
         name = "Vengeful Trail",
@@ -40735,6 +45624,9 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 86.24, y = 45.86, kind = "npc", id = 221269, name = "Maseara Autumnmoon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281014, name = "Vine-Wrapped Scroll"},
+        },
     },
     [98418] = {
         name = "Shared Fury",
@@ -40752,6 +45644,12 @@ ns.foreverQuestLocations = {
             {mapId = 1440, x = 86.24, y = 45.86, kind = "npc", id = 221269, name = "Maseara Autumnmoon"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 3754, name = "Xavian Betrayer"},
+            {kind = "target", id = 3755, name = "Xavian Felsworn"},
+            {kind = "target", id = 3757, name = "Xavian Hellcaller"},
+            {kind = "target", id = 3752, name = "Xavian Rogue"},
+        },
     },
     [98424] = {
         name = "Fizsprocket's Notes",
@@ -40768,6 +45666,11 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 54.76, y = 64.27, kind = "npc", id = 2988, name = "Morin Cloudstalker", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281035, name = "Shredder Operation Instructions"},
+            {kind = "item", id = 281036, name = "Barrens Operations Best Practices"},
+            {kind = "item", id = 281037, name = "One \"Gerenzo\", of Stonetalon"},
+        },
         startItem = 281031,
     },
     [98427] = {
@@ -40783,6 +45686,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 54.76, y = 64.27, kind = "npc", id = 2988, name = "Morin Cloudstalker", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 281048, name = "Clearcutter Key"},
+        },
     },
     [98430] = {
         name = "The Longwalkers",
@@ -40906,6 +45812,11 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 52.24, y = 43.15, kind = "npc", id = 3142, name = "Orgnil Soulscar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286012, name = "Orcish Dagger"},
+            {kind = "item", id = 286011, name = "Banner Scrap"},
+            {kind = "item", id = 286010, name = "Broken Bone Trident"},
+        },
     },
     [99051] = {
         name = "Threat from Below",
@@ -40921,6 +45832,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 52.24, y = 43.15, kind = "npc", id = 3142, name = "Orgnil Soulscar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286008, name = "Naga Spinefin"},
+        },
     },
     [99052] = {
         name = "Threat from Below",
@@ -40935,6 +45849,9 @@ ns.foreverQuestLocations = {
             {mapId = 1411, x = 52.24, y = 43.15, kind = "npc", id = 3142, name = "Orgnil Soulscar", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286009, name = "Aggor's Belt"},
+        },
     },
     [99079] = {
         name = "Longwalker Malah",
@@ -40965,6 +45882,11 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 46.67, y = 63.38, kind = "npc", id = 2993, name = "Baine Bloodhoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 2967, name = "Galak Centaur"},
+            {kind = "target", id = 2968, name = "Galak Outrunner"},
+            {kind = "item", id = 286075, name = "Herak's Head"},
+        },
     },
     [99081] = {
         name = "Grim Tidings",
@@ -41013,6 +45935,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 48.35, y = 63.74, kind = "npc", id = 3063, name = "Krang Stonehoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 10721, name = "Novice Warrior"},
+        },
     },
     [99123] = {
         name = "Lost in the Shadows",
@@ -41079,6 +46004,11 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 60.59, y = 51.76, kind = "npc", id = 1515, name = "Executor Zygand", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286200, name = "Dillinger's Report"},
+            {kind = "item", id = 286201, name = "Kristof's Report"},
+            {kind = "item", id = 286202, name = "Gordo's Report"},
+        },
     },
     [99142] = {
         name = "Tomb Weed",
@@ -41093,6 +46023,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 57.44, y = 48.85, kind = "npc", id = 10665, name = "Junior Apothecary Holland", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286204, name = "Tomb Weed"},
+        },
     },
     [99144] = {
         name = "Seeking Refuge",
@@ -41123,6 +46056,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 21.96, y = 47.25, kind = "npc", id = 246389, name = "Hilda the Breaker", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286259, name = "Faintly Glowing Bone"},
+        },
     },
     [99153] = {
         name = "The One That Got Away",
@@ -41137,6 +46073,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 20.17, y = 46.49, kind = "npc", id = 259190, name = "Ephram Barbaro", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286269, name = "Glowing Crystal Fragment"},
+        },
     },
     [99156] = {
         name = "Rear Guard Patrol",
@@ -41151,6 +46090,9 @@ ns.foreverQuestLocations = {
             {mapId = 1420, x = 65.49, y = 60.25, kind = "npc", id = 1495, name = "Deathguard Linnea", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286326, name = "Riptear's Heart"},
+        },
     },
     [99158] = {
         name = "Dawn in the Mountains",
@@ -41175,6 +46117,9 @@ ns.foreverQuestLocations = {
             {mapId = 1426, x = 57.73, y = 44.88, kind = "npc", id = 1253, name = "Father Gavin"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 286339, name = "Mostly Dry Firewood"},
+        },
     },
     [99191] = {
         name = "A Donation of Wool",
@@ -41217,6 +46162,9 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 11.65, y = 57.77, kind = "npc", id = 276170, name = "Belanaa Windveil", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2592, name = "Wool Cloth"},
+        },
     },
     [99192] = {
         name = "A Donation of Silk",
@@ -41287,6 +46235,9 @@ ns.foreverQuestLocations = {
             {mapId = 1416, x = 11.65, y = 57.77, kind = "npc", id = 276170, name = "Belanaa Windveil", faction = "Alliance"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4306, name = "Silk Cloth"},
+        },
     },
     [99196] = {
         name = "A Donation of Wool",
@@ -41329,6 +46280,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 34.2, y = 22.46, kind = "npc", id = 276171, name = "Oura Stormspinner", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 2592, name = "Wool Cloth"},
+        },
     },
     [99197] = {
         name = "A Donation of Silk",
@@ -41396,6 +46350,9 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 36.23, y = 64.55, kind = "reward", id = 180056, name = "Mysterious Tree Stump", requiredQuest = 7945},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "item", id = 4306, name = "Silk Cloth"},
+        },
         turnin = {
             {mapId = 1412, x = 34.2, y = 22.4, kind = "npc", id = 276171, name = "Oura Stormspinner", source = "Wowhead Forever"},
         },
@@ -41423,5 +46380,8 @@ ns.foreverQuestLocations = {
             {mapId = 1412, x = 47.28, y = 57.63, kind = "npc", id = 277182, name = "Ahab Wheathoof", faction = "Horde"},
         },
         hasObjective = true,
+        objectiveRequirements = {
+            {kind = "target", id = 277154, name = "Kyle the Frenzied"},
+        },
     },
 }
