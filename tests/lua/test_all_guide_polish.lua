@@ -57,7 +57,7 @@ for _,guide in ipairs(guides:List()) do
         active[step.questId]=nil;checked=checked+1
     end
 end
-assert(checked==71)
+assert(checked>=71, 'All original guide families must remain covered; generated chapters add coverage')
 -- Resolved metadata changes must invalidate search without caching status.
 local step={id='test',questId=999,title='Old label'}
 assert(search:Document(step,1,'fixture'):find('old label',1,true))
@@ -92,4 +92,4 @@ assert(calls.Sync==2 and calls.RecordQuestEvent==1,'Acceptance must be immediate
 frame.scripts.OnUpdate(frame,.2);assert(calls.Sync==2,'Immediate events absorb pending scans')
 frame.scripts.OnEvent(frame,'QUEST_LOG_UPDATE')
 frame.scripts.OnUpdate(frame,.2);assert(calls.Sync==3,'Trailing update must not be dropped')
-print('All 71 guides: travel, prerequisites, search reuse, route distance and burst coalescing passed')
+print('All '..checked..' eligible guides: travel, prerequisites, search reuse, route distance and burst coalescing passed')
