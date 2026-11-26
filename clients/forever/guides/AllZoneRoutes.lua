@@ -134,12 +134,14 @@ local function groupVisits(guide,batch,role,output)
     end
 end
 
-local function createCircuit(guide, batch, output, chapter, nodes)
+local function createCircuit(guide, batch, output, chapter, nodes, circuitId, chapterLevel)
     -- Every pickup is listed before leaving the hub. Never silently pick up
     -- a quest behind its unturned-in prerequisite inside the same batch.
     for _,node in ipairs(batch) do
         local step=copyStep(node.accept)
         step.routeChapter=chapter
+        step.routeCircuitId=circuitId
+        step.routeChapterLevel=chapterLevel
         step.optional=node.optional or nil
         output[#output+1]=step
     end
@@ -156,6 +158,8 @@ local function createCircuit(guide, batch, output, chapter, nodes)
             step.text="Complete the live quest objectives before returning to the quest giver."
             step.x,step.y,step.mapId=nil,nil,nil
             step.routeChapter=chapter
+        step.routeCircuitId=circuitId
+        step.routeChapterLevel=chapterLevel
             step.optional=node.optional or nil
             output[#output+1]=step
         end
@@ -163,6 +167,8 @@ local function createCircuit(guide, batch, output, chapter, nodes)
     for _,node in ipairs(batch) do
         local step=copyStep(node.turnin)
         step.routeChapter=chapter
+        step.routeCircuitId=circuitId
+        step.routeChapterLevel=chapterLevel
         step.optional=node.optional or nil
         output[#output+1]=step
     end
@@ -304,7 +310,11 @@ local function convert(guide)
                 or first.accept.hub or guide.zone or guide.title
             local chapter=(optional and "Optional: " or "Quest circuit: ")
                 ..tostring(hub).." (around level "..tostring(first.level)..")"
-            createCircuit(guide,batch,output,chapter,nodes)
+            local chapterLevel=1
+            for _,node in ipairs(batch) do
+                chapterLevel=math.max(chapterLevel,node.level,node.minLevel or 1)
+            end
+            createCircuit(guide,batch,output,chapter,nodes,first.id,chapterLevel)
             stats.circuits=stats.circuits+1
             -- The next circuit starts at the last verified turn-in, not at the pickup.
             local last=batch[#batch]
@@ -345,3 +355,78 @@ for _,guide in ipairs(ns.starterGuides or {}) do
         stats.preserved=stats.preserved+1
     end
 end
+
+-- Build optional, independently resumable chapter guides from whole circuits.
+-- Never split a pickup/objective/turn-in circuit or move a dependent ahead
+-- of its source ordering. The original zone guide remains available.
+local function generateChapters(guide)
+    if not guide.routeCircuits or not guide.levelMin or not guide.levelMax
+        or guide.levelMax<=10 or not guide.faction then return {} end
+    local chapters, current, circuit, previousBand = {}, nil, nil, nil
+    local function flush()
+        if current and #current.steps>0 then chapters[#chapters+1]=current end
+        current=nil
+    end
+    local function addCircuit(steps)
+        if #steps==0 then return end
+        local first=steps[1]
+        local level=math.max(1,math.min(60,math.floor(first.routeChapterLevel or guide.levelMin)))
+        -- Five-level bands are an editorial default, not an XP prediction.
+        local band=math.min(56,math.floor((level-1)/5)*5+1)
+        -- The source is already dependency ordered. Do not reorder circuits.
+        band=math.max(previousBand or band,band)
+        previousBand=band
+        if not current or current.chapterBand~=band then
+            flush()
+            current=copyStep(guide)
+            current.id=guide.id.."-chapter-"..band
+            current.title=string.format("%d-%d %s",band,math.min(60,band+4),guide.zone or guide.title)
+            current.levelMin=band
+            current.levelMax=math.min(60,band+4)
+            current.chapterBand=band
+            current.parentGuideId=guide.id
+            current.generatedChapter=true
+            current.testingOnly=true
+            current.legacySteps=nil
+            current.steps={}
+            current.description="Original level-band quest circuits. Check live eligibility; XP and travel have not been playtested."
+            current.contentStatus="Generated chapter; in-game verification pending"
+        end
+        for _,step in ipairs(steps) do current.steps[#current.steps+1]=copyStep(step) end
+    end
+    for _,step in ipairs(guide.steps) do
+        if not step.routeCircuitId then return {} end
+        if not circuit or circuit[1].routeCircuitId~=step.routeCircuitId then
+            if circuit then addCircuit(circuit) end
+            circuit={}
+        end
+        circuit[#circuit+1]=step
+    end
+    if circuit then addCircuit(circuit) end
+    flush()
+    -- A single chapter adds no meaningful alternative to the original.
+    if #chapters<2 then return {} end
+    for i,chapter in ipairs(chapters) do
+        chapter.chapterIndex=i
+        chapter.chapterCount=#chapters
+        chapter.nextChapterId=chapters[i+1] and chapters[i+1].id or nil
+    end
+    return chapters
+end
+
+ns.GenerateLevelChapters=generateChapters
+local generated={}
+local ids={}
+for _,guide in ipairs(ns.starterGuides or {}) do ids[guide.id]=true end
+for _,guide in ipairs(ns.starterGuides or {}) do
+    for _,chapter in ipairs(generateChapters(guide)) do
+        if not ids[chapter.id] then
+            ids[chapter.id]=true
+            generated[#generated+1]=chapter
+        end
+    end
+end
+for _,chapter in ipairs(generated) do
+    ns.starterGuides[#ns.starterGuides+1]=chapter
+end
+stats.chapters=#generated
