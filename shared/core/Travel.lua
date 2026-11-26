@@ -25,7 +25,11 @@ local function atDestination(leg)
 end
 function Travel:CheckpointStatus(leg)
     if not leg then return nil end
-    if leg.kind=="flightPath" then
+    if leg.kind=="arriveZone" then
+        local map=query(C_Map and C_Map.GetBestMapForUnit,"player")
+        if type(map)~="number" or type(leg.destinationMapId)~="number" then return nil end
+        return atDestination(leg)
+    elseif leg.kind=="flightPath" then
         if type(leg.nodeId)~="number" then return nil end
         local nodes=query(C_TaxiMap and C_TaxiMap.GetTaxiNodesForMap,leg.mapId)
         if type(nodes)~="table" then return nil end
@@ -112,6 +116,50 @@ function Travel:Plan(step)
     return {guideId=guide.id,stepId=step.id,legs=legs,loop=step.waypointLoop==true and step.waypoints~=nil and #legs>1,questId=step.questId,message=#legs>0 and "Follow each leg, then click Next Travel Leg. Guide progress stays unchanged."
         or guide.travelHint or "No verified travel route is bundled for this step. Use the guide instructions and in-game map; no transport connection is assumed."}
 end
+-- Cross-zone handoffs are destination-backed, not a fabricated transport graph.
+-- A player chooses a usable transport in the live client.
+function Travel:ChapterPlan(origin, guide, step)
+    if not guide or not step then return nil end
+    local map=query(C_Map and C_Map.GetBestMapForUnit,"player")
+    if type(map)~="number" or type(step.mapId)~="number" or map==step.mapId then return nil end
+    local zone=tostring(step.zone or guide.zone or guide.title or "the next quest area")
+    local cross=origin and origin.continent and guide.continent and origin.continent~=guide.continent
+    local text="Travel to "..zone..". "
+    if cross then
+        text=text.."Check the in-game map for a faction-accessible boat, zeppelin or other inter-continent connection. "
+    else
+        text=text.."Check the flight master for an unlocked reachable destination, or use safe ground routes. "
+    end
+    local bind=query(GetBindLocation)
+    if type(bind)=="string" and bind~="" then
+        text=text.."Your hearthstone is bound to "..bind.."; use it only if ready and useful for this journey. "
+    end
+    text=text.."No specific transport connection is verified. Confirm arrival before continuing."
+    local legs={{kind="arriveZone",destinationMapId=step.mapId,text=text}}
+    if type(step.x)=="number" and type(step.y)=="number" and step.x>0 and step.x<100 and step.y>0 and step.y<100 then
+        legs[#legs+1]={kind="destination",mapId=step.mapId,x=step.x,y=step.y,
+            text="Continue to "..tostring(step.hub or step.questName or step.title or zone)
+                .." in "..zone..string.format(" (%.1f, %.1f). Follow safe roads and terrain; this pin is not a path.",step.x,step.y)}
+    end
+    return {guideId=guide.id,stepId=step.id,legs=legs,index=1,chapterTravel=true,
+        message="Travel to the next chapter; quest completion is unchanged."}
+end
+
+function Travel:StartChapter(origin)
+    local step,guide=selected()
+    if not step or not guide then return false end
+    local guides,routes=ns.Modules.Guides,ns.Modules.SmartRoutes
+    if routes and routes.BlockedReason and routes:BlockedReason(step,guides:GetSteps()) then return false end
+    if guides.ConditionReason and guides:ConditionReason(step,guide.id) then return false end
+    local plan=self:ChapterPlan(origin,guide,step)
+    if not plan then return false end
+    self.route=plan
+    self.observedTaxi=nil
+    ns:Call("Navigator","Refresh")
+    ns:Call("Tracker","Refresh")
+    return true
+end
+
 function Travel:Current(step)
     local route=self.route
     if not route then return nil end
