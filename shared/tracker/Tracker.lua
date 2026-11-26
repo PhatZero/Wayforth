@@ -809,9 +809,11 @@ function Tracker:RefreshObjectives(fromRefresh)
         self.objectiveText:SetText("Complete the listed quest actions at this stop.")
         self.objectiveCaption:SetText(visit.first.."–"..visit.last.." | CURRENT VISIT")
     end
-    if step and step.useLiveInstructions and snapshot and snapshot.active and #snapshot.rows>0
-        and self.allowLiveInstructionText then
-        self.objectiveText:SetText("Complete the remaining requirements listed below. Follow the marked location where available.")
+    if step and step.useLiveInstructions and snapshot and not visit
+        and self.allowLiveInstructionText and progress and progress.Walkthrough then
+        local instruction=progress:Walkthrough(snapshot,step)
+        if instruction then self.objectiveText:SetText(instruction)
+        else self.objectiveText:SetText(step.text or step.title or "Check your quest log.") end
     end
     if not fromRefresh then self:Layout() end
 end
