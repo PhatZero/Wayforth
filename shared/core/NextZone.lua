@@ -199,7 +199,7 @@ end
 -- XP or invented inter-zone distances. Only recommend after a safe handoff.
 function Zones:OptimizedChapter(current,level)
     local guides,routes=ns.Modules.Guides,ns.Modules.SmartRoutes
-    if not current or not (current.generatedChapter or current.allianceProgression) or not routes then return nil end
+    if not current or not (current.generatedChapter or current.factionProgression or current.allianceProgression) or not routes then return nil end
     local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
     if not faction or current.faction~=faction then return nil end
     local states={}
@@ -221,7 +221,7 @@ function Zones:OptimizedChapter(current,level)
         and C_Map.GetBestMapForUnit("player") or nil
     local best
     for _,g in ipairs(routes:ListGuides()) do
-        if (g.generatedChapter or g.allianceProgression) and g.id~=current.id and g.faction==faction
+        if (g.generatedChapter or g.factionProgression or g.allianceProgression) and g.id~=current.id and g.faction==faction
             and not g.isOptional and not g.isDungeon and not g.isProfession
             and g.levelMin and g.levelMax and level>=g.levelMin and level<=g.levelMax then
             local steps=guides:GetSteps(g.id)
@@ -277,7 +277,7 @@ function Zones:Options(force)
     local cacheKey=current.id..":"..level
     if not force and now and self.cache and self.cache.key==cacheKey and now-self.cache.time<2 then return self.cache.options end
     local chapter
-    if current.generatedChapter or current.allianceProgression then
+    if current.generatedChapter or current.factionProgression or current.allianceProgression then
         chapter=self:OptimizedChapter(current,level)
         -- Generated routes must not fall back to legacy suggestions that can
         -- bypass the active quest and chapter completion safety gates.
@@ -320,7 +320,7 @@ end
 
 function Zones:Switch(id)
     local current=ns.Modules.Guides:GetGuide()
-    local chapter=not (current and (current.generatedChapter or current.allianceProgression)) and self:ChapterOption()
+    local chapter=not (current and (current.generatedChapter or current.factionProgression or current.allianceProgression)) and self:ChapterOption()
     if chapter and chapter.id==id then
         return ns.Modules.SmartRoutes:Switch(id,"recommended")
     end
