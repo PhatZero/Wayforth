@@ -40,7 +40,7 @@ function Guides:List(kind)
     local classToken
     if type(UnitClass)=="function" then local _,token=UnitClass("player");classToken=token end
 	for _, guide in ipairs(ns.starterGuides or {}) do
-		if (not guide.class or guide.class==classToken) and (kind == "all"
+		if (not guide.class or guide.class==classToken) and (not guide.generatedChapter or #self:GetSteps(guide.id)>0) and (kind == "all"
 			or kind == "professions" and guide.isProfession
 			or kind ~= "all" and kind ~= "professions" and not guide.isProfession) then
 			result[#result + 1] = guide
