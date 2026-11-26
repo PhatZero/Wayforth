@@ -89,6 +89,26 @@ local function legacyRows(logIndex, questID)
     return rows
 end
 
+-- Use the game's own objective descriptions without reinterpreting kill,
+-- loot, escort or scripted-event mechanics from an NPC marker.
+function Progress:Walkthrough(snapshot,step)
+    if not snapshot or not step then return nil end
+    if snapshot.state=="failed" then return "Quest failed. Check the quest log before retrying." end
+    if snapshot.state=="ready" then return "Objectives complete. Follow the turn-in step." end
+    if snapshot.state=="turnedIn" then return "Quest already turned in." end
+    if not snapshot.active then return nil end
+    if step.action~="objective" and step.action~="turnin" then return nil end
+    local remaining={}
+    for _,row in ipairs(snapshot.rows or {}) do
+        if not row.finished and not row.concurrent and not row.heading and type(row.display)=="string" then
+            remaining[#remaining+1]=row.display
+        end
+    end
+    if #remaining==1 then return remaining[1] end
+    if #remaining>1 then return "Complete all "..#remaining.." remaining objectives listed below." end
+    return nil
+end
+
 function Progress:Get(questID)
     questID = number(questID)
     if not questID or questID < 1 or questID ~= math.floor(questID) then return nil end
