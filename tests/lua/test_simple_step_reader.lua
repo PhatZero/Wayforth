@@ -17,6 +17,11 @@ local ns = {
         },
     }},
 }
+ns.starterGuides[2]={id="visit-test",title="Visit test",steps={
+    {id="visit-a",action="accept",questId=100,title="Pick up: First",visit={id="hub",title="Talk to NPC"}},
+    {id="visit-b",action="accept",questId=101,title="Pick up: Second",visit={id="hub",title="Talk to NPC"}},
+    {id="visit-end",action="manual",title="Leave hub",concurrentQuestIds={100,101,100,999}},
+}}
 function ns:RegisterModule(name, module) self.Modules[name] = module end
 function ns:Call() return true end
 UnitLevel = function() return 10 end
@@ -122,3 +127,202 @@ assert(not guides:ResumeOnLogin() and saved.current==1,
     "No matching live quest must leave the cursor unchanged")
 
 print("WayForth simple step reader regression tests passed")
+
+assert(guides:SetActive("visit-test"))
+local v=guides:VisitSnapshot(1)
+assert(v and #v.rows==2 and v.completed==0)
+active[100]=true
+assert(guides:Sync() and guides:GetProgress().current==2)
+v=guides:VisitSnapshot(2)
+assert(v.first==1 and v.last==2 and v.completed==1 and v.rows[1].finished and not v.rows[2].finished)
+active[101]=true
+assert(guides:Sync() and guides:GetProgress().current==3)
+assert(guides:VisitSnapshot(2).completed==2)
+assert(not guides:VisitSnapshot(3))
+guides:SetCurrent(1)
+active[100]=nil
+assert(guides:VisitSnapshot(1).completed==1)
+assert(guides:GetProgress().current==1)
+print("WayForth grouped visit regression passed")
+
+ns.Modules.QuestProgress={Get=function(_,id)
+    if id==100 then return {active=true,rows={{display="Items (2/5)",finished=false},{display="Done",finished=true}}} end
+    if id==101 then return {active=true,ready=true,rows={{display="Ready",finished=false}}} end
+    return {active=true,rows={{display="Not in guide",finished=false}}}
+end}
+guides:SetCurrent(3)
+local concurrent=guides:ConcurrentSnapshot(3)
+assert(#concurrent==1 and concurrent[1].questId==100 and concurrent[1].display=="First: Items (2/5)")
+assert(guides:GetProgress().current==3 and not guides:GetProgress().completed["visit-end"])
+print("WayForth concurrent objective regression passed")
+
+ns.starterGuides[2].steps[3].condition={minLevel=12,requiresQuests={100},requiresSteps={"visit-a"}}
+local conditional=guides:GetSteps()[3]
+assert(guides:ConditionReason(conditional):find("level 12",1,true))
+UnitLevel=function() return 12 end
+assert(guides:ConditionReason(conditional):find("quest 100",1,true))
+turnedIn[100]=true
+assert(not guides:ConditionReason(conditional))
+assert(guides:GetProgress().current==3)
+UnitClass=function() return "Mage","MAGE" end
+ns.starterGuides[2].steps[3].condition.classes={"WARRIOR"}
+assert(#guides:GetSteps()==2 and #guides:GetSteps(nil,true)==3)
+ns.starterGuides[2].steps[3].condition.classes={"MAGE"}
+assert(#guides:GetSteps()==3)
+print("WayForth condition regression passed")
+
+-- Authored waypoint loops are independent of quest cursor progression.
+ns.starterGuides[2].steps[3].condition=nil
+ns.starterGuides[2].steps[3].questId=100
+ns.starterGuides[2].steps[3].waypoints={{mapId=1436,x=50,y=30},{mapId=1436,x=51,y=31}}
+ns.starterGuides[2].steps[3].waypointLoop=true
+assert(loadfile("shared/core/Travel.lua"))("WayForth",ns)
+local travel=ns.Modules.Travel
+local readyForTurnIn=false
+ns.Modules.QuestProgress={Get=function() return {active=true,ready=readyForTurnIn} end}
+assert(travel:Start())
+assert(travel:Current().x==50)
+assert(travel:Next() and travel:Current().x==51)
+assert(travel:Next() and travel:Current().x==50)
+readyForTurnIn=true
+assert(travel:Next())
+assert(travel:Next() and not travel:Current())
+assert(guides:GetProgress().current==3)
+ns.starterGuides[2].steps[3].waypoints[1].x=101
+assert(not travel:Start())
+print("WayForth authored waypoint loop regression passed")
+
+-- Travel checkpoints never invent completion evidence.
+GetBindLocation=function() return "Other Inn" end
+local bind={kind="bindHearth",bindName="Test Inn",text="Bind at Test Inn"}
+assert(travel:CheckpointStatus(bind)==false)
+GetBindLocation=function() return "Test Inn" end
+assert(travel:CheckpointStatus(bind)==true)
+assert(travel:CheckpointStatus({kind="hearth"})==nil)
+Enum={FlightPathState={Current=1,Reachable=2,Unreachable=3}}
+C_TaxiMap={GetTaxiNodesForMap=function() return {{nodeID=12,state=2}} end}
+assert(travel:CheckpointStatus({kind="flightPath",nodeId=12,mapId=1436})==true)
+assert(travel:CheckpointStatus({kind="flightPath",nodeId=13,mapId=1436})==nil)
+local onTaxi=true
+UnitOnTaxi=function() return onTaxi end
+C_Map={GetBestMapForUnit=function() return 1436 end}
+local fly={kind="fly",destinationMapId=1436}
+assert(travel:CheckpointStatus(fly)==false)
+onTaxi=false
+assert(travel:CheckpointStatus(fly)==true)
+travel:Stop()
+assert(travel:CheckpointStatus(fly)==nil)
+assert(guides:GetProgress().current==3)
+print("WayForth travel checkpoint regression passed")
+
+-- XP checkpoints are live evidence, independent of quest history.
+local cp=ns.starterGuides[2].steps[3]
+cp.questId=nil; cp.checkpoint={level=12,xp=1200}; cp.action="checkpoint"
+local xp=1199
+UnitLevel=function() return 12 end
+UnitXP=function() return xp end
+UnitXPMax=function() return 2000 end
+assert(not guides:LevelCheckpoint(cp).finished)
+assert(guides:CompleteCurrent()==false)
+xp=1200
+assert(guides:LevelCheckpoint(cp).finished)
+guides:Sync()
+assert(guides:GetProgress().completed["visit-end"])
+cp.checkpoint={level=12,remainingXP=100}
+assert(not guides:LevelCheckpoint(cp).finished)
+xp=1900
+assert(guides:LevelCheckpoint(cp).finished)
+UnitLevel=function() return 13 end
+assert(guides:LevelCheckpoint(cp).finished)
+UnitLevel=nil
+assert(not guides:LevelCheckpoint(cp).finished)
+cp.checkpoint={level=12,xp=100,remainingXP=100}
+assert(not guides:LevelCheckpoint(cp).valid)
+print("WayForth XP checkpoint regression passed")
+
+-- Training, inventory and vendor checkpoints use live or manual evidence.
+local known,count,copper=false,3,99
+IsPlayerSpell=function(id) return id==1459 and known end
+GetItemCount=function(id,bank) assert(bank==false); return count end
+GetMoney=function() return copper end
+cp.checkpoint={kind="spell",spellId=1459}
+assert(not guides:Checkpoint(cp).finished)
+known=true
+assert(guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="item",itemId=159,count=5}
+assert(not guides:Checkpoint(cp).finished)
+count=5
+assert(guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="money",copper=100}
+assert(not guides:Checkpoint(cp).finished)
+copper=100
+assert(guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="vendor"}
+assert(guides:Checkpoint(cp).manual and not guides:Checkpoint(cp).finished)
+cp.checkpoint={kind="item",itemId=159,count=-1}
+assert(not guides:Checkpoint(cp).finished)
+print("WayForth training and inventory checkpoint regression passed")
+
+-- Explicit chapter handoffs are level-gated, faction-safe and do not mutate
+-- unfinished quest progress or switch while traveling.
+local chapterGuides={
+ ["alliance-elwynn"]={id="alliance-elwynn",faction="Alliance",levelMin=1,levelMax=12},
+ ["alliance-westfall"]={id="alliance-westfall",faction="Alliance",levelMin=8,levelMax=24,zone="Westfall"},
+}
+local currentChapter="alliance-elwynn"
+local chapterSaved={completed={},skipped={}}
+local chapterSteps={{id="required"},{id="optional",optional=true}}
+local chapterLevel=10
+UnitLevel=function() return chapterLevel end
+UnitFactionGroup=function() return "Alliance" end
+UnitOnTaxi=function() return false end
+GetTime=nil
+ns.Modules.Guides={
+ GetGuide=function(_,id) return chapterGuides[id or currentChapter] end,
+ GetSteps=function(_,id) return id=="alliance-westfall" and {{id="target"}} or chapterSteps end,
+ GetProgress=function(_,id) return id=="alliance-westfall" and {completed={}} or chapterSaved end,
+}
+ns.Modules.SmartRoutes={Switch=function(_,id,mode) assert(id=="alliance-westfall" and mode=="recommended");return true end}
+assert(loadfile("shared/core/NextZone.lua"))("WayForth",ns)
+local zones=ns.Modules.NextZone
+assert(not zones:ChapterOption())
+chapterSaved.completed.required=true
+assert(zones:ChapterOption().id=="alliance-westfall")
+chapterLevel=9
+assert(not zones:ChapterOption())
+chapterLevel=10
+UnitOnTaxi=function() return true end
+assert(not zones:ChapterOption())
+UnitOnTaxi=function() return false end
+zones:Reset()
+assert(zones:Switch("alliance-westfall"))
+assert(currentChapter=="alliance-elwynn")
+UnitFactionGroup=function() return "Horde" end
+assert(not zones:ChapterOption())
+print("WayForth Alliance chapter handoff regression passed")
+
+-- Horde uses the same completion, faction and flight gates.
+chapterGuides["horde-durotar"]={id="horde-durotar",faction="Horde",levelMin=1,levelMax=14}
+chapterGuides["horde-the-barrens"]={id="horde-the-barrens",faction="Horde",levelMin=8,levelMax=30,zone="The Barrens"}
+currentChapter="horde-durotar"
+ns.Modules.Guides.GetSteps=function(_,id) return id=="horde-the-barrens" and {{id="target"}} or chapterSteps end
+ns.Modules.Guides.GetProgress=function(_,id) return id=="horde-the-barrens" and {completed={}} or chapterSaved end
+ns.Modules.SmartRoutes.Switch=function(_,id,mode) assert(id=="horde-the-barrens" and mode=="recommended");return true end
+zones:Reset()
+assert(zones:ChapterOption().id=="horde-the-barrens")
+assert(zones:ChapterOption().reason=="Next Horde chapter")
+chapterSaved.completed.required=nil
+assert(not zones:ChapterOption())
+chapterSaved.skipped.required=true
+assert(zones:ChapterOption())
+chapterLevel=9
+assert(not zones:ChapterOption())
+chapterLevel=10
+UnitOnTaxi=function() return true end
+assert(not zones:ChapterOption())
+UnitOnTaxi=function() return false end
+zones:Reset()
+assert(zones:Switch("horde-the-barrens"))
+UnitFactionGroup=function() return "Alliance" end
+assert(not zones:ChapterOption())
+print("WayForth Horde chapter handoff regression passed")

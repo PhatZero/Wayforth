@@ -88,6 +88,8 @@ assert(#tracker.upcomingEntries==2, "Completed later steps are not presented as 
 assert(tracker.upcomingEntries[1].index==2 and tracker.upcomingEntries[2].index==3,
     "Upcoming steps should remain in authored order")
 assert(tracker.upcomingEntries[1].label:find("2. Finish the quest",1,true))
+assert(tracker.upcomingEntries[1].detail=="Defeat the enemies", "Upcoming rows retain authored instructions")
+assert(tracker.upcomingEntries[2].detail=="Hand it in", "Turn-in instructions remain available")
 assert(tracker.stepCount.text=="Step 1 / 4  |  1/4 steps complete",
     "Saved cursor and completed count must be clearly distinguished")
 assert(tracker.brandCaption.text=="STEP READER | 1.0b19", "Display the installed version visibly")

@@ -241,22 +241,22 @@ function Tracker:MakeFrame()
     local summary = CreateFrame("Frame",nil,panel)
     summary:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-89)
     summary:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-89)
-    summary:SetHeight(84)
+    summary:SetHeight(52)
     self.summaryBg = theme:Panel(summary,theme.panelLight)
     self.summary = summary
 
     local guideIcon = summary:CreateTexture(nil,"ARTWORK")
     guideIcon:SetTexture(theme.artAtlas)
     guideIcon:SetTexCoord(theme:ArtCoords(1))
-    guideIcon:SetSize(53,53)
-    guideIcon:SetPoint("TOPLEFT",summary,"TOPLEFT",9,-12)
+    guideIcon:SetSize(34,34)
+    guideIcon:SetPoint("TOPLEFT",summary,"TOPLEFT",9,-8)
     self.guideIcon = guideIcon
-    self.guideTitle = label(summary,"No guide selected",12,theme.ivory,72,10,270)
-    self.stepCount = label(summary,"",10,theme.teal,72,35,260)
+    self.guideTitle = label(summary,"No guide selected",12,theme.ivory,52,5,270)
+    self.stepCount = label(summary,"",10,theme.teal,52,21,260)
     local progressBg = summary:CreateTexture(nil,"BACKGROUND")
     progressBg:SetColorTexture(.18,.26,.31,1)
-    progressBg:SetPoint("BOTTOMLEFT",summary,"BOTTOMLEFT",72,11)
-    progressBg:SetPoint("BOTTOMRIGHT",summary,"BOTTOMRIGHT",-13,11)
+    progressBg:SetPoint("BOTTOMLEFT",summary,"BOTTOMLEFT",52,7)
+    progressBg:SetPoint("BOTTOMRIGHT",summary,"BOTTOMRIGHT",-13,7)
     progressBg:SetHeight(5)
     self.progressBg = progressBg
     local progress = summary:CreateTexture(nil,"ARTWORK")
@@ -270,8 +270,8 @@ function Tracker:MakeFrame()
     selectButton:SetScript("OnClick",function() Tracker:ToggleGuidePicker() end)
 
     local objective = CreateFrame("Frame",nil,panel)
-    objective:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
-    objective:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-183)
+    objective:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-151)
+    objective:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-9,-151)
     objective:SetHeight(138)
     self.objectiveBg=theme:Panel(objective,theme.panelLight,theme.gold)
     -- Narrow cyan accent makes the active objective unmistakable without
@@ -324,7 +324,7 @@ function Tracker:MakeFrame()
 
     -- Dedicated profession workspace: materials and crafting in the same tracker.
     local professionPanel=CreateFrame("Frame",nil,panel)
-    professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-183)
+    professionPanel:SetPoint("TOPLEFT",panel,"TOPLEFT",9,-151)
     professionPanel:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-9,55)
     theme:Panel(professionPanel,theme.panelLight,theme.gold)
     self.professionPanel=professionPanel
@@ -390,32 +390,56 @@ function Tracker:MakeFrame()
     professionPanel:Hide()
 
     self.upcomingTitle=label(panel,"UPCOMING STEPS",11,theme.teal,15,300,200)
-    self.upcomingPage=1
-    self.pageButton=theme:Button(panel,94,24,"MORE  >",function()
-        Tracker.upcomingPage=(Tracker.upcomingPage or 1)+1
-        if Tracker.upcomingPage>(Tracker.upcomingPageCount or 1) then
-            Tracker.upcomingPage=1
-        end
-        Tracker:Refresh()
-    end,"quiet")
-    self.pageButton:SetPoint("TOPRIGHT",panel,"TOPRIGHT",-15,-294)
+    self.upcomingOffset=0
+    self.upcomingScroll=CreateFrame("ScrollFrame",nil,panel)
+    self.upcomingContent=CreateFrame("Frame",nil,self.upcomingScroll)
+    self.upcomingContent:SetSize(350,1)
+    self.upcomingScroll:SetScrollChild(self.upcomingContent)
+    self.upcomingScroll:EnableMouse(true)
+    self.upcomingScroll:EnableMouseWheel(true)
+    local function scrollUpcoming(_,delta)
+        Tracker.upcomingOffset=math.max(0,math.min(Tracker.upcomingMaxOffset or 0,(Tracker.upcomingOffset or 0)-delta*36))
+        Tracker:Layout()
+    end
+    self.upcomingScroll:SetScript("OnMouseWheel",scrollUpcoming)
+    self.upcomingRange=label(panel,"",10,theme.muted,0,0,110)
+    self.upcomingRange:SetJustifyH("RIGHT")
     self.upcomingButtons={}
-    for i=1,6 do
+    for i=1,22 do
         local idx=i
-        local button=theme:Button(panel,350,29,"",function()
+        local button=theme:Button(self.upcomingContent,350,46,"",function()
             if Tracker.upcomingActions and Tracker.upcomingActions[idx] then
                 Tracker.upcomingActions[idx]()
             elseif Tracker.upcomingIndices and Tracker.upcomingIndices[idx] then
                 navigate(Tracker.upcomingIndices[idx],false)
             end
         end,"quiet")
-        button:SetPoint("TOPLEFT",panel,"TOPLEFT",15,-(323+(i-1)*33))
+        button:SetPoint("TOPLEFT",self.upcomingContent,"TOPLEFT",0,-(i-1)*49)
+        button.label:ClearAllPoints()
+        button.label:SetPoint("TOPLEFT",button,"TOPLEFT",8,-5)
+        button.label:SetJustifyH("LEFT")
+        button.label:SetJustifyV("TOP")
+        button.label:SetTextColor(unpack(theme.gold))
+        button.detail=label(button,"",10,theme.ivory,8,20,320)
+        button.number=theme:Text(button,"",10,theme.muted,"RIGHT")
+        button.number:SetPoint("TOPRIGHT",button,"TOPRIGHT",-8,-5)
+        button:EnableMouseWheel(true)
+        button:SetScript("OnMouseWheel",scrollUpcoming)
+        button:SetScript("OnEnter",function(self)
+            if GameTooltip and self.entry then
+                GameTooltip:SetOwner(self,"ANCHOR_RIGHT")
+                GameTooltip:SetText(self.entry.label)
+                if self.entry.detail and self.entry.detail~="" then GameTooltip:AddLine(self.entry.detail,1,1,1,true) end
+                GameTooltip:Show()
+            end
+        end)
+        button:SetScript("OnLeave",function(self) if GameTooltip and GameTooltip:IsOwned(self) then GameTooltip:Hide() end end)
         self.upcomingButtons[i]=button
     end
 
     local control = CreateFrame("Frame",nil,panel)
     control:SetPoint("BOTTOMLEFT",panel,"BOTTOMLEFT",10,9)
-    control:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-10,9)
+    control:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-30,9)
     control:SetHeight(37)
     self.controls=control
     self.prev=theme:Button(control,97,34,"Previous",function()
@@ -443,6 +467,27 @@ function Tracker:MakeFrame()
             local nav=ns.Modules.Navigator
             local index=(nav and nav.overrideIndex) or p.current
             local current=g:GetSteps()[index]
+            if current and g.ConditionReason then
+                local reason=g:ConditionReason(current)
+                if reason then ns:Print(reason); Tracker:Refresh(); return end
+            end
+            if current and current.checkpoint and g.Checkpoint then
+                local evidence=g:Checkpoint(current)
+                if not evidence.finished and not evidence.manual then ns:Print(evidence.display); Tracker:Refresh(); return end
+                g:SetCurrent(index)
+                g:CompleteCurrent()
+                ns:Call("Navigator","ResetTarget")
+                Tracker:Refresh()
+                return
+            end
+            if current and current.visit and g.VisitSnapshot then
+                local visit=g:VisitSnapshot(index)
+                if visit and visit.completed<#visit.rows then
+                    ns:Print("Finish the remaining visit actions, or use Skip to explicitly skip an action.")
+                    Tracker:Refresh()
+                    return
+                end
+            end
             if current and current.action=="manual" then
                 g:SetCurrent(index)
                 g:CompleteCurrent()
@@ -599,21 +644,61 @@ function Tracker:MakeFrame()
         self.pickerButtons[i]=button
     end
 
-    local grip=theme:Button(panel,13,12,"/",nil,"quiet")
-    grip:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-1,1)
-    grip:SetScript("OnMouseDown",function()
-        if not pref("trackerLocked",false) and not ns.char.trackerMinimized then
-            panel:StartSizing("BOTTOMRIGHT")
+    -- Original pixel-dot diagonal grip: no font glyph or extra texture asset.
+    -- The larger hit area stays clear of the footer's overflow button.
+    local grip=CreateFrame("Button",nil,panel)
+    grip:SetSize(24,24)
+    grip:SetPoint("BOTTOMRIGHT",panel,"BOTTOMRIGHT",-3,3)
+    grip:SetFrameLevel(panel:GetFrameLevel()+4)
+    self.resizeGrip=grip
+    local dots={}
+    for row=0,2 do
+        for col=0,row do
+            local dot=grip:CreateTexture(nil,"ARTWORK")
+            dot:SetSize(3,3)
+            dot:SetPoint("BOTTOMRIGHT",grip,"BOTTOMRIGHT",-4-col*5,4+(2-row)*5)
+            dots[#dots+1]=dot
+        end
+    end
+    local function paintGrip(active)
+        for _,dot in ipairs(dots) do
+            dot:SetColorTexture(unpack(active and theme.teal or theme.gold))
+        end
+    end
+    paintGrip(false)
+    grip:SetScript("OnEnter",function(self)
+        paintGrip(true)
+        if GameTooltip then
+            GameTooltip:SetOwner(self,"ANCHOR_LEFT")
+            GameTooltip:SetText("Resize WayForth")
+            GameTooltip:AddLine("Drag to resize the guide tracker.",1,1,1,true)
+            GameTooltip:Show()
         end
     end)
-    grip:SetScript("OnMouseUp",function()
+    grip:SetScript("OnLeave",function(self)
+        if not self.sizing then paintGrip(false) end
+        if GameTooltip and GameTooltip:IsOwned(self) then GameTooltip:Hide() end
+    end)
+    local function finishResize(self)
+        if not self.sizing then return end
+        self.sizing=nil
         panel:StopMovingOrSizing()
+        paintGrip(false)
         if not ns.char.trackerMinimized then
             db:Set("trackerWidth",math.floor(panel:GetWidth()+0.5))
             db:Set("trackerHeight",math.floor(panel:GetHeight()+0.5))
         end
         Tracker:Layout()
+    end
+    grip:SetScript("OnMouseDown",function(self,button)
+        if button=="LeftButton" and not pref("trackerLocked",false) and not ns.char.trackerMinimized then
+            self.sizing=true
+            paintGrip(true)
+            panel:StartSizing("BOTTOMRIGHT")
+        end
     end)
+    grip:SetScript("OnMouseUp",finishResize)
+    grip:SetScript("OnHide",finishResize)
 
     panel:SetScript("OnSizeChanged",function() Tracker:Layout() end)
     panel:SetScript("OnHide",function() ns:Call("QuestItemButton","Refresh",Tracker) end)
@@ -654,7 +739,7 @@ function Tracker:ShowObjectiveTooltip()
         GameTooltip:AddLine(self.liveSnapshot.status,theme.teal[1],theme.teal[2],theme.teal[3],true)
         for _,row in ipairs(self.liveSnapshot.rows) do
             local color=row.finished and theme.green or theme.ivory
-            GameTooltip:AddLine((row.finished and "[x] " or "[ ] ")..row.display,color[1],color[2],color[3],true)
+            GameTooltip:AddLine((row.heading and "" or row.finished and "[x] " or "[ ] ")..row.display,color[1],color[2],color[3],true)
         end
     end
     GameTooltip:Show()
@@ -665,7 +750,11 @@ end
 function Tracker:RequestObjectiveRefresh(questID)
     if not self.frame or not self.frame:IsShown() or not self.displayStep
         or ns.char and ns.char.trackerMinimized then return end
-    if questID and questID ~= self.displayStep.questId then return end
+    if questID and questID ~= self.displayStep.questId and not self.displayStep.visit then
+        local tracked=false
+        for _,id in ipairs(self.displayStep.concurrentQuestIds or {}) do if id==questID then tracked=true;break end end
+        if not tracked then return end
+    end
     if not self.objectiveDirty then self.objectiveElapsed=0 end
     self.objectiveDirty=true
 end
@@ -688,17 +777,44 @@ function Tracker:RefreshObjectives(fromRefresh)
         end
     end
     local progress=ns.Modules.QuestProgress
-    local snapshot=step and progress and progress:Get(step.questId) or nil
+    local visit=step and step.visit and guides.VisitSnapshot and guides:VisitSnapshot(self.displayIndex)
+    local snapshot=visit or (step and progress and progress:Get(step.questId) or nil)
+    local checkpoint=step and step.checkpoint and guides.Checkpoint and guides:Checkpoint(step)
+    if checkpoint then
+        snapshot={questID="checkpoint:"..tostring(step.id),status=checkpoint.finished and "CHECKPOINT REACHED" or "GUIDE CHECKPOINT",state=checkpoint.finished and "ready" or "active",rows={checkpoint}}
+    end
     if ns.Modules.Travel and ns.Modules.Travel:Current(step) then snapshot=nil end
     if snapshot and snapshot.state=="inactive" and step.action=="accept" then snapshot=nil end
     if snapshot and snapshot.ready and step.action=="objective" and not fromRefresh then
         local changed=guides:Sync()
         if changed then self:Refresh();return end
     end
+    local concurrent=step and self.allowLiveInstructionText and not visit and guides.ConcurrentSnapshot and guides:ConcurrentSnapshot(self.displayIndex) or {}
+    if #concurrent>0 then
+        local combined={rows={},questID=step.questId or step.id,status="TRACK WHILE TRAVELING",state="active"}
+        if snapshot then
+            for k,v in pairs(snapshot) do if k~="rows" then combined[k]=v end end
+            for _,row in ipairs(snapshot.rows or {}) do combined.rows[#combined.rows+1]=row end
+            if #combined.rows>0 then combined.rows[#combined.rows+1]={heading=true,display="ALSO TRACK ALONG THE WAY"} end
+        end
+        for _,row in ipairs(concurrent) do combined.rows[#combined.rows+1]=row end
+        snapshot=combined
+    end
     if not snapshot or not self.liveSnapshot or snapshot.questID~=self.liveSnapshot.questID then
         self.liveScroll:SetVerticalScroll(0)
     end
     self.liveSnapshot=snapshot
+    if visit and snapshot==visit and self.allowLiveInstructionText then
+        self.stepTitle:SetText(visit.title or "Quest giver visit")
+        self.objectiveText:SetText("Complete the listed quest actions at this stop.")
+        self.objectiveCaption:SetText(visit.first.."–"..visit.last.." | CURRENT VISIT")
+    end
+    if step and step.useLiveInstructions and snapshot and not visit
+        and self.allowLiveInstructionText and progress and progress.Walkthrough then
+        local instruction=progress:Walkthrough(snapshot,step)
+        if instruction then self.objectiveText:SetText(instruction)
+        else self.objectiveText:SetText(step.text or step.title or "Check your quest log.") end
+    end
     if not fromRefresh then self:Layout() end
 end
 
@@ -733,8 +849,8 @@ function Tracker:LayoutObjectives(width,height)
         end
         line:SetWidth(contentW)
         line:SetHeight(0)
-        line:SetText((row.finished and "[x] " or "[ ] ")..row.display)
-        line:SetTextColor(unpack(row.finished and theme.green or theme.ivory))
+        line:SetText((row.heading and "" or row.finished and "[x] " or "[ ] ")..row.display)
+        line:SetTextColor(unpack(row.heading and theme.teal or row.finished and theme.green or theme.ivory))
         line:ClearAllPoints()
         line:SetPoint("TOPLEFT",self.liveContent,"TOPLEFT",0,-rowsH)
         local lineH=textHeight(line,15)
@@ -747,7 +863,7 @@ function Tracker:LayoutObjectives(width,height)
     self.liveContentHeight=rowsH
     local viewport=math.min(rowsH,math.max(52,math.min(120,height-360)))
     local desired=snapshot and rowsY+viewport+locationH+20 or descriptionY+descriptionH+locationH+20
-    local cardH=math.min(math.max(138,desired),math.max(138,height-183-112))
+    local cardH=math.min(math.max(118,desired),math.max(118,height-151-112))
     self.objectiveCard:SetHeight(cardH)
     viewport=math.max(0,math.min(viewport,cardH-rowsY-locationH-20))
     if snapshot then
@@ -1163,14 +1279,18 @@ function Tracker:Layout()
     if width <= 0 or height <= 0 then return end
     local contentW=math.max(240,width-45)
     local _,hasItem=ns:Call("QuestItemButton","Refresh",self)
-    self.guideTitle:SetWidth(contentW-46)
-    self.stepCount:SetWidth(contentW-40)
+    self.guideTitle:SetWidth(contentW-30)
+    if self.guideTitle.SetMaxLines then self.guideTitle:SetMaxLines(1) end
+    self.guideTitle:SetHeight(16)
+    self.stepCount:SetWidth(contentW-30)
+    if self.stepCount.SetMaxLines then self.stepCount:SetMaxLines(1) end
+    self.stepCount:SetHeight(15)
     -- Keep the title/caption clear of the quest-item and PIN controls.
     self.stepTitle:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
     self.objectiveCaption:SetWidth(math.max(170,contentW-(hasItem and 135 or 89)))
     self.objectiveText:SetWidth(contentW)
     self.location:SetWidth(contentW)
-    self.progressBar:SetWidth(math.max(1,(width-111)*(self.progressFraction or 0)))
+    self.progressBar:SetWidth(math.max(1,(width-83)*(self.progressFraction or 0)))
     local isProfession=ns.Modules.Guides:GetGuide() and ns.Modules.Guides:GetGuide().isProfession
     if self.tabStrip then
         if ns.char.trackerMinimized then self.tabStrip:Hide() else self.tabStrip:Show() end
@@ -1185,51 +1305,69 @@ function Tracker:Layout()
         else self.professionPanel:Hide() end
     end
     local cardH=self:LayoutObjectives(width,height)
-    local upcomingY=183+cardH+12
+    local upcomingY=151+cardH+9
     self.upcomingTitle:ClearAllPoints()
     self.upcomingTitle:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-upcomingY)
-    local visible=math.max(0,math.min(6,math.floor((height-56-(upcomingY+23)+4)/33)))
     local entries=self.upcomingEntries or {}
-    self.upcomingPageCount=math.max(1,math.ceil(#entries/math.max(1,visible)))
-    self.upcomingPage=math.max(1,math.min(self.upcomingPage or 1,self.upcomingPageCount))
+    local rowHeight=49
+    local viewport=math.max(0,height-56-(upcomingY+23))
+    local total=#entries*rowHeight
+    local visible=viewport>0 and #entries>0 and not ns.char.trackerMinimized and not isProfession
+    self.upcomingMaxOffset=math.max(0,total-viewport)
+    self.upcomingOffset=math.max(0,math.min(self.upcomingOffset or 0,self.upcomingMaxOffset))
+    local first=math.floor(self.upcomingOffset/rowHeight)+1
+    local remainder=self.upcomingOffset%rowHeight
     self.upcomingIndices={}
     self.upcomingActions={}
+    self.upcomingScroll:ClearAllPoints()
+    self.upcomingScroll:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23))
+    self.upcomingScroll:SetSize(math.max(1,width-30),math.max(1,viewport))
+    -- Virtualize the rows: only allocate enough buttons for the viewport.
+    -- The native scroll clips partial rows at both ends.
+    self.upcomingContent:SetSize(math.max(1,width-30),math.max(1,viewport+rowHeight))
+    self.upcomingScroll:SetVerticalScroll(remainder)
+    self.upcomingRange:ClearAllPoints()
+    self.upcomingRange:SetPoint("TOPRIGHT",self.frame,"TOPRIGHT",-15,-upcomingY)
+    self.upcomingRange:SetText(visible and (first.."-"..math.min(#entries,math.ceil((self.upcomingOffset+viewport)/rowHeight)).." / "..#entries) or "")
+    if visible then self.upcomingScroll:Show();self.upcomingRange:Show()
+    else self.upcomingScroll:Hide();self.upcomingRange:Hide() end
     for i,button in ipairs(self.upcomingButtons or {}) do
-        local entry=i<=visible and entries[(self.upcomingPage-1)*visible+i]
+        local entry=visible and (i-1)*rowHeight<viewport+remainder and entries[first+i-1]
         if entry then
             self.upcomingIndices[i]=entry.index
             self.upcomingActions[i]=entry.action
-            button:SetLabel(tostring(entry.label):sub(1,51))
-        end
-    end
-    if self.pageButton then
-        self.pageButton:ClearAllPoints()
-        self.pageButton:SetPoint("TOPRIGHT",self.frame,"TOPRIGHT",-15,-upcomingY+6)
-        self.pageButton:SetLabel(self.upcomingPage.."/"..self.upcomingPageCount.."  >")
-        if visible>0 and self.upcomingPageCount>1 then self.pageButton:Show() else self.pageButton:Hide() end
-    end
-    for i,button in ipairs(self.upcomingButtons or {}) do
-        button:SetWidth(width-30)
-        button:ClearAllPoints()
-        button:SetPoint("TOPLEFT",self.frame,"TOPLEFT",15,-(upcomingY+23+(i-1)*33))
-        if self.upcomingIndices and self.upcomingIndices[i]
-            and i <= visible
-            and not (ns.char and ns.char.trackerMinimized) then
+            button.entry=entry
+            local heading=entry.label
+            if entry.index>0 then heading=heading:gsub("^%d+%.%s*",""):gsub("| %d+%.%s*","| ") end
+            button:SetLabel(heading)
+            button.label:SetSize(math.max(100,width-100),15)
+            if button.label.SetMaxLines then button.label:SetMaxLines(1) end
+            button.detail:SetWidth(math.max(100,width-48))
+            button.detail:SetHeight(24)
+            if button.detail.SetMaxLines then button.detail:SetMaxLines(2) end
+            button.detail:SetText(entry.detail or "")
+            button.detail:SetTextColor(unpack(theme.ivory))
+            button.number:SetText(entry.index>0 and tostring(entry.index) or "")
+            button:SetWidth(width-30)
+            button:ClearAllPoints()
+            button:SetPoint("TOPLEFT",self.upcomingContent,"TOPLEFT",0,-(i-1)*rowHeight)
             button:Show()
-        else button:Hide() end
+        else button.entry=nil;button:Hide() end
+    end
+    if self.resizeGrip then
+        if ns.char.trackerMinimized or pref("trackerLocked",false) then self.resizeGrip:Hide() else self.resizeGrip:Show() end
     end
     if ns.char.trackerMinimized then
         self.summary:Hide()
         self.objectiveCard:Hide()
         self.upcomingTitle:Hide()
-        if self.pageButton then self.pageButton:Hide() end
         self.controls:Hide()
         if self.menu then self.menu:Hide() end
         if self.picker then self.picker:Hide() end
     else
         self.summary:Show()
         self.objectiveCard:Show()
-        if visible>0 and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
+        if visible and self.upcomingIndices and self.upcomingIndices[1] then self.upcomingTitle:Show()
         else self.upcomingTitle:Hide() end
         self.controls:Show()
     end
@@ -1240,7 +1378,6 @@ function Tracker:Layout()
     if isProfession and not ns.char.trackerMinimized then
         self.objectiveCard:Hide()
         self.upcomingTitle:Hide()
-        if self.pageButton then self.pageButton:Hide() end
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
         self.controls:Hide()
     end
@@ -1312,6 +1449,7 @@ function Tracker:Refresh()
     if not g or not step or not total or total==0 then
         self.displayStep,self.liveSnapshot=nil,nil
         self.upcomingIndices={}
+        self.upcomingEntries={}
         self.stepTitle:SetText("No guide selected")
         self.objectiveText:SetText("Choose a guide from the Guide Library.")
         self.location:SetText("")
@@ -1363,6 +1501,12 @@ function Tracker:Refresh()
     else
         self.stepCount:SetText(focus and ("Viewing " .. index .. " | Route " .. routeIndex .. "/" .. total .. " | " .. progressText)
             or ("Step " .. index .. " / " .. total .. "  |  " .. progressText))
+        if self.progressBar then
+            local low,high=g.levelMin,g.levelMax
+            local band=low and high and ("Lv "..low.."-"..high.."  |  ") or ""
+            self.stepCount:SetText(band.."Step "..index.."/"..total.."  |  "..math.floor(self.progressFraction*100+0.5).."% complete")
+            if focus then self.stepCount:SetText("Viewing "..index.." | Route "..routeIndex.."/"..total.." | "..math.floor(self.progressFraction*100+0.5).."% complete") end
+        end
     end
     local space=ns.Modules.QuestLogSpace
     local logStatus=space and space:Status()
@@ -1375,7 +1519,7 @@ function Tracker:Refresh()
     -- hub router. These advisory helpers must not replace or obscure its steps.
     local grouped=not simpleReader and ns.Modules.SmartRoutes
         and ns.Modules.SmartRoutes:NearbyGroup(focus) or {}
-    local actions={accept="PICK UP",objective="DO",turnin="TURN IN"}
+    local actions={accept="PICK UP",objective="DO",turnin="TURN IN",checkpoint="LEVEL UP"}
     local counts={accept=0,objective=0,turnin=0}
     for _,entry in ipairs(grouped) do
         if entry.index ~= index and counts[entry.step.action] then
@@ -1398,6 +1542,9 @@ function Tracker:Refresh()
             or g.testingOnly and "TEST ROUTE - VERIFY QUEST" or "CURRENT OBJECTIVE")
     end
     self.objectiveCaption:SetTextColor(unpack(theme.teal))
+    if simpleReader and not g.isProfession and self.progressBar and not focus then
+        self.objectiveCaption:SetText(index.." | CURRENT STEP | "..(actions[step.action] or "FOLLOW"))
+    end
     local objectiveText=step.text or ""
     if g.isProfession then
         local profession=ns.Modules.ProfessionGuides
@@ -1430,11 +1577,14 @@ function Tracker:Refresh()
     -- Combine all hub pickups, genuinely active parallel objectives and
     -- upcoming route steps. Page through them in the same compact tracker.
     local entries,shown={},{}
+    local visit=simpleReader and not focus and step.visit and guides.VisitSnapshot and guides:VisitSnapshot(index)
+    if visit then for i=visit.first,visit.last do shown[i]=true end end
     local function append(candidate,label)
         if not candidate or not candidate.index or shown[candidate.index]
             or candidate.index==index or stepComplete(steps[candidate.index],candidate.index,saved) then return end
         if saved.skipped and saved.skipped[steps[candidate.index].id or candidate.index] then return end
-        entries[#entries+1]={index=candidate.index,label=label}
+        local source=steps[candidate.index]
+        entries[#entries+1]={index=candidate.index,label=label,detail=source.text or ""}
         shown[candidate.index]=true
     end
     if not simpleReader and logStatus and logStatus.near then
@@ -1457,7 +1607,7 @@ function Tracker:Refresh()
     -- instead of appearing to lose guide instructions (e.g. 25 -> 46).
     local hiddenDone,hiddenSkipped=0,0
     for i=routeIndex+1,#steps do
-        if fallback>=12 then break end
+        if not simpleReader and fallback>=12 then break end
         if not shown[i] then
             local key=steps[i].id or i
             if simpleReader and stepComplete(steps[i],i,saved) then
@@ -1481,9 +1631,13 @@ function Tracker:Refresh()
     end
     local zones=ns.Modules.NextZone
     local options=not simpleReader and zones and zones:Options() or {}
+    if simpleReader and zones and zones.ChapterOption then
+        local chapter=zones:ChapterOption()
+        if chapter then options={chapter} end
+    end
     for pos=#options,1,-1 do
         local option=options[pos]
-        table.insert(entries,1,{index=0,label="NEXT ZONE | "..option.title,action=function()
+        table.insert(entries,1,{index=0,label=(option.chapter and "NEXT CHAPTER | " or "NEXT ZONE | ")..option.title,action=function()
             local ok,message=zones:Switch(option.id)
             if not ok then ns:Print(message) end
             Tracker:Refresh()
@@ -1494,7 +1648,7 @@ function Tracker:Refresh()
     local key=table.concat(signature,":")
     if self.upcomingSignature~=key then
         self.upcomingSignature=key
-        self.upcomingPage=1
+        self.upcomingOffset=0
     end
     self.upcomingEntries=entries
     if simpleReader then
@@ -1506,12 +1660,6 @@ function Tracker:Refresh()
             or (#work>0 and "ACTIVE QUESTS" or "UPCOMING STEPS"))
     else
         self.upcomingTitle:SetText("UPCOMING STEPS")
-    end
-    if self.pageButton then
-        if self.upcomingPageCount>1 then
-            self.pageButton:SetLabel(self.upcomingPage.."/"..self.upcomingPageCount.."  >")
-            self.pageButton:Show()
-        else self.pageButton:Hide() end
     end
     if saved.awaitingQuestMatch then
         -- The cached step remains saved, but is not presented as an available
@@ -1530,7 +1678,6 @@ function Tracker:Refresh()
         end
         self.upcomingIndices={}
         for _,button in ipairs(self.upcomingButtons) do button:Hide() end
-        if self.pageButton then self.pageButton:Hide() end
     end
     if not focus and not saved.awaitingQuestMatch and step.action == "accept"
         and saved.recoveryReason and saved.recoveryReason:find("Quest pickup needed", 1, true) then
@@ -1538,6 +1685,7 @@ function Tracker:Refresh()
     end
     local routes=ns.Modules.SmartRoutes
     local blocked=routes and routes.BlockedReason and routes:BlockedReason(step,steps)
+    if not blocked and guides.ConditionReason then blocked=guides:ConditionReason(step,g.id) end
     if blocked and not saved.awaitingQuestMatch then
         self.objectiveCaption:SetText("QUEST BLOCKED")
         self.objectiveCaption:SetTextColor(1,0.74,0.37,1)
@@ -1550,7 +1698,10 @@ function Tracker:Refresh()
     local leg=travel and travel:Current(step)
     if leg and not saved.awaitingQuestMatch then
         self.objectiveCaption:SetText("TRAVEL LEG "..travel.route.index.." / "..#travel.route.legs)
-        self.objectiveText:SetText(leg.text)
+        local checkpoint=leg.kind=="flightPath" or leg.kind=="fly" or leg.kind=="bindHearth" or leg.kind=="hearth"
+        if checkpoint and travel.CheckpointInstruction then
+            self.objectiveText:SetText(leg.text.."\n"..travel:CheckpointInstruction(leg))
+        else self.objectiveText:SetText(leg.text) end
         self.next:SetLabel("Next Travel")
     end
     for key,item in pairs(self.menuButtons) do
@@ -1566,6 +1717,7 @@ function Tracker:Refresh()
     end
     if self.minimizeButton then self.minimizeButton:SetLabel(ns.char and ns.char.trackerMinimized and "+" or "-") end
     self.displayStep=step
+    self.allowLiveInstructionText=not blocked and not leg and not saved.awaitingQuestMatch
     if saved.awaitingQuestMatch then self.displayStep=nil end
     self.displayIndex=index
     self:RefreshObjectives(true)

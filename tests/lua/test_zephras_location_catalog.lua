@@ -47,7 +47,7 @@ for _, faction in ipairs({"zephras-alliance", "zephras-horde"}) do
             countAll = countAll + 1
             local located = item.mapId == 2521 and type(item.x) == "number" and type(item.y) == "number"
                 and item.x >= 0 and item.x <= 100 and item.y >= 0 and item.y <= 100
-            if not located then
+            if not located and not (item.id=="wf11-queen-turnin" and item.liveLocationOnly) then
                 countMissing = countMissing + 1
                 error("No authorable coordinate for " .. faction .. "/" .. class .. "/" .. tostring(item.id))
             end

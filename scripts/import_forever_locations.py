@@ -258,6 +258,22 @@ class Catalog:
             result.extend(points)
         return self.unique(result)
 
+    def objective_requirements(self, quest):
+        # The corrected Forever objective table identifies entities, not
+        # necessarily the required quantities. Preserve only explicit names
+        # and IDs; never infer counts from spawns or loot providers.
+        result = []
+        objectives = field(quest, 10, {})
+        for key, kind, action in ((1, "Npc", "target"), (2, "Object", "object"), (3, "Item", "item")):
+            for row in values(field(objectives, key)):
+                entity_id = field(row, 1)
+                if not isinstance(entity_id, int) or entity_id <= 0:
+                    continue
+                name = field(self.data[kind].get(str(entity_id)), 1)
+                if isinstance(name, str) and name.strip():
+                    result.append(dict(kind=action, id=entity_id, name=name))
+        return result
+
     def record(self, quest_id):
         quest = self.data["Quest"].get(str(quest_id), {})
         record = {"name": quest_name(field(quest, 1) or self.data.get("guideNames", {}).get(str(quest_id)))}
@@ -298,6 +314,9 @@ class Catalog:
                         point["kind"] = "target"
                         point.pop("faction", None)
                 record["objective"] = self.unique(points)
+        requirements = self.objective_requirements(quest)
+        if requirements:
+            record["objectiveRequirements"] = requirements
         report_entry = self.reports.get(str(quest_id), {})
         report = report_entry.get("facts", {})
         objective = report_entry.get("objective")

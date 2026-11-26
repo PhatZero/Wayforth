@@ -79,6 +79,9 @@ local function append(id, kind, circuit)
         step.routeChapter = circuit.name
         if circuit.name:find("^Optional") then step.optional = true end
     end
+    if kind=="accept" and (id==151 or id==36) then
+        step.visit={id="westfall-verna-pickups",title="Talk to Verna Furlbrow"}
+    end
     order[#order+1] = step
 end
 
@@ -100,6 +103,11 @@ for _, circuit in ipairs(circuits) do
             work.text = "Complete the quest objectives. Check your quest log for the remaining requirements."
             work.x, work.y, work.mapId = nil,nil,nil
             work.routeChapter = circuit.name
+            -- Existing authored farm circuit: only show other accepted farm errands.
+            -- Live requirements provide the quantities; no new spawn points inferred.
+            if id==9 or id==22 or id==38 or id==151 then
+                work.concurrentQuestIds={9,22,38,151}
+            end
             if circuit.name:find("^Optional") then work.optional = true end
             order[#order+1] = work
         end

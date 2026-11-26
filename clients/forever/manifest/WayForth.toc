@@ -2,7 +2,7 @@
 ## Title: |cff24c9e0Way|r|cffffcd73Forth|r
 ## Notes: Offline-first adventure guide and character companion for WoW: Forever.
 ## Author: WoW Forever
-## Version: 1.0b16
+## Version: 1.1b2
 ## SavedVariables: WoWForeverDB
 ## SavedVariablesPerCharacter: WoWForeverCharDB
 ## X-Category: Quest
@@ -34,7 +34,9 @@ Data/ForeverQuestRequirements.lua
 Data/ForeverDBQuestData.lua
 Data/WestfallRoute.lua
 Data/AllZoneRoutes.lua
+Data/SpecializedLeveling.lua
 Data/DungeonGuides.lua
+Data/WalkthroughObjectives.lua
 Core/QuestLocations.lua
 Core/Guides.lua
 Core/ProfessionRoutes.lua

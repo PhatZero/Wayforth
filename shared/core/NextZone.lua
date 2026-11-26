@@ -109,6 +109,192 @@ local function finished(guide)
     return true
 end
 
+-- Editorial chapter links based on the existing Forever zone ranges.
+-- These are suggested handoffs, not an optimized or playtested speedrun.
+local alliance={
+    ["zephras-alliance"]={id="alliance-westfall",level=13},
+    ["alliance-elwynn"]={id="alliance-westfall",level=10},
+    ["alliance-dun-morogh"]={id="alliance-loch-modan",level=10},
+    ["alliance-teldrassil"]={id="alliance-darkshore",level=10},
+    ["alliance-loch-modan"]={id="alliance-wetlands",level=20},
+    ["alliance-westfall"]={id="alliance-redridge-mountains",level=18},
+    ["alliance-redridge-mountains"]={id="alliance-duskwood",level=24},
+    ["alliance-darkshore"]={id="alliance-ashenvale",level=20},
+    ["alliance-ashenvale"]={id="alliance-thousand-needles",level=28},
+    ["alliance-stonetalon"]={id="alliance-ashenvale",level=20},
+    ["alliance-wetlands"]={id="alliance-arathi-highlands",level=30},
+    ["alliance-duskwood"]={id="alliance-stranglethorn-vale",level=30},
+    ["alliance-arathi-highlands"]={id="alliance-the-hinterlands",level=40},
+    ["alliance-thousand-needles"]={id="alliance-desolace",level=33},
+    ["alliance-desolace"]={id="alliance-feralas",level=40},
+    ["alliance-stranglethorn-vale"]={id="alliance-the-hinterlands",level=42},
+    ["alliance-the-hinterlands"]={id="alliance-searing-gorge",level=48},
+    ["alliance-searing-gorge"]={id="alliance-burning-steppes",level=52},
+    ["alliance-burning-steppes"]={id="alliance-western-plaguelands",level=54},
+    ["alliance-western-plaguelands"]={id="alliance-eastern-plaguelands",level=57},
+    ["alliance-feralas"]={id="alliance-tanaris",level=45},
+    ["alliance-tanaris"]={id="alliance-ungoro",level=50},
+    ["alliance-ungoro"]={id="alliance-winterspring",level=55},
+}
+local horde={
+    ["zephras-horde"]={id="horde-the-barrens",level=13},
+    ["horde-durotar"]={id="horde-the-barrens",level=10},
+    ["horde-mulgore"]={id="horde-the-barrens",level=10},
+    ["horde-tirisfal-glades"]={id="horde-silverpine-forest",level=10},
+    ["horde-the-barrens"]={id="horde-stonetalon-mountains",level=18},
+    ["horde-stonetalon-mountains"]={id="horde-ashenvale",level=24},
+    ["horde-ashenvale"]={id="horde-thousand-needles",level=30},
+    ["horde-thousand-needles"]={id="horde-desolace",level=35},
+    ["horde-desolace"]={id="horde-feralas",level=42},
+    ["horde-dustwallow-marsh"]={id="horde-feralas",level=42},
+    ["horde-feralas"]={id="horde-tanaris",level=46},
+    ["horde-tanaris"]={id="horde-un-goro-crater",level=51},
+    ["horde-un-goro-crater"]={id="horde-winterspring",level=55},
+    ["horde-felwood"]={id="horde-winterspring",level=55},
+    ["horde-silverpine-forest"]={id="horde-hillsbrad-foothills",level=20},
+    ["horde-hillsbrad-foothills"]={id="horde-arathi-highlands",level=30},
+    ["horde-alterac-mountains"]={id="horde-arathi-highlands",level=32},
+    ["horde-arathi-highlands"]={id="horde-stranglethorn-vale",level=36},
+    ["horde-stranglethorn-vale"]={id="horde-the-hinterlands",level=44},
+    ["horde-the-hinterlands"]={id="horde-searing-gorge",level=49},
+    ["horde-searing-gorge"]={id="horde-burning-steppes",level=53},
+    ["horde-burning-steppes"]={id="horde-western-plaguelands",level=55},
+    ["horde-western-plaguelands"]={id="horde-eastern-plaguelands",level=57},
+}
+Zones.hordeChapters=horde
+Zones.allianceChapters=alliance
+function Zones:ChapterOption()
+    self:Tick()
+    if not enabled() or not self.ready then return nil end
+    local guides=ns.Modules.Guides
+    local current=guides and guides:GetGuide()
+    local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
+    if not current or current.faction~=faction then return nil end
+    if current.generatedChapter or current.factionProgression or current.allianceProgression then
+        local level=type(UnitLevel)=="function" and UnitLevel("player")
+        return type(level)=="number" and self:OptimizedChapter(current,level) or nil
+    end
+    local chapters=faction=="Alliance" and alliance or faction=="Horde" and horde
+    local link=chapters and chapters[current.id]
+    if current.generatedChapter and current.nextChapterId then
+        local nextGuide=guides:GetGuide(current.nextChapterId)
+        if nextGuide and nextGuide.id==current.nextChapterId then
+            link={id=nextGuide.id,level=nextGuide.levelMin}
+        end
+    end
+    local level=type(UnitLevel)=="function" and UnitLevel("player")
+    if not link or type(level)~="number" or level<link.level then return nil end
+    local target=guides:GetGuide(link.id)
+    if not target or target.id~=link.id or target.faction~=faction
+        or level<target.levelMin or level>target.levelMax or finished(target) then return nil end
+    local saved=guides:GetProgress()
+    local steps=guides:GetSteps()
+    if not saved or #steps==0 then return nil end
+    -- Require completion or explicit skip of every nonoptional step.
+    -- Active unfinished quests never become completed from a zone handoff.
+    for i,step in ipairs(steps) do
+        if not step.optional and not saved.completed[step.id or i]
+            and not (saved.skipped and saved.skipped[step.id or i]) then return nil end
+    end
+    return {id=target.id,title=target.generatedChapter and target.title or target.zone or target.title,reason="Next "..faction.." chapter",chapter=true}
+end
+
+-- XP is observed, never added to the character's level as eligibility.
+-- Rested XP is a bonus pool, not earned experience or guaranteed quest XP.
+function Zones:XPState()
+    local function read(fn,...)
+        if type(fn)~="function" then return nil end
+        local ok,v=pcall(fn,...)
+        if ok and type(v)=="number" and v==v and v>=0 and v<math.huge then return v end
+    end
+    local level=read(UnitLevel,"player")
+    local xp,maxXP=read(UnitXP,"player"),read(UnitXPMax,"player")
+    local rested=read(GetXPExhaustion)
+    local fraction=0
+    if xp and maxXP and maxXP>0 and xp<=maxXP then fraction=xp/maxXP else xp,maxXP=nil,nil end
+    return {level=level,xp=xp,maxXP=maxXP,fraction=fraction,rested=rested,
+        remainingXP=xp and maxXP-xp or nil,atCap=level and level>=60 or false}
+end
+
+-- Rank original generated chapters using live quest evidence, not estimated
+-- XP or invented inter-zone distances. Only recommend after a safe handoff.
+function Zones:OptimizedChapter(current,level)
+    local guides,routes=ns.Modules.Guides,ns.Modules.SmartRoutes
+    if not current or not (current.generatedChapter or current.factionProgression or current.allianceProgression) or not routes then return nil end
+    local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
+    if not faction or current.faction~=faction then return nil end
+    local xp=self:XPState()
+    if xp.atCap then return nil end
+    local states={}
+    local function state(id)
+        if not states[id] then states[id]=routes:QuestState(id) end
+        return states[id]
+    end
+    local saved=guides:GetProgress(current.id)
+    if not saved then return nil end
+    local ahead=type(current.levelMax)=="number" and level>current.levelMax
+    for i,step in ipairs(guides:GetSteps(current.id)) do
+        local q=step.questId and state(step.questId)
+        -- Do not strand active quests even when their steps were skipped.
+        if q and q.active and not q.turnedIn then return nil end
+        if not step.optional and not (q and q.turnedIn)
+            and not saved.completed[step.id or i]
+            and not (saved.skipped and saved.skipped[step.id or i]) then
+            -- When ahead, allow an explicit handoff only at a clean quest
+            -- boundary. Never bypass unfinished manual or travel steps.
+            local oldPickup=step.questId and q and not q.active
+                and type(step.level)=="number" and step.level<=level-5
+            if not ahead or not oldPickup then return nil end
+        end
+    end
+    local map=C_Map and type(C_Map.GetBestMapForUnit)=="function"
+        and C_Map.GetBestMapForUnit("player") or nil
+    local best
+    for _,g in ipairs(routes:ListGuides()) do
+        if (g.generatedChapter or g.factionProgression or g.allianceProgression) and g.id~=current.id and g.faction==faction
+            and not g.isOptional and not g.isDungeon and not g.isProfession
+            and g.levelMin and g.levelMax and level>=g.levelMin and level<=g.levelMax+2 then
+            local steps=guides:GetSteps(g.id)
+            local progress=guides:GetProgress(g.id)
+            local index=progress and routes:Preview(g.id,"recommended")
+            local candidate=index and steps[index]
+            -- Preview must actually lead to actionable unfinished work.
+            local q=candidate and candidate.questId and state(candidate.questId)
+            if candidate and not candidate.optional and q and not q.turnedIn
+                and not progress.completed[candidate.id or index]
+                and not (progress.skipped and progress.skipped[candidate.id or index])
+                and not routes:BlockedReason(candidate,steps)
+                and not (guides.ConditionReason and guides:ConditionReason(candidate,g.id)) then
+                local count,active,seen=0,0,{}
+                for i,step in ipairs(steps) do
+                    if step.questId and not step.optional and not seen[step.questId]
+                        and not progress.completed[step.id or i]
+                        and not (progress.skipped and progress.skipped[step.id or i]) then
+                        seen[step.questId]=true
+                        local status=state(step.questId)
+                        if not status.turnedIn then
+                            count=count+1
+                            if status.active then active=active+1 end
+                        end
+                    end
+                end
+                local travel=(map and candidate.mapId==map) and 0
+                    or g.zone==current.zone and 2
+                    or g.continent and current.continent and g.continent==current.continent and 6
+                    or 15
+                local score=travel+math.abs(level+xp.fraction-(g.levelMin+g.levelMax)/2)
+                    +math.max(0,level-g.levelMax)*4
+                    -math.min(count,10)*0.25-math.min(active,5)*8
+                if not best or score<best.score or score==best.score and g.id<best.id then
+                    best={id=g.id,title=g.title,reason=ahead and "Ahead of chapter level; unfinished quests preserved" or level<current.levelMax and "More level-appropriate quests for experience" or "Recommended level-appropriate chapter",
+                        chapter=true,score=score}
+                end
+            end
+        end
+    end
+    return best
+end
+
 function Zones:Options(force)
     -- This must run before consulting the short-lived recommendation cache.
     -- force bypasses ranking cache only; it cannot bypass flight safety.
@@ -119,8 +305,20 @@ function Zones:Options(force)
     if not current then return {} end
     local level=type(UnitLevel)=="function" and UnitLevel("player") or 1
     local now=clock()
-    local cacheKey=current.id..":"..level
+    local xp=self:XPState()
+    local cacheKey=current.id..":"..level..":"..tostring(xp.xp)..":"..tostring(xp.rested)
     if not force and now and self.cache and self.cache.key==cacheKey and now-self.cache.time<2 then return self.cache.options end
+    local chapter
+    if current.generatedChapter or current.factionProgression or current.allianceProgression then
+        chapter=self:OptimizedChapter(current,level)
+        -- Generated routes must not fall back to legacy suggestions that can
+        -- bypass the active quest and chapter completion safety gates.
+        local options=chapter and {chapter} or {}
+        if now then self.cache={key=cacheKey,time=now,options=options} end
+        return options
+    end
+    chapter=self:ChapterOption()
+    if chapter then return {chapter} end
     local reason=finished(current) and "Guide complete" or nil
     local steps=guides:GetSteps()
     local remaining,overleveled=false,true
@@ -153,8 +351,19 @@ function Zones:Options(force)
 end
 
 function Zones:Switch(id)
+    local current=ns.Modules.Guides:GetGuide()
+    local function switchWithTravel()
+        local ok,message=ns.Modules.SmartRoutes:Switch(id,"recommended")
+        local travel=ns.Modules.Travel
+        if ok and travel and travel.StartChapter then travel:StartChapter(current) end
+        return ok,message
+    end
+    local chapter=not (current and (current.generatedChapter or current.factionProgression or current.allianceProgression)) and self:ChapterOption()
+    if chapter and chapter.id==id then
+        return switchWithTravel()
+    end
     for _,option in ipairs(self:Options(true)) do
-        if option.id==id then return ns.Modules.SmartRoutes:Switch(id,"recommended") end
+        if option.id==id then return switchWithTravel() end
     end
     return false,"That recommendation changed or your flight has not settled yet. Use the Guide Library to switch manually."
 end

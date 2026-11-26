@@ -197,16 +197,69 @@ for _, step in ipairs(allSteps) do
     for name, value in pairs(amendments[step.id] or {}) do step[name] = value end
 end
 
+-- Walkthrough pass: retain every original ID and authored quest destination.
+-- Group only adjacent actions at the same documented endpoint. Hunting
+-- objectives are advisory companions, never an alternate route engine.
+local walkthrough = {
+    ["start-report"]={visit={id="thendal-rorian-intro",title="Speak with Rorian the Dayseeker"}},
+    ["harmony-accept"]={visit={id="thendal-rorian-intro",title="Speak with Rorian the Dayseeker"}},
+    ["harmony-clear"]={title="Harmony in Balance",text="Hunt juvenile vuldren east of Thendal. Check the live kill counter and defeat cirrusflies when you encounter them.",concurrentQuestIds={92462}},
+    ["flies-clear"]={title="Infestation Investigation",text="Hunt cirrusflies in the grove until the quest counter is complete.",concurrentQuestIds={92461}},
+    ["scholar-92727-turnin"]={visit={id="scholar-satchel",title="Investigate the bloodstained satchel"}},
+    ["scholar-92849-accept"]={visit={id="scholar-satchel",title="Investigate the bloodstained satchel"}},
+    ["scholar-92849-turnin"]={visit={id="scholar-fillion",title="Speak with Fillion Flamebreeze"}},
+    ["scholar-92850-accept"]={visit={id="scholar-fillion",title="Speak with Fillion Flamebreeze"}},
+    ["construct-93735-turnin"]={visit={id="construct-riaani",title="Speak with Riaani Nightwind"}},
+    ["construct-93737-accept"]={visit={id="construct-riaani",title="Speak with Riaani Nightwind"}},
+    ["wind-92840-turnin"]={visit={id="wind-elaadrin",title="Speak with Elaadrin Evengale"}},
+    ["service-92860-accept"]={visit={id="wind-elaadrin",title="Speak with Elaadrin Evengale"}},
+    ["turncoat"]={visit={id="cultist-house",title="Investigate the dead cultist"}},
+    ["unfortunate-news-92644-accept"]={visit={id="cultist-house",title="Investigate the dead cultist"}},
+    ["shrine-92947-turnin"]={visit={id="shrine-hyusaa",title="Speak with Hyusaa Quickbreeze"}},
+    ["shrine-93958-accept"]={visit={id="shrine-hyusaa",title="Speak with Hyusaa Quickbreeze"}},
+    ["confront-93835-turnin"]={visit={id="finale-alliance",title="Speak with Elaadrin Evengale"}},
+    ["fate-94369-accept"]={visit={id="finale-alliance",title="Speak with Elaadrin Evengale"}},
+    ["confront-92646-turnin"]={visit={id="finale-horde",title="Speak with Ayessa Dawnsinger"}},
+    ["fate-93836-accept"]={visit={id="finale-horde",title="Speak with Ayessa Dawnsinger"}},
+}
+for _,step in ipairs(allSteps) do
+    for key,value in pairs(walkthrough[step.id] or {}) do step[key]=value end
+end
+
+-- Close the phase gaps for already documented quests. Keep legacy keys
+-- and route order intact for numeric-only and stable-ID saved progress.
+local legacySteps=allSteps
+local extraBefore={
+    ["glide-complete"]={
+        {id="wf11-glide-objective",title="Practice Walk on Air",text="Use Walk on Air to fulfill Falling With Style. Check the live objective before returning to Rorian.",questId=92474,action="objective",hub="Thendal Watchtower",level=2,x=43.8,y=24.1},
+    },
+    ["anchors-done"]={
+        {id="wf11-anchor-objective",title="The Anchors of Zephras",text="Interact with Halaan Hawk-Eye and follow the anchor quest's live objective at the watchtower.",questId=94414,action="objective",hub="Thendal Village",level=3,x=43.8,y=24.1},
+    },
+}
+local extraAfter={
+    ["queen-objective"]={
+        {id="wf11-queen-turnin",title="Return the queen quest",text="Turn in The Cirrusfly Queen when ready. Use the live quest marker to locate the recipient.",questId=92463,action="turnin",hub="Thendal Village",level=4,liveLocationOnly=true},
+    },
+}
+allSteps={}
+for _,step in ipairs(legacySteps) do
+    for _,extra in ipairs(extraBefore[step.id] or {}) do allSteps[#allSteps+1]=extra end
+    allSteps[#allSteps+1]=step
+    for _,extra in ipairs(extraAfter[step.id] or {}) do allSteps[#allSteps+1]=extra end
+end
+for _,step in ipairs(legacySteps) do step.mapId=2521 end
+
 -- Attach the verified zone map to every Skyborne guide step without altering stable step IDs.
 for _, step in ipairs(allSteps) do step.mapId = 2521 end
 
 ns.starterGuides[#ns.starterGuides + 1] = {
     id = "zephras-alliance", title = "Skyborne: Zephras Isle (Alliance)",
     description = "High Order leveling route, roughly levels 1-13. Confirm optional quests in your live quest log.",
-    faction = "Alliance", steps = allSteps,
+    faction = "Alliance", levelMin=1, levelMax=13, zone="Zephras Isle", steps = allSteps, legacySteps=legacySteps,
 }
 ns.starterGuides[#ns.starterGuides + 1] = {
     id = "zephras-horde", title = "Skyborne: Zephras Isle (Horde)",
     description = "Windshaper leveling route, roughly levels 1-13. Confirm optional quests in your live quest log.",
-    faction = "Horde", steps = allSteps,
+    faction = "Horde", levelMin=1, levelMax=13, zone="Zephras Isle", steps = allSteps, legacySteps=legacySteps,
 }

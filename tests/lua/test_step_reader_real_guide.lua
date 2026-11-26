@@ -90,3 +90,32 @@ expect("glide-accept")
 assert(guides:GetProgress().currentStepId==stored, "Stable step IDs restore correctly")
 
 print("WayForth Forever step reader: real Zephras hub, manual checkpoint and reload QA passed")
+
+-- Both faction routes retain existing stable IDs and receive the authored
+-- walkthrough enhancements without copying a third-party guide.
+local function byStep(id)
+    local steps=guides:GetSteps(id)
+    local indexed={}
+    for i,step in ipairs(steps) do
+        assert(not indexed[step.id],"Duplicate stable step key")
+        indexed[step.id]={index=i,step=step}
+    end
+    return indexed
+end
+for _,id in ipairs({"zephras-alliance","zephras-horde"}) do
+    local rows=byStep(id)
+    assert(rows["start-report"].step.visit.id==rows["harmony-accept"].step.visit.id)
+    assert(rows["harmony-clear"].step.concurrentQuestIds[1]==92462)
+    assert(rows["flies-clear"].step.concurrentQuestIds[1]==92461)
+    assert(rows["wf11-glide-objective"].index+1==rows["glide-complete"].index)
+    assert(rows["wf11-anchor-objective"].index+1==rows["anchors-done"].index)
+    assert(rows["queen-objective"].index+1==rows["wf11-queen-turnin"].index)
+    for _,step in ipairs(guides:GetSteps(id,true)) do
+        assert(rows[step.id],"Legacy step missing: "..step.id)
+    end
+end
+assert(byStep("zephras-alliance")["scholar-92850-accept"])
+assert(not byStep("zephras-horde")["scholar-92850-accept"])
+assert(byStep("zephras-horde")["construct-93737-accept"])
+assert(not byStep("zephras-alliance")["construct-93737-accept"])
+print("WayForth Skyborne walkthrough migration and faction coverage passed")

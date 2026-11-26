@@ -37,10 +37,12 @@ end
 
 function Guides:List(kind)
 	local result = {}
+    local classToken
+    if type(UnitClass)=="function" then local _,token=UnitClass("player");classToken=token end
 	for _, guide in ipairs(ns.starterGuides or {}) do
-		if kind == "all"
+		if (not guide.class or guide.class==classToken) and (not guide.generatedChapter or #self:GetSteps(guide.id)>0) and (kind == "all"
 			or kind == "professions" and guide.isProfession
-			or kind ~= "all" and kind ~= "professions" and not guide.isProfession then
+			or kind ~= "all" and kind ~= "professions" and not guide.isProfession) then
 			result[#result + 1] = guide
 		end
 	end
@@ -63,6 +65,27 @@ local function canUseRace(restrictions)
     return false
 end
 
+-- Static character conditions never change as the player levels. Keep dynamic
+-- prerequisites on the step rather than removing it from the saved route.
+local function member(values, token)
+    if not values or not token then return false end
+    for _,value in ipairs(values) do
+        if tostring(value):upper()==tostring(token):upper() then return true end
+    end
+    return false
+end
+
+local function characterMatches(condition, classToken)
+    if not condition then return true end
+    local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
+    if condition.classes and not member(condition.classes,classToken) then return false end
+    if condition.excludeClasses and (not classToken or member(condition.excludeClasses,classToken)) then return false end
+    if condition.factions and not member(condition.factions,faction) then return false end
+    if condition.races and not canUseRace(condition.races) then return false end
+    if condition.excludeRaces and (type(UnitRace)~="function" or canUseRace(condition.excludeRaces)) then return false end
+    return true
+end
+
 function Guides:GetSteps(id, legacy)
     local guide = self:GetGuide(id)
     if not guide then return {} end
@@ -71,6 +94,7 @@ function Guides:GetSteps(id, legacy)
         local _, token = UnitClass("player")
         classToken = token
     end
+    if guide.class and guide.class~=classToken then return {} end
     local visible = {}
     local locations = ns.Modules.QuestLocations
     local currentMap = C_Map and type(C_Map.GetBestMapForUnit) == "function"
@@ -79,7 +103,7 @@ function Guides:GetSteps(id, legacy)
         if (legacy or not step.hidden)
             and (not step.faction or step.faction == (guide.faction or (type(UnitFactionGroup)=="function" and UnitFactionGroup("player"))))
             and (not step.class or step.class == classToken)
-            and canUseRace(step.races) then
+            and canUseRace(step.races) and (legacy or characterMatches(step.condition,classToken)) then
             -- Each visible step gets its own resolved metadata. Shared raw step IDs
             -- remain untouched so old SavedVariables checkpoints keep working.
             local resolved = {}
@@ -193,10 +217,86 @@ function Guides:SetCurrent(index, id)
     saved.currentStepId = stepKey(steps[saved.current], saved.current)
 end
 
+-- A checkpoint uses live character evidence, never estimated XP rewards.
+-- XP is relative to the specified level, not lifetime experience.
+function Guides:LevelCheckpoint(step)
+    local target=step and step.checkpoint
+    if not target then return nil end
+    local function read(fn)
+        if type(fn)~="function" then return nil end
+        local ok,value=pcall(fn,"player")
+        if ok and type(value)=="number" and value==value and value>=0 then return value end
+    end
+    local level,xp,maxXP=read(UnitLevel),read(UnitXP),read(UnitXPMax)
+    local valid=type(target.level)=="number" and target.level>=1
+        and target.level==math.floor(target.level)
+        and (target.xp==nil or type(target.xp)=="number" and target.xp>=0 and target.xp<math.huge)
+        and (target.remainingXP==nil or type(target.remainingXP)=="number" and target.remainingXP>=0 and target.remainingXP<math.huge)
+        and not (target.xp~=nil and target.remainingXP~=nil)
+    local done=false
+    local status="Character XP unavailable"
+    if not valid then status="Invalid authored level checkpoint"
+    elseif level then
+        if level>target.level then done=true
+        elseif level==target.level then
+            if target.xp~=nil then done=xp~=nil and xp>=target.xp
+            elseif target.remainingXP~=nil then
+                done=xp~=nil and maxXP~=nil and maxXP>0 and math.max(0,maxXP-xp)<=target.remainingXP
+            else done=true end
+        end
+        status="Level "..level.." / "..target.level
+        if target.xp~=nil then
+            status=status.." | "..tostring(xp or "?").." / "..target.xp.." XP"
+        elseif target.remainingXP~=nil then
+            status=status.." | "..tostring(xp and maxXP and maxXP>0 and math.max(0,maxXP-xp) or "?").." XP remaining (target "..target.remainingXP..")"
+        end
+    end
+    return {finished=done,display=status,valid=valid,level=level,xp=xp,maxXP=maxXP}
+end
+
+-- Inventory and training checkpoints verify state without performing purchases,
+-- selling items, or learning spells on the player's behalf.
+function Guides:Checkpoint(step)
+    local target=step and step.checkpoint
+    if not target then return nil end
+    if not target.kind or target.kind=="xp" then return self:LevelCheckpoint(step) end
+    local function read(fn,...)
+        if type(fn)~="function" then return nil end
+        local ok,value=pcall(fn,...)
+        if ok then return value end
+    end
+    local function positive(n) return type(n)=="number" and n>0 and n<math.huge and n==math.floor(n) end
+    local done,display=false,"Invalid authored checkpoint"
+    if target.kind=="spell" and positive(target.spellId) then
+        local known=read(IsPlayerSpell,target.spellId)
+        if known~=true then
+            local alternative=read(IsSpellKnown,target.spellId)
+            if alternative~=nil then known=alternative end
+        end
+        done=known==true
+        display=(target.name or ("Spell "..target.spellId))..(done and " learned" or known==nil and " | Spell verification unavailable" or " | Not learned")
+    elseif target.kind=="item" and positive(target.itemId) and positive(target.count) then
+        local count=read(C_Item and C_Item.GetItemCount,target.itemId,false)
+        if type(count)~="number" then count=read(GetItemCount,target.itemId,false) end
+        done=type(count)=="number" and count>=target.count
+        display=(target.name or ("Item "..target.itemId)).." ("..tostring(count or "?").."/"..target.count..")"
+    elseif target.kind=="money" and positive(target.copper) then
+        local money=read(GetMoney)
+        done=type(money)=="number" and money>=target.copper
+        display=tostring(money or "?").." / "..target.copper.." copper"
+    elseif target.kind=="vendor" then
+        -- Opening a merchant window does not prove a sale or repair occurred.
+        return {finished=false,manual=true,display="Confirm vendor tasks manually after completing them."}
+    end
+    return {finished=done,display=display}
+end
+
 function Guides:CompleteCurrent(id)
     local saved = self:GetProgress(id)
     local steps = self:GetSteps(id)
     if not saved or #steps == 0 then return end
+    local checkpoint=self:Checkpoint(steps[saved.current])
+    if checkpoint and not checkpoint.finished and not checkpoint.manual then return false,checkpoint.display end
     saved.completed[stepKey(steps[saved.current], saved.current)] = true
     if saved.current < #steps then self:SetCurrent(saved.current + 1, id) end
 end
@@ -308,6 +408,94 @@ local function satisfied(step, status)
     return false -- Turn-ins need real completed quest evidence.
 end
 
+-- A walkthrough visit is an authored, contiguous set of atomic quest actions.
+-- Keep the existing cursor and stable keys: no second route engine or saved schema.
+-- Dynamic eligibility is informational and fail-closed. Never mark a
+-- prerequisite complete, remove a saved step or invent availability.
+function Guides:ConditionReason(step,id)
+    local c=step and step.condition
+    if not c then return nil end
+    local saved=self:GetProgress(id)
+    if not saved then return "Guide progress unavailable." end
+    local level=type(UnitLevel)=="function" and UnitLevel("player")
+    if c.minLevel and (type(level)~="number" or level<c.minLevel) then return "Requires level "..c.minLevel.."." end
+    if c.maxLevel and (type(level)~="number" or level>c.maxLevel) then return "Intended for level "..c.maxLevel.." or below. Review or skip this step." end
+    for _,qid in ipairs(c.requiresQuests or {}) do
+        if not questCompleted(qid,saved) or questActive(qid) then return "Complete prerequisite quest "..qid.." first." end
+    end
+    if c.requiresAnyQuests and #c.requiresAnyQuests>0 then
+        local met=false
+        for _,qid in ipairs(c.requiresAnyQuests) do
+            if questCompleted(qid,saved) and not questActive(qid) then met=true;break end
+        end
+        if not met then return "Complete one of the prerequisite quests first." end
+    end
+    for _,key in ipairs(c.requiresSteps or {}) do
+        if not saved.completed[key] then return "Complete prerequisite guide step "..key.." first." end
+    end
+    return nil
+end
+
+-- Concurrent work is explicitly authored on a route step. It is advisory:
+-- never changes the cursor, destination, completion or saved variables.
+function Guides:ConcurrentSnapshot(index, id)
+    local steps=self:GetSteps(id)
+    local step=index and steps[index]
+    local progress=ns.Modules.QuestProgress
+    if not step or not progress or not step.concurrentQuestIds then return {} end
+    local rows,seen={},{}
+    for _,questId in ipairs(step.concurrentQuestIds) do
+        if type(questId)=="number" and questId~=step.questId and not seen[questId] then
+            seen[questId]=true
+            local snapshot=progress:Get(questId)
+            if snapshot and snapshot.active and not snapshot.ready and not snapshot.failed then
+                local name
+                for _,candidate in ipairs(steps) do
+                    if candidate.questId==questId then
+                        name=candidate.questName or tostring(candidate.title or "Quest"):gsub("^Pick up:%s*",""):gsub("^Work on:%s*",""):gsub("^Complete:%s*","")
+                        break
+                    end
+                end
+                if name then
+                    for _,row in ipairs(snapshot.rows or {}) do
+                        if not row.finished then
+                            rows[#rows+1]={questId=questId,display=name..": "..row.display,finished=false,concurrent=true}
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return rows
+end
+
+function Guides:VisitSnapshot(index, id)
+    local steps = self:GetSteps(id)
+    local saved = self:GetProgress(id)
+    local current = index and steps[index]
+    local visit = current and current.visit
+    if not saved or not visit or not visit.id then return nil end
+    local first, last = index, index
+    while first > 1 and steps[first-1].visit and steps[first-1].visit.id == visit.id do first=first-1 end
+    while last < #steps and steps[last+1].visit and steps[last+1].visit.id == visit.id do last=last+1 end
+    if first == last then return nil end
+    local rows, cache, done, skipped = {}, {}, 0, 0
+    for i=first,last do
+        local action=steps[i]
+        if type(action.questId)~="number" or (action.action~="accept" and action.action~="turnin") then return nil end
+        local status=readQuestStatus(action.questId,cache,saved)
+        local complete=satisfied(action,status)
+        local wasSkipped=not complete and saved.skipped[stepKey(action,i)]==true
+        if complete then done=done+1 elseif wasSkipped then skipped=skipped+1 end
+        local title=action.questName or tostring(action.title or "Quest"):gsub("^Pick up:%s*",""):gsub("^Complete:%s*","")
+        rows[#rows+1]={index=i,finished=not not complete,skipped=wasSkipped,
+            display=(wasSkipped and "Skipped: " or "")..(action.action=="accept" and "Accept " or "Turn in ")..title}
+    end
+    return {questID="visit:"..visit.id, first=first,last=last,title=visit.title,rows=rows,
+        completed=done, state=done==#rows and "ready" or "active",
+        status=done.."/"..#rows.." ACTIONS COMPLETE"..(skipped>0 and " | "..skipped.." skipped" or "")}
+end
+
 function Guides:Sync(id, catchUp)
     local saved = self:GetProgress(id)
     local steps = self:GetSteps(id)
@@ -319,7 +507,14 @@ function Guides:Sync(id, catchUp)
     -- Scan ALL quest-linked steps. The old implementation stopped at the first
     -- manual checkpoint, making Sync appear broken for returning characters.
     for index, step in ipairs(steps) do
-        if type(step.questId) == "number" then
+        local checkpoint=self:Checkpoint(step)
+        if checkpoint then
+            local key=stepKey(step,index)
+            if checkpoint.finished and not saved.completed[key] then
+                saved.completed[key]=true
+                newCompletions=newCompletions+1
+            end
+        elseif type(step.questId) == "number" then
             local status = readQuestStatus(step.questId, cache, saved)
             if (status.turnedIn or status.active or status.ready) and not foundIDs[step.questId] then
                 foundIDs[step.questId] = true
@@ -355,7 +550,9 @@ function Guides:Sync(id, catchUp)
         if not saved.completed[stepKey(step, saved.current)] then break end
         -- Old acceptance evidence is not proof that an abandoned quest is
         -- still active. Never race past a missing quest on stale checkpoints.
-        if simple and type(step.questId) == "number"
+        local checkpoint=self:Checkpoint(step)
+        if checkpoint and not checkpoint.finished and not checkpoint.manual then break end
+        if simple and not checkpoint and type(step.questId) == "number"
             and not satisfied(step, readQuestStatus(step.questId, cache, saved)) then break end
         self:SetCurrent(saved.current + 1, id)
     end

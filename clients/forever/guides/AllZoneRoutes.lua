@@ -69,9 +69,15 @@ end
 
 local function near(a,b)
     if not a or not b then return false end
-    if a.mapId and b.mapId and a.mapId~=b.mapId then return false end
+    if not a.mapId or not b.mapId or a.mapId~=b.mapId then return false end
     local dx,dy=a.x-b.x,a.y-b.y
     return dx*dx+dy*dy<=144 -- 12% of a zone map is a modest pickup circuit.
+end
+
+local function distance(a,b)
+    if not a or not b or not a.mapId or a.mapId~=b.mapId then return math.huge end
+    local dx,dy=a.x-b.x,a.y-b.y
+    return dx*dx+dy*dy
 end
 
 local function dependsOn(dependent,parent)
@@ -95,15 +101,51 @@ local function canRelease(node, completed, nodes)
     return not internal or oneMet
 end
 
-local function createCircuit(guide, batch, output, chapter, nodes)
+-- Only group identical source NPC endpoints, not merely nearby quest givers.
+local function endpoint(guide,node,role)
+    local found
+    for _,point in ipairs(node.record and node.record[role] or {}) do
+        if (not point.faction or point.faction==guide.faction) and point.kind=="npc"
+            and type(point.mapId)=="number" and type(point.x)=="number" and type(point.y)=="number"
+            and type(point.name)=="string" and point.name~="" then
+            local key=point.mapId..":"..point.x..":"..point.y..":"..point.name
+            if found and found.key~=key then return nil end
+            found={key=key,name=point.name}
+        end
+    end
+    return found
+end
+local function groupVisits(guide,batch,role,output)
+    local action=role=="pickup" and "accept" or "turnin"
+    local first=#output-#batch+1
+    local previous,start
+    for i,node in ipairs(batch) do
+        local point=endpoint(guide,node,role)
+        local step=output[first+i-1]
+        if point and previous and point.key==previous.key
+            and not node.accept.races and not node.accept.class
+            and not batch[i-1].accept.races and not batch[i-1].accept.class
+            and not node.optional and not batch[i-1].optional then
+            local visit={id=guide.id..":"..action..":"..output[start].id,title="Speak with "..point.name}
+            output[start].visit=visit
+            step.visit=visit
+        else start=first+i-1 end
+        previous=point
+    end
+end
+
+local function createCircuit(guide, batch, output, chapter, nodes, circuitId, chapterLevel)
     -- Every pickup is listed before leaving the hub. Never silently pick up
     -- a quest behind its unturned-in prerequisite inside the same batch.
     for _,node in ipairs(batch) do
-        local step=node.accept
+        local step=copyStep(node.accept)
         step.routeChapter=chapter
+        step.routeCircuitId=circuitId
+        step.routeChapterLevel=chapterLevel
         step.optional=node.optional or nil
         output[#output+1]=step
     end
+    groupVisits(guide,batch,"pickup",output)
     -- The reader's original stable objective keys survive the migration.
     -- Objective destination and quantities come from actual source metadata.
     for _,node in ipairs(batch) do
@@ -116,16 +158,21 @@ local function createCircuit(guide, batch, output, chapter, nodes)
             step.text="Complete the live quest objectives before returning to the quest giver."
             step.x,step.y,step.mapId=nil,nil,nil
             step.routeChapter=chapter
+        step.routeCircuitId=circuitId
+        step.routeChapterLevel=chapterLevel
             step.optional=node.optional or nil
             output[#output+1]=step
         end
     end
     for _,node in ipairs(batch) do
-        local step=node.turnin
+        local step=copyStep(node.turnin)
         step.routeChapter=chapter
+        step.routeCircuitId=circuitId
+        step.routeChapterLevel=chapterLevel
         step.optional=node.optional or nil
         output[#output+1]=step
     end
+    groupVisits(guide,batch,"turnin",output)
 end
 
 local function convert(guide)
@@ -146,9 +193,10 @@ local function convert(guide)
         node.point=knownPoint(guide,node.accept,record)
         local required,any=prerequisites(node.accept,record)
         node.required,node.any=required,any
-        node.level=tonumber(node.accept.level) or guide.levelMin or 1
+        local catalog=(ns.foreverDBQuests or {})[node.id]
+        node.level=(catalog and catalog.source=="forever" and tonumber(catalog.level) and catalog.level>0 and catalog.level<=60 and catalog.level) or tonumber(node.accept.level) or guide.levelMin or 1
         local requirements=(ns.foreverQuestRequirements or {})[node.id]
-        node.minLevel=requirements and requirements.minLevel or nil
+        node.minLevel=requirements and requirements.minLevel or (catalog and catalog.source=="forever" and catalog.minLevel) or nil
         local beyond=(guide.levelMax and node.level>guide.levelMax+2)
             or (guide.levelMax and node.minLevel and node.minLevel>guide.levelMax+2)
         local external=false
@@ -214,8 +262,8 @@ local function convert(guide)
         table.sort(candidates,function(a,b)
             if a.level~=b.level then return a.level<b.level end
             if currentPoint then
-                local an,bn=near(a.point,currentPoint),near(b.point,currentPoint)
-                if an~=bn then return an end
+                local ad,bd=distance(a.point,currentPoint),distance(b.point,currentPoint)
+                if ad~=bd then return ad<bd end
             end
             return a.sourceIndex<b.sourceIndex
         end)
@@ -236,6 +284,7 @@ local function convert(guide)
                     if remaining[node.id] and not not node.optional==optional then
                         first=node
                         node.routeUnverified=true
+                        node.accept=copyStep(node.accept)
                         node.accept.routeWarning="Source prerequisite graph unresolved; confirm quest availability before continuing."
                         stats.deferred=stats.deferred+1
                         break
@@ -262,9 +311,23 @@ local function convert(guide)
                 or first.accept.hub or guide.zone or guide.title
             local chapter=(optional and "Optional: " or "Quest circuit: ")
                 ..tostring(hub).." (around level "..tostring(first.level)..")"
-            createCircuit(guide,batch,output,chapter,nodes)
+            local chapterLevel=1
+            for _,node in ipairs(batch) do
+                chapterLevel=math.max(chapterLevel,node.level,node.minLevel or 1)
+            end
+            createCircuit(guide,batch,output,chapter,nodes,first.id,chapterLevel)
             stats.circuits=stats.circuits+1
-            currentPoint=first.point or currentPoint
+            -- The next circuit starts at the last verified turn-in, not at the pickup.
+            local last=batch[#batch]
+            local lastPoint
+            for _,point in ipairs(last.record and last.record.turnin or {}) do
+                if (not point.faction or point.faction==guide.faction)
+                    and type(point.mapId)=="number" and type(point.x)=="number" and type(point.y)=="number" then
+                    if lastPoint then lastPoint=nil;break end
+                    lastPoint=point
+                end
+            end
+            currentPoint=lastPoint
             for _,node in ipairs(batch) do
                 remaining[node.id]=nil
                 done[node.id]=true
@@ -293,3 +356,106 @@ for _,guide in ipairs(ns.starterGuides or {}) do
         stats.preserved=stats.preserved+1
     end
 end
+
+-- Build optional, independently resumable chapter guides from whole circuits.
+-- Never split a pickup/objective/turn-in circuit or move a dependent ahead
+-- of its source ordering. The original zone guide remains available.
+local function generateChapters(guide)
+    if not guide.routeCircuits or not guide.levelMin or not guide.levelMax
+        or not guide.faction then return {} end
+    local chapters, current, circuit, previousBand = {}, nil, nil, nil
+    local function flush()
+        if current and #current.steps>0 then chapters[#chapters+1]=current end
+        current=nil
+    end
+    local function addCircuit(steps)
+        if #steps==0 then return end
+        local first=steps[1]
+        local level=math.max(1,math.min(60,math.floor(first.routeChapterLevel or guide.levelMin)))
+        -- Five-level bands are an editorial default, not an XP prediction.
+        local band=math.min(56,math.floor((level-1)/5)*5+1)
+        -- The source is already dependency ordered. Do not reorder circuits.
+        band=math.max(previousBand or band,band)
+        previousBand=band
+        if not current or current.chapterBand~=band then
+            flush()
+            current=copyStep(guide)
+            current.id=guide.id.."-chapter-"..band
+            current.title=string.format("%d-%d %s",band,math.min(60,band+4),guide.zone or guide.title)
+            current.levelMin=band
+            current.levelMax=math.min(60,band+4)
+            current.chapterBand=band
+            current.parentGuideId=guide.id
+            current.generatedChapter=true
+            current.testingOnly=true
+            current.legacySteps=nil
+            current.steps={}
+            current.description="Original level-band quest circuits. Check live eligibility; XP and travel have not been playtested."
+            current.contentStatus="Generated chapter; in-game verification pending"
+        end
+        for _,step in ipairs(steps) do current.steps[#current.steps+1]=copyStep(step) end
+    end
+    for _,step in ipairs(guide.steps) do
+        if not step.routeCircuitId then return {} end
+        if not circuit or circuit[1].routeCircuitId~=step.routeCircuitId then
+            if circuit then addCircuit(circuit) end
+            circuit={}
+        end
+        circuit[#circuit+1]=step
+    end
+    if circuit then addCircuit(circuit) end
+    flush()
+    -- Include single-band zones for both faction progression inventories.
+    for i,chapter in ipairs(chapters) do
+        chapter.chapterIndex=i
+        chapter.chapterCount=#chapters
+        chapter.nextChapterId=chapters[i+1] and chapters[i+1].id or nil
+    end
+    return chapters
+end
+
+ns.GenerateLevelChapters=generateChapters
+local generated={}
+local ids={}
+for _,guide in ipairs(ns.starterGuides or {}) do ids[guide.id]=true end
+for _,guide in ipairs(ns.starterGuides or {}) do
+    for _,chapter in ipairs(generateChapters(guide)) do
+        if not ids[chapter.id] then
+            ids[chapter.id]=true
+            generated[#generated+1]=chapter
+        end
+    end
+end
+for _,chapter in ipairs(generated) do
+    ns.starterGuides[#ns.starterGuides+1]=chapter
+end
+stats.chapters=#generated
+
+-- Both factions use the same progression inventory and coverage contract.
+local function buildProgression(faction)
+    local inventory={chapters={},coverage={},gaps={}}
+    local splitParents={}
+    for _,g in ipairs(ns.starterGuides or {}) do
+        if g.generatedChapter and g.faction==faction then splitParents[g.parentGuideId]=true end
+    end
+    for _,g in ipairs(ns.starterGuides or {}) do
+        if g.faction==faction and not g.isProfession and not g.isDungeon
+            and not g.isOptional and not g.isSpecialized and g.id~="first-steps"
+            and g.levelMin and g.levelMax and #g.steps>0
+            and (g.generatedChapter or not splitParents[g.id]) then
+            g.factionProgression=true
+            if faction=="Alliance" then g.allianceProgression=true else g.hordeProgression=true end
+            inventory.chapters[#inventory.chapters+1]=g.id
+            for level=math.max(1,g.levelMin),math.min(60,g.levelMax) do
+                inventory.coverage[level]=(inventory.coverage[level] or 0)+1
+            end
+        end
+    end
+    table.sort(inventory.chapters)
+    for level=1,60 do
+        if not inventory.coverage[level] then inventory.gaps[#inventory.gaps+1]=level end
+    end
+    return inventory
+end
+ns.allianceProgression=buildProgression("Alliance")
+ns.hordeProgression=buildProgression("Horde")
