@@ -172,6 +172,12 @@ function Zones:ChapterOption()
     if not current or current.faction~=faction then return nil end
     local chapters=faction=="Alliance" and alliance or faction=="Horde" and horde
     local link=chapters and chapters[current.id]
+    if current.generatedChapter and current.nextChapterId then
+        local nextGuide=guides:GetGuide(current.nextChapterId)
+        if nextGuide and nextGuide.id==current.nextChapterId then
+            link={id=nextGuide.id,level=nextGuide.levelMin}
+        end
+    end
     local level=type(UnitLevel)=="function" and UnitLevel("player")
     if not link or type(level)~="number" or level<link.level then return nil end
     local target=guides:GetGuide(link.id)
@@ -186,7 +192,7 @@ function Zones:ChapterOption()
         if not step.optional and not saved.completed[step.id or i]
             and not (saved.skipped and saved.skipped[step.id or i]) then return nil end
     end
-    return {id=target.id,title=target.zone or target.title,reason="Next "..faction.." chapter",chapter=true}
+    return {id=target.id,title=target.generatedChapter and target.title or target.zone or target.title,reason="Next "..faction.." chapter",chapter=true}
 end
 
 function Zones:Options(force)
