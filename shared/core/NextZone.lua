@@ -170,6 +170,10 @@ function Zones:ChapterOption()
     local current=guides and guides:GetGuide()
     local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
     if not current or current.faction~=faction then return nil end
+    if current.generatedChapter or current.factionProgression or current.allianceProgression then
+        local level=type(UnitLevel)=="function" and UnitLevel("player")
+        return type(level)=="number" and self:OptimizedChapter(current,level) or nil
+    end
     local chapters=faction=="Alliance" and alliance or faction=="Horde" and horde
     local link=chapters and chapters[current.id]
     if current.generatedChapter and current.nextChapterId then
@@ -320,12 +324,18 @@ end
 
 function Zones:Switch(id)
     local current=ns.Modules.Guides:GetGuide()
+    local function switchWithTravel()
+        local ok,message=ns.Modules.SmartRoutes:Switch(id,"recommended")
+        local travel=ns.Modules.Travel
+        if ok and travel and travel.StartChapter then travel:StartChapter(current) end
+        return ok,message
+    end
     local chapter=not (current and (current.generatedChapter or current.factionProgression or current.allianceProgression)) and self:ChapterOption()
     if chapter and chapter.id==id then
-        return ns.Modules.SmartRoutes:Switch(id,"recommended")
+        return switchWithTravel()
     end
     for _,option in ipairs(self:Options(true)) do
-        if option.id==id then return ns.Modules.SmartRoutes:Switch(id,"recommended") end
+        if option.id==id then return switchWithTravel() end
     end
     return false,"That recommendation changed or your flight has not settled yet. Use the Guide Library to switch manually."
 end
