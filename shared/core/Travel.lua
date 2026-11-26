@@ -4,6 +4,7 @@ local Travel={}
 ns:RegisterModule("Travel",Travel)
 local function selected()
     local guides=ns.Modules.Guides
+    if not guides or type(guides.CurrentStep)~="function" or type(guides.GetGuide)~="function" then return nil,nil end
     local step=guides:CurrentStep()
     local nav=ns.Modules.Navigator
     if nav and nav.overrideIndex then step=guides:GetSteps()[nav.overrideIndex] end
