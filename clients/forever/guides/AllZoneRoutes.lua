@@ -193,9 +193,10 @@ local function convert(guide)
         node.point=knownPoint(guide,node.accept,record)
         local required,any=prerequisites(node.accept,record)
         node.required,node.any=required,any
-        node.level=tonumber(node.accept.level) or guide.levelMin or 1
+        local catalog=(ns.foreverDBQuests or {})[node.id]
+        node.level=(catalog and catalog.source=="forever" and tonumber(catalog.level) and catalog.level>0 and catalog.level<=60 and catalog.level) or tonumber(node.accept.level) or guide.levelMin or 1
         local requirements=(ns.foreverQuestRequirements or {})[node.id]
-        node.minLevel=requirements and requirements.minLevel or nil
+        node.minLevel=requirements and requirements.minLevel or (catalog and catalog.source=="forever" and catalog.minLevel) or nil
         local beyond=(guide.levelMax and node.level>guide.levelMax+2)
             or (guide.levelMax and node.minLevel and node.minLevel>guide.levelMax+2)
         local external=false
@@ -361,7 +362,7 @@ end
 -- of its source ordering. The original zone guide remains available.
 local function generateChapters(guide)
     if not guide.routeCircuits or not guide.levelMin or not guide.levelMax
-        or guide.levelMax<=10 or not guide.faction then return {} end
+        or not guide.faction then return {} end
     local chapters, current, circuit, previousBand = {}, nil, nil, nil
     local function flush()
         if current and #current.steps>0 then chapters[#chapters+1]=current end
@@ -405,7 +406,7 @@ local function generateChapters(guide)
     if circuit then addCircuit(circuit) end
     flush()
     -- A single chapter adds no meaningful alternative to the original.
-    if #chapters<2 then return {} end
+    if #chapters<2 and guide.faction~="Alliance" then return {} end
     for i,chapter in ipairs(chapters) do
         chapter.chapterIndex=i
         chapter.chapterCount=#chapters
@@ -430,3 +431,31 @@ for _,chapter in ipairs(generated) do
     ns.starterGuides[#ns.starterGuides+1]=chapter
 end
 stats.chapters=#generated
+
+-- Alliance progression inventory includes curated routes and single-band zones.
+-- Keep them selectable without rewriting their authored steps or saved keys.
+-- Only leveling guides with a declared Alliance faction participate.
+local allianceProgression={chapters={},coverage={},gaps={}}
+local splitParents={}
+for _,g in ipairs(ns.starterGuides or {}) do
+    if g.generatedChapter and g.faction=="Alliance" then splitParents[g.parentGuideId]=true end
+end
+for _,g in ipairs(ns.starterGuides or {}) do
+    if g.faction=="Alliance" and not g.isProfession and not g.isDungeon
+        and not g.isOptional and not g.isSpecialized and g.id~="first-steps"
+        and g.levelMin and g.levelMax and #g.steps>0
+        and (g.generatedChapter or not splitParents[g.id]) then
+        g.allianceProgression=true
+        allianceProgression.chapters[#allianceProgression.chapters+1]=g.id
+        for level=math.max(1,g.levelMin),math.min(60,g.levelMax) do
+            allianceProgression.coverage[level]=(allianceProgression.coverage[level] or 0)+1
+        end
+    end
+end
+table.sort(allianceProgression.chapters)
+for level=1,60 do
+    if not allianceProgression.coverage[level] then
+        allianceProgression.gaps[#allianceProgression.gaps+1]=level
+    end
+end
+ns.allianceProgression=allianceProgression
