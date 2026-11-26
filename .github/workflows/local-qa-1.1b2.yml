@@ -1,0 +1,28 @@
+name: WayForth 1.1b2 local QA
+on:
+  push:
+    branches: ['rebuild/1.1']
+    paths: ['.github/workflows/local-qa-1.1b2.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa:
+    if: github.ref == 'refs/heads/rebuild/1.1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Lua syntax
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lua5.1
+          find shared clients/forever -name '*.lua' -print0 | xargs -0 -n1 luac5.1 -p
+      - name: Stamp QA version and package
+        run: |
+          python3 scripts/forever_version.py stamp 1.1b2
+          python3 scripts/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WayForth-Forever-1.1b2-LOCAL-QA
+          path: dist/WayForth-Forever-1.1b2.zip
+          if-no-files-found: error
