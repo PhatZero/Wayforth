@@ -256,10 +256,10 @@ for _, step in ipairs(allSteps) do step.mapId = 2521 end
 ns.starterGuides[#ns.starterGuides + 1] = {
     id = "zephras-alliance", title = "Skyborne: Zephras Isle (Alliance)",
     description = "High Order leveling route, roughly levels 1-13. Confirm optional quests in your live quest log.",
-    faction = "Alliance", steps = allSteps, legacySteps=legacySteps,
+    faction = "Alliance", levelMin=1, levelMax=13, zone="Zephras Isle", steps = allSteps, legacySteps=legacySteps,
 }
 ns.starterGuides[#ns.starterGuides + 1] = {
     id = "zephras-horde", title = "Skyborne: Zephras Isle (Horde)",
     description = "Windshaper leveling route, roughly levels 1-13. Confirm optional quests in your live quest log.",
-    faction = "Horde", steps = allSteps, legacySteps=legacySteps,
+    faction = "Horde", levelMin=1, levelMax=13, zone="Zephras Isle", steps = allSteps, legacySteps=legacySteps,
 }
