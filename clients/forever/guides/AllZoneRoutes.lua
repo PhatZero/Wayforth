@@ -69,9 +69,15 @@ end
 
 local function near(a,b)
     if not a or not b then return false end
-    if a.mapId and b.mapId and a.mapId~=b.mapId then return false end
+    if not a.mapId or not b.mapId or a.mapId~=b.mapId then return false end
     local dx,dy=a.x-b.x,a.y-b.y
     return dx*dx+dy*dy<=144 -- 12% of a zone map is a modest pickup circuit.
+end
+
+local function distance(a,b)
+    if not a or not b or not a.mapId or a.mapId~=b.mapId then return math.huge end
+    local dx,dy=a.x-b.x,a.y-b.y
+    return dx*dx+dy*dy
 end
 
 local function dependsOn(dependent,parent)
@@ -95,10 +101,6 @@ local function canRelease(node, completed, nodes)
     return not internal or oneMet
 end
 
-local starterZones={
-    ["alliance-elwynn"]=true,["alliance-dun-morogh"]=true,["alliance-teldrassil"]=true,
-    ["horde-durotar"]=true,["horde-mulgore"]=true,["horde-tirisfal-glades"]=true,
-}
 -- Only group identical source NPC endpoints, not merely nearby quest givers.
 local function endpoint(guide,node,role)
     local found
@@ -114,7 +116,6 @@ local function endpoint(guide,node,role)
     return found
 end
 local function groupVisits(guide,batch,role,output)
-    if not starterZones[guide.id] then return end
     local action=role=="pickup" and "accept" or "turnin"
     local first=#output-#batch+1
     local previous,start
@@ -137,7 +138,7 @@ local function createCircuit(guide, batch, output, chapter, nodes)
     -- Every pickup is listed before leaving the hub. Never silently pick up
     -- a quest behind its unturned-in prerequisite inside the same batch.
     for _,node in ipairs(batch) do
-        local step=node.accept
+        local step=copyStep(node.accept)
         step.routeChapter=chapter
         step.optional=node.optional or nil
         output[#output+1]=step
@@ -160,7 +161,7 @@ local function createCircuit(guide, batch, output, chapter, nodes)
         end
     end
     for _,node in ipairs(batch) do
-        local step=node.turnin
+        local step=copyStep(node.turnin)
         step.routeChapter=chapter
         step.optional=node.optional or nil
         output[#output+1]=step
@@ -254,8 +255,8 @@ local function convert(guide)
         table.sort(candidates,function(a,b)
             if a.level~=b.level then return a.level<b.level end
             if currentPoint then
-                local an,bn=near(a.point,currentPoint),near(b.point,currentPoint)
-                if an~=bn then return an end
+                local ad,bd=distance(a.point,currentPoint),distance(b.point,currentPoint)
+                if ad~=bd then return ad<bd end
             end
             return a.sourceIndex<b.sourceIndex
         end)
@@ -276,6 +277,7 @@ local function convert(guide)
                     if remaining[node.id] and not not node.optional==optional then
                         first=node
                         node.routeUnverified=true
+                        node.accept=copyStep(node.accept)
                         node.accept.routeWarning="Source prerequisite graph unresolved; confirm quest availability before continuing."
                         stats.deferred=stats.deferred+1
                         break
@@ -304,7 +306,17 @@ local function convert(guide)
                 ..tostring(hub).." (around level "..tostring(first.level)..")"
             createCircuit(guide,batch,output,chapter,nodes)
             stats.circuits=stats.circuits+1
-            currentPoint=first.point or currentPoint
+            -- The next circuit starts at the last verified turn-in, not at the pickup.
+            local last=batch[#batch]
+            local lastPoint
+            for _,point in ipairs(last.record and last.record.turnin or {}) do
+                if (not point.faction or point.faction==guide.faction)
+                    and type(point.mapId)=="number" and type(point.x)=="number" and type(point.y)=="number" then
+                    if lastPoint then lastPoint=nil;break end
+                    lastPoint=point
+                end
+            end
+            currentPoint=lastPoint
             for _,node in ipairs(batch) do
                 remaining[node.id]=nil
                 done[node.id]=true
