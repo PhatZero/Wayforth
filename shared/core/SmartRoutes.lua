@@ -278,6 +278,11 @@ function Routes:Preview(id, mode)
     if mode == "resume" then
         return saved.current, "Resume the saved position; completed quests remain completed."
     end
+    -- A generated chapter may begin with a prerequisite in another zone.
+    -- Explicit From Beginning still opens it; the tracker shows the blocker.
+    if mode=="beginning" and guide.generatedChapter then
+        return 1,"Start at the first chapter step; resolve any displayed prerequisite before proceeding."
+    end
 
     local settings = ns.Modules.Database
     if settings and settings:Get("simpleStepReader") == true then
