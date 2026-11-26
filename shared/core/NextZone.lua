@@ -195,6 +195,75 @@ function Zones:ChapterOption()
     return {id=target.id,title=target.generatedChapter and target.title or target.zone or target.title,reason="Next "..faction.." chapter",chapter=true}
 end
 
+-- Rank original generated chapters using live quest evidence, not estimated
+-- XP or invented inter-zone distances. Only recommend after a safe handoff.
+function Zones:OptimizedChapter(current,level)
+    local guides,routes=ns.Modules.Guides,ns.Modules.SmartRoutes
+    if not current or not current.generatedChapter or not routes then return nil end
+    local faction=type(UnitFactionGroup)=="function" and UnitFactionGroup("player")
+    if not faction or current.faction~=faction then return nil end
+    local states={}
+    local function state(id)
+        if not states[id] then states[id]=routes:QuestState(id) end
+        return states[id]
+    end
+    local saved=guides:GetProgress(current.id)
+    if not saved then return nil end
+    for i,step in ipairs(guides:GetSteps(current.id)) do
+        local q=step.questId and state(step.questId)
+        -- Do not strand active quests even when their steps were skipped.
+        if q and q.active and not q.turnedIn then return nil end
+        if not step.optional and not (q and q.turnedIn)
+            and not saved.completed[step.id or i]
+            and not (saved.skipped and saved.skipped[step.id or i]) then return nil end
+    end
+    local map=C_Map and type(C_Map.GetBestMapForUnit)=="function"
+        and C_Map.GetBestMapForUnit("player") or nil
+    local best
+    for _,g in ipairs(routes:ListGuides()) do
+        if g.generatedChapter and g.id~=current.id and g.faction==faction
+            and not g.isOptional and not g.isDungeon and not g.isProfession
+            and g.levelMin and g.levelMax and level>=g.levelMin and level<=g.levelMax then
+            local steps=guides:GetSteps(g.id)
+            local progress=guides:GetProgress(g.id)
+            local index=progress and routes:Preview(g.id,"recommended")
+            local candidate=index and steps[index]
+            -- Preview must actually lead to actionable unfinished work.
+            local q=candidate and candidate.questId and state(candidate.questId)
+            if candidate and not candidate.optional and q and not q.turnedIn
+                and not progress.completed[candidate.id or index]
+                and not (progress.skipped and progress.skipped[candidate.id or index])
+                and not routes:BlockedReason(candidate,steps)
+                and not (guides.ConditionReason and guides:ConditionReason(candidate,g.id)) then
+                local count,active,seen=0,0,{}
+                for i,step in ipairs(steps) do
+                    if step.questId and not step.optional and not seen[step.questId]
+                        and not progress.completed[step.id or i]
+                        and not (progress.skipped and progress.skipped[step.id or i]) then
+                        seen[step.questId]=true
+                        local status=state(step.questId)
+                        if not status.turnedIn then
+                            count=count+1
+                            if status.active then active=active+1 end
+                        end
+                    end
+                end
+                local travel=(map and candidate.mapId==map) and 0
+                    or g.zone==current.zone and 2
+                    or g.continent and current.continent and g.continent==current.continent and 6
+                    or 15
+                local score=travel+math.abs(level-(g.levelMin+g.levelMax)/2)
+                    -math.min(count,10)*0.25-math.min(active,5)*8
+                if not best or score<best.score or score==best.score and g.id<best.id then
+                    best={id=g.id,title=g.title,reason="Recommended level-appropriate chapter",
+                        chapter=true,score=score}
+                end
+            end
+        end
+    end
+    return best
+end
+
 function Zones:Options(force)
     -- This must run before consulting the short-lived recommendation cache.
     -- force bypasses ranking cache only; it cannot bypass flight safety.
@@ -207,7 +276,16 @@ function Zones:Options(force)
     local now=clock()
     local cacheKey=current.id..":"..level
     if not force and now and self.cache and self.cache.key==cacheKey and now-self.cache.time<2 then return self.cache.options end
-    local chapter=self:ChapterOption()
+    local chapter
+    if current.generatedChapter then
+        chapter=self:OptimizedChapter(current,level)
+        -- Generated routes must not fall back to legacy suggestions that can
+        -- bypass the active quest and chapter completion safety gates.
+        local options=chapter and {chapter} or {}
+        if now then self.cache={key=cacheKey,time=now,options=options} end
+        return options
+    end
+    chapter=self:ChapterOption()
     if chapter then return {chapter} end
     local reason=finished(current) and "Guide complete" or nil
     local steps=guides:GetSteps()
@@ -241,7 +319,8 @@ function Zones:Options(force)
 end
 
 function Zones:Switch(id)
-    local chapter=self:ChapterOption()
+    local current=ns.Modules.Guides:GetGuide()
+    local chapter=not (current and current.generatedChapter) and self:ChapterOption()
     if chapter and chapter.id==id then
         return ns.Modules.SmartRoutes:Switch(id,"recommended")
     end
