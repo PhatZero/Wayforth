@@ -6,6 +6,87 @@ local _, ns = ...
 local stats = {converted=0, preserved=0, quests=0, circuits=0, deferred=0}
 ns.zoneRouteBuildStats = stats
 
+-- Independent gap review: factual IDs observed by ForeverDB. Entries are
+-- attached to the existing faction-zone guide, never a duplicate zone guide.
+-- Optional because live eligibility, exclusive alternatives and travel need
+-- a real player check. Source chain corrections: QuestieDB c6745129.
+local coverageAdditions={
+    ["alliance-dun-morogh"]={291,311,312,313,315,317,319,320,400,413,414,417,432,433,2160,3364,3365,5541,95212,96390,96392,96408,96608,96628,97277,98321,99160,99161,99162},
+    ["alliance-teldrassil"]={488,489,490,917,918,919,922,923,930,931,937,938,940,2459,4495,96606,96630,98391,98392,98398,99046,99047},
+    ["alliance-ashenvale"]={1038,1039},
+    ["alliance-darkshore"]={6341,6342,98461},
+    ["alliance-loch-modan"]={6387,6388,6391,6392},
+    ["alliance-elwynn"]={95998,96627},
+    ["alliance-westfall"]={6181,6261,6281,6285},
+    ["horde-mulgore"]={854},
+    ["horde-the-barrens"]={6361,6362,6363,6364},
+    ["horde-ashenvale"]={6562},
+    ["horde-hillsbrad-foothills"]={93680},
+}
+local coveragePrerequisites={
+    [291]={287,98323},[96390]={96392},[96392]={96408},
+    [96608]={96628},[96628]={282},[99160]={99159},[99161]={99160},[99162]={99159},
+    [96606]={96630},[96630]={921},[98392]={937},[98398]={98392},[940]={98398},
+    [99047]={99046},[95998]={96627},[96627]={21},
+}
+local function observedCoveragePoint(entry,role)
+    local p=entry and entry[role]
+    if entry and entry.source=="forever" and p and p.source=="ForeverDB: seen in WoW Forever"
+        and (p.kind=="npc" or p.kind=="object") and type(p.mapId)=="number" and p.mapId>0
+        and type(p.x)=="number" and p.x>0 and p.x<100
+        and type(p.y)=="number" and p.y>0 and p.y<100 then return p end
+end
+local function coveredFaction(entry,faction)
+    return entry and (entry.side=="both" or entry.side==(faction=="Alliance" and "a" or "h"))
+end
+local function coverageStep(guide,id,entry,action,required,any)
+    local role=action=="accept" and "pickup" or action
+    local point=observedCoveragePoint(entry,role)
+    local label=action=="accept" and "Pick up: " or action=="objective" and "Work on: " or "Complete: "
+    local instruction
+    if action=="accept" then
+        instruction="Accept "..entry.name.." from "..(point and point.name or "the quest source").." if offered."
+    elseif action=="turnin" then
+        instruction="Return to "..(point and point.name or "the quest recipient").." when the live quest is ready."
+    else
+        instruction="Complete the remaining objectives shown in your quest log."
+    end
+    return {id="coverage-"..guide.id.."-"..id.."-"..action,questId=id,action=action,
+        title=label..entry.name,text=instruction,zone=guide.zone,level=entry.level or guide.levelMin,
+        minLevel=entry.minLevel,requires=required,requiresAny=any,optional=true,coverageSupplement=true,
+        x=point and point.x,y=point and point.y,mapId=point and point.mapId,hub=point and point.name,
+        locationSource=point and point.source,useLiveInstructions=action=="objective" or nil,
+        sourceStatus="Observed ForeverDB factual quest coverage; live eligibility and travel pending"}
+end
+stats.supplemental=0
+for _,guide in ipairs(ns.starterGuides or {}) do
+    local ids=coverageAdditions[guide.id]
+    if ids then
+        local present={}
+        for _,step in ipairs(guide.steps or {}) do
+            if step.questId then present[step.questId]=true end
+        end
+        for _,id in ipairs(ids) do
+            local entry=(ns.foreverDBQuests or {})[id]
+            if not present[id] and coveredFaction(entry,guide.faction) and entry.zone==guide.zone
+                and observedCoveragePoint(entry,"pickup") and observedCoveragePoint(entry,"turnin") then
+                local rules=(ns.foreverQuestRequirements or {})[id]
+                local required=coveragePrerequisites[id] or (rules and rules.requires)
+                local any=not required and rules and rules.requiresAny or nil
+                if not required and not any and entry.previous and #entry.previous==1 then required=entry.previous end
+                local phases=guide.routeStyle and {"accept","objective","turnin"} or {"accept","turnin"}
+                for _,action in ipairs(phases) do
+                    local step=coverageStep(guide,id,entry,action,required,any)
+                    if guide.routeStyle then step.routeChapter="Optional source-backed quest: "..entry.name end
+                    guide.steps[#guide.steps+1]=step
+                end
+                present[id]=true
+                stats.supplemental=stats.supplemental+1
+            end
+        end
+    end
+end
+
 local function validQuestGuide(guide)
     if not guide or guide.isProfession or guide.isDungeon
         or guide.id=="first-steps" or guide.routeStyle
@@ -149,7 +230,7 @@ local function createCircuit(guide, batch, output, chapter, nodes, circuitId, ch
     -- The reader's original stable objective keys survive the migration.
     -- Objective destination and quantities come from actual source metadata.
     for _,node in ipairs(batch) do
-        if node.record and node.record.hasObjective then
+        if (node.record and node.record.hasObjective) or node.accept.coverageSupplement then
             local step=copyStep(node.turnin)
             step.id=node.turnin.id.."-objective"
             step.action="objective"
@@ -211,7 +292,7 @@ local function convert(guide)
         local label=tostring(node.accept.title or "")
         local specialty=label:find("Camping 101:",1,true)
             or label:find("Alchemy",1,true) and label:find("My First",1,true)
-        node.optional=beyond or external or specialty or node.accept.class
+        node.optional=node.accept.optional or beyond or external or specialty or node.accept.class
             or node.accept.races or (record and (record.hidden or record.startItem))
             or (not node.point) or nil
         node.routeReason=beyond and "Higher-level optional quest"
