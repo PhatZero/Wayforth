@@ -136,6 +136,15 @@ function Guides:GetSteps(id, legacy)
                     resolved.requiresAny=requirements.requiresAny
                 end
             end
+            local catalogEntry=(ns.foreverDBQuests or {})[resolved.questId]
+            -- Only observed Forever metadata supplements missing minimum levels.
+            -- Do not assume an unknown/Classic level is a Forever requirement.
+            if catalogEntry and catalogEntry.source=="forever" then
+                local minimum=catalogEntry.minLevel
+                if not resolved.minLevel and type(minimum)=="number" and minimum>=1 and minimum<=60 then
+                    resolved.minLevel=minimum
+                end
+            end
             if locations then locations:Apply(resolved, guide, currentMap) end
             visible[#visible + 1] = resolved
         end
