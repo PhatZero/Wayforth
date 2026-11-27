@@ -193,3 +193,32 @@ for _,pair in ipairs({{33,5261},{92124,91741},{91743,92124},{91745,91743},
     assert(step.requires and step.requires[1]==pair[2],"Missing authored chain "..pair[1])
 end
 print("ForeverDB phase fallback and repaired Elwynn quest chains passed")
+
+-- Full manifest: new Skyborne story phases must have the correct faction and
+-- order. Keep the older class checkpoints and saved step IDs in place.
+local function phaseIndex(id,qid,action)
+    for i,step in ipairs(guides:GetSteps(id)) do
+        if step.questId==qid and step.action==action then return i end
+    end
+end
+for _,id in ipairs({"zephras-alliance","zephras-horde"}) do
+    for _,qid in ipairs({92464,92465,92469,92470,92471,92472,92517,92528,92529,92550,93036,93926,93927,93948}) do
+        local a,t=phaseIndex(id,qid,"accept"),phaseIndex(id,qid,"turnin")
+        assert(a and t and a<t,"Incomplete Skyborne quest "..qid.." in "..id)
+    end
+    local legacy=guides:GetGuide(id).legacySteps
+    local keys={}
+    for _,step in ipairs(guides:GetGuide(id).steps) do
+        assert(not keys[step.id],"Duplicate Skyborne step "..step.id)
+        keys[step.id]=true
+    end
+    for _,step in ipairs(legacy) do assert(keys[step.id],"Lost Skyborne step "..step.id) end
+end
+assert(phaseIndex("zephras-alliance",92701,"accept"))
+assert(not phaseIndex("zephras-horde",92701,"accept"))
+assert(phaseIndex("zephras-horde",92579,"accept"))
+assert(not phaseIndex("zephras-alliance",92579,"accept"))
+assert(phaseIndex("zephras-horde",93737,"turnin"))
+assert(phaseIndex("zephras-horde",93746,"turnin"))
+assert(ns.zoneRouteBuildStats.supplemental>0,"Additional zone coverage was not loaded")
+print("Expanded Skyborne quest phases, faction branches and saved keys passed")
