@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-27",
+  "scope": "Leveling and dungeon quest facts only; no crafting or profession data. Offline review only; not loaded by addon.",
+  "source": "https://github.com/Ludovicus-Maior/WoW-Pro-Guides/tree/main/WoWPro_Leveling/Forever",
+  "sourceLicense": "https://github.com/Ludovicus-Maior/WoW-Pro-Guides/blob/main/License.md",
+  "rules": "IDs and prerequisite edges are discovery candidates, not confirmed dungeon associations or faction eligibility; groups identify source guide context, not quest faction. Some IDs are outdoor lead-up or follow-up quests. Do not copy route or prose. Validate independently before runtime integration.",
+  "levelingReview": {
+    "routeFilesChecked": 16,
+    "nonCraftingMissingStaticPhasesWithUsableMatch": 0,
+    "excluded": "Crafting, supplies-only and reputation-only objectives; player-position markers are not static points."
+  },
+  "existingDungeonManifestIds": [
+    96393,
+    96394,
+    96403,
+    96395
+  ],
+  "candidateGroups": [
+    {
+      "dungeon": "Deadmines",
+      "sourceFaction": "Alliance",
+      "path": "Alliance/14_24_Dungeon_Deadmines.lua",
+      "questIds": [
+        65,
+        132,
+        135,
+        141,
+        142,
+        155,
+        166,
+        167,
+        168,
+        214,
+        2040,
+        92742,
+        92744
+      ],
+      "prerequisiteCandidates": {
+        "132": [
+          65
+        ],
+        "135": [
+          132
+        ],
+        "141": [
+          135
+        ],
+        "142": [
+          141
+        ],
+        "155": [
+          142
+        ],
+        "166": [
+          155
+        ],
+        "214": [
+          155
+        ]
+      }
+    },
+    {
+      "dungeon": "Hall of Thanes",
+      "sourceFaction": "Alliance",
+      "path": "Alliance/13_20_Dungeon_HoT.lua",
+      "questIds": [
+        96390,
+        96391,
+        96392,
+        96393,
+        96394,
+        96395,
+        96403,
+        96408,
+        98423
+      ],
+      "prerequisiteCandidates": {}
+    },
+    {
+      "dungeon": "Ruins of Lordaeron",
+      "sourceFaction": "Alliance",
+      "path": "Alliance/15_20_Dungeon_Ruins_of_Lordaeron.lua",
+      "questIds": [
+        92415,
+        95161,
+        95189,
+        95195,
+        95250
+      ],
+      "prerequisiteCandidates": {
+        "95161": [
+          92415
+        ]
+      }
+    },
+    {
+      "dungeon": "Ruins of Lordaeron",
+      "sourceFaction": "Horde",
+      "path": "Horde/15_20_Dungeon_Ruins_of_Lordaeron.lua",
+      "questIds": [
+        356,
+        447,
+        450,
+        451,
+        92401,
+        92421,
+        92422,
+        95204,
+        95216,
+        97288,
+        97289,
+        97290,
+        97291,
+        97292,
+        99156
+      ],
+      "prerequisiteCandidates": {
+        "450": [
+          447
+        ],
+        "451": [
+          450
+        ],
+        "92422": [
+          99156
+        ],
+        "95216": [
+          451
+        ],
+        "97289": [
+          97288
+        ],
+        "97290": [
+          97289
+        ],
+        "97291": [
+          97290
+        ],
+        "97292": [
+          97291
+        ],
+        "99156": [
+          356
+        ]
+      }
+    },
+    {
+      "dungeon": "Ragefire Chasm",
+      "sourceFaction": "Horde",
+      "path": "Horde/9_19_Dungeon_Ragefire_Chasm.lua",
+      "questIds": [
+        5722,
+        5723,
+        5724,
+        5725,
+        5726,
+        5727,
+        5728,
+        5761
+      ],
+      "prerequisiteCandidates": {
+        "5727": [
+          5726
+        ],
+        "5728": [
+          5727
+        ]
+      }
+    },
+    {
+      "dungeon": "Wailing Caverns",
+      "sourceFaction": "Horde",
+      "path": "Horde/15_24_Dungeon_Wailing_Caverns.lua",
+      "questIds": [
+        865,
+        870,
+        877,
+        880,
+        886,
+        914,
+        959,
+        962,
+        1486,
+        1487,
+        1489,
+        1490,
+        1491
+      ],
+      "prerequisiteCandidates": {
+        "877": [
+          870
+        ],
+        "880": [
+          877
+        ],
+        "914": [
+          1490
+        ],
+        "1489": [
+          880
+        ],
+        "1490": [
+          1489
+        ],
+        "1491": [
+          865
+        ]
+      }
+    },
+    {
+      "dungeon": "Shadowfang Keep",
+      "sourceFaction": "Horde",
+      "path": "Horde/18_28_Dungeon_Shadowfang_Keep.lua",
+      "questIds": [
+        1013,
+        1014,
+        1098
+      ],
+      "prerequisiteCandidates": {}
+    },
+    {
+      "dungeon": "Stormwind Stockade",
+      "sourceFaction": "Alliance",
+      "path": "Alliance/22_30_Dungeon_The_Stockade.lua",
+      "questIds": [
+        303,
+        377,
+        378,
+        386,
+        387,
+        388,
+        389,
+        391
+      ],
+      "prerequisiteCandidates": {
+        "389": [
+          373
+        ],
+        "391": [
+          389
+        ]
+      }
+    }
+  ],
+  "independentlyObserved": [
+    {
+      "id": 5723,
+      "dungeon": "Ragefire Chasm",
+      "source": "https://foreverdb.net/quest/5723-testing-an-enemys-strength",
+      "pickup": {
+        "mapId": 1456,
+        "x": 70.7,
+        "y": 31.6,
+        "npc": "Rahauro"
+      },
+      "turnin": {
+        "mapId": 1456,
+        "x": 70.6,
+        "y": 31.4,
+        "npc": "Rahauro"
+      },
+      "status": "Forever player observations; runtime not integrated"
+    },
+    {
+      "id": 5761,
+      "dungeon": "Ragefire Chasm",
+      "source": "https://foreverdb.net/quest/5761-slaying-the-beast",
+      "pickup": {
+        "mapId": 1454,
+        "x": 49.6,
+        "y": 50.5,
+        "npc": "Neeru Fireblade"
+      },
+      "turnin": {
+        "mapId": 1454,
+        "x": 49.6,
+        "y": 50.5,
+        "npc": "Neeru Fireblade"
+      },
+      "status": "Forever player observations; runtime not integrated"
+    },
+    {
+      "id": 92422,
+      "dungeon": "Ruins of Lordaeron",
+      "source": "https://foreverdb.net/quest/92422-the-wrath-of-rathmael",
+      "status": "Dungeon association confirmed; exact chain needs independent verification"
+    },
+    {
+      "id": 95216,
+      "dungeon": "Ruins of Lordaeron",
+      "source": "https://foreverdb.net/quest/95216-the-new-plague",
+      "status": "Dungeon association confirmed; exact chain needs independent verification"
+    }
+  ],
+  "hotfixEvidence": "https://foreverdb.net/article/ruins-of-lordaeron-horde-quest-prerequisites"
+}
