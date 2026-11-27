@@ -52,7 +52,7 @@ local function coverageStep(guide,id,entry,action,required,any)
     else
         instruction="Complete the remaining objectives shown in your quest log."
     end
-    return {id="coverage-"..guide.id.."-"..id.."-"..action,questId=id,action=action,
+    return {id="coverage-"..guide.id.."-"..id.."-"..(action=="objective" and "turnin-objective" or action),questId=id,action=action,
         title=label..entry.name,text=instruction,zone=guide.zone,level=entry.level or guide.levelMin,
         minLevel=entry.minLevel,requires=required,requiresAny=any,optional=true,coverageSupplement=true,
         x=point and point.x,y=point and point.y,mapId=point and point.mapId,hub=point and point.name,
