@@ -353,7 +353,7 @@ function UI:GuideRow(prefix, id, x, y, width)
     if details.SetWordWrap then details:SetWordWrap(false) end
 end
 -- Rich Guide Library row, deliberately separate from the compact dashboard lists.
-function UI:LibraryCard(prefix, id, x, y, width)
+function UI:LibraryCard(prefix, id, x, y, width, family)
     local guide = safeGuide(id)
     if not guide then return end
     local guides = ns.Modules.Guides
@@ -371,12 +371,13 @@ function UI:LibraryCard(prefix, id, x, y, width)
     self:Surface(prefix.."card", x, y, width, 53, active)
     local zephras = (guide.zone or guide.title or ""):find("Zephras",1,true)
     self:Art(prefix.."art", zephras and 1 or 2, x+5, y+5, 45, 43)
-    self:Label(prefix.."title", guide.title or guide.zone or "Guide",
+    self:Label(prefix.."title", family and family.name or self:LibraryDisplayName(guide),
         x+61, y+7, width-253, 13, theme.ivory)
     local meta = tostring(guide.continent or "Starter Zones")
     if guide.levelMin then
         meta = meta .. (guide.levelRangeEstimate and "  |  Est. levels " or "  |  Levels ") .. guide.levelMin .. "-" .. (guide.levelMax or "?")
     end
+    if family and #family.members > 1 then meta = meta .. "  |  " .. (#family.members-1) .. " chapters" end
     if guide.isDungeon then meta = "DUNGEON  |  PARTIAL QUEST COVERAGE" end
     if guide.testingOnly then meta = meta .. (guide.limitedData and "  |  LIMITED DATA" or "  |  SOURCE TEST") end
     self:Label(prefix.."meta", meta, x+61, y+29, width-250, 10, theme.muted)
@@ -392,8 +393,14 @@ function UI:LibraryCard(prefix, id, x, y, width)
     end
     -- Whole card opens details; Favorites remains an independent action.
     self:Hit(prefix.."open",x+1,y+1,width-79,51,function()
-        UI.selectedGuideId=id
-        UI:ShowTab("Guide Details")
+        if family and #family.members > 1 then
+            UI.selectedGuideFamilyId=family.id
+            UI.familyPage=1
+            UI:ShowTab("Guide Family")
+        else
+            UI.selectedGuideId=id
+            UI:ShowTab("Guide Details")
+        end
     end)
     self:Button(prefix.."fav",favorite and "Saved" or "+ Fav",
         x+width-70,y+12,63,30,function()
@@ -417,6 +424,71 @@ function UI:FavoriteIds()
     table.sort(result)
     return result
 end
+-- Zone families are a presentation index only. The route engine, guide IDs,
+-- favorites and saved checkpoints continue to use the original records.
+local zoneNames = {
+    barrens="The Barrens", ["the barrens"]="The Barrens",
+    stonetalon="Stonetalon Mountains", ["stonetalon mountains"]="Stonetalon Mountains",
+    dustwallow="Dustwallow Marsh", ["dustwallow marsh"]="Dustwallow Marsh",
+    ungoro="Un'Goro Crater", ["un'goro"]="Un'Goro Crater", ["un'goro crater"]="Un'Goro Crater",
+    hyjal="Mount Hyjal", ["mount hyjal"]="Mount Hyjal",
+    elwynn="Elwynn Forest", ["elwynn forest"]="Elwynn Forest",
+}
+function UI:LibraryDisplayName(guide)
+    if guide.isProfession or guide.isDungeon or guide.isSpecialized or not guide.faction then
+        return guide.title or guide.zone or "Guide"
+    end
+    local zone=guide.zone or guide.title or "Guide"
+    zone=zoneNames[zone:lower()] or zone
+    if guide.generatedChapter then
+        return string.format("%d-%d %s",guide.levelMin,guide.levelMax,zone)
+    end
+    return zone
+end
+
+function UI:GuideFamilyKey(guide)
+    return guide.generatedChapter and guide.parentGuideId or guide.id
+end
+
+function UI:GuideFamilies()
+    local families,order={},{}
+    for _,guide in ipairs(ns.Modules.SmartRoutes:ListGuides("all")) do
+        local key=self:GuideFamilyKey(guide)
+        local family=families[key]
+        if not family then
+            family={id=key,members={},name=self:LibraryDisplayName(guide),representative=guide}
+            families[key]=family; order[#order+1]=family
+        end
+        family.members[#family.members+1]=guide
+        if not guide.generatedChapter then
+            family.representative=guide
+            family.name=self:LibraryDisplayName(guide)
+        end
+    end
+    for _,family in ipairs(order) do
+        table.sort(family.members,function(a,b)
+            if not not a.generatedChapter ~= not not b.generatedChapter then return not a.generatedChapter end
+            if (a.levelMin or 0)~=(b.levelMin or 0) then return (a.levelMin or 0)<(b.levelMin or 0) end
+            return a.id<b.id
+        end)
+    end
+    return families,order
+end
+
+function UI:FilteredGuideFamilies()
+    local families=self:GuideFamilies()
+    local result,seen={},{}
+    -- Existing filters/search still evaluate each chapter, so a level or
+    -- chapter-name match can surface its parent even if the parent did not match.
+    for _,guide in ipairs(self:FilterGuides()) do
+        local key=self:GuideFamilyKey(guide)
+        if not seen[key] and families[key] then
+            seen[key]=true;result[#result+1]=families[key]
+        end
+    end
+    return result
+end
+
 function UI:FilterGuides()
     local result, view = {}, self.guideView or "near"
 	local list = ns.Modules.SmartRoutes:ListGuides(view == "professions" and "professions" or view == "all" and "all" or nil)
@@ -424,7 +496,7 @@ function UI:FilterGuides()
     local search = (self.guideQuery or ""):lower()
     for _, guide in ipairs(list) do
         local region = guide.continent or ""
-        local name = ((guide.title or "") .. " " .. (guide.zone or "") .. " " .. region):lower()
+        local name = ((guide.title or "") .. " " .. (guide.zone or "") .. " " .. self:LibraryDisplayName(guide) .. " " .. region):lower()
         local accept = view == "all"
             or view == "dungeons" and guide.isDungeon
             or view == "near" and not guide.isDungeon and not guide.isProfession and guide.levelMin and guide.levelMax and level >= guide.levelMin - 2 and level <= guide.levelMax + 2
@@ -443,6 +515,7 @@ function UI:FilterGuides()
     end
     table.sort(result, function(a,b)
         local active = ns.char and ns.char.activeGuide
+        if a.id == b.id then return false end
         if a.id == active then return true end
         if b.id == active then return false end
         local amin, bmin = a.levelMin or 1, b.levelMin or 1
@@ -704,13 +777,16 @@ function UI:Refresh()
                 self.searchBox:Show()
             end
         end
-        local ids={}
+        local ids, familyRows={},{}
         if tab=="Favorites" then
             for _,id in ipairs(fave) do ids[#ids+1]=id end
         elseif tab=="Recently Used" then
             for _,id in ipairs(recent) do ids[#ids+1]=id end
         else
-            for _,guide in ipairs(self:FilterGuides()) do ids[#ids+1]=guide.id end
+            for _,family in ipairs(self:FilteredGuideFamilies()) do
+                local id=family.representative.id
+                ids[#ids+1]=id;familyRows[id]=family
+            end
         end
         local firstY=tab=="Guide Library" and 164 or 94
         local pageHeight=math.max(430,self.page:GetHeight() or 520)
@@ -722,7 +798,7 @@ function UI:Refresh()
             7,tab=="Guide Library" and 142 or 69,width-14,11,theme.muted)
         for i=1,perPage do
             local id=ids[(self.guidePage-1)*perPage+i]
-            if id then self:LibraryCard("library"..i,id,7,firstY+(i-1)*58,width-14) end
+            if id then self:LibraryCard("library"..i,id,7,firstY+(i-1)*58,width-14,familyRows[id]) end
         end
         if #ids==0 then
             self:Surface("emptyGuidesCard",7,firstY,width-14,96)
@@ -740,6 +816,40 @@ function UI:Refresh()
         if self.guidePage<pages then
             self:Button("guideNext","Next >",width-151,pagerY,142,30,function()
                 UI.guidePage=math.min(pages,(UI.guidePage or 1)+1);UI:Refresh()
+            end)
+        end
+
+    elseif tab == "Guide Family" then
+        local families=self:GuideFamilies()
+        local family=families[self.selectedGuideFamilyId]
+        if not family then self:ShowTab("Guide Library"); return end
+        self:Title(family.name, "Choose the full zone or an individual leveling chapter.",width)
+        local firstY=108
+        local pagerY=math.max(430,self.page:GetHeight() or 520)-39
+        local perPage=math.max(3,math.min(8,math.floor((pagerY-firstY-53)/58)+1))
+        local pages=math.max(1,math.ceil(#family.members/perPage))
+        self.familyPage=math.max(1,math.min(self.familyPage or 1,pages))
+        self:Button("familyBack","Back to Library",7,62,150,30,function() UI:ShowTab("Guide Library") end)
+        self:Label("familyCount",#family.members.." routes  |  Page "..self.familyPage.." of "..pages,175,70,width-190,11,theme.muted)
+        for i=1,perPage do
+            local guide=family.members[(self.familyPage-1)*perPage+i]
+            if guide then
+                local prefix="familyRoute"..i
+                local y=firstY+(i-1)*58
+                self:LibraryCard(prefix,guide.id,7,y,width-14)
+                if not guide.generatedChapter then
+                    self:Label(prefix.."title","Full Zone: "..family.name,68,y+7,width-267,13,theme.ivory)
+                end
+            end
+        end
+        if self.familyPage>1 then
+            self:Button("familyPrev","< Previous",7,pagerY,138,30,function()
+                UI.familyPage=math.max(1,UI.familyPage-1); UI:Refresh()
+            end)
+        end
+        if self.familyPage<pages then
+            self:Button("familyNext","Next >",width-151,pagerY,142,30,function()
+                UI.familyPage=math.min(pages,UI.familyPage+1); UI:Refresh()
             end)
         end
 
@@ -912,7 +1022,7 @@ function UI:Refresh()
         local band = selected.levelMin and
             ((selected.levelRangeEstimate and "Estimated Levels " or "Levels ") .. tostring(selected.levelMin) .. "-" .. tostring(selected.levelMax or "?")) or "All Levels"
         local playerLevel = type(UnitLevel)=="function" and UnitLevel("player") or 1
-        self:Title(selected.title or selected.zone or "Guide Details",
+        self:Title(self:LibraryDisplayName(selected),
             location .. "  |  " .. band .. "  |  Your level " .. tostring(playerLevel), width)
 
         -- Featured guide overview uses the existing illustrated WayForth atlas.
@@ -980,7 +1090,11 @@ function UI:Refresh()
         local actionY=math.max(420,pageHeight-43)
         local actionW=math.max(142,math.floor((width-32)/3))
         self:Button("detailBack","Back to Library",7,actionY,actionW,35,function()
-            UI:ShowTab("Guide Library")
+            local families=type(routing.ListGuides)=="function" and UI:GuideFamilies()
+            local family=families and families[UI:GuideFamilyKey(selected)]
+            if family and #family.members>1 then
+                UI.selectedGuideFamilyId=family.id; UI:ShowTab("Guide Family")
+            else UI:ShowTab("Guide Library") end
         end)
         self:Button("detailFavorite",guides:IsFavorite(selected.id) and "Remove Favorite" or "Add Favorite",
             14+actionW,actionY,actionW,35,function()
