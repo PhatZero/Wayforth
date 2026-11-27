@@ -58,7 +58,7 @@ for _, guide in ipairs(guides:List()) do
                             local guidance = ""
                             if step.objectiveSource then
                                 total.requirements = total.requirements + 1
-                                guidance = step.objectiveSource .. " (" .. step.objectiveKind .. "): " .. step.text
+                                guidance = tostring(step.objectiveSource) .. " (" .. tostring(step.objectiveKind or "requirements") .. "): " .. tostring(step.text or "")
                             end
                             gaps[#gaps + 1] = {guide.id, tostring(step.questId), questName(step), action, guidance}
                         end
