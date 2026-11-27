@@ -17,7 +17,7 @@ local coverageAdditions={
     ["alliance-darkshore"]={6341,6342,98461},
     ["alliance-loch-modan"]={6387,6388,6391,6392},
     ["alliance-elwynn"]={95998,96627},
-    ["alliance-westfall"]={6181,6261,6281,6285},
+    ["alliance-westfall"]={6181,6281,6261,6285},
     ["horde-mulgore"]={854},
     ["horde-the-barrens"]={6361,6362,6363,6364},
     ["horde-ashenvale"]={6562},
@@ -28,6 +28,7 @@ local coveragePrerequisites={
     [96608]={96628},[96628]={282},[99160]={99159},[99161]={99160},[99162]={99159},
     [96606]={96630},[96630]={921},[98392]={937},[98398]={98392},[940]={98398},
     [99047]={99046},[95998]={96627},[96627]={21},
+    [6281]={6181},[6261]={6281},[6285]={6261},[6362]={6361},[6363]={6362},[6364]={6363},
 }
 local function observedCoveragePoint(entry,role)
     local p=entry and entry[role]
@@ -86,6 +87,114 @@ for _,guide in ipairs(ns.starterGuides or {}) do
         end
     end
 end
+
+-- Complete the missing phases of the existing shared Skyborne story.
+-- Source: observed ForeverDB endpoints and QuestieDB corrected chain facts.
+-- Keep the old stable keys and the same shared step array for both factions.
+local function expandSkyborne()
+    local sky, variants
+    variants={}
+    for _,guide in ipairs(ns.starterGuides or {}) do
+        if guide.id=="zephras-alliance" or guide.id=="zephras-horde" then
+            sky=sky or guide
+            variants[#variants+1]=guide
+        end
+    end
+    if not sky or not ns.foreverDBQuests then return end
+    local before,after,present={}, {}, {}
+    local context={id="zephras",zone="Zephras Isle",levelMin=1}
+    local function mark(q,phase)
+        if q then present[q]=present[q] or {};present[q][phase]=true end
+    end
+    for _,step in ipairs(sky.steps) do
+        mark(step.questId,step.action)
+        for _,q in pairs(step.questIds or {}) do mark(q,step.action) end
+    end
+    local function add(target,anchor,id,phases,req,any,faction,class,optional)
+        local entry=ns.foreverDBQuests[id]
+        if not entry or entry.source~="forever" or entry.zone~="Zephras Isle" then return end
+        if faction and not coveredFaction(entry,faction) then return end
+        for token in phases:gmatch(".") do
+            local action=({a="accept",o="objective",t="turnin"})[token]
+            if not (present[id] and present[id][action])
+                and (action=="objective" or observedCoveragePoint(entry,action=="accept" and "pickup" or action)) then
+                local rules=(ns.foreverQuestRequirements or {})[id] or {}
+                local step=coverageStep(context,id,entry,action,req or (not any and rules.requires),any or (not req and rules.requiresAny))
+                step.optional=optional and true or nil
+                step.faction=faction
+                step.class=class
+                step.liveLocationOnly=action=="objective" and true or nil
+                target[anchor]=target[anchor] or {}
+                target[anchor][#target[anchor]+1]=step
+                mark(id,action)
+                stats.skybornePhases=(stats.skybornePhases or 0)+1
+            end
+        end
+    end
+    for _,row in ipairs({
+        {"class-mage",92481,"MAGE"},{"class-hunter",92482,"HUNTER"},
+        {"class-rogue",92483,"ROGUE"},{"class-shaman",92484,"SHAMAN"},
+        {"class-druid",92485,"DRUID"},{"class-warrior",92532,"WARRIOR"},
+    }) do add(before,row[1],row[2],"at",{92461},nil,nil,row[3],true) end
+    add(before,"racial-alliance",92597,"ao",{92461},nil,"Alliance")
+    add(before,"racial-horde",92598,"ao",nil,nil,"Horde")
+    add(after,"thendal-cleanup",92464,"at")
+    add(after,"thendal-cleanup",92465,"aot",{92464})
+    add(after,"thendal-cleanup",92469,"at",{92465})
+    add(after,"thendal-cleanup",93552,"aot",{92461},nil,nil,nil,true)
+    add(before,"matriarch-objective",92471,"at")
+    add(before,"matriarch-objective",92470,"a",{92471})
+    add(after,"matriarch-objective",92470,"t",{92471})
+    add(before,"encroachment-objective",92473,"a",nil,nil,nil,nil,true)
+    add(after,"encroachment-objective",92473,"t",nil,nil,nil,nil,true)
+    add(after,"encroachment-objective",92472,"at",{92470})
+    add(before,"village-arrival",93461,"a",{92472},nil,"Alliance")
+    add(before,"village-arrival",92514,"a",{92472},nil,"Horde")
+    add(before,"camp-outdoors",96638,"at",{92470},nil,nil,nil,true)
+    add(before,"camp-outdoors",96101,"ao",{96638},nil,nil,nil,true)
+    add(before,"shendar-highorder",92596,"a",{93461},nil,"Alliance")
+    add(after,"shendar-highorder",94413,"aot",{92596},nil,"Alliance",nil,true)
+    add(before,"shendar-windshaper",92595,"a",{92514},nil,"Horde")
+    add(after,"shendar-windshaper",94411,"aot",{92595},nil,"Horde",nil,true)
+    for _,id in ipairs({92515,92516,92553,93319,93951}) do
+        add(before,"bandits-accept",id,"aot",nil,{92514,93461},nil,nil,true)
+    end
+    add(after,"bandits",92517,"t")
+    add(before,"cult-infiltration",93036,"a",{92517})
+    add(after,"cult-infiltration",92529,"at",{93036})
+    add(after,"cult-infiltration",92528,"aot",{92529})
+    add(after,"cult-infiltration",92550,"aot",{92528})
+    add(after,"cult-infiltration",92551,"aot",{92528},nil,nil,nil,true)
+    add(before,"west-watch",93926,"a")
+    add(after,"west-watch",93927,"aot",{93926})
+    add(after,"west-watch",93948,"at",{92550,93927})
+    add(after,"west-watch",92701,"at",{92550,93927},nil,"Alliance")
+    add(after,"west-watch",92579,"at",{92550,93927},nil,"Horde")
+    add(before,"orchard",92679,"a")
+    for _,id in ipairs({92682,92683,92684,92698}) do
+        add(after,"orchard",id,"aot",{92679},nil,nil,nil,true)
+    end
+    add(after,"orchard",92685,"aot",{92682,92683,92684},nil,nil,nil,true)
+    add(after,"orchard",92693,"aot",{92685},nil,nil,nil,true)
+    add(after,"orchard",92703,"at",{92693},nil,nil,nil,true)
+    add(after,"valanaar",93949,"aot",{93948},nil,nil,nil,true)
+    add(after,"horde-leader",93736,"aot",{92700},nil,"Horde",nil,true)
+    add(after,"construct-93737-accept",93737,"ot",{93735},nil,"Horde")
+    add(after,"firm-response-93746-objective",93746,"t",nil,nil,"Horde")
+    local expanded={}
+    for _,step in ipairs(sky.steps) do
+        for _,extra in ipairs(before[step.id] or {}) do expanded[#expanded+1]=extra end
+        if step.id=="camp-outdoors" then
+            local copy={}
+            for k,v in pairs(step) do copy[k]=v end
+            copy.optional=true
+            expanded[#expanded+1]=copy
+        else expanded[#expanded+1]=step end
+        for _,extra in ipairs(after[step.id] or {}) do expanded[#expanded+1]=extra end
+    end
+    for _,guide in ipairs(variants) do guide.steps=expanded end
+end
+expandSkyborne()
 
 local function validQuestGuide(guide)
     if not guide or guide.isProfession or guide.isDungeon
