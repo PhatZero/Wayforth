@@ -156,3 +156,40 @@ assert(coverage.totals.accept.located >= 2754, "Bundled pickup coverage regresse
 assert(coverage.totals.turnin.located >= 2734, "Bundled turn-in coverage regressed")
 assert(coverage.totals.objective.located >= 1649, "Bundled objective coverage regressed")
 print("WayForth quest locations preserve phase routing and existing saved progress")
+
+-- Missing pickup/turn-in locations may use a verified ForeverDB endpoint,
+-- but must never borrow another phase, faction, or Classic observation.
+local fixtureId=999999998
+local observed={mapId=1429,x=42,y=65,kind="npc",name="Verified fixture",
+    source="ForeverDB: seen in WoW Forever"}
+local fake={source="forever",side="a",name="Fixture",minLevel=4,pickup=observed}
+ns.foreverDBQuests[fixtureId]=fake
+local loc=ns.Modules.QuestLocations
+local function resolve(action,faction)
+    local step={questId=fixtureId,action=action,title="Fixture"}
+    loc:Apply(step,{id="fixture",zone="Elwynn Forest",faction=faction})
+    return step
+end
+assert(resolve("accept","Alliance").locationSource==observed.source)
+assert(resolve("accept","Alliance").x==42)
+assert(not resolve("turnin","Alliance").x)
+assert(not resolve("objective","Alliance").x)
+assert(not resolve("accept","Horde").x)
+fake.source="classic"
+assert(not resolve("accept","Alliance").x)
+fake.source="forever"
+ns.foreverQuestLocations[fixtureId]={startItem=true}
+assert(not resolve("accept","Alliance").x,"Item-started quests must not inherit an NPC pickup")
+ns.foreverQuestLocations[fixtureId]={pickup={{mapId=1429,x=48,y=50,kind="npc",name="Corrected"}}}
+assert(resolve("accept","Alliance").x==48,"Corrected source takes precedence")
+ns.foreverQuestLocations[fixtureId]=nil
+ns.foreverDBQuests[fixtureId]=nil
+-- Previously absent prerequisite chains must be present in the original catalog.
+for _,pair in ipairs({{33,5261},{92124,91741},{91743,92124},{91745,91743},
+    {91752,91745},{91758,91752},{91772,91758},{99128,99127},{99129,99128},
+    {99130,99129},{99131,99130},{45,37},{71,45}}) do
+    local step=assert(find("alliance-elwynn",pair[1],"accept"))
+    assert(find("alliance-elwynn",pair[2],"accept"),"Missing prerequisite pickup "..pair[2])
+    assert(step.requires and step.requires[1]==pair[2],"Missing authored chain "..pair[1])
+end
+print("ForeverDB phase fallback and repaired Elwynn quest chains passed")
