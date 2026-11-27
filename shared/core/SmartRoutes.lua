@@ -111,9 +111,20 @@ local function prerequisiteIndex(step, steps)
     return nil, false
 end
 function Routes:ListGuides(kind)
-    local list = {}
-	for _, guide in ipairs(ns.Modules.Guides:List(kind)) do
-        if not guide.faction or not playerFaction() or guide.faction == playerFaction() then
+    local list, splitParents = {}, {}
+    local candidates = ns.Modules.Guides:List(kind)
+    local faction = playerFaction()
+    -- The chapter library is the default selection surface. Whole-zone
+    -- parents remain addressable by ID for old saves and explicit lookups.
+    for _, guide in ipairs(candidates) do
+        if guide.generatedChapter and guide.parentGuideId
+            and (not guide.faction or not faction or guide.faction == faction) then
+            splitParents[guide.parentGuideId] = true
+        end
+    end
+    for _, guide in ipairs(candidates) do
+        if (not guide.faction or not faction or guide.faction == faction)
+            and (kind == "all" or not splitParents[guide.id]) then
             list[#list + 1] = guide
         end
     end
