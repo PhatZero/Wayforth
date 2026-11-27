@@ -110,7 +110,7 @@ local function prerequisiteIndex(step, steps)
     end
     return nil, false
 end
-function Routes:ListGuides(kind)
+function Routes:ListGuides(kind, includeFullZones)
     local list, splitParents = {}, {}
     local candidates = ns.Modules.Guides:List(kind)
     local faction = playerFaction()
@@ -124,7 +124,7 @@ function Routes:ListGuides(kind)
     end
     for _, guide in ipairs(candidates) do
         if (not guide.faction or not faction or guide.faction == faction)
-            and (kind == "all" or not splitParents[guide.id]) then
+            and (includeFullZones or not splitParents[guide.id]) then
             list[#list + 1] = guide
         end
     end
@@ -134,7 +134,7 @@ end
 -- Optional class/neutral zones are excluded from the automatic shortlist.
 function Routes:ZoneSuggestions(limit, excludeId)
     local level = currentLevel()
-    local choices = {}
+    local choices, byZone = {}, {}
     for _, guide in ipairs(self:ListGuides()) do
         if guide.continent == "Kalimdor" and not guide.isDungeon and not guide.isOptional
             and guide.id ~= excludeId and guide.levelMin and guide.levelMax then
@@ -142,9 +142,14 @@ function Routes:ZoneSuggestions(limit, excludeId)
             local outside = math.max(low - level, level - high, 0)
             -- Favor appropriate zones over merely nearby ones.
             local score = outside * 100 + math.abs((low + high)/2 - level)
-            choices[#choices + 1] = { title = guide.zone, score = score, id = guide.id }
+            local key = guide.zone or guide.id
+            local existing = byZone[key]
+            if not existing or score < existing.score or (score == existing.score and guide.id < existing.id) then
+                byZone[key] = { title = key, score = score, id = guide.id }
+            end
         end
     end
+    for _, choice in pairs(byZone) do choices[#choices + 1] = choice end
     table.sort(choices, function(a,b)
         if a.score == b.score then return a.title < b.title end
         return a.score < b.score
