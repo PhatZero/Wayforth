@@ -138,3 +138,6 @@ UnitClass=function() return "Warrior","WARRIOR" end
 assert(not visibleSpecialized("horde-mage-aoe-prep"))
 assert(not route:Preview("horde-mage-aoe-prep","beginning"))
 print("WayForth specialized guide class/faction eligibility passed")
+
+-- Run the isolated canonical library regression after the real-catalog smoke test.
+dofile("tests/lua/test_guide_library_consolidation.lua")
