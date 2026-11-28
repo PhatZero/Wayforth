@@ -41,7 +41,7 @@ end
 for i,step in ipairs(steps) do note(step,i) end
 local count=0
 for id in pairs(actions) do count=count+1 end
-assert(count==44, "The authored guide must retain all 44 source catalog quests")
+assert(count==48, "The authored guide must retain 44 original quests and 4 additional flight-chain quests")
 for _,legacy in ipairs(originals) do
     local place=positions[legacy.questId]
     assert(place and place[legacy.action], "Former quest step lost: "..legacy.id)
@@ -67,7 +67,7 @@ end
 for _,chain in ipairs({
     {12,13,14},{36,38},{92742,92744,92745,92747,92748},
     {65,132,135,141,142,155},{136,138,139,140},
-    {92910,92911},{92109,92110},{48,49,50,51,53},
+    {92910,92911},{92109,92110},{48,49,50,51,53},{6181,6281,6261,6285},
 }) do
     for index=2,#chain do
         before(chain[index-1],"turnin",chain[index],"accept")
@@ -139,4 +139,4 @@ assert(relocated.currentStepId==saved.currentStepId
     "Returning characters must keep their actual quest phase after reordering")
 assert(relocated.completed[steps[positions[12].turnin].id])
 
-print("Westfall authored route passed: 44 quests, grouped pickups, chain ordering, pins and saved step IDs")
+print("Westfall authored route passed: 48 quests, grouped pickups, chain ordering, pins and saved step IDs")

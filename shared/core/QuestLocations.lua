@@ -19,6 +19,22 @@ local function choosePoint(points, guide, currentMap)
     return best
 end
 
+-- A ForeverDB endpoint is usable only when it was observed on Forever,
+-- applies to the player's faction, and describes this exact quest phase.
+local function observedEndpoint(catalog, role, guide)
+    if not catalog or catalog.source ~= "forever" or role == "objective" then return nil end
+    local faction = guide.faction or (type(UnitFactionGroup) == "function" and UnitFactionGroup("player"))
+    if catalog.side ~= "both" and not (catalog.side == "a" and faction == "Alliance")
+        and not (catalog.side == "h" and faction == "Horde") then return nil end
+    local point = catalog[role]
+    if type(point) ~= "table" or point.source ~= "ForeverDB: seen in WoW Forever"
+        or type(point.mapId) ~= "number" or point.mapId <= 0
+        or type(point.x) ~= "number" or point.x <= 0 or point.x >= 100
+        or type(point.y) ~= "number" or point.y <= 0 or point.y >= 100
+        or (point.kind ~= "npc" and point.kind ~= "object") then return nil end
+    return point
+end
+
 -- Insert the work phase before catalog turn-ins. Keep every existing step key.
 function Locations:Prepare(guide)
     if guide.id == "first-steps" or guide.id:find("^zephras%-") then return end
@@ -121,6 +137,13 @@ function Locations:Apply(step, guide, currentMap)
         end
     end
     local point = record and choosePoint(record[role], guide, currentMap)
+    -- Preserve deliberate authored pins and item-start instructions. A missing
+    -- objective is never evidence for borrowing a pickup or turn-in point.
+    if not point and not (step.x and step.y and step.mapId)
+        and not (record and (record.hidden or (role == "pickup" and record.startItem)))
+        and (not record or not record.faction or record.faction == guide.faction) then
+        point = observedEndpoint(catalog, role, guide)
+    end
     if not point then
         step.instructionNeedsLocation=true
         if role=="objective" then step.useLiveInstructions=true end
@@ -143,13 +166,13 @@ function Locations:Apply(step, guide, currentMap)
     step.locationSource = point.source or "QuestieDB"
     step.locationKind = point.kind
     step.instructionSource=step.objectiveSource or point.source or "Bundled quest metadata"
-    if role == "pickup" and record.startItem then
+    if role == "pickup" and record and record.startItem then
         step.text = "Obtain the quest-starting item from " .. tostring(point.name or step.zone) ..
             ". Use the item to accept the quest."
     elseif role == "pickup" then
-        local quest = tostring(record.name or step.questName or step.title or "the quest")
+        local quest = tostring((record and record.name) or step.questName or step.title or "the quest")
         local verb = point.kind == "object" and "Interact with " or "Talk to "
-        if not record.pickupText then step.text = verb .. destination(point,guide) .. ". Accept " .. quest .. " if offered." end
+        if not (record and record.pickupText) then step.text = verb .. destination(point,guide) .. ". Accept " .. quest .. " if offered." end
     elseif role == "objective" and point.requiredQuest then
         step.text = "Complete quest " .. point.requiredQuest .. " with " .. tostring(point.name or step.zone) ..
             " to obtain the required item."
@@ -160,6 +183,6 @@ function Locations:Apply(step, guide, currentMap)
         step.instructionNeedsObjectives=not requirements or nil
     elseif role == "turnin" then
         local verb=point.kind=="object" and "Interact with " or "Speak with "
-        step.text = verb .. destination(point,guide) .. ". Turn in " .. tostring(record.name or step.questName or step.title or "the quest") .. " when ready."
+        step.text = verb .. destination(point,guide) .. ". Turn in " .. tostring((record and record.name) or step.questName or step.title or "the quest") .. " when ready."
     end
 end

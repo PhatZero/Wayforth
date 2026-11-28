@@ -37,12 +37,14 @@ end
 
 function Guides:List(kind)
 	local result = {}
+    local seen = {}
     local classToken
     if type(UnitClass)=="function" then local _,token=UnitClass("player");classToken=token end
 	for _, guide in ipairs(ns.starterGuides or {}) do
-		if (not guide.class or guide.class==classToken) and (not guide.generatedChapter or #self:GetSteps(guide.id)>0) and (kind == "all"
+		if not seen[guide.id] and byId[guide.id] == guide and (not guide.class or guide.class==classToken) and (not guide.generatedChapter or #self:GetSteps(guide.id)>0) and (kind == "all"
 			or kind == "professions" and guide.isProfession
 			or kind ~= "all" and kind ~= "professions" and not guide.isProfession) then
+			seen[guide.id] = true
 			result[#result + 1] = guide
 		end
 	end
@@ -134,6 +136,15 @@ function Guides:GetSteps(id, legacy)
                     resolved.requiresAny=requirements.requiresAny
                 end
             end
+            local catalogEntry=(ns.foreverDBQuests or {})[resolved.questId]
+            -- Only observed Forever metadata supplements missing minimum levels.
+            -- Do not assume an unknown/Classic level is a Forever requirement.
+            if catalogEntry and catalogEntry.source=="forever" then
+                local minimum=catalogEntry.minLevel
+                if not resolved.minLevel and type(minimum)=="number" and minimum>=1 and minimum<=60 then
+                    resolved.minLevel=minimum
+                end
+            end
             if locations then locations:Apply(resolved, guide, currentMap) end
             visible[#visible + 1] = resolved
         end
@@ -187,7 +198,7 @@ function Guides:GetProgress(id)
 end
 
 function Guides:SetActive(id)
-    if not byId[id] or not ns.char then return false end
+    if not byId[id] or not ns.char or #self:GetSteps(id) == 0 then return false end
     ns.char.activeGuide = id
     ns.char.recentGuides = type(ns.char.recentGuides) == "table" and ns.char.recentGuides or {}
     local recent = { id }
